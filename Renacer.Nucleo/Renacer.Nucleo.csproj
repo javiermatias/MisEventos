@@ -68,6 +68,10 @@
     <Compile Include="Migrations\201705252122411_SeAgregoElModeloSocio.Designer.cs">
       <DependentUpon>201705252122411_SeAgregoElModeloSocio.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705252337032_CambiosVarios.cs" />
+    <Compile Include="Migrations\201705252337032_CambiosVarios.Designer.cs">
+      <DependentUpon>201705252337032_CambiosVarios.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -82,6 +86,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705252122411_SeAgregoElModeloSocio.resx">
       <DependentUpon>201705252122411_SeAgregoElModeloSocio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705252337032_CambiosVarios.resx">
+      <DependentUpon>201705252337032_CambiosVarios.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
