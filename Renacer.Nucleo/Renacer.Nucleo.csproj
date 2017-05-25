@@ -7,15 +7,9 @@
     <ProjectGuid>{4184FB60-43FC-46DC-B3BA-06C616B77EF4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-<<<<<<< HEAD:Renacer.Core/Renacer.Core.csproj
-    <RootNamespace>Renacer.Core</RootNamespace>
-    <AssemblyName>Renacer.Core</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
-=======
     <RootNamespace>Renacer.Nucleo</RootNamespace>
     <AssemblyName>Renacer.Nucleo</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
->>>>>>> a28db68... Se corrigio el proyecto de Negocio.Nucleo:Renacer/Renacer.Nucleo/Renacer.Nucleo.csproj
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -65,9 +59,6 @@
   <ItemGroup>
     <Compile Include="Control\ControlCliente.cs" />
     <Compile Include="Entidades\Cliente.cs" />
-<<<<<<< HEAD:Renacer.Core/Renacer.Core.csproj
-    <Compile Include="GlobalSuppressions.cs" />
-=======
     <Compile Include="Entidades\Socio.cs" />
     <Compile Include="Migrations\201705252115483_BaseInicial.cs" />
     <Compile Include="Migrations\201705252115483_BaseInicial.Designer.cs">
@@ -77,7 +68,6 @@
     <Compile Include="Migrations\201705252122411_SeAgregoElModeloSocio.Designer.cs">
       <DependentUpon>201705252122411_SeAgregoElModeloSocio.cs</DependentUpon>
     </Compile>
->>>>>>> a28db68... Se corrigio el proyecto de Negocio.Nucleo:Renacer/Renacer.Nucleo/Renacer.Nucleo.csproj
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,9 +76,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-<<<<<<< HEAD:Renacer.Core/Renacer.Core.csproj
-  <ItemGroup />
-=======
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201705252115483_BaseInicial.resx">
       <DependentUpon>201705252115483_BaseInicial.cs</DependentUpon>
@@ -97,7 +84,6 @@
       <DependentUpon>201705252122411_SeAgregoElModeloSocio.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
->>>>>>> a28db68... Se corrigio el proyecto de Negocio.Nucleo:Renacer/Renacer.Nucleo/Renacer.Nucleo.csproj
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
