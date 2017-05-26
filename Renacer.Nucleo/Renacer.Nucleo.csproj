@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Configuracion\local-01.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
