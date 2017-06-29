@@ -20,11 +20,10 @@ export class Socio {
   ) {  }
 }
 
-
 @Injectable()
 @ResourceParams({
-  url: 'http://localhost:6913/api/socio'
+  url: 'http://localhost:6913/api/socios'
 })
-export class SocioServices extends BaseServices {
+export class SocioServices extends BaseServices<Socio> {
 
 }

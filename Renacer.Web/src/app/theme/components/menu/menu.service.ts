@@ -13,7 +13,7 @@ export class MenuService {
       default: menuItemsSelected = menuItems;break;
     }
     //return menuItemsSelected;
-    return menuItems;
+    return menuItemsAdmin;
   }
 
 }

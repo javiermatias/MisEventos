@@ -29,7 +29,6 @@ interface INews extends INewsShort {
 })
 export class UserServices extends Resource {
 
-
   @ResourceAction({
     isArray: true
   })

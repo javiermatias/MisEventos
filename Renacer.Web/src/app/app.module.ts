@@ -9,6 +9,7 @@ import { AppConfig } from './app.config';
 import { AppComponent } from './app.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { UserServices } from './resources/users.service';
+import { SocioServices } from './resources/socio.service';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import { UserServices } from './resources/users.service';
     routing,
     HttpModule
   ],
-  providers: [AppConfig,UserServices],
+  providers: [AppConfig,UserServices,SocioServices],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

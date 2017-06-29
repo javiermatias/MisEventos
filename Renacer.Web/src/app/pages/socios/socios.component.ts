@@ -15,17 +15,31 @@ export class SociosComponent implements OnInit {
 
   public socios = new Array<Socio>();
 
-  constructor() { }
+  constructor(private _socioService:SocioServices) { }
 
   ngOnInit() {
+    this.socios =  this._socioService.query()
   }
 
   onSubmit(myForm: FormGroup) {
     let newSocio = Object.assign({}, this._socio);
     this._socio = new Socio(0,"","","");
     newSocio.fechaCreacion = new Date();
-
+    this.saveSocio(newSocio)
     this.socios.push(newSocio)
     myForm.reset();
-    console.log("submit socio"); }
+  }
+
+     saveSocio(item:Socio):any{
+      if(item.id == 0){
+        this._socioService.save(item,function(response) {
+          return response;
+        })
+      }else{
+        this._socioService.update(item)
+        return "ok";
+      }
+
+      console.log("submit socio");
+    }
 }

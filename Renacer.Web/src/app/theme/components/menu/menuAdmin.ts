@@ -58,7 +58,7 @@ export const menuItems = [
       },
       {
         title: 'Lista',
-        routerLink: 'socios/lista'
+        routerLink: 'socios/'
       }
     ]
   },
