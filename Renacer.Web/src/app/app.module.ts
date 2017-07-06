@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { UserServices } from './resources/users.service';
 import { SocioServices } from './resources/socio.service';
+import { EspacioServices } from './resources/espacio.service';
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import { SocioServices } from './resources/socio.service';
     routing,
     HttpModule
   ],
-  providers: [AppConfig,UserServices,SocioServices],
+  providers: [AppConfig,UserServices,SocioServices,EspacioServices],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

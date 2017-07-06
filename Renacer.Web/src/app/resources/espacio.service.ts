@@ -5,27 +5,26 @@ import {RequestMethod} from '@angular/http';
 import {BaseServices} from './base.service';
 import {Variables} from './variables';
 
-export class Socio {
+export class EspacioComun {
   constructor(
     public id: number,
     public nombre: string,
-    public apellido: string,
-    public email?:string,
-    public telefono?:string,
-    public fechaNacimiento?: Date,
-    public fechaCreacion?: Date,
+    public descripcion: string,
+    public idDireccion: number,
+    public idTipoEspacio: number,
+    public capacidad: number,
+    public estado?: number,
     public fechaBaja?: Date,
-    public nroSocio?: string,
-    public dni?: string,
-    public imagen?: string
+    public fechaModificacion?: Date,
+    public fechaCreacion?: Date,
   ) {  }
 }
 
+let variable = new Variables();
+
 @Injectable()
 @ResourceParams({
-  url:new Variables().urlBase + "socio/"
+  url:variable.urlBase + "espacio/"
 })
-
-export class SocioServices extends BaseServices<Socio> {
-
+export class EspacioServices extends BaseServices<EspacioComun> {
 }

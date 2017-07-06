@@ -19,7 +19,8 @@ namespace Renacer.Nucleo
         public DateTime fechaModificacion { get; set; }
         public int idDireccion { get; set; }
         public int idTipoEspacio { get; set; }
-
+        public int estado { get; set; }
+        
     }
 
 }

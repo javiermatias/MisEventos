@@ -13,7 +13,7 @@ interface IQueryInput {
 
 @Injectable()
 @ResourceParams({
-  url: 'http://localhost:6913/api/Login'
+  path: 'http://localhost:6913/api/'
 })
 export class BaseServices<T> extends Resource {
 

@@ -5,6 +5,7 @@ import { PagesComponent } from './pages.component';
 import { BlankComponent } from './blank/blank.component';
 import { SearchComponent } from './search/search.component';
 import { SociosComponent } from './socios/socios.component';
+import { EspaciosComponent } from './espacios/espacios.component';
 
 export const routes: Routes = [
     {
@@ -24,6 +25,7 @@ export const routes: Routes = [
             { path: 'editors', loadChildren: 'app/pages/editors/editors.module#EditorsModule', data: { breadcrumb: 'Editors' } },
             { path: 'search', component: SearchComponent, data: { breadcrumb: 'Search' } },
             { path: 'socios', component: SociosComponent, data: { breadcrumb: 'Socios' } },
+            { path: 'espacios', component: EspaciosComponent, data: { breadcrumb: 'Espacios' } },
             { path: 'blank', component: BlankComponent, data: { breadcrumb: 'Blank page' } }
         ]
     }

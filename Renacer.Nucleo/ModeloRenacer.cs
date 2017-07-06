@@ -9,12 +9,14 @@ namespace Renacer.Nucleo
     public partial class ModeloRenacer : DbContext
     {
         public ModeloRenacer()
-            : base("name=ModeloRenacer")
+            //: base("name=ModeloRenacer")
+            //: base("server=localhost;user id = root;Pwd=q1w2q1w2; database=renacer")
         {
         }
 
         public virtual DbSet<Cliente> cliente { get; set; }
         public virtual DbSet<Socio> socio { get; set; }
+        public virtual DbSet<EspacioComun> espacioComun { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
