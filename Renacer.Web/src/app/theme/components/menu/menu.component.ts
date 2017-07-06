@@ -26,7 +26,9 @@ export class MenuComponent implements OnInit {
                 private _menuService:MenuService,
                 private _state:AppState) {
 
-        this.menuItems = _menuService.getMenuItems("Admin");
+      let userType:string =  localStorage.userType;
+      if(!userType){ userType = "default";}
+        this.menuItems = _menuService.getMenuItems(userType);
         this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
             this.isMenuCollapsed = isCollapsed;
         });

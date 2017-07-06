@@ -13,30 +13,30 @@ interface IQueryInput {
 
 @Injectable()
 @ResourceParams({
-  url: 'http://localhost:6913/api/Login'
+  path: 'http://localhost:6913/api/'
 })
-export class BaseServices extends Resource {
+export class BaseServices<T> extends Resource {
 
   @ResourceAction({
     isArray: true
   })
-  query: ResourceMethod<IQueryInput, Object[]>;
+  query: ResourceMethod<IQueryInput, T[]>;
 
   @ResourceAction({
     path: '/{!id}'
   })
-  get: ResourceMethod<{id: any}, Object>;
+  get: ResourceMethod<{id: any}, T>;
 
   @ResourceAction({
     method: RequestMethod.Post
   })
-  save: ResourceMethod<Object, Object>;
+  save: ResourceMethod<T, Object>;
 
   @ResourceAction({
     method: RequestMethod.Put,
     path: '/{!id}'
   })
-  update: ResourceMethod<Object, Object>;
+  update: ResourceMethod<T, Object>;
 
   @ResourceAction({
     method: RequestMethod.Delete,

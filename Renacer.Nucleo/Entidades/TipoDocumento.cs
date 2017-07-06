@@ -1,4 +1,4 @@
-namespace Renacer.Nucleo
+﻿namespace Renacer.Nucleo
 {
     using System;
     using System.Collections.Generic;
@@ -6,17 +6,13 @@ namespace Renacer.Nucleo
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Cliente")]
-    public partial class Cliente
+    [Table("TipoDocumento")]
+    public partial class TipoDocumento
     {
         [Key]
         public int id { get; set; }
         public string nombre { get; set; }
-        public string apellido { get; set; }
-        public int tipoDoc_id { get; set; }
 
-        [ForeignKey("tipoDoc_id")]
-        public TipoDocumento tipoDoc { get; set; } 
     }
-
 }
+    

@@ -1,4 +1,4 @@
-export const itemsAdmin = [
+export const itemsResponsable = [
   {
     title: 'Dashboard',
     routerLink: 'dashboard',
@@ -45,11 +45,21 @@ export const itemsAdmin = [
   },
   {
     title: 'Socios',
-    routerLink: 'socios/',
+    routerLink: 'socios',
     icon: 'fa-users',
     selected: false,
     expanded: false,
     order: 500,
+    subMenu: [
+      {
+        title: 'Nuevo Socio',
+        routerLink: 'socios/nuevo'
+      },
+      {
+        title: 'Lista',
+        routerLink: 'socios/'
+      }
+    ]
   },
   {
     title: 'Espacios',

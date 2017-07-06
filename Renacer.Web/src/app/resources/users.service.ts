@@ -2,66 +2,26 @@ import {Injectable} from '@angular/core';
 import {Resource, ResourceParams, ResourceAction} from 'ngx-resource';
 import {ResourceMethod} from 'ngx-resource/src/Interfaces';
 import {RequestMethod} from '@angular/http';
+import {Variables} from './variables';
 
-interface IQueryInput {
-  page?: number;
-  perPage?: number;
-  dateFrom?: string;
-  dateTo?: string;
-  isRead?: string;
+
+export class Usuario {
+  constructor(
+    public id: number,
+    public nombre: string,
+    public email?:string,
+    public fechaCreacion?: Date,
+    public fechaBaja?: Date,
+    public imagen?: string
+  ) {  }
 }
 
-export interface INewsShort {
-  id: number;
-  date: string;
-  title: string;
-  text: string;
-}
-
-interface INews extends INewsShort {
-  image?: string;
-  fullText: string;
-}
 
 @Injectable()
 @ResourceParams({
-  url: 'http://localhost:6913/api/Login'
+  url:new Variables().urlBase + "login/"
 })
 export class UserServices extends Resource {
-
-
-  @ResourceAction({
-    isArray: true
-  })
-  query: ResourceMethod<IQueryInput, INewsShort[]>;
-
-  @ResourceAction({
-    path: '/{!id}'
-  })
-  get: ResourceMethod<{id: any}, INews>;
-
-
-  //@ResourceAction({
-  //   path: '/{!id}'
-  // })
-  //get2: ResourceMethodStrict<INews, {id: any}, INews>;
-
-  @ResourceAction({
-    method: RequestMethod.Post
-  })
-  save: ResourceMethod<INews, INews>;
-
-  @ResourceAction({
-    method: RequestMethod.Put,
-    path: '/{!id}'
-  })
-  update: ResourceMethod<INews, INews>;
-
-  @ResourceAction({
-    method: RequestMethod.Delete,
-    path: '/{!id}'
-  })
-  remove: ResourceMethod<{id: any}, any>;
 
   @ResourceAction({
     method: RequestMethod.Post
@@ -88,12 +48,4 @@ export class UserServices extends Resource {
         'rol':'',
         'imagen':'',
       };
-
-
-
-    // Alias to save
-    create(data: INews, callback?: (res: INews) => any): INews {
-      return this.save(data, callback);
-    }
-
   }

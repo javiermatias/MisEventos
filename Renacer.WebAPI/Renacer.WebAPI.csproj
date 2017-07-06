@@ -190,7 +190,9 @@
   <ItemGroup>
     <Compile Include="ApiControllerSelector.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\EspacioController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\SociosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -206,7 +208,9 @@
     </Content>
     <Content Include="Configuracion\local-01.config" />
     <Content Include="Configuracion\local-02.config" />
-    <Content Include="Configuracion\local-03.config" />
+    <Content Include="Configuracion\local-03.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Configuracion\produccion.config" />
     <Content Include="Configuracion\testing.config" />
     <Content Include="dist\fontawesome-webfont.674f50d287a8c48dc19b.eot" />

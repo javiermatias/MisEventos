@@ -7,32 +7,32 @@ using System.Linq;
 
 namespace Renacer.Nucleo.Control
 {
-    public class ControlCliente
+    public class ControlEspacioComun
     {
-        private static ControlCliente control;
+        private static ControlEspacioComun control;
 
-        private ControlCliente() { }
+        private ControlEspacioComun() { }
 
         /// <summary>
         /// Metodo para devolver una instancia unica de la Clase.
         /// </summary>
         /// <returns></returns>
-        public static ControlCliente devolverCliente()
+        public static ControlEspacioComun devolverInstacia()
         {
             if (control == null)
-                control = new ControlCliente();
+                control = new ControlEspacioComun();
             return control;
         }
 
         /// <summary>
-        /// Metodo utilizado para Insertar un nuevo cliente.
+        /// Metodo utilizado para Insertar un nuevo espacioComun.
         /// </summary>
-        /// <param name="cliente"></param>
-        public void grabar(Cliente cliente)
+        /// <param name="espacioComun"></param>
+        public void grabar(EspacioComun espacioComun)
         {
             try
             {
-                var errores = this.validar(cliente);
+                var errores = this.validar(espacioComun);
                 if (errores.Count > 0)
                 {
                     throw new UsuarioException(errores);
@@ -40,9 +40,7 @@ namespace Renacer.Nucleo.Control
 
                 using (var db = new ModeloRenacer())
                 {
-
-
-                    db.cliente.AddOrUpdate(cliente);
+                    db.espacioComun.AddOrUpdate(espacioComun);
                     db.SaveChanges();
                 }
             }
@@ -58,21 +56,19 @@ namespace Renacer.Nucleo.Control
         }
 
 
-        /// var item = (from i in db.cliente
+        /// var item = (from i in db.espacioComun
         ///             where i.id.Equals(id)
         //              select i).FirstOrDefault();
         /// 
         /// 
-        /// SELECT * FROM Cliente WHERE id = 1;
-        public Cliente devolver(int id)
+        /// SELECT * FROM EspacioComun WHERE id = 1;
+        public EspacioComun devolver(int id)
         {
             try
             {
                 using (var db = new ModeloRenacer())
                 {
-                    return db.cliente.
-                        Include("tipoDoc").
-                        Where(x => x.id.Equals(id)).FirstOrDefault();
+                    return db.espacioComun.Where(x => x.id.Equals(id)).FirstOrDefault();
                 }
             }
             catch (Exception ex)
@@ -83,17 +79,17 @@ namespace Renacer.Nucleo.Control
         }
 
         /// <summary>
-        /// Metodo utilizado para devolver todos los Cliente
-        /// SELECT * FROM Cliente
+        /// Metodo utilizado para devolver todos los EspacioComun
+        /// SELECT * FROM EspacioComun
         /// </summary>
         /// <returns></returns>
-        public List<Cliente> devolverTodos()
+        public List<EspacioComun> devolverTodos()
         {
             try
             {
                 using (var db = new ModeloRenacer())
                 {
-                    return db.cliente.ToList();
+                    return db.espacioComun.ToList();
                 }
             }
             catch (Exception ex)
@@ -104,8 +100,8 @@ namespace Renacer.Nucleo.Control
         }
 
         /// <summary>
-        /// Metodo utilizado para eliminar un cliente.
-        /// TODO: El metodo se tiene que cambiar para actualizar un atributo del cliente 
+        /// Metodo utilizado para eliminar un espacioComun.
+        /// TODO: El metodo se tiene que cambiar para actualizar un atributo del espacioComun 
         /// para ver si esta eliminado o no, no se eliminan datos.
         /// </summary>
         public void eliminar(int id)
@@ -114,7 +110,7 @@ namespace Renacer.Nucleo.Control
             {
                 using (var db = new ModeloRenacer())
                 {
-                    db.cliente.Remove(db.cliente.Where(x => x.id.Equals(id)).FirstOrDefault());
+                    db.espacioComun.Remove(db.espacioComun.Where(x => x.id.Equals(id)).FirstOrDefault());
                 }
             }
             catch (Exception ex)
@@ -124,23 +120,18 @@ namespace Renacer.Nucleo.Control
         }
 
 
-        private List<string> validar(Cliente cliente)
+        private List<string> validar(EspacioComun espacioComun)
         {
             var errores = new List<string>();
 
-            if (cliente == null)
+            if (espacioComun == null)
             {
-                errores.Add("No se informo el cliente");
+                errores.Add("No se informo el espacio comun");
             }
 
-            if (cliente != null && string.IsNullOrEmpty(cliente.nombre))
+            if (espacioComun != null && string.IsNullOrEmpty(espacioComun.nombre))
             {
-                errores.Add("No se ingreso el nombre del cliente");
-            }
-
-            if (cliente != null && string.IsNullOrEmpty(cliente.apellido))
-            {
-                errores.Add("No se ingreso el apellido del cliente");
+                errores.Add("No se ingreso el nombre del espacio");
             }
 
             return errores;

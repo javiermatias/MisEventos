@@ -1,4 +1,4 @@
-export const itemsAdmin = [
+export const itemsSocio = [
   {
     title: 'Dashboard',
     routerLink: 'dashboard',
@@ -9,8 +9,8 @@ export const itemsAdmin = [
   },
   {
     title: 'Eventos',
-    icon: 'fa-calendar',
     selected: false,
+    icon: 'fa-calendar',
     expanded: false,
     order: 800,
     target: '_blank',
@@ -45,11 +45,21 @@ export const itemsAdmin = [
   },
   {
     title: 'Socios',
-    routerLink: 'socios/',
+    routerLink: 'socios',
     icon: 'fa-users',
     selected: false,
     expanded: false,
     order: 500,
+    subMenu: [
+      {
+        title: 'Nuevo Socio',
+        routerLink: 'socios/nuevo'
+      },
+      {
+        title: 'Lista',
+        routerLink: 'socios/'
+      }
+    ]
   },
   {
     title: 'Espacios',

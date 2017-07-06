@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { menuItems } from './menu';
-import { menuItems as menuItemsAdmin } from './menuAdmin';
+import { itemsAdmin } from './menuAdmin';
+import { itemsSocio } from './menuSocio';
+import { itemsResponsable } from './menuResponsable';
 
 @Injectable()
 export class MenuService {
@@ -9,11 +11,13 @@ export class MenuService {
     let menuItemsSelected;
 
     switch(userType){
-      case "Admin": menuItemsSelected = menuItemsAdmin;break;
+      case "admin": menuItemsSelected = itemsAdmin;break;
+      case "socio": menuItemsSelected = itemsSocio;break;
+      case "responsable": menuItemsSelected = itemsResponsable;break;
       default: menuItemsSelected = menuItems;break;
     }
-    //return menuItemsSelected;
-    return menuItems;
+    return menuItemsSelected;
+    //return menuItemsAdmin;
   }
 
 }
