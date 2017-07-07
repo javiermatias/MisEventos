@@ -104,6 +104,7 @@
     <None Include="Configuracion\produccion.config" />
     <None Include="Configuracion\local-02.config" />
     <None Include="Configuracion\local-01.config" />
+    <None Include="Manuales\gitFlow.docx" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
