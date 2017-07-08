@@ -1,7 +1,8 @@
-import { Component, OnInit , Input,ChangeDetectorRef} from '@angular/core';
+import { Component, OnInit , Input} from '@angular/core';
 import {EspacioComun,EspacioServices} from '../../resources/espacio.service';
 import {FormGroup} from '@angular/forms';
 import {DatePipe} from '@angular/common' ;
+import { ToastrService, ToastrConfig } from 'ngx-toastr';
 
 @Component({
   selector: 'az-espacios',
@@ -14,12 +15,13 @@ export class EspaciosComponent implements OnInit {
   @Input() espacios = new Array<EspacioComun>();
   public showDetail:boolean = false;
 
-  constructor(private _espacioService:EspacioServices,private ref: ChangeDetectorRef) {
+  constructor(private _espacioService:EspacioServices,private mensajeServ: ToastrService) {
 
   }
 
   ngOnInit() {
     this.getItems();
+    this.mensajeServ.success('Estas viendo tus Espacios!', 'Mensaje!');
   }
 
   getItems(){
@@ -45,6 +47,10 @@ nuevoItem(){
   this._espacio =  new EspacioComun(0,"","",0,0,10);
   this.showDetail = true;
 }
+limpiarForm(){
+  this._espacio =  new EspacioComun(0,"","",0,0,10);
+  this.showDetail = false;
+}
 
 saveItem(item:EspacioComun):any{
   if(item.id == 0){
@@ -52,19 +58,20 @@ saveItem(item:EspacioComun):any{
       item = resp;
       this.espacios.push(item);
       this.showDetail = false;
+      this.mensajeServ.success('se han guardado los cambios!', 'Aviso!');
     });
   }else{
     this._espacioService.update(item,(resp:EspacioComun) => {
       let espacios = this.espacios;
       for (var i = 0; i < espacios.length; i++) {
         if(espacios[i].id == resp.id)
-        { espacios[i] = resp;}
-         this.ref.detectChanges();
+        { espacios[i] = resp;
+          this.mensajeServ.success('se han guardado los cambios!', 'Aviso!');
+        }
       }
       this.showDetail = false;
     });
   }
 }
-
 
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Renacer.WebAPI
 {
@@ -11,9 +12,12 @@ namespace Renacer.WebAPI
         public static void Register(HttpConfiguration config)
         {
             // Configuración y servicios de API web
+            var cors = new EnableCorsAttribute("*","*","*");
+            config.EnableCors(cors);
 
             // Rutas de API web
             config.MapHttpAttributeRoutes();
+
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

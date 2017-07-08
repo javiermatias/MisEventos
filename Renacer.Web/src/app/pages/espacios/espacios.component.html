@@ -5,7 +5,7 @@
             <div widget class="card">
                 <div class="card-header">
                     <span class="text-uppercase">Lista de espacios</span>
-                    <button style="margin-left: 20px;" class="btn btn-main btn-sm" (click)="nuevoItem()" >Nuevo</button>
+
                     <div class="widget-controls">
                         <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
                         <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
@@ -16,6 +16,9 @@
                 </div>
                 <div class="card-block widget-body">
                     <p class="no-margin">  </p>
+                    <div class="w-200 pull-left bottom-15">
+                      <button style="margin-left: 20px;" class="btn btn-main btn-sm" (click)="nuevoItem()" >Nuevo</button>
+                    </div>
                     <div class="w-200 pull-right bottom-15">
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fa fa-search"></i></span>
@@ -122,8 +125,9 @@
         <span class="help-block">Aquí puedes agregar cualquier dato relevante del espacio comun.</span>
     </div>
 
-        <button type="submit" class="btn btn-main"
-                [disabled]="!espacioForm.form.valid">Guardar</button>
+        <button type="submit" class="btn btn-main" [disabled]="!espacioForm.form.valid">Guardar</button>
+
+        <button (click)="limpiarForm();" type="button" style="margin-left: 30px;" class="btn btn-default">Cancelar</button>
       </form>
 
     </div>
