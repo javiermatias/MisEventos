@@ -19,14 +19,15 @@ export class Usuario {
 
 @Injectable()
 @ResourceParams({
-  url:new Variables().urlBase + "login/"
+  url:new Variables().urlBase + "usuarios/"
 })
 export class UserServices extends Resource {
 
   @ResourceAction({
-    method: RequestMethod.Post
+    method: RequestMethod.Post,
+    url:new Variables().urlBase + "login/"
   })
-  login: ResourceMethod<{username: string,password:string}, string>;
+  login: ResourceMethod<{usuario: string,clave:string}, string>;
 
   login2 = function(username:string,password:string):string
   {
@@ -43,9 +44,9 @@ export class UserServices extends Resource {
     getCurrent=function(){
       return this.usuario;
     }
-   usuario = {
-        'nombre':'',
-        'rol':'',
-        'imagen':'',
-      };
+    usuario = {
+      'nombre':'',
+      'rol':'',
+      'imagen':'',
+    };
   }

@@ -10,40 +10,17 @@ namespace Renacer.WebAPI
 {
     public class LoginController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<controller>/5
-        public string Get(int id)
-        {
-            return "value: " + id;
-        }
-
         // POST api/<controller>
         public string Post([FromBody]Dictionary<string, string> user)
         {
-            if (user["username"] != null) return "Debe ingresar el nombre de usuario";
+            if (user["usuario"] != null) return "error Debe ingresar el nombre de usuario";
 
-            if (user["username"] == ("augusto"))
+            if (user["usuario"] =="augusto")
             {
-                FormsAuthentication.SetAuthCookie("augusto", false);
+                FormsAuthentication.SetAuthCookie(user["usuario"], false);
                 return "ok";
             }
             return "error";
-        }
-
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody]Dictionary<string,string> user)
-        {
-           
-        }
-
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
         }
     }
 }

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {Socio,SocioServices} from '../../resources/socio.service';
 import {FormGroup} from '@angular/forms';
 import {DatePipe} from '@angular/common' ;
+import { ToastrService, ToastrConfig } from 'ngx-toastr';
 // import { DynamicTablesComponent } from '../tables/dynamic-tables/dynamic-tables.component';
 
 @Component({
@@ -12,34 +13,62 @@ import {DatePipe} from '@angular/common' ;
 export class SociosComponent implements OnInit {
 
   public _socio = new Socio(0,"","","");
+  @Input() socios = new Array<Socio>();
+  public showDetail:boolean = false;
 
-  public socios = new Array<Socio>();
-
-  constructor(private _socioService:SocioServices) { }
-
-  ngOnInit() {
-    this.socios =  this._socioService.query()
-  }
+  constructor(private _socioService:SocioServices,private mensajeServ: ToastrService) { }
 
   onSubmit(myForm: FormGroup) {
     let newSocio = Object.assign({}, this._socio);
     this._socio = new Socio(0,"","","");
-    newSocio.fechaCreacion = new Date();
-    this.saveSocio(newSocio)
-    this.socios.push(newSocio)
+    this.saveItem(newSocio)
     myForm.reset();
   }
 
-     saveSocio(item:Socio):any{
-      if(item.id == 0){
-        this._socioService.save(item,function(response) {
-          return response;
-        })
-      }else{
-        this._socioService.update(item)
-        return "ok";
-      }
+  ngOnInit() {
+    this.getItems();
+    this.mensajeServ.success('Estas viendo tus Socios!', 'Mensaje!');
+  }
 
-      console.log("submit socio");
+  getItems(){
+    this._socioService.query({},(items:Socio[]) => {
+      this.socios = items;
+    });
+  }
+
+  verItem(item:Socio){
+    this._socio = Object.assign({}, item);
+    this.showDetail = true;
+  }
+  nuevoItem(){
+    this._socio =  new Socio(0,"","","");
+    this.showDetail = true;
+  }
+  limpiarForm(){
+    this._socio =  new Socio(0,"","","");
+    this.showDetail = false;
+  }
+
+  saveItem(item:Socio):any{
+    if(item.id == 0){
+      this._socioService.save(item,(resp:Socio) => {
+        item = resp;
+        this.socios.push(item);
+        this.showDetail = false;
+        this.mensajeServ.success('se han guardado los cambios!', 'Aviso!');
+      });
+    }else{
+      this._socioService.update(item,(resp:Socio) => {
+        let items = this.socios;
+        for (var i = 0; i < items.length; i++) {
+          if(items[i].id == resp.id)
+          { items[i] = resp;
+            this.mensajeServ.success('se han guardado los cambios!', 'Aviso!');
+          }
+        }
+        this.showDetail = false;
+      });
     }
+  }
+
 }

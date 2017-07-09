@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import { UserServices } from '../../resources/users.service';
-
+import {Sha256} from "sha256";
 @Component({
   selector: 'az-login',
   encapsulation: ViewEncapsulation.None,
@@ -17,7 +17,6 @@ export class LoginComponent {
   public password:AbstractControl;
   public error :string;
 
-
   constructor(router:Router, fb:FormBuilder,private _usersService:UserServices) {
   // constructor(router:Router, fb:FormBuilder,private _usersService:UserServices) {
     this.router = router;
@@ -27,12 +26,17 @@ export class LoginComponent {
     });
 
     this.username = this.form.controls['username'];
-    this.password = this.form.controls['password'];
+    this.password =this.form.controls['password'];
   }
 
   public onSubmit(values:Object):void {
     if (this.form.valid) {
-      let loginResult = this._usersService.login2(this.username.value,this.password.value);
+     let credenciales = {
+       "usuario":this.username.value,
+       "clave": Sha256(this.password.value)
+     }
+
+      let loginResult = this._usersService.login(credenciales);
       if(loginResult == "success"){
         this.router.navigate(['pages/dashboard']);
       }else{
