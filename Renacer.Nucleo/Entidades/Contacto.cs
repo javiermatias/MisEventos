@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace Renacer.Nucleo.Entidades
 {
-    [Table("Socio")]
-    public class Socio
+    [Table("Contacto")]
+    public class Contacto
     {
         [Key]
         public int id { get; set; }
@@ -18,18 +18,5 @@ namespace Renacer.Nucleo.Entidades
         public string telefono { get; set; }
         public string celular { get; set; }
         public string email { get; set; }
-
-        public int idTipoDoc { get; set; }
-        [ForeignKey("idTipoDoc")]
-        public TipoDocumento tipoDoc { get; set; }
-
-        public int idDomicilio { get; set; }
-        [ForeignKey("idDomicilio")]
-        public Domicilio domicilio { get; set; }
-
-        public int idContacto { get; set; }
-        [ForeignKey("idContacto")]
-        public Contacto contacto { get; set; }
-
     }
 }

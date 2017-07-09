@@ -2,6 +2,8 @@ import { Component, OnInit, ViewEncapsulation, ElementRef, HostListener } from '
 import { Router, ActivatedRoute , NavigationEnd } from '@angular/router';
 import { MenuService } from './menu.service';
 import { AppState } from "../../../app.state";
+import { UserServices } from '../../../resources/users.service';
+
 
 @Component({
     selector: 'az-menu',
@@ -24,11 +26,11 @@ export class MenuComponent implements OnInit {
                 private _router:Router,
                 private _activatedRoute:ActivatedRoute,
                 private _menuService:MenuService,
-                private _state:AppState) {
+                private _state:AppState,
+                private _userServices:UserServices) {
 
-      let userType:string =  localStorage.userType;
-      if(!userType){ userType = "default";}
-        this.menuItems = _menuService.getMenuItems(userType);
+      let user =  this._userServices.getCurrent();
+        this.menuItems = _menuService.getMenuItems(user.rol);
         this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
             this.isMenuCollapsed = isCollapsed;
         });

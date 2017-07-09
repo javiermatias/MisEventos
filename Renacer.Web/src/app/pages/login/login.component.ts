@@ -16,6 +16,7 @@ export class LoginComponent {
   public username:AbstractControl;
   public password:AbstractControl;
   public error :string;
+  public loading:boolean = false;
 
   constructor(router:Router, fb:FormBuilder,private _usersService:UserServices) {
   // constructor(router:Router, fb:FormBuilder,private _usersService:UserServices) {
@@ -31,17 +32,27 @@ export class LoginComponent {
 
   public onSubmit(values:Object):void {
     if (this.form.valid) {
+    //  let credenciales = {
+    //    "usuario":this.username.value,
+    //    "clave": Sha256(this.password.value)
+    //  }
      let credenciales = {
        "usuario":this.username.value,
-       "clave": Sha256(this.password.value)
+       "clave": this.password.value
      }
+       this.loading = true;
+       this._usersService.login(credenciales,(result)=>{
+         this.loading = false;
 
-      let loginResult = this._usersService.login(credenciales);
-      if(loginResult == "success"){
-        this.router.navigate(['pages/dashboard']);
-      }else{
-        this.error = "Error en el usuario o contraseña"
-      }
+        if(result["result"] == "ok"){
+
+          this._usersService.setCurrent(result["user"]);
+
+          this.router.navigate(['pages/dashboard']);
+        }else{
+          this.error = "Error en el usuario o contraseña"
+        }
+      });
     }
   }
 }

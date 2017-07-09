@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Renacer.Nucleo.Control;
+using Renacer.Nucleo.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -10,18 +12,9 @@ namespace Renacer.WebAPI.Controllers
     public class SociosController : ApiController
     {
         // GET: api/Socios
-        public IEnumerable<Dictionary<string, object>> Get()
+        public IEnumerable<Socio> Get()
         {
-
-            Dictionary<string, object> socio = new Dictionary<string, object>();
-            socio.Add("id", 1);
-            socio.Add("nombre", "Augus");
-            socio.Add("apellido", "galan");
-            socio.Add("nroSocio", 23);
-
-            List<Dictionary<string, object>> Lista = new List<Dictionary<string, object>>();
-            Lista.Add(socio);
-            return Lista;
+            return ControlSocio.devolverInstancia().devolverTodos();
         }
 
         // GET: api/Socios/5

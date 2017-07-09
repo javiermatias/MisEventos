@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Renacer.Nucleo.Control;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -11,16 +12,27 @@ namespace Renacer.WebAPI
     public class LoginController : ApiController
     {
         // POST api/<controller>
-        public string Post([FromBody]Dictionary<string, string> user)
+        public IHttpActionResult Post([FromBody]Dictionary<string, string> user)
         {
-            if (user["usuario"] != null) return "error Debe ingresar el nombre de usuario";
+            Dictionary<string, Object> resp = new Dictionary<string, object>();
+            resp.Add("result", "error");
 
-            if (user["usuario"] =="augusto")
+            if (user["usuario"] == null || user["clave"] == null) return Ok(resp);
+
+            var usuario =  ControlUsuario.devolverInstacia().devolver(user["usuario"], user["clave"]);
+
+            if (usuario != null)
             {
-                FormsAuthentication.SetAuthCookie(user["usuario"], false);
-                return "ok";
+                FormsAuthentication.SetAuthCookie(usuario.usuario, false);
+                usuario.clave = "";
+                usuario.idGoogle = "";
+                usuario.idFacebook = "";
+                resp.Add("user", usuario);
+                resp["result"] = "ok";
+                return Ok(resp);
             }
-            return "error";
+            return Ok(resp);
         }
+
     }
 }

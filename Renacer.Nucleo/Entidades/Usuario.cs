@@ -16,6 +16,7 @@ namespace Renacer.Nucleo
         public string usuario { get; set; }
         public string clave { get; set; }
         public string imagen { get; set; }
+        public string rol { get; set; }
         public string email { get; set; }
         public DateTime fechaCreacion { get; set; }
         public DateTime fechaBaja { get; set; }

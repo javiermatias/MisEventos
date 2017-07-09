@@ -66,8 +66,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Control\ControlSocio.cs" />
+    <Compile Include="Control\ControlUsuario.cs" />
     <Compile Include="Control\ControlEspacioComun.cs" />
     <Compile Include="Control\ControlCliente.cs" />
+    <Compile Include="Entidades\Contacto.cs" />
+    <Compile Include="Entidades\Domicilio.cs" />
     <Compile Include="Entidades\EspacioComun.cs" />
     <Compile Include="Entidades\TipoDocumento.cs" />
     <Compile Include="Entidades\Usuario.cs" />
@@ -89,6 +93,14 @@
     <Compile Include="Migrations\201707062305051_CreacionEspacioComun.cs" />
     <Compile Include="Migrations\201707062305051_CreacionEspacioComun.Designer.cs">
       <DependentUpon>201707062305051_CreacionEspacioComun.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707091710566_Creacion_Usuario_Socio_Contacto_Domicilio.cs" />
+    <Compile Include="Migrations\201707091710566_Creacion_Usuario_Socio_Contacto_Domicilio.Designer.cs">
+      <DependentUpon>201707091710566_Creacion_Usuario_Socio_Contacto_Domicilio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707091747004_AgregadoRolEnUsuario.cs" />
+    <Compile Include="Migrations\201707091747004_AgregadoRolEnUsuario.Designer.cs">
+      <DependentUpon>201707091747004_AgregadoRolEnUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
@@ -121,6 +133,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707062305051_CreacionEspacioComun.resx">
       <DependentUpon>201707062305051_CreacionEspacioComun.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707091710566_Creacion_Usuario_Socio_Contacto_Domicilio.resx">
+      <DependentUpon>201707091710566_Creacion_Usuario_Socio_Contacto_Domicilio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707091747004_AgregadoRolEnUsuario.resx">
+      <DependentUpon>201707091747004_AgregadoRolEnUsuario.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
