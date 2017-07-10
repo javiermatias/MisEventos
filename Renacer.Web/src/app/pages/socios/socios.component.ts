@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {Socio,SocioServices} from '../../resources/socio.service';
+import {Socio,SocioServices,TipoDocumento,Contacto,Domicilio} from '../../resources/socio.service';
 import {FormGroup} from '@angular/forms';
 import {DatePipe} from '@angular/common' ;
 import { ToastrService, ToastrConfig } from 'ngx-toastr';
@@ -14,9 +14,13 @@ export class SociosComponent implements OnInit {
 
   public _socio = new Socio(0,"","","");
   @Input() socios = new Array<Socio>();
+  @Input() tiposDocumentos = new Array<TipoDocumento>();
   public showDetail:boolean = false;
 
-  constructor(private _socioService:SocioServices,private mensajeServ: ToastrService) { }
+  constructor(private _socioService:SocioServices,private mensajeServ: ToastrService) {
+    this.getItems();
+    this.getTiposDoc();
+  }
 
   onSubmit(myForm: FormGroup) {
     let newSocio = Object.assign({}, this._socio);
@@ -35,10 +39,17 @@ export class SociosComponent implements OnInit {
       this.socios = items;
     });
   }
+  getTiposDoc(){
+    this._socioService.tiposDocumentos({},(items:TipoDocumento[]) => {
+      this.tiposDocumentos = items;
+    });
+  }
 
   verItem(item:Socio){
-    this._socio = Object.assign({}, item);
-    this.showDetail = true;
+    this._socioService.get({"id":item.id},(resp:Socio) => {
+      this._socio = resp;
+      this.showDetail = true;
+    });
   }
   nuevoItem(){
     this._socio =  new Socio(0,"","","");
@@ -70,5 +81,4 @@ export class SociosComponent implements OnInit {
       });
     }
   }
-
 }

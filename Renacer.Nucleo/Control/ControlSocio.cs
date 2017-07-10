@@ -147,5 +147,25 @@ namespace Renacer.Nucleo.Control
 
             return errores;
         }
+
+
+
+        public List<TipoDocumento> devolverTiposDocumentos()
+        {
+            try
+            {
+                using (var db = new ModeloRenacer())
+                {
+                    return db.tipoDocumento.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                ServicioSentry.devolverSentry().informarExcepcion(ex);
+            }
+            return null;
+        }
+
+
     }
 }

@@ -9,7 +9,7 @@ using System.Web.Http;
 
 namespace Renacer.WebAPI.Controllers
 {
-    public class SociosController : ApiController
+    public class SocioController : ApiController
     {
         // GET: api/Socios
         public IEnumerable<Socio> Get()

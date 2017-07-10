@@ -1,142 +1,165 @@
 <div class="row">
-
-  <div class="col-xl-12 col-lg-12 col-12 bottom-30" [hidden]="showDetail" >
-
-    <div class="row">
-        <div class="col">
-            <div widget class="card">
-                <div class="card-header">
-                    <span class="text-uppercase">Socios</span>
-                    <div class="widget-controls">
-                        <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
-                        <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
-                        <a data-widgster="fullscreen" href="#" class="transition"><i class="fa fa-expand"></i></a>
-                        <a data-widgster="restore" href="#" class="transition"><i class="fa fa-compress"></i></a>
-                        <!-- <a data-widgster="close" href="#" class="transition"><i class="fa fa-times"></i></a> -->
-                    </div>
-                </div>
-                <div class="card-block widget-body">
-                    <p class="no-margin">  </p>
-                    <div class="w-200 pull-left bottom-15">
-                      <button style="margin-left: 20px;" class="btn btn-main" (click)="nuevoItem()" >Nuevo Socio</button>
-                    </div>
-                    <div class="w-200 pull-right bottom-15">
-                        <div class="input-group input-group-sm">
-                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                            <input class="form-control" id="table-search-input" [(ngModel)]="searchText" type="text" placeholder="Buscar Socio...">
+    <div class="col-xl-12 col-lg-12 col-12 bottom-30" [hidden]="showDetail">
+        <div class="row">
+            <div class="col">
+                <div widget class="card">
+                    <div class="card-header">
+                        <span class="text-uppercase">Socios</span>
+                        <div class="widget-controls">
+                            <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
+                            <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
+                            <a data-widgster="fullscreen" href="#" class="transition"><i class="fa fa-expand"></i></a>
+                            <a data-widgster="restore" href="#" class="transition"><i class="fa fa-compress"></i></a>
+                            <!-- <a data-widgster="close" href="#" class="transition"><i class="fa fa-times"></i></a> -->
                         </div>
                     </div>
-                    <div class="table-responsive datatable">
-                        <!-- <table class="table table-striped table-hover table-sm" [mfData]="socios  | SearchPipe : searchText" #mf="mfDataTable" [mfRowsOnPage]="10"> -->
-                        <table class="table table-striped table-hover table-sm" [mfData]="socios" #mf="mfDataTable" [mfRowsOnPage]="10">
-                            <thead>
-                                <tr>
-                                    <!-- <th><mfDefaultSorter by="id">Id</mfDefaultSorter></th> -->
-                                    <th><mfDefaultSorter by="nombre">Nombre</mfDefaultSorter></th>
-                                    <th><mfDefaultSorter by="apellido">Apellido</mfDefaultSorter></th>
-                                    <th><mfDefaultSorter by="descripcion">Description</mfDefaultSorter></th>
-                                    <th><mfDefaultSorter by="fechaCreacion">Fecha Alta</mfDefaultSorter></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let item of mf.data | SearchPipe : searchText">
-                                    <!-- <td>{{item.id}}</td> -->
-                                    <td><strong>{{item.nombre}}</strong></td>
-                                    <td><strong>{{item.apellido}}</strong></td>
-                                    <td>{{item.descripcion}}</td>
-                                    <td>{{item.fechaCreacion | date:'medium'}}</td>
-                                </tr>
+                    <div class="card-block widget-body">
+                        <p class="no-margin">  </p>
+                        <div class="w-200 pull-left bottom-15">
+                            <button style="margin-left: 20px;" class="btn btn-main" (click)="nuevoItem()">Nuevo Socio</button>
+                        </div>
+                        <div class="w-200 pull-right bottom-15">
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                                <input class="form-control" id="table-search-input" [(ngModel)]="searchText" type="text" placeholder="Buscar Socio...">
+                            </div>
+                        </div>
+                        <div class="table-responsive datatable">
+                            <!-- <table class="table table-striped table-hover table-sm" [mfData]="socios  | SearchPipe : searchText" #mf="mfDataTable" [mfRowsOnPage]="10"> -->
+                            <table class="table table-striped table-hover table-sm" [mfData]="socios" #mf="mfDataTable" [mfRowsOnPage]="10">
+                                <thead>
+                                    <tr>
+                                        <!-- <th><mfDefaultSorter by="id">Id</mfDefaultSorter></th> -->
+                                        <th><mfDefaultSorter by="nombre">Nombre</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="apellido">Apellido</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="descripcion">Description</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="fechaCreacion">Fecha Alta</mfDefaultSorter></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of mf.data | SearchPipe : searchText">
+                                        <!-- <td>{{item.id}}</td> -->
+                                        <td><strong>{{item.nombre}}</strong></td>
+                                        <td><strong>{{item.apellido}}</strong></td>
+                                        <td>{{item.descripcion}}</td>
+                                        <td>{{item.fechaCreacion | date:'medium'}}</td>
+                                    </tr>
                                     <tr *ngIf="(mf.data | SearchPipe : searchText).length === 0">
-                                    <td colspan="100">
-                                        No encontrado
-                                    </td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="12">
-                                        <mfBootstrapPaginator [rowsOnPageSet]="[10, 25, 50, 100]"></mfBootstrapPaginator>
-                                    </td>
-                                </tr>
-                            </tfoot>
-                        </table>
+                                        <td colspan="100">
+                                            No encontrado
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="12">
+                                            <mfBootstrapPaginator [rowsOnPageSet]="[10, 25, 50, 100]"></mfBootstrapPaginator>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-  </div>
-
-
     <div class="col-xl-12 col-lg-12 col-12 bottom-30" [hidden]="!showDetail">
-      <div widget class="card">
-        <div class="card-header">
-          <span>Datos del Socio</span>
-          <div class="widget-controls">
-            <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
-            <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
-            <a data-widgster="fullscreen" href="#" class="transition"><i class="fa fa-expand"></i></a>
-            <a data-widgster="restore" href="#" class="transition"><i class="fa fa-compress"></i></a>
-            <!-- <a data-widgster="close" href="#" class="transition"><i class="fa fa-times"></i></a> -->
-          </div>
-        </div>
-        <div class="card-block widget-body">
-          <form (ngSubmit)="onSubmit(socioForm)" #socioForm="ngForm">
-            <div class="form-group">
-              <label for="nombre">Nombre</label>
-              <input type="text" class="form-control" id="nombre" required
-              #nombre="ngModel" name="nombre" [(ngModel)]="_socio.nombre">
-              <div [hidden]="nombre.valid || nombre.pristine"
-              class="alert alert-danger">
-              Debe ingresar el nombre
+        <div widget class="card">
+            <div class="card-header">
+                <span>Datos del Socio</span>
+                <div class="widget-controls">
+                    <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
+                    <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
+                    <a data-widgster="fullscreen" href="#" class="transition"><i class="fa fa-expand"></i></a>
+                    <a data-widgster="restore" href="#" class="transition"><i class="fa fa-compress"></i></a>
+                    <!-- <a data-widgster="close" href="#" class="transition"><i class="fa fa-times"></i></a> -->
+                </div>
             </div>
-          </div>
+            <div class="card-block widget-body">
+                <form (ngSubmit)="onSubmit(socioForm)" #socioForm="ngForm">
+                    <div class="row">
+                        <div class="col col-md-6">
+                            <div class="form-group">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" class="form-control" id="nombre" required
+                                       #nombre="ngModel" name="nombre" [(ngModel)]="_socio.nombre">
+                                <div [hidden]="nombre.valid || nombre.pristine"
+                                     class="alert alert-danger">
+                                    Debe ingresar el nombre
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="nombre">Apellido</label>
+                                <input type="text" class="form-control" id="apellido" required
+                                       #apellido="ngModel" name="apellido" [(ngModel)]="_socio.apellido">
+                                <div [hidden]="apellido.valid || apellido.pristine"
+                                     class="alert alert-danger">
+                                    Debe ingresar el apellido
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="tipoDoc">Tipo documento</label>
+                                        <select class="form-control" id="tipoDoc" required #tipoDoc="ngModel" name="tipoDoc" [(ngModel)]="_socio.tipoDoc">
+                                            <option *ngFor="let item of tiposDocumentos" [value]="item">{{item.nombre}}</option>
+                                        </select>
+                                        <div [hidden]="tipoDoc.valid || tipoDoc.pristine" class="alert alert-danger">
+                                            Debe ingresar el tipo de documento
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="nroDocumento">Nro de documento</label>
+                                        <input class="form-control" id="nroDocumento" required #nroDocumento="ngModel" name="nroDocumento" [(ngModel)]="_socio.nroDocumento">
+                                        <div [hidden]="nroDocumento.valid || nroDocumento.pristine" class="alert alert-danger">
+                                            Debe ingresar el nro de documento
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col col-md-6">
+                            <div class="form-group">
+                                <label for="input-2">Email</label>
+                                <input type="text" class="form-control" id="email" name="email" [(ngModel)]="_socio.email">
+                            </div>
+                            <div class="form-group">
+                                <label for="input-2">Teléfono</label>
+                                <input type="text" class="form-control" id="telefono" name="telefono" [(ngModel)]="_socio.telefono">
+                            </div>
+                            <div class="form-group">
+                                <label for="input-2">Celular</label>
+                                <input type="text" class="form-control" id="celular" name="celular" [(ngModel)]="_socio.celular">
+                            </div>
+                        </div>
+                    </div>
 
-          <div class="form-group">
-            <label for="nombre">Apellido</label>
-            <input type="text" class="form-control" id="apellido" required
-            #apellido="ngModel" name="apellido" [(ngModel)]="_socio.apellido">
-            <div [hidden]="apellido.valid || apellido.pristine"
-            class="alert alert-danger">
-            Debe ingresar el apellido
-          </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="nombre">Número de socio</label>
+                            <input type="number" class="form-control" id="nroSocio" required
+                                   #nroSocio="ngModel" name="nroSocio" [(ngModel)]="_socio.nroSocio">
+                            <div [hidden]="nroSocio.valid || nroSocio.pristine"
+                                 class="alert alert-danger">
+                                Debe ingresar el número de socio
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="nombre">descripcion</label>
+                            <input type="text" class="form-control" id="descripcion"
+                                   #descripcion="ngModel" name="descripcion" [(ngModel)]="_socio.descripcion">
+                            <span class="help-block">Aquí puedes agregar cualquier dato relevante del socio.</span>
+                        </div>
+
+                    </div>
+
+                    <button type="submit" class="btn btn-main" [disabled]="!socioForm.form.valid">Guardar</button>
+                </form>
+            </div>
         </div>
-
-        <div class="form-group">
-          <label for="input-2">Email</label>
-          <input type="text" class="form-control" id="email" name="email" [(ngModel)]="_socio.email">
-        </div>
-
-          <div class="form-group">
-            <label for="input-2">Teléfono</label>
-            <input type="text" class="form-control" id="telefono" name="telefono" [(ngModel)]="_socio.telefono">
-          </div>
-
-          <div class="form-group">
-            <label for="nombre">Número de socio</label>
-            <input type="number" class="form-control" id="nroSocio" required
-            #nroSocio="ngModel" name="nroSocio" [(ngModel)]="_socio.nroSocio">
-            <div [hidden]="nroSocio.valid || nroSocio.pristine"
-            class="alert alert-danger">
-            Debe ingresar el número de socio
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="nombre">descripcion</label>
-          <input type="text" class="form-control" id="descripcion"
-          #descripcion="ngModel" name="descripcion" [(ngModel)]="_socio.descripcion">
-          <span class="help-block">Aquí puedes agregar cualquier dato relevante del socio.</span>
-      </div>
-
-          <button type="submit" class="btn btn-main"
-                  [disabled]="!socioForm.form.valid">Guardar</button>
-        </form>
-
-      </div>
     </div>
-  </div>
-
-
 </div>

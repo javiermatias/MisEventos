@@ -102,6 +102,10 @@
     <Compile Include="Migrations\201707091747004_AgregadoRolEnUsuario.Designer.cs">
       <DependentUpon>201707091747004_AgregadoRolEnUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707100208159_CambiosSocio.cs" />
+    <Compile Include="Migrations\201707100208159_CambiosSocio.Designer.cs">
+      <DependentUpon>201707100208159_CambiosSocio.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -139,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707091747004_AgregadoRolEnUsuario.resx">
       <DependentUpon>201707091747004_AgregadoRolEnUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707100208159_CambiosSocio.resx">
+      <DependentUpon>201707100208159_CambiosSocio.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

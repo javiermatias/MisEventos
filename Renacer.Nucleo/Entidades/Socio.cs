@@ -22,10 +22,13 @@ namespace Renacer.Nucleo.Entidades
         public int idTipoDoc { get; set; }
         [ForeignKey("idTipoDoc")]
         public TipoDocumento tipoDoc { get; set; }
+        public string nroDocumento { get; set; }
+
 
         public int idDomicilio { get; set; }
         [ForeignKey("idDomicilio")]
         public Domicilio domicilio { get; set; }
+
 
         public int idContacto { get; set; }
         [ForeignKey("idContacto")]
