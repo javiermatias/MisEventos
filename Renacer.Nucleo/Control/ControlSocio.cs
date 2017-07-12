@@ -43,6 +43,8 @@ namespace Renacer.Nucleo.Control
 
 
                     db.socio.AddOrUpdate(socio);
+                    db.Entry(socio.domicilio).State = System.Data.Entity.EntityState.Modified;
+                    db.Entry(socio.contacto).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
                 }
             }

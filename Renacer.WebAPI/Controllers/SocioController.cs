@@ -18,24 +18,37 @@ namespace Renacer.WebAPI.Controllers
         }
 
         // GET: api/Socios/5
-        public string Get(int id)
+        public Socio Get(int id)
         {
-            return "value";
+            return ControlSocio.devolverInstancia().devolver(id);
         }
 
-        // POST: api/Socios
-        public void Post([FromBody]string value)
+        // POST: api/cliente
+        public IHttpActionResult Post([FromBody]Socio value)
         {
+            try
+            {
+                ControlSocio.devolverInstancia().grabar(value);
+                return Ok(value);
+            }
+            catch (UsuarioException ex)
+            {
+                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.BadRequest, ex.errores));
+            }
         }
 
-        // PUT: api/Socios/5
-        public void Put(int id, [FromBody]string value)
+        // PUT: api/cliente/5
+        public void Put(int id, [FromBody]Socio value)
         {
+            var socio = ControlSocio.devolverInstancia().devolver(id);
+            ControlSocio.devolverInstancia().grabar(value);
         }
 
-        // DELETE: api/Socios/5
+        // DELETE: api/ApiCliente/5
         public void Delete(int id)
         {
+            ControlSocio.devolverInstancia().eliminar(id);
         }
+
     }
 }

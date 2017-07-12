@@ -34,6 +34,7 @@
                                         <th><mfDefaultSorter by="apellido">Apellido</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="descripcion">Description</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="fechaCreacion">Fecha Alta</mfDefaultSorter></th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -43,6 +44,10 @@
                                         <td><strong>{{item.apellido}}</strong></td>
                                         <td>{{item.descripcion}}</td>
                                         <td>{{item.fechaCreacion | date:'medium'}}</td>
+                                        <td>
+                                            <a style="color: #014c8c;cursor:pointer;"
+                                               (click)="verItem(item)">ver</a>
+                                        <td>
                                     </tr>
                                     <tr *ngIf="(mf.data | SearchPipe : searchText).length === 0">
                                         <td colspan="100">
@@ -139,22 +144,36 @@
                     </div>
 
                     <div class="row">
-                        <div class="form-group">
-                            <label for="nombre">Número de socio</label>
-                            <input type="number" class="form-control" id="nroSocio" required
-                                   #nroSocio="ngModel" name="nroSocio" [(ngModel)]="_socio.nroSocio">
-                            <div [hidden]="nroSocio.valid || nroSocio.pristine"
-                                 class="alert alert-danger">
-                                Debe ingresar el número de socio
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="nombre">Número de socio</label>
+                                <input type="number" class="form-control" id="nroSocio" required
+                                       #nroSocio="ngModel" name="nroSocio" [(ngModel)]="_socio.nroSocio">
+                                <div [hidden]="nroSocio.valid || nroSocio.pristine"
+                                     class="alert alert-danger">
+                                    Debe ingresar el número de socio
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="nombre">descripcion</label>
+                                <input type="text" class="form-control" id="descripcion"
+                                       #descripcion="ngModel" name="descripcion" [(ngModel)]="_socio.descripcion">
+                                <span class="help-block">Aquí puedes agregar cualquier dato relevante del socio.</span>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="nombre">descripcion</label>
-                            <input type="text" class="form-control" id="descripcion"
-                                   #descripcion="ngModel" name="descripcion" [(ngModel)]="_socio.descripcion">
-                            <span class="help-block">Aquí puedes agregar cualquier dato relevante del socio.</span>
-                        </div>
+                    </div>
 
+                    <div class="row">
+                        <div class="col col-lg-12" *ngIf="_socio.contacto">
+                            <az-contacto [_contacto]="_socio.contacto">
+                            </az-contacto>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-lg-12" *ngIf="_socio.domicilio">
+                            <az-domicilio [_domicilio]="_socio.domicilio">
+                            </az-domicilio>
+                        </div>
                     </div>
 
                     <button type="submit" class="btn btn-main" [disabled]="!socioForm.form.valid">Guardar</button>
