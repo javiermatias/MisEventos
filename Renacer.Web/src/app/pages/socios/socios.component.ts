@@ -3,6 +3,7 @@ import {Socio,SocioServices,TipoDocumento,Contacto,Domicilio} from '../../resour
 import {FormGroup} from '@angular/forms';
 import {DatePipe} from '@angular/common' ;
 import { ToastrService, ToastrConfig } from 'ngx-toastr';
+import { DomicilioComponent } from '../domicilio/domicilio.component';
 // import { DynamicTablesComponent } from '../tables/dynamic-tables/dynamic-tables.component';
 
 @Component({

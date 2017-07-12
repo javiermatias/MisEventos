@@ -1,0 +1,48 @@
+
+<div widget class="card" style="margin:20px">
+    <div class="card-header">
+        <span>Domicilio</span>
+        <div class="widget-controls">
+           
+        </div>
+    </div>
+    <div class="card-block widget-body">
+        <div class="row">
+            <div class="col col-md-4">
+                <div class="form-group">
+                    <label for="barrio">Barrio</label>
+                    <select class="form-control" id="barrio" #barrio="ngModel" name="barrio" [(ngModel)]="_domicilio.barrio">
+                        <option>Cordoba</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col col-md-4">
+                <div class="form-group">
+                    <label for="calle">Calle</label>
+                    <input type="text" class="form-control" id="calle" required
+                           #calle="ngModel" name="calle" [(ngModel)]="_domicilio.calle">
+                </div>
+
+                <div class="form-group">
+                    <label for="piso">Piso</label>
+                    <input type="text" class="form-control" id="piso" required
+                           #piso="ngModel" name="piso" [(ngModel)]="_domicilio.piso">
+                </div>
+
+            </div>
+            <div class="col col-md-4">
+                <div class="form-group">
+                    <label for="nroCalle">nroCalle</label>
+                    <input type="text" class="form-control" id="nroCalle" required
+                           #nroCalle="ngModel" name="nroCalle" [(ngModel)]="_domicilio.nroCalle">
+                </div>
+
+                <div class="form-group">
+                    <label for="dpto">Dpto</label>
+                    <input type="text" class="form-control" id="dpto" required
+                           #dpto="ngModel" name="dpto" [(ngModel)]="_domicilio.dpto">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
