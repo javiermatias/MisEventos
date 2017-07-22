@@ -8,27 +8,40 @@
     </div>
     <div class="card-block widget-body">
         <div class="row">
-            <div class="col col-md-4">
+            <div class="col col-md-6">
                 <div class="form-group">
-                    <label for="calle">Calle</label>
+                    <label for="calle">Nombre</label>
                     <input type="text" class="form-control" id="calle" required
                            #calle="ngModel" name="calle" [(ngModel)]="_contacto.nombre">
                 </div>
             </div>
-            <div class="col col-md-4">
+            <div class="col col-md-6">
                 <div class="form-group">
                     <label for="calle">Apellido</label>
                     <input type="text" class="form-control" id="apellido" required
                            #apellido="ngModel" name="apellido" [(ngModel)]="_contacto.apellido">
                 </div>
             </div>
-            <div class="col col-md-4">
+            <div class="col col-md-6">
                 <div class="form-group">
                     <label for="telefono">Telefono</label>
                     <input type="text" class="form-control" id="telefono" required
                            #calle="ngModel" name="telefono" [(ngModel)]="_contacto.telefono">
                 </div>
             </div>
+            <div class="col col-md-6">
+                <div class="form-group">
+                    <label for="telefono">Relacion con el socio</label>
+                    <select type="text" class="form-control" id="relacion" required
+                           #relacion="ngModel" name="relacion" [(ngModel)]="_contacto.relacion">
+                           <option value="Padre">Padre</option>
+                           <option value="Madre">Madre</option>
+                           <option value="Hermano/a">Hermano/a</option>
+                            <option value="">Hermano/a</option>
+                         </select>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

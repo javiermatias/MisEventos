@@ -40,11 +40,14 @@ namespace Renacer.Nucleo.Control
 
                 using (var db = new ModeloRenacer())
                 {
-
-
                     db.socio.AddOrUpdate(socio);
-                    db.Entry(socio.domicilio).State = System.Data.Entity.EntityState.Modified;
-                    db.Entry(socio.contacto).State = System.Data.Entity.EntityState.Modified;
+
+                    if (socio.domicilio.id == 0) db.Entry(socio.domicilio).State = System.Data.Entity.EntityState.Added;
+                    if (socio.domicilio.id > 0)  db.Entry(socio.domicilio).State = System.Data.Entity.EntityState.Modified;
+
+                    if (socio.contacto.id == 0) db.Entry(socio.contacto).State = System.Data.Entity.EntityState.Added;
+                    if (socio.contacto.id > 0) db.Entry(socio.contacto).State = System.Data.Entity.EntityState.Modified;
+
                     db.SaveChanges();
                 }
             }

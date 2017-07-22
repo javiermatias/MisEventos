@@ -11,6 +11,7 @@ import { ErrorComponent } from './pages/error/error.component';
 import { UserServices } from './resources/users.service';
 import { SocioServices } from './resources/socio.service';
 import { EspacioServices } from './resources/espacio.service';
+import { EncargadoEventoServices } from './resources/encargado.service';
 
 
 @NgModule({
@@ -27,7 +28,7 @@ import { EspacioServices } from './resources/espacio.service';
     routing,
     HttpModule
   ],
-  providers: [AppConfig,UserServices,SocioServices,EspacioServices],
+  providers: [AppConfig,UserServices,SocioServices,EspacioServices,EncargadoEventoServices],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

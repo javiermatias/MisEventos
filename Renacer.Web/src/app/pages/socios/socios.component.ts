@@ -54,6 +54,8 @@ export class SociosComponent implements OnInit {
   }
   nuevoItem(){
     this._socio =  new Socio(0,"","","");
+    this._socio.domicilio = new Domicilio();
+    this._socio.contacto = new Contacto();
     this.showDetail = true;
   }
   limpiarForm(){

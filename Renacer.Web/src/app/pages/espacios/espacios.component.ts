@@ -21,7 +21,7 @@ export class EspaciosComponent implements OnInit {
 
   ngOnInit() {
     this.getItems();
-    this.mensajeServ.success('Estas viendo tus Espacios!', 'Mensaje!');
+   //this.mensajeServ.success('Estas viendo tus Espacios!', 'Mensaje!');
   }
 
   getItems(){
@@ -58,7 +58,7 @@ saveItem(item:EspacioComun):any{
       item = resp;
       this.espacios.push(item);
       this.showDetail = false;
-      this.mensajeServ.success('se han guardado los cambios!', 'Aviso!');
+      this.mensajeServ.success('Se han guardado los cambios!', 'Aviso!');
     });
   }else{
     this._espacioService.update(item,(resp:EspacioComun) => {
@@ -66,7 +66,7 @@ saveItem(item:EspacioComun):any{
       for (var i = 0; i < espacios.length; i++) {
         if(espacios[i].id == resp.id)
         { espacios[i] = resp;
-          this.mensajeServ.success('se han guardado los cambios!', 'Aviso!');
+          this.mensajeServ.success('Se han guardado los cambios!', 'Aviso!');
         }
       }
       this.showDetail = false;

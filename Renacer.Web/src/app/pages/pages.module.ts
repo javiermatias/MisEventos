@@ -24,6 +24,7 @@ import { DataTableModule } from "angular2-datatable";
 import { EspaciosComponent } from './espacios/espacios.component';
 import { DomicilioComponent } from './domicilio/domicilio.component';
 import { ContactoComponent } from './contacto/contacto.component';
+import { EncargadosComponent } from './encargados/encargados.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { ContactoComponent } from './contacto/contacto.component';
     SociosComponent,
     EspaciosComponent,
     DomicilioComponent,
-    ContactoComponent
+    ContactoComponent,
+    EncargadosComponent
   ]
 })
 export class PagesModule { }

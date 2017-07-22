@@ -27,21 +27,19 @@ export const itemsAdmin = [
   },
   {
     title: 'Usuarios',
-    routerLink: 'usuarios',
+    routerLink: 'usuarios/',
     icon: 'fa-users',
     selected: false,
     expanded: false,
-    order: 500,
-    subMenu: [
-      {
-        title: 'Nuevo Usuario',
-        routerLink: 'usuarios/nuevo'
-      },
-      {
-        title: 'Lista',
-        routerLink: 'usuarios/lista'
-      }
-    ]
+    order: 500
+  },
+  {
+    title: 'Encargados de evento',
+    routerLink: 'encargados/',
+    icon: 'fa-users',
+    selected: false,
+    expanded: false,
+    order: 600
   },
   {
     title: 'Socios',

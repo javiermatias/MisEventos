@@ -21,11 +21,7 @@ export class Socio {
     public tipoDoc?:TipoDocumento,
     public domicilio?:Domicilio,
     public contacto?:Contacto
-  ) {
-    if(this.tipoDoc == undefined) this.tipoDoc = new TipoDocumento()
-    if(this.domicilio == undefined) this.domicilio = new Domicilio()
-    if(this.contacto == undefined) this.contacto = new Contacto()
-   }
+  ) {  }
 }
 export class TipoDocumento{
   constructor(
@@ -39,14 +35,7 @@ export class Domicilio{
     public calle? :string,
     public piso?:string,
     public nroCalle?:string,
-    public depto?:string){
-      if(this.id == undefined)  this.id = 0;
-      if(this.barrio == undefined)  this.barrio = "";
-      if(this.calle == undefined)  this.calle = "";
-      if(this.piso == undefined)  this.piso = "";
-      if(this.nroCalle == undefined)  this.nroCalle = "";
-      if(this.depto == undefined)  this.depto = "";
-    }
+    public depto?:string){}
   }
   export class Contacto{
     constructor(
@@ -55,6 +44,7 @@ export class Domicilio{
       public apellido?:string,
       public telefono?:string,
       public email?:string,
+      public relacion?:string,
       public celular?:string){}
     }
 
