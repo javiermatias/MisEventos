@@ -3,7 +3,7 @@
     <div class="card-header">
         <span>Domicilio</span>
         <div class="widget-controls">
-           
+
         </div>
     </div>
     <div class="card-block widget-body">
@@ -14,6 +14,11 @@
                     <select class="form-control" id="barrio" #barrio="ngModel" name="barrio" [(ngModel)]="_domicilio.barrio">
                         <option>Cordoba</option>
                     </select>
+                </div>
+                <div class="form-group">
+                    <label for="codPostal">Codigo postal</label>
+                    <input type="number" class="form-control" id="codPostal" required
+                           #codPostal="ngModel" name="codPostal" [(ngModel)]="_domicilio.codPostal">
                 </div>
             </div>
             <div class="col col-md-4">
@@ -34,13 +39,13 @@
                 <div class="form-group">
                     <label for="nroCalle">nroCalle</label>
                     <input type="text" class="form-control" id="nroCalle" required
-                           #nroCalle="ngModel" name="nroCalle" [(ngModel)]="_domicilio.nroCalle">
+                           #nroCalle="ngModel" name="nroCalle" [(ngModel)]="_domicilio.nro">
                 </div>
 
                 <div class="form-group">
-                    <label for="dpto">Dpto</label>
-                    <input type="text" class="form-control" id="dpto" required
-                           #dpto="ngModel" name="dpto" [(ngModel)]="_domicilio.dpto">
+                    <label for="depto">Dpto</label>
+                    <input type="text" class="form-control" id="depto" required
+                           #depto="ngModel" name="depto" [(ngModel)]="_domicilio.depto">
                 </div>
             </div>
         </div>

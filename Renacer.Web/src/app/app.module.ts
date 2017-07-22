@@ -12,6 +12,7 @@ import { UserServices } from './resources/users.service';
 import { SocioServices } from './resources/socio.service';
 import { EspacioServices } from './resources/espacio.service';
 import { EncargadoEventoServices } from './resources/encargado.service';
+import { TipoDocumentoServices } from './resources/tipo-documento.service';
 
 
 @NgModule({
@@ -28,7 +29,7 @@ import { EncargadoEventoServices } from './resources/encargado.service';
     routing,
     HttpModule
   ],
-  providers: [AppConfig,UserServices,SocioServices,EspacioServices,EncargadoEventoServices],
+  providers: [AppConfig,UserServices,SocioServices,EspacioServices,EncargadoEventoServices,TipoDocumentoServices],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

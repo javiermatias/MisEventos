@@ -7,32 +7,32 @@ using System.Linq;
 
 namespace Renacer.Nucleo.Control
 {
-    public class ControlSocio
+    public class ControlEncargado
     {
-        private static ControlSocio control;
+        private static ControlEncargado control;
 
-        private ControlSocio() { }
+        private ControlEncargado() { }
 
         /// <summary>
         /// Metodo para devolver una instancia unica de la Clase.
         /// </summary>
         /// <returns></returns>
-        public static ControlSocio devolverInstancia()
+        public static ControlEncargado devolverInstancia()
         {
             if (control == null)
-                control = new ControlSocio();
+                control = new ControlEncargado();
             return control;
         }
 
         /// <summary>
-        /// Metodo utilizado para Insertar un nuevo socio.
+        /// Metodo utilizado para Insertar un nuevo encargado.
         /// </summary>
-        /// <param name="socio"></param>
-        public void grabar(Socio socio)
+        /// <param name="encargado"></param>
+        public void grabar(Encargado encargado)
         {
             try
             {
-                var errores = this.validar(socio);
+                var errores = this.validar(encargado);
                 if (errores.Count > 0)
                 {
                     throw new UsuarioException(errores);
@@ -40,15 +40,12 @@ namespace Renacer.Nucleo.Control
 
                 using (var db = new ModeloRenacer())
                 {
-                    db.socio.AddOrUpdate(socio);
+                    db.encargado.AddOrUpdate(encargado);
 
-                    if (socio.domicilio.id == 0) db.Entry(socio.domicilio).State = System.Data.Entity.EntityState.Added;
-                    if (socio.domicilio.id > 0)  db.Entry(socio.domicilio).State = System.Data.Entity.EntityState.Modified;
-
-                    if (socio.contacto.id == 0) db.Entry(socio.contacto).State = System.Data.Entity.EntityState.Added;
-                    if (socio.contacto.id > 0) db.Entry(socio.contacto).State = System.Data.Entity.EntityState.Modified;
-
-                    db.Entry(socio.tipoDoc).State = System.Data.Entity.EntityState.Unchanged;
+                    if (encargado.domicilio.id == 0) db.Entry(encargado.domicilio).State = System.Data.Entity.EntityState.Added;
+                    if (encargado.domicilio.id > 0)  db.Entry(encargado.domicilio).State = System.Data.Entity.EntityState.Modified;
+                 
+                    db.Entry(encargado.tipoDoc).State = System.Data.Entity.EntityState.Unchanged;
                     db.SaveChanges();
                 }
             }
@@ -64,22 +61,22 @@ namespace Renacer.Nucleo.Control
         }
 
 
-        /// var item = (from i in db.socio
+        /// var item = (from i in db.encargado
         ///             where i.id.Equals(id)
         //              select i).FirstOrDefault();
         /// 
         /// 
-        /// SELECT * FROM Socio WHERE id = 1;
-        public Socio devolver(int id)
+        /// SELECT * FROM Encargado WHERE id = 1;
+        public Encargado devolver(int id)
         {
             try
             {
                 using (var db = new ModeloRenacer())
                 {
-                    return db.socio.
+                    return db.encargado.
                         Include("tipoDoc").
                         Include("domicilio").
-                        Include("contacto").
+                        Include("listaTags").
                         Where(x => x.id.Equals(id)).FirstOrDefault();
                 }
             }
@@ -91,17 +88,17 @@ namespace Renacer.Nucleo.Control
         }
 
         /// <summary>
-        /// Metodo utilizado para devolver todos los Socio
-        /// SELECT * FROM Socio
+        /// Metodo utilizado para devolver todos los Encargado
+        /// SELECT * FROM Encargado
         /// </summary>
         /// <returns></returns>
-        public List<Socio> devolverTodos()
+        public List<Encargado> devolverTodos()
         {
             try
             {
                 using (var db = new ModeloRenacer())
                 {
-                    return db.socio.ToList();
+                    return db.encargado.ToList();
                 }
             }
             catch (Exception ex)
@@ -112,8 +109,8 @@ namespace Renacer.Nucleo.Control
         }
 
         /// <summary>
-        /// Metodo utilizado para eliminar un socio.
-        /// TODO: El metodo se tiene que cambiar para actualizar un atributo del socio 
+        /// Metodo utilizado para eliminar un encargado.
+        /// TODO: El metodo se tiene que cambiar para actualizar un atributo del encargado 
         /// para ver si esta eliminado o no, no se eliminan datos.
         /// </summary>
         public void eliminar(int id)
@@ -122,7 +119,7 @@ namespace Renacer.Nucleo.Control
             {
                 using (var db = new ModeloRenacer())
                 {
-                    db.socio.Remove(db.socio.Where(x => x.id.Equals(id)).FirstOrDefault());
+                    db.encargado.Remove(db.encargado.Where(x => x.id.Equals(id)).FirstOrDefault());
                 }
             }
             catch (Exception ex)
@@ -132,23 +129,23 @@ namespace Renacer.Nucleo.Control
         }
 
 
-        private List<string> validar(Socio socio)
+        private List<string> validar(Encargado encargado)
         {
             var errores = new List<string>();
 
-            if (socio == null)
+            if (encargado == null)
             {
-                errores.Add("No se informo el socio");
+                errores.Add("No se informo el encargado");
             }
 
-            if (socio != null && string.IsNullOrEmpty(socio.nombre))
+            if (encargado != null && string.IsNullOrEmpty(encargado.nombre))
             {
-                errores.Add("No se ingreso el nombre del socio");
+                errores.Add("No se ingreso el nombre del encargado");
             }
 
-            if (socio != null && string.IsNullOrEmpty(socio.apellido))
+            if (encargado != null && string.IsNullOrEmpty(encargado.apellido))
             {
-                errores.Add("No se ingreso el apellido del socio");
+                errores.Add("No se ingreso el apellido del encargado");
             }
 
             return errores;
@@ -156,21 +153,7 @@ namespace Renacer.Nucleo.Control
 
 
 
-        public List<TipoDocumento> devolverTiposDocumentos()
-        {
-            try
-            {
-                using (var db = new ModeloRenacer())
-                {
-                    return db.tipoDocumento.ToList();
-                }
-            }
-            catch (Exception ex)
-            {
-                ServicioSentry.devolverSentry().informarExcepcion(ex);
-            }
-            return null;
-        }
+      
 
 
     }

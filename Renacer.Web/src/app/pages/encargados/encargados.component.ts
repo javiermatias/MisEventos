@@ -1,5 +1,6 @@
 import { Component, OnInit , Input} from '@angular/core';
 import {EncargadoEvento,EncargadoEventoServices} from '../../resources/encargado.service';
+import {Domicilio} from '../../resources/socio.service';
 import {FormGroup} from '@angular/forms';
 import {DatePipe} from '@angular/common' ;
 import { ToastrService, ToastrConfig } from 'ngx-toastr';
@@ -37,18 +38,22 @@ onSubmit(myForm: FormGroup) {
   myForm.reset();
 }
 
-verItem(item:EncargadoEvento){
-  this._item = Object.assign({}, item);
-  this.showDetail = true;
-}
-nuevoItem(){
-  this._item =  new EncargadoEvento(0,"","");
-  this.showDetail = true;
-}
-limpiarForm(){
-  this._item =  new EncargadoEvento(0,"","");
-  this.showDetail = false;
-}
+  verItem(item:EncargadoEvento){
+    this._itemsService.get({"id":item.id},(resp:EncargadoEvento) => {
+      this._item = resp;
+      this.showDetail = true;
+    });
+  }
+  nuevoItem(){
+    this._item =  new EncargadoEvento(0,"","","");
+    this._item.domicilio = new Domicilio();
+    this.showDetail = true;
+  }
+  limpiarForm(){
+    this._item =  new EncargadoEvento(0,"","","");
+    this.showDetail = false;
+  }
+
 
 saveItem(item:EncargadoEvento):any
 {

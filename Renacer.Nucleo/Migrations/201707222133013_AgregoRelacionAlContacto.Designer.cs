@@ -6,14 +6,14 @@ namespace Renacer.Nucleo.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class SeAgregoElModeloSocio : IMigrationMetadata
+    [GeneratedCode("EntityFramework.Migrations", "6.2.0-beta1-60406")]
+    public sealed partial class AgregoRelacionAlContacto : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(SeAgregoElModeloSocio));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AgregoRelacionAlContacto));
         
         string IMigrationMetadata.Id
         {
-            get { return "201705252122411_SeAgregoElModeloSocio"; }
+            get { return "201707222133013_AgregoRelacionAlContacto"; }
         }
         
         string IMigrationMetadata.Source

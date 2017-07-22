@@ -1,9 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {Socio,SocioServices,TipoDocumento,Contacto,Domicilio} from '../../resources/socio.service';
+import {Socio,SocioServices,Contacto,Domicilio} from '../../resources/socio.service';
 import {FormGroup} from '@angular/forms';
 import {DatePipe} from '@angular/common' ;
 import { ToastrService, ToastrConfig } from 'ngx-toastr';
 import { DomicilioComponent } from '../domicilio/domicilio.component';
+import { TipoDocumentoComponent } from '../tipo-documento/tipo-documento.component';
+import { TipoDocumento } from '../../resources/tipo-documento.service';
 // import { DynamicTablesComponent } from '../tables/dynamic-tables/dynamic-tables.component';
 
 @Component({
@@ -15,12 +17,10 @@ export class SociosComponent implements OnInit {
 
   public _socio = new Socio(0,"","","");
   @Input() socios = new Array<Socio>();
-  @Input() tiposDocumentos = new Array<TipoDocumento>();
   public showDetail:boolean = false;
 
   constructor(private _socioService:SocioServices,private mensajeServ: ToastrService) {
     this.getItems();
-    this.getTiposDoc();
   }
 
   onSubmit(myForm: FormGroup) {
@@ -32,7 +32,7 @@ export class SociosComponent implements OnInit {
 
   ngOnInit() {
     this.getItems();
-    this.mensajeServ.success('Estas viendo tus Socios!', 'Mensaje!');
+    //this.mensajeServ.success('Estas viendo tus Socios!', 'Mensaje!');
   }
 
   getItems(){
@@ -40,11 +40,7 @@ export class SociosComponent implements OnInit {
       this.socios = items;
     });
   }
-  getTiposDoc(){
-    this._socioService.tiposDocumentos({},(items:TipoDocumento[]) => {
-      this.tiposDocumentos = items;
-    });
-  }
+
 
   verItem(item:Socio){
     this._socioService.get({"id":item.id},(resp:Socio) => {

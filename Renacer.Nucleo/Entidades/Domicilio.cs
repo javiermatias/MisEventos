@@ -16,7 +16,8 @@ namespace Renacer.Nucleo.Entidades
         public string barrio { get; set; }
         public string calle { get; set; }
         public string piso { get; set; }
-        public string nroPiso { get; set; }
+        public string nro { get; set; }
+        public Int32 codPostal { get; set; }
         public string depto { get; set; }
 
     }

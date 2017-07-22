@@ -19,6 +19,8 @@ namespace Renacer.Nucleo
         public virtual DbSet<EspacioComun> espacioComun { get; set; }
         public virtual DbSet<Usuario> usuario { get; set; }
         public virtual DbSet<TipoDocumento> tipoDocumento { get; set; }
+        public virtual DbSet<Encargado> encargado { get; set; }
+        public virtual DbSet<Tag> tag { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

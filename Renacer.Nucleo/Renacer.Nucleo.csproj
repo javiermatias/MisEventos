@@ -66,6 +66,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Control\ControlEncargado.cs" />
+    <Compile Include="Control\ControlTipoDocumento.cs" />
     <Compile Include="Control\ControlSocio.cs" />
     <Compile Include="Control\ControlUsuario.cs" />
     <Compile Include="Control\ControlEspacioComun.cs" />
@@ -73,38 +75,28 @@
     <Compile Include="Entidades\Contacto.cs" />
     <Compile Include="Entidades\Domicilio.cs" />
     <Compile Include="Entidades\EspacioComun.cs" />
+    <Compile Include="Entidades\Encargado.cs" />
+    <Compile Include="Entidades\Tag.cs" />
     <Compile Include="Entidades\TipoDocumento.cs" />
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Entidades\Cliente.cs" />
     <Compile Include="Entidades\Socio.cs" />
     <Compile Include="Entidades\UsuarioException.cs" />
-    <Compile Include="Migrations\201705252115483_BaseInicial.cs" />
-    <Compile Include="Migrations\201705252115483_BaseInicial.Designer.cs">
-      <DependentUpon>201705252115483_BaseInicial.cs</DependentUpon>
+    <Compile Include="Migrations\201707221552239_ReseteoBase.cs" />
+    <Compile Include="Migrations\201707221552239_ReseteoBase.Designer.cs">
+      <DependentUpon>201707221552239_ReseteoBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705252122411_SeAgregoElModeloSocio.cs" />
-    <Compile Include="Migrations\201705252122411_SeAgregoElModeloSocio.Designer.cs">
-      <DependentUpon>201705252122411_SeAgregoElModeloSocio.cs</DependentUpon>
+    <Compile Include="Migrations\201707222133013_AgregoRelacionAlContacto.cs" />
+    <Compile Include="Migrations\201707222133013_AgregoRelacionAlContacto.Designer.cs">
+      <DependentUpon>201707222133013_AgregoRelacionAlContacto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705252337032_CambiosVarios.cs" />
-    <Compile Include="Migrations\201705252337032_CambiosVarios.Designer.cs">
-      <DependentUpon>201705252337032_CambiosVarios.cs</DependentUpon>
+    <Compile Include="Migrations\201707222140370_CambioDomicilio.cs" />
+    <Compile Include="Migrations\201707222140370_CambioDomicilio.Designer.cs">
+      <DependentUpon>201707222140370_CambioDomicilio.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201707062305051_CreacionEspacioComun.cs" />
-    <Compile Include="Migrations\201707062305051_CreacionEspacioComun.Designer.cs">
-      <DependentUpon>201707062305051_CreacionEspacioComun.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707091710566_Creacion_Usuario_Socio_Contacto_Domicilio.cs" />
-    <Compile Include="Migrations\201707091710566_Creacion_Usuario_Socio_Contacto_Domicilio.Designer.cs">
-      <DependentUpon>201707091710566_Creacion_Usuario_Socio_Contacto_Domicilio.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707091747004_AgregadoRolEnUsuario.cs" />
-    <Compile Include="Migrations\201707091747004_AgregadoRolEnUsuario.Designer.cs">
-      <DependentUpon>201707091747004_AgregadoRolEnUsuario.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707100208159_CambiosSocio.cs" />
-    <Compile Include="Migrations\201707100208159_CambiosSocio.Designer.cs">
-      <DependentUpon>201707100208159_CambiosSocio.cs</DependentUpon>
+    <Compile Include="Migrations\201707222306266_AgregamosEncargadoyTags.cs" />
+    <Compile Include="Migrations\201707222306266_AgregamosEncargadoyTags.Designer.cs">
+      <DependentUpon>201707222306266_AgregamosEncargadoyTags.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
@@ -126,29 +118,19 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705252115483_BaseInicial.resx">
-      <DependentUpon>201705252115483_BaseInicial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201707221552239_ReseteoBase.resx">
+      <DependentUpon>201707221552239_ReseteoBase.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705252122411_SeAgregoElModeloSocio.resx">
-      <DependentUpon>201705252122411_SeAgregoElModeloSocio.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201707222133013_AgregoRelacionAlContacto.resx">
+      <DependentUpon>201707222133013_AgregoRelacionAlContacto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705252337032_CambiosVarios.resx">
-      <DependentUpon>201705252337032_CambiosVarios.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201707222140370_CambioDomicilio.resx">
+      <DependentUpon>201707222140370_CambioDomicilio.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707062305051_CreacionEspacioComun.resx">
-      <DependentUpon>201707062305051_CreacionEspacioComun.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707091710566_Creacion_Usuario_Socio_Contacto_Domicilio.resx">
-      <DependentUpon>201707091710566_Creacion_Usuario_Socio_Contacto_Domicilio.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707091747004_AgregadoRolEnUsuario.resx">
-      <DependentUpon>201707091747004_AgregadoRolEnUsuario.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707100208159_CambiosSocio.resx">
-      <DependentUpon>201707100208159_CambiosSocio.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201707222306266_AgregamosEncargadoyTags.resx">
+      <DependentUpon>201707222306266_AgregamosEncargadoyTags.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

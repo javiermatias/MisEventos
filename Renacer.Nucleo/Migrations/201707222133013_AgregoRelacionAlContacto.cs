@@ -3,16 +3,16 @@ namespace Renacer.Nucleo.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class CambiosSocio : DbMigration
+    public partial class AgregoRelacionAlContacto : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.Socio", "nroDocumento", c => c.String(unicode: false));
+            AddColumn("dbo.Contacto", "relacion", c => c.String(unicode: false));
         }
         
         public override void Down()
         {
-            DropColumn("dbo.Socio", "nroDocumento");
+            DropColumn("dbo.Contacto", "relacion");
         }
     }
 }

@@ -25,6 +25,7 @@ import { EspaciosComponent } from './espacios/espacios.component';
 import { DomicilioComponent } from './domicilio/domicilio.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { EncargadosComponent } from './encargados/encargados.component';
+import { TipoDocumentoComponent } from './tipo-documento/tipo-documento.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { EncargadosComponent } from './encargados/encargados.component';
     EspaciosComponent,
     DomicilioComponent,
     ContactoComponent,
-    EncargadosComponent
+    EncargadosComponent,
+    TipoDocumentoComponent
   ]
 })
 export class PagesModule { }

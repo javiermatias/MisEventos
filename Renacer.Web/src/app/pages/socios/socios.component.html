@@ -105,26 +105,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="tipoDoc">Tipo documento</label>
-                                        <select class="form-control" id="tipoDoc" required #tipoDoc="ngModel" name="tipoDoc" [(ngModel)]="_socio.tipoDoc">
-                                            <option *ngFor="let item of tiposDocumentos" [value]="item">{{item.nombre}}</option>
-                                        </select>
-                                        <div [hidden]="tipoDoc.valid || tipoDoc.pristine" class="alert alert-danger">
-                                            Debe ingresar el tipo de documento
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="nroDocumento">Nro de documento</label>
-                                        <input class="form-control" id="nroDocumento" required #nroDocumento="ngModel" name="nroDocumento" [(ngModel)]="_socio.nroDocumento">
-                                        <div [hidden]="nroDocumento.valid || nroDocumento.pristine" class="alert alert-danger">
-                                            Debe ingresar el nro de documento
-                                        </div>
-                                    </div>
-                                </div>
+                              <tipo-documento [tipoDoc]="_socio.tipoDoc" [nroDocumento]="_socio.nroDocumento"></tipo-documento>
                             </div>
                         </div>
                         <div class="col col-md-6">
@@ -143,7 +124,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col">
                             <div class="form-group">
                                 <label for="nombre">Número de socio</label>
@@ -161,7 +142,7 @@
                                 <span class="help-block">Aquí puedes agregar cualquier dato relevante del socio.</span>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="row">
                         <div class="col col-lg-12" *ngIf="_socio.domicilio">
