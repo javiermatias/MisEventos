@@ -16,8 +16,8 @@ namespace Renacer.Nucleo
         public string descripcion { get; set; }
         public Int32 capacidad { get; set; }
         public DateTime fechaCreacion { get; set; }
-        public DateTime fechaBaja { get; set; }
-        public DateTime fechaModificacion { get; set; }
+        public DateTime? fechaBaja { get; set; }
+        public DateTime? fechaModificacion { get; set; }
         public int idTipoEspacio { get; set; }
         public int estado { get; set; }
 

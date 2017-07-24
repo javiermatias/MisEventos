@@ -28,6 +28,7 @@ namespace Renacer.WebAPI.Controllers
         {
             try
             {
+                if (value.id == 0) value.fechaCreacion = DateTime.Now;
                 ControlSocio.devolverInstancia().grabar(value);
                 return Ok(value);
             }
@@ -41,13 +42,18 @@ namespace Renacer.WebAPI.Controllers
         public void Put(int id, [FromBody]Socio value)
         {
             var socio = ControlSocio.devolverInstancia().devolver(id);
+            value.fechaModificacion = DateTime.Now;
             ControlSocio.devolverInstancia().grabar(value);
         }
 
         // DELETE: api/ApiCliente/5
         public void Delete(int id)
         {
-            ControlSocio.devolverInstancia().eliminar(id);
+            var socio = ControlSocio.devolverInstancia().devolver(id);
+            socio.fechaBaja = DateTime.Now;
+            ControlSocio.devolverInstancia().grabar(socio);
+
+            //ControlSocio.devolverInstancia().eliminar(id);
         }
 
     }

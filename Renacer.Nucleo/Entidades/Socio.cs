@@ -24,15 +24,18 @@ namespace Renacer.Nucleo.Entidades
         public TipoDocumento tipoDoc { get; set; }
         public string nroDocumento { get; set; }
 
-
         public int idDomicilio { get; set; }
         [ForeignKey("idDomicilio")]
         public Domicilio domicilio { get; set; }
 
-
         public int idContacto { get; set; }
         [ForeignKey("idContacto")]
         public Contacto contacto { get; set; }
+
+        public DateTime fechaCreacion { get; set; }
+        public DateTime? fechaBaja { get; set; }
+        public DateTime? fechaModificacion { get; set; }
+
 
     }
 }

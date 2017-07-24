@@ -98,6 +98,14 @@
     <Compile Include="Migrations\201707222306266_AgregamosEncargadoyTags.Designer.cs">
       <DependentUpon>201707222306266_AgregamosEncargadoyTags.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707231621447_AgregoFechasAModelos.cs" />
+    <Compile Include="Migrations\201707231621447_AgregoFechasAModelos.Designer.cs">
+      <DependentUpon>201707231621447_AgregoFechasAModelos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707231659562_HagoNullAlgunasFechas.cs" />
+    <Compile Include="Migrations\201707231659562_HagoNullAlgunasFechas.Designer.cs">
+      <DependentUpon>201707231659562_HagoNullAlgunasFechas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -129,6 +137,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707222306266_AgregamosEncargadoyTags.resx">
       <DependentUpon>201707222306266_AgregamosEncargadoyTags.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707231621447_AgregoFechasAModelos.resx">
+      <DependentUpon>201707231621447_AgregoFechasAModelos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707231659562_HagoNullAlgunasFechas.resx">
+      <DependentUpon>201707231659562_HagoNullAlgunasFechas.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

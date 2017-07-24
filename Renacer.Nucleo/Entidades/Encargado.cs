@@ -27,7 +27,12 @@ namespace Renacer.Nucleo.Entidades
         public int idDomicilio { get; set; }
         [ForeignKey("idDomicilio")]
         public Domicilio domicilio { get; set; }
+
         public List<Tag> listaTags { get; set; }
+
+        public DateTime fechaCreacion { get; set; }
+        public DateTime? fechaBaja { get; set; }
+        public DateTime? fechaModificacion { get; set; }
 
     }
 }

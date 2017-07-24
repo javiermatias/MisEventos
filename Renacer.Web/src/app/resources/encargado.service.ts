@@ -20,7 +20,9 @@ export class EncargadoEvento {
     public nroDocumento?: string,
     public tipoDoc?:TipoDocumento,
     public domicilio?:Domicilio
-  ) {  }
+  ) {
+    this.tipoDoc = new TipoDocumento();
+  }
 }
 
 let variable = new Variables();

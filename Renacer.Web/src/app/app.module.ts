@@ -14,7 +14,6 @@ import { EspacioServices } from './resources/espacio.service';
 import { EncargadoEventoServices } from './resources/encargado.service';
 import { TipoDocumentoServices } from './resources/tipo-documento.service';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +28,9 @@ import { TipoDocumentoServices } from './resources/tipo-documento.service';
     routing,
     HttpModule
   ],
-  providers: [AppConfig,UserServices,SocioServices,EspacioServices,EncargadoEventoServices,TipoDocumentoServices],
+  providers: [AppConfig,UserServices,SocioServices,EspacioServices,
+    EncargadoEventoServices,
+    TipoDocumentoServices],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

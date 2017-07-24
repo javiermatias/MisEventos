@@ -29,19 +29,15 @@ export class SociosComponent implements OnInit {
     this.saveItem(newSocio)
     myForm.reset();
   }
-
   ngOnInit() {
     this.getItems();
     //this.mensajeServ.success('Estas viendo tus Socios!', 'Mensaje!');
   }
-
   getItems(){
     this._socioService.query({},(items:Socio[]) => {
       this.socios = items;
     });
   }
-
-
   verItem(item:Socio){
     this._socioService.get({"id":item.id},(resp:Socio) => {
       this._socio = resp;
@@ -58,7 +54,6 @@ export class SociosComponent implements OnInit {
     this._socio =  new Socio(0,"","","");
     this.showDetail = false;
   }
-
   saveItem(item:Socio):any{
     if(item.id == 0){
       this._socioService.save(item,(resp:Socio) => {

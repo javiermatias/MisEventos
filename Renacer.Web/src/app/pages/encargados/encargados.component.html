@@ -30,12 +30,11 @@
                                 <thead>
                                     <tr>
                                         <!-- <th><mfDefaultSorter by="id">Id</mfDefaultSorter></th> -->
-                                        <th>
-                                            <mfDefaultSorter by="nombre">Nombre</mfDefaultSorter>
-                                        </th>
+                                        <th><mfDefaultSorter by="nombre">Nombre</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="apellido">Apellido</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="telefono">Telefono</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="fechaCreacion">Fecha Alta</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="fechaCreacion">Fecha Modificacion</mfDefaultSorter></th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -43,12 +42,10 @@
                                     <tr *ngFor="let item of mf.data | SearchPipe : searchText">
                                         <td><strong>{{item.nombre}}</strong></td>
                                         <td><strong>{{item.apellido}}</strong></td>
-                                        <td>{{item.descripcion}}</td>
+                                        <td><strong>{{item.telefono}}</strong></td>
                                         <td>{{item.fechaCreacion | date:'medium'}}</td>
-                                        <td>
-                                            <a style="color: #014c8c;cursor:pointer;"
-                                               (click)="verItem(item)">Ver detalle</a>
-                                        <td>
+                                        <td>{{item.fechaModificacion | date:'medium'}}</td>
+                                        <td><a style="color: #014c8c;cursor:pointer;" (click)="verItem(item)">Ver detalle</a><td>
                                     </tr>
                                     <tr *ngIf="(mf.data | SearchPipe : searchText).length === 0">
                                         <td colspan="100">
@@ -105,9 +102,10 @@
                                     Debe ingresar el apellido
                                 </div>
                             </div>
-                           <div class="row">
-                              <tipo-documento [tipoDoc]="_item.tipoDoc" [nroDocumento]="_item.nroDocumento"></tipo-documento>
-                           </div>
+
+              <!-- <az-tipo-documento [(tipoDoc)]="_item.tipoDoc" [(nroDocumento)]="_item.nroDocumento"></az-tipo-documento> -->
+
+
                         </div>
                         <div class="col col-md-6">
                             <div class="form-group">
@@ -144,6 +142,8 @@
                     </div>
 
                     <button type="submit" class="btn btn-main" [disabled]="!encargadoForm.form.valid">Guardar</button>
+                    <button (click)="limpiarForm();" type="button" style="margin-left: 30px;" class="btn btn-default">Cancelar</button>
+
                 </form>
             </div>
         </div>

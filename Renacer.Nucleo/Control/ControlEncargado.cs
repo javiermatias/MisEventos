@@ -38,14 +38,20 @@ namespace Renacer.Nucleo.Control
                     throw new UsuarioException(errores);
                 }
 
+                if (encargado.id == 0) encargado.fechaCreacion = DateTime.Now;
+                if (encargado.id > 0) encargado.fechaModificacion = DateTime.Now;
+                encargado.idTipoDoc = encargado.tipoDoc.id;
+
+                //encargado.idTipoDoc = encargado.tipoDoc.id;
+
                 using (var db = new ModeloRenacer())
                 {
                     db.encargado.AddOrUpdate(encargado);
 
                     if (encargado.domicilio.id == 0) db.Entry(encargado.domicilio).State = System.Data.Entity.EntityState.Added;
                     if (encargado.domicilio.id > 0)  db.Entry(encargado.domicilio).State = System.Data.Entity.EntityState.Modified;
-                 
-                    db.Entry(encargado.tipoDoc).State = System.Data.Entity.EntityState.Unchanged;
+                    db.Entry(encargado.tipoDoc).State = System.Data.Entity.EntityState.Modified;
+
                     db.SaveChanges();
                 }
             }
@@ -73,11 +79,13 @@ namespace Renacer.Nucleo.Control
             {
                 using (var db = new ModeloRenacer())
                 {
-                    return db.encargado.
+                    var itemEncargado = db.encargado.
                         Include("tipoDoc").
                         Include("domicilio").
-                        Include("listaTags").
                         Where(x => x.id.Equals(id)).FirstOrDefault();
+
+                    itemEncargado.listaTags = db.tag.Where(x => x.listaEncargados.Any(xy => xy.id.Equals(id))).ToList();
+                    return itemEncargado;
                 }
             }
             catch (Exception ex)

@@ -42,14 +42,15 @@ namespace Renacer.WebAPI.Controllers
         public void Put(int id, [FromBody]EspacioComun value)
         {
             var espacio = ControlEspacioComun.devolverInstacia().devolver(id);
-            espacio.nombre = value.nombre;
-            espacio.capacidad = value.capacidad;
-            espacio.estado = value.estado;
-            espacio.descripcion = value.descripcion;
-            espacio.fechaModificacion = DateTime.Now;
-            espacio.idTipoEspacio = value.idTipoEspacio;
+            
+            //espacio.nombre = value.nombre;
+            //espacio.capacidad = value.capacidad;
+            //espacio.estado = value.estado;
+            //espacio.descripcion = value.descripcion;
+            //espacio.fechamodificacion = datetime.now;
+            //espacio.idtipoespacio = value.idtipoespacio;
 
-            ControlEspacioComun.devolverInstacia().grabar(espacio);
+            ControlEspacioComun.devolverInstacia().grabar(value);
         }
 
         // DELETE: api/ApiCliente/5

@@ -38,6 +38,8 @@ namespace Renacer.Nucleo.Control
                     throw new UsuarioException(errores);
                 }
 
+               
+
                 using (var db = new ModeloRenacer())
                 {
                     db.socio.AddOrUpdate(socio);
@@ -48,7 +50,7 @@ namespace Renacer.Nucleo.Control
                     if (socio.contacto.id == 0) db.Entry(socio.contacto).State = System.Data.Entity.EntityState.Added;
                     if (socio.contacto.id > 0) db.Entry(socio.contacto).State = System.Data.Entity.EntityState.Modified;
 
-                    db.Entry(socio.tipoDoc).State = System.Data.Entity.EntityState.Unchanged;
+                    db.Entry(socio.tipoDoc).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
                 }
             }

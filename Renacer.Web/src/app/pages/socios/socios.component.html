@@ -105,8 +105,24 @@
                                 </div>
                             </div>
                             <div class="row">
-                              <tipo-documento [tipoDoc]="_socio.tipoDoc" [nroDocumento]="_socio.nroDocumento"></tipo-documento>
-                            </div>
+
+                              <az-tipo-documento [tipoDoc]="_socio.tipoDoc"></az-tipo-documento>
+                              <div class="col">
+                                <div class="form-group">
+                                    <label for="nroDocParam1">Nro de documento</label>
+                                    <input class="form-control"
+                                    id="nroDocParam1"
+                                    #nroDocParam1="ngModel"
+                                    name="nroDocParam1"
+                                    [(ngModel)]="_socio.nroDocumento">
+                                    <!-- <div [hidden]="nroDocParam.valid || nroDocParam.pristine" class="alert alert-danger">
+                                        Debe ingresar el nro de documento
+                                    </div> -->
+                                </div>
+                              </div>
+                           </div>
+
+
                         </div>
                         <div class="col col-md-6">
                             <div class="form-group">
@@ -158,8 +174,9 @@
                         </div>
                     </div>
 
-
                     <button type="submit" class="btn btn-main" [disabled]="!socioForm.form.valid">Guardar</button>
+                    <button (click)="limpiarForm();" type="button" style="margin-left: 30px;" class="btn btn-default">Cancelar</button>
+
                 </form>
             </div>
         </div>

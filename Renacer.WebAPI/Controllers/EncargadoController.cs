@@ -40,15 +40,18 @@ namespace Renacer.WebAPI
         // PUT: api/cliente/5
         public void Put(int id, [FromBody]Encargado value)
         {
-            var encargado = ControlEncargado.devolverInstancia().devolver(id);
+            // var encargado = ControlEncargado.devolverInstancia().devolver(id);
+            value.fechaModificacion = DateTime.Now;
             ControlEncargado.devolverInstancia().grabar(value);
         }
 
         // DELETE: api/ApiCliente/5
         public void Delete(int id)
         {
-            ControlEncargado.devolverInstancia().eliminar(id);
+            var encargado = ControlEncargado.devolverInstancia().devolver(id);
+            encargado.fechaBaja = DateTime.Now;
+            ControlEncargado.devolverInstancia().grabar(encargado);
+          //  ControlEncargado.devolverInstancia().eliminar(id);
         }
-
     }
 }

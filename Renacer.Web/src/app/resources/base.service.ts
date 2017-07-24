@@ -11,6 +11,13 @@ interface IQueryInput {
   isRead?: string;
 }
 
+export class BaseEntity{
+  equals(compareItem:object) : boolean {
+      return this["id"] == compareItem["id"];
+  }
+  
+}
+
 @Injectable()
 @ResourceParams({
   path: 'http://localhost:6913/api/'

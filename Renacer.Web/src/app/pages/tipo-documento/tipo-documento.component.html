@@ -1,20 +1,27 @@
+
+
 <div class="col">
     <div class="form-group">
-        <label for="tipoDoc">Tipo documento</label>
-        <select class="form-control" id="tipoDoc" required #tipoDoc="ngModel" name="tipoDoc" [(ngModel)]="tipoDoc">
-            <option *ngFor="let item of tiposDocumentos" [ngValue]="item">{{item.nombre}}</option>
+        <label>Tipo documento</label>
+        <select class="form-control" id="tipoDoc_12"
+        required #tipoDoc_12="ngModel" name="tipoDoc_12"
+        [(ngModel)]="tipoDocAux"  (change)="actualizarTipoDoc()" >
+            <option *ngFor="let item of tiposDocumentos_1" [ngValue]="item">{{item.nombre}}</option>
         </select>
-        <div [hidden]="tipoDoc.valid || tipoDoc.pristine" class="alert alert-danger">
+        <div [hidden]="tipoDoc_12.valid || tipoDoc_12.pristine" class="alert alert-danger">
             Debe ingresar el tipo de documento
         </div>
     </div>
-</div>
-<div class="col">
+<!--
     <div class="form-group">
-        <label for="nroDocumento">Nro de documento</label>
-        <input class="form-control" id="nroDocumento" required #nroDocumento="ngModel" name="nroDocumento" [(ngModel)]="nroDocumento">
-        <div [hidden]="nroDocumento.valid || nroDocumento.pristine" class="alert alert-danger">
-            Debe ingresar el nro de documento
-        </div>
+        <label>id tipo doc</label>
+        <input type="number"  [(ngModel)]="tipoDoc.id" />
     </div>
+
+    <div class="form-group">
+        <label>nombre tipo doc</label>
+        <input type="number"  [(ngModel)]="tipoDoc.nombre" />
+    </div> -->
+
+
 </div>

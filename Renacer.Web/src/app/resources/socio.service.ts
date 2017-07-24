@@ -21,7 +21,9 @@ export class Socio {
     public tipoDoc?:TipoDocumento,
     public domicilio?:Domicilio,
     public contacto?:Contacto
-  ) {  }
+  ) {
+  this.tipoDoc = new TipoDocumento();
+  }
 }
 
 export class Domicilio{

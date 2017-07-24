@@ -232,3 +232,4 @@ Renacer.Web/dist/
 /App.config/
 /Web.config/
 Renacer.Nucleo/App.config
+Renacer.WebAPI/Web.config
