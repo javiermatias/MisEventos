@@ -197,9 +197,6 @@
     <Content Include="dist\styles.bf4dc5c13db521ffffdb.bundle.css" />
     <Content Include="dist\vendor.9a73056abf350ab1e0f2.bundle.js" />
     <Content Include="Global.asax" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiControllerSelector.cs" />
@@ -237,12 +234,6 @@
     <Content Include="dist\socicon.2365540442899a584fdf.ttf" />
     <Content Include="dist\socicon.4e1bb964523f6f706d72.eot" />
     <Content Include="dist\socicon.7dbbd6b23645dda36592.woff" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -253,6 +244,17 @@
       <Project>{4184fb60-43fc-46dc-b3ba-06c616b77ef4}</Project>
       <Name>Renacer.Nucleo</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
