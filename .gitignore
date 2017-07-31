@@ -230,8 +230,7 @@ Renacer.WebAPP/app/**/*.js
 Renacer.WebAPP/app/**/*.js.map
 Renacer.WebAPP/dist/
 Renacer.Web/dist/
-Renacer.Web/Web.config/
-Renacer.Web/web.config/
+Renacer.Web/Web.config
 /App.config/
 /Web.config/
 Renacer.Nucleo/App.config

@@ -9,7 +9,7 @@ namespace Renacer.Nucleo
     public partial class ModeloRenacer : DbContext
     {
         public ModeloRenacer() : 
-            base("name=ModeloRenacer")
+            base("ModeloRenacer")
             //base("server=localhost;user id = root;Pwd=q1w2q1w2; database=renacer")
         {
         }
