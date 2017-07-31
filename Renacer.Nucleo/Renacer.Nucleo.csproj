@@ -128,9 +128,6 @@
     <Compile Include="Servicio\ServicioSentry.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Configuracion\local-03.config" />
     <None Include="Configuracion\testing.config" />
     <None Include="Configuracion\produccion.config" />

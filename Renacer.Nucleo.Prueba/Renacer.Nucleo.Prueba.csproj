@@ -74,9 +74,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="bin\Debug\Configuracion\local-01.config" />
     <None Include="bin\Debug\Configuracion\local-02.config" />
     <None Include="bin\Debug\Configuracion\local-03.config" />
