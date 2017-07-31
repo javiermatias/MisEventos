@@ -68,9 +68,6 @@ namespace Renacer.Nucleo.Control
             {
                 using (var db = new ModeloRenacer())
                 {
-                    //return db.usuario.
-                    //    Include("tipoDoc").
-                    //    Where(x => x.usuario.Equals(usuario) && x.clave.Equals(clave)).FirstOrDefault();
                     return db.usuario.
                         Where(x => x.usuario.Equals(usuario) && x.clave.Equals(clave)).FirstOrDefault();
                 }

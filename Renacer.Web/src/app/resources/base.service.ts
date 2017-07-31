@@ -20,7 +20,7 @@ export class BaseEntity{
 
 @Injectable()
 @ResourceParams({
-  path: 'http://localhost:6913/api/'
+  path: ''
 })
 export class BaseServices<T> extends Resource {
 
