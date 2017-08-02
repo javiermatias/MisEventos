@@ -42,6 +42,7 @@ namespace Renacer.Nucleo.Control
 
                 using (var db = new ModeloRenacer())
                 {
+                    socio.idTipoDoc = socio.tipoDoc.id;
                     db.socio.AddOrUpdate(socio);
 
                     if (socio.domicilio.id == 0) db.Entry(socio.domicilio).State = System.Data.Entity.EntityState.Added;

@@ -9,8 +9,7 @@ import {TipoDocumentoServices,TipoDocumento} from '../../resources/tipo-document
 export class TipoDocumentoComponent implements OnInit {
 
   @Input() tipoDoc:TipoDocumento;
-  private tipoDocAux:TipoDocumento;
-
+  public tipoDocAux:TipoDocumento;
   public tiposDocumentos_1 = new Array<TipoDocumento>();
   constructor(private _dbServices:TipoDocumentoServices) {
    }
@@ -20,29 +19,29 @@ export class TipoDocumentoComponent implements OnInit {
   }
 
   ngOnChanges(){
-    if(this.tipoDoc != null &&  this.tipoDocAux == null){
-      // for (var i = 0; i < this.tiposDocumentos_1.length; i++) {
-      //    if(this.tiposDocumentos_1[i].id == this.tipoDocAux.id){
-      //      this.tiposDocumentos_1[i] = this.tipoDocAux;
-      //    }
-      // }
-
-    this.tipoDocAux = new TipoDocumento();
-    this.tipoDocAux.id = this.tipoDoc.id;
-    this.tipoDocAux.nombre = this.tipoDoc.nombre;
-   }
+    this.tipoDocAux = this.tipoDoc;
+    for(var i = 0; i < this.tiposDocumentos_1.length;i++){
+      var itemAux = this.tiposDocumentos_1[i];
+      if(this.tipoDoc.id == itemAux.id){
+        this.tiposDocumentos_1[i] = this.tipoDoc;
+      }
+    }
   }
 
   actualizarTipoDoc(){
-    if(this.tipoDoc != null){
     this.tipoDoc.id = this.tipoDocAux.id;
     this.tipoDoc.nombre = this.tipoDocAux.nombre;
-   }
   }
 
   getTiposDoc(){
-    this._dbServices.query({},(items:TipoDocumento[]) => {
-      this.tiposDocumentos_1 = items;
+    this._dbServices.query({},(items) => {
+      this.tiposDocumentos_1 = [];
+     for(var i = 0; i < items.length;i++){
+       var itemAux = new TipoDocumento();
+       itemAux.id = items[i].id;
+       itemAux.nombre = items[i].nombre;
+       this.tiposDocumentos_1.push(itemAux);
+     }
     });
   }
 
