@@ -26,6 +26,7 @@ import { DomicilioComponent } from './domicilio/domicilio.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { EncargadosComponent } from './encargados/encargados.component';
 import { TipoDocumentoComponent } from './tipo-documento/tipo-documento.component';
+import { SelectTagsComponent } from './select-tags/select-tags.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { TipoDocumentoComponent } from './tipo-documento/tipo-documento.componen
     DomicilioComponent,
     ContactoComponent,
     EncargadosComponent,
-    TipoDocumentoComponent
+    TipoDocumentoComponent,
+    SelectTagsComponent
   ]
 })
 export class PagesModule { }
