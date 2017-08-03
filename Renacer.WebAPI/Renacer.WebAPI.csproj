@@ -214,6 +214,7 @@
     <Compile Include="Controllers\EspacioController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\SocioController.cs" />
+    <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Controllers\TipoDocumentoController.cs" />
     <Compile Include="Controllers\EncargadoController.cs" />
     <Compile Include="Global.asax.cs">

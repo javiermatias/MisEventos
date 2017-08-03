@@ -84,6 +84,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Control\ControlTag.cs" />
     <Compile Include="Control\ControlEncargado.cs" />
     <Compile Include="Control\ControlTipoDocumento.cs" />
     <Compile Include="Control\ControlSocio.cs" />

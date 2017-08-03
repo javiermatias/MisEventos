@@ -12,7 +12,7 @@ export class TipoDocumentoComponent implements OnInit {
   public tipoDocAux:TipoDocumento;
   public tiposDocumentos_1 = new Array<TipoDocumento>();
   constructor(private _dbServices:TipoDocumentoServices) {
-   }
+  }
 
   ngOnInit() {
     this.getTiposDoc();
@@ -29,6 +29,10 @@ export class TipoDocumentoComponent implements OnInit {
   }
 
   actualizarTipoDoc(){
+    var tipoDocAux2 = new TipoDocumento();
+    tipoDocAux2.id = this.tipoDoc.id;
+    tipoDocAux2.nombre = this.tipoDoc.nombre;
+
     this.tipoDoc.id = this.tipoDocAux.id;
     this.tipoDoc.nombre = this.tipoDocAux.nombre;
   }
@@ -36,12 +40,12 @@ export class TipoDocumentoComponent implements OnInit {
   getTiposDoc(){
     this._dbServices.query({},(items) => {
       this.tiposDocumentos_1 = [];
-     for(var i = 0; i < items.length;i++){
-       var itemAux = new TipoDocumento();
-       itemAux.id = items[i].id;
-       itemAux.nombre = items[i].nombre;
-       this.tiposDocumentos_1.push(itemAux);
-     }
+      for(var i = 0; i < items.length;i++){
+        var itemAux = new TipoDocumento();
+        itemAux.id = items[i].id;
+        itemAux.nombre = items[i].nombre;
+        this.tiposDocumentos_1.push(itemAux);
+      }
     });
   }
 

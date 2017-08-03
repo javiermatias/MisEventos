@@ -15,8 +15,11 @@ export class BaseEntity{
   equals(compareItem:object) : boolean {
       return this["id"] == compareItem["id"];
   }
-  
 }
+
+BaseEntity.prototype.equals = function (o) {
+    return this["id"] === o["id"];
+};
 
 @Injectable()
 @ResourceParams({

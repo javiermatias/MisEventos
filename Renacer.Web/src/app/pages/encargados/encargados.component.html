@@ -68,7 +68,7 @@
         </div>
     </div>
 
-    <div class="col-xl-12 col-lg-12 col-12 bottom-30" [hidden]="!showDetail">
+    <div class="col-xl-10 col-lg-10 col-10 bottom-30" [hidden]="!showDetail">
         <div widget class="card">
             <div class="card-header">
                 <span>Datos del Encargado de evento</span>
@@ -102,11 +102,9 @@
                                     Debe ingresar el apellido
                                 </div>
                             </div>
+                         </div>
+              <az-tipo-documento [(tipoDoc)]="_item.tipoDoc"></az-tipo-documento>
 
-              <!-- <az-tipo-documento [(tipoDoc)]="_item.tipoDoc" [(nroDocumento)]="_item.nroDocumento"></az-tipo-documento> -->
-
-
-                        </div>
                         <div class="col col-md-6">
                             <div class="form-group">
                                 <label for="input-2">Email</label>
@@ -143,9 +141,12 @@
 
                     <button type="submit" class="btn btn-main" [disabled]="!encargadoForm.form.valid">Guardar</button>
                     <button (click)="limpiarForm();" type="button" style="margin-left: 30px;" class="btn btn-default">Cancelar</button>
-
                 </form>
             </div>
         </div>
+    </div>
+
+    <div class="col-xl-2 col-lg-2 col-2 bottom-30" [hidden]="!showDetail">
+    <az-select-tags [listaTags]="_item.listaTags"></az-select-tags>
     </div>
 </div>
