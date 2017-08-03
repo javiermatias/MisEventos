@@ -21,6 +21,10 @@ namespace Renacer.Nucleo
         public virtual DbSet<TipoDocumento> tipoDocumento { get; set; }
         public virtual DbSet<Encargado> encargado { get; set; }
         public virtual DbSet<Tag> tag { get; set; }
+        public virtual DbSet<Evento> evento { get; set; }
+        public virtual DbSet<GrupoDeEventos> grupoDeEventos { get; set; }
+        public virtual DbSet<Pago> pago { get; set; }
+        public virtual DbSet<Inscripcion> inscripcion { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

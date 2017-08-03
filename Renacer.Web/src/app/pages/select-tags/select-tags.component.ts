@@ -1,6 +1,7 @@
 import { Component, OnInit,Input,OnChanges,Output,EventEmitter } from '@angular/core';
 import {TagServices,Tag} from '../../resources/tag.service';
 
+
 @Component({
   selector: 'az-select-tags',
   templateUrl: './select-tags.component.html',
@@ -11,6 +12,8 @@ export class SelectTagsComponent implements OnInit {
   @Input() listaTags:Tag[];
   public tags = new Array<Tag>();
   public tagsIds = [];
+  public selectedTag:any;
+
   constructor(private _dbServices:TagServices) {
    }
 
@@ -27,6 +30,10 @@ export class SelectTagsComponent implements OnInit {
         }
       }
     }
+  }
+
+  tagSelected(tag){
+      this.actualizarTags(tag);
   }
 
 estaSeleccionado(item){

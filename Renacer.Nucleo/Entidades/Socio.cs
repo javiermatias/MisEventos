@@ -32,6 +32,8 @@ namespace Renacer.Nucleo.Entidades
         [ForeignKey("idContacto")]
         public Contacto contacto { get; set; }
 
+        public List<Inscripcion> listaInscripciones { get; set; }
+
         public DateTime fechaCreacion { get; set; }
         public DateTime? fechaBaja { get; set; }
         public DateTime? fechaModificacion { get; set; }

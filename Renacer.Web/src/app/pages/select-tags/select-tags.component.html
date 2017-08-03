@@ -1,16 +1,26 @@
-<div class="form-group">
+<!-- <div class="form-group">
   <label>Tags</label>
-  <!-- <select class="form-control" id="ctrlTag" required #ctrlTag="ngModel" name="ctrlTag" [(ngModel)]="listaTags">
-    <option *ngFor="let item of tags" (change)="actualizarTags(item)">
-      {{item.nombre}}
-      <i [hidden]="!estaSeleccionado(item)" class="fa fa-check"></i>
-    </option>
-  </select> -->
-
   <ul class="list-group">
     <li class="list-group-item" *ngFor="let item of tags" (click)="actualizarTags(item)">
       {{item.nombre}}
       <i [hidden]="!estaSeleccionado(item)" class="fa fa-check"></i>
     </li>
   </ul>
+</div> -->
+
+<!-- <typeahead
+  [list]="tags"
+  [searchProperty]="'nombre'" [displayProperty]="'nombre'"
+  [maxSuggestions]="4"
+  (suggestionSelected)="tagSelected($event)"
+  placeholder="Agregar Tag...">
+</typeahead> -->
+
+ <input auto-complete
+ [(ngModel)]="selectedTag"
+ [source]="tags"
+ (valueChanged)="tagSelected($event)" [accept-user-input]="true" /> 
+
+<div>
+<span *ngFor="let item of listaTags" class="badge badge-primary">{{item.nombre}}</span>
 </div>

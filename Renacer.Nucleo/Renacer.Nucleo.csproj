@@ -84,6 +84,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Control\ControlEvento.cs" />
     <Compile Include="Control\ControlTag.cs" />
     <Compile Include="Control\ControlEncargado.cs" />
     <Compile Include="Control\ControlTipoDocumento.cs" />
@@ -93,8 +94,12 @@
     <Compile Include="Control\ControlCliente.cs" />
     <Compile Include="Entidades\Contacto.cs" />
     <Compile Include="Entidades\Domicilio.cs" />
+    <Compile Include="Entidades\GrupoDeEventos.cs" />
+    <Compile Include="Entidades\Evento.cs" />
     <Compile Include="Entidades\EspacioComun.cs" />
     <Compile Include="Entidades\Encargado.cs" />
+    <Compile Include="Entidades\Pago.cs" />
+    <Compile Include="Entidades\Inscripcion.cs" />
     <Compile Include="Entidades\Tag.cs" />
     <Compile Include="Entidades\TipoDocumento.cs" />
     <Compile Include="Entidades\Usuario.cs" />
