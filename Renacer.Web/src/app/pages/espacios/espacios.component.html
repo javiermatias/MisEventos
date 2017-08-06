@@ -81,57 +81,64 @@
                 </div>
             </div>
             <div class="card-block widget-body">
-                <form (ngSubmit)="onSubmit(espacioForm)" #espacioForm="ngForm">
-                    <div class="form-group">
-                        <label for="nombre">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" required
-                               #nombre="ngModel" name="nombre" [(ngModel)]="_espacio.nombre">
-                        <div [hidden]="nombre.valid || nombre.pristine"
-                             class="alert alert-danger">
-                            Debe ingresar el nombre
-                        </div>
+                <div class="row">
+                    <div class="col-xl-9 col-lg-9 col-12">
+                        <form (ngSubmit)="onSubmit(espacioForm)" #espacioForm="ngForm">
+                            <div class="form-group">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" class="form-control" id="nombre" required
+                                       #nombre="ngModel" name="nombre" [(ngModel)]="_espacio.nombre">
+                                <div [hidden]="nombre.valid || nombre.pristine"
+                                     class="alert alert-danger">
+                                    Debe ingresar el nombre
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="capacidad">Capacidad de personas</label>
+                                <input type="number" class="form-control" id="capacidad" required
+                                       #capacidad="ngModel" name="capacidad" [(ngModel)]="_espacio.capacidad">
+                                <div [hidden]="capacidad.valid || capacidad.pristine"
+                                     class="alert alert-danger">
+                                    Debe ingresar la capacidad del lugar
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="idTipoEspacio">Tipo de espacio</label>
+                                <!-- <input type="text" class="form-control" id="idTipoEspacio" required
+                #idTipoEspacio="ngModel" name="idTipoEspacio" [(ngModel)]="_espacio.idTipoEspacio"> -->
+
+                                <select class="form-control" id="idTipoEspacio" required
+                                        #idTipoEspacio="ngModel" name="idTipoEspacio" [(ngModel)]="_espacio.idTipoEspacio">
+                                    <option value="1">Abierto</option>
+                                    <option value="2">Cerrado</option>
+                                </select>
+
+                                <div [hidden]="idTipoEspacio.valid || idTipoEspacio.pristine"
+                                     class="alert alert-danger">
+                                    Debe ingresar el tipo de espacio común
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nombre">descripcion</label>
+                                <textarea type="text" class="form-control" id="descripcion"
+                                          #descripcion="ngModel" name="descripcion" [(ngModel)]="_espacio.descripcion"></textarea>
+                                <span class="help-block">Aquí puedes agregar cualquier dato relevante del espacio comun.</span>
+                            </div>
+
+                            <button type="submit" class="btn btn-main" [disabled]="!espacioForm.form.valid">Guardar</button>
+
+                            <button (click)="limpiarForm();" type="button" style="margin-left: 30px;" class="btn btn-default">Cancelar</button>
+                        </form>
                     </div>
-
-                    <div class="form-group">
-                        <label for="capacidad">Capacidad de personas</label>
-                        <input type="number" class="form-control" id="capacidad" required
-                               #capacidad="ngModel" name="capacidad" [(ngModel)]="_espacio.capacidad">
-                        <div [hidden]="capacidad.valid || capacidad.pristine"
-                             class="alert alert-danger">
-                            Debe ingresar la capacidad del lugar
-                        </div>
+                    <div class="col-xl-3 col-lg-3 col-12">
+                        <az-select-tags [listaTags]="_espacio.listaTags"></az-select-tags>
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <label for="idTipoEspacio">Tipo de espacio</label>
-                        <!-- <input type="text" class="form-control" id="idTipoEspacio" required
-                        #idTipoEspacio="ngModel" name="idTipoEspacio" [(ngModel)]="_espacio.idTipoEspacio"> -->
-
-                        <select class="form-control" id="idTipoEspacio" required
-                                #idTipoEspacio="ngModel" name="idTipoEspacio" [(ngModel)]="_espacio.idTipoEspacio">
-                            <option value="1">Abierto</option>
-                            <option value="2">Cerrado</option>
-                        </select>
-
-                        <div [hidden]="idTipoEspacio.valid || idTipoEspacio.pristine"
-                             class="alert alert-danger">
-                            Debe ingresar el tipo de espacio común
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="nombre">descripcion</label>
-                        <textarea type="text" class="form-control" id="descripcion"
-                                  #descripcion="ngModel" name="descripcion" [(ngModel)]="_espacio.descripcion"></textarea>
-                        <span class="help-block">Aquí puedes agregar cualquier dato relevante del espacio comun.</span>
-                    </div>
-
-                    <button type="submit" class="btn btn-main" [disabled]="!espacioForm.form.valid">Guardar</button>
-
-                    <button (click)="limpiarForm();" type="button" style="margin-left: 30px;" class="btn btn-default">Cancelar</button>
-                </form>
-
-            </div>
         </div>
     </div>
+</div>
 </div>

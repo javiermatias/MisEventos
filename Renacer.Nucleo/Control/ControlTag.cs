@@ -120,6 +120,26 @@ namespace Renacer.Nucleo.Control
             }
         }
 
+        internal void actualizarListaDeTags(ModeloRenacer db, Tag[] listaInicial,List<Tag> listaFinal)
+        {
+            if (listaFinal == null) listaFinal = new List<Tag>();
+            listaFinal.RemoveAll(tag => true);
+
+            foreach (var itemTag in listaInicial)
+            {
+                if (itemTag.nombre == null || itemTag.nombre.Trim() == "") continue;
+
+                Tag tag = db.tag.FirstOrDefault(t => t.nombre == itemTag.nombre);
+                if (tag == null)
+                {
+                    tag = new Tag();
+                    tag.nombre = itemTag.nombre;
+                    tag.descripcion = (itemTag.descripcion != null) ? itemTag.descripcion : "";
+                    db.tag.Add(tag);
+                }
+                listaFinal.Add(tag);
+            }
+        }
 
         private List<string> validar(Tag tag)
         {

@@ -6,6 +6,7 @@ import {BaseServices} from './base.service';
 import {Variables} from './variables';
 import {TipoDocumento} from './tipo-documento.service';
 import {Domicilio} from './socio.service';
+import {Tag} from './tag.service';
 
 export class EncargadoEvento {
   constructor(
@@ -14,6 +15,7 @@ export class EncargadoEvento {
     public apellido: string,
     public email?:string,
     public telefono?:string,
+    public listaTags?:Array<Tag>,
     public fechaNacimiento?: Date,
     public fechaCreacion?: Date,
     public fechaBaja?: Date,
@@ -22,6 +24,7 @@ export class EncargadoEvento {
     public domicilio?:Domicilio
   ) {
     this.tipoDoc = new TipoDocumento();
+    this.listaTags = new Array<Tag>();
   }
 }
 

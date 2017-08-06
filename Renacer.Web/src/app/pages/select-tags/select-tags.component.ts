@@ -1,6 +1,7 @@
 import { Component, OnInit,Input,OnChanges,Output,EventEmitter } from '@angular/core';
+import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 import {TagServices,Tag} from '../../resources/tag.service';
-
+import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
 
 @Component({
   selector: 'az-select-tags',
@@ -14,8 +15,8 @@ export class SelectTagsComponent implements OnInit {
   public tagsIds = [];
   public selectedTag:any;
 
-  constructor(private _dbServices:TagServices) {
-   }
+  constructor(private _dbServices:TagServices,private _sanitizer: DomSanitizer) {
+  }
 
   ngOnInit() {
     this.getTags();
@@ -33,44 +34,63 @@ export class SelectTagsComponent implements OnInit {
   }
 
   tagSelected(tag){
-      this.actualizarTags(tag);
+    var tagItem:Tag;
+    if(tag.constructor.name == "Tag"){
+      tagItem = tag;
+    }else{
+      var tagNew = new Tag(0,this.selectedTag);
+       this.tags.push(tagNew);
+      tagItem = tagNew;
+    }
+    this.actualizarTags(tagItem);
   }
 
-estaSeleccionado(item){
-var result = false;
-if(this.listaTags == null){ return false;}
-  for(var j = 0; j < this.listaTags.length;j++){
-    if(item.id == this.listaTags[j].id){
-      result = true;
+  estaSeleccionado(item){
+    var result = false;
+    if(this.listaTags == null){ return false;}
+    for(var j = 0; j < this.listaTags.length;j++){
+      if(item.nombre == this.listaTags[j].nombre){
+        result = true;
+      }
     }
+    return result;
   }
-  return result;
-}
 
   actualizarTags(item){
     if(this.listaTags == null){this.listaTags = new Array<Tag>();}
 
-    if(this.listaTags.filter(function(item2){ return item2.id == item.id}).length==0) {
+    if(this.listaTags.filter(function(item2){ return item2.nombre == item.nombre}).length==0) {
       this.listaTags.push(item);
     }
     else{
       for(var j = 0; j < this.listaTags.length;j++){
-        if(item.id == this.listaTags[j].id){
+        if(item.nombre == this.listaTags[j].nombre){
           this.listaTags.splice(j,1);
         }
       }
     }
+    this.selectedTag = null;
   }
 
   getTags(){
     this._dbServices.query({},(items) => {
       this.tags = [];
-     for(var i = 0; i < items.length;i++){
-       var itemAux = new Tag(0,"");
-       itemAux.id = items[i].id;
-       itemAux.nombre = items[i].nombre;
-       this.tags.push(itemAux);
-     }
+      for(var i = 0; i < items.length;i++){
+        var itemAux = new Tag(0,"");
+        itemAux.id = items[i].id;
+        itemAux.nombre = items[i].nombre;
+        this.tags.push(itemAux);
+      }
     });
+  }
+
+  autocompleListFormatter = (data: any) => {
+    let selected = this.listaTags.filter((item)=> item.nombre == data.nombre).length == 1;
+    let html = `<span>${data.nombre}`;
+    if(selected){
+      html +=`<span class="fa fa-check" style='color:green;'></span>`
+    }
+    html +=`</span>`
+    return this._sanitizer.bypassSecurityTrustHtml(html);
   }
 }

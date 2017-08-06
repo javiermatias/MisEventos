@@ -14,6 +14,7 @@ import { EspacioServices } from './resources/espacio.service';
 import { EncargadoEventoServices } from './resources/encargado.service';
 import { TipoDocumentoServices } from './resources/tipo-documento.service';
 import { TagServices } from './resources/tag.service';
+import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { TagServices } from './resources/tag.service';
       apiKey: 'AIzaSyDe_oVpi9eRSN99G4o6TwVjJbFBNr58NxE'
     }),
     routing,
-    HttpModule
+    HttpModule,
+   NguiAutoCompleteModule 
   ],
   providers: [AppConfig,UserServices,SocioServices,EspacioServices,TagServices,
     EncargadoEventoServices,
