@@ -27,7 +27,10 @@ import { ContactoComponent } from './contacto/contacto.component';
 import { EncargadosComponent } from './encargados/encargados.component';
 import { TipoDocumentoComponent } from './tipo-documento/tipo-documento.component';
 import { SelectTagsComponent } from './select-tags/select-tags.component';
-
+//import { Typeahead } from 'ng2-typeahead';
+import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
+import { EventoComponent } from './evento/evento.component';
+import { SelectSocioComponent } from './select-socio/select-socio.component';
 
 @NgModule({
   imports: [
@@ -38,7 +41,8 @@ import { SelectTagsComponent } from './select-tags/select-tags.component';
     PipesModule,
     routing,
     FormsModule,
-    DataTableModule
+    DataTableModule,NguiAutoCompleteModule
+  //  Typeahead
   ],
   declarations: [
     PagesComponent,
@@ -56,7 +60,9 @@ import { SelectTagsComponent } from './select-tags/select-tags.component';
     ContactoComponent,
     EncargadosComponent,
     TipoDocumentoComponent,
-    SelectTagsComponent
+    SelectTagsComponent,
+    EventoComponent,
+    SelectSocioComponent,
   ]
 })
 export class PagesModule { }

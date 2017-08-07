@@ -21,6 +21,8 @@ namespace Renacer.Nucleo
         public int idTipoEspacio { get; set; }
         public int estado { get; set; }
 
+        public List<Tag> listaTags { get; set; }
+
         //public int idDomicilio { get; set; }
         //[ForeignKey("idDomicilio")]
         //public Domicilio domicilio { get; set; }

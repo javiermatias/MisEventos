@@ -40,8 +40,10 @@ onSubmit(myForm: FormGroup) {
 }
 
 verItem(item:EspacioComun){
-  this._espacio = Object.assign({}, item);
-  this.showDetail = true;
+  this._espacioService.get({"id":item.id},(resp:EspacioComun) => {
+    this._espacio = resp;
+    this.showDetail = true;
+  });
 }
 nuevoItem(){
   this._espacio =  new EspacioComun(0,"","",0,0,10);

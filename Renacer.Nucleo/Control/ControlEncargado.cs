@@ -42,16 +42,22 @@ namespace Renacer.Nucleo.Control
                 if (encargado.id > 0) encargado.fechaModificacion = DateTime.Now;
                 encargado.idTipoDoc = encargado.tipoDoc.id;
 
-                //encargado.idTipoDoc = encargado.tipoDoc.id;
-
                 using (var db = new ModeloRenacer())
                 {
+                    Tag[] listaTags = new Tag[encargado.listaTags.Count] ;
+                    encargado.listaTags.CopyTo(listaTags);
+                    encargado.listaTags.RemoveAll(tag => true);
+
                     db.encargado.AddOrUpdate(encargado);
 
                     if (encargado.domicilio.id == 0) db.Entry(encargado.domicilio).State = System.Data.Entity.EntityState.Added;
-                    if (encargado.domicilio.id > 0)  db.Entry(encargado.domicilio).State = System.Data.Entity.EntityState.Modified;
+                    if (encargado.domicilio.id > 0) db.Entry(encargado.domicilio).State = System.Data.Entity.EntityState.Modified;
                     db.Entry(encargado.tipoDoc).State = System.Data.Entity.EntityState.Modified;
 
+                    db.SaveChanges();
+
+                    Encargado encargadoAux = db.encargado.Include("listaTags").Single(a => a.id == encargado.id);
+                    ControlTag.devolverInstancia().actualizarListaDeTags(db, listaTags, encargadoAux.listaTags);
                     db.SaveChanges();
                 }
             }
@@ -158,11 +164,5 @@ namespace Renacer.Nucleo.Control
 
             return errores;
         }
-
-
-
-      
-
-
     }
 }

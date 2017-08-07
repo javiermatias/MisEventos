@@ -84,6 +84,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Control\ControlEvento.cs" />
     <Compile Include="Control\ControlTag.cs" />
     <Compile Include="Control\ControlEncargado.cs" />
     <Compile Include="Control\ControlTipoDocumento.cs" />
@@ -93,37 +94,21 @@
     <Compile Include="Control\ControlCliente.cs" />
     <Compile Include="Entidades\Contacto.cs" />
     <Compile Include="Entidades\Domicilio.cs" />
+    <Compile Include="Entidades\GrupoDeEventos.cs" />
+    <Compile Include="Entidades\Evento.cs" />
     <Compile Include="Entidades\EspacioComun.cs" />
     <Compile Include="Entidades\Encargado.cs" />
+    <Compile Include="Entidades\Pago.cs" />
+    <Compile Include="Entidades\Inscripcion.cs" />
     <Compile Include="Entidades\Tag.cs" />
     <Compile Include="Entidades\TipoDocumento.cs" />
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Entidades\Cliente.cs" />
     <Compile Include="Entidades\Socio.cs" />
     <Compile Include="Entidades\UsuarioException.cs" />
-    <Compile Include="Migrations\201707221552239_ReseteoBase.cs" />
-    <Compile Include="Migrations\201707221552239_ReseteoBase.Designer.cs">
-      <DependentUpon>201707221552239_ReseteoBase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707222133013_AgregoRelacionAlContacto.cs" />
-    <Compile Include="Migrations\201707222133013_AgregoRelacionAlContacto.Designer.cs">
-      <DependentUpon>201707222133013_AgregoRelacionAlContacto.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707222140370_CambioDomicilio.cs" />
-    <Compile Include="Migrations\201707222140370_CambioDomicilio.Designer.cs">
-      <DependentUpon>201707222140370_CambioDomicilio.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707222306266_AgregamosEncargadoyTags.cs" />
-    <Compile Include="Migrations\201707222306266_AgregamosEncargadoyTags.Designer.cs">
-      <DependentUpon>201707222306266_AgregamosEncargadoyTags.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707231621447_AgregoFechasAModelos.cs" />
-    <Compile Include="Migrations\201707231621447_AgregoFechasAModelos.Designer.cs">
-      <DependentUpon>201707231621447_AgregoFechasAModelos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707231659562_HagoNullAlgunasFechas.cs" />
-    <Compile Include="Migrations\201707231659562_HagoNullAlgunasFechas.Designer.cs">
-      <DependentUpon>201707231659562_HagoNullAlgunasFechas.cs</DependentUpon>
+    <Compile Include="Migrations\201708052151420_ReseteoBase2.cs" />
+    <Compile Include="Migrations\201708052151420_ReseteoBase2.Designer.cs">
+      <DependentUpon>201708052151420_ReseteoBase2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
@@ -141,23 +126,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201707221552239_ReseteoBase.resx">
-      <DependentUpon>201707221552239_ReseteoBase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707222133013_AgregoRelacionAlContacto.resx">
-      <DependentUpon>201707222133013_AgregoRelacionAlContacto.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707222140370_CambioDomicilio.resx">
-      <DependentUpon>201707222140370_CambioDomicilio.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707222306266_AgregamosEncargadoyTags.resx">
-      <DependentUpon>201707222306266_AgregamosEncargadoyTags.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707231621447_AgregoFechasAModelos.resx">
-      <DependentUpon>201707231621447_AgregoFechasAModelos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707231659562_HagoNullAlgunasFechas.resx">
-      <DependentUpon>201707231659562_HagoNullAlgunasFechas.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201708052151420_ReseteoBase2.resx">
+      <DependentUpon>201708052151420_ReseteoBase2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

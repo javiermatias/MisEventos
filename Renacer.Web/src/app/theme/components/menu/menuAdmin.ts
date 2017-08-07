@@ -13,15 +13,18 @@ export const itemsAdmin = [
     selected: false,
     expanded: false,
     order: 800,
-    target: '_blank',
     subMenu: [
       {
         title: 'Nuevo Evento',
-        routerLink: 'socios/nuevo'
+        routerLink: 'evento/nuevo'
       },
       {
         title: 'Lista',
-        routerLink: 'socios/lista'
+        routerLink: 'evento/lista'
+      },
+      {
+        title: 'Agenda',
+        routerLink: 'evento/agenda'
       }
     ]
   },
@@ -55,7 +58,14 @@ export const itemsAdmin = [
     selected: false,
     expanded: false,
     order: 800,
-    target: '_blank',
     routerLink: 'espacios/'
+  },
+  {
+    title: 'Tags',
+    icon: 'fa-tags',
+    selected: false,
+    expanded: false,
+    order: 800,
+    routerLink: 'tags/'
   }
 ];
