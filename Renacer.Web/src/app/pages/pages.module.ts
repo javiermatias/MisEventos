@@ -29,6 +29,8 @@ import { TipoDocumentoComponent } from './tipo-documento/tipo-documento.componen
 import { SelectTagsComponent } from './select-tags/select-tags.component';
 //import { Typeahead } from 'ng2-typeahead';
 import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
+import { EventoComponent } from './evento/evento.component';
+import { SelectSocioComponent } from './select-socio/select-socio.component';
 
 @NgModule({
   imports: [
@@ -59,6 +61,8 @@ import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
     EncargadosComponent,
     TipoDocumentoComponent,
     SelectTagsComponent,
+    EventoComponent,
+    SelectSocioComponent,
   ]
 })
 export class PagesModule { }

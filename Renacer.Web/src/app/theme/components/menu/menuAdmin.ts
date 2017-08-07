@@ -16,15 +16,15 @@ export const itemsAdmin = [
     subMenu: [
       {
         title: 'Nuevo Evento',
-        routerLink: 'eventos/nuevo'
+        routerLink: 'evento/nuevo'
       },
       {
         title: 'Lista',
-        routerLink: 'eventos/lista'
+        routerLink: 'evento/lista'
       },
       {
         title: 'Agenda',
-        routerLink: 'eventos/agenda'
+        routerLink: 'evento/agenda'
       }
     ]
   },

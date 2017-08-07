@@ -7,6 +7,7 @@ import { SearchComponent } from './search/search.component';
 import { SociosComponent } from './socios/socios.component';
 import { EspaciosComponent } from './espacios/espacios.component';
 import { EncargadosComponent } from './encargados/encargados.component';
+import { EventoComponent } from './evento/evento.component';
 
 export const routes: Routes = [
     {
@@ -28,6 +29,7 @@ export const routes: Routes = [
             { path: 'socios', component: SociosComponent, data: { breadcrumb: 'Socios' } },
             { path: 'espacios', component: EspaciosComponent, data: { breadcrumb: 'Espacios' } },
             { path: 'encargados', component: EncargadosComponent, data: { breadcrumb: 'Encargados' } },
+            { path: 'eventos', component: EventoComponent, data: { breadcrumb: 'Eventos' } },
             { path: 'blank', component: BlankComponent, data: { breadcrumb: 'Blank page' } }
         ]
     }
