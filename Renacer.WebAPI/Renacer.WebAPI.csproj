@@ -213,6 +213,7 @@
     <Compile Include="Controllers\ComunController.cs" />
     <Compile Include="Controllers\EspacioController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\EventoController.cs" />
     <Compile Include="Controllers\SocioController.cs" />
     <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Controllers\TipoDocumentoController.cs" />

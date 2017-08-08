@@ -1,4 +1,4 @@
-﻿namespace Renacer.Nucleo
+﻿namespace Renacer.Nucleo.Entidades
 {
     using System;
     using System.Collections.Generic;

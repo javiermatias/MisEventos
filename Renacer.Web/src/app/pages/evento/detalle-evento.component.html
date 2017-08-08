@@ -1,0 +1,68 @@
+<div widget class="card">
+    <div class="card-header">
+        <span>Datos del evento</span>
+        <div class="widget-controls">
+            <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
+            <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
+            <a data-widgster="fullscreen" href="#" class="transition"><i class="fa fa-expand"></i></a>
+            <a data-widgster="restore" href="#" class="transition"><i class="fa fa-compress"></i></a>
+        </div>
+    </div>
+    <div class="card-block widget-body">
+        <div class="row">
+            <div class="col-xl-9 col-lg-9 col-12">
+                <form (ngSubmit)="onSubmit(eventoForm)" #eventoForm="ngForm">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" required
+                               #nombre="ngModel" name="nombre" [(ngModel)]="_item.nombre">
+                        <div [hidden]="nombre.valid || nombre.pristine"
+                             class="alert alert-danger">
+                            Debe ingresar el nombre
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="capacidad">Capacidad de personas</label>
+                        <input type="number" class="form-control" id="capacidad" required
+                               #capacidad="ngModel" name="capacidad" [(ngModel)]="_item.capacidad">
+                        <div [hidden]="capacidad.valid || capacidad.pristine"
+                             class="alert alert-danger">
+                            Debe ingresar la capacidad del lugar
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="idTipoevento">Tipo de evento</label>
+                        <select class="form-control" id="idTipoevento" required
+                                #idTipoevento="ngModel" name="idTipoevento" [(ngModel)]="_item.idTipoevento">
+                            <option value="1">Abierto</option>
+                            <option value="2">Cerrado</option>
+                        </select>
+
+                        <div [hidden]="idTipoevento.valid || idTipoevento.pristine" class="alert alert-danger">
+                            Debe ingresar el tipo de evento.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nombre">descripcion</label>
+                        <textarea type="text" class="form-control" id="descripcion"
+                                  #descripcion="ngModel" name="descripcion" [(ngModel)]="_item.descripcion"></textarea>
+                        <span class="help-block">Aqu� puedes agregar cualquier dato relevante del evento comun.</span>
+                    </div>
+
+                    <div class="col-xl-12 col-lg-12 col-12" *ngIf="_item.listaSocios">
+                        <az-select-socio [listaSocios]="_item.listaSocios"></az-select-socio>
+                    </div>
+
+                    <button type="submit" class="btn btn-main" [disabled]="!eventoForm.form.valid">Guardar</button>
+                    <button (click)="limpiarForm();" type="button" style="margin-left: 30px;" class="btn btn-default">Cancelar</button>
+                </form>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-12">
+                <az-select-tags [listaTags]="_item.listaTags"></az-select-tags>
+            </div>
+        </div>
+    </div>
+</div>

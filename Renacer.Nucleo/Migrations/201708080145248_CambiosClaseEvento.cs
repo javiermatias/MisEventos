@@ -3,7 +3,7 @@ namespace Renacer.Nucleo.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class ReseteoBase2 : DbMigration
+    public partial class CambiosClaseEvento : DbMigration
     {
         public override void Up()
         {
@@ -93,93 +93,45 @@ namespace Renacer.Nucleo.Migrations
                 .PrimaryKey(t => t.id);
             
             CreateTable(
-                "dbo.Evento",
+                "dbo.DetalleEvento",
                 c => new
                     {
                         id = c.Int(nullable: false, identity: true),
-                        cupoMaximo = c.Int(nullable: false),
-                        cupoMinimo = c.Int(nullable: false),
                         nombre = c.String(unicode: false),
                         descripcion = c.String(unicode: false),
                         idEncargado = c.Int(nullable: false),
                         idEspacio = c.Int(nullable: false),
-                        idTipoEvento = c.Int(nullable: false),
-                        estado = c.String(unicode: false),
+                        idAsistencia = c.Int(nullable: false),
+                        estado = c.Int(nullable: false),
                         fechaDesde = c.DateTime(nullable: false, precision: 0),
                         fechaHasta = c.DateTime(nullable: false, precision: 0),
+                        fechaCancelacion = c.DateTime(nullable: false, precision: 0),
                         fechaCreacion = c.DateTime(nullable: false, precision: 0),
                         fechaBaja = c.DateTime(precision: 0),
                         fechaModificacion = c.DateTime(precision: 0),
-                        GrupoDeEventos_id = c.Int(),
+                        Evento_id = c.Int(),
+                        Tag_id = c.Int(),
                     })
                 .PrimaryKey(t => t.id)
+                .ForeignKey("dbo.Evento", t => t.Evento_id)
+                .ForeignKey("dbo.Asistencia", t => t.idAsistencia, cascadeDelete: true)
                 .ForeignKey("dbo.EspacioComun", t => t.idEspacio, cascadeDelete: true)
                 .ForeignKey("dbo.Encargado", t => t.idEncargado, cascadeDelete: true)
-                .ForeignKey("dbo.TipoEvento", t => t.idTipoEvento, cascadeDelete: true)
-                .ForeignKey("dbo.GrupoDeEventos", t => t.GrupoDeEventos_id)
+                .ForeignKey("dbo.Tags", t => t.Tag_id)
                 .Index(t => t.idEncargado)
                 .Index(t => t.idEspacio)
-                .Index(t => t.idTipoEvento)
-                .Index(t => t.GrupoDeEventos_id);
+                .Index(t => t.idAsistencia)
+                .Index(t => t.Evento_id)
+                .Index(t => t.Tag_id);
             
             CreateTable(
-                "dbo.TipoEvento",
+                "dbo.Asistencia",
                 c => new
                     {
                         id = c.Int(nullable: false, identity: true),
-                        descripcion = c.String(unicode: false),
-                        nombre = c.String(unicode: false),
-                    })
-                .PrimaryKey(t => t.id);
-            
-            CreateTable(
-                "dbo.GrupoDeEventos",
-                c => new
-                    {
-                        id = c.Int(nullable: false, identity: true),
-                        cupoMaximo = c.Int(nullable: false),
-                        cupoMinimo = c.Int(nullable: false),
-                        nombre = c.String(unicode: false),
-                        descripcion = c.String(unicode: false),
-                        idEspacio = c.Int(nullable: false),
+                        estado = c.Int(nullable: false),
+                        fechaAsistencia = c.DateTime(nullable: false, precision: 0),
                         fechaCreacion = c.DateTime(nullable: false, precision: 0),
-                        fechaBaja = c.DateTime(precision: 0),
-                        fechaModificacion = c.DateTime(precision: 0),
-                    })
-                .PrimaryKey(t => t.id)
-                .ForeignKey("dbo.EspacioComun", t => t.idEspacio, cascadeDelete: true)
-                .Index(t => t.idEspacio);
-            
-            CreateTable(
-                "dbo.Inscripcion",
-                c => new
-                    {
-                        id = c.Int(nullable: false, identity: true),
-                        idGrupoDeEventos = c.Int(nullable: false),
-                        idPago = c.Int(nullable: false),
-                        fechaCreacion = c.DateTime(nullable: false, precision: 0),
-                        fechaBaja = c.DateTime(precision: 0),
-                        fechaModificacion = c.DateTime(precision: 0),
-                        Socio_id = c.Int(),
-                    })
-                .PrimaryKey(t => t.id)
-                .ForeignKey("dbo.GrupoDeEventos", t => t.idGrupoDeEventos, cascadeDelete: true)
-                .ForeignKey("dbo.Pago", t => t.idPago, cascadeDelete: true)
-                .ForeignKey("dbo.Socio", t => t.Socio_id)
-                .Index(t => t.idGrupoDeEventos)
-                .Index(t => t.idPago)
-                .Index(t => t.Socio_id);
-            
-            CreateTable(
-                "dbo.Pago",
-                c => new
-                    {
-                        id = c.Int(nullable: false, identity: true),
-                        monto = c.Single(nullable: false),
-                        nroRecibo = c.Int(nullable: false),
-                        fechaCobro = c.DateTime(nullable: false, precision: 0),
-                        fechaCreacion = c.DateTime(nullable: false, precision: 0),
-                        fechaBaja = c.DateTime(precision: 0),
                         fechaModificacion = c.DateTime(precision: 0),
                     })
                 .PrimaryKey(t => t.id);
@@ -201,14 +153,17 @@ namespace Renacer.Nucleo.Migrations
                         fechaCreacion = c.DateTime(nullable: false, precision: 0),
                         fechaBaja = c.DateTime(precision: 0),
                         fechaModificacion = c.DateTime(precision: 0),
+                        Asistencia_id = c.Int(),
                     })
                 .PrimaryKey(t => t.id)
                 .ForeignKey("dbo.Contacto", t => t.idContacto, cascadeDelete: true)
                 .ForeignKey("dbo.Domicilio", t => t.idDomicilio, cascadeDelete: true)
                 .ForeignKey("dbo.TipoDocumento", t => t.idTipoDoc, cascadeDelete: true)
+                .ForeignKey("dbo.Asistencia", t => t.Asistencia_id)
                 .Index(t => t.idTipoDoc)
                 .Index(t => t.idDomicilio)
-                .Index(t => t.idContacto);
+                .Index(t => t.idContacto)
+                .Index(t => t.Asistencia_id);
             
             CreateTable(
                 "dbo.Contacto",
@@ -221,6 +176,77 @@ namespace Renacer.Nucleo.Migrations
                         celular = c.String(unicode: false),
                         email = c.String(unicode: false),
                         relacion = c.String(unicode: false),
+                    })
+                .PrimaryKey(t => t.id);
+            
+            CreateTable(
+                "dbo.Inscripcion",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        idGrupoDeEventos = c.Int(nullable: false),
+                        idPago = c.Int(nullable: false),
+                        fechaCreacion = c.DateTime(nullable: false, precision: 0),
+                        fechaBaja = c.DateTime(precision: 0),
+                        fechaModificacion = c.DateTime(precision: 0),
+                        Socio_id = c.Int(),
+                    })
+                .PrimaryKey(t => t.id)
+                .ForeignKey("dbo.Evento", t => t.idGrupoDeEventos, cascadeDelete: true)
+                .ForeignKey("dbo.Pago", t => t.idPago, cascadeDelete: true)
+                .ForeignKey("dbo.Socio", t => t.Socio_id)
+                .Index(t => t.idGrupoDeEventos)
+                .Index(t => t.idPago)
+                .Index(t => t.Socio_id);
+            
+            CreateTable(
+                "dbo.Evento",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        cupoMaximo = c.Int(nullable: false),
+                        cupoMinimo = c.Int(nullable: false),
+                        nombre = c.String(unicode: false),
+                        monto = c.Single(nullable: false),
+                        descripcion = c.String(unicode: false),
+                        estado = c.Int(nullable: false),
+                        idEspacio = c.Int(nullable: false),
+                        idEncargado = c.Int(nullable: false),
+                        fechaDesde = c.DateTime(nullable: false, precision: 0),
+                        fechaHasta = c.DateTime(nullable: false, precision: 0),
+                        fechaDesdeInscripcion = c.DateTime(nullable: false, precision: 0),
+                        fechaHastaInscripcion = c.DateTime(nullable: false, precision: 0),
+                        fechaCreacion = c.DateTime(nullable: false, precision: 0),
+                        fechaBaja = c.DateTime(precision: 0),
+                        fechaModificacion = c.DateTime(precision: 0),
+                    })
+                .PrimaryKey(t => t.id)
+                .ForeignKey("dbo.EspacioComun", t => t.idEspacio, cascadeDelete: true)
+                .ForeignKey("dbo.Encargado", t => t.idEncargado, cascadeDelete: true)
+                .Index(t => t.idEspacio)
+                .Index(t => t.idEncargado);
+            
+            CreateTable(
+                "dbo.Pago",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        monto = c.Single(nullable: false),
+                        nroRecibo = c.Int(nullable: false),
+                        fechaCobro = c.DateTime(nullable: false, precision: 0),
+                        fechaCreacion = c.DateTime(nullable: false, precision: 0),
+                        fechaBaja = c.DateTime(precision: 0),
+                        fechaModificacion = c.DateTime(precision: 0),
+                    })
+                .PrimaryKey(t => t.id);
+            
+            CreateTable(
+                "dbo.TipoEvento",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        descripcion = c.String(unicode: false),
+                        nombre = c.String(unicode: false),
                     })
                 .PrimaryKey(t => t.id);
             
@@ -283,79 +309,68 @@ namespace Renacer.Nucleo.Migrations
                 .Index(t => t.Evento_id)
                 .Index(t => t.Tag_id);
             
-            CreateTable(
-                "dbo.GrupoDeEventosTags",
-                c => new
-                    {
-                        GrupoDeEventos_id = c.Int(nullable: false),
-                        Tag_id = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => new { t.GrupoDeEventos_id, t.Tag_id })
-                .ForeignKey("dbo.GrupoDeEventos", t => t.GrupoDeEventos_id, cascadeDelete: true)
-                .ForeignKey("dbo.Tags", t => t.Tag_id, cascadeDelete: true)
-                .Index(t => t.GrupoDeEventos_id)
-                .Index(t => t.Tag_id);
-            
         }
         
         public override void Down()
         {
+            DropForeignKey("dbo.Encargado", "idTipoDoc", "dbo.TipoDocumento");
+            DropForeignKey("dbo.DetalleEvento", "Tag_id", "dbo.Tags");
+            DropForeignKey("dbo.DetalleEvento", "idEncargado", "dbo.Encargado");
+            DropForeignKey("dbo.DetalleEvento", "idEspacio", "dbo.EspacioComun");
+            DropForeignKey("dbo.DetalleEvento", "idAsistencia", "dbo.Asistencia");
+            DropForeignKey("dbo.Socio", "Asistencia_id", "dbo.Asistencia");
             DropForeignKey("dbo.Socio", "idTipoDoc", "dbo.TipoDocumento");
             DropForeignKey("dbo.Inscripcion", "Socio_id", "dbo.Socio");
-            DropForeignKey("dbo.Socio", "idDomicilio", "dbo.Domicilio");
-            DropForeignKey("dbo.Socio", "idContacto", "dbo.Contacto");
             DropForeignKey("dbo.Inscripcion", "idPago", "dbo.Pago");
-            DropForeignKey("dbo.Inscripcion", "idGrupoDeEventos", "dbo.GrupoDeEventos");
-            DropForeignKey("dbo.Encargado", "idTipoDoc", "dbo.TipoDocumento");
-            DropForeignKey("dbo.GrupoDeEventosTags", "Tag_id", "dbo.Tags");
-            DropForeignKey("dbo.GrupoDeEventosTags", "GrupoDeEventos_id", "dbo.GrupoDeEventos");
-            DropForeignKey("dbo.Evento", "GrupoDeEventos_id", "dbo.GrupoDeEventos");
-            DropForeignKey("dbo.GrupoDeEventos", "idEspacio", "dbo.EspacioComun");
-            DropForeignKey("dbo.Evento", "idTipoEvento", "dbo.TipoEvento");
+            DropForeignKey("dbo.Inscripcion", "idGrupoDeEventos", "dbo.Evento");
             DropForeignKey("dbo.Evento", "idEncargado", "dbo.Encargado");
             DropForeignKey("dbo.EventoTags", "Tag_id", "dbo.Tags");
             DropForeignKey("dbo.EventoTags", "Evento_id", "dbo.Evento");
+            DropForeignKey("dbo.DetalleEvento", "Evento_id", "dbo.Evento");
             DropForeignKey("dbo.Evento", "idEspacio", "dbo.EspacioComun");
+            DropForeignKey("dbo.Socio", "idDomicilio", "dbo.Domicilio");
+            DropForeignKey("dbo.Socio", "idContacto", "dbo.Contacto");
             DropForeignKey("dbo.EspacioComunTags", "Tag_id", "dbo.Tags");
             DropForeignKey("dbo.EspacioComunTags", "EspacioComun_id", "dbo.EspacioComun");
             DropForeignKey("dbo.TagEncargadoes", "Encargado_id", "dbo.Encargado");
             DropForeignKey("dbo.TagEncargadoes", "Tag_id", "dbo.Tags");
             DropForeignKey("dbo.Encargado", "idDomicilio", "dbo.Domicilio");
             DropForeignKey("dbo.Cliente", "tipoDoc_id", "dbo.TipoDocumento");
-            DropIndex("dbo.GrupoDeEventosTags", new[] { "Tag_id" });
-            DropIndex("dbo.GrupoDeEventosTags", new[] { "GrupoDeEventos_id" });
             DropIndex("dbo.EventoTags", new[] { "Tag_id" });
             DropIndex("dbo.EventoTags", new[] { "Evento_id" });
             DropIndex("dbo.EspacioComunTags", new[] { "Tag_id" });
             DropIndex("dbo.EspacioComunTags", new[] { "EspacioComun_id" });
             DropIndex("dbo.TagEncargadoes", new[] { "Encargado_id" });
             DropIndex("dbo.TagEncargadoes", new[] { "Tag_id" });
-            DropIndex("dbo.Socio", new[] { "idContacto" });
-            DropIndex("dbo.Socio", new[] { "idDomicilio" });
-            DropIndex("dbo.Socio", new[] { "idTipoDoc" });
+            DropIndex("dbo.Evento", new[] { "idEncargado" });
+            DropIndex("dbo.Evento", new[] { "idEspacio" });
             DropIndex("dbo.Inscripcion", new[] { "Socio_id" });
             DropIndex("dbo.Inscripcion", new[] { "idPago" });
             DropIndex("dbo.Inscripcion", new[] { "idGrupoDeEventos" });
-            DropIndex("dbo.GrupoDeEventos", new[] { "idEspacio" });
-            DropIndex("dbo.Evento", new[] { "GrupoDeEventos_id" });
-            DropIndex("dbo.Evento", new[] { "idTipoEvento" });
-            DropIndex("dbo.Evento", new[] { "idEspacio" });
-            DropIndex("dbo.Evento", new[] { "idEncargado" });
+            DropIndex("dbo.Socio", new[] { "Asistencia_id" });
+            DropIndex("dbo.Socio", new[] { "idContacto" });
+            DropIndex("dbo.Socio", new[] { "idDomicilio" });
+            DropIndex("dbo.Socio", new[] { "idTipoDoc" });
+            DropIndex("dbo.DetalleEvento", new[] { "Tag_id" });
+            DropIndex("dbo.DetalleEvento", new[] { "Evento_id" });
+            DropIndex("dbo.DetalleEvento", new[] { "idAsistencia" });
+            DropIndex("dbo.DetalleEvento", new[] { "idEspacio" });
+            DropIndex("dbo.DetalleEvento", new[] { "idEncargado" });
             DropIndex("dbo.Encargado", new[] { "idDomicilio" });
             DropIndex("dbo.Encargado", new[] { "idTipoDoc" });
             DropIndex("dbo.Cliente", new[] { "tipoDoc_id" });
-            DropTable("dbo.GrupoDeEventosTags");
             DropTable("dbo.EventoTags");
             DropTable("dbo.EspacioComunTags");
             DropTable("dbo.TagEncargadoes");
             DropTable("dbo.Usuario");
+            DropTable("dbo.TipoEvento");
+            DropTable("dbo.Pago");
+            DropTable("dbo.Evento");
+            DropTable("dbo.Inscripcion");
             DropTable("dbo.Contacto");
             DropTable("dbo.Socio");
-            DropTable("dbo.Pago");
-            DropTable("dbo.Inscripcion");
-            DropTable("dbo.GrupoDeEventos");
-            DropTable("dbo.TipoEvento");
-            DropTable("dbo.Evento");
+            DropTable("dbo.Asistencia");
+            DropTable("dbo.DetalleEvento");
             DropTable("dbo.EspacioComun");
             DropTable("dbo.Tags");
             DropTable("dbo.Domicilio");

@@ -8,24 +8,17 @@ using System.Threading.Tasks;
 
 namespace Renacer.Nucleo.Entidades
 {
-    [Table("Inscripcion")]
-    public class Inscripcion
+    [Table("Asistencia")]
+    public class Asistencia
     {
         [Key]
         public int id { get; set; }
-
-        public int idGrupoDeEventos { get; set; }
-        [ForeignKey("idGrupoDeEventos")]
-        public Evento GrupoDeEventos { get; set; }
-
-        public int idPago { get; set; }
-        [ForeignKey("idPago")]
-        public Pago Pago { get; set; }
-
+        public ICollection<Socio> listaSocios { get; set; }
+        public EstadoAsistencia estado { get; set; }
+        public DateTime fechaAsistencia { get; set; }
         public DateTime fechaCreacion { get; set; }
-        public DateTime? fechaBaja { get; set; }
         public DateTime? fechaModificacion { get; set; }
-
-
     }
+
+    public enum EstadoAsistencia {Pendiente,Finalizada,Cancelada}
 }

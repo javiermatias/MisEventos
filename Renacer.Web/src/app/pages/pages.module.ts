@@ -31,6 +31,8 @@ import { SelectTagsComponent } from './select-tags/select-tags.component';
 import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
 import { EventoComponent } from './evento/evento.component';
 import { SelectSocioComponent } from './select-socio/select-socio.component';
+import { CalendarComponent } from './evento/calendar.component';
+import { DetalleEventoComponent } from './evento/detalle-evento.component';
 
 @NgModule({
   imports: [
@@ -63,6 +65,8 @@ import { SelectSocioComponent } from './select-socio/select-socio.component';
     SelectTagsComponent,
     EventoComponent,
     SelectSocioComponent,
+    CalendarComponent,
+    DetalleEventoComponent,
   ]
 })
 export class PagesModule { }

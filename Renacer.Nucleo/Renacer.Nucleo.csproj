@@ -93,9 +93,10 @@
     <Compile Include="Control\ControlEspacioComun.cs" />
     <Compile Include="Control\ControlCliente.cs" />
     <Compile Include="Entidades\Contacto.cs" />
+    <Compile Include="Entidades\Asistencia.cs" />
     <Compile Include="Entidades\Domicilio.cs" />
-    <Compile Include="Entidades\GrupoDeEventos.cs" />
     <Compile Include="Entidades\Evento.cs" />
+    <Compile Include="Entidades\DetalleEvento.cs" />
     <Compile Include="Entidades\EspacioComun.cs" />
     <Compile Include="Entidades\Encargado.cs" />
     <Compile Include="Entidades\Pago.cs" />
@@ -106,9 +107,9 @@
     <Compile Include="Entidades\Cliente.cs" />
     <Compile Include="Entidades\Socio.cs" />
     <Compile Include="Entidades\UsuarioException.cs" />
-    <Compile Include="Migrations\201708052151420_ReseteoBase2.cs" />
-    <Compile Include="Migrations\201708052151420_ReseteoBase2.Designer.cs">
-      <DependentUpon>201708052151420_ReseteoBase2.cs</DependentUpon>
+    <Compile Include="Migrations\201708080145248_CambiosClaseEvento.cs" />
+    <Compile Include="Migrations\201708080145248_CambiosClaseEvento.Designer.cs">
+      <DependentUpon>201708080145248_CambiosClaseEvento.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
@@ -126,8 +127,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201708052151420_ReseteoBase2.resx">
-      <DependentUpon>201708052151420_ReseteoBase2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201708080145248_CambiosClaseEvento.resx">
+      <DependentUpon>201708080145248_CambiosClaseEvento.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

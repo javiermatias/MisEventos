@@ -10,23 +10,10 @@ export const itemsAdmin = [
   {
     title: 'Eventos',
     icon: 'fa-calendar',
+    routerLink: 'eventos/',
     selected: false,
     expanded: false,
     order: 800,
-    subMenu: [
-      {
-        title: 'Nuevo Evento',
-        routerLink: 'evento/nuevo'
-      },
-      {
-        title: 'Lista',
-        routerLink: 'evento/lista'
-      },
-      {
-        title: 'Agenda',
-        routerLink: 'evento/agenda'
-      }
-    ]
   },
   {
     title: 'Usuarios',

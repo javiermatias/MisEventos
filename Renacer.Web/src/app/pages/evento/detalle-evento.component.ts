@@ -8,22 +8,14 @@ import { EventoServices ,Evento} from '../../resources/evento.service';
 import { EncargadoEvento} from '../../resources/encargado.service';
 import { EspacioComun} from '../../resources/espacio.service';
 
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { CalendarComponent } from './calendar.component';
-import { DirectivesModule } from '../../theme/directives/directives.module';
-
 
 @Component({
-  selector: 'az-evento',
-  templateUrl: './evento.component.html',
-  styleUrls: ['./evento.component.scss']
+  selector: 'az-detalle-evento',
+  templateUrl: './detalle-evento.component.html'
 })
-export class EventoComponent implements OnInit {
+export class DetalleEventoComponent implements OnInit {
 
-  public _item = new Evento(0,0,0,0,"","","");
-  @Input() items = new Array<Evento>();
+  @Input() _item = new Evento(0,0,0,0,"","","");
   public showDetail:boolean = false;
 
   constructor(private _itemsService:EventoServices,private mensajeServ: ToastrService)
@@ -31,16 +23,7 @@ export class EventoComponent implements OnInit {
   }
 
   ngOnInit()
-  {
-    this.getItems();
-  }
-
-  getItems()
-  {
-    this._itemsService.query({},(items:Evento[]) => {
-      this.items = items;
-    });
-  }
+  {}
 
   onSubmit(myForm: FormGroup)
   {
@@ -70,14 +53,12 @@ export class EventoComponent implements OnInit {
     this.showDetail = false;
   }
 
-
   saveItem(item:Evento):any
   {
     if(item.id == 0)
     {
       this._itemsService.save(item,(resp:Evento) => {
         item = resp;
-        this.items.push(item);
         this.showDetail = false;
         this.mensajeServ.success('Se han guardado los cambios!', 'Aviso!');
       });
@@ -85,17 +66,9 @@ export class EventoComponent implements OnInit {
     else
     {
       this._itemsService.update(item,(resp:Evento) => {
-        let items = this.items;
-        for (var i = 0; i < items.length; i++)
-        {
-          if(items[i].id == resp.id)
-          { items[i] = resp;
-            this.mensajeServ.success('Se han guardado los cambios!', 'Aviso!');
-          }
-        }
+        this.mensajeServ.success('Se han guardado los cambios!', 'Aviso!');
         this.showDetail = false;
       });
     }
   }
-
 }

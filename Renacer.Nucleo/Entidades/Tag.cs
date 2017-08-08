@@ -16,8 +16,8 @@
         public string descripcion { get; set; }
 
         public List<Encargado> listaEncargados { get; set; }
-        public List<Evento> listaEventos { get; set; }
-        public List<GrupoDeEventos> listaGruposDeEventos { get; set; }
+        public List<DetalleEvento> listaEventos { get; set; }
+        public List<Evento> listaGruposDeEventos { get; set; }
         public List<EspacioComun> listaEspacios { get; set; }
     }
 }

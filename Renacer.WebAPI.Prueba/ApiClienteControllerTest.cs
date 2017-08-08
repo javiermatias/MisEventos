@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Renacer.Nucleo;
 using System.Web.Http.Results;
+using Renacer.Nucleo.Entidades;
 
 namespace Renacer.WebAPI.Prueba
 {

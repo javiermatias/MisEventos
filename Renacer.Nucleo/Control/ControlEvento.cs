@@ -38,19 +38,23 @@ namespace Renacer.Nucleo.Control
                     throw new UsuarioException(errores);
                 }
 
-               
-
                 using (var db = new ModeloRenacer())
                 {
-                    evento.idEncargado = evento.responsable.id;
-                    if (evento.responsable.id == 0) db.Entry(evento.responsable).State = System.Data.Entity.EntityState.Added;
-                    if (evento.responsable.id > 0)  db.Entry(evento.responsable).State = System.Data.Entity.EntityState.Modified;
+                    Tag[] listaTags = new Tag[evento.listaTags.Count];
+                    evento.listaTags.CopyTo(listaTags);
+                    evento.listaTags.RemoveAll(tag => true);
 
-                    evento.idTipoEvento = evento.tipo.id;
-                    db.Entry(evento.tipo).State = System.Data.Entity.EntityState.Modified;
+                    evento.idEncargado = evento.responsable.id;
+                    db.Entry(evento.responsable).State = System.Data.Entity.EntityState.Modified;
+
+                    evento.idEspacio = evento.espacio.id;
+                    db.Entry(evento.espacio).State = System.Data.Entity.EntityState.Modified;
 
                     db.evento.AddOrUpdate(evento);
+                    db.SaveChanges();
 
+                    Evento eventoAux = db.evento.Include("listaTags").Single(a => a.id == evento.id);
+                    ControlTag.devolverInstancia().actualizarListaDeTags(db, listaTags, eventoAux.listaTags);
                     db.SaveChanges();
                 }
             }
@@ -65,7 +69,6 @@ namespace Renacer.Nucleo.Control
             }
         }
 
-
         /// var item = (from i in db.evento
         ///             where i.id.Equals(id)
         //              select i).FirstOrDefault();
@@ -78,11 +81,13 @@ namespace Renacer.Nucleo.Control
             {
                 using (var db = new ModeloRenacer())
                 {
-                    return db.evento.
-                        Include("tipoDoc").
-                        Include("domicilio").
-                        Include("contacto").
+                    var evento = db.evento.
+                        Include("responsable").
+                        Include("espacio").
+                        Include("listaDetalleEvento").
                         Where(x => x.id.Equals(id)).FirstOrDefault();
+                    evento.listaTags = db.tag.Where(x => x.listaEspacios.Any(xy => xy.id.Equals(id))).ToList();
+                    return evento;
                 }
             }
             catch (Exception ex)
@@ -133,7 +138,6 @@ namespace Renacer.Nucleo.Control
             }
         }
 
-
         private List<string> validar(Evento evento)
         {
             var errores = new List<string>();
@@ -150,25 +154,6 @@ namespace Renacer.Nucleo.Control
 
             return errores;
         }
-
-
-
-        public List<TipoDocumento> devolverTiposDocumentos()
-        {
-            try
-            {
-                using (var db = new ModeloRenacer())
-                {
-                    return db.tipoDocumento.ToList();
-                }
-            }
-            catch (Exception ex)
-            {
-                ServicioSentry.devolverSentry().informarExcepcion(ex);
-            }
-            return null;
-        }
-
 
     }
 }
