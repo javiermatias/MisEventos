@@ -2,11 +2,9 @@ import { Component, OnInit , Input} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {DatePipe} from '@angular/common' ;
 import { ToastrService, ToastrConfig } from 'ngx-toastr';
-import { TipoDocumentoComponent } from '../tipo-documento/tipo-documento.component';
-import { TipoDocumento } from '../../resources/tipo-documento.service';
-import { EventoServices ,Evento} from '../../resources/evento.service';
-import { EncargadoEvento} from '../../resources/encargado.service';
-import { EspacioComun} from '../../resources/espacio.service';
+import { EventoServices ,Evento,TipoEventoServices,TipoEvento,DetalleEvento} from '../../resources/evento.service';
+import { EncargadoEvento,EncargadoEventoServices} from '../../resources/encargado.service';
+import { EspacioComun,EspacioServices} from '../../resources/espacio.service';
 
 
 @Component({
@@ -17,19 +15,36 @@ export class DetalleEventoComponent implements OnInit {
 
   @Input() _item = new Evento(0,0,0,0,"","","");
   public showDetail:boolean = false;
+  public tiposDeEventos:TipoEvento[];
+  public espacios:EspacioComun[];
+  public responsables:EncargadoEvento[];
+  public horarios:any[] = new Array<any>();
+  public horario:any = {'dia':'','horaDesde':'','horaHasta':''};
 
-  constructor(private _itemsService:EventoServices,private mensajeServ: ToastrService)
+
+  public diaSemanas:string[] = ["Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"];
+
+  constructor(
+    private _itemsService:EventoServices,
+    private tipoEventoServ:TipoEventoServices,
+    private responsableServ:EncargadoEventoServices,
+    private espacioServ:EspacioServices,
+    private mensajeServ: ToastrService)
   {
   }
 
   ngOnInit()
-  {}
+  {
+    this.getTiposEventos();
+    this.getEspacios();
+    this.getResponsables();
+  }
 
   onSubmit(myForm: FormGroup)
   {
-    let newEspacio = Object.assign({}, this._item);
-    this._item = new Evento(0,0,0,0,"","","");
-    this.saveItem(newEspacio)
+    let newEvento = Object.assign({}, this._item);
+    //this._item = new Evento(0,0,0,0,"","","");
+    this.saveItem(newEvento)
     myForm.reset();
   }
 
@@ -43,7 +58,7 @@ export class DetalleEventoComponent implements OnInit {
   nuevoItem()
   {
     this._item =  new Evento(0,0,0,0,"","","");
-    this._item.encargado = new EncargadoEvento(0);
+    this._item.responsable = new EncargadoEvento(0);
     this._item.espacio = new EspacioComun(0);
     this.showDetail = true;
   }
@@ -57,6 +72,8 @@ export class DetalleEventoComponent implements OnInit {
   {
     if(item.id == 0)
     {
+      item.listaDetalleEvento = this.armarDetalleEvento(item,this.horarios);
+
       this._itemsService.save(item,(resp:Evento) => {
         item = resp;
         this.showDetail = false;
@@ -71,4 +88,83 @@ export class DetalleEventoComponent implements OnInit {
       });
     }
   }
+
+  getTiposEventos(){
+    this.tipoEventoServ.query({},(items) => {
+      this.tiposDeEventos = [];
+      for(var i = 0; i < items.length;i++){
+        var itemAux = new TipoEvento(0,"");
+        itemAux.id = items[i].id;
+        itemAux.nombre = items[i].nombre;
+        this.tiposDeEventos.push(itemAux);
+      }
+    });
+  }
+
+  getEspacios(){
+    this.espacioServ.query({},(items) => {
+      this.espacios = [];
+      for(var i = 0; i < items.length;i++){
+        var itemAux = new EspacioComun(0,"");
+        itemAux.id = items[i].id;
+        itemAux.nombre = items[i].nombre;
+        this.espacios.push(itemAux);
+      }
+    });
+  }
+
+  getResponsables(){
+    this.responsableServ.query({},(items) => {
+      this.responsables = [];
+      for(var i = 0; i < items.length;i++){
+        var itemAux = new EncargadoEvento(0,"");
+        itemAux.id = items[i].id;
+        itemAux.nombre = items[i].nombre;
+        itemAux.apellido = items[i].apellido;
+        this.responsables.push(itemAux);
+      }
+    });
+  }
+
+  agregarHorario(){
+    this.horarios.push(
+    Object.assign({}, this.horario)
+    )
+    this.horario = {'dia':'','horaDesde':'','horaHasta':''};
+  }
+
+  armarDetalleEvento(item:Evento,horarios:any[]):Array<DetalleEvento>{
+    let  listaDetalleEvento:Array<DetalleEvento> = new Array();
+    let diaFinal = new Date(item.fechaHasta);
+
+    for(let index_horario = 0;index_horario< horarios.length;index_horario++){
+       let horario = horarios[index_horario];
+       let diaActual =  new Date(item.fechaDesde);
+
+       while(diaActual < diaFinal){
+         let numeroDelDia = this.diaSemanas.indexOf(horario.dia)+1;
+         if(diaActual.getDay() == numeroDelDia){
+              let detalle = new DetalleEvento(0);
+              detalle.nombre = "";
+              detalle.descripcion = "";
+              detalle.responsable = item.responsable;
+              detalle.espacio = item.espacio;
+              detalle.fechaDesde =new Date(diaActual.getFullYear() + "-" + diaActual.getMonth() + "-" + diaActual.getDate() + " " + horario.horaDesde);
+              detalle.fechaHasta =new Date(diaActual.getFullYear() + "-" + diaActual.getMonth() + "-" + diaActual.getDate() + " " + horario.horaHasta);
+
+              listaDetalleEvento.push(detalle);
+        }
+
+        diaActual = this.addDays(diaActual,1);
+      }
+    }
+    return listaDetalleEvento;
+  }
+
+ addDays(date, days) {
+  var result = new Date(date);
+  result.setDate(result.getDate() + days);
+  return result;
+}
+
 }

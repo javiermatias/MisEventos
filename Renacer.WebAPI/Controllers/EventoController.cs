@@ -12,9 +12,9 @@ namespace Renacer.WebAPI.Controllers
     public class EventoController : ApiController
     {
             // GET: api/Eventos
-            public IEnumerable<Evento> Get()
+            public IEnumerable<Evento> Get([FromUri]String search)
             {
-                return ControlEvento.devolverInstancia().devolverTodos();
+                return ControlEvento.devolverInstancia().devolverTodos(search);
             }
 
             // GET: api/Eventos/5

@@ -7,51 +7,49 @@ using System.Linq;
 
 namespace Renacer.Nucleo.Control
 {
-    public class ControlSocio
+    public class ControlDetalleEvento
     {
-        private static ControlSocio control;
+        private static ControlDetalleEvento control;
 
-        private ControlSocio() { }
+        private ControlDetalleEvento() { }
 
         /// <summary>
         /// Metodo para devolver una instancia unica de la Clase.
         /// </summary>
         /// <returns></returns>
-        public static ControlSocio devolverInstancia()
+        public static ControlDetalleEvento devolverInstancia()
         {
             if (control == null)
-                control = new ControlSocio();
+                control = new ControlDetalleEvento();
             return control;
         }
 
         /// <summary>
-        /// Metodo utilizado para Insertar un nuevo socio.
+        /// Metodo utilizado para Insertar un nuevo detalleEvento.
         /// </summary>
-        /// <param name="socio"></param>
-        public void grabar(Socio socio)
+        /// <param name="detalleEvento"></param>
+        public void grabar(DetalleEvento detalleEvento)
         {
             try
             {
-                var errores = this.validar(socio);
+                var errores = this.validar(detalleEvento);
                 if (errores.Count > 0)
                 {
                     throw new UsuarioException(errores);
                 }
 
-               
-
                 using (var db = new ModeloRenacer())
                 {
-                    socio.idTipoDoc = socio.tipoDoc.id;
-                    db.socio.AddOrUpdate(socio);
+                    detalleEvento.idEncargado = detalleEvento.responsable.id;
+                    detalleEvento.idAsistencia = detalleEvento.asistencia.id;
+                    detalleEvento.idEspacio = detalleEvento.espacio.id;
 
-                    if (socio.domicilio.id == 0) db.Entry(socio.domicilio).State = System.Data.Entity.EntityState.Added;
-                    if (socio.domicilio.id > 0)  db.Entry(socio.domicilio).State = System.Data.Entity.EntityState.Modified;
+                    db.detalleEvento.AddOrUpdate(detalleEvento);
 
-                    if (socio.contacto.id == 0) db.Entry(socio.contacto).State = System.Data.Entity.EntityState.Added;
-                    if (socio.contacto.id > 0) db.Entry(socio.contacto).State = System.Data.Entity.EntityState.Modified;
+                    db.Entry(detalleEvento.espacio).State = System.Data.Entity.EntityState.Modified;
+                    db.Entry(detalleEvento.responsable).State = System.Data.Entity.EntityState.Modified;
+                    db.Entry(detalleEvento.asistencia).State = System.Data.Entity.EntityState.Modified;
 
-                    db.Entry(socio.tipoDoc).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
                 }
             }
@@ -67,22 +65,19 @@ namespace Renacer.Nucleo.Control
         }
 
 
-        /// var item = (from i in db.socio
+        /// var item = (from i in db.detalleEvento
         ///             where i.id.Equals(id)
         //              select i).FirstOrDefault();
         /// 
         /// 
-        /// SELECT * FROM Socio WHERE id = 1;
-        public Socio devolver(int id)
+        /// SELECT * FROM DetalleEvento WHERE id = 1;
+        public DetalleEvento devolver(int id)
         {
             try
             {
                 using (var db = new ModeloRenacer())
                 {
-                    return db.socio.
-                        Include("tipoDoc").
-                        Include("domicilio").
-                        Include("contacto").
+                    return db.detalleEvento.
                         Where(x => x.id.Equals(id)).FirstOrDefault();
                 }
             }
@@ -93,31 +88,37 @@ namespace Renacer.Nucleo.Control
             return null;
         }
 
-        internal void actualizarListaDeSocios(ModeloRenacer db, Socio[] listaInicial, List<Socio> listaFinal)
+        internal void actualizarListaDeDetalleEventos(ModeloRenacer db, DetalleEvento[] listaInicial, List<DetalleEvento> listaFinal)
         {
-            if (listaFinal == null) listaFinal = new List<Socio>();
-            listaFinal.RemoveAll(socio => true);
+            if (listaFinal == null) listaFinal = new List<DetalleEvento>();
+            listaFinal.RemoveAll(detalleEvento => true);
 
             foreach (var item in listaInicial)
             {
-                if (item.id <= 0) continue;
-                Socio socio = db.socio.FirstOrDefault(t => t.id == item.id);
-                if (socio != null)  listaFinal.Add(socio);
+                if (item.id == 0) {
+                    listaFinal.Add(item);
+                }
+                else {
+                    DetalleEvento detalleEvento = db.detalleEvento.FirstOrDefault(t => t.id == item.id);
+                    if (detalleEvento != null) listaFinal.Add(detalleEvento);
+                }
             }
         }
 
         /// <summary>
-        /// Metodo utilizado para devolver todos los Socio
-        /// SELECT * FROM Socio
+        /// Metodo utilizado para devolver todos los DetalleEvento
+        /// SELECT * FROM DetalleEvento
         /// </summary>
         /// <returns></returns>
-        public List<Socio> devolverTodos()
+        public List<DetalleEvento> devolverTodos(DateTime fechaDesde, DateTime fechaHasta)
         {
             try
             {
                 using (var db = new ModeloRenacer())
                 {
-                    return db.socio.ToList();
+                    return db.detalleEvento
+                        .Where(ev => ev.fechaDesde >= fechaDesde && ev.fechaDesde <= fechaHasta)
+                        .ToList();
                 }
             }
             catch (Exception ex)
@@ -128,8 +129,8 @@ namespace Renacer.Nucleo.Control
         }
 
         /// <summary>
-        /// Metodo utilizado para eliminar un socio.
-        /// TODO: El metodo se tiene que cambiar para actualizar un atributo del socio 
+        /// Metodo utilizado para eliminar un detalleEvento.
+        /// TODO: El metodo se tiene que cambiar para actualizar un atributo del detalleEvento 
         /// para ver si esta eliminado o no, no se eliminan datos.
         /// </summary>
         public void eliminar(int id)
@@ -138,7 +139,7 @@ namespace Renacer.Nucleo.Control
             {
                 using (var db = new ModeloRenacer())
                 {
-                    db.socio.Remove(db.socio.Where(x => x.id.Equals(id)).FirstOrDefault());
+                    db.detalleEvento.Remove(db.detalleEvento.Where(x => x.id.Equals(id)).FirstOrDefault());
                 }
             }
             catch (Exception ex)
@@ -148,25 +149,21 @@ namespace Renacer.Nucleo.Control
         }
 
 
-        private List<string> validar(Socio socio)
+        private List<string> validar(DetalleEvento detalleEvento)
         {
             var errores = new List<string>();
 
-            if (socio == null)
+            if (detalleEvento == null)
             {
-                errores.Add("No se informo el socio");
+                errores.Add("No se informo el detalleEvento");
             }
 
-            if (socio != null && string.IsNullOrEmpty(socio.nombre))
+            if (detalleEvento != null && string.IsNullOrEmpty(detalleEvento.nombre))
             {
-                errores.Add("No se ingreso el nombre del socio");
+                errores.Add("No se ingreso el nombre del detalleEvento");
             }
 
-            if (socio != null && string.IsNullOrEmpty(socio.apellido))
-            {
-                errores.Add("No se ingreso el apellido del socio");
-            }
-
+          
             return errores;
         }
 

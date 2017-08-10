@@ -9,6 +9,9 @@ interface IQueryInput {
   dateFrom?: string;
   dateTo?: string;
   isRead?: string;
+  search?: string;
+  fechaDesde?: Date;
+  fechaHasta?: Date;
 }
 
 export class BaseEntity{

@@ -35,10 +35,10 @@ export class SelectSocioComponent implements OnInit {
 
   socioSelected(socio){
     var socioItem:Socio;
-    if(socio.constructor.name == "Socio"){
+  //  if(socio.constructor.name == "Socio"){
       socioItem = socio;
       this.actualizarSocios(socioItem);
-    }
+  //  }
   }
 
   estaSeleccionado(item){

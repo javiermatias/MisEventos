@@ -7,6 +7,7 @@ import {Variables} from './variables';
 import {EspacioComun} from './espacio.service';
 import {Socio} from './socio.service';
 import {EncargadoEvento} from './encargado.service';
+import {Asistencia} from './asistencia.service';
 import {Tag} from './tag.service';
 
 export class Evento {
@@ -27,7 +28,8 @@ export class Evento {
     public fechaModificacion?: Date,
     public fechaBaja?: Date,
     public espacio?:EspacioComun,
-    public encargado?:EncargadoEvento,
+    public responsable?:EncargadoEvento,
+    public tipoEvento?:TipoEvento,
     public listaSocios?:Array<Socio>,
     public listaDetalleEvento?:Array<DetalleEvento>
   ) {
@@ -39,10 +41,10 @@ export class Evento {
 export class DetalleEvento {
   constructor(
     public id: number,
-    public nombre: string,
-    public descripcion: string,
-    public estado: string,
-    public encargado?:EncargadoEvento,
+    public nombre?: string,
+    public descripcion?: string,
+    public estado?: string,
+    public responsable?:EncargadoEvento,
     public espacio?:EspacioComun,
     public asistencia?: Asistencia,
     public fechaHasta?: Date,
@@ -55,15 +57,11 @@ export class DetalleEvento {
     this.asistencia = new Asistencia(0,"Pendiente");
   }
 }
-
-export class Asistencia {
+export class TipoEvento {
   constructor(
     public id: number,
-    public estado: string,
-    public fechaAsistencia?: Date,
-    public listaSocios?:Array<Socio>
+    public nombre?: string,
   ) {
-    this.listaSocios = new Array<Socio>();
   }
 }
 
@@ -71,7 +69,21 @@ let variable = new Variables();
 
 @Injectable()
 @ResourceParams({
+  url:variable.urlBase + "tipoEvento/"
+})
+export class TipoEventoServices extends BaseServices<TipoEvento> {
+}
+
+@Injectable()
+@ResourceParams({
   url:variable.urlBase + "evento/"
 })
 export class EventoServices extends BaseServices<Evento> {
+}
+
+@Injectable()
+@ResourceParams({
+  url:variable.urlBase + "detalleEvento/"
+})
+export class DetalleEventoServices extends BaseServices<DetalleEvento> {
 }

@@ -8,11 +8,11 @@ import { EventoServices ,Evento} from '../../resources/evento.service';
 import { EncargadoEvento} from '../../resources/encargado.service';
 import { EspacioComun} from '../../resources/espacio.service';
 
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+//import { CommonModule } from '@angular/common';
+//import { FormsModule } from '@angular/forms';
+//import { RouterModule } from '@angular/router';
 import { CalendarComponent } from './calendar.component';
-import { DirectivesModule } from '../../theme/directives/directives.module';
+//import { DirectivesModule } from '../../theme/directives/directives.module';
 
 
 @Component({
@@ -60,7 +60,7 @@ export class EventoComponent implements OnInit {
   nuevoItem()
   {
     this._item =  new Evento(0,0,0,0,"","","");
-    this._item.encargado = new EncargadoEvento(0);
+    this._item.responsable = new EncargadoEvento(0);
     this._item.espacio = new EspacioComun(0);
     this.showDetail = true;
   }

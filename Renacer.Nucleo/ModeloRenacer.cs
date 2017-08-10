@@ -25,6 +25,7 @@ namespace Renacer.Nucleo
         public virtual DbSet<Pago> pago { get; set; }
         public virtual DbSet<Inscripcion> inscripcion { get; set; }
         public virtual DbSet<TipoEvento> tipoEvento { get; set; }
+        public virtual DbSet<DetalleEvento> detalleEvento { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

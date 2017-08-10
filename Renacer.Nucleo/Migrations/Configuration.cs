@@ -26,6 +26,7 @@ namespace Renacer.Nucleo.Migrations
             context.tipoEvento.AddOrUpdate(new TipoEvento() {nombre = "Conferencia",descripcion="---"});
             context.tipoEvento.AddOrUpdate(new TipoEvento() {nombre = "Campaña social", descripcion="---"});
             context.tipoEvento.AddOrUpdate(new TipoEvento() {nombre = "Festival", descripcion="---"});
+
             context.tipoDocumento.AddOrUpdate(new TipoDocumento() {nombre = "Pasaporte"});
             Domicilio D = new Domicilio();
             TipoDocumento td = new TipoDocumento() { nombre = "DNI" };

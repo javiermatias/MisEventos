@@ -7,13 +7,13 @@ namespace Renacer.Nucleo.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-beta1-60406")]
-    public sealed partial class CambiosClaseEvento : IMigrationMetadata
+    public sealed partial class ResetBase : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CambiosClaseEvento));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ResetBase));
         
         string IMigrationMetadata.Id
         {
-            get { return "201708080145248_CambiosClaseEvento"; }
+            get { return "201708100209077_ResetBase"; }
         }
         
         string IMigrationMetadata.Source

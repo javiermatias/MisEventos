@@ -38,23 +38,52 @@ namespace Renacer.Nucleo.Control
                     throw new UsuarioException(errores);
                 }
 
+                evento.fechaModificacion = DateTime.Now;
+
                 using (var db = new ModeloRenacer())
                 {
+                    
+                   // evento.idEncargado = evento.responsable.id;
+                    evento.responsable = db.encargado.Single(a => a.id == evento.responsable.id);
+                    db.Entry(evento.responsable).State = System.Data.Entity.EntityState.Unchanged;
+
+                    // evento.idEspacio = evento.espacio.id;
+                    evento.espacio = db.espacioComun.Single(a => a.id == evento.espacio.id);
+                    db.Entry(evento.espacio).State = System.Data.Entity.EntityState.Unchanged;
+
+                    //evento.idTipoEvento = evento.tipoEvento.id;
+                    evento.tipoEvento = db.tipoEvento.Single(a => a.id == evento.tipoEvento.id);
+                    db.Entry(evento.tipoEvento).State = System.Data.Entity.EntityState.Unchanged;
+
                     Tag[] listaTags = new Tag[evento.listaTags.Count];
                     evento.listaTags.CopyTo(listaTags);
                     evento.listaTags.RemoveAll(tag => true);
 
-                    evento.idEncargado = evento.responsable.id;
-                    db.Entry(evento.responsable).State = System.Data.Entity.EntityState.Modified;
+                    Socio[] listaSocios = new Socio[evento.listaSocios.Count];
+                    evento.listaSocios.CopyTo(listaSocios);
+                    evento.listaSocios.RemoveAll(socio => true);
 
-                    evento.idEspacio = evento.espacio.id;
-                    db.Entry(evento.espacio).State = System.Data.Entity.EntityState.Modified;
+                    foreach (DetalleEvento detalle in evento.listaDetalleEvento) {
+                        detalle.espacio = evento.espacio;
+                        detalle.idEspacio = evento.idEspacio;
+                        db.Entry(detalle.espacio).State = System.Data.Entity.EntityState.Unchanged;
 
+                        detalle.idEncargado = evento.idEncargado;
+                        detalle.responsable = evento.responsable;
+                        db.Entry(detalle.responsable).State = System.Data.Entity.EntityState.Unchanged;
+
+                        detalle.fechaCreacion = DateTime.Now;
+                        detalle.fechaModificacion = DateTime.Now;
+                    }
+              
                     db.evento.AddOrUpdate(evento);
                     db.SaveChanges();
 
                     Evento eventoAux = db.evento.Include("listaTags").Single(a => a.id == evento.id);
                     ControlTag.devolverInstancia().actualizarListaDeTags(db, listaTags, eventoAux.listaTags);
+                    ControlSocio.devolverInstancia().actualizarListaDeSocios(db, listaSocios, eventoAux.listaSocios);
+                   // ControlDetalleEvento.devolverInstancia().actualizarListaDeDetalleEventos(db, listaDetalleEvento, eventoAux.listaDetalleEvento);
+
                     db.SaveChanges();
                 }
             }
@@ -102,13 +131,15 @@ namespace Renacer.Nucleo.Control
         /// SELECT * FROM Evento
         /// </summary>
         /// <returns></returns>
-        public List<Evento> devolverTodos()
+        public List<Evento> devolverTodos(String search)
         {
             try
             {
                 using (var db = new ModeloRenacer())
                 {
-                    return db.evento.ToList();
+                    return db.evento
+                        .Where(ev =>  ev.nombre.Contains(search))
+                        .ToList();
                 }
             }
             catch (Exception ex)

@@ -22,10 +22,15 @@ namespace Renacer.Nucleo.Entidades
 
         public List<Tag> listaTags { get; set; }
         public List<DetalleEvento> listaDetalleEvento { get; set; }
+        public List<Socio> listaSocios { get; set; }
 
         public int idEspacio { get; set; }
         [ForeignKey("idEspacio")]
         public EspacioComun espacio { get; set; }
+
+        public int idTipoEvento { get; set; }
+        [ForeignKey("idTipoEvento")]
+        public TipoEvento tipoEvento { get; set; }
 
         public int idEncargado { get; set; }
         [ForeignKey("idEncargado")]

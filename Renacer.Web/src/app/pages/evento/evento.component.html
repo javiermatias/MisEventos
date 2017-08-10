@@ -1,34 +1,11 @@
+<div class="row" [hidden]="showDetail">
+      <div class="col-xl-12 col-lg-12 col-12 bottom-30">
+          <az-calendar (nuevoItemEvent)="nuevoItem()"></az-calendar>
+      </div>
+</div>
+
 <div class="row">
-    <div class="col-xl-12 col-lg-12 col-12 bottom-30">
-        <div widget class="card">
-            <div class="card-header">
-                <span>Eventos</span>
-            </div>
-            <div class="card-block widget-body">
-                <div class="row">
-                  <div class="w-200 pull-left bottom-15">
-                      <button style="margin-left: 20px;" class="btn btn-main" (click)="nuevoItem()">Nuevo Evento</button>
-                  </div>
-                  <div class="w-200 pull-right bottom-15">
-                      <div class="input-group input-group-sm">
-                          <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                          <input class="form-control" id="table-search-input" [(ngModel)]="searchText" type="text" placeholder="Buscar evento...">
-                      </div>
-                  </div>
-                </div>
-
-                <div class="row" [hidden]="showDetail">
-                    <div class="col-xl-12 col-lg-12 col-12 bottom-30">
-                        <az-calendar></az-calendar>
-                    </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-xl-12 col-lg-12 col-12 bottom-30" [hidden]="!showDetail">
-                      <az-detalle-evento [_item]="_item" ></az-detalle-evento>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div class="col-xl-12 col-lg-12 col-12 bottom-30" [hidden]="!showDetail">
+      <az-detalle-evento [_item]="_item" ></az-detalle-evento>
     </div>
 </div>
