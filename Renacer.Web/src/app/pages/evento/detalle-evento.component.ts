@@ -140,17 +140,17 @@ export class DetalleEventoComponent implements OnInit {
     for(let index_horario = 0;index_horario< horarios.length;index_horario++){
        let horario = horarios[index_horario];
        let diaActual =  new Date(item.fechaDesde);
+       let numeroDelDia = this.diaSemanas.indexOf(horario.dia)+1;
 
        while(diaActual < diaFinal){
-         let numeroDelDia = this.diaSemanas.indexOf(horario.dia)+1;
          if(diaActual.getDay() == numeroDelDia){
               let detalle = new DetalleEvento(0);
               detalle.nombre = "";
               detalle.descripcion = "";
               detalle.responsable = item.responsable;
               detalle.espacio = item.espacio;
-              detalle.fechaDesde =new Date(diaActual.getFullYear() + "-" + diaActual.getMonth() + "-" + diaActual.getDate() + " " + horario.horaDesde);
-              detalle.fechaHasta =new Date(diaActual.getFullYear() + "-" + diaActual.getMonth() + "-" + diaActual.getDate() + " " + horario.horaHasta);
+              detalle.fechaDesde =new Date(diaActual.getFullYear() + "-" + (diaActual.getMonth() + 1) + "-" + diaActual.getDate() + " " + horario.horaDesde);
+              detalle.fechaHasta =new Date(diaActual.getFullYear() + "-" + (diaActual.getMonth() + 1) + "-" + diaActual.getDate() + " " + horario.horaHasta);
 
               listaDetalleEvento.push(detalle);
         }
