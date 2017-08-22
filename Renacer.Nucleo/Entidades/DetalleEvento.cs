@@ -20,6 +20,10 @@ namespace Renacer.Nucleo.Entidades
         [ForeignKey("idEncargado")]
         public Encargado responsable { get; set; }
 
+        public int idEvento { get; set; }
+        [ForeignKey("idEvento")]
+        public Evento evento { get; set; }
+
         public int idEspacio { get; set; }
         [ForeignKey("idEspacio")]
         public EspacioComun espacio { get; set; }

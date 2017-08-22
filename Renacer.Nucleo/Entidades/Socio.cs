@@ -33,15 +33,14 @@ namespace Renacer.Nucleo.Entidades
         public Contacto contacto { get; set; }
 
 
+        public List<Asociacion> listaAsociaciones { get; set; }
         public List<Inscripcion> listaInscripciones { get; set; }
-        public List<Evento> listaEventos { get; set; }
         public List<Tag> listaTags { get; set; }
 
 
         public DateTime fechaCreacion { get; set; }
         public DateTime? fechaBaja { get; set; }
         public DateTime? fechaModificacion { get; set; }
-
 
     }
 }

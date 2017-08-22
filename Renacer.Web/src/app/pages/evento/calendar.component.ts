@@ -41,7 +41,8 @@ export class CalendarComponent {
           allDay: false,
           backgroundColor: this.config.colors.success,
           textColor: this.config.colors.default,
-          id:items[i].id
+          id:items[i].id,
+          idEvento:items[i].idEvento
         }
         this.calendarOptions.events.push(itemAux);
       }

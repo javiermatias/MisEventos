@@ -41,6 +41,7 @@ export class Evento {
 export class DetalleEvento {
   constructor(
     public id: number,
+    public idEvento?: number,
     public nombre?: string,
     public descripcion?: string,
     public estado?: string,

@@ -94,6 +94,7 @@
     <Compile Include="Control\ControlUsuario.cs" />
     <Compile Include="Control\ControlEspacioComun.cs" />
     <Compile Include="Control\ControlCliente.cs" />
+    <Compile Include="Entidades\Asociacion.cs" />
     <Compile Include="Entidades\Asistencia.cs" />
     <Compile Include="Entidades\Cliente.cs" />
     <Compile Include="Entidades\Contacto.cs" />
@@ -109,9 +110,9 @@
     <Compile Include="Entidades\TipoDocumento.cs" />
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Entidades\UsuarioException.cs" />
-    <Compile Include="Migrations\201708100209077_ResetBase.cs" />
-    <Compile Include="Migrations\201708100209077_ResetBase.Designer.cs">
-      <DependentUpon>201708100209077_ResetBase.cs</DependentUpon>
+    <Compile Include="Migrations\201708160000451_adasd.cs" />
+    <Compile Include="Migrations\201708160000451_adasd.Designer.cs">
+      <DependentUpon>201708160000451_adasd.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
@@ -125,12 +126,13 @@
     <None Include="Configuracion\produccion.config" />
     <None Include="Configuracion\local-02.config" />
     <None Include="Configuracion\local-01.config" />
+    <None Include="Entidades\ClassDiagram1.cd" />
     <None Include="Manuales\gitFlow.docx" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201708100209077_ResetBase.resx">
-      <DependentUpon>201708100209077_ResetBase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201708160000451_adasd.resx">
+      <DependentUpon>201708160000451_adasd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

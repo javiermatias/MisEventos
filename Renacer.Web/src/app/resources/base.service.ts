@@ -6,7 +6,8 @@ import {RequestMethod} from '@angular/http';
 interface IQueryInput {
   page?: number;
   perPage?: number;
-  dateFrom?: string;
+  dateFrom?: string
+  limit?: number;
   dateTo?: string;
   isRead?: string;
   search?: string;

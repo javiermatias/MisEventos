@@ -32,12 +32,15 @@ import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
     HttpModule,
    NguiAutoCompleteModule
   ],
-  providers: [AppConfig,
+  providers: [
+    AppConfig,
     UserServices,
     SocioServices,
     EspacioServices,
     TagServices,
-    EventoServices,TipoEventoServices,DetalleEventoServices,
+    EventoServices,
+    TipoEventoServices,
+    DetalleEventoServices,
     EncargadoEventoServices,
     TipoDocumentoServices],
   bootstrap: [AppComponent]

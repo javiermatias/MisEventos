@@ -51,7 +51,7 @@ namespace Renacer.Nucleo.Control
                     if (socio.contacto.id == 0) db.Entry(socio.contacto).State = System.Data.Entity.EntityState.Added;
                     if (socio.contacto.id > 0) db.Entry(socio.contacto).State = System.Data.Entity.EntityState.Modified;
 
-                    db.Entry(socio.tipoDoc).State = System.Data.Entity.EntityState.Modified;
+                    db.Entry(socio.tipoDoc).State = System.Data.Entity.EntityState.Unchanged;
                     db.SaveChanges();
                 }
             }
@@ -111,13 +111,13 @@ namespace Renacer.Nucleo.Control
         /// SELECT * FROM Socio
         /// </summary>
         /// <returns></returns>
-        public List<Socio> devolverTodos()
+        public List<Socio> devolverTodos(int page,int limit,string search)
         {
             try
             {
                 using (var db = new ModeloRenacer())
                 {
-                    return db.socio.ToList();
+                    return db.socio.Where(x=> x.nombre.Contains(@search)).Skip(page*limit).Take(limit).ToList();
                 }
             }
             catch (Exception ex)

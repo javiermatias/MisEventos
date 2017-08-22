@@ -77,8 +77,14 @@ namespace Renacer.Nucleo.Control
             {
                 using (var db = new ModeloRenacer())
                 {
-                    return db.detalleEvento.
-                        Where(x => x.id.Equals(id)).FirstOrDefault();
+                    var detalleEvento = db.detalleEvento.Include("Evento")
+                        .Where(x => x.id.Equals(id)).FirstOrDefault();
+
+                    if (detalleEvento.idEspacio > 0) detalleEvento.espacio = db.espacioComun.First(x => x.id == detalleEvento.idEspacio);
+                    if (detalleEvento.idAsistencia > 0) detalleEvento.asistencia = db.asistencia.First(x => x.id == detalleEvento.idAsistencia);
+                    if (detalleEvento.idEncargado > 0) detalleEvento.responsable = db.encargado.First(x => x.id == detalleEvento.idEncargado);
+
+                    return detalleEvento;
                 }
             }
             catch (Exception ex)

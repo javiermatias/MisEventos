@@ -21,7 +21,7 @@ namespace Renacer.WebAPI
 
             if (user["usuario"] == null || user["clave"] == null) return Ok(resp);
 
-            var usuario =  ControlUsuario.devolverInstacia().devolver(user["usuario"], user["clave"]);
+            var usuario =  ControlUsuario.devolverInstancia().devolver(user["usuario"], user["clave"]);
 
             if (usuario != null)
             {

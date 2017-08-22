@@ -1,14 +1,6 @@
 export const itemsResponsable = [
   {
-    title: 'Dashboard',
-    routerLink: 'dashboard',
-    icon: 'fa-home',
-    selected: false,
-    expanded: false,
-    order: 0
-  },
-  {
-    title: 'Eventos',
+    title: 'Mis Eventos',
     icon: 'fa-calendar',
     selected: false,
     expanded: false,

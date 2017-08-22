@@ -17,7 +17,7 @@ namespace Renacer.Nucleo.Control
         /// Metodo para devolver una instancia unica de la Clase.
         /// </summary>
         /// <returns></returns>
-        public static ControlUsuario devolverInstacia()
+        public static ControlUsuario devolverInstancia()
         {
             if (control == null)
                 control = new ControlUsuario();
@@ -62,7 +62,7 @@ namespace Renacer.Nucleo.Control
         /// 
         /// 
         /// SELECT * FROM Usuario WHERE id = 1;
-        public Usuario devolver(string usuario,string clave)
+        public Usuario devolver(string usuario, string clave)
         {
             try
             {
@@ -78,6 +78,49 @@ namespace Renacer.Nucleo.Control
             }
             return null;
         }
+        /// SELECT * FROM Usuario WHERE id = 1;
+        public Usuario devolver(int id)
+        {
+            try
+            {
+                using (var db = new ModeloRenacer())
+                {
+                    return db.usuario
+                        .Where(x => x.id.Equals(id)).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                ServicioSentry.devolverSentry().informarExcepcion(ex);
+            }
+            return null;
+        }
+
+
+
+        public Usuario devolverPorNombre(string usuario)
+        {
+            try
+            {
+                using (var db = new ModeloRenacer())
+                {
+                    var userLog = db.usuario.
+                        Where(x => x.usuario.Equals(usuario)).FirstOrDefault();
+
+                    userLog.clave = "";
+                    if (!System.IO.File.Exists(userLog.imagen)) userLog.imagen = "";
+
+                    return userLog;
+                }
+            }
+            catch (Exception ex)
+            {
+                ServicioSentry.devolverSentry().informarExcepcion(ex);
+            }
+            return null;
+
+        }
+
 
         /// <summary>
         /// Metodo utilizado para devolver todos los Usuario

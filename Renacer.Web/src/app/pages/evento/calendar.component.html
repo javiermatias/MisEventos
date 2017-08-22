@@ -14,7 +14,8 @@
             <div class="card-block widget-body row">
               <div class="col-xl-12 col-lg-12 col-12">
                 <div class="w-200 pull-left bottom-15">
-                    <button style="margin-left: 20px;" class="btn btn-main" (click)="nuevoItem()">Nuevo Evento</button>
+                    <button style="margin-left: 20px;" class="btn btn-main"
+                      [routerLink]="['/pages/evento', 'nuevo']" >Nuevo Evento</button>
                 </div>
                 <div class="w-200 pull-right bottom-15">
                     <div class="input-group input-group-sm">
@@ -41,7 +42,8 @@
                                             <p *ngIf="event.description">{{ event.description }}</p>
                                         </div>
                                         <div class="modal-footer">
-                                        <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">OK</button>
+                                          <button type="button" class="btn btn-info btn-sm" [routerLink]="['/pages/evento/', event.idEvento,'detalle',event.id]" >VER DETALLE</button>
+                                          <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">CERRAR</button>
                                         </div>
                                     </div>
                                 </div>

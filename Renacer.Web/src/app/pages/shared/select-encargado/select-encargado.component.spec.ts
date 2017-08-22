@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EventoComponent } from './evento.component';
+import { SelectEncargadoComponent } from './select-encargado.component';
 
-describe('EventoComponent', () => {
-  let component: EventoComponent;
-  let fixture: ComponentFixture<EventoComponent>;
+describe('SelectEncargadoComponent', () => {
+  let component: SelectEncargadoComponent;
+  let fixture: ComponentFixture<SelectEncargadoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EventoComponent ]
+      declarations: [ SelectEncargadoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EventoComponent);
+    fixture = TestBed.createComponent(SelectEncargadoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
