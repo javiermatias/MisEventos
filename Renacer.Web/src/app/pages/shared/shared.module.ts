@@ -1,0 +1,44 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { FormsModule }   from '@angular/forms';
+import { DirectivesModule } from '../../theme/directives/directives.module';
+import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
+import { DataTableModule } from "angular2-datatable";
+import { ToastrModule } from 'ngx-toastr';
+import { PipesModule } from '../../theme/pipes/pipes.module';
+import { SelectSocioComponent } from './select-socio/select-socio.component';
+import { SelectTagsComponent } from './select-tags/select-tags.component';
+import { SelectEspacioComponent } from './select-espacio/select-espacio.component';
+import { SelectEncargadoComponent } from './select-encargado/select-encargado.component';
+import { SelectTipoEventoComponent } from './select-tipo-evento/select-tipo-evento.component';
+import { TipoDocumentoComponent } from './tipo-documento/tipo-documento.component';
+
+
+@NgModule({
+  imports: [
+      CommonModule,
+      DirectivesModule,
+      PipesModule,
+      FormsModule,
+      DataTableModule,
+      NguiAutoCompleteModule,
+  ],
+  declarations: [
+    SelectSocioComponent,
+    SelectTagsComponent,
+    SelectEspacioComponent,
+    SelectTipoEventoComponent,
+    SelectEncargadoComponent,
+    TipoDocumentoComponent
+  ],
+  exports:[
+    SelectSocioComponent,
+    SelectTagsComponent,
+    SelectEspacioComponent,
+    SelectTipoEventoComponent,
+    SelectEncargadoComponent,
+   TipoDocumentoComponent
+   ]
+})
+export class SharedModule { }

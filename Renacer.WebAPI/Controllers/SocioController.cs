@@ -12,9 +12,12 @@ namespace Renacer.WebAPI.Controllers
     public class SocioController : ApiController
     {
         // GET: api/Socios
-        public IEnumerable<Socio> Get()
+        public IEnumerable<Socio> Get([FromUri]int page,[FromUri] int limit, [FromUri] string search)
         {
-            return ControlSocio.devolverInstancia().devolverTodos();
+            if (page <= 0) page = 1;
+            if (limit <= 0) limit = 10;
+
+            return ControlSocio.devolverInstancia().devolverTodos(page,limit,search);
         }
 
         // GET: api/Socios/5

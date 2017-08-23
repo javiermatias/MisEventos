@@ -12,6 +12,7 @@ import { UserServices } from './resources/users.service';
 import { SocioServices } from './resources/socio.service';
 import { EspacioServices } from './resources/espacio.service';
 import { EncargadoEventoServices } from './resources/encargado.service';
+import { EventoServices,TipoEventoServices,DetalleEventoServices } from './resources/evento.service';
 import { TipoDocumentoServices } from './resources/tipo-documento.service';
 import { TagServices } from './resources/tag.service';
 import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
@@ -29,9 +30,17 @@ import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
     }),
     routing,
     HttpModule,
-   NguiAutoCompleteModule 
+   NguiAutoCompleteModule
   ],
-  providers: [AppConfig,UserServices,SocioServices,EspacioServices,TagServices,
+  providers: [
+    AppConfig,
+    UserServices,
+    SocioServices,
+    EspacioServices,
+    TagServices,
+    EventoServices,
+    TipoEventoServices,
+    DetalleEventoServices,
     EncargadoEventoServices,
     TipoDocumentoServices],
   bootstrap: [AppComponent]

@@ -9,11 +9,11 @@ import {Variables} from './variables';
 export class EspacioComun {
   constructor(
     public id: number,
-    public nombre: string,
-    public descripcion: string,
-    public idDireccion: number,
-    public idTipoEspacio: number,
-    public capacidad: number,
+    public nombre?: string,
+    public descripcio?: string,
+    public idDireccion?: number,
+    public idTipoEspacio?: number,
+    public capacidad?: number,
     public estado?: number,
     public listaTags?: Array<Tag>,
     public fechaBaja?: Date,

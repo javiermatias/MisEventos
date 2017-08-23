@@ -1,6 +1,6 @@
 import { Component, OnInit,Input,OnChanges,Output,EventEmitter } from '@angular/core';
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
-import {SocioServices,Socio} from '../../resources/socio.service';
+import {SocioServices,Socio} from '../../../resources/socio.service';
 import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
 
 @Component({
@@ -35,10 +35,10 @@ export class SelectSocioComponent implements OnInit {
 
   socioSelected(socio){
     var socioItem:Socio;
-    if(socio.constructor.name == "Socio"){
+  //  if(socio.constructor.name == "Socio"){
       socioItem = socio;
       this.actualizarSocios(socioItem);
-    }
+  //  }
   }
 
   estaSeleccionado(item){

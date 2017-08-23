@@ -12,6 +12,7 @@ namespace Renacer.Nucleo
             base("ModeloRenacer")
             //base("server=localhost;user id = root;Pwd=q1w2q1w2; database=renacer")
         {
+            this.Configuration.ProxyCreationEnabled = false;
         }
 
         public virtual DbSet<Cliente> cliente { get; set; }
@@ -22,9 +23,12 @@ namespace Renacer.Nucleo
         public virtual DbSet<Encargado> encargado { get; set; }
         public virtual DbSet<Tag> tag { get; set; }
         public virtual DbSet<Evento> evento { get; set; }
-        public virtual DbSet<GrupoDeEventos> grupoDeEventos { get; set; }
         public virtual DbSet<Pago> pago { get; set; }
         public virtual DbSet<Inscripcion> inscripcion { get; set; }
+        public virtual DbSet<TipoEvento> tipoEvento { get; set; }
+        public virtual DbSet<DetalleEvento> detalleEvento { get; set; }
+        public virtual DbSet<Asistencia> asistencia { get; set; }
+        
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -1,6 +1,6 @@
 import { Component, OnInit,Input,OnChanges,Output,EventEmitter } from '@angular/core';
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
-import {TagServices,Tag} from '../../resources/tag.service';
+import {TagServices,Tag} from '../../../resources/tag.service';
 import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
 
 @Component({

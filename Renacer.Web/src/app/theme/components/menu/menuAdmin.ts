@@ -8,34 +8,21 @@ export const itemsAdmin = [
     order: 0
   },
   {
-    title: 'Eventos',
+    title: 'Calendario',
     icon: 'fa-calendar',
+    routerLink: 'evento/calendario/',
     selected: false,
     expanded: false,
     order: 800,
-    subMenu: [
-      {
-        title: 'Nuevo Evento',
-        routerLink: 'evento/nuevo'
-      },
-      {
-        title: 'Lista',
-        routerLink: 'evento/lista'
-      },
-      {
-        title: 'Agenda',
-        routerLink: 'evento/agenda'
-      }
-    ]
   },
-  {
-    title: 'Usuarios',
-    routerLink: 'usuarios/',
-    icon: 'fa-users',
-    selected: false,
-    expanded: false,
-    order: 500
-  },
+  // {
+  //   title: 'Usuarios',
+  //   routerLink: 'usuarios/',
+  //   icon: 'fa-users',
+  //   selected: false,
+  //   expanded: false,
+  //   order: 500
+  // },
   {
     title: 'Encargados de evento',
     routerLink: 'encargados/',
@@ -59,13 +46,13 @@ export const itemsAdmin = [
     expanded: false,
     order: 800,
     routerLink: 'espacios/'
-  },
-  {
-    title: 'Tags',
-    icon: 'fa-tags',
+  }
+  ,{
+    title: 'Reportes',
+    icon: 'fa-file',
     selected: false,
     expanded: false,
     order: 800,
-    routerLink: 'tags/'
+    routerLink: 'reportes/'
   }
 ];

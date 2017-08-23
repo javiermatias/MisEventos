@@ -13,7 +13,7 @@ export class MenuService {
     switch(userType){
       case "Administrador": menuItemsSelected = itemsAdmin;break;
       case "Socio": menuItemsSelected = itemsSocio;break;
-      case "Responsable": menuItemsSelected = itemsResponsable;break;
+      case "Encargado": menuItemsSelected = itemsResponsable;break;
       default: menuItemsSelected = menuItems;break;
     }
     return menuItemsSelected;

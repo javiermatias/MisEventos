@@ -7,13 +7,13 @@ namespace Renacer.Nucleo.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-beta1-60406")]
-    public sealed partial class ReseteoBase2 : IMigrationMetadata
+    public sealed partial class adasd : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ReseteoBase2));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(adasd));
         
         string IMigrationMetadata.Id
         {
-            get { return "201708052151420_ReseteoBase2"; }
+            get { return "201708160000451_adasd"; }
         }
         
         string IMigrationMetadata.Source

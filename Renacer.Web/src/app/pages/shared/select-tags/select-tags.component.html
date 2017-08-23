@@ -26,7 +26,10 @@
           style="margin-bottom:10px" />
 
       <div style="border-top:1px solid #EEE">
-        <span style="padding: 5px;font-size: 12px;margin: 5px;" *ngFor="let item of listaTags" class="badge badge-main">{{item.nombre}}</span>
+        <span style="padding: 5px;font-size: 12px;margin: 5px;" *ngFor="let item of listaTags" class="badge badge-main">
+          {{item.nombre}}
+           <span (click)="tagSelected(item)" class="fa fa-times" style="cursor:pointer;"></span>
+        </span>
       </div>
 
     </div>

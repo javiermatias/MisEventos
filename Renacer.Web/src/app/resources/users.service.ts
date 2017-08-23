@@ -9,8 +9,8 @@ import {BaseServices} from './base.service';
 export class Usuario {
   constructor(
     public id: number,
-    public nombre: string,
-    public rol: string,
+    public nombre?: string,
+    public rol?: string,
     public email?:string,
     public fechaCreacion?: Date,
     public fechaBaja?: Date,
@@ -21,7 +21,7 @@ export class Usuario {
 
 @Injectable()
 @ResourceParams({
-  url:new Variables().urlBase + "usuarios/"
+  url:new Variables().urlBase + "usuario/"
 })
 export class UserServices extends BaseServices<Usuario> {
 
@@ -32,31 +32,18 @@ export class UserServices extends BaseServices<Usuario> {
   login: ResourceMethod<{usuario: string,clave:string},Object>;
 
   @ResourceAction({
-    method: RequestMethod.Get,
-    url:new Variables().urlBase + "usuarios/actual"
+    method: RequestMethod.Get
   })
+  actual:ResourceMethod<{},Object>;
 
-  login2 = function(username:string,password:string):string
-  {
-    if(username == "augusto" && password == "123123"){
-      this.usuario = {
-        'nombre':'Augusto Galan',
-        'rol':'Administrador',
-        'imagen':'assets/img/users/augusto.png'};
-        return "success";
-      }else{
-        return "error";
-      }
-    };
-
-    getCurrent=function(){
-      if(this.usuario == null){
-       this.usuario = JSON.parse(localStorage.usuario);
-      }
-        return this.usuario;
+  getCurrent=function(){
+    if(this.usuario == null){
+      this.usuario = JSON.parse(localStorage.usuario);
     }
-    setCurrent = function(usuario:Usuario){
-       this.usuario = usuario;
-       localStorage.usuario = JSON.stringify(usuario) ;
-    }
+    return this.usuario;
   }
+  setCurrent = function(usuario:Usuario){
+    this.usuario = usuario;
+    localStorage.usuario = JSON.stringify(usuario) ;
+  }
+}

@@ -211,12 +211,16 @@
     <Compile Include="ApiControllerSelector.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ComunController.cs" />
+    <Compile Include="Controllers\DetalleEventoController.cs" />
     <Compile Include="Controllers\EspacioController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\EventoController.cs" />
     <Compile Include="Controllers\SocioController.cs" />
     <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Controllers\TipoDocumentoController.cs" />
     <Compile Include="Controllers\EncargadoController.cs" />
+    <Compile Include="Controllers\TipoEventoController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

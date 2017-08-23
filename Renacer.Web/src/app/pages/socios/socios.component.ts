@@ -4,7 +4,7 @@ import {FormGroup} from '@angular/forms';
 import {DatePipe} from '@angular/common' ;
 import { ToastrService, ToastrConfig } from 'ngx-toastr';
 import { DomicilioComponent } from '../domicilio/domicilio.component';
-import { TipoDocumentoComponent } from '../tipo-documento/tipo-documento.component';
+//import { TipoDocumentoComponent } from '../tipo-documento/tipo-documento.component';
 import { TipoDocumento } from '../../resources/tipo-documento.service';
 // import { DynamicTablesComponent } from '../tables/dynamic-tables/dynamic-tables.component';
 
@@ -18,7 +18,7 @@ export class SociosComponent implements OnInit {
   public _socio = new Socio(0,"","","");
   @Input() socios = new Array<Socio>();
   public showDetail:boolean = false;
-
+  public searchText:string = "";
   constructor(private _socioService:SocioServices,private mensajeServ: ToastrService) {
     this.getItems();
   }
@@ -34,7 +34,11 @@ export class SociosComponent implements OnInit {
     //this.mensajeServ.success('Estas viendo tus Socios!', 'Mensaje!');
   }
   getItems(){
-    this._socioService.query({},(items:Socio[]) => {
+    this._socioService.query(
+      {'limit':10,
+      'page':1,
+      'search':this.searchText},
+      (items:Socio[]) => {
       this.socios = items;
     });
   }

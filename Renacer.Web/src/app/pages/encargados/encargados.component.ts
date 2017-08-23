@@ -4,7 +4,7 @@ import {Domicilio} from '../../resources/socio.service';
 import {FormGroup} from '@angular/forms';
 import {DatePipe} from '@angular/common' ;
 import { ToastrService, ToastrConfig } from 'ngx-toastr';
-import { TipoDocumentoComponent } from '../tipo-documento/tipo-documento.component';
+//import { TipoDocumentoComponent } from '../tipo-documento/tipo-documento.component';
 import { TipoDocumento } from '../../resources/tipo-documento.service';
 
 @Component({

@@ -9,6 +9,8 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 import { ToastrModule } from 'ngx-toastr';
 import { DirectivesModule } from '../theme/directives/directives.module';
 import { PipesModule } from '../theme/pipes/pipes.module';
+import { SharedModule } from './shared/shared.module';
+
 import { routing } from './pages.routing';
 import { PagesComponent } from './pages.component';
 import { BlankComponent } from './blank/blank.component';
@@ -25,12 +27,7 @@ import { EspaciosComponent } from './espacios/espacios.component';
 import { DomicilioComponent } from './domicilio/domicilio.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { EncargadosComponent } from './encargados/encargados.component';
-import { TipoDocumentoComponent } from './tipo-documento/tipo-documento.component';
-import { SelectTagsComponent } from './select-tags/select-tags.component';
-//import { Typeahead } from 'ng2-typeahead';
 import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
-import { EventoComponent } from './evento/evento.component';
-import { SelectSocioComponent } from './select-socio/select-socio.component';
 
 @NgModule({
   imports: [
@@ -41,8 +38,9 @@ import { SelectSocioComponent } from './select-socio/select-socio.component';
     PipesModule,
     routing,
     FormsModule,
-    DataTableModule,NguiAutoCompleteModule
-  //  Typeahead
+    DataTableModule,
+    NguiAutoCompleteModule,
+    SharedModule
   ],
   declarations: [
     PagesComponent,
@@ -58,11 +56,16 @@ import { SelectSocioComponent } from './select-socio/select-socio.component';
     EspaciosComponent,
     DomicilioComponent,
     ContactoComponent,
-    EncargadosComponent,
-    TipoDocumentoComponent,
-    SelectTagsComponent,
-    EventoComponent,
-    SelectSocioComponent,
+    EncargadosComponent
+  ]
+  ,exports: [
+    BreadcrumbComponent,
+    BackTopComponent,
+    SociosComponent,
+    EspaciosComponent,
+    DomicilioComponent,
+    ContactoComponent,
+    EncargadosComponent
   ]
 })
 export class PagesModule { }

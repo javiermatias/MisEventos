@@ -11,8 +11,8 @@ import {Tag} from './tag.service';
 export class EncargadoEvento {
   constructor(
     public id: number,
-    public nombre: string,
-    public apellido: string,
+    public nombre?: string,
+    public apellido?: string,
     public email?:string,
     public telefono?:string,
     public listaTags?:Array<Tag>,

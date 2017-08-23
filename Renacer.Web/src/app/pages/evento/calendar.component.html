@@ -1,0 +1,87 @@
+<div class="row">
+    <div class="col">
+        <div widget class="card">
+            <div class="card-header">
+                <span>CALENDARIO</span>
+                <div class="widget-controls">
+                    <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
+                    <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
+                    <a data-widgster="fullscreen" href="#" class="transition"><i class="fa fa-expand"></i></a>
+                    <a data-widgster="restore" href="#" class="transition"><i class="fa fa-compress"></i></a>
+                    <a data-widgster="close" href="#" class="transition"><i class="fa fa-times"></i></a>
+                </div>
+            </div>
+            <div class="card-block widget-body row">
+              <div class="col-xl-12 col-lg-12 col-12">
+                <div class="w-200 pull-left bottom-15">
+                    <button style="margin-left: 20px;" class="btn btn-main"
+                      [routerLink]="['/pages/evento', 'nuevo']" >Nuevo Evento</button>
+                </div>
+                <div class="w-200 pull-right bottom-15">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                        <input class="form-control" id="table-search-input" [(ngModel)]="searchText" type="text" placeholder="Buscar evento...">
+                    </div>
+                </div>
+              </div>
+                <div class="col-xl-12 col-lg-12 col-12">
+                    <div class="card-block">
+
+                            <div id="calendar"></div>
+
+                            <div class="modal fade" id="show-event-modal">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <div class="modal-header modal-info">
+                                            <h5 *ngIf="event.title" class="modal-title">{{ event.title }}</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p><i class="fa fa-calendar"></i> &nbsp; {{ event.start | date: 'EEE MMM d y hh:mm a' }}</p>
+                                            <p *ngIf="event.end"><i class="fa fa-clock-o"></i> &nbsp; {{ event.end | date: 'EEE MMM d y hh:mm a' }}</p>
+                                            <p *ngIf="event.description">{{ event.description }}</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-info btn-sm" [routerLink]="['/pages/evento/', event.idEvento,'detalle',event.id]" >VER DETALLE</button>
+                                          <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">CERRAR</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal fade" id="create-event-modal">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <div class="modal-header modal-success d-block">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            <h5 class="modal-title">New Event</h5>
+                                            <p class="text-muted no-margin"> Just enter event name to create a new one </p>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <input class="form-control" [(ngModel)]="event.title" type="text" placeholder="Enter event here...">
+                                            </div>
+                                            <div class="form-group">
+                                                <input class="form-control" [(ngModel)]="event.start" type="datetime-local" placeholder="Enter start Date...">
+                                            </div>
+                                            <div class="form-group">
+                                                <input class="form-control" [(ngModel)]="event.end" type="datetime-local" placeholder="Enter end date...">
+                                            </div>
+                                            <div class="form-group">
+                                                <input class="form-control" [(ngModel)]="event.allDay" type="checkbox" placeholder="Todo el dia">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button data-dismiss="modal" class="btn btn-default">Cancel</button>
+                                            <button (click)="createEvent()" class="btn btn-success">OK</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
