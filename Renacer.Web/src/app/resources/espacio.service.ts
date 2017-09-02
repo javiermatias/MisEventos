@@ -8,7 +8,7 @@ import {Variables} from './variables';
 
 export class EspacioComun {
   constructor(
-    public id: number,
+    public id?: number,
     public nombre?: string,
     public descripcio?: string,
     public idDireccion?: number,

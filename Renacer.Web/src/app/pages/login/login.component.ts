@@ -32,10 +32,6 @@ export class LoginComponent {
 
   public onSubmit(values: Object): void {
     if (this.form.valid) {
-      //  let credenciales = {
-      //    "usuario":this.username.value,
-      //    "clave": Sha256(this.password.value)
-      //  }
       let credenciales = {
         "usuario": this.username.value,
         "clave": this.password.value

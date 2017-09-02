@@ -5,10 +5,10 @@ namespace Renacer.Nucleo
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
-
+    using System.Security.Principal;
 
     [Table("Usuario")]
-    public partial class Usuario
+    public partial class Usuario : System.Security.Principal.IPrincipal
     {
         [Key]
         public int id { get; set; }
@@ -25,6 +25,44 @@ namespace Renacer.Nucleo
 
         public string idFacebook { get; set; }
         public string idGoogle { get; set; }
+        public string token { get; set; }
+
+        [NotMapped]
+        public IIdentity Identity
+        {
+            get
+            {
+               return  new UserIdentity() { Name = this.usuario };
+            }
+        }
+
+        public bool IsInRole(string role)
+        {
+            return this.rol == role;
+        }
+       
     }
+
+    public class UserIdentity : IIdentity
+    {
+        public string AuthenticationType
+        {
+            get
+            {
+                return "basic";
+            }
+        }
+
+        public bool IsAuthenticated
+        {
+            get
+            {
+                return Name != "";
+            }
+        }
+
+        public string Name {get; set;}
+    }
+
 
 }

@@ -7,11 +7,12 @@ using System.Web.Http;
 using Renacer.Nucleo.Control;
 using Renacer.Nucleo.Entidades;
 using Renacer.Nucleo;
+using Renacer.WebAPI.Filters;
 
 namespace Renacer.WebAPI.Controllers
 {
-   // [IdentityBasicAuthentication] // Enable Basic authentication for this controller.
-    [Authorize] // Require authenticated requests.
+    [IdentityBasicAuthentication] 
+    [Authorize] 
     public class UsuarioController : ApiController
     {
         // GET: api/Usuarios
@@ -23,11 +24,7 @@ namespace Renacer.WebAPI.Controllers
         // GET: api/Usuarios/5
         public Usuario Get()
         {
-            
-            var nombre = RequestContext.Principal.Identity.Name;
-
-            var userLog = ControlUsuario.devolverInstancia().devolverPorNombre(nombre);
-            return userLog;
+            return ControlUsuario.devolverInstancia().devolverPorUsuario(User.Identity.Name);
         }
 
         // POST: api/cliente

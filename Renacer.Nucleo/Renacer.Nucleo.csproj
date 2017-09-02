@@ -114,6 +114,10 @@
     <Compile Include="Migrations\201708160000451_adasd.Designer.cs">
       <DependentUpon>201708160000451_adasd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708230037321_tst.cs" />
+    <Compile Include="Migrations\201708230037321_tst.Designer.cs">
+      <DependentUpon>201708230037321_tst.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -133,6 +137,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201708160000451_adasd.resx">
       <DependentUpon>201708160000451_adasd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708230037321_tst.resx">
+      <DependentUpon>201708230037321_tst.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

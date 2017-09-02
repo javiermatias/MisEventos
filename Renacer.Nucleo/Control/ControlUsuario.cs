@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Security.Principal;
+using System.Threading.Tasks;
 
 namespace Renacer.Nucleo.Control
 {
@@ -55,7 +57,6 @@ namespace Renacer.Nucleo.Control
             }
         }
 
-
         /// var item = (from i in db.usuario
         ///             where i.id.Equals(id)
         //              select i).FirstOrDefault();
@@ -98,7 +99,30 @@ namespace Renacer.Nucleo.Control
 
 
 
-        public Usuario devolverPorNombre(string usuario)
+        public Usuario devolverPorToken(string token)
+        {
+            try
+            {
+                using (var db = new ModeloRenacer())
+                {
+                    var userLog = db.usuario.
+                        Where(x => x.token.Equals(token)).FirstOrDefault();
+
+                    userLog.clave = "";
+                    if (!System.IO.File.Exists(userLog.imagen)) userLog.imagen = "";
+
+                    return userLog;
+                }
+            }
+            catch (Exception ex)
+            {
+                ServicioSentry.devolverSentry().informarExcepcion(ex);
+            }
+            return null;
+
+        }
+
+        public Usuario devolverPorUsuario(string usuario)
         {
             try
             {

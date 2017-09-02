@@ -43,7 +43,10 @@
                                         <td><strong>{{item.nombre}}</strong></td>
                                         <td>{{item.descripcion}}</td>
                                         <td>{{item.fechaCreacion | date:'medium'}}</td>
-                                        <td>{{item.estado}}</td>
+                                        <td>
+                                          <span class="alert-success"  *ngIf="item.estado == 0">Activo</span>
+                                          <span class="alert-danger"  *ngIf="item.estado == 1">No disponible</span>
+                                          </td>
                                         <td><a style="color: #014c8c;cursor:pointer;" (click)="verItem(item)">ver</a>
                                         <td>
                                     </tr>

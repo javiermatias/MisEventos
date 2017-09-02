@@ -27,7 +27,8 @@ export class UserServices extends BaseServices<Usuario> {
 
   @ResourceAction({
     method: RequestMethod.Post,
-    url:"http://localhost:6913/api/login"
+    url:"http://localhost:6913/api/login",
+    noAuth:true
   })
   login: ResourceMethod<{usuario: string,clave:string},Object>;
 
@@ -45,5 +46,6 @@ export class UserServices extends BaseServices<Usuario> {
   setCurrent = function(usuario:Usuario){
     this.usuario = usuario;
     localStorage.usuario = JSON.stringify(usuario) ;
+    sessionStorage["token"] = usuario["token"];
   }
 }

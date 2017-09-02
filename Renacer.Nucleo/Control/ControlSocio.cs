@@ -117,7 +117,12 @@ namespace Renacer.Nucleo.Control
             {
                 using (var db = new ModeloRenacer())
                 {
-                    return db.socio.Where(x=> x.nombre.Contains(@search)).Skip(page*limit).Take(limit).ToList();
+                    if(search != null)
+                    return db.socio.Where(x=> x.nombre.Contains(@search)).ToList();
+                    //return db.socio.Where(x=> x.nombre.Contains(@search)).Skip(page*limit).Take(limit).ToList();
+                    else
+                        return db.socio.ToList();
+
                 }
             }
             catch (Exception ex)
