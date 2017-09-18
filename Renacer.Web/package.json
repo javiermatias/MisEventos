@@ -69,7 +69,7 @@
     "skycons": "https://github.com/darkskyapp/skycons.git#7095ecf5f653dbcadbddb0d317b42e65fe091eae"
   },
   "devDependencies": {
-    "@angular/cli": "1.0.4",
+    "@angular/cli": "^1.4.1",
     "@angular/compiler-cli": "4.1.3",
     "@types/core-js": "0.9.41",
     "@types/jasmine": "2.5.47",

@@ -12,6 +12,7 @@ import { SelectTagsComponent } from './select-tags/select-tags.component';
 import { SelectEspacioComponent } from './select-espacio/select-espacio.component';
 import { SelectEncargadoComponent } from './select-encargado/select-encargado.component';
 import { SelectTipoEventoComponent } from './select-tipo-evento/select-tipo-evento.component';
+import { SelectEventoComponent } from './select-evento/select-evento.component';
 import { TipoDocumentoComponent } from './tipo-documento/tipo-documento.component';
 
 
@@ -30,7 +31,7 @@ import { TipoDocumentoComponent } from './tipo-documento/tipo-documento.componen
     SelectEspacioComponent,
     SelectTipoEventoComponent,
     SelectEncargadoComponent,
-    TipoDocumentoComponent
+    TipoDocumentoComponent,SelectEventoComponent
   ],
   exports:[
     SelectSocioComponent,
@@ -38,7 +39,7 @@ import { TipoDocumentoComponent } from './tipo-documento/tipo-documento.componen
     SelectEspacioComponent,
     SelectTipoEventoComponent,
     SelectEncargadoComponent,
-   TipoDocumentoComponent
+   TipoDocumentoComponent,SelectEventoComponent
    ]
 })
 export class SharedModule { }
