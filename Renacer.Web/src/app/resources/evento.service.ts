@@ -12,13 +12,13 @@ import {Tag} from './tag.service';
 
 export class Evento {
   constructor(
-    public id: number,
-    public cupoMinimo: number,
-    public cupoMaximo: number,
-    public monto: number,
-    public nombre: string,
-    public estado: string,
-    public descripcion: string,
+    public id?: number,
+    public cupoMinimo?: number,
+    public cupoMaximo?: number,
+    public monto?: number,
+    public nombre?: string,
+    public estado?: string,
+    public descripcion?: string,
     public listaTags?:Array<Tag>,
     public fechaHasta?: Date,
     public fechaDesde?: Date,

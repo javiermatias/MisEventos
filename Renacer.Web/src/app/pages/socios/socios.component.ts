@@ -4,9 +4,7 @@ import {FormGroup} from '@angular/forms';
 import {DatePipe} from '@angular/common' ;
 import { ToastrService, ToastrConfig } from 'ngx-toastr';
 import { DomicilioComponent } from '../domicilio/domicilio.component';
-//import { TipoDocumentoComponent } from '../tipo-documento/tipo-documento.component';
 import { TipoDocumento } from '../../resources/tipo-documento.service';
-// import { DynamicTablesComponent } from '../tables/dynamic-tables/dynamic-tables.component';
 
 @Component({
   selector: 'az-socios',
@@ -19,6 +17,7 @@ export class SociosComponent implements OnInit {
   @Input() socios = new Array<Socio>();
   public showDetail:boolean = false;
   public searchText:string = "";
+
   constructor(private _socioService:SocioServices,private mensajeServ: ToastrService) {
     this.getItems();
   }

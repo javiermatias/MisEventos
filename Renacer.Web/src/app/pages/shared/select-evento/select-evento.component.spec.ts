@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SelectTipoEventoComponent } from './select-tipo-evento.component';
+import { SelectEventoComponent } from './select-evento.component';
 
-describe('SelectTipoEventoComponent', () => {
-  let component: SelectTipoEventoComponent;
-  let fixture: ComponentFixture<SelectTipoEventoComponent>;
+describe('SelectEventoComponent', () => {
+  let component: SelectEventoComponent;
+  let fixture: ComponentFixture<SelectEventoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SelectTipoEventoComponent ]
+      declarations: [ SelectEventoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SelectTipoEventoComponent);
+    fixture = TestBed.createComponent(SelectEventoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
