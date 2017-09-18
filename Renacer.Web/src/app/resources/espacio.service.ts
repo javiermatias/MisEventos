@@ -18,7 +18,7 @@ export class EspacioComun {
     public listaTags?: Array<Tag>,
     public fechaBaja?: Date,
     public fechaModificacion?: Date,
-    public fechaCreacion?: Date,
+    public fechaCreacion?: Date
   ) {
 this.listaTags = new Array<Tag>();
   }

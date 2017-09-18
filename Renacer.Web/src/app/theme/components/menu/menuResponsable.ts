@@ -61,5 +61,16 @@ export const itemsResponsable = [
     order: 800,
     target: '_blank',
     routerLink: 'espacios/'
+  },
+  {
+      title: 'Asistencia',
+      icon: 'fa-pencil-square-o',
+      selected: false,
+      expanded: false,
+      order: 800,
+      target: '_blank',
+      routerLink: 'asistencia/'
   }
+
+
 ];
