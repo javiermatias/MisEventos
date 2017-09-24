@@ -50,5 +50,6 @@ namespace Renacer.WebAPI.Controllers
         {
             ControlTag.devolverInstancia().eliminar(id);
         }
+
     }
 }

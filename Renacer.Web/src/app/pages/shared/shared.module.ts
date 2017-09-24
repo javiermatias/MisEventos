@@ -14,6 +14,7 @@ import { SelectEncargadoComponent } from './select-encargado/select-encargado.co
 import { SelectTipoEventoComponent } from './select-tipo-evento/select-tipo-evento.component';
 import { SelectEventoComponent } from './select-evento/select-evento.component';
 import { TipoDocumentoComponent } from './tipo-documento/tipo-documento.component';
+import { FilterSocioComponent } from './filter-socio/filter-socio.component';
 
 
 @NgModule({
@@ -31,7 +32,7 @@ import { TipoDocumentoComponent } from './tipo-documento/tipo-documento.componen
     SelectEspacioComponent,
     SelectTipoEventoComponent,
     SelectEncargadoComponent,
-    TipoDocumentoComponent,SelectEventoComponent
+    TipoDocumentoComponent,SelectEventoComponent, FilterSocioComponent
   ],
   exports:[
     SelectSocioComponent,
@@ -39,7 +40,9 @@ import { TipoDocumentoComponent } from './tipo-documento/tipo-documento.componen
     SelectEspacioComponent,
     SelectTipoEventoComponent,
     SelectEncargadoComponent,
-   TipoDocumentoComponent,SelectEventoComponent
+   TipoDocumentoComponent,
+   SelectEventoComponent,
+   FilterSocioComponent
    ]
 })
 export class SharedModule { }

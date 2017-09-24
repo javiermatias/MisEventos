@@ -49,10 +49,28 @@ export const itemsAdmin = [
   }
   ,{
     title: 'Reportes',
+    routerLink: 'reportes',
     icon: 'fa-file',
     selected: false,
     expanded: false,
-    order: 800,
-    routerLink: 'reportes/'
+    order: 300,
+    subMenu: [
+      {
+        title: 'Eventos',
+        routerLink: 'reportes/eventos'
+      },
+      {
+        title: 'Socios',
+        routerLink: 'reportes/socios'
+      },
+      {
+        title: 'Encargados',
+        routerLink: 'reportes/encargados'
+      },
+      {
+        title: 'Nube de Etiquetas',
+        routerLink: 'reportes/tags'
+      }
+    ]
   }
 ];

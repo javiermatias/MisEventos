@@ -33,9 +33,9 @@ export class SelectTagsComponent implements OnInit {
     }
   }
 
-  tagSelected(tag){
+  tagSelected(tag,removeTag){
     var tagItem:Tag;
-    if(tag.constructor.name == "Tag"){
+    if(removeTag || tag.constructor.name == "Tag"){
       tagItem = tag;
     }else{
       var tagNew = new Tag(0,this.selectedTag);

@@ -67,7 +67,8 @@ import { AsistenciaComponent } from './asistencia/asistencia.component';
     EspaciosComponent,
     DomicilioComponent,
     ContactoComponent,
-    EncargadosComponent
+    EncargadosComponent,
+    AsistenciaComponent
   ]
 })
 export class PagesModule { }

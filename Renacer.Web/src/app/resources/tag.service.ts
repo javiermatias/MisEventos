@@ -9,6 +9,7 @@ export class Tag {
   constructor(
     public id: number,
     public nombre: string,
+    public cantidad?: string
   ) {}
 }
 

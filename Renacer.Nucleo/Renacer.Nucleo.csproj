@@ -84,6 +84,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Control\ControlReporte.cs" />
     <Compile Include="Control\ControlDetalleEvento.cs" />
     <Compile Include="Control\ControlTipoEvento.cs" />
     <Compile Include="Control\ControlEvento.cs" />
@@ -118,6 +119,14 @@
     <Compile Include="Migrations\201708230037321_tst.Designer.cs">
       <DependentUpon>201708230037321_tst.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709182226550_test.cs" />
+    <Compile Include="Migrations\201709182226550_test.Designer.cs">
+      <DependentUpon>201709182226550_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709232124581_agregofechaNac.cs" />
+    <Compile Include="Migrations\201709232124581_agregofechaNac.Designer.cs">
+      <DependentUpon>201709232124581_agregofechaNac.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -141,6 +150,18 @@
     <EmbeddedResource Include="Migrations\201708230037321_tst.resx">
       <DependentUpon>201708230037321_tst.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709182226550_test.resx">
+      <DependentUpon>201709182226550_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709232124581_agregofechaNac.resx">
+      <DependentUpon>201709232124581_agregofechaNac.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Renacer.Helper\Renacer.Helper.vbproj">
+      <Project>{bf1761c8-7f15-4fe3-9ea0-8a4bcdf68255}</Project>
+      <Name>Renacer.Helper</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

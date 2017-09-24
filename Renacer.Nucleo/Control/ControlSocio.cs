@@ -38,11 +38,13 @@ namespace Renacer.Nucleo.Control
                     throw new UsuarioException(errores);
                 }
 
-               
-
                 using (var db = new ModeloRenacer())
                 {
                     socio.idTipoDoc = socio.tipoDoc.id;
+                    Tag[] listaTags = new Tag[socio.listaTags.Count];
+                    socio.listaTags.CopyTo(listaTags);
+                    socio.listaTags.RemoveAll(tag => true);
+
                     db.socio.AddOrUpdate(socio);
 
                     if (socio.domicilio.id == 0) db.Entry(socio.domicilio).State = System.Data.Entity.EntityState.Added;
@@ -52,6 +54,10 @@ namespace Renacer.Nucleo.Control
                     if (socio.contacto.id > 0) db.Entry(socio.contacto).State = System.Data.Entity.EntityState.Modified;
 
                     db.Entry(socio.tipoDoc).State = System.Data.Entity.EntityState.Unchanged;
+                    db.SaveChanges();
+
+                    Socio socioAux = db.socio.Include("listaTags").Single(a => a.id == socio.id);
+                    ControlTag.devolverInstancia().actualizarListaDeTags(db, listaTags, socioAux.listaTags);
                     db.SaveChanges();
                 }
             }
@@ -79,11 +85,14 @@ namespace Renacer.Nucleo.Control
             {
                 using (var db = new ModeloRenacer())
                 {
-                    return db.socio.
+                    var item = db.socio.
                         Include("tipoDoc").
                         Include("domicilio").
                         Include("contacto").
                         Where(x => x.id.Equals(id)).FirstOrDefault();
+
+                    item.listaTags = db.tag.Where(x => x.listaSocios.Any(xy => xy.id.Equals(id))).ToList();
+                    return item;
                 }
             }
             catch (Exception ex)

@@ -211,6 +211,7 @@
     <Compile Include="ApiControllerSelector.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ComunController.cs" />
+    <Compile Include="Controllers\ReporteController.cs" />
     <Compile Include="Filters\CustomAuthenticationFilter.cs" />
     <Compile Include="Controllers\DetalleEventoController.cs" />
     <Compile Include="Controllers\EspacioController.cs" />
