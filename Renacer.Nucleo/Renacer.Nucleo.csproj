@@ -84,6 +84,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Control\ControlInscripcion.cs" />
+    <Compile Include="Control\ControlAsociacion.cs" />
+    <Compile Include="Control\ControlAsistencia.cs" />
     <Compile Include="Control\ControlReporte.cs" />
     <Compile Include="Control\ControlDetalleEvento.cs" />
     <Compile Include="Control\ControlTipoEvento.cs" />
@@ -111,21 +114,9 @@
     <Compile Include="Entidades\TipoDocumento.cs" />
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Entidades\UsuarioException.cs" />
-    <Compile Include="Migrations\201708160000451_adasd.cs" />
-    <Compile Include="Migrations\201708160000451_adasd.Designer.cs">
-      <DependentUpon>201708160000451_adasd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708230037321_tst.cs" />
-    <Compile Include="Migrations\201708230037321_tst.Designer.cs">
-      <DependentUpon>201708230037321_tst.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709182226550_test.cs" />
-    <Compile Include="Migrations\201709182226550_test.Designer.cs">
-      <DependentUpon>201709182226550_test.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709232124581_agregofechaNac.cs" />
-    <Compile Include="Migrations\201709232124581_agregofechaNac.Designer.cs">
-      <DependentUpon>201709232124581_agregofechaNac.cs</DependentUpon>
+    <Compile Include="Migrations\201711030349137_test.cs" />
+    <Compile Include="Migrations\201711030349137_test.Designer.cs">
+      <DependentUpon>201711030349137_test.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
@@ -139,29 +130,19 @@
     <None Include="Configuracion\produccion.config" />
     <None Include="Configuracion\local-02.config" />
     <None Include="Configuracion\local-01.config" />
-    <None Include="Entidades\ClassDiagram1.cd" />
     <None Include="Manuales\gitFlow.docx" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201708160000451_adasd.resx">
-      <DependentUpon>201708160000451_adasd.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708230037321_tst.resx">
-      <DependentUpon>201708230037321_tst.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709182226550_test.resx">
-      <DependentUpon>201709182226550_test.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709232124581_agregofechaNac.resx">
-      <DependentUpon>201709232124581_agregofechaNac.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Renacer.Helper\Renacer.Helper.vbproj">
       <Project>{bf1761c8-7f15-4fe3-9ea0-8a4bcdf68255}</Project>
       <Name>Renacer.Helper</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201711030349137_test.resx">
+      <DependentUpon>201711030349137_test.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

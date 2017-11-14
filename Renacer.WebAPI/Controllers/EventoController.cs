@@ -11,45 +11,60 @@ namespace Renacer.WebAPI.Controllers
 {
     public class EventoController : ApiController
     {
-            // GET: api/Eventos
-            public IEnumerable<Evento> Get([FromUri]String search)
-            {
-                return ControlEvento.devolverInstancia().devolverTodos(search);
-            }
+        // GET: api/Eventos
+        public IEnumerable<Evento> Get([FromUri]String search)
+        {
 
-            // GET: api/Eventos/5
-            public Evento Get(int id)
-            {
-                return ControlEvento.devolverInstancia().devolver(id);
-            }
+            if (search == null) search = "";
 
-            // POST: api/cliente
-            public IHttpActionResult Post([FromBody]Evento value)
-            {
-                try
-                {
-                    ControlEvento.devolverInstancia().grabar(value);
-                    return Ok(value);
-                }
-                catch (UsuarioException ex)
-                {
-                    throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.BadRequest, ex.errores));
-                }
-            }
+            return ControlEvento.devolverInstancia().devolverTodos(search);
+        }
 
-            // PUT: api/cliente/5
-            public void Put(int id, [FromBody]Evento value)
+        // GET: api/Eventos/5
+        public Evento Get(int id)
+        {
+            return ControlEvento.devolverInstancia().devolver(id);
+        }
+
+        // POST: api/cliente
+        public IHttpActionResult Post([FromBody]Evento value)
+        {
+            try
             {
-                value.fechaModificacion = DateTime.Now;
                 ControlEvento.devolverInstancia().grabar(value);
+                return Ok(value);
             }
-
-            // DELETE: api/ApiCliente/5
-            public void Delete(int id)
+            catch (UsuarioException ex)
             {
-                var Evento = ControlEvento.devolverInstancia().devolver(id);
-                Evento.fechaBaja = DateTime.Now;
-                ControlEvento.devolverInstancia().grabar(Evento);
+                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.BadRequest, ex.errores));
             }
         }
+
+        // PUT: api/cliente/5
+        public void Put(int id, [FromBody]Evento value)
+        {
+            ControlEvento.devolverInstancia().actualizar(value);
+        }
+
+        // DELETE: api/ApiCliente/5
+        public void Delete(int id)
+        {
+            var Evento = ControlEvento.devolverInstancia().devolver(id);
+            Evento.fechaBaja = DateTime.Now;
+
+            ControlEvento.devolverInstancia().darDeBaja(Evento);
+        }
+
+
+
+
+        [ActionName("inscriptos")]
+        [Route("{id}/inscriptos")]
+        [AcceptVerbs("GET")]
+        public IList<Inscripcion> GetInscriptos(int id)
+        {
+            return ControlEvento.devolverInstancia().devolverInscriptos(id);
+        }
+
     }
+}

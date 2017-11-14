@@ -34,7 +34,9 @@ namespace Renacer.Nucleo.Servicio
             {
                 if (ex != null)
                 {
-                    var ravenClient = new RavenClient(ConfigurationManager.AppSettings.Get("dns_sentry_nucleo"));
+                    //
+                   // var ravenClient = new RavenClient(ConfigurationManager.AppSettings.Get("dns_sentry_nucleo"));
+                    var ravenClient = new RavenClient("https://144c43d6c37446d88ee7812df11ef629:cd0a8c27a70b4169aa7eecdd06672928@sentry.io/243593");
                     ravenClient.Capture(new SentryEvent(ex));
                 }
             }

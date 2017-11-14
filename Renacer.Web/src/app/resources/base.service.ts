@@ -13,6 +13,7 @@ interface IQueryInput {
   search?: string;
   fechaDesde?: Date;
   fechaHasta?: Date;
+  idEvento?:number;
 }
 
 export class BaseEntity{

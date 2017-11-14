@@ -27,7 +27,7 @@ export class UserServices extends BaseServices<Usuario> {
 
   @ResourceAction({
     method: RequestMethod.Post,
-    url:"http://localhost:6913/api/login",
+    url:new Variables().urlBase + "login/",
     noAuth:true
   })
   login: ResourceMethod<{usuario: string,clave:string},Object>;

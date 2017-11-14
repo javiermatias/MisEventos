@@ -1,10 +1,14 @@
 <nav class="nav az-navbar fixed-top">
-    <a class="navbar-brand" routerLink="/" (click)="closeSubMenus()">
-        <img style="width: 100%" src="assets/img/logo/az_logo_full.png" alt="" class="hidden-sm-down">
-        <img style="width: 50px" src="assets/img/logo/az_logo.png" alt="" class="hidden-md-up">
-    </a>
-    <div id="lines" class="transition" (click)="toggleMenu()"></div>
+    
+    <div id="lines" class="transition" (click)="toggleMenu()" style="    margin-left: 14px;margin-right: 6px;"></div>
 
+    <a class="navbar-brand" routerLink="/" (click)="closeSubMenus()">
+        <!-- <img style="width: 100%" src="assets/img/logo/az_logo_full.png" alt="" class="hidden-sm-down">
+        <img style="width: 50px" src="assets/img/logo/az_logo.png" alt="" class="hidden-md-up">
+        -->
+        <img style="width: 50px" src="assets/img/logo/az_logo.png" alt="MisEventos">
+    </a>
+    
     <!-- <form role="search" class="app-search hidden-sm-down">
         <input type="text" placeholder="Search..." class="form-control">
         <a href="javascript:void(0)"><i class="fa fa-search"></i></a>

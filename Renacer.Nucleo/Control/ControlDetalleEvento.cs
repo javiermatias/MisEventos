@@ -40,16 +40,16 @@ namespace Renacer.Nucleo.Control
 
                 using (var db = new ModeloRenacer())
                 {
-                    detalleEvento.idEncargado = detalleEvento.responsable.id;
-                    detalleEvento.idAsistencia = detalleEvento.asistencia.id;
-                    detalleEvento.idEspacio = detalleEvento.espacio.id;
+                    if (detalleEvento.espacio != null)
+                        detalleEvento.espacio = db.espacioComun.Single(a => a.id == detalleEvento.espacio.id);
+
+                    if (detalleEvento.asistencia != null)
+                        detalleEvento.asistencia = db.asistencia.Single(a => a.id == detalleEvento.asistencia.id);
+
+                    if (detalleEvento.responsable != null)
+                        detalleEvento.responsable = db.encargado.Single(a => a.id == detalleEvento.responsable.id);
 
                     db.detalleEvento.AddOrUpdate(detalleEvento);
-
-                    db.Entry(detalleEvento.espacio).State = System.Data.Entity.EntityState.Modified;
-                    db.Entry(detalleEvento.responsable).State = System.Data.Entity.EntityState.Modified;
-                    db.Entry(detalleEvento.asistencia).State = System.Data.Entity.EntityState.Modified;
-
                     db.SaveChanges();
                 }
             }
@@ -77,12 +77,12 @@ namespace Renacer.Nucleo.Control
             {
                 using (var db = new ModeloRenacer())
                 {
-                    var detalleEvento = db.detalleEvento.Include("Evento")
+                    var detalleEvento = db.detalleEvento
                         .Where(x => x.id.Equals(id)).FirstOrDefault();
 
-                    if (detalleEvento.idEspacio > 0) detalleEvento.espacio = db.espacioComun.First(x => x.id == detalleEvento.idEspacio);
-                    if (detalleEvento.idAsistencia > 0) detalleEvento.asistencia = db.asistencia.First(x => x.id == detalleEvento.idAsistencia);
-                    if (detalleEvento.idEncargado > 0) detalleEvento.responsable = db.encargado.First(x => x.id == detalleEvento.idEncargado);
+                    if (detalleEvento.idEspacio > 0) detalleEvento.espacio = db.espacioComun.Single(x => x.id == detalleEvento.idEspacio);
+                    if (detalleEvento.idAsistencia > 0) detalleEvento.asistencia = db.asistencia.Single(x => x.id == detalleEvento.idAsistencia);
+                    if (detalleEvento.idEncargado > 0) detalleEvento.responsable = db.encargado.Single(x => x.id == detalleEvento.idEncargado);
 
                     return detalleEvento;
                 }
@@ -123,7 +123,7 @@ namespace Renacer.Nucleo.Control
                 using (var db = new ModeloRenacer())
                 {
                     return db.detalleEvento
-                        .Where(ev => ev.fechaDesde >= fechaDesde && ev.fechaDesde <= fechaHasta)
+                        .Where(ev => ev.fechaDesde >= fechaDesde && ev.fechaDesde <= fechaHasta && ev.fechaBaja == null)
                         .ToList();
                 }
             }

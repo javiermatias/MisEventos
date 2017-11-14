@@ -11,10 +11,10 @@
         <input ngui-auto-complete
                placeholder="Agregar Socio..."
                class="form-control"
-               display-property-name="nombre"
+               display-property-name="nroDocumento"
                value-property-name="id"
                no-match-found-text="No se encontraron socios"
-               max-num-list="6"
+               max-num-list="10"
                [list-formatter]="autocompleListFormatter"
                [(ngModel)]="selectedSocio"
                [source]="socios"
@@ -23,7 +23,7 @@
                style="margin-bottom:10px" />
         <div style="border-top:1px solid #EEE">
             <span style="padding: 5px;font-size: 12px;margin: 5px;" *ngFor="let item of listaSocios" class="badge badge-main">
-              {{item.nombre}} {{item.apellido}}
+              {{item.nombre}} {{item.apellido}} -{{item.nroDocumento?item.nroDocumento:''}}
                <span (click)="socioSelected(item)" class="fa fa-times" style="cursor:pointer;"></span>
             </span>
         </div>

@@ -11,11 +11,12 @@ import { SharedModule } from '../shared/shared.module';
 import { DetalleEventoComponent } from './detalle-evento.component';
 import { EventoComponent } from './evento.component';
 import { CalendarComponent } from './calendar.component';
-
+import { ListaComponent } from './lista/lista.component';
 
 export const routes = [
-  { path: '', redirectTo: 'calendario', pathMatch: 'full'},
-  { path: 'calendario', component: CalendarComponent, data: { breadcrumb: 'Calendario' } },
+  { path: '', redirectTo: 'lista', pathMatch: 'full'},
+  { path: 'calendario', component: CalendarComponent, data: { breadcrumb: '' } },
+  { path: 'lista', component: ListaComponent, data: { breadcrumb: 'Lista' } },
   { path: ':id', component: EventoComponent, data: { breadcrumb: 'Evento' } },
   { path: ':idEvento/detalle/:idDetalle', component: DetalleEventoComponent, data: { breadcrumb: 'Detalle' } }
 ];
@@ -34,7 +35,8 @@ export const routes = [
   declarations: [
     DetalleEventoComponent,
     EventoComponent,
-    CalendarComponent
+    CalendarComponent,
+    ListaComponent
   ]
 })
 export class EventoModule { }

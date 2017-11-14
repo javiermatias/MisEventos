@@ -31,13 +31,24 @@ export class Evento {
     public responsable?:EncargadoEvento,
     public tipoEvento?:TipoEvento,
     public listaSocios?:Array<Socio>,
-    public listaDetalleEvento?:Array<DetalleEvento>
+    public listaInscripciones?:Array<Inscripcion>,
+    public listaDetalleEvento?:Array<DetalleEvento>,
+    public idEspacio?:number,
+    public idEncargado?:number
   ) {
     this.listaTags = new Array<Tag>();
     this.listaSocios = new Array<Socio>();
     this.listaDetalleEvento = new Array<DetalleEvento>();
   }
 }
+export class TipoEvento {
+  constructor(
+    public id: number,
+    public nombre?: string,
+  ) {
+  }
+}
+
 export class DetalleEvento {
   constructor(
     public id: number,
@@ -56,13 +67,59 @@ export class DetalleEvento {
     public fechaBaja?: Date,
   ) {
     this.asistencia = new Asistencia(0,"Pendiente");
+    this.espacio = new EspacioComun();
   }
 }
-export class TipoEvento {
+
+export class Inscripcion {
   constructor(
     public id: number,
-    public nombre?: string,
+    public evento?: Evento,
+    public estado?: string,
+    public idSocio?: number,
+    public idEvento?: number,
+    public listaPagos?: Array<Pago>,
+    public fechaCreacion?: Date,
+    public fechaModificacion?: Date,
+    public fechaBaja?: Date,
   ) {
+    this.evento = new Evento(0);
+    this.listaPagos = new Array<Pago>();
+  }
+}
+
+export class Asociacion {
+  constructor(
+    public id: number,
+    public socio?: Socio,
+    public estado?: string,
+    public listaPagos?: Array<Pago>,
+    public fechaInicio?: Date,
+    public fechaFin?: Date,
+    public fechaCreacion?: Date,
+    public fechaModificacion?: Date,
+    public fechaBaja?: Date
+  ) {
+    this.socio = new Socio(0,"","");
+    this.listaPagos = new Array<Pago>();
+  }
+}
+
+export class Pago {
+  constructor(
+    public id: number,
+    public monto?: number,
+    public nroRecibo?: number,
+    public inscripcion?: Inscripcion,
+    public asociacion?: Asociacion,
+    public estado?: string,
+    public fechaCobro?: Date,
+    public fechaCreacion?: Date,
+    public fechaModificacion?: Date,
+    public fechaBaja?: Date,
+  ) {
+    this.inscripcion = new Inscripcion(0);
+    this.asociacion = new Asociacion(0);
   }
 }
 
@@ -87,4 +144,20 @@ export class EventoServices extends BaseServices<Evento> {
   url:variable.urlBase + "detalleEvento/"
 })
 export class DetalleEventoServices extends BaseServices<DetalleEvento> {
+}
+
+
+@Injectable()
+@ResourceParams({
+  url:variable.urlBase + "asociacion/"
+})
+export class AsociacionServices extends BaseServices<Asociacion> {
+}
+
+
+@Injectable()
+@ResourceParams({
+  url:variable.urlBase + "inscripcion/"
+})
+export class InscripcionServices extends BaseServices<Inscripcion> {
 }

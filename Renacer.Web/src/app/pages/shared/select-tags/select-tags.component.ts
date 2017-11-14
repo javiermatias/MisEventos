@@ -11,6 +11,7 @@ import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
 export class SelectTagsComponent implements OnInit {
 
   @Input() listaTags:Tag[];
+  @Input() enabled:boolean;
   public tags = new Array<Tag>();
   public tagsIds = [];
   public selectedTag:any;

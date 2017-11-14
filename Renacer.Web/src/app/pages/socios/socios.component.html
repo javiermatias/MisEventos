@@ -14,7 +14,7 @@
                         </div>
                     </div>
                     <div class="card-block widget-body">
-                        <p class="no-margin">  </p>
+                        <p class="no-margin"> </p>
                         <div class="w-200 pull-left bottom-15">
                             <button style="margin-left: 20px;" class="btn btn-main" (click)="nuevoItem()">Nuevo Socio</button>
                         </div>
@@ -30,10 +30,18 @@
                                 <thead>
                                     <tr>
                                         <!-- <th><mfDefaultSorter by="id">Id</mfDefaultSorter></th> -->
-                                        <th><mfDefaultSorter by="nombre">Nombre</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="apellido">Apellido</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="fechaCreacion">Fecha Alta</mfDefaultSorter></th>
+                                        <th>
+                                            <mfDefaultSorter by="nombre">Nombre</mfDefaultSorter>
+                                        </th>
+                                        <th>
+                                            <mfDefaultSorter by="apellido">Apellido</mfDefaultSorter>
+                                        </th>
+                                        <th>
+                                            <mfDefaultSorter by="nroDocumento">DNI</mfDefaultSorter>
+                                        </th>
+                                        <th>
+                                            <mfDefaultSorter by="fechaCreacion">Fecha Alta</mfDefaultSorter>
+                                        </th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -42,12 +50,11 @@
                                         <!-- <td>{{item.id}}</td> -->
                                         <td><strong>{{item.nombre}}</strong></td>
                                         <td><strong>{{item.apellido}}</strong></td>
-                                        <td>{{item.descripcion}}</td>
+                                        <td>{{item.nroDocumento}}</td>
                                         <td>{{item.fechaCreacion | date:'medium'}}</td>
                                         <td>
-                                            <a style="color: #014c8c;cursor:pointer;"
-                                               (click)="verItem(item)">ver</a>
-                                        <td>
+                                            <a style="color: #014c8c;cursor:pointer;" (click)="verItem(item)">ver</a>
+                                            <td>
                                     </tr>
                                     <tr *ngIf="(mf.data | SearchPipe : searchText).length === 0">
                                         <td colspan="100">
@@ -103,19 +110,15 @@
                                                         <div class="col col-md-6">
                                                             <div class="form-group">
                                                                 <label for="nombre">Nombre</label>
-                                                                <input type="text" class="form-control" id="nombre" required
-                                                                       #nombre="ngModel" name="nombre" [(ngModel)]="_socio.nombre">
-                                                                <div [hidden]="nombre.valid || nombre.pristine"
-                                                                     class="alert alert-danger">
+                                                                <input type="text" class="form-control" id="nombre" required #nombre="ngModel" name="nombre" [(ngModel)]="_socio.nombre">
+                                                                <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
                                                                     Debe ingresar el nombre
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="nombre">Apellido</label>
-                                                                <input type="text" class="form-control" id="apellido" required
-                                                                       #apellido="ngModel" name="apellido" [(ngModel)]="_socio.apellido">
-                                                                <div [hidden]="apellido.valid || apellido.pristine"
-                                                                     class="alert alert-danger">
+                                                                <input type="text" class="form-control" id="apellido" required #apellido="ngModel" name="apellido" [(ngModel)]="_socio.apellido">
+                                                                <div [hidden]="apellido.valid || apellido.pristine" class="alert alert-danger">
                                                                     Debe ingresar el apellido
                                                                 </div>
                                                             </div>
@@ -126,19 +129,33 @@
                                                                 <div class="col">
                                                                     <div class="form-group">
                                                                         <label for="nroDocParam1">Nro de documento</label>
-                                                                        <input class="form-control"
-                                                                               id="nroDocParam1"
-                                                                               #nroDocParam1="ngModel"
-                                                                               name="nroDocParam1"
-                                                                               [(ngModel)]="_socio.nroDocumento">
-                                                                        <!-- <div [hidden]="nroDocParam.valid || nroDocParam.pristine" class="alert alert-danger">
-                                                                          Debe ingresar el nro de documento
-                                                                        </div> -->
+                                                                        <input class="form-control" id="nroDocParam1" #nroDocParam1="ngModel" name="nroDocParam1" [(ngModel)]="_socio.nroDocumento">
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="form-group">
+                                                                        <label for="input-2">Genero</label>
+                                                                        <select class="form-control" id="sexo" name="sexo" [(ngModel)]="_socio.sexo">
+                                                                            <option value="M">Masculino</option>
+                                                                            <option value="F">Femenino</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
 
-
+                                                                <div class="col">
+                                                                    <div class="form-group">
+                                                                        <label for="input-2">Estado civil</label>
+                                                                        <select class="form-control" id="estadoCivil" name="estadoCivil" [(ngModel)]="_socio.estadoCivil">
+                                                                              <option>Casado</option>
+                                                                              <option>Divorciado</option>
+                                                                                <option>Soltero</option>
+                                                                                <option>Viudo</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                         <div class="col col-md-6">
                                                             <div class="form-group">
@@ -153,6 +170,11 @@
                                                                 <label for="input-2">Celular</label>
                                                                 <input type="text" class="form-control" id="celular" name="celular" [(ngModel)]="_socio.celular">
                                                             </div>
+
+                                                            <div class="form-group">
+                                                                    <label for="input-2">Fecha Nacimiento</label>
+                                                                    <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" [(ngModel)]="_socio.fechaNacimiento">
+                                                                </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -176,7 +198,8 @@
                                     </div>
                                     <button type="submit" class="btn btn-main" [disabled]="!socioForm.form.valid">Guardar</button>
                                     <button (click)="limpiarForm();" type="button" style="margin-left: 30px;" class="btn btn-default">Cancelar</button>
-
+                                         
+                                    <button style="margin-left: 30px;" *ngIf="_socio.id > 0" class="btn btn-danger"  (click)="eliminarItem(_socio)">Dar de baja <i class="fa fa-trash"></i></button>
                                 </form>
                             </div>
 
@@ -205,19 +228,15 @@
                                 <div class="col col-md-6">
                                     <div class="form-group">
                                         <label for="nombre">Nombre</label>
-                                        <input type="text" class="form-control" id="nombre" required
-                                               #nombre="ngModel" name="nombre" [(ngModel)]="_socio.nombre">
-                                        <div [hidden]="nombre.valid || nombre.pristine"
-                                             class="alert alert-danger">
+                                        <input type="text" class="form-control" id="nombre" required #nombre="ngModel" name="nombre" [(ngModel)]="_socio.nombre">
+                                        <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
                                             Debe ingresar el nombre
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="nombre">Apellido</label>
-                                        <input type="text" class="form-control" id="apellido" required
-                                               #apellido="ngModel" name="apellido" [(ngModel)]="_socio.apellido">
-                                        <div [hidden]="apellido.valid || apellido.pristine"
-                                             class="alert alert-danger">
+                                        <input type="text" class="form-control" id="apellido" required #apellido="ngModel" name="apellido" [(ngModel)]="_socio.apellido">
+                                        <div [hidden]="apellido.valid || apellido.pristine" class="alert alert-danger">
                                             Debe ingresar el apellido
                                         </div>
                                     </div>

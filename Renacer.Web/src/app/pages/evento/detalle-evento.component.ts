@@ -33,8 +33,8 @@ export class DetalleEventoComponent implements OnInit,OnDestroy  {
 
     ngOnInit()
     {
-      this.getEspacios();
-      this.getResponsables();
+      // this.getEspacios();
+      // this.getResponsables();
       this.sub = this.route.params.subscribe(params => {
         this.id = params['idDetalle'];
         this.verItem();
@@ -58,10 +58,11 @@ export class DetalleEventoComponent implements OnInit,OnDestroy  {
       this._itemsService.get({"id":this.id},(resp:DetalleEvento) => {
         this._item = resp;
 
-        for(var i = 0; i < this.espacios.length;i++){
-          if(this._item.espacio.id = this.espacios[i].id) this.espacios[i] = this._item.espacio;
-        }
+        
 
+        // for(var i = 0; i < this.espacios.length;i++){
+        //   if(this._item.espacio.id = this.espacios[i].id) this.espacios[i] = this._item.espacio;
+        // }
 
       });
     }
@@ -73,30 +74,6 @@ export class DetalleEventoComponent implements OnInit,OnDestroy  {
       });
     }
 
-    getEspacios(){
-      this.espacioServ.query({},(items) => {
-        this.espacios = [];
-        for(var i = 0; i < items.length;i++){
-          var itemAux = new EspacioComun(0,"");
-          itemAux.id = items[i].id;
-          itemAux.nombre = items[i].nombre;
-          this.espacios.push(itemAux);
-        }
-      });
-    }
-
-    getResponsables(){
-      this.responsableServ.query({},(items) => {
-        this.responsables = [];
-        for(var i = 0; i < items.length;i++){
-          var itemAux = new EncargadoEvento(0,"");
-          itemAux.id = items[i].id;
-          itemAux.nombre = items[i].nombre;
-          itemAux.apellido = items[i].apellido;
-          this.responsables.push(itemAux);
-        }
-      });
-    }
 
     addDays(date, days) {
       var result = new Date(date);

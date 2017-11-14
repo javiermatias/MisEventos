@@ -60,7 +60,7 @@ export class SelectEncargadoComponent implements OnInit, OnChanges {
         var itemAux = new EncargadoEvento(0);
         itemAux.id = items[i].id;
         itemAux.nombre = items[i].nombre;
-        this.item.apellido = items[i].apellido;
+        itemAux.apellido = items[i].apellido;
         this.items.push(itemAux);
       }
       this.setItemSelected();

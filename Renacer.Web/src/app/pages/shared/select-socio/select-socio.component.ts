@@ -55,12 +55,12 @@ export class SelectSocioComponent implements OnInit {
   actualizarSocios(item){
     if(this.listaSocios == null){this.listaSocios = new Array<Socio>();}
 
-    if(this.listaSocios.filter(function(item2){ return item2.nombre == item.nombre}).length==0) {
+    if(this.listaSocios.filter(function(item2){ return item2.id == item.id}).length==0) {
       this.listaSocios.push(item);
     }
     else{
       for(var j = 0; j < this.listaSocios.length;j++){
-        if(item.nombre == this.listaSocios[j].nombre){
+        if(item.id == this.listaSocios[j].id){
           this.listaSocios.splice(j,1);
         }
       }
@@ -69,7 +69,10 @@ export class SelectSocioComponent implements OnInit {
   }
 
   getSocios(){
-    this._dbServices.query({},(items) => {
+    this._dbServices.query(
+      {'limit':10,
+       'page':1,
+       'search':this.selectedSocio?this.selectedSocio.nombre:""},(items) => {
       this.socios = [];
       for(var i = 0; i < items.length;i++){
         // itemAux.id = items[i].id;
@@ -80,8 +83,8 @@ export class SelectSocioComponent implements OnInit {
   }
 
   autocompleListFormatter = (data: any) => {
-    let selected = this.listaSocios.filter((item)=> item.nombre == data.nombre).length == 1;
-    let html = `<span>${data.nombre}`;
+    let selected = this.listaSocios.filter((item)=> item.id == data.id).length == 1;
+    let html = `<span>${data.nombre} ${data.apellido} - ${data.nroDocumento?data.nroDocumento:''}`;
     if(selected){
       html +=`<span class="fa fa-check" style='color:green;'></span>`
     }

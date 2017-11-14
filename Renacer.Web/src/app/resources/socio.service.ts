@@ -5,6 +5,7 @@ import {RequestMethod} from '@angular/http';
 import {BaseServices} from './base.service';
 import {Variables} from './variables';
 import {TipoDocumento} from './tipo-documento.service';
+import {Tag} from './tag.service';
 
 export class Socio {
   constructor(
@@ -20,9 +21,11 @@ export class Socio {
     public nroDocumento?: string,
     public tipoDoc?:TipoDocumento,
     public domicilio?:Domicilio,
-    public contacto?:Contacto
+    public contacto?:Contacto,
+    public listaTags?:Array<Tag>,
   ) {
   this.tipoDoc = new TipoDocumento();
+  this.listaTags = new Array<Tag>();
   }
 }
 

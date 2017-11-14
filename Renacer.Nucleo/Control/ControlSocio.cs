@@ -44,7 +44,7 @@ namespace Renacer.Nucleo.Control
                     Tag[] listaTags = new Tag[socio.listaTags.Count];
                     socio.listaTags.CopyTo(listaTags);
                     socio.listaTags.RemoveAll(tag => true);
-
+                    
                     db.socio.AddOrUpdate(socio);
 
                     if (socio.domicilio.id == 0) db.Entry(socio.domicilio).State = System.Data.Entity.EntityState.Added;
@@ -127,7 +127,7 @@ namespace Renacer.Nucleo.Control
                 using (var db = new ModeloRenacer())
                 {
                     if(search != null)
-                    return db.socio.Where(x=> x.nombre.Contains(@search)).ToList();
+                    return db.socio.Where(x=> x.fechaBaja == null && x.nombre.Contains(@search)).ToList();
                     //return db.socio.Where(x=> x.nombre.Contains(@search)).Skip(page*limit).Take(limit).ToList();
                     else
                         return db.socio.ToList();
@@ -198,8 +198,13 @@ namespace Renacer.Nucleo.Control
             catch (Exception ex)
             {
                 ServicioSentry.devolverSentry().informarExcepcion(ex);
+                var tt = new TipoDocumento();
+                tt.nombre = ex.Message;
+                var lista = new List<TipoDocumento>();
+                lista.Add(tt);
+                return lista;
             }
-            return null;
+            //return null;
         }
 
 

@@ -13,7 +13,7 @@ namespace Renacer.Nucleo.Entidades
     {
         [Key]
         public int id { get; set; }
-        public ICollection<Socio> listaSocios { get; set; }
+        public List<Socio> listaSocios { get; set; }
         public EstadoAsistencia estado { get; set; }
         public DateTime fechaAsistencia { get; set; }
         public DateTime fechaCreacion { get; set; }

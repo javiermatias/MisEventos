@@ -15,6 +15,8 @@ import { SelectTipoEventoComponent } from './select-tipo-evento/select-tipo-even
 import { SelectEventoComponent } from './select-evento/select-evento.component';
 import { TipoDocumentoComponent } from './tipo-documento/tipo-documento.component';
 import { FilterSocioComponent } from './filter-socio/filter-socio.component';
+import { TablaComponent } from './tabla/tabla.component';
+import { AsistenciaComponent } from '../asistencia/asistencia.component';
 
 
 @NgModule({
@@ -32,7 +34,7 @@ import { FilterSocioComponent } from './filter-socio/filter-socio.component';
     SelectEspacioComponent,
     SelectTipoEventoComponent,
     SelectEncargadoComponent,
-    TipoDocumentoComponent,SelectEventoComponent, FilterSocioComponent
+    TipoDocumentoComponent,SelectEventoComponent, FilterSocioComponent, TablaComponent,AsistenciaComponent
   ],
   exports:[
     SelectSocioComponent,
@@ -42,7 +44,8 @@ import { FilterSocioComponent } from './filter-socio/filter-socio.component';
     SelectEncargadoComponent,
    TipoDocumentoComponent,
    SelectEventoComponent,
-   FilterSocioComponent
+   FilterSocioComponent,
+   TablaComponent,AsistenciaComponent
    ]
 })
 export class SharedModule { }

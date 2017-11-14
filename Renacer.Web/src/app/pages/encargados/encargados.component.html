@@ -97,39 +97,42 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col col-md-6">
-                                    <div class="row" style="padding-left:0px">
-                                        <div class="col" style="padding-left:0px">
-                                            <az-tipo-documento [(tipoDoc)]="_item.tipoDoc">
-                                            </az-tipo-documento>
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label for="nroDocParam1">Nro de documento</label>
-                                                <input class="form-control"
-                                                       id="nroDocParam1"
-                                                       #nroDocParam1="ngModel"
-                                                       name="nroDocParam1"
-                                                       [(ngModel)]="_item.nroDocumento">
+                                        <div class="form-group">
+                                            <label for="nombre">Apellido</label>
+                                            <input type="text" class="form-control" id="apellido" required
+                                                   #apellido="ngModel" name="apellido" [(ngModel)]="_item.apellido">
+                                            <div [hidden]="apellido.valid || apellido.pristine"
+                                                 class="alert alert-danger">
+                                                Debe ingresar el apellido
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                             </div>
 
                             <div class="row">
-                                <div class="col col-md-6">
-                                    <div class="form-group">
-                                        <label for="nombre">Apellido</label>
-                                        <input type="text" class="form-control" id="apellido" required
-                                               #apellido="ngModel" name="apellido" [(ngModel)]="_item.apellido">
-                                        <div [hidden]="apellido.valid || apellido.pristine"
-                                             class="alert alert-danger">
-                                            Debe ingresar el apellido
+                                    <div class="col col-md-6">
+                                            <div class="row" style="padding-left:0px">
+                                                <div class="col" style="padding-left:0px">
+                                                    <az-tipo-documento [(tipoDoc)]="_item.tipoDoc">
+                                                    </az-tipo-documento>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label for="nroDocParam1">Nro de documento</label>
+                                                        <input class="form-control"
+                                                               id="nroDocParam1"
+                                                               #nroDocParam1="ngModel"
+                                                               name="nroDocParam1"
+                                                               [(ngModel)]="_item.nroDocumento">
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col col-md-6">
+                                
+                               
+                                        <div class="col col-md-6">
                                     <div class="form-group">
                                         <label for="input-2">Teléfono</label>
                                         <input type="text" class="form-control" id="telefono" name="telefono" [(ngModel)]="_item.telefono">
@@ -152,7 +155,7 @@
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row" style="display:none">
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="nombre">descripcion</label>

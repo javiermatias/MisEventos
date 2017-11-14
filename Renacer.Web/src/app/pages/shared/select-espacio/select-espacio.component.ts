@@ -4,7 +4,7 @@ import {EspacioServices,EspacioComun} from '../../../resources/espacio.service';
 @Component({
   selector: 'select-espacio',
   template:`<div class="form-group">
-  <label>Espacio de Comun
+  <label>Espacio Comun
   </label>
   <select class="form-control" id="select_item" (change)="actualizarItem()"
   required #select_item="ngModel" name="select_item" [(ngModel)]="itemSelected">
@@ -12,7 +12,7 @@ import {EspacioServices,EspacioComun} from '../../../resources/espacio.service';
   </option>
   </select>
   <div [hidden]="select_item.valid || select_item.pristine" class="alert alert-danger">
-  Debe ingresar el Responsable
+  Debe seleccionar el Espacio
   </div>
   </div>
   `

@@ -25,7 +25,7 @@ export const routes: Routes = [
             { path: 'form-elements', loadChildren: 'app/pages/form-elements/form-elements.module#FormElementsModule', data: { breadcrumb: 'Form Elements' } },
             { path: 'tables', loadChildren: 'app/pages/tables/tables.module#TablesModule', data: { breadcrumb: 'Tables' } },
             { path: 'editors', loadChildren: 'app/pages/editors/editors.module#EditorsModule', data: { breadcrumb: 'Editors' } },
-            { path: 'evento', loadChildren: 'app/pages/evento/evento.module#EventoModule', data: { breadcrumb: 'Evento' } },
+            { path: 'evento', loadChildren: 'app/pages/evento/evento.module#EventoModule', data: { breadcrumb: 'Eventos' } },
             { path: 'reportes', loadChildren: 'app/pages/reportes/reporte.module#ReporteModule', data: { breadcrumb: 'Reportes' } },
             { path: 'usuario', loadChildren: 'app/pages/usuarios/usuarios.module#UsuariosModule', data: { breadcrumb: 'Usuarios' } },
             { path: 'search', component: SearchComponent, data: { breadcrumb: 'Search' } },

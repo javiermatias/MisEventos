@@ -1,39 +1,11 @@
 export const itemsResponsable = [
-  {
-    title: 'Mis Eventos',
-    icon: 'fa-calendar',
+ {
+    title: 'Eventos',
+    icon: 'fa-paper',
+    routerLink: 'evento/lista',
     selected: false,
     expanded: false,
     order: 800,
-    target: '_blank',
-    subMenu: [
-      {
-        title: 'Nuevo Evento',
-        routerLink: 'socios/nuevo'
-      },
-      {
-        title: 'Lista',
-        routerLink: 'socios/lista'
-      }
-    ]
-  },
-  {
-    title: 'Usuarios',
-    routerLink: 'usuarios',
-    icon: 'fa-users',
-    selected: false,
-    expanded: false,
-    order: 500,
-    subMenu: [
-      {
-        title: 'Nuevo Usuario',
-        routerLink: 'usuarios/nuevo'
-      },
-      {
-        title: 'Lista',
-        routerLink: 'usuarios/lista'
-      }
-    ]
   },
   {
     title: 'Socios',
@@ -41,26 +13,7 @@ export const itemsResponsable = [
     icon: 'fa-users',
     selected: false,
     expanded: false,
-    order: 500,
-    subMenu: [
-      {
-        title: 'Nuevo Socio',
-        routerLink: 'socios/nuevo'
-      },
-      {
-        title: 'Lista',
-        routerLink: 'socios/'
-      }
-    ]
-  },
-  {
-    title: 'Espacios',
-    icon: 'fa-map-marker',
-    selected: false,
-    expanded: false,
-    order: 800,
-    target: '_blank',
-    routerLink: 'espacios/'
+    order: 500
   },
   {
       title: 'Asistencia',
@@ -71,6 +24,4 @@ export const itemsResponsable = [
       target: '_blank',
       routerLink: 'asistencia/'
   }
-
-
 ];

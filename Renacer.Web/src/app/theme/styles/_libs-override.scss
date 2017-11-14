@@ -273,6 +273,10 @@
 .pace.pace-inactive .pace-progress{
 	display:none
 }
+.pace-running{
+    background: black;
+    opacity: 0.6;
+}
 
 .pace{
 	-webkit-box-sizing:border-box;

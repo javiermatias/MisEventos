@@ -15,14 +15,14 @@ export const itemsAdmin = [
     expanded: false,
     order: 800,
   },
-  // {
-  //   title: 'Usuarios',
-  //   routerLink: 'usuarios/',
-  //   icon: 'fa-users',
-  //   selected: false,
-  //   expanded: false,
-  //   order: 500
-  // },
+  {
+    title: 'Eventos',
+    icon: 'fa-pencil-square-o',
+    routerLink: 'evento/lista',
+    selected: false,
+    expanded: false,
+    order: 800,
+  },
   {
     title: 'Encargados de evento',
     routerLink: 'encargados/',
@@ -63,14 +63,36 @@ export const itemsAdmin = [
         title: 'Socios',
         routerLink: 'reportes/socios'
       },
-      {
-        title: 'Encargados',
-        routerLink: 'reportes/encargados'
-      },
+      // {
+      //   title: 'Encargados',
+      //   routerLink: 'reportes/encargados'
+      // },
       {
         title: 'Nube de Etiquetas',
         routerLink: 'reportes/tags'
       }
     ]
   }
+  // ,{
+  //   title: 'Estadisticas',
+  //   routerLink: 'estadisticas',
+  //   icon: 'fa-file-o',
+  //   selected: false,
+  //   expanded: false,
+  //   order: 300,
+  //   subMenu: [
+  //     {
+  //       title: 'Eventos',
+  //       routerLink: 'estadisticas/eventos'
+  //     },
+  //     {
+  //       title: 'Socios',
+  //       routerLink: 'estadisticas/socios'
+  //     },
+  //     {
+  //       title: 'Nube de Etiquetas',
+  //       routerLink: 'estadisticas/tags'
+  //     }
+  //   ]
+  // }
 ];

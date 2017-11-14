@@ -19,7 +19,8 @@ namespace Renacer.Nucleo.Entidades
         public string celular { get; set; }
         public string email { get; set; }
         public string sexo { get; set; }
-
+        public string estadoCivil { get; set; }
+        
         public int idTipoDoc { get; set; }
         [ForeignKey("idTipoDoc")]
         public TipoDocumento tipoDoc { get; set; }
@@ -35,6 +36,7 @@ namespace Renacer.Nucleo.Entidades
 
         public List<Asociacion> listaAsociaciones { get; set; }
         public List<Inscripcion> listaInscripciones { get; set; }
+        public List<Asistencia> listaAsistencias { get; set; }
         public List<Tag> listaTags { get; set; }
 
         public DateTime fechaCreacion { get; set; }

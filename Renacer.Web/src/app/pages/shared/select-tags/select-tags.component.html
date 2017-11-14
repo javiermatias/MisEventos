@@ -23,7 +23,8 @@
           [source]="tags"
           (valueChanged)="tagSelected($event)"
           (keyup.enter)="tagSelected($event)"
-          style="margin-bottom:10px" />
+          style="margin-bottom:10px"
+          *ngIf="!enabled" />
 
       <div style="border-top:1px solid #EEE">
         <span style="padding: 5px;font-size: 12px;margin: 5px;" *ngFor="let item of listaTags" class="badge badge-main">

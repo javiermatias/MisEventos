@@ -5,6 +5,7 @@ import {DatePipe} from '@angular/common' ;
 import { ToastrService, ToastrConfig } from 'ngx-toastr';
 import { DomicilioComponent } from '../domicilio/domicilio.component';
 import { TipoDocumento } from '../../resources/tipo-documento.service';
+import { ActivatedRoute,Router } from '@angular/router';
 
 @Component({
   selector: 'az-socios',
@@ -18,8 +19,12 @@ export class SociosComponent implements OnInit {
   public showDetail:boolean = false;
   public searchText:string = "";
 
-  constructor(private _socioService:SocioServices,private mensajeServ: ToastrService) {
-    this.getItems();
+  constructor(
+    private _socioService:SocioServices
+    ,private mensajeServ: ToastrService
+    ,private route: ActivatedRoute
+    ,private router:Router) {
+      this.getItems();
   }
 
   onSubmit(myForm: FormGroup) {
@@ -47,6 +52,14 @@ export class SociosComponent implements OnInit {
       this.showDetail = true;
     });
   }
+
+  eliminarItem(item:Socio){
+    this._socioService.remove({'id':item.id},resp =>{
+      this.mensajeServ.info('Se ha dado de baja el socio', 'Aviso!');
+      this.router.navigate(['/pages/socios']);
+     })
+  }
+
   nuevoItem(){
     this._socio =  new Socio(0,"","","");
     this._socio.domicilio = new Domicilio();

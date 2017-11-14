@@ -16,6 +16,7 @@ export class CalendarComponent {
   dragOptions: Object = { zIndex: 999, revert: true, revertDuration: 0 };
   event: any = {};
   createEvent: any;
+  public listaColores:any = {};
 
   public search:string ="";
   public fechaDesde:Date = new Date();
@@ -26,6 +27,24 @@ export class CalendarComponent {
     this.nuevoItemEvent.emit('complete');
   }
 
+  getRndColor(){
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
+  getEventoColor(idEvento:number){
+    if(this.listaColores[idEvento]){
+        return this.listaColores[idEvento];
+    }else{
+      this.listaColores[idEvento] = this.getRndColor();
+      return  this.listaColores[idEvento];
+    }
+  }
+
   CargarEventos(){
     this.detalleEventServ.query({
       "fechaDesde":this.fechaDesde,
@@ -34,12 +53,15 @@ export class CalendarComponent {
       this.calendarOptions.events = [];
 
       for(var i = 0; i < items.length;i++){
+
+        var color = this.getEventoColor(items[i].idEvento); 
+
         var itemAux = {
           title: items[i].nombre,
           start: items[i].fechaDesde,
           end: items[i].fechaHasta,
           allDay: false,
-          backgroundColor: this.config.colors.success,
+          backgroundColor: color,
           textColor: this.config.colors.default,
           id:items[i].id,
           idEvento:items[i].idEvento
@@ -96,10 +118,10 @@ export class CalendarComponent {
           );
         }
         this.$calendar.fullCalendar('unselect');
-        jQuery('#create-event-modal').modal('hide');
+       // jQuery('#create-event-modal').modal('hide');
       };
 
-      jQuery('#create-event-modal').modal('show');
+     // jQuery('#create-event-modal').modal('show');
     },
     eventClick: (event): void => {
       this.event = event;
@@ -139,7 +161,9 @@ export class CalendarComponent {
       if (today == compareDate) {
         cell.css("background-color", "#ccc");
       }
-    }
+    },
+    lang: 'es',
+    locale: 'es'
   };
 };
 
