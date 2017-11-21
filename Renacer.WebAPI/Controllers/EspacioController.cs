@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Renacer.WebAPI.Controllers
 {
@@ -41,9 +42,15 @@ namespace Renacer.WebAPI.Controllers
         public void Put(int id, [FromBody]EspacioComun value)
         {
             var espacio = ControlEspacioComun.devolverInstacia().devolver(id);
-            espacio.nombre = value.nombre;
+            
+            //espacio.nombre = value.nombre;
+            //espacio.capacidad = value.capacidad;
+            //espacio.estado = value.estado;
+            //espacio.descripcion = value.descripcion;
+            //espacio.fechamodificacion = datetime.now;
+            //espacio.idtipoespacio = value.idtipoespacio;
 
-            ControlEspacioComun.devolverInstacia().grabar(espacio);
+            ControlEspacioComun.devolverInstacia().grabar(value);
         }
 
         // DELETE: api/ApiCliente/5

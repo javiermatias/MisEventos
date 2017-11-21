@@ -11,9 +11,9 @@ export class MenuService {
     let menuItemsSelected;
 
     switch(userType){
-      case "admin": menuItemsSelected = itemsAdmin;break;
-      case "socio": menuItemsSelected = itemsSocio;break;
-      case "responsable": menuItemsSelected = itemsResponsable;break;
+      case "Administrador": menuItemsSelected = itemsAdmin;break;
+      case "Socio": menuItemsSelected = itemsSocio;break;
+      case "Encargado": menuItemsSelected = itemsResponsable;break;
       default: menuItemsSelected = menuItems;break;
     }
     return menuItemsSelected;

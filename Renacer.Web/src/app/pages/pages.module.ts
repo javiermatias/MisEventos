@@ -9,6 +9,8 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 import { ToastrModule } from 'ngx-toastr';
 import { DirectivesModule } from '../theme/directives/directives.module';
 import { PipesModule } from '../theme/pipes/pipes.module';
+import { SharedModule } from './shared/shared.module';
+
 import { routing } from './pages.routing';
 import { PagesComponent } from './pages.component';
 import { BlankComponent } from './blank/blank.component';
@@ -22,6 +24,10 @@ import { SearchComponent } from './search/search.component';
 import { SociosComponent } from './socios/socios.component';
 import { DataTableModule } from "angular2-datatable";
 import { EspaciosComponent } from './espacios/espacios.component';
+import { DomicilioComponent } from './domicilio/domicilio.component';
+import { ContactoComponent } from './contacto/contacto.component';
+import { EncargadosComponent } from './encargados/encargados.component';
+import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
 
 
 @NgModule({
@@ -33,7 +39,9 @@ import { EspaciosComponent } from './espacios/espacios.component';
     PipesModule,
     routing,
     FormsModule,
-    DataTableModule
+    DataTableModule,
+    NguiAutoCompleteModule,
+    SharedModule
   ],
   declarations: [
     PagesComponent,
@@ -46,7 +54,19 @@ import { EspaciosComponent } from './espacios/espacios.component';
     BackTopComponent,
     SearchComponent,
     SociosComponent,
-    EspaciosComponent
+    EspaciosComponent,
+    DomicilioComponent,
+    ContactoComponent,
+    EncargadosComponent
+  ]
+  ,exports: [
+    BreadcrumbComponent,
+    BackTopComponent,
+    SociosComponent,
+    EspaciosComponent,
+    DomicilioComponent,
+    ContactoComponent,
+    EncargadosComponent
   ]
 })
 export class PagesModule { }

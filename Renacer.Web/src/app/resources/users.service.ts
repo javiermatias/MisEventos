@@ -3,12 +3,14 @@ import {Resource, ResourceParams, ResourceAction} from 'ngx-resource';
 import {ResourceMethod} from 'ngx-resource/src/Interfaces';
 import {RequestMethod} from '@angular/http';
 import {Variables} from './variables';
+import {BaseServices} from './base.service';
 
 
 export class Usuario {
   constructor(
     public id: number,
-    public nombre: string,
+    public nombre?: string,
+    public rol?: string,
     public email?:string,
     public fechaCreacion?: Date,
     public fechaBaja?: Date,
@@ -19,33 +21,31 @@ export class Usuario {
 
 @Injectable()
 @ResourceParams({
-  url:new Variables().urlBase + "login/"
+  url:new Variables().urlBase + "usuario/"
 })
-export class UserServices extends Resource {
+export class UserServices extends BaseServices<Usuario> {
 
   @ResourceAction({
-    method: RequestMethod.Post
+    method: RequestMethod.Post,
+    url:new Variables().urlBase + "login/",
+    noAuth:true
   })
-  login: ResourceMethod<{username: string,password:string}, string>;
+  login: ResourceMethod<{usuario: string,clave:string},Object>;
 
-  login2 = function(username:string,password:string):string
-  {
-    if(username == "augusto" && password == "123123"){
-      this.usuario = {
-        'nombre':'Augusto Galan',
-        'rol':'Administrador',
-        'imagen':'assets/img/users/augusto.png'};
-        return "success";
-      }else{
-        return "error";
-      }
-    };
-    getCurrent=function(){
-      return this.usuario;
+  @ResourceAction({
+    method: RequestMethod.Get
+  })
+  actual:ResourceMethod<{},Object>;
+
+  getCurrent=function(){
+    if(this.usuario == null){
+      this.usuario = JSON.parse(localStorage.usuario);
     }
-   usuario = {
-        'nombre':'',
-        'rol':'',
-        'imagen':'',
-      };
+    return this.usuario;
   }
+  setCurrent = function(usuario:Usuario){
+    this.usuario = usuario;
+    localStorage.usuario = JSON.stringify(usuario) ;
+    sessionStorage["token"] = usuario["token"];
+  }
+}

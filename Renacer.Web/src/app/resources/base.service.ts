@@ -6,14 +6,29 @@ import {RequestMethod} from '@angular/http';
 interface IQueryInput {
   page?: number;
   perPage?: number;
-  dateFrom?: string;
+  dateFrom?: string
+  limit?: number;
   dateTo?: string;
   isRead?: string;
+  search?: string;
+  fechaDesde?: Date;
+  fechaHasta?: Date;
+  idEvento?:number;
 }
+
+export class BaseEntity{
+  equals(compareItem:object) : boolean {
+      return this["id"] == compareItem["id"];
+  }
+}
+
+BaseEntity.prototype.equals = function (o) {
+    return this["id"] === o["id"];
+};
 
 @Injectable()
 @ResourceParams({
-  path: 'http://localhost:6913/api/'
+  path: ''
 })
 export class BaseServices<T> extends Resource {
 

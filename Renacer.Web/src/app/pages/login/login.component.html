@@ -3,7 +3,7 @@
     <div class="card">
       <div class="card-block text-center">
         <h2 class="card-title">Mis Eventos</h2>
-        <a routerLink="/register" class="btn btn-link transition bottom-15">No tienes una cuenta? Crea una ahora!</a>
+        <!-- <a routerLink="/register" class="btn btn-link transition bottom-15">No tienes una cuenta? Crea una ahora!</a> -->
 
         <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class=" text-left">
           <div class="form-group">
@@ -24,20 +24,22 @@
             <a class="btn btn-link forgot transition pull-right" href="javascript:void(0);">Olvidaste tu contraseña?</a>
           </div>
           <div class="form-group">
-            <button [disabled]="!form.valid" class="btn btn-main btn-block" type="submit">Entrar</button>
+            <button [disabled]="!form.valid || loading" class="btn btn-main btn-block" type="submit">Entrar
+<i [hidden]="!loading"  class="fa fa-spin fa-spinner"></i>
+            </button>
           </div>
         </form>
 
         <div class="auth-sep" *ngIf="error"><span><span style="color:red;">{{error}}</span></span></div>
-        <div class="auth-sep"><span><span>puedes ingresar con</span></span></div>
+        <!-- <div class="auth-sep"><span><span>puedes ingresar con</span></span></div> -->
 
-        <div class="form-group">
+        <!-- <div class="form-group">
           <ul class="login-help">
             <li><i class="socicon socicon-facebook transition"></i></li>
-            <!-- <li><i class="socicon socicon-twitter transition"></i></li> -->
+            <li><i class="socicon socicon-twitter transition"></i></li>
             <li><i class="socicon socicon-google transition"></i></li>
           </ul>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

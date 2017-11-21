@@ -1,49 +1,47 @@
-﻿using System;
+﻿using Renacer.Nucleo.Control;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Security;
 
 namespace Renacer.WebAPI
 {
+    [EnableCors("*", "*", "*")]
     public class LoginController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<controller>/5
-        public string Get(int id)
-        {
-            return "value: " + id;
-        }
-
         // POST api/<controller>
-        public string Post([FromBody]Dictionary<string, string> user)
+        public IHttpActionResult Post([FromBody]Dictionary<string, string> user)
         {
-            if (user["username"] != null) return "Debe ingresar el nombre de usuario";
+            Dictionary<string, Object> resp = new Dictionary<string, object>();
+            resp.Add("result", "error");
 
-            if (user["username"] == ("augusto"))
+            if (user["usuario"] == null || user["clave"] == null) return Ok(resp);
+
+            var usuario =  ControlUsuario.devolverInstancia().devolver(user["usuario"], user["clave"]);
+
+            if (usuario != null)
             {
-                FormsAuthentication.SetAuthCookie("augusto", false);
-                return "ok";
+                //FormsAuthentication.SetAuthCookie(usuario.usuario, false);
+                var token = System.Guid.NewGuid().ToString().Replace("-", "");
+
+                usuario.fechaUltimoAcceso = DateTime.Now;
+                usuario.token = token;
+                ControlUsuario.devolverInstancia().grabar(usuario);
+
+                usuario.clave = "";
+                usuario.idGoogle = "";
+                usuario.idFacebook = "";
+                resp.Add("user", usuario);
+                resp["token"] = token;
+                resp["result"] = "ok";
+                return Ok(resp);
             }
-            return "error";
+            return Ok(resp);
         }
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody]Dictionary<string,string> user)
-        {
-           
-        }
-
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
-        }
     }
 }

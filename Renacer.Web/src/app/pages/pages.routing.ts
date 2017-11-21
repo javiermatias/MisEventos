@@ -1,11 +1,13 @@
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
-
 import { PagesComponent } from './pages.component';
 import { BlankComponent } from './blank/blank.component';
 import { SearchComponent } from './search/search.component';
 import { SociosComponent } from './socios/socios.component';
 import { EspaciosComponent } from './espacios/espacios.component';
+import { EncargadosComponent } from './encargados/encargados.component';
+import { AsistenciaComponent } from './asistencia/asistencia.component';
+
 
 export const routes: Routes = [
     {
@@ -23,9 +25,14 @@ export const routes: Routes = [
             { path: 'form-elements', loadChildren: 'app/pages/form-elements/form-elements.module#FormElementsModule', data: { breadcrumb: 'Form Elements' } },
             { path: 'tables', loadChildren: 'app/pages/tables/tables.module#TablesModule', data: { breadcrumb: 'Tables' } },
             { path: 'editors', loadChildren: 'app/pages/editors/editors.module#EditorsModule', data: { breadcrumb: 'Editors' } },
+            { path: 'evento', loadChildren: 'app/pages/evento/evento.module#EventoModule', data: { breadcrumb: 'Eventos' } },
+            { path: 'reportes', loadChildren: 'app/pages/reportes/reporte.module#ReporteModule', data: { breadcrumb: 'Reportes' } },
+            { path: 'usuario', loadChildren: 'app/pages/usuarios/usuarios.module#UsuariosModule', data: { breadcrumb: 'Usuarios' } },
             { path: 'search', component: SearchComponent, data: { breadcrumb: 'Search' } },
             { path: 'socios', component: SociosComponent, data: { breadcrumb: 'Socios' } },
             { path: 'espacios', component: EspaciosComponent, data: { breadcrumb: 'Espacios' } },
+            { path: 'asistencia', component: AsistenciaComponent, data: { breadcrumb: 'Asistencias' } },
+            { path: 'encargados', component: EncargadosComponent, data: { breadcrumb: 'Encargados' } },
             { path: 'blank', component: BlankComponent, data: { breadcrumb: 'Blank page' } }
         ]
     }

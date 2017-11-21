@@ -1,4 +1,6 @@
-﻿using Renacer.Nucleo.Entidades;
+﻿
+
+using Renacer.Nucleo.Entidades;
 using Renacer.Nucleo.Servicio;
 using System;
 using System.Collections.Generic;
@@ -38,9 +40,20 @@ namespace Renacer.Nucleo.Control
                     throw new UsuarioException(errores);
                 }
 
+                if (espacioComun.id == 0) espacioComun.fechaCreacion = DateTime.Now;
+                if (espacioComun.id > 0) espacioComun.fechaModificacion = DateTime.Now;
+
                 using (var db = new ModeloRenacer())
                 {
+                    Tag[] listaTags = new Tag[espacioComun.listaTags.Count];
+                    espacioComun.listaTags.CopyTo(listaTags);
+                    espacioComun.listaTags.RemoveAll(tag => true);
+
                     db.espacioComun.AddOrUpdate(espacioComun);
+                    db.SaveChanges();
+
+                    EspacioComun espacioAux = db.espacioComun.Include("listaTags").Single(a => a.id == espacioComun.id);
+                    ControlTag.devolverInstancia().actualizarListaDeTags(db, listaTags, espacioAux.listaTags);
                     db.SaveChanges();
                 }
             }
@@ -68,7 +81,9 @@ namespace Renacer.Nucleo.Control
             {
                 using (var db = new ModeloRenacer())
                 {
-                    return db.espacioComun.Where(x => x.id.Equals(id)).FirstOrDefault();
+                    var item = db.espacioComun.Where(x => x.id.Equals(id)).FirstOrDefault();
+                    item.listaTags = db.tag.Where(x => x.listaEspacios.Any(xy => xy.id.Equals(id))).ToList();
+                    return item;
                 }
             }
             catch (Exception ex)

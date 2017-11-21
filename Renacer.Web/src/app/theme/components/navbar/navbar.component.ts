@@ -21,7 +21,7 @@ export class NavbarComponent {
         });
          this.usuario = this._usersService.getCurrent();
          if(this.usuario['nombre'] == ''){
-          // this.router.navigate(['/login']);
+          this.router.navigate(['/login']);
          }
     }
 

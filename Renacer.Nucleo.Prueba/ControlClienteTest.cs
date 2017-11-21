@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Renacer.Nucleo.Control;
+using Renacer.Nucleo.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,5 +1,6 @@
 namespace Renacer.Nucleo
 {
+    using Entidades;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -15,12 +16,15 @@ namespace Renacer.Nucleo
         public string descripcion { get; set; }
         public Int32 capacidad { get; set; }
         public DateTime fechaCreacion { get; set; }
-        public DateTime fechaBaja { get; set; }
-        public DateTime fechaModificacion { get; set; }
-        public int idDireccion { get; set; }
+        public DateTime? fechaBaja { get; set; }
+        public DateTime? fechaModificacion { get; set; }
         public int idTipoEspacio { get; set; }
         public int estado { get; set; }
-        
-    }
 
+        public List<Tag> listaTags { get; set; }
+
+        //public int idDomicilio { get; set; }
+        //[ForeignKey("idDomicilio")]
+        //public Domicilio domicilio { get; set; }
+    }
 }
