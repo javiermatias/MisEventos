@@ -1,0 +1,63 @@
+
+<div widget class="card" style="margin-bottom:20px">
+    <div class="card-header">
+        <span>Domicilio</span>
+        <div class="widget-controls">
+            <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
+            <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
+        </div>
+    </div>
+    <div class="card-block widget-body">
+        <div class="row">
+            <div class="col col-md-4">
+                <div class="form-group">
+                    <label for="barrio">Barrio</label>
+                    <select class="form-control" id="barrio" #barrio="ngModel" name="barrio" [(ngModel)]="_domicilio.barrio">
+                        <option>Alta Cordoba</option>
+                        <option>Ayacucho</option>
+                        <option>Cofico</option>
+                        <option>General Bustos</option>
+                        <option>Hipolito Yrigoyen</option>
+                        <option>Independencia</option>
+                        <option>La Fraternidad</option>
+                        <option>Los Paraisos</option>
+                        <option>Residencial America</option>
+                        <option>San Martin</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="codPostal">Código postal</label>
+                    <input type="number" class="form-control" id="codPostal" required
+                           #codPostal="ngModel" name="codPostal" [(ngModel)]="_domicilio.codPostal">
+                </div>
+            </div>
+            <div class="col col-md-4">
+                <div class="form-group">
+                    <label for="calle">Calle</label>
+                    <input type="text" class="form-control" id="calle" required
+                           #calle="ngModel" name="calle" [(ngModel)]="_domicilio.calle">
+                </div>
+
+                <div class="form-group">
+                    <label for="piso">Piso</label>
+                    <input type="text" class="form-control" id="piso" required
+                           #piso="ngModel" name="piso" [(ngModel)]="_domicilio.piso">
+                </div>
+
+            </div>
+            <div class="col col-md-4">
+                <div class="form-group">
+                    <label for="nroCalle">N° Calle</label>
+                    <input type="text" class="form-control" id="nroCalle" required
+                           #nroCalle="ngModel" name="nroCalle" [(ngModel)]="_domicilio.nro">
+                </div>
+
+                <div class="form-group">
+                    <label for="depto">Departamento</label>
+                    <input type="text" class="form-control" id="depto" required
+                           #depto="ngModel" name="depto" [(ngModel)]="_domicilio.depto">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

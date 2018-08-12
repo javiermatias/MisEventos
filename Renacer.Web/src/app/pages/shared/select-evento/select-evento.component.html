@@ -1,0 +1,12 @@
+<div class="col">
+    <div class="form-group">
+        <label>Evento</label>
+        <select class="form-control" id="evento_12" (change)="actualizarItem()"
+        required #evento_12="ngModel" name="evento_12" [(ngModel)]="itemAux2">
+            <option *ngFor="let item of eventos;trackBy:item?.id" [ngValue]="item">{{item.nombre}}</option>
+        </select>
+        <div [hidden]="eventos.valid || eventos.pristine" class="alert alert-danger">
+            Debe ingresar el evento
+        </div>
+    </div>
+</div>

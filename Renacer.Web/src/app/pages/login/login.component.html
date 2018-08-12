@@ -1,0 +1,46 @@
+<div class="login-container">
+  <div class="col-xl-4 col-md-6 col-10 offset-xl-4 offset-md-3 offset-1">
+    <div class="card">
+      <div class="card-block text-center">
+        <h2 class="card-title">Mis Eventos</h2>
+        <!-- <a routerLink="/register" class="btn btn-link transition bottom-15">No tienes una cuenta? Crea una ahora!</a> -->
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class=" text-left">
+          <div class="form-group">
+            <input [formControl]="username" class="form-control checking-field" placeholder="Usuario" type="text">
+            <span class="help-block text-danger" *ngIf="form.get('username').touched && form.get('username').hasError('required')">Ingresa un nombre de Usuario</span>
+          </div>
+          <div class="form-group">
+            <input [formControl]="password" class="form-control checking-field" placeholder="Contraseña" type="password">
+            <span class="help-block text-danger" *ngIf="form.get('password').touched && form.get('password').hasError('required')">La contraseña es requerida</span>
+            <span class="help-block text-danger" *ngIf="form.get('password').touched && form.get('password').hasError('minlength')">La contraseña debe tener por lo menos 6 caracteres</span>
+          </div>
+          <div class="form-group">
+            <label class="custom-control custom-checkbox">
+              <input class="custom-control-input checkbox-main" type="checkbox">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description align-middle">Recordarme</span>
+            </label>
+            <a class="btn btn-link forgot transition pull-right" href="javascript:void(0);">Olvidaste tu contraseña?</a>
+          </div>
+          <div class="form-group">
+            <button [disabled]="!form.valid || loading" class="btn btn-main btn-block" type="submit">Entrar
+<i [hidden]="!loading"  class="fa fa-spin fa-spinner"></i>
+            </button>
+          </div>
+        </form>
+
+        <div class="auth-sep" *ngIf="error"><span><span style="color:red;">{{error}}</span></span></div>
+        <!-- <div class="auth-sep"><span><span>puedes ingresar con</span></span></div> -->
+
+        <!-- <div class="form-group">
+          <ul class="login-help">
+            <li><i class="socicon socicon-facebook transition"></i></li>
+            <li><i class="socicon socicon-twitter transition"></i></li>
+            <li><i class="socicon socicon-google transition"></i></li>
+          </ul>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>

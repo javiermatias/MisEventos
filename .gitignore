@@ -213,6 +213,7 @@ ModelManifest.xml
 
 # Local project
 .vs
+.idea
 packages
 Renacer.Core/bin
 Renacer.Core/obj
@@ -229,3 +230,9 @@ Renacer.WebAPP/app/**/*.js
 Renacer.WebAPP/app/**/*.js.map
 Renacer.Web/dist/
 Renacer.Helper/My Project/
+Renacer.WebAPP/dist/
+Renacer.Web/dist/
+Renacer.Web/Web.config
+Renacer.Nucleo/App.config
+Renacer.Nucleo.Prueba/App.config
+Renacer.WebAPI.Prueba/*.config

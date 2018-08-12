@@ -1,0 +1,51 @@
+
+<div widget class="card" style="margin-bottom:20px">
+    <div class="card-header">
+        <span>Contacto de emergencia</span>
+        <div class="widget-controls">
+            <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
+            <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
+        </div>
+    </div>
+    <div class="card-block widget-body">
+        <div class="row">
+            <div class="col col-md-6">
+                <div class="form-group">
+                    <label for="calle">Nombre</label>
+                    <input type="text" class="form-control" id="calle" required
+                           #calle="ngModel" name="calle" [(ngModel)]="_contacto.nombre">
+                </div>
+            </div>
+            <div class="col col-md-6">
+                <div class="form-group">
+                    <label for="calle">Apellido</label>
+                    <input type="text" class="form-control" id="apellido" required
+                           #apellido="ngModel" name="apellido" [(ngModel)]="_contacto.apellido">
+                </div>
+            </div>
+            <div class="col col-md-6">
+                <div class="form-group">
+                    <label for="telefono">Telefono</label>
+                    <input type="text" class="form-control" id="telefono" required
+                           #calle="ngModel" name="telefono" [(ngModel)]="_contacto.telefono">
+                </div>
+            </div>
+            <div class="col col-md-6">
+                <div class="form-group">
+                    <label for="telefono">Relacion con el socio</label>
+                    <select type="text" class="form-control" id="relacion" required
+                           #relacion="ngModel" name="relacion" [(ngModel)]="_contacto.relacion">
+                           <option value="Pareja">Pareja</option>
+                           <option value="Padre">Padre</option>
+                           <option value="Madre">Madre</option>
+                           <option value="Hermano/a">Hermano/a</option>
+                           <option value="Hijo/a">Hijo/a</option>
+                           <option value="Nieto/a">Nieto/a</option>
+                           <option value="Amigo/a">Amigo/a</option>
+                         </select>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
