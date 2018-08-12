@@ -1,0 +1,76 @@
+
+<div widget class="card">
+    <div class="card-header">
+        <span>Tags</span>
+        <div class="widget-controls">
+            <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
+            <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
+            <a data-widgster="fullscreen" href="#" class="transition"><i class="fa fa-expand"></i></a>
+            <a data-widgster="restore" href="#" class="transition"><i class="fa fa-compress"></i></a>
+        </div>
+    </div>
+    <div class="card-block widget-body">
+
+        <div class="row">
+            <filter-socio 
+            style="width:100%;margin: 16px;
+            border: 1px solid #DDD;
+            padding: 16px;" 
+            [filter]="filter"> </filter-socio>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-12">
+                <form (ngSubmit)="getTags()" #eventoForm="ngForm">
+                    <button type="submit" class="btn btn-main">Cargar Tags</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="row" style="padding-top:10px">
+                <div class="col-xl-4 col-lg-4 col-12">
+                        <div class="table-responsive datatable">
+                                <table class="table table-striped table-hover table-sm" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="10">
+                                    <thead>
+                                        <tr>
+                                            <th><mfDefaultSorter by="text">Nombre</mfDefaultSorter></th>
+                                            <!-- <th><mfDefaultSorter by="descripcion">Description</mfDefaultSorter></th> -->
+                                            <th><mfDefaultSorter by="weight">socios</mfDefaultSorter></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of mf.data">
+                                            <td><strong>{{item.text}}</strong></td>
+                                            <!-- <td>{{item.descripcion}}</td> -->
+                                            <td>{{item.weight}}</td>
+                                        </tr>
+                                        <tr *ngIf="(mf.data | SearchPipe : searchText).length === 0">
+                                            <td colspan="100">
+                                                No hay resultados con el filtro aplicado
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="12">
+                                                <mfBootstrapPaginator></mfBootstrapPaginator>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+            
+               
+                    </div>  
+            <div class="col-xl-8 col-lg-8 col-12">
+                <angular-tag-cloud [data]="data"
+                                   [width]="options.width"
+                                   [height]="options.height"
+                                   [overflow]="options.overflow"
+                                   style="border: 4px solid #DDD;margin: auto;border-radius:5px">
+                </angular-tag-cloud>
+            </div>
+        </div>
+
+    </div>
+</div>

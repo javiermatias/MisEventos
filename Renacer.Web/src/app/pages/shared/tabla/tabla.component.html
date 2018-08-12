@@ -1,0 +1,28 @@
+<div class="table-responsive datatable">
+    <table class="table table-striped table-hover table-sm" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="10">
+        <thead>
+            <tr>
+                <th *ngFor="let col of columnas" >
+                  <mfDefaultSorter by="{{col}}">{{col}}</mfDefaultSorter>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of mf.data | SearchPipe : searchText">
+                    <td *ngFor="let col of columnas">{{item[col]}}</td>
+            </tr>
+            <tr *ngIf="mf.data.length === 0">
+                <td colspan="100">
+                    No hay datos
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="12">
+                    <mfBootstrapPaginator [rowsOnPageSet]="[10, 25, 50, 100]"></mfBootstrapPaginator>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
