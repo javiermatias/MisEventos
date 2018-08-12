@@ -227,3 +227,4 @@ Renacer.WebAPP/obj
 Renacer.WebAPP/node_modules
 Renacer.WebAPP/app/**/*.js
 Renacer.WebAPP/app/**/*.js.map
+Renacer.Web/dist/
