@@ -1,0 +1,25 @@
+import { Component, OnInit } from '@angular/core';
+import { EventoServices ,Evento} from '../../../resources/evento.service';
+
+@Component({
+  selector: 'lista-eventos',
+  templateUrl: './lista.component.html',
+  styleUrls: ['./lista.component.scss']
+})
+export class ListaComponent implements OnInit {
+  public eventos :any[];
+
+  constructor(private _itemsService:EventoServices) { }
+
+  ngOnInit() {
+   this.getItems();
+  }
+
+  getItems(){
+  this._itemsService.query({'search':' '},(items:Evento[]) => {
+    this.eventos = items;
+    }
+   );
+  }
+
+}
