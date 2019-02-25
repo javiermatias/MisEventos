@@ -31,9 +31,10 @@
    height: $height;
 }
 
-@mixin bg-image($relativeUrl) {
-  background-image: url($images-root + $relativeUrl);
-}
+//
+//@mixin bg-image($relativeUrl) {
+//  background-image: url($images-root + $relativeUrl);
+//}
 
 @mixin menu-level-bg-color($color){
     $elem: '';
