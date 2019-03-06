@@ -20,7 +20,7 @@ namespace Renacer.Nucleo.Entidades
         public string email { get; set; }
         public string sexo { get; set; }
         public string estadoCivil { get; set; }
-        
+ //       ForeignKey
         public int idTipoDoc { get; set; }
         [ForeignKey("idTipoDoc")]
         public TipoDocumento tipoDoc { get; set; }
