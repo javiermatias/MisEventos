@@ -11,7 +11,9 @@ namespace Renacer.Nucleo.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            SetSqlGenerator("MySql.Data.MySqlClient", new MySql.Data.Entity.MySqlMigrationSqlGenerator());
+            SetSqlGenerator("MySql.Data.MySqlClient", new myMigrationSQLGenerator());
+            //AutomaticMigrationsEnabled = false;
+            //SetSqlGenerator("MySql.Data.MySqlClient", new MySql.Data.Entity.MySqlMigrationSqlGenerator());
         }
 
         protected override void Seed(ModeloRenacer context)
