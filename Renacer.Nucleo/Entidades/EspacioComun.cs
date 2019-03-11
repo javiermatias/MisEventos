@@ -18,7 +18,13 @@ namespace Renacer.Nucleo
         public DateTime fechaCreacion { get; set; }
         public DateTime? fechaBaja { get; set; }
         public DateTime? fechaModificacion { get; set; }
+        // public int idTipoEspacio { get; set; }
+        
         public int idTipoEspacio { get; set; }
+        [ForeignKey("idTipoEspacio")]
+        public TipoEspacio tipoEspacio { get; set; }
+
+
         public int estado { get; set; }
 
         public List<Tag> listaTags { get; set; }

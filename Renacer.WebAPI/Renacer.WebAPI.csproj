@@ -24,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -215,6 +216,7 @@
     <Compile Include="Controllers\ComunController.cs" />
     <Compile Include="Controllers\InscripcionController.cs" />
     <Compile Include="Controllers\ReporteController.cs" />
+    <Compile Include="Controllers\TipoEspacioController.cs" />
     <Compile Include="Filters\CustomAuthenticationFilter.cs" />
     <Compile Include="Controllers\DetalleEventoController.cs" />
     <Compile Include="Controllers\EspacioController.cs" />
@@ -237,8 +239,12 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Configuracion\local-01.config" />
-    <Content Include="Configuracion\local-02.config" />
+    <Content Include="Configuracion\local-01.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuracion\local-02.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Configuracion\local-03.config">
       <SubType>Designer</SubType>
     </Content>

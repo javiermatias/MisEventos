@@ -89,6 +89,7 @@
     <Compile Include="Control\ControlAsistencia.cs" />
     <Compile Include="Control\ControlReporte.cs" />
     <Compile Include="Control\ControlDetalleEvento.cs" />
+    <Compile Include="Control\ControlTipoEspacio.cs" />
     <Compile Include="Control\ControlTipoEvento.cs" />
     <Compile Include="Control\ControlEvento.cs" />
     <Compile Include="Control\ControlTag.cs" />
@@ -112,6 +113,7 @@
     <Compile Include="Entidades\Socio.cs" />
     <Compile Include="Entidades\Tag.cs" />
     <Compile Include="Entidades\TipoDocumento.cs" />
+    <Compile Include="Entidades\TipoEspacio.cs" />
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Entidades\UsuarioException.cs" />
     <Compile Include="Migrations\201711030349137_test.cs" />
@@ -125,6 +127,10 @@
     <Compile Include="Migrations\201903040500455_version-Javi1.cs" />
     <Compile Include="Migrations\201903040500455_version-Javi1.Designer.cs">
       <DependentUpon>201903040500455_version-Javi1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903112009324_agregadoTipoEspacio.cs" />
+    <Compile Include="Migrations\201903112009324_agregadoTipoEspacio.Designer.cs">
+      <DependentUpon>201903112009324_agregadoTipoEspacio.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
@@ -157,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903040500455_version-Javi1.resx">
       <DependentUpon>201903040500455_version-Javi1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903112009324_agregadoTipoEspacio.resx">
+      <DependentUpon>201903112009324_agregadoTipoEspacio.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
