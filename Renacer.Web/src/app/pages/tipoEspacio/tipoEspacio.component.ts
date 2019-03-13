@@ -62,7 +62,6 @@ saveItem(item:TipoEspacio):any{
     });
   }else{
     this._tipoEspacioService.update(item,(resp:TipoEspacio) => {
-      let tipos = this.tiposEspacio;
       let index = this.tiposEspacio.findIndex(t => t.id == resp.id);
       this.tiposEspacio[index] = resp;
       this.showDetail = false;
