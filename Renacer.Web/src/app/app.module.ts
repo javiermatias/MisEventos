@@ -18,14 +18,12 @@ import { TipoDocumentoServices } from './resources/tipo-documento.service';
 import { AsistenciaServices } from './resources/asistencia.service';
 import { TagServices } from './resources/tag.service';
 import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
-import { TipoEspacioComponent } from '../app/pages/tipoEspacio/components/tipoEspacio.component';
 import { TipoEspacioServices } from '../app/pages/tipoEspacio/tipoEspacio.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ErrorComponent,
-    TipoEspacioComponent
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

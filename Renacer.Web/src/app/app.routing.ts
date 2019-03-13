@@ -9,8 +9,6 @@ export const routes: Routes = [
   { path: 'register', loadChildren: 'app/pages/register/register.module#RegisterModule' },
 
 
-  { path: 'tipoEspacio', loadChildren: 'app/pages/tipoEspacio/component/tipoEspacio' },
-
   { path: '**', component: ErrorComponent }
 ];
 

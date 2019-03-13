@@ -1,5 +1,5 @@
 import { Component, OnInit , Input} from '@angular/core';
-import {TipoEspacio,TipoEspacioServices} from '../tipoEspacio.service';
+import {TipoEspacio,TipoEspacioServices} from './tipoEspacio.service';
 import {FormGroup} from '@angular/forms';
 import {DatePipe} from '@angular/common' ;
 import { ToastrService, ToastrConfig } from 'ngx-toastr';
@@ -30,10 +30,10 @@ export class TipoEspacioComponent implements OnInit {
 }
 
 onSubmit(myForm: FormGroup) {
-  let newEspacio = Object.assign({}, this._tipoEspacio);
+  let newTipoEspacio = Object.assign({}, this._tipoEspacio);
   this._tipoEspacio = new TipoEspacio(0,"");
   // newEspacio.fechaCreacion = new Date();
-  this.saveItem(newEspacio)
+  this.saveItem(newTipoEspacio)
   myForm.reset();
 }
 
@@ -63,19 +63,10 @@ saveItem(item:TipoEspacio):any{
   }else{
     this._tipoEspacioService.update(item,(resp:TipoEspacio) => {
       let tipos = this.tiposEspacio;
-      let tipoModificado = tipos.find((tipo: TipoEspacio) => {
-        return tipo.id === resp.id;
-      });
-      if (tipoModificado) {
-          tipoModificado = resp;
-          this.mensajeServ.success('Se han guardado los cambios!', 'Aviso!');
-      }
-    //   for (var i = 0; i < tipos.length; i++) {
-    //     if(tipos[i].id == resp.id)
-    //     { tipos[i] = resp;
-    //     }
-    //   }
+      let index = this.tiposEspacio.findIndex(t => t.id == resp.id);
+      this.tiposEspacio[index] = resp;
       this.showDetail = false;
+      this.mensajeServ.success('Se han guardado los cambios!', 'Aviso!');
     });
   }
 }
