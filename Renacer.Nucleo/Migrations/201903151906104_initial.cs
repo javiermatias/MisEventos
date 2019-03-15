@@ -3,7 +3,7 @@ namespace Renacer.Nucleo.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class test : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
@@ -176,7 +176,9 @@ namespace Renacer.Nucleo.Migrations
                         idTipoEspacio = c.Int(nullable: false),
                         estado = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.id);
+                .PrimaryKey(t => t.id)
+                .ForeignKey("dbo.TipoEspacio", t => t.idTipoEspacio, cascadeDelete: true)
+                .Index(t => t.idTipoEspacio);
             
             CreateTable(
                 "dbo.Tags",
@@ -213,6 +215,15 @@ namespace Renacer.Nucleo.Migrations
             
             CreateTable(
                 "dbo.TipoDocumento",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        nombre = c.String(unicode: false),
+                    })
+                .PrimaryKey(t => t.id);
+            
+            CreateTable(
+                "dbo.TipoEspacio",
                 c => new
                     {
                         id = c.Int(nullable: false, identity: true),
@@ -271,6 +282,26 @@ namespace Renacer.Nucleo.Migrations
                 .PrimaryKey(t => t.id)
                 .ForeignKey("dbo.TipoDocumento", t => t.tipoDoc_id, cascadeDelete: true)
                 .Index(t => t.tipoDoc_id);
+            
+            CreateTable(
+                "dbo.Permiso",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        nombre = c.String(unicode: false),
+                        descripcion = c.String(unicode: false),
+                    })
+                .PrimaryKey(t => t.id);
+            
+            CreateTable(
+                "dbo.Rol",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        nombre = c.String(unicode: false),
+                        descripcion = c.String(unicode: false),
+                    })
+                .PrimaryKey(t => t.id);
             
             CreateTable(
                 "dbo.Usuario",
@@ -358,10 +389,40 @@ namespace Renacer.Nucleo.Migrations
                 .Index(t => t.Tag_id)
                 .Index(t => t.Socio_id);
             
+            CreateTable(
+                "dbo.RolPermisoes",
+                c => new
+                    {
+                        Rol_id = c.Int(nullable: false),
+                        Permiso_id = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.Rol_id, t.Permiso_id })
+                .ForeignKey("dbo.Rol", t => t.Rol_id, cascadeDelete: true)
+                .ForeignKey("dbo.Permiso", t => t.Permiso_id, cascadeDelete: true)
+                .Index(t => t.Rol_id)
+                .Index(t => t.Permiso_id);
+            
+            CreateTable(
+                "dbo.UsuarioRols",
+                c => new
+                    {
+                        Usuario_id = c.Int(nullable: false),
+                        Rol_id = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.Usuario_id, t.Rol_id })
+                .ForeignKey("dbo.Usuario", t => t.Usuario_id, cascadeDelete: true)
+                .ForeignKey("dbo.Rol", t => t.Rol_id, cascadeDelete: true)
+                .Index(t => t.Usuario_id)
+                .Index(t => t.Rol_id);
+            
         }
         
         public override void Down()
         {
+            DropForeignKey("dbo.UsuarioRols", "Rol_id", "dbo.Rol");
+            DropForeignKey("dbo.UsuarioRols", "Usuario_id", "dbo.Usuario");
+            DropForeignKey("dbo.RolPermisoes", "Permiso_id", "dbo.Permiso");
+            DropForeignKey("dbo.RolPermisoes", "Rol_id", "dbo.Rol");
             DropForeignKey("dbo.Cliente", "tipoDoc_id", "dbo.TipoDocumento");
             DropForeignKey("dbo.Socio", "idTipoDoc", "dbo.TipoDocumento");
             DropForeignKey("dbo.Asociacion", "idSocio", "dbo.Socio");
@@ -376,6 +437,7 @@ namespace Renacer.Nucleo.Migrations
             DropForeignKey("dbo.DetalleEvento", "idEspacio", "dbo.EspacioComun");
             DropForeignKey("dbo.DetalleEvento", "idAsistencia", "dbo.Asistencia");
             DropForeignKey("dbo.Evento", "idEspacio", "dbo.EspacioComun");
+            DropForeignKey("dbo.EspacioComun", "idTipoEspacio", "dbo.TipoEspacio");
             DropForeignKey("dbo.TagSocios", "Socio_id", "dbo.Socio");
             DropForeignKey("dbo.TagSocios", "Tag_id", "dbo.Tags");
             DropForeignKey("dbo.TagEventoes", "Evento_id", "dbo.Evento");
@@ -391,6 +453,10 @@ namespace Renacer.Nucleo.Migrations
             DropForeignKey("dbo.SocioAsistencias", "Socio_id", "dbo.Socio");
             DropForeignKey("dbo.Socio", "idDomicilio", "dbo.Domicilio");
             DropForeignKey("dbo.Socio", "idContacto", "dbo.Contacto");
+            DropIndex("dbo.UsuarioRols", new[] { "Rol_id" });
+            DropIndex("dbo.UsuarioRols", new[] { "Usuario_id" });
+            DropIndex("dbo.RolPermisoes", new[] { "Permiso_id" });
+            DropIndex("dbo.RolPermisoes", new[] { "Rol_id" });
             DropIndex("dbo.TagSocios", new[] { "Socio_id" });
             DropIndex("dbo.TagSocios", new[] { "Tag_id" });
             DropIndex("dbo.TagEventoes", new[] { "Evento_id" });
@@ -408,6 +474,7 @@ namespace Renacer.Nucleo.Migrations
             DropIndex("dbo.DetalleEvento", new[] { "idEncargado" });
             DropIndex("dbo.Encargado", new[] { "idDomicilio" });
             DropIndex("dbo.Encargado", new[] { "idTipoDoc" });
+            DropIndex("dbo.EspacioComun", new[] { "idTipoEspacio" });
             DropIndex("dbo.Evento", new[] { "idEncargado" });
             DropIndex("dbo.Evento", new[] { "idTipoEvento" });
             DropIndex("dbo.Evento", new[] { "idEspacio" });
@@ -420,15 +487,20 @@ namespace Renacer.Nucleo.Migrations
             DropIndex("dbo.Socio", new[] { "idContacto" });
             DropIndex("dbo.Socio", new[] { "idDomicilio" });
             DropIndex("dbo.Socio", new[] { "idTipoDoc" });
+            DropTable("dbo.UsuarioRols");
+            DropTable("dbo.RolPermisoes");
             DropTable("dbo.TagSocios");
             DropTable("dbo.TagEventoes");
             DropTable("dbo.TagEspacioComuns");
             DropTable("dbo.EncargadoTags");
             DropTable("dbo.SocioAsistencias");
             DropTable("dbo.Usuario");
+            DropTable("dbo.Rol");
+            DropTable("dbo.Permiso");
             DropTable("dbo.Cliente");
             DropTable("dbo.TipoEvento");
             DropTable("dbo.DetalleEvento");
+            DropTable("dbo.TipoEspacio");
             DropTable("dbo.TipoDocumento");
             DropTable("dbo.Encargado");
             DropTable("dbo.Tags");
