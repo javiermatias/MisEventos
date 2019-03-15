@@ -216,6 +216,7 @@
     <Compile Include="Controllers\ComunController.cs" />
     <Compile Include="Controllers\InscripcionController.cs" />
     <Compile Include="Controllers\ReporteController.cs" />
+    <Compile Include="Controllers\RolController.cs" />
     <Compile Include="Controllers\TipoEspacioController.cs" />
     <Compile Include="Filters\CustomAuthenticationFilter.cs" />
     <Compile Include="Controllers\DetalleEventoController.cs" />
