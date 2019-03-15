@@ -110,27 +110,17 @@
     <Compile Include="Entidades\Evento.cs" />
     <Compile Include="Entidades\Inscripcion.cs" />
     <Compile Include="Entidades\Pago.cs" />
+    <Compile Include="Entidades\Permiso.cs" />
+    <Compile Include="Entidades\Rol.cs" />
     <Compile Include="Entidades\Socio.cs" />
     <Compile Include="Entidades\Tag.cs" />
     <Compile Include="Entidades\TipoDocumento.cs" />
     <Compile Include="Entidades\TipoEspacio.cs" />
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Entidades\UsuarioException.cs" />
-    <Compile Include="Migrations\201711030349137_test.cs" />
-    <Compile Include="Migrations\201711030349137_test.Designer.cs">
-      <DependentUpon>201711030349137_test.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903040454406_version-Javi.cs" />
-    <Compile Include="Migrations\201903040454406_version-Javi.Designer.cs">
-      <DependentUpon>201903040454406_version-Javi.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903040500455_version-Javi1.cs" />
-    <Compile Include="Migrations\201903040500455_version-Javi1.Designer.cs">
-      <DependentUpon>201903040500455_version-Javi1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903112009324_agregadoTipoEspacio.cs" />
-    <Compile Include="Migrations\201903112009324_agregadoTipoEspacio.Designer.cs">
-      <DependentUpon>201903112009324_agregadoTipoEspacio.cs</DependentUpon>
+    <Compile Include="Migrations\201903151906104_initial.cs" />
+    <Compile Include="Migrations\201903151906104_initial.Designer.cs">
+      <DependentUpon>201903151906104_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
@@ -155,17 +145,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201711030349137_test.resx">
-      <DependentUpon>201711030349137_test.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903040454406_version-Javi.resx">
-      <DependentUpon>201903040454406_version-Javi.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903040500455_version-Javi1.resx">
-      <DependentUpon>201903040500455_version-Javi1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903112009324_agregadoTipoEspacio.resx">
-      <DependentUpon>201903112009324_agregadoTipoEspacio.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903151906104_initial.resx">
+      <DependentUpon>201903151906104_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

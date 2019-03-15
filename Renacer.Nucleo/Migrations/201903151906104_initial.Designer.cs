@@ -7,13 +7,13 @@ namespace Renacer.Nucleo.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-beta1-60406")]
-    public sealed partial class agregadoTipoEspacio : IMigrationMetadata
+    public sealed partial class initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(agregadoTipoEspacio));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201903112009324_agregadoTipoEspacio"; }
+            get { return "201903151906104_initial"; }
         }
         
         string IMigrationMetadata.Source
