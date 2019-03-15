@@ -5,7 +5,7 @@ export class Variables {
     if(window.location.href.toString().includes("localhost"))
       this.urlBase = "http://localhost:6913/api/";
     else
-       this.urlBase = window.location.origin + "/api/";
+         this.urlBase = window.location.origin + "/api/";
 
     //
 

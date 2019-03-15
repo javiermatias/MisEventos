@@ -19,6 +19,7 @@ import { AsistenciaServices } from './resources/asistencia.service';
 import { TagServices } from './resources/tag.service';
 import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
 import { PerfilServices } from './resources/perfil.service';
+import { TipoEspacioServices } from '../app/pages/tipoEspacio/tipoEspacio.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { PerfilServices } from './resources/perfil.service';
     }),
     routing,
     HttpModule,
-   NguiAutoCompleteModule
+    NguiAutoCompleteModule
   ],
   providers: [
     AppConfig,
@@ -50,7 +51,8 @@ import { PerfilServices } from './resources/perfil.service';
     ReporteServices,
     AsociacionServices,
     InscripcionServices,
-    PerfilServices],
+    PerfilServices,
+    TipoEspacioServices],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
