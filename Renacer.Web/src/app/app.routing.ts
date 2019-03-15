@@ -9,6 +9,8 @@ export const routes: Routes = [
   { path: 'register', loadChildren: 'app/pages/register/register.module#RegisterModule' },
 
 
+
+  // dejar siempre al último esta ruta. Se utiliza cuando no matchea ninguna de las rutas anteriores
   { path: '**', component: ErrorComponent }
 ];
 
