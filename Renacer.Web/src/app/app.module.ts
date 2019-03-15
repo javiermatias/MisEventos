@@ -18,7 +18,7 @@ import { TipoDocumentoServices } from './resources/tipo-documento.service';
 import { AsistenciaServices } from './resources/asistencia.service';
 import { TagServices } from './resources/tag.service';
 import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
-import { PerfilServices } from './resources/perfil.service';
+import { RolServices } from './resources/rol.service';
 import { TipoEspacioServices } from '../app/pages/tipoEspacio/tipoEspacio.service';
 
 @NgModule({
@@ -51,7 +51,7 @@ import { TipoEspacioServices } from '../app/pages/tipoEspacio/tipoEspacio.servic
     ReporteServices,
     AsociacionServices,
     InscripcionServices,
-    PerfilServices,
+    RolServices,
     TipoEspacioServices],
   bootstrap: [AppComponent]
 })

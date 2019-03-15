@@ -3,7 +3,7 @@ import { ResourceParams } from 'ngx-resource';
 import {BaseServices} from './base.service';
 import {Variables} from './variables';
 
-export class Perfil {
+export class Rol {
   constructor(
     public id?: number,
     public nombre?: string,
@@ -15,7 +15,7 @@ let variable = new Variables();
 
 @Injectable()
 @ResourceParams({
-  url:variable.urlBase + "perfil/"
+  url:variable.urlBase + "rol/"
 })
-export class PerfilServices extends BaseServices<Perfil> {
+export class RolServices extends BaseServices<Rol> {
 }

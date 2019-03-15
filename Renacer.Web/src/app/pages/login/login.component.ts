@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import { UserServices } from '../../resources/users.service';
-import { PerfilServices, Perfil } from '../../resources/perfil.service';
+import { RolServices, Rol } from '../../resources/rol.service';
 import {Sha256} from "sha256";
 @Component({
   selector: 'az-login',
@@ -22,11 +22,11 @@ export class LoginComponent {
 
   /**
    * Son los perfiles del usuario logueado
-   * @type {Perfil[]}
+   * @type {Rol[]}
    * @memberof LoginComponent
    */
-  public perfilesUsuario: Perfil[] = [];
-  constructor(router: Router, fb: FormBuilder, private _usersService: UserServices, private _perfilesService: PerfilServices) {
+  public perfilesUsuario: Rol[] = [];
+  constructor(router: Router, fb: FormBuilder, private _usersService: UserServices, private _perfilesService: RolServices) {
     // constructor(router:Router, fb:FormBuilder,private _usersService:UserServices) {
     this.router = router;
     this.form = fb.group({
@@ -53,7 +53,7 @@ export class LoginComponent {
           this._usersService.setCurrent(result["user"]);
 
           // TODO: conseguir el id del usuario para buscarlo en la tabla perfilesXUsuario
-          this._perfilesService.query({id: result["user"].id}, (res: Perfil[]) => {
+          this._perfilesService.query({id: result["user"].id}, (res: Rol[]) => {
               this.perfilesUsuario = res;
               if (this.perfilesUsuario.length > 1) {
                 this.router.navigate(['pages/dashboard']);
@@ -69,7 +69,7 @@ export class LoginComponent {
   }
 }
 
-function seleccionPerfil(seleccion: Perfil) {
+function seleccionPerfil(seleccion: Rol) {
     // TODO: aca se debe indicar al jwt que ingreso con el perfil seleccion
     
     this.router.navigate(['pages/dashboard']);
