@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import { UserServices } from '../../resources/users.service';
+import { PerfilServices, Perfil } from '../../resources/perfil.service';
 import {Sha256} from "sha256";
 @Component({
   selector: 'az-login',
@@ -18,7 +19,14 @@ export class LoginComponent {
   public error: string;
   public loading: boolean = false;
 
-  constructor(router: Router, fb: FormBuilder, private _usersService: UserServices) {
+
+  /**
+   * Son los perfiles del usuario logueado
+   * @type {Perfil[]}
+   * @memberof LoginComponent
+   */
+  public perfilesUsuario: Perfil[] = [];
+  constructor(router: Router, fb: FormBuilder, private _usersService: UserServices, private _perfilesService: PerfilServices) {
     // constructor(router:Router, fb:FormBuilder,private _usersService:UserServices) {
     this.router = router;
     this.form = fb.group({
@@ -44,13 +52,27 @@ export class LoginComponent {
 
           this._usersService.setCurrent(result["user"]);
 
-          this.router.navigate(['pages/dashboard']);
+          // TODO: conseguir el id del usuario para buscarlo en la tabla perfilesXUsuario
+          this._perfilesService.query({id: result["user"].id}, (res: Perfil[]) => {
+              this.perfilesUsuario = res;
+              if (this.perfilesUsuario.length > 1) {
+                this.router.navigate(['pages/dashboard']);
+              }
+          });
+
+
         } else {
           this.error = "Error en el usuario o contraseña";
         }
       });
     }
   }
+}
+
+function seleccionPerfil(seleccion: Perfil) {
+    // TODO: aca se debe indicar al jwt que ingreso con el perfil seleccion
+    
+    this.router.navigate(['pages/dashboard']);
 }
 
 export function emailValidator(control: FormControl): { [key: string]: any } {

@@ -18,6 +18,7 @@ import { TipoDocumentoServices } from './resources/tipo-documento.service';
 import { AsistenciaServices } from './resources/asistencia.service';
 import { TagServices } from './resources/tag.service';
 import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
+import { PerfilServices } from './resources/perfil.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
     AsistenciaServices,
     ReporteServices,
     AsociacionServices,
-    InscripcionServices],
+    InscripcionServices,
+    PerfilServices],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

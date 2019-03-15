@@ -14,6 +14,7 @@ interface IQueryInput {
   fechaDesde?: Date;
   fechaHasta?: Date;
   idEvento?:number;
+  id?: number;
 }
 
 export class BaseEntity{
