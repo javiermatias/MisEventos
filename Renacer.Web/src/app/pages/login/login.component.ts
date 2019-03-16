@@ -21,11 +21,11 @@ export class LoginComponent {
 
 
   /**
-   * Son los perfiles del usuario logueado
+   * Son los roles del usuario logueado
    * @type {Rol[]}
    * @memberof LoginComponent
    */
-  public perfilesUsuario: Rol[] = [];
+  public rolesUsuario: Rol[] = [];
   constructor(router: Router, fb: FormBuilder, private _usersService: UserServices, private _perfilesService: RolServices) {
     // constructor(router:Router, fb:FormBuilder,private _usersService:UserServices) {
     this.router = router;
@@ -52,28 +52,24 @@ export class LoginComponent {
 
           this._usersService.setCurrent(result["user"]);
 
-          // TODO: conseguir el id del usuario para buscarlo en la tabla perfilesXUsuario
-          this._perfilesService.query({id: result["user"].id}, (res: Rol[]) => {
-              this.perfilesUsuario = res;
-              if (this.perfilesUsuario.length > 1) {
-                this.router.navigate(['pages/dashboard']);
-              }
-          });
-
-
+          // this.rolesUsuario = (result as any).user.roles;
+          this.rolesUsuario = [new Rol(1, 'Administrador'), new Rol(2, 'Secretario')];
+          if (this.rolesUsuario && this.rolesUsuario.length <= 1) { // si es mayor a 1 ya lo maneja el html
+            this.router.navigate(['pages/dashboard']);
+          }
         } else {
           this.error = "Error en el usuario o contraseña";
         }
       });
     }
   }
+  seleccionRol (seleccion: Rol) {
+      // TODO: aca se debe indicar al jwt que ingreso con el perfil seleccion
+      
+      this.router.navigate(['pages/dashboard']);
+  }
 }
 
-function seleccionPerfil(seleccion: Rol) {
-    // TODO: aca se debe indicar al jwt que ingreso con el perfil seleccion
-    
-    this.router.navigate(['pages/dashboard']);
-}
 
 export function emailValidator(control: FormControl): { [key: string]: any } {
   var emailRegexp = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/;
