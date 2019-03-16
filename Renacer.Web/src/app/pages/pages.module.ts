@@ -71,7 +71,7 @@ import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
     TipoEspacioComponent,
     DomicilioComponent,
     ContactoComponent,
-    PerfilComponent,
+    RolComponent,
     EncargadosComponent
   ]
 })
