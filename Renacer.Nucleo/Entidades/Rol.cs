@@ -13,8 +13,8 @@ namespace Renacer.Nucleo.Entidades
     {
         public Rol()
         {
-          this.Usuarios = new HashSet<Usuario>();
-          this.Permisos = new HashSet<Permiso>();
+          this.usuarios = new HashSet<Usuario>();
+          this.permisos = new HashSet<Permiso>();
         }
 
 
@@ -26,8 +26,8 @@ namespace Renacer.Nucleo.Entidades
 
         public string descripcion { get; set; }
 
-        public virtual ICollection<Usuario> Usuarios { get; set; }
+        public virtual ICollection<Usuario> usuarios { get; set; }
 
-        public virtual ICollection<Permiso> Permisos { get; set; }
+        public virtual ICollection<Permiso> permisos { get; set; }
     }
 }
