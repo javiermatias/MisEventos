@@ -118,9 +118,9 @@
     <Compile Include="Entidades\TipoEspacio.cs" />
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Entidades\UsuarioException.cs" />
-    <Compile Include="Migrations\201903151906104_initial.cs" />
-    <Compile Include="Migrations\201903151906104_initial.Designer.cs">
-      <DependentUpon>201903151906104_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201903180207123_inicial.cs" />
+    <Compile Include="Migrations\201903180207123_inicial.Designer.cs">
+      <DependentUpon>201903180207123_inicial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
@@ -145,8 +145,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903151906104_initial.resx">
-      <DependentUpon>201903151906104_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903180207123_inicial.resx">
+      <DependentUpon>201903180207123_inicial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -69,7 +69,9 @@ namespace Renacer.Nucleo.Control
             {
                 using (var db = new ModeloRenacer())
                 {
-                    return db.usuario.
+                    //var list = db.usuario.Include("roles").ToList();
+
+                    return db.usuario.Include("roles").ToList().
                         Where(x => x.usuario.Equals(usuario) && x.clave.Equals(clave)).FirstOrDefault();
                 }
             }
