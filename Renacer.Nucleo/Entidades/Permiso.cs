@@ -13,7 +13,7 @@ namespace Renacer.Nucleo.Entidades
     {
         public Permiso()
         {
-            this.Roles = new HashSet<Rol>();
+            this.roles = new HashSet<Rol>();
             
         }
         [Key]
@@ -23,7 +23,7 @@ namespace Renacer.Nucleo.Entidades
 
         public string descripcion { get; set; }
 
-        public virtual ICollection<Rol> Roles { get; set; }
+        public virtual ICollection<Rol> roles { get; set; }
 
     }
 }

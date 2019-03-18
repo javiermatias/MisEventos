@@ -13,7 +13,7 @@ namespace Renacer.Nucleo
     {
         public Usuario()
         {
-            this.Roles = new HashSet<Rol>();
+            this.roles = new HashSet<Rol>();
         }
 
         [Key]
@@ -33,7 +33,7 @@ namespace Renacer.Nucleo
         public string idGoogle { get; set; }
         public string token { get; set; }
         
-        public virtual ICollection<Rol> Roles { get; set; }
+        public virtual ICollection<Rol> roles { get; set; }
 
         [NotMapped]
         public IIdentity Identity

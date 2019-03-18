@@ -33,11 +33,29 @@ namespace Renacer.Nucleo
         public virtual DbSet<TipoEvento> tipoEvento { get; set; }
         public virtual DbSet<DetalleEvento> detalleEvento { get; set; }
         public virtual DbSet<TipoEspacio> tipoEspacio { get; set; }
-        public virtual DbSet<Permiso> Permiso { get; set; }
-        public virtual DbSet<Rol> Rol { get; set; }
+        public virtual DbSet<Permiso> permiso { get; set; }
+        public virtual DbSet<Rol> rol { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+    //        modelBuilder.Entity<Usuario>()
+    //  .HasMany(c => c.roles);
+
+
+    //        modelBuilder.Entity<Rol>()
+    //.HasMany(c => c.usuarios);
+
+    //        modelBuilder.Entity<Usuario>().
+    //      HasMany(c => c.roles).
+    //      WithMany(p => p.usuarios).
+    //      Map(
+    //          m =>
+    //          {
+    //              m.MapLeftKey("CourseId");
+    //              m.MapRightKey("PersonId");
+    //              m.ToTable("PersonCourses");
+    //          });
+
             modelBuilder.Entity<Cliente>()
                 .Property(e => e.nombre)
                 .IsUnicode(false);
