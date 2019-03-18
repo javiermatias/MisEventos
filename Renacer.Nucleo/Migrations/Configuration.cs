@@ -19,9 +19,9 @@ namespace Renacer.Nucleo.Migrations
         protected override void Seed(ModeloRenacer context)
         {
             context.usuario.RemoveRange(context.usuario.ToList());
-            context.usuario.AddOrUpdate(new Usuario() { nombre = "Administrador", usuario = "admin", rol = "Administrador", imagen = "src/assets/img/profile/users/augusto.png", clave = "123456", email = "admin@admin.com" });
-            context.usuario.AddOrUpdate(new Usuario() { nombre = "Socio", usuario = "socio", rol = "Socio", imagen = "src/assets/img/profile/users/augusto.png", clave = "123456", email = "socio@socio.com" });
-            context.usuario.AddOrUpdate(new Usuario() { nombre = "Profe", usuario = "encargado", rol = "Encargado", imagen = "src/assets/img/profile/users/augusto.png", clave = "123456", email = "encargado@encargado.com" });
+            context.usuario.AddOrUpdate(new Usuario() { nombre = "Administrador", usuario = "admin", rol = "Administrador", imagen = "assets/img/profile/users/augusto.png", clave = "123456", email = "admin@admin.com" });
+            context.usuario.AddOrUpdate(new Usuario() { nombre = "Socio", usuario = "socio", rol = "Socio", imagen = "assets/img/profile/users/augusto.png", clave = "123456", email = "socio@socio.com" });
+            context.usuario.AddOrUpdate(new Usuario() { nombre = "Profe", usuario = "encargado", rol = "Encargado", imagen = "assets/img/profile/users/augusto.png", clave = "123456", email = "encargado@encargado.com" });
 
             context.tipoDocumento.AddOrUpdate(new TipoDocumento() { nombre = "Pasaporte" });
 
