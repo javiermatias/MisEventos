@@ -23,4 +23,8 @@ export class RolServices extends BaseServices<Rol> {
     localStorage.setItem('rol', JSON.stringify(rol));
     // sessionStorage["token"] = rol["token"];
   }
+
+  getCurrent = function(): Rol{
+    return JSON.parse(localStorage.getItem('rol'));
+  }
 }
