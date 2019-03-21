@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { AppState } from '../../../app.state';
 import { SidebarService } from '../sidebar/sidebar.service';
 import { UserServices } from '../../../resources/users.service';
+import { RolServices } from '../../../resources/rol.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,7 +16,9 @@ import { Router } from '@angular/router';
 export class NavbarComponent {
     public isMenuCollapsed:boolean = false;
     public usuario = {}
-    constructor(private router:Router,private _state:AppState, private _sidebarService:SidebarService,private _usersService:UserServices) {
+    public rol = {}
+    constructor(private router:Router,private _state:AppState, private _sidebarService:SidebarService,private _usersService:UserServices,
+        private _rolService: RolServices) {
         this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
             this.isMenuCollapsed = isCollapsed;
         });
