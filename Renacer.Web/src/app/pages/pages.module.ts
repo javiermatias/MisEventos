@@ -31,7 +31,6 @@ import { EncargadosComponent } from './encargados/encargados.component';
 import { RolComponent } from './rol/rol.component';
 import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
 
-
 @NgModule({
   imports: [
     CommonModule,

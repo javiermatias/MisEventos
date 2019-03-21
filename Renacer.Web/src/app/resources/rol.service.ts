@@ -20,7 +20,7 @@ let variable = new Variables();
 export class RolServices extends BaseServices<Rol> {
 
   setCurrent = function(rol:Rol){
-    localStorage.rol = JSON.stringify(rol) ;
-    sessionStorage["token"] = rol["token"];
+    localStorage.setItem('rol', JSON.stringify(rol));
+    // sessionStorage["token"] = rol["token"];
   }
 }

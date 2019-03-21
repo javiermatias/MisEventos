@@ -3,9 +3,9 @@ import { ModuleWithProviders } from '@angular/core';
 import { ErrorComponent } from './pages/error/error.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'sesion', pathMatch: 'full' },
   { path: 'pages', loadChildren: 'app/pages/pages.module#PagesModule' },
-  { path: 'login', loadChildren: 'app/pages/login/login.module#LoginModule' },
+  { path: 'sesion', loadChildren: 'app/pages/sesion/sesion.module#SesionModule' },
   { path: 'register', loadChildren: 'app/pages/register/register.module#RegisterModule' },
 
 

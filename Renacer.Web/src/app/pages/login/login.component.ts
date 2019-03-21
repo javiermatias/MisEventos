@@ -1,15 +1,15 @@
+// TODO: Editar esto porque es el login original
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import { UserServices } from '../../resources/users.service';
 import { RolServices, Rol } from '../../resources/rol.service';
-import {Sha256} from "sha256";
 @Component({
   selector: 'az-login',
   encapsulation: ViewEncapsulation.None,
   providers: [],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['../sesion/sesion.component.scss']
 })
 export class LoginComponent {
   public router: Router;
@@ -23,7 +23,7 @@ export class LoginComponent {
   /**
    * Son los roles del usuario logueado
    * @type {Rol[]}
-   * @memberof LoginComponent
+   * @memberof LoginPComponent
    */
   public rolesUsuario: Rol[] = [];
   constructor(router: Router, fb: FormBuilder, private _usersService: UserServices, private _perfilesService: RolServices) {
@@ -52,21 +52,18 @@ export class LoginComponent {
 
           this._usersService.setCurrent(result["user"]);
 
-          // this.rolesUsuario = (result as any).user.roles;
-          this.rolesUsuario = [new Rol(1, 'Administrador'), new Rol(2, 'Secretario')];
-          if (this.rolesUsuario && this.rolesUsuario.length <= 1) { // si es mayor a 1 ya lo maneja el html
+          this.rolesUsuario = result["user"].roles;
+          if (this.rolesUsuario && this.rolesUsuario.length === 1) { // si es mayor a 1 ya lo maneja el html
+            this._perfilesService.setCurrent(this.rolesUsuario[0]);
             this.router.navigate(['pages/dashboard']);
+          } else {
+            this.router.navigate(['sesion/seleccionarRol']);
           }
         } else {
           this.error = "Error en el usuario o contraseña";
         }
       });
     }
-  }
-  seleccionRol (seleccion: Rol) {
-      // TODO: aca se debe indicar al jwt que ingreso con el perfil seleccion
-      
-      this.router.navigate(['pages/dashboard']);
   }
 }
 
