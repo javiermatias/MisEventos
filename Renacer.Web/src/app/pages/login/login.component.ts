@@ -26,7 +26,7 @@ export class LoginComponent {
    * @memberof LoginPComponent
    */
   public rolesUsuario: Rol[] = [];
-  constructor(router: Router, fb: FormBuilder, private _usersService: UserServices, private _perfilesService: RolServices) {
+  constructor(router: Router, fb: FormBuilder, private _usersService: UserServices, private _rolesService: RolServices) {
     // constructor(router:Router, fb:FormBuilder,private _usersService:UserServices) {
     this.router = router;
     this.form = fb.group({
@@ -54,7 +54,7 @@ export class LoginComponent {
 
           this.rolesUsuario = result["user"].roles;
           if (this.rolesUsuario && this.rolesUsuario.length === 1) { // si es mayor a 1 ya lo maneja el html
-            this._perfilesService.setCurrent(this.rolesUsuario[0]);
+            this._rolesService.setCurrent(this.rolesUsuario[0]);
             this.router.navigate(['pages/dashboard']);
           } else {
             this.router.navigate(['sesion/seleccionarRol']);
