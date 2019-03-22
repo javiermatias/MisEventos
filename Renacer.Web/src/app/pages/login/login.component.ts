@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import { UserServices } from '../../resources/users.service';
 import { RolServices, Rol } from '../../resources/rol.service';
+import * as shajs from 'sha.js';
 @Component({
   selector: 'az-login',
   encapsulation: ViewEncapsulation.None,
@@ -40,9 +41,10 @@ export class LoginComponent {
 
   public onSubmit(values: Object): void {
     if (this.form.valid) {
+      debugger;
       let credenciales = {
         "usuario": this.username.value,
-        "clave": this.password.value
+        "clave": shajs('sha256').update(this.password.value).digest('hex')
       }
       this.loading = true;
       this._usersService.login(credenciales, (result) => {
