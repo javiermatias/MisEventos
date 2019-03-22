@@ -41,7 +41,6 @@ export class LoginComponent {
 
   public onSubmit(values: Object): void {
     if (this.form.valid) {
-      debugger;
       let credenciales = {
         "usuario": this.username.value,
         "clave": shajs('sha256').update(this.password.value).digest('hex')
