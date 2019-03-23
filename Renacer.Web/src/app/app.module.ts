@@ -20,6 +20,7 @@ import { TagServices } from './resources/tag.service';
 import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
 import { RolServices } from './resources/rol.service';
 import { TipoEspacioServices } from '../app/pages/tipoEspacio/tipoEspacio.service';
+import { AccessGuard } from './resources/accessGuard.service';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { TipoEspacioServices } from '../app/pages/tipoEspacio/tipoEspacio.servic
   ],
   providers: [
     AppConfig,
+    AccessGuard,
     UserServices,
     SocioServices,
     EspacioServices,

@@ -21,7 +21,7 @@ export class RolServices extends BaseServices<Rol> {
 
   setCurrent = function(rol:Rol){
     localStorage.setItem('rol', JSON.stringify(rol));
-    // sessionStorage["token"] = rol["token"];
+    // sessionStorage["token"] = rol["token"]; // TODO: cuando haga esto, generar token cuando no sea nulo el rol
   }
 
   getCurrent = function(): Rol{
