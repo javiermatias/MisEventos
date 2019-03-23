@@ -36,5 +36,10 @@ export class NavbarComponent {
         this.isMenuCollapsed = !this.isMenuCollapsed;
         this._state.notifyDataChanged('menu.isCollapsed', this.isMenuCollapsed);
     }
+    public cerrarSesion() {
+        this._usersService.setCurrent(null);
+        this._rolService.setCurrent(null);
+        this.router.navigate(['/sesion']);
+    }
 
 }
