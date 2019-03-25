@@ -89,6 +89,7 @@
     <Compile Include="Control\ControlAsistencia.cs" />
     <Compile Include="Control\ControlReporte.cs" />
     <Compile Include="Control\ControlDetalleEvento.cs" />
+    <Compile Include="Control\ControlRol.cs" />
     <Compile Include="Control\ControlTipoEspacio.cs" />
     <Compile Include="Control\ControlTipoEvento.cs" />
     <Compile Include="Control\ControlEvento.cs" />
@@ -136,7 +137,9 @@
     <None Include="Configuracion\local-02.config" />
     <None Include="Configuracion\local-01.config" />
     <None Include="Manuales\gitFlow.docx" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Renacer.Helper\Renacer.Helper.vbproj">

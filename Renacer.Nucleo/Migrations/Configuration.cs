@@ -2,6 +2,7 @@ namespace Renacer.Nucleo.Migrations
 {
     using Entidades;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -19,9 +20,35 @@ namespace Renacer.Nucleo.Migrations
         protected override void Seed(ModeloRenacer context)
         {
             context.usuario.RemoveRange(context.usuario.ToList());
-            context.usuario.AddOrUpdate(new Usuario() { nombre = "Administrador", usuario = "admin", rol = "Administrador", imagen = "assets/img/profile/users/augusto.png", clave = "123456", email = "admin@admin.com" });
-            context.usuario.AddOrUpdate(new Usuario() { nombre = "Socio", usuario = "socio", rol = "Socio", imagen = "assets/img/profile/users/augusto.png", clave = "123456", email = "socio@socio.com" });
-            context.usuario.AddOrUpdate(new Usuario() { nombre = "Profe", usuario = "encargado", rol = "Encargado", imagen = "assets/img/profile/users/augusto.png", clave = "123456", email = "encargado@encargado.com" });
+            // TODO: hacer carga de permisos
+
+            // Carga de roles
+            Rol admin = new Rol() { nombre = "Administrador del sistema", descripcion = "superusuario" };
+            Rol secre = new Rol() { nombre = "Secretario", descripcion = "anterior administrador de sistema" };
+            Rol encargado = new Rol() { nombre = "Encargado de Evento", descripcion = "profesor" };
+            Rol socioRol = new Rol() { nombre = "Socio" };
+            List<Rol> rolesAdmin = new List<Rol>();
+            rolesAdmin.Add(admin);
+            rolesAdmin.Add(secre);
+            rolesAdmin.Add(encargado);
+            List<Rol> rolesSecre = new List<Rol>();
+            rolesSecre.Add(secre);
+            rolesSecre.Add(socioRol);
+            List<Rol> rolesEncar = new List<Rol>();
+            rolesSecre.Add(encargado);
+            List<Rol> rolesSocio = new List<Rol>();
+            rolesSocio.Add(socioRol);
+
+            context.rol.AddOrUpdate(admin);
+            context.rol.AddOrUpdate(secre);
+            context.rol.AddOrUpdate(encargado);
+            context.rol.AddOrUpdate(socioRol);
+            
+            // Carga de usuarios
+            context.usuario.AddOrUpdate(new Usuario() { nombre = "Administrador", usuario = "admin", rol = "Administrador", imagen = "assets/img/profile/users/augusto.png", clave = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92", email = "admin@admin.com", roles = rolesAdmin });
+            context.usuario.AddOrUpdate(new Usuario() { nombre = "Secretario", usuario = "secre", rol = "Secre", imagen = "assets/img/profile/users/augusto.png", clave = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92", email = "secretario@secretario.com", roles = rolesSecre });
+            context.usuario.AddOrUpdate(new Usuario() { nombre = "Socio", usuario = "socio", rol = "Socio", imagen = "assets/img/profile/users/augusto.png", clave = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92", email = "socio@socio.com", roles = rolesSocio });
+            context.usuario.AddOrUpdate(new Usuario() { nombre = "Profe", usuario = "encargado", rol = "Encargado", imagen = "assets/img/profile/users/augusto.png", clave = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92", email = "encargado@encargado.com", roles = rolesEncar });
 
             context.tipoDocumento.AddOrUpdate(new TipoDocumento() { nombre = "Pasaporte" });
 

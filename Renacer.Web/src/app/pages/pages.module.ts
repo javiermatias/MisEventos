@@ -28,8 +28,8 @@ import { TipoEspacioComponent } from './tipoEspacio/tipoEspacio.component';
 import { DomicilioComponent } from './domicilio/domicilio.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { EncargadosComponent } from './encargados/encargados.component';
+import { RolComponent } from './rol/rol.component';
 import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
-
 
 @NgModule({
   imports: [
@@ -59,7 +59,8 @@ import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
     TipoEspacioComponent,
     DomicilioComponent,
     ContactoComponent,
-    EncargadosComponent
+    EncargadosComponent,
+    RolComponent
   ]
   ,exports: [
     BreadcrumbComponent,
@@ -69,6 +70,7 @@ import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
     TipoEspacioComponent,
     DomicilioComponent,
     ContactoComponent,
+    RolComponent,
     EncargadosComponent
   ]
 })

@@ -46,6 +46,8 @@ export class UserServices extends BaseServices<Usuario> {
   setCurrent = function(usuario:Usuario){
     this.usuario = usuario;
     localStorage.usuario = JSON.stringify(usuario) ;
-    sessionStorage["token"] = usuario["token"];
+    if (usuario) { // cuando cierro sesion mando un usuario nulo
+      sessionStorage["token"] = usuario["token"];
+    }
   }
 }

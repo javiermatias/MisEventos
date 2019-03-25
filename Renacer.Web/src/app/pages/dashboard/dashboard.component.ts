@@ -3,6 +3,8 @@ import { AppConfig } from "../../app.config";
 import { DashboardService } from './dashboard.service';
 import {ReporteServices} from '../../resources/reporte.service';
 import { UserServices } from '../../resources/users.service';
+import { RolServices } from '../../resources/rol.service';
+import { Rol } from '../../resources/rol.service';
 
 @Component({
   selector: 'az-dashboard',
@@ -24,10 +26,11 @@ export class DashboardComponent  {
     public cantEspacios = -1;
     public crecimientoSocios =[];
     public user : any;
-
+    private rol: Rol;
     constructor(private _appConfig:AppConfig
         , private _reporteServ:ReporteServices
-        ,private _userServices:UserServices){
+        ,private _userServices:UserServices,
+        private _rolService: RolServices){
 
         this.config = this._appConfig.config;
         this.configFn = this._appConfig;
@@ -35,10 +38,11 @@ export class DashboardComponent  {
     
     ngOnInit()
     {
+      this.rol = this._rolService.getCurrent();
       this.user =  this._userServices.getCurrent();
-      if(this.user.rol == "Administrador") this.loadAdminData();
-      if(this.user.rol == "Encargado") this.loadEncargadoData();
-      if(this.user.rol == "Socio") this.loadSocioData();
+      if(this.rol.nombre == "Administrador") this.loadAdminData(); // TODO: actualizar esto. Debe verse por permisos y no por rol
+      if(this.rol.nombre == "Encargado") this.loadEncargadoData();
+      if(this.rol.nombre == "Socio") this.loadSocioData();
     }
 
     public loadAdminData():void {

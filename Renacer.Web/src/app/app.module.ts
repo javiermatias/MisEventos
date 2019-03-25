@@ -18,7 +18,9 @@ import { TipoDocumentoServices } from './resources/tipo-documento.service';
 import { AsistenciaServices } from './resources/asistencia.service';
 import { TagServices } from './resources/tag.service';
 import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
+import { RolServices } from './resources/rol.service';
 import { TipoEspacioServices } from '../app/pages/tipoEspacio/tipoEspacio.service';
+import { AccessGuard } from './resources/accessGuard.service';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { TipoEspacioServices } from '../app/pages/tipoEspacio/tipoEspacio.servic
   ],
   providers: [
     AppConfig,
+    AccessGuard,
     UserServices,
     SocioServices,
     EspacioServices,
@@ -50,6 +53,7 @@ import { TipoEspacioServices } from '../app/pages/tipoEspacio/tipoEspacio.servic
     ReporteServices,
     AsociacionServices,
     InscripcionServices,
+    RolServices,
     TipoEspacioServices],
   bootstrap: [AppComponent]
 })

@@ -1,14 +1,16 @@
+// TODO: Editar esto porque es el login original
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import { UserServices } from '../../resources/users.service';
-import {Sha256} from "sha256";
+import { RolServices, Rol } from '../../resources/rol.service';
+import * as shajs from 'sha.js';
 @Component({
   selector: 'az-login',
   encapsulation: ViewEncapsulation.None,
   providers: [],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['../sesion/sesion.component.scss']
 })
 export class LoginComponent {
   public router: Router;
@@ -18,7 +20,14 @@ export class LoginComponent {
   public error: string;
   public loading: boolean = false;
 
-  constructor(router: Router, fb: FormBuilder, private _usersService: UserServices) {
+
+  /**
+   * Son los roles del usuario logueado
+   * @type {Rol[]}
+   * @memberof LoginPComponent
+   */
+  public rolesUsuario: Rol[] = [];
+  constructor(router: Router, fb: FormBuilder, private _usersService: UserServices, private _rolesService: RolServices) {
     // constructor(router:Router, fb:FormBuilder,private _usersService:UserServices) {
     this.router = router;
     this.form = fb.group({
@@ -34,7 +43,7 @@ export class LoginComponent {
     if (this.form.valid) {
       let credenciales = {
         "usuario": this.username.value,
-        "clave": this.password.value
+        "clave": shajs('sha256').update(this.password.value).digest('hex')
       }
       this.loading = true;
       this._usersService.login(credenciales, (result) => {
@@ -44,7 +53,13 @@ export class LoginComponent {
 
           this._usersService.setCurrent(result["user"]);
 
-          this.router.navigate(['pages/dashboard']);
+          this.rolesUsuario = result["user"].roles;
+          if (this.rolesUsuario && this.rolesUsuario.length === 1) { // si es mayor a 1 ya lo maneja el html
+            this._rolesService.setCurrent(this.rolesUsuario[0]);
+            this.router.navigate(['pages/dashboard']);
+          } else {
+            this.router.navigate(['sesion/seleccionarRol']);
+          }
         } else {
           this.error = "Error en el usuario o contraseña";
         }
@@ -52,6 +67,7 @@ export class LoginComponent {
     }
   }
 }
+
 
 export function emailValidator(control: FormControl): { [key: string]: any } {
   var emailRegexp = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/;
