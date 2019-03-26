@@ -3,6 +3,7 @@ import { Router, ActivatedRoute , NavigationEnd } from '@angular/router';
 import { MenuService } from './menu.service';
 import { AppState } from "../../../app.state";
 import { UserServices } from '../../../resources/users.service';
+import { RolServices } from '../../../resources/rol.service';
 
 
 @Component({
@@ -14,6 +15,12 @@ import { UserServices } from '../../../resources/users.service';
 })
 
 export class MenuComponent implements OnInit {
+    private roles = {
+        administrador : 'Administrador del sistema',
+        secretario: 'Secretario',
+        encargadoEvento: 'Encargado de Evento',
+        socio: 'Socio'    
+    };
     public menuItems:Array<any>;
     public menuHeight:number;
     public isMenuCollapsed:boolean = false;
@@ -21,16 +28,21 @@ export class MenuComponent implements OnInit {
     public showHoverElem:boolean;
     public hoverElemHeight:number;
     public hoverElemTop:number;
-
+    /**
+     * guarda el rol con el que se logueó el usuario
+     * @memberof MenuComponent
+     */
+    public rol;
     constructor(private _elementRef:ElementRef,
                 private _router:Router,
                 private _activatedRoute:ActivatedRoute,
                 private _menuService:MenuService,
                 private _state:AppState,
-                private _userServices:UserServices) {
+                private _userServices:UserServices,
+                private _rolesService: RolServices) {
 
       let user =  this._userServices.getCurrent();
-        this.menuItems = _menuService.getMenuItems(user.rol);
+        // this.menuItems = _menuService.getMenuItems(user.rol);
         this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
             this.isMenuCollapsed = isCollapsed;
         });
@@ -48,10 +60,12 @@ export class MenuComponent implements OnInit {
     }
 
     public ngOnInit():void {
+        this.rol = this._rolesService.getCurrent();
         if (this._shouldMenuCollapse()) {
             this.menuCollapse();
         }
         this.updateSidebarHeight();
+        this.cargarItems();
     }
 
     @HostListener('window:resize')
@@ -124,5 +138,135 @@ export class MenuComponent implements OnInit {
         return false;
     }
 
-
+    cargarItems() {
+        this.menuItems = [
+        {
+            title: 'Inicio',
+            routerLink: 'dashboard',
+            icon: 'fa-home',
+            selected: false,
+            expanded: false,
+            order: 0,
+            rolesVisible: [this.roles.secretario]
+          },
+          {
+            title: 'Calendario',
+            icon: 'fa-calendar',
+            routerLink: 'evento/calendario/',
+            selected: false,
+            expanded: false,
+            order: 800,
+            rolesVisible: [this.roles.secretario]
+          },
+          {
+            title: 'Eventos',
+            icon: 'fa-pencil-square-o',
+            routerLink: 'evento/lista',
+            selected: false,
+            expanded: false,
+            order: 800,
+            rolesVisible: [this.roles.secretario, this.roles.encargadoEvento]
+          },
+          {
+            title: 'Encargados de evento',
+            routerLink: 'encargados/',
+            icon: 'fa-users',
+            selected: false,
+            expanded: false,
+            order: 600,
+            rolesVisible: [this.roles.secretario]
+          },
+          {
+            title: 'Socios',
+            routerLink: 'socios/',
+            icon: 'fa-users',
+            selected: false,
+            expanded: false,
+            order: 500,
+            rolesVisible: [this.roles.secretario, this.roles.encargadoEvento]
+          },
+          {
+            title: 'Espacios',
+            icon: 'fa-map-marker',
+            selected: false,
+            expanded: false,
+            order: 800,
+            routerLink: 'espacios/',
+            rolesVisible: [this.roles.secretario]
+          },
+          {
+            title: 'Asistencia',
+            icon: 'fa-pencil-square-o',
+            selected: false,
+            expanded: false,
+            order: 800,
+            target: '_blank',
+            routerLink: 'asistencia/',
+            rolesVisible: [this.roles.encargadoEvento]
+        }
+        ,{
+            title: 'Reportes',
+            routerLink: 'reportes',
+            icon: 'fa-file',
+            selected: false,
+            expanded: false,
+            order: 300,
+            rolesVisible: [this.roles.secretario],
+            subMenu: [
+            {
+                title: 'Eventos',
+                routerLink: 'reportes/eventos'
+            },
+            {
+                title: 'Socios',
+                routerLink: 'reportes/socios'
+            },
+            // {
+            //   title: 'Encargados',
+            //   routerLink: 'reportes/encargados'
+            // },
+            {
+                title: 'Nube de Etiquetas',
+                routerLink: 'reportes/tags'
+            }
+            ]
+        },
+        {
+            title: 'Mis Datos',
+            selected: false,
+            routerLink: 'perfil',
+            icon: 'fa-user',
+            expanded: false,
+            order: 800,
+            rolesVisible: [this.roles.socio]
+          },
+          {
+            title: 'Mis Inscripciones',
+            selected: false,
+            routerLink: 'inscripciones',
+            icon: 'fa-pencil',
+            expanded: false,
+            order: 800,
+            rolesVisible: [this.roles.socio]
+          },
+          {
+            title: 'Mis Intereses',
+            routerLink: 'intereses',
+            icon: 'fa-users',
+            selected: false,
+            expanded: false,
+            order: 500,
+            rolesVisible: [this.roles.socio]
+          },
+          {
+            title: 'Mis Pagos',
+            routerLink: 'pagos',
+            icon: 'fa-money',
+            selected: false,
+            expanded: false,
+            order: 500,
+            rolesVisible: [this.roles.socio]
+          }
+        ]
+    }
 }
