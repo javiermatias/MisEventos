@@ -5,15 +5,14 @@ import { FormsModule }   from '@angular/forms';
 import { DirectivesModule } from '../../theme/directives/directives.module';
 import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
 import { DataTableModule } from "angular2-datatable";
-import { ToastrModule } from 'ngx-toastr';
 import { PipesModule } from '../../theme/pipes/pipes.module';
 import { SharedModule } from '../shared/shared.module';
 import { ProfileComponent } from './profile/profile.component';
-import { ListaComponent } from './lista/lista.component';
+import { UsuarioComponent } from './usuarios.component';
 
 export const routes = [
-  { path: '', redirectTo: 'lista', pathMatch: 'full'},
-  { path: 'lista', component: ListaComponent, data: { breadcrumb: 'Lista' } },
+  // { path: '', redirectTo: 'lista', pathMatch: 'full'},
+  { path: '', component: UsuarioComponent, data: { breadcrumb: 'Usuarios' } },
   { path: 'perfil', component: ProfileComponent, data: { breadcrumb: 'Perfil' } },
 ];
 
@@ -28,6 +27,6 @@ export const routes = [
     NguiAutoCompleteModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ProfileComponent, ListaComponent]
+  declarations: [ProfileComponent, UsuarioComponent]
 })
 export class UsuariosModule { }
