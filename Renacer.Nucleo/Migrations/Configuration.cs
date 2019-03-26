@@ -19,14 +19,27 @@ namespace Renacer.Nucleo.Migrations
 
         protected override void Seed(ModeloRenacer context)
         {
-            context.usuario.RemoveRange(context.usuario.ToList());
+            //context.Database.ExecuteSqlCommand("TRUNCATE TABLE Rol");
+            //context.Database.ExecuteSqlCommand("TRUNCATE TABLE usuarios");
+            //context.Database.ExecuteSqlCommand("TRUNCATE TABLE usuariorols");
+            //context.Database.ExecuteSqlCommand("TRUNCATE TABLE persona");
+            //context.Database.ExecuteSqlCommand("TRUNCATE TABLE TipoDocumento");
+           // context.usuario.RemoveRange(context.usuario.ToList());
             // TODO: hacer carga de permisos
 
             // Carga de roles
-            Rol admin = new Rol() { nombre = "Administrador del sistema", descripcion = "superusuario" };
-            Rol secre = new Rol() { nombre = "Secretario", descripcion = "anterior administrador de sistema" };
-            Rol encargado = new Rol() { nombre = "Encargado de Evento", descripcion = "profesor" };
-            Rol socioRol = new Rol() { nombre = "Socio" };
+            Rol admin = new Rol() { nombre = "Administrador", descripcion = "Administrador del sistema" };
+            Rol secre = new Rol() { nombre = "Secretario", descripcion = "Encargado de Recepción" };
+            Rol encargado = new Rol() { nombre = "Encargado", descripcion = "Encargado de evento" };
+            Rol socioRol = new Rol() { nombre = "Socio" , descripcion = "Interesado en asistir a un evento" };
+
+            TipoDocumento _tipoDoc = new TipoDocumento() { nombre = "dni" };
+
+            Persona _personaAdmin = new Persona() { nombre = "Javier", apellido = "Jimenez", tipoDoc = _tipoDoc };
+            Persona _personaSecretaria = new Persona() { nombre = "Luciana", apellido = "Quinteros", tipoDoc = _tipoDoc };
+            Persona _personaEncargado = new Persona() { nombre = "Lucas", apellido = "Gonzalez", tipoDoc = _tipoDoc };
+            Persona _personaSocia = new Persona() { nombre = "Augusto", apellido = "Galán",tipoDoc= _tipoDoc };
+
             List<Rol> rolesAdmin = new List<Rol>();
             rolesAdmin.Add(admin);
             rolesAdmin.Add(secre);
@@ -45,10 +58,10 @@ namespace Renacer.Nucleo.Migrations
             context.rol.AddOrUpdate(socioRol);
             
             // Carga de usuarios
-            context.usuario.AddOrUpdate(new Usuario() { nombre = "Administrador", usuario = "admin", rol = "Administrador", imagen = "assets/img/profile/users/augusto.png", clave = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92", email = "admin@admin.com", roles = rolesAdmin });
-            context.usuario.AddOrUpdate(new Usuario() { nombre = "Secretario", usuario = "secre", rol = "Secre", imagen = "assets/img/profile/users/augusto.png", clave = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92", email = "secretario@secretario.com", roles = rolesSecre });
-            context.usuario.AddOrUpdate(new Usuario() { nombre = "Socio", usuario = "socio", rol = "Socio", imagen = "assets/img/profile/users/augusto.png", clave = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92", email = "socio@socio.com", roles = rolesSocio });
-            context.usuario.AddOrUpdate(new Usuario() { nombre = "Profe", usuario = "encargado", rol = "Encargado", imagen = "assets/img/profile/users/augusto.png", clave = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92", email = "encargado@encargado.com", roles = rolesEncar });
+            context.usuario.AddOrUpdate(new Usuario() { nombre = "Administrador", usuario = "admin", rol = "Administrador", imagen = "assets/img/profile/users/augusto.png", clave = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92", email = "admin@admin.com", roles = rolesAdmin, persona = _personaAdmin });
+            context.usuario.AddOrUpdate(new Usuario() { nombre = "Secretario", usuario = "secre", rol = "Secre", imagen = "assets/img/profile/users/augusto.png", clave = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92", email = "secretario@secretario.com", roles = rolesSecre,  persona = _personaSecretaria });
+            context.usuario.AddOrUpdate(new Usuario() { nombre = "Socio", usuario = "socio", rol = "Socio", imagen = "assets/img/profile/users/augusto.png", clave = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92", email = "socio@socio.com", roles = rolesSocio,  persona = _personaSocia});
+            context.usuario.AddOrUpdate(new Usuario() { nombre = "Profe", usuario = "encargado", rol = "Encargado", imagen = "assets/img/profile/users/augusto.png", clave = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92", email = "encargado@encargado.com", roles = rolesEncar, persona = _personaEncargado});
 
             context.tipoDocumento.AddOrUpdate(new TipoDocumento() { nombre = "Pasaporte" });
 
