@@ -26,6 +26,7 @@ namespace Renacer.Nucleo.Entidades
 
         public string descripcion { get; set; }
 
+
         public virtual ICollection<Usuario> usuarios { get; set; }
 
         public virtual ICollection<Permiso> permisos { get; set; }

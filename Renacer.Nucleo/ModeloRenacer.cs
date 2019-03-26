@@ -36,6 +36,7 @@ namespace Renacer.Nucleo
         public virtual DbSet<Permiso> permiso { get; set; }
         public virtual DbSet<Rol> rol { get; set; }
 
+        public virtual DbSet<Persona> persona { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
     //        modelBuilder.Entity<Usuario>()

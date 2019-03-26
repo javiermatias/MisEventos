@@ -91,7 +91,7 @@ namespace Renacer.Nucleo.Control
             {
                 using (var db = new ModeloRenacer())
                 {
-                    return db.rol.ToList();
+                    return db.rol.Include("permisos").ToList();
                 }
             }
             catch (Exception ex)

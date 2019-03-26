@@ -13,7 +13,7 @@ namespace Renacer.Nucleo.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201903180207123_inicial"; }
+            get { return "201903260001404_inicial"; }
         }
         
         string IMigrationMetadata.Source
