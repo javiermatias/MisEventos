@@ -13,6 +13,7 @@ namespace Renacer.Nucleo
                 base("ModeloRenacer")
         {
             this.Configuration.ProxyCreationEnabled = false;
+            this.Configuration.LazyLoadingEnabled = false;
         }
 
         public virtual DbSet<Cliente> cliente { get; set; }
