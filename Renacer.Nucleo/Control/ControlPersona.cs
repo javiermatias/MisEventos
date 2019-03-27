@@ -114,7 +114,7 @@ namespace Renacer.Nucleo.Control
 
                     //Persona personaAux = db.persona.Include("listaTags").Single(a => a.id == persona.id);
                     //ControlTag.devolverInstancia().actualizarListaDeTags(db, listaTags, personaAux.listaTags);
-                    db.SaveChanges();
+                    //db.SaveChanges();
                     int id = _persona.id;
                     return id;
                 }
