@@ -34,7 +34,7 @@ import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
 @NgModule({
   imports: [
     CommonModule,
-    PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG),
+    PerfectScrollbarModule.forChild(),
     ToastrModule.forRoot(),
     DirectivesModule,
     PipesModule,

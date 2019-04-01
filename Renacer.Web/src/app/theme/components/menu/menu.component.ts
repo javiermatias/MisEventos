@@ -204,6 +204,16 @@ export class MenuComponent implements OnInit {
             target: '_blank',
             routerLink: 'asistencia/',
             rolesVisible: [this.roles.encargadoEvento]
+        },
+        {
+            title: 'Usuarios',
+            icon: 'fa-users',
+            selected: false,
+            expanded: false,
+            order: 800,
+            target: '_blank',
+            routerLink: 'usuario/',
+            rolesVisible: [this.roles.administrador, this.roles.secretario]
         }
         ,{
             title: 'Reportes',
@@ -269,6 +279,17 @@ export class MenuComponent implements OnInit {
             rolesVisible: [this.roles.socio]
         }
         ];
+
+        
+        
+        
+        
+        
+        
+        
+        
+        // Hasta acá llegan las opciones que agregamos nosotros. A partir de acá, son las que vienen con el template comprado
+
 
         const componentes_ui= [{
             title: 'Dashboard',

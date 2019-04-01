@@ -9,6 +9,7 @@ import { PipesModule } from '../../theme/pipes/pipes.module';
 import { SharedModule } from '../shared/shared.module';
 import { ProfileComponent } from './profile/profile.component';
 import { UsuarioComponent } from './usuarios.component';
+// import { PagesModule } from '../pages.module'; // TODO: descomentar javi
 
 export const routes = [
   // { path: '', redirectTo: 'lista', pathMatch: 'full'},
@@ -25,6 +26,7 @@ export const routes = [
     FormsModule,
     DataTableModule,
     NguiAutoCompleteModule,
+    // PagesModule, // TODO: descomentar javi
     RouterModule.forChild(routes)
   ],
   declarations: [ProfileComponent, UsuarioComponent]
