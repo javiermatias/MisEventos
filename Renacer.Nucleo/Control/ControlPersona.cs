@@ -108,7 +108,7 @@ namespace Renacer.Nucleo.Control
                         roles.Add(rol);
                         usuario.persona = _persona;
                         usuario.nombre = _persona.nombre;
-                        usuario.usuario = _persona.nombre.Substring(0,2) + _persona.apellido;
+                        usuario.usuario = _persona.nombre.Substring(0,2) + _persona.apellido + _persona.nroDocumento.Substring(_persona.nroDocumento.Length - 4, 3);
                         usuario.clave = _persona.nroDocumento;
                         usuario.rol = _persona.rol;
                         usuario.fechaCreacion = DateTime.Now;
@@ -161,17 +161,17 @@ namespace Renacer.Nucleo.Control
 
             if (persona == null)
             {
-                errores.Add("No se informo la persona");
+                errores.Add("No se informó la persona");
             }
 
             if (persona != null && string.IsNullOrEmpty(persona.nombre))
             {
-                errores.Add("No se ingreso el nombre de la persona");
+                errores.Add("No se ingresó el nombre de la persona");
             }
 
             if (persona != null && string.IsNullOrEmpty(persona.apellido))
             {
-                errores.Add("No se ingreso el apellido de la persona");
+                errores.Add("No se ingresó el apellido de la persona");
             }
 
             return errores;

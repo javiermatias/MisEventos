@@ -35,10 +35,10 @@ namespace Renacer.Nucleo.Migrations
 
             TipoDocumento _tipoDoc = new TipoDocumento() { nombre = "dni" };
 
-            Persona _personaAdmin = new Persona() { nombre = "Javier", apellido = "Jimenez", tipoDoc = _tipoDoc };
-            Persona _personaSecretaria = new Persona() { nombre = "Luciana", apellido = "Quinteros", tipoDoc = _tipoDoc };
-            Persona _personaEncargado = new Persona() { nombre = "Lucas", apellido = "Gonzalez", tipoDoc = _tipoDoc };
-            Persona _personaSocia = new Persona() { nombre = "Augusto", apellido = "Galán", tipoDoc = _tipoDoc };
+            Persona _personaAdmin = new Persona() { nombre = "Javier", apellido = "Jimenez", tipoDoc = _tipoDoc, nroDocumento = "32" };
+            Persona _personaSecretaria = new Persona() { nombre = "Luciana", apellido = "Quinteros", tipoDoc = _tipoDoc, nroDocumento = "33" };
+            Persona _personaEncargado = new Persona() { nombre = "Lucas", apellido = "Gonzalez", tipoDoc = _tipoDoc, nroDocumento = "34" };
+            Persona _personaSocia = new Persona() { nombre = "Augusto", apellido = "Galán", tipoDoc = _tipoDoc, nroDocumento = "35" };
 
             List<Rol> rolesAdmin = new List<Rol>();
             rolesAdmin.Add(admin);
@@ -58,10 +58,10 @@ namespace Renacer.Nucleo.Migrations
             context.rol.AddOrUpdate(socioRol);
 
             // Carga de usuarios
-            context.usuario.AddOrUpdate(new Usuario() { nombre = "Administrador", usuario = "admin", rol = "Administrador", imagen = "assets/img/profile/users/augusto.png", clave = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92", email = "admin@admin.com", roles = rolesAdmin, persona = _personaAdmin });
-            context.usuario.AddOrUpdate(new Usuario() { nombre = "Secretario", usuario = "secre", rol = "Secre", imagen = "assets/img/profile/users/augusto.png", clave = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92", email = "secretario@secretario.com", roles = rolesSecre, persona = _personaSecretaria });
-            context.usuario.AddOrUpdate(new Usuario() { nombre = "Socio", usuario = "socio", rol = "Socio", imagen = "assets/img/profile/users/augusto.png", clave = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92", email = "socio@socio.com", roles = rolesSocio, persona = _personaSocia });
-            context.usuario.AddOrUpdate(new Usuario() { nombre = "Profe", usuario = "encargado", rol = "Encargado", imagen = "assets/img/profile/users/augusto.png", clave = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92", email = "encargado@encargado.com", roles = rolesEncar, persona = _personaEncargado });
+            context.usuario.AddOrUpdate(new Usuario() { nombre = "Administrador", usuario = "admin", rol = "Administrador", imagen = "assets/img/profile/users/augusto.png", clave = "123456", email = "admin@admin.com", roles = rolesAdmin, persona = _personaAdmin }); // 123456 codificado queda: 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92
+            context.usuario.AddOrUpdate(new Usuario() { nombre = "Secretario", usuario = "secre", rol = "Secre", imagen = "assets/img/profile/users/augusto.png", clave = "123456", email = "secretario@secretario.com", roles = rolesSecre, persona = _personaSecretaria });
+            context.usuario.AddOrUpdate(new Usuario() { nombre = "Socio", usuario = "socio", rol = "Socio", imagen = "assets/img/profile/users/augusto.png", clave = "123456", email = "socio@socio.com", roles = rolesSocio, persona = _personaSocia });
+            context.usuario.AddOrUpdate(new Usuario() { nombre = "Profe", usuario = "encargado", rol = "Encargado", imagen = "assets/img/profile/users/augusto.png", clave = "123456", email = "encargado@encargado.com", roles = rolesEncar, persona = _personaEncargado });
 
             context.tipoDocumento.AddOrUpdate(new TipoDocumento() { nombre = "Pasaporte" });
 
