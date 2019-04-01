@@ -34,7 +34,7 @@ namespace Renacer.Nucleo
         public virtual DbSet<TipoEvento> tipoEvento { get; set; }
         public virtual DbSet<DetalleEvento> detalleEvento { get; set; }
         public virtual DbSet<TipoEspacio> tipoEspacio { get; set; }
-        public virtual DbSet<Permiso> permiso { get; set; }
+       
         public virtual DbSet<Rol> rol { get; set; }
 
         public virtual DbSet<Persona> persona { get; set; }

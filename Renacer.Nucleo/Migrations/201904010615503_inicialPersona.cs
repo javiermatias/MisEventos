@@ -3,7 +3,7 @@ namespace Renacer.Nucleo.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class inicial : DbMigration
+    public partial class inicialPersona : DbMigration
     {
         public override void Up()
         {
@@ -251,6 +251,7 @@ namespace Renacer.Nucleo.Migrations
                         fechaNacimiento = c.DateTime(precision: 0),
                         fechaBaja = c.DateTime(precision: 0),
                         fechaModificacion = c.DateTime(precision: 0),
+                        rol = c.String(unicode: false),
                     })
                 .PrimaryKey(t => t.id)
                 .ForeignKey("dbo.Contacto", t => t.idContacto)
@@ -320,16 +321,6 @@ namespace Renacer.Nucleo.Migrations
                 .PrimaryKey(t => t.id)
                 .ForeignKey("dbo.TipoDocumento", t => t.tipoDoc_id, cascadeDelete: true)
                 .Index(t => t.tipoDoc_id);
-            
-            CreateTable(
-                "dbo.Permiso",
-                c => new
-                    {
-                        id = c.Int(nullable: false, identity: true),
-                        nombre = c.String(unicode: false),
-                        descripcion = c.String(unicode: false),
-                    })
-                .PrimaryKey(t => t.id);
             
             CreateTable(
                 "dbo.Rol",
@@ -445,19 +436,6 @@ namespace Renacer.Nucleo.Migrations
                 .Index(t => t.Socio_id);
             
             CreateTable(
-                "dbo.RolPermisoes",
-                c => new
-                    {
-                        Rol_id = c.Int(nullable: false),
-                        Permiso_id = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => new { t.Rol_id, t.Permiso_id })
-                .ForeignKey("dbo.Rol", t => t.Rol_id, cascadeDelete: true)
-                .ForeignKey("dbo.Permiso", t => t.Permiso_id, cascadeDelete: true)
-                .Index(t => t.Rol_id)
-                .Index(t => t.Permiso_id);
-            
-            CreateTable(
                 "dbo.UsuarioRols",
                 c => new
                     {
@@ -477,8 +455,6 @@ namespace Renacer.Nucleo.Migrations
             DropForeignKey("dbo.UsuarioRols", "Rol_id", "dbo.Rol");
             DropForeignKey("dbo.UsuarioRols", "Usuario_id", "dbo.Usuario");
             DropForeignKey("dbo.Usuario", "idPersona", "dbo.Persona");
-            DropForeignKey("dbo.RolPermisoes", "Permiso_id", "dbo.Permiso");
-            DropForeignKey("dbo.RolPermisoes", "Rol_id", "dbo.Rol");
             DropForeignKey("dbo.Cliente", "tipoDoc_id", "dbo.TipoDocumento");
             DropForeignKey("dbo.Socio", "idTipoDoc", "dbo.TipoDocumento");
             DropForeignKey("dbo.Asociacion", "idSocio", "dbo.Socio");
@@ -519,8 +495,6 @@ namespace Renacer.Nucleo.Migrations
             DropForeignKey("dbo.Socio", "idContacto", "dbo.Contacto");
             DropIndex("dbo.UsuarioRols", new[] { "Rol_id" });
             DropIndex("dbo.UsuarioRols", new[] { "Usuario_id" });
-            DropIndex("dbo.RolPermisoes", new[] { "Permiso_id" });
-            DropIndex("dbo.RolPermisoes", new[] { "Rol_id" });
             DropIndex("dbo.TagSocios", new[] { "Socio_id" });
             DropIndex("dbo.TagSocios", new[] { "Tag_id" });
             DropIndex("dbo.PersonaTags", new[] { "Tag_id" });
@@ -561,7 +535,6 @@ namespace Renacer.Nucleo.Migrations
             DropIndex("dbo.Socio", new[] { "idTipoDoc" });
             DropIndex("dbo.Asistencia", new[] { "Persona_id" });
             DropTable("dbo.UsuarioRols");
-            DropTable("dbo.RolPermisoes");
             DropTable("dbo.TagSocios");
             DropTable("dbo.PersonaTags");
             DropTable("dbo.TagEventoes");
@@ -570,7 +543,6 @@ namespace Renacer.Nucleo.Migrations
             DropTable("dbo.SocioAsistencias");
             DropTable("dbo.Usuario");
             DropTable("dbo.Rol");
-            DropTable("dbo.Permiso");
             DropTable("dbo.Cliente");
             DropTable("dbo.TipoEvento");
             DropTable("dbo.DetalleEvento");

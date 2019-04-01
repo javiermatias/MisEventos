@@ -52,6 +52,7 @@ namespace Renacer.Nucleo.Entidades
      
         public virtual ICollection<Tag> listaTags { get; set; }
 
+        public string rol { get; set; }
 
 
 

@@ -77,10 +77,15 @@ namespace Renacer.Nucleo.Control
             return null;
         }
 
+        //Graba la persona si el id = 0, le genera un user con las dos primeras letras del nombre
+        //+ su apellido, en persona se le agrega el rol del que crea esa persona
+
         public int grabar(Persona _persona)
         {
             try
             {
+                Usuario usuario = new Usuario();
+                List<Rol> roles = new List<Rol>();
                 var errores = this.validar(_persona);
                 if (errores.Count > 0)
                 {
@@ -89,13 +94,31 @@ namespace Renacer.Nucleo.Control
 
                 using (var db = new ModeloRenacer())
                 {
-
-                    _persona.idTipoDoc = _persona.tipoDoc.id;
+                    TipoDocumento tp = ControlTipoDocumento.devolverInstacia().devolverTodos().Where(r => r.id == (int)_persona.idTipoDoc).FirstOrDefault();
+                   
                     // Tag[] listaTags = new Tag[_persona.listaTags.Count];
                     //_persona.listaTags.CopyTo(listaTags,0);
                     //_persona.listaTags.RemoveAll(tag => true);
 
                     db.persona.AddOrUpdate(_persona);
+
+                    if (_persona.id==0)
+                    {
+                        Rol rol = ControlRol.devolverInstacia().devolverTodos().Where(r => r.nombre== _persona.rol).FirstOrDefault();
+                        roles.Add(rol);
+                        usuario.persona = _persona;
+                        usuario.nombre = _persona.nombre;
+                        usuario.usuario = _persona.nombre.Substring(0,2) + _persona.apellido;
+                        usuario.clave = _persona.nroDocumento;
+                        usuario.rol = _persona.rol;
+                        usuario.fechaCreacion = DateTime.Now;
+                        usuario.email = _persona.email;
+                        usuario.roles = roles;
+                        ControlUsuario.devolverInstancia().grabar(usuario);
+                    
+                    }
+
+
                     if (_persona.domicilio != null)
                     {
                         if (_persona.domicilio.id == 0) db.Entry(_persona.domicilio).State = System.Data.Entity.EntityState.Added;
@@ -109,7 +132,7 @@ namespace Renacer.Nucleo.Control
 
                    
 
-                    db.Entry(_persona.tipoDoc).State = System.Data.Entity.EntityState.Unchanged;
+                   // db.Entry(_persona.tipoDoc).State = System.Data.Entity.EntityState.Unchanged;
                     db.SaveChanges();
 
                     //Persona personaAux = db.persona.Include("listaTags").Single(a => a.id == persona.id);
