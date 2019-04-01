@@ -43,8 +43,9 @@ export class LoginComponent {
     if (this.form.valid) {
       let credenciales = {
         "usuario": this.username.value,
-        "clave": shajs('sha256').update(this.password.value).digest('hex')
-      }
+        "clave": this.password.value
+      } // TODO: volver a codificar una vez resuelto la codificacion al crear usuario
+      // "clave": shajs('sha256').update(this.password.value).digest('hex')
       this.loading = true;
       this._usersService.login(credenciales, (result) => {
         this.loading = false;
