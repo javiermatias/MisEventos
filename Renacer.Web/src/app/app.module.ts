@@ -13,14 +13,15 @@ import { SocioServices } from './resources/socio.service';
 import { EspacioServices } from './resources/espacio.service';
 import { EncargadoEventoServices } from './resources/encargado.service';
 import { ReporteServices } from './resources/reporte.service';
-import { EventoServices,TipoEventoServices,DetalleEventoServices,AsociacionServices,InscripcionServices } from './resources/evento.service';
+import { EventoServices, TipoEventoServices, DetalleEventoServices, AsociacionServices, InscripcionServices } from './resources/evento.service';
 import { TipoDocumentoServices } from './resources/tipo-documento.service';
 import { AsistenciaServices } from './resources/asistencia.service';
 import { TagServices } from './resources/tag.service';
-import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
+import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import { RolServices } from './resources/rol.service';
 import { TipoEspacioServices } from '../app/pages/tipoEspacio/tipoEspacio.service';
 import { AccessGuard } from './resources/accessGuard.service';
+
 
 @NgModule({
   declarations: [

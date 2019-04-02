@@ -1,42 +1,45 @@
 <div class="row">
-        <div class="col-xl-12 col-lg-12 col-12 bottom-30">
-            <div class="row">
-                <div class="col">
-                    <div widget class="card">
-                        <div class="card-header">
-                            <span class="text-uppercase">Usuarios</span>
-                        </div>
-                        <div class="card-block widget-body">
-                            <div class="row">
-                                    <div class="col-xl-9 col-lg-9 col-12">
-                                        <form (ngSubmit)="onSubmit(usuarioForm)" #usuarioForm="ngForm">
+    <div class="col-xl-12 col-lg-12 col-12 bottom-30">
+        <div class="row">
+            <div class="col">
+                <div widget class="card">
+                    <div class="card-header">
+                        <span class="text-uppercase">Usuarios</span>
+                    </div>
+                    <div class="card-block widget-body">
+                        <div class="row">
+                            <div class="col-xl-9 col-lg-9 col-12">
+                                <form (ngSubmit)="onSubmit(usuarioForm)" #usuarioForm="ngForm">
+                                    <div class="row">
+                                        <div class="col col-lg-12">
                                             <div class="row">
-                                                    <div class="col col-lg-12">
-                                                        <div class="row">
-                                                            <az-tipo-documento (seleccionTipoDoc)="seleccionTipoDoc($event)"></az-tipo-documento>
-                                                            <div class="col">
-                                                                <div class="form-group">
-                                                                    <label for="nroDocParam1">Nro de documento</label>
-                                                                    <input class="form-control" id="nroDocParam1" #nroDocParam1="ngModel" name="nroDocParam1" [(ngModel)]="nroDocumento">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col">
-                                                                <button (click)="buscarUsuario();" type="button" class="btn btn-default">Buscar</button>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-6">
-                                                                <label for="nombre">Nombre</label>
-                                                                <input type="text" class="form-control" id="nombre" readonly=true #nombre="ngModel" name="nombre" [(ngModel)]="_usuario.persona.nombre">
-                                                            </div>
-                                                            <div class="col-6">
-                                                                <label for="apellido">Apellido</label>
-                                                                <input type="text" class="form-control" id="apellido" readonly=true required #apellido="ngModel" name="apellido" [(ngModel)]="_usuario.persona.apellido">
-                                                            </div>
-                                                        </div>
+                                                <az-tipo-documento (seleccionTipoDoc)="seleccionTipoDoc($event)"></az-tipo-documento>
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label for="nroDocParam1">Nro de documento</label>
+                                                        <input class="form-control" id="nroDocParam1" #nroDocParam1="ngModel"
+                                                            name="nroDocParam1" [(ngModel)]="nroDocumento">
                                                     </div>
-<!-- TODO: agregar la parte de contacto cuando tenga seleccionado el rol socio. Si viene cargado al encontrar el socio, no permitir la carga -->
-                                                    <!-- <div class="col col-lg-12" *ngIf="_usuario.id === 0"> 
+                                                </div>
+                                                <div class="col">
+                                                    <button (click)="buscarUsuario();" type="button" class="btn btn-default">Buscar</button>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label for="nombre">Nombre</label>
+                                                    <input type="text" class="form-control" id="nombre" readonly=true
+                                                        #nombre="ngModel" name="nombre" [(ngModel)]="_usuario.persona.nombre">
+                                                </div>
+                                                <div class="col-6">
+                                                    <label for="apellido">Apellido</label>
+                                                    <input type="text" class="form-control" id="apellido" readonly=true
+                                                        required #apellido="ngModel" name="apellido" [(ngModel)]="_usuario.persona.apellido">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- TODO: agregar la parte de contacto cuando tenga seleccionado el rol socio. Si viene cargado al encontrar el socio, no permitir la carga -->
+                                        <!-- <div class="col col-lg-12" *ngIf="_usuario.id === 0"> 
                                                         <div class="row">
                                                             <div class="col col-lg-12">
                                                                 <az-contacto [_contacto]="_usuario.contacto"></az-contacto>
@@ -44,73 +47,66 @@
                                                         </div>
                                                     </div> -->
 
-                                                        <div class="col col-lg-12">
-                                                            <div class="row">
-                                                                <div class="col">
-                                                                    <table *ngIf="_usuario.id !== 0 && roles?.length" class="table table-hover table-sm">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th>Rol</th>
-                                                                                <th></th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                            <tr *ngFor="let item of roles; let i = index">
-                                                                                <td>{{item.rol.nombre}}</td>
-                                                                                <td>
-                                                                                    <label class="custom-control custom-checkbox">
-                                                                                        <input *ngIf="item.asignado" type="checkbox" class="custom-control-input" checked ([ngModel])="item.asignado" name="asignado{i}" (change)="cambiaAsignacion(false, i)">
-                                                                                        <input *ngIf="!item.asignado" type="checkbox" class="custom-control-input" ([ngModel])="item.asignado" name="asignado{i}" (change)="cambiaAsignacion(true, i)">
-                                                                                        <span class="custom-control-indicator"></span>
-                                                                                    </label>
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    
-                                                        <div class="col col-lg-12">
-                                                            <div class="row">
-                                                                <div class="col">
-                                                                    <button type="submit" class="btn btn-main" [disabled]="!usuarioForm.form.valid">Guardar</button>
-                                                                    <button (click)="limpiarForm();" type="button" style="margin-left: 30px;" class="btn btn-default">Cancelar</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    
-                                                    </div>
+                                        <div class="col col-lg-12">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <table *ngIf="_usuario.id !== 0 && roles?.length" class="table table-hover table-sm">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Rol</th>
+                                                                <th></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let item of roles; let i = index">
+                                                                <td>{{item.rol.nombre}}</td>
+                                                                <td>
+                                                                    <label class="custom-control custom-checkbox">
+                                                                        <input *ngIf="item.asignado" type="checkbox"
+                                                                            class="custom-control-input" checked
+                                                                            ([ngModel])="item.asignado" name="asignado{i}"
+                                                                            (change)="cambiaAsignacion(false, i, item.rol.nombre)">
+                                                                        <input *ngIf="!item.asignado" type="checkbox"
+                                                                            class="custom-control-input" ([ngModel])="item.asignado"
+                                                                            name="asignado{i}" (change)="cambiaAsignacion(true, i,item.rol.nombre)">
+                                                                        <span class="custom-control-indicator"></span>
+                                                                    </label>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col col-lg-12" *ngIf="mostrarContacto">
+                                                <az-contacto [_contacto]="contacto"></az-contacto>
+                                            </div>
+                                        </div>
 
+                                        <div class="col col-lg-12">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <button type="submit" class="btn btn-main" [disabled]="!usuarioForm.form.valid">Guardar</button>
+                                                    <button (click)="limpiarForm();" type="button" style="margin-left: 30px;"
+                                                        class="btn btn-default">Cancelar</button>
+                                                </div>
+                                            </div>
+                                        </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                            <!-- </div> -->
-
-
-
-                                        </form>
                                     </div>
+
+
+                                    <!-- </div> -->
+
+
+
+                                </form>
                             </div>
-                            
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
+    </div>

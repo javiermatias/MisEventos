@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -28,8 +28,10 @@ import { TipoEspacioComponent } from './tipoEspacio/tipoEspacio.component';
 import { DomicilioComponent } from './domicilio/domicilio.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { EncargadosComponent } from './encargados/encargados.component';
+import { ContactoModelComponent } from './contacto-model/contacto-model.component';
 import { RolComponent } from './rol/rol.component';
-import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
+import { NguiAutoCompleteModule } from '@ngui/auto-complete';
+import { UsuarioComponent } from './usuarios/usuarios.component';
 
 @NgModule({
   imports: [
@@ -60,9 +62,11 @@ import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
     DomicilioComponent,
     ContactoComponent,
     EncargadosComponent,
-    RolComponent
+    RolComponent,
+    ContactoModelComponent,
+    UsuarioComponent
   ]
-  ,exports: [
+  , exports: [
     BreadcrumbComponent,
     BackTopComponent,
     SociosComponent,
@@ -71,7 +75,9 @@ import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
     DomicilioComponent,
     ContactoComponent,
     RolComponent,
-    EncargadosComponent
+    EncargadosComponent,
+    ContactoModelComponent
   ]
 })
+
 export class PagesModule { }
