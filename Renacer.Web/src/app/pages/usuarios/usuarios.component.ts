@@ -16,6 +16,7 @@ export class UsuarioComponent implements OnInit {
   public tipoDoc: any;
   public roles: { rol: Rol, asignado: boolean }[];
   public mostrarContacto: boolean = false;
+  public contactoReadOnly = false;
   /**
    * Arreglo de booleanos que indica si el usuario encontrado tiene el rol del arreglo roles (mismo índice)
    * @type {boolean[]}
@@ -34,8 +35,6 @@ export class UsuarioComponent implements OnInit {
     });
   }
   onSubmit(myForm: FormGroup) {
-    // let newSocio = Object.assign({}, this._socio);
-    // this._socio = new Socio(0,"","","");
     this._usuario.roles = [];
     this.roles.forEach((item: { rol: Rol, asignado: boolean }) => {
       if (item.asignado) {
@@ -53,6 +52,11 @@ export class UsuarioComponent implements OnInit {
         const rolesUsuario: Rol[] = this._usuario.roles;
         for (let i = 0; i < this.roles.length; i++) {
           this.roles[i].asignado = rolesUsuario.some((rolUser: Rol) => { return this.roles[i].rol.id === rolUser.id; });
+
+          if (this.roles[i].rol.nombre === 'Socio' && this.roles[i].asignado) { // si ya tenia asignado el rol de socio
+            this.contactoReadOnly = true;
+            this.contacto = this._usuario.persona.contacto;
+          }
         }
       })
     }
@@ -65,34 +69,37 @@ export class UsuarioComponent implements OnInit {
     return this.roles[i].asignado;
   }
   limpiarForm() {
+    this.nroDocumento = null;
+    this.mostrarContacto = false;
+    this.contacto = new Contacto();
     this._usuario = {
       id: 0,
 
       persona: {
         nombre: '',
         apellido: '', // TODO: hay que traer el contacto, ver como viene, como cargarlo. Tengo que hacer el if para ver si selecciono el rol asi muestro el formulario. Si venia, traerlo cargado pero grisado y tenerlo en cache
-        contacto: new Contacto()
+        contacto: this.contacto
       },
     }
   }
   saveItem(item) {
+    if (this.tieneAsignadoSocio()) {
+      item.persona.contacto = this.contacto;  
+    }
     this._userService.update(item, (resp: any) => {
       this.limpiarForm();
       this.mensajeServ.success('se han guardado los cambios!', 'Aviso!');
     }
     );
   }
-  cambiaAsignacion(activa: boolean, index: number, rol: string) {
+  private tieneAsignadoSocio(): boolean {
+    let indiceSocio = this.roles.findIndex(item => { return item.rol.nombre === 'Socio';});
+    return this.roles[indiceSocio].asignado;
+  }
+  cambiaAsignacion(activa: boolean, index: number) {
     this.roles[index].asignado = activa;
-    console.log(rol);
-    if (rol == "Socio") {
-      if (activa == true) {
-        this.mostrarContacto = true;
-        console.log(this.mostrarContacto.valueOf());
-      } else {
-        this.mostrarContacto = false;
-        console.log(this.mostrarContacto.valueOf());
-      }
+    if (this.roles[index].rol.nombre === "Socio") {
+      this.mostrarContacto = activa;
     }
   }
 }
