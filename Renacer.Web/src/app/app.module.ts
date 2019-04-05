@@ -9,6 +9,7 @@ import { AppConfig } from './app.config';
 import { AppComponent } from './app.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { UserServices } from './resources/users.service';
+import { PersonaServices } from './resources/persona.service';
 import { SocioServices } from './resources/socio.service';
 import { EspacioServices } from './resources/espacio.service';
 import { EncargadoEventoServices } from './resources/encargado.service';
@@ -42,6 +43,7 @@ import { AccessGuard } from './resources/accessGuard.service';
     AppConfig,
     AccessGuard,
     UserServices,
+    PersonaServices,
     SocioServices,
     EspacioServices,
     TagServices,
