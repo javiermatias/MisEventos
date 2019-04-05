@@ -22,7 +22,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col mt-4">
-                                                    <button (click)="buscarUsuario();" type="button" class="btn btn-default">Buscar</button>
+                                                    <button (click)="buscarUsuario();" type="button" class="btn btn-default" [disabled]="!tipoDoc || !nroDocumento">Buscar</button>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -46,14 +46,6 @@
                                         </div>
 
                                     </div>
-                                    <!-- TODO: agregar la parte de contacto cuando tenga seleccionado el rol socio. Si viene cargado al encontrar el socio, no permitir la carga -->
-                                    <!-- <div class="col col-lg-12" *ngIf="_usuario.id === 0"> 
-                                                    <div class="row">
-                                                        <div class="col col-lg-12">
-                                                            <az-contacto [_contacto]="_usuario.contacto"></az-contacto>
-                                                        </div>
-                                                    </div>
-                                                </div> -->
                                     <div class="row">
                                         <div class="col col-lg-12">
                                             <div class="row">
@@ -62,23 +54,30 @@
                                                         <thead>
                                                             <tr>
                                                                 <th>Rol</th>
-                                                                <th></th>
+                                                                <th>Asignado</th>
+                                                                <th>Acción</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let item of roles; let i = index">
                                                                 <td>{{item.rol.nombre}}</td>
                                                                 <td>
-                                                                    <label class="custom-control custom-checkbox">
-                                                                        <input *ngIf="item.asignado" type="checkbox"
-                                                                            class="custom-control-input" checked
-                                                                            ([ngModel])="item.asignado" name="asignado{i}"
-                                                                            (change)="cambiaAsignacion(false, i)">
-                                                                        <input *ngIf="!item.asignado" type="checkbox"
-                                                                            class="custom-control-input" ([ngModel])="item.asignado"
-                                                                            name="asignado{i}" (change)="cambiaAsignacion(true, i)">
-                                                                        <span class="custom-control-indicator"></span>
-                                                                    </label>
+                                                                    <span *ngIf="item.asignado">
+                                                                        <i class="fa fa-check"></i>
+                                                                    </span>
+                                                                    <span *ngIf="!item.asignado">
+                                                                        <i class="fa fa-remove"></i>
+                                                                    </span>
+                                                                </td>
+                                                                <td>
+                                                                    <button *ngIf="item.asignado" type="button" class="btn btn-sm btn-danger" title="Dar de baja"
+                                                                    (click)="cambiaAsignacion(false, i)">
+                                                                        <i class="fa fa-minus"></i>
+                                                                    </button>
+                                                                    <button *ngIf="!item.asignado" type="button" class="btn btn-sm btn-success" title="Dar de alta"
+                                                                    (click)="cambiaAsignacion(true, i)">
+                                                                        <i class="fa fa-plus"></i>
+                                                                    </button>
                                                                 </td>
                                                             </tr>
                                                         </tbody>

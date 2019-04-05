@@ -5,7 +5,8 @@ import { Contacto } from "../../resources/socio.service";
 import { TipoDocumento } from '../../resources/tipo-documento.service';
 import { RolServices, Rol } from '../../resources/rol.service';
 import { ToastrService } from 'ngx-toastr';
-
+import { PersonaServices } from '../../resources/persona.service';
+// import { RolesEnum } from '../utils/enumerados'; // TODO: hay que actualizar a typescript 2.4 minimo para usar esto
 @Component({
   selector: 'az-usuarios',
   templateUrl: './usuarios.component.html'
@@ -17,14 +18,15 @@ export class UsuarioComponent implements OnInit {
   public roles: { rol: Rol, asignado: boolean }[];
   public mostrarContacto: boolean = false;
   public contactoReadOnly = false;
+
   /**
    * Arreglo de booleanos que indica si el usuario encontrado tiene el rol del arreglo roles (mismo índice)
    * @type {boolean[]}
    * @memberof UsuarioComponent
    */
   public rolesAsignado: boolean[];
-  contacto: Contacto;
-  constructor(private _userService: UserServices, private _rolService: RolServices, private mensajeServ: ToastrService) { }
+  contacto: any;
+  constructor(private _userService: UserServices, private _rolService: RolServices, private mensajeServ: ToastrService, private _personaService: PersonaServices) { }
   ngOnInit() {
     this.contacto = new Contacto();
     this.limpiarForm();
@@ -46,6 +48,7 @@ export class UsuarioComponent implements OnInit {
   }
   buscarUsuario() {
     if (this.tipoDoc && this.nroDocumento) {
+      this.limpiarForm(false);
       this._userService.getUsuario({ tipoDni: this.tipoDoc.id, dni: Number(this.nroDocumento) }, (user: any) => {
         this._usuario = user;
         this.rolesAsignado = [];
@@ -53,9 +56,11 @@ export class UsuarioComponent implements OnInit {
         for (let i = 0; i < this.roles.length; i++) {
           this.roles[i].asignado = rolesUsuario.some((rolUser: Rol) => { return this.roles[i].rol.id === rolUser.id; });
 
-          if (this.roles[i].rol.nombre === 'Socio' && this.roles[i].asignado) { // si ya tenia asignado el rol de socio
+          if (this.roles[i].rol.nombre === "Socio" && this.roles[i].asignado) { // si ya tenia asignado el rol de socio
+            this.mostrarContacto = true;
             this.contactoReadOnly = true;
-            this.contacto = this._usuario.persona.contacto;
+            this.contacto = { id: 1, nombre: 'Contacto hardcodeado', apellido: 'apellido contacto', telefono: '4616963', relacion: 'Hijo'}
+            // this.contacto = this._usuario.persona.contacto; // TODO: descomentar esto para quitar el hardcodeo del renglon anterior (borrar linea anterior cuando esta funcione)
           }
         }
       })
@@ -68,16 +73,18 @@ export class UsuarioComponent implements OnInit {
   tieneRol(i: number) {
     return this.roles[i].asignado;
   }
-  limpiarForm() {
-    this.nroDocumento = null;
-    this.mostrarContacto = false;
+  limpiarForm(limpiarBuscador: boolean = true) {
+    if (limpiarBuscador) {
+      this.nroDocumento = null;
+      this.mostrarContacto = false;
+    }
     this.contacto = new Contacto();
     this._usuario = {
       id: 0,
 
       persona: {
         nombre: '',
-        apellido: '', // TODO: hay que traer el contacto, ver como viene, como cargarlo. Tengo que hacer el if para ver si selecciono el rol asi muestro el formulario. Si venia, traerlo cargado pero grisado y tenerlo en cache
+        apellido: '',
         contacto: this.contacto
       },
     }
@@ -85,12 +92,20 @@ export class UsuarioComponent implements OnInit {
   saveItem(item) {
     if (this.tieneAsignadoSocio()) {
       item.persona.contacto = this.contacto;  
-    }
-    this._userService.update(item, (resp: any) => {
-      this.limpiarForm();
-      this.mensajeServ.success('se han guardado los cambios!', 'Aviso!');
-    }
-    );
+      this._personaService.save(item.persona, (resp: any) => {
+        this.actualizarUsuario(item);
+      })
+    } else {
+      this.actualizarUsuario(item);
+    } 
+  }
+  private actualizarUsuario(item) {
+          this._userService.save(item, (resp: any) => {
+            
+            this.limpiarForm();
+            this.mensajeServ.success('se han guardado los cambios!', 'Aviso!');
+          })
+
   }
   private tieneAsignadoSocio(): boolean {
     let indiceSocio = this.roles.findIndex(item => { return item.rol.nombre === 'Socio';});
