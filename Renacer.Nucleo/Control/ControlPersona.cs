@@ -99,6 +99,16 @@ namespace Renacer.Nucleo.Control
                     // Tag[] listaTags = new Tag[_persona.listaTags.Count];
                     //_persona.listaTags.CopyTo(listaTags,0);
                     //_persona.listaTags.RemoveAll(tag => true);
+                    if (_persona.domicilio != null)
+                    {
+                        if (_persona.domicilio.id == 0) db.Entry(_persona.domicilio).State = System.Data.Entity.EntityState.Added;
+                        if (_persona.domicilio.id > 0) db.Entry(_persona.domicilio).State = System.Data.Entity.EntityState.Modified;
+                    }
+                    if (_persona.contacto != null)
+                    {
+                        if (_persona.contacto.id == 0) db.Entry(_persona.contacto).State = System.Data.Entity.EntityState.Added;
+                        if (_persona.contacto.id > 0) db.Entry(_persona.contacto).State = System.Data.Entity.EntityState.Modified;
+                    }
 
                     db.persona.AddOrUpdate(_persona);
 
@@ -119,16 +129,6 @@ namespace Renacer.Nucleo.Control
                     }
 
 
-                    if (_persona.domicilio != null)
-                    {
-                        if (_persona.domicilio.id == 0) db.Entry(_persona.domicilio).State = System.Data.Entity.EntityState.Added;
-                        if (_persona.domicilio.id > 0) db.Entry(_persona.domicilio).State = System.Data.Entity.EntityState.Modified;
-                    }
-                    if (_persona.contacto != null)
-                    {
-                        if (_persona.contacto.id == 0) db.Entry(_persona.contacto).State = System.Data.Entity.EntityState.Added;
-                        if (_persona.contacto.id > 0) db.Entry(_persona.contacto).State = System.Data.Entity.EntityState.Modified;
-                    }
 
                    
 
