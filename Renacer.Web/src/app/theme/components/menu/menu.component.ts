@@ -15,7 +15,7 @@ import { RolServices } from '../../../resources/rol.service';
 })
 
 export class MenuComponent implements OnInit {
-    private roles = {
+    private roles = { // TODO: buscar enum 
         administrador : 'Administrador del sistema',
         secretario: 'Secretario',
         encargadoEvento: 'Encargado de Evento',
