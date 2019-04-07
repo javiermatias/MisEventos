@@ -106,8 +106,14 @@ namespace Renacer.Nucleo.Control
                     }
                     if (_persona.contacto != null)
                     {
-                        if (_persona.contacto.id == 0) db.Entry(_persona.contacto).State = System.Data.Entity.EntityState.Added;
-                        if (_persona.contacto.id > 0) db.Entry(_persona.contacto).State = System.Data.Entity.EntityState.Modified;
+                        if (_persona.contacto.id == 0) {
+                            Contacto contacto = db.contacto.Add(_persona.contacto);
+                            _persona.contacto = contacto;
+                            _persona.idContacto = contacto.id;
+                        }
+                        
+                        if (_persona.contacto.id > 0) {
+                            db.Entry(_persona.contacto).State = System.Data.Entity.EntityState.Modified; }
                     }
 
                     db.persona.AddOrUpdate(_persona);
