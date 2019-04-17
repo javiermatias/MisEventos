@@ -1,4 +1,6 @@
-﻿using Renacer.Nucleo.Entidades;
+﻿using MySql.Data.MySqlClient;
+using Renacer.Nucleo;
+using Renacer.Nucleo.Entidades;
 using Renacer.Nucleo.Servicio;
 using System;
 using System.Collections.Generic;
@@ -31,17 +33,29 @@ namespace Renacer.Nucleo.Control
         /// SELECT * FROM Persona
         /// </summary>
         /// <returns></returns>
-        public List<Persona> devolverTodos(int page, int limit, string search)
+        public List<Persona> devolverTodos(int rol, string search)
         {
+            List<Persona> personas = new List<Persona>();
             try
             {
                 using (var db = new ModeloRenacer())
                 {
-                    if (search != null)
-                        return db.persona.Where(x => x.fechaBaja == null && x.nombre.Contains(@search)).ToList();
-                    //return db.persona.Where(x=> x.nombre.Contains(@search)).Skip(page*limit).Take(limit).ToList();
-                    else
-                        return db.persona.Include("tipoDoc").ToList();
+
+                    var personas_db = db.Database.SqlQuery<Persona>("select persona.* from persona,usuario, usuariorols where usuario.idPersona=persona.id and usuariorols.Usuario_id= usuario.id and usuariorols.Rol_id = @id", new MySqlParameter("@id", rol));
+
+
+
+                    foreach (var item in personas_db)
+                    {
+                        personas.Add(item);
+                    }
+
+
+                    return personas;
+                    
+                    ////return db.persona.Where(x=> x.nombre.Contains(@search)).Skip(page*limit).Take(limit).ToList();
+                    //else
+                    //    return db.persona.Include("tipoDoc").ToList();
 
                 }
             }

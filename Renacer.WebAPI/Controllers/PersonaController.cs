@@ -12,12 +12,12 @@ namespace Renacer.WebAPI.Controllers
     public class PersonaController : ApiController
     {
         // GET: api/Personas
-        public IEnumerable<Persona> Get([FromUri]int page, [FromUri] int limit, [FromUri] string search)
+        public IEnumerable<Persona> Get([FromUri]int rol, [FromUri] string search)
         {
-            if (page <= 0) page = 1;
-            if (limit <= 0) limit = 10;
+            //if (page <= 0) page = 1;
+            //if (limit <= 0) limit = 10;
 
-            return ControlPersona.devolverInstancia().devolverTodos(page, limit, search);
+            return ControlPersona.devolverInstancia().devolverTodos(rol,search);
         }
 
         // GET: api/Personas/5
