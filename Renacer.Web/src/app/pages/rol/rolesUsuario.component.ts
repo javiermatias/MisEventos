@@ -16,9 +16,7 @@ export class RolesUsuarioComponent implements OnInit {
   
   constructor(private _rolService:RolServices, private mensajeServ: ToastrService, private router: Router) {
   }
-  ngOnInit(): void {
-    console.log(JSON.parse(localStorage.usuario).roles);
-    
+  ngOnInit(): void {    
     this.rolesUsuario = JSON.parse(localStorage.usuario).roles;
   }
 

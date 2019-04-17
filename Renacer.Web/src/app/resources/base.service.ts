@@ -42,6 +42,11 @@ export class BaseServices<T> extends Resource {
     path: '/{!id}'
   })
   get: ResourceMethod<{id: any}, T>;
+  
+  @ResourceAction({
+    path: '/{?tipoDni;?dni}'
+  })
+  getUsuario: ResourceMethod<{tipoDni: number, dni: number }, T>;
 
   @ResourceAction({
     method: RequestMethod.Post

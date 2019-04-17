@@ -9,10 +9,11 @@ import {Contacto} from "../../resources/socio.service";
 export class ContactoComponent implements OnInit {
 
 @Input() _contacto:Contacto;
-
+@Input() readOnly: boolean = false; // valor por defecto falso
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

@@ -13,6 +13,7 @@ namespace Renacer.Nucleo
                 base("ModeloRenacer")
         {
             this.Configuration.ProxyCreationEnabled = false;
+            this.Configuration.LazyLoadingEnabled = false;
         }
 
         public virtual DbSet<Cliente> cliente { get; set; }
@@ -33,9 +34,11 @@ namespace Renacer.Nucleo
         public virtual DbSet<TipoEvento> tipoEvento { get; set; }
         public virtual DbSet<DetalleEvento> detalleEvento { get; set; }
         public virtual DbSet<TipoEspacio> tipoEspacio { get; set; }
-        public virtual DbSet<Permiso> permiso { get; set; }
+       
         public virtual DbSet<Rol> rol { get; set; }
 
+        public virtual DbSet<Persona> persona { get; set; }
+        public virtual DbSet<Contacto> contacto { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
     //        modelBuilder.Entity<Usuario>()

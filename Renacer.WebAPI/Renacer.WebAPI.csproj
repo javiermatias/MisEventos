@@ -140,72 +140,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="dist\0.d00f5132869aa2156cd6.chunk.js" />
-    <Content Include="dist\1.76eb44ccc0024bae1d6c.chunk.js" />
-    <Content Include="dist\10.d96bee5939d331d5475f.chunk.js" />
-    <Content Include="dist\11.9b4e6b3172d57f452705.chunk.js" />
-    <Content Include="dist\12.adebe4df25bf3455b8ec.chunk.js" />
-    <Content Include="dist\2.61c9b1ad817ef2b1e16b.chunk.js" />
-    <Content Include="dist\3.eb8bb37534ebedf14b41.chunk.js" />
-    <Content Include="dist\4.27782c1168f83264cdd6.chunk.js" />
-    <Content Include="dist\5.e2945b6cbbd1c43ac389.chunk.js" />
-    <Content Include="dist\6.c1b7f32bf5567a8cf224.chunk.js" />
-    <Content Include="dist\7.8f030e8f9793e333feec.chunk.js" />
-    <Content Include="dist\8.b06ddb16d4aca1c7f475.chunk.js" />
-    <Content Include="dist\9.34e53f664eed6a8f5a6f.chunk.js" />
-    <Content Include="dist\assets\img\24-6-2017 5-59-23 p. m..png" />
-    <Content Include="dist\assets\img\app\no-image.png" />
-    <Content Include="dist\assets\img\app\sample.jpg" />
-    <Content Include="dist\assets\img\app\sky-full.jpg" />
-    <Content Include="dist\assets\img\app\sky.jpg" />
-    <Content Include="dist\assets\img\app\snow.jpg" />
-    <Content Include="dist\assets\img\comments.svg" />
-    <Content Include="dist\assets\img\feed\feed-image.svg" />
-    <Content Include="dist\assets\img\feed\feed-location.svg" />
-    <Content Include="dist\assets\img\feed\feed-video.svg" />
-    <Content Include="dist\assets\img\feed\my-little-kitten.png" />
-    <Content Include="dist\assets\img\feed\new-york-location.jpg" />
-    <Content Include="dist\assets\img\feed\protein.png" />
-    <Content Include="dist\assets\img\feed\vader-and-me-preview.jpg" />
-    <Content Include="dist\assets\img\logo\az_logo.png" />
-    <Content Include="dist\assets\img\logo\az_logo2.png" />
-    <Content Include="dist\assets\img\logo\az_logo_full.png" />
-    <Content Include="dist\assets\img\logo\az_logo_full2.png" />
-    <Content Include="dist\assets\img\logo\az_logo_full_blank.png" />
-    <Content Include="dist\assets\img\logo\az_logo_grande.png" />
-    <Content Include="dist\assets\img\logo\cube-1.jpg" />
-    <Content Include="dist\assets\img\logo\cube-2.jpg" />
-    <Content Include="dist\assets\img\logo\cube-3.jpg" />
-    <Content Include="dist\assets\img\logo\cube-4.jpg" />
-    <Content Include="dist\assets\img\logo\cube-5.jpg" />
-    <Content Include="dist\assets\img\logo\cube-6.jpg" />
-    <Content Include="dist\assets\img\logo\cube-7.jpg" />
-    <Content Include="dist\assets\img\logo\cube-8.jpg" />
-    <Content Include="dist\assets\img\logo\cube-9.jpg" />
-    <Content Include="dist\assets\img\profile\adam.jpg" />
-    <Content Include="dist\assets\img\profile\ashley.jpg" />
-    <Content Include="dist\assets\img\profile\bruno.jpg" />
-    <Content Include="dist\assets\img\profile\julia.jpg" />
-    <Content Include="dist\assets\img\profile\michael.jpg" />
-    <Content Include="dist\assets\img\profile\tereza.jpg" />
-    <Content Include="dist\assets\img\shopping-cart.svg" />
-    <Content Include="dist\assets\img\users\augusto.png" />
-    <Content Include="dist\assets\img\users\user.jpg" />
-    <Content Include="dist\assets\img\vendor\leaflet\marker-icon-2x.png" />
-    <Content Include="dist\assets\img\vendor\leaflet\marker-icon.png" />
-    <Content Include="dist\assets\img\vendor\leaflet\marker-shadow.png" />
-    <Content Include="dist\favicon.ico" />
-    <Content Include="dist\fontawesome-webfont.912ec66d7572ff821749.svg" />
-    <Content Include="dist\index.html" />
-    <Content Include="dist\inline.0505132bdd0958a302f0.bundle.js" />
-    <Content Include="dist\main.07b573c89601b98dad33.bundle.js" />
-    <Content Include="dist\metroIcons.2ed7c547b7c9a9d8c3fe.jpg" />
-    <Content Include="dist\metroIcons_light.8fe485dd7a6c9b7a7d06.jpg" />
-    <Content Include="dist\polyfills.db665473f85ad3ba3cc3.bundle.js" />
-    <Content Include="dist\scripts.0a78b1732cd73136d12e.bundle.js" />
-    <Content Include="dist\socicon.ac281a9ac6be8ad18914.svg" />
-    <Content Include="dist\styles.bf4dc5c13db521ffffdb.bundle.css" />
-    <Content Include="dist\vendor.9a73056abf350ab1e0f2.bundle.js" />
     <Content Include="Global.asax" />
   </ItemGroup>
   <ItemGroup>
@@ -215,6 +149,7 @@
     <Compile Include="Controllers\AsociacionController.cs" />
     <Compile Include="Controllers\ComunController.cs" />
     <Compile Include="Controllers\InscripcionController.cs" />
+    <Compile Include="Controllers\PersonaController.cs" />
     <Compile Include="Controllers\ReporteController.cs" />
     <Compile Include="Controllers\RolController.cs" />
     <Compile Include="Controllers\TipoEspacioController.cs" />
@@ -251,13 +186,6 @@
     </Content>
     <Content Include="Configuracion\produccion.config" />
     <Content Include="Configuracion\testing.config" />
-    <Content Include="dist\fontawesome-webfont.674f50d287a8c48dc19b.eot" />
-    <Content Include="dist\fontawesome-webfont.af7ae505a9eed503f8b8.woff2" />
-    <Content Include="dist\fontawesome-webfont.b06871f281fee6b241d6.ttf" />
-    <Content Include="dist\fontawesome-webfont.fee66e712a8a08eef580.woff" />
-    <Content Include="dist\socicon.2365540442899a584fdf.ttf" />
-    <Content Include="dist\socicon.4e1bb964523f6f706d72.eot" />
-    <Content Include="dist\socicon.7dbbd6b23645dda36592.woff" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

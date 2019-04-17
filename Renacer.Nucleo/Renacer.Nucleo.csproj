@@ -87,6 +87,7 @@
     <Compile Include="Control\ControlInscripcion.cs" />
     <Compile Include="Control\ControlAsociacion.cs" />
     <Compile Include="Control\ControlAsistencia.cs" />
+    <Compile Include="Control\ControlPersona.cs" />
     <Compile Include="Control\ControlReporte.cs" />
     <Compile Include="Control\ControlDetalleEvento.cs" />
     <Compile Include="Control\ControlRol.cs" />
@@ -111,7 +112,7 @@
     <Compile Include="Entidades\Evento.cs" />
     <Compile Include="Entidades\Inscripcion.cs" />
     <Compile Include="Entidades\Pago.cs" />
-    <Compile Include="Entidades\Permiso.cs" />
+    <Compile Include="Entidades\Persona.cs" />
     <Compile Include="Entidades\Rol.cs" />
     <Compile Include="Entidades\Socio.cs" />
     <Compile Include="Entidades\Tag.cs" />
@@ -119,9 +120,9 @@
     <Compile Include="Entidades\TipoEspacio.cs" />
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Entidades\UsuarioException.cs" />
-    <Compile Include="Migrations\201903180207123_inicial.cs" />
-    <Compile Include="Migrations\201903180207123_inicial.Designer.cs">
-      <DependentUpon>201903180207123_inicial.cs</DependentUpon>
+    <Compile Include="Migrations\201904010615503_inicialPersona.cs" />
+    <Compile Include="Migrations\201904010615503_inicialPersona.Designer.cs">
+      <DependentUpon>201904010615503_inicialPersona.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
@@ -148,8 +149,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903180207123_inicial.resx">
-      <DependentUpon>201903180207123_inicial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201904010615503_inicialPersona.resx">
+      <DependentUpon>201904010615503_inicialPersona.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

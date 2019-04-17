@@ -11,14 +11,14 @@ using Renacer.WebAPI.Filters;
 
 namespace Renacer.WebAPI.Controllers
 {
-    [IdentityBasicAuthentication] 
-    [Authorize] 
+    //[IdentityBasicAuthentication] 
+    //[Authorize] 
     public class UsuarioController : ApiController
     {
         // GET: api/Usuarios
-        public IEnumerable<Usuario> Get([FromUri]int page, [FromUri] int limit, [FromUri] string search)
+        public Usuario Get([FromUri]int tipoDni, [FromUri] string dni)
         {
-            return ControlUsuario.devolverInstancia().devolverTodos();
+            return ControlUsuario.devolverInstancia().devolverTodos(tipoDni, dni);
         }
 
         // GET: api/Usuarios/5
