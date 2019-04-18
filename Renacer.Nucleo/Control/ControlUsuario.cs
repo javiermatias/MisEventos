@@ -76,13 +76,11 @@ namespace Renacer.Nucleo.Control
                     Where(x => x.usuario.Equals(usuario) && x.clave.Equals(clave)).FirstOrDefault();
 
                     var roles = db.Database
-                        .SqlQuery<string>("Select rol.nombre from rol,usuariorols where usuariorols.Rol_id = rol.id and usuariorols.Usuario_id = @id", new MySqlParameter("@id", _usuario.id));
+                        .SqlQuery<Rol>("Select rol.* from rol,usuariorols where usuariorols.Rol_id = rol.id and usuariorols.Usuario_id = @id", new MySqlParameter("@id", _usuario.id));
 
                     foreach (var item in roles)
                     {
-                        Rol rol = new Rol();
-                        rol.nombre = item;
-                        listroles.Add(rol);
+                        listroles.Add(item);
                     }
                     _usuario.roles = listroles;
 

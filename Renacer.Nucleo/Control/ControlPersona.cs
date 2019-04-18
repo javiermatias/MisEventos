@@ -33,15 +33,16 @@ namespace Renacer.Nucleo.Control
         /// SELECT * FROM Persona
         /// </summary>
         /// <returns></returns>
-        public List<Persona> devolverTodos(int rol, string search)
+        public List<Persona> devolverTodos(string _rol)
         {
             List<Persona> personas = new List<Persona>();
             try
             {
                 using (var db = new ModeloRenacer())
                 {
+                    Rol rol = db.rol.Where(x => x.nombre.Equals(_rol)).FirstOrDefault(); 
 
-                    var personas_db = db.Database.SqlQuery<Persona>("select persona.* from persona,usuario, usuariorols where usuario.idPersona=persona.id and usuariorols.Usuario_id= usuario.id and usuariorols.Rol_id = @id", new MySqlParameter("@id", rol));
+                    var personas_db = db.Database.SqlQuery<Persona>("select persona.* from persona,usuario, usuariorols where usuario.idPersona=persona.id and usuariorols.Usuario_id= usuario.id and usuariorols.Rol_id = @id", new MySqlParameter("@id", rol.id));
 
 
 

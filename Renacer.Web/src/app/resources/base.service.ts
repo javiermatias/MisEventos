@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {Resource, ResourceParams, ResourceAction} from 'ngx-resource';
-import {ResourceMethod} from 'ngx-resource/src/Interfaces';
-import {RequestMethod} from '@angular/http';
+import { Injectable } from '@angular/core';
+import { Resource, ResourceParams, ResourceAction } from 'ngx-resource';
+import { ResourceMethod } from 'ngx-resource/src/Interfaces';
+import { RequestMethod } from '@angular/http';
 
 interface IQueryInput {
   page?: number;
@@ -13,18 +13,19 @@ interface IQueryInput {
   search?: string;
   fechaDesde?: Date;
   fechaHasta?: Date;
-  idEvento?:number;
+  idEvento?: number;
   id?: number;
+  rol?: string;
 }
 
-export class BaseEntity{
-  equals(compareItem:object) : boolean {
-      return this["id"] == compareItem["id"];
+export class BaseEntity {
+  equals(compareItem: object): boolean {
+    return this["id"] == compareItem["id"];
   }
 }
 
 BaseEntity.prototype.equals = function (o) {
-    return this["id"] === o["id"];
+  return this["id"] === o["id"];
 };
 
 @Injectable()
@@ -41,12 +42,12 @@ export class BaseServices<T> extends Resource {
   @ResourceAction({
     path: '/{!id}'
   })
-  get: ResourceMethod<{id: any}, T>;
-  
+  get: ResourceMethod<{ id: any }, T>;
+
   @ResourceAction({
     path: '/{?tipoDni;?dni}'
   })
-  getUsuario: ResourceMethod<{tipoDni: number, dni: number }, T>;
+  getUsuario: ResourceMethod<{ tipoDni: number, dni: number }, T>;
 
   @ResourceAction({
     method: RequestMethod.Post
@@ -63,6 +64,6 @@ export class BaseServices<T> extends Resource {
     method: RequestMethod.Delete,
     path: '/{!id}'
   })
-  remove: ResourceMethod<{id: any}, any>;
+  remove: ResourceMethod<{ id: any }, any>;
 
 }
