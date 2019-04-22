@@ -1,5 +1,6 @@
 namespace Renacer.Nucleo
 {
+    using Entidades;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -10,6 +11,11 @@ namespace Renacer.Nucleo
     [Table("Usuario")]
     public partial class Usuario : System.Security.Principal.IPrincipal
     {
+        public Usuario()
+        {
+            this.roles = new HashSet<Rol>();
+        }
+
         [Key]
         public int id { get; set; }
         public string nombre { get; set; }
@@ -26,6 +32,13 @@ namespace Renacer.Nucleo
         public string idFacebook { get; set; }
         public string idGoogle { get; set; }
         public string token { get; set; }
+        
+        public virtual ICollection<Rol> roles { get; set; }
+
+        public int? idPersona { get; set; }
+        [ForeignKey("idPersona")]
+        public Persona persona { get; set; }
+        public int contador { get; set; }
 
         [NotMapped]
         public IIdentity Identity

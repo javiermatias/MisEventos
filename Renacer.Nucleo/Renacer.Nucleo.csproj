@@ -87,8 +87,11 @@
     <Compile Include="Control\ControlInscripcion.cs" />
     <Compile Include="Control\ControlAsociacion.cs" />
     <Compile Include="Control\ControlAsistencia.cs" />
+    <Compile Include="Control\ControlPersona.cs" />
     <Compile Include="Control\ControlReporte.cs" />
     <Compile Include="Control\ControlDetalleEvento.cs" />
+    <Compile Include="Control\ControlRol.cs" />
+    <Compile Include="Control\ControlTipoEspacio.cs" />
     <Compile Include="Control\ControlTipoEvento.cs" />
     <Compile Include="Control\ControlEvento.cs" />
     <Compile Include="Control\ControlTag.cs" />
@@ -109,25 +112,21 @@
     <Compile Include="Entidades\Evento.cs" />
     <Compile Include="Entidades\Inscripcion.cs" />
     <Compile Include="Entidades\Pago.cs" />
+    <Compile Include="Entidades\Persona.cs" />
+    <Compile Include="Entidades\Rol.cs" />
     <Compile Include="Entidades\Socio.cs" />
     <Compile Include="Entidades\Tag.cs" />
     <Compile Include="Entidades\TipoDocumento.cs" />
+    <Compile Include="Entidades\TipoEspacio.cs" />
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Entidades\UsuarioException.cs" />
-    <Compile Include="Migrations\201711030349137_test.cs" />
-    <Compile Include="Migrations\201711030349137_test.Designer.cs">
-      <DependentUpon>201711030349137_test.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903040454406_version-Javi.cs" />
-    <Compile Include="Migrations\201903040454406_version-Javi.Designer.cs">
-      <DependentUpon>201903040454406_version-Javi.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903040500455_version-Javi1.cs" />
-    <Compile Include="Migrations\201903040500455_version-Javi1.Designer.cs">
-      <DependentUpon>201903040500455_version-Javi1.cs</DependentUpon>
+    <Compile Include="Migrations\201904010615503_inicialPersona.cs" />
+    <Compile Include="Migrations\201904010615503_inicialPersona.Designer.cs">
+      <DependentUpon>201904010615503_inicialPersona.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
+    <Compile Include="myMigrationSQLGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicio\ServicioSentry.cs" />
   </ItemGroup>
@@ -139,7 +138,9 @@
     <None Include="Configuracion\local-02.config" />
     <None Include="Configuracion\local-01.config" />
     <None Include="Manuales\gitFlow.docx" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Renacer.Helper\Renacer.Helper.vbproj">
@@ -148,14 +149,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201711030349137_test.resx">
-      <DependentUpon>201711030349137_test.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903040454406_version-Javi.resx">
-      <DependentUpon>201903040454406_version-Javi.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903040500455_version-Javi1.resx">
-      <DependentUpon>201903040500455_version-Javi1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201904010615503_inicialPersona.resx">
+      <DependentUpon>201904010615503_inicialPersona.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

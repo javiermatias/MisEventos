@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -24,16 +24,19 @@ import { SearchComponent } from './search/search.component';
 import { SociosComponent } from './socios/socios.component';
 import { DataTableModule } from "angular2-datatable";
 import { EspaciosComponent } from './espacios/espacios.component';
+import { TipoEspacioComponent } from './tipoEspacio/tipoEspacio.component';
 import { DomicilioComponent } from './domicilio/domicilio.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { EncargadosComponent } from './encargados/encargados.component';
-import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
-
+import { ContactoModelComponent } from './contacto-model/contacto-model.component';
+import { RolComponent } from './rol/rol.component';
+import { NguiAutoCompleteModule } from '@ngui/auto-complete';
+import { UsuarioComponent } from './usuarios/usuarios.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG),
+    PerfectScrollbarModule.forChild(),
     ToastrModule.forRoot(),
     DirectivesModule,
     PipesModule,
@@ -55,18 +58,26 @@ import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
     SearchComponent,
     SociosComponent,
     EspaciosComponent,
+    TipoEspacioComponent,
     DomicilioComponent,
     ContactoComponent,
-    EncargadosComponent
+    EncargadosComponent,
+    RolComponent,
+    ContactoModelComponent,
+    UsuarioComponent
   ]
-  ,exports: [
+  , exports: [
     BreadcrumbComponent,
     BackTopComponent,
     SociosComponent,
     EspaciosComponent,
+    TipoEspacioComponent,
     DomicilioComponent,
     ContactoComponent,
-    EncargadosComponent
+    RolComponent,
+    EncargadosComponent,
+    ContactoModelComponent
   ]
 })
+
 export class PagesModule { }

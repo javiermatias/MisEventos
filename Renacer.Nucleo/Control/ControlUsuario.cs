@@ -1,4 +1,5 @@
-﻿using Renacer.Nucleo.Entidades;
+﻿using MySql.Data.MySqlClient;
+using Renacer.Nucleo.Entidades;
 using Renacer.Nucleo.Servicio;
 using System;
 using System.Collections.Generic;
@@ -69,8 +70,21 @@ namespace Renacer.Nucleo.Control
             {
                 using (var db = new ModeloRenacer())
                 {
-                    return db.usuario.
-                        Where(x => x.usuario.Equals(usuario) && x.clave.Equals(clave)).FirstOrDefault();
+                    List<Rol> listroles = new List<Rol>();
+
+                    Usuario _usuario = db.usuario.ToList().
+                    Where(x => x.usuario.Equals(usuario) && x.clave.Equals(clave)).FirstOrDefault();
+
+                    var roles = db.Database
+                        .SqlQuery<Rol>("Select rol.* from rol,usuariorols where usuariorols.Rol_id = rol.id and usuariorols.Usuario_id = @id", new MySqlParameter("@id", _usuario.id));
+
+                    foreach (var item in roles)
+                    {
+                        listroles.Add(item);
+                    }
+                    _usuario.roles = listroles;
+
+                    return _usuario;
                 }
             }
             catch (Exception ex)
@@ -151,13 +165,19 @@ namespace Renacer.Nucleo.Control
         /// SELECT * FROM Usuario
         /// </summary>
         /// <returns></returns>
-        public List<Usuario> devolverTodos()
+        public Usuario devolverTodos(int tipoDni, string dni)
         {
             try
             {
                 using (var db = new ModeloRenacer())
                 {
-                    return db.usuario.ToList();
+                    var usuario = db.usuario.Include("persona").Include("roles").Where(user => user.persona.idTipoDoc == tipoDni && user.persona.nroDocumento ==dni).FirstOrDefault();
+
+                 
+
+                    return usuario;
+                   
+                    //.Where(x => x.id.Equals(id)).FirstOrDefault();
                 }
             }
             catch (Exception ex)

@@ -13,28 +13,28 @@
                 <div class="form-group">
                     <label for="calle">Nombre</label>
                     <input type="text" class="form-control" id="calle" required
-                           #calle="ngModel" name="calle" [(ngModel)]="_contacto.nombre">
+                           #calle="ngModel" name="calle" [(ngModel)]="_contacto.nombre" [readOnly]="readOnly">
                 </div>
             </div>
             <div class="col col-md-6">
                 <div class="form-group">
                     <label for="calle">Apellido</label>
                     <input type="text" class="form-control" id="apellido" required
-                           #apellido="ngModel" name="apellido" [(ngModel)]="_contacto.apellido">
+                           #apellido="ngModel" name="apellido" [(ngModel)]="_contacto.apellido"  [readOnly]="readOnly">
                 </div>
             </div>
             <div class="col col-md-6">
                 <div class="form-group">
-                    <label for="telefono">Telefono</label>
+                    <label for="telefono">Teléfono</label>
                     <input type="text" class="form-control" id="telefono" required
-                           #calle="ngModel" name="telefono" [(ngModel)]="_contacto.telefono">
+                           #calle="ngModel" name="telefono" [(ngModel)]="_contacto.telefono" [readOnly]="readOnly">
                 </div>
             </div>
             <div class="col col-md-6">
                 <div class="form-group">
-                    <label for="telefono">Relacion con el socio</label>
-                    <select type="text" class="form-control" id="relacion" required
-                           #relacion="ngModel" name="relacion" [(ngModel)]="_contacto.relacion">
+                    <label for="telefono">Relación con el socio</label>
+                    <select type="text" class="form-control" id="relacion" required [disabled]="readOnly"
+                           #relacion="ngModel" name="relacion" [(ngModel)]="_contacto.relacion" >
                            <option value="Pareja">Pareja</option>
                            <option value="Padre">Padre</option>
                            <option value="Madre">Madre</option>

@@ -9,6 +9,7 @@ import {TipoDocumentoServices,TipoDocumento} from '../../../resources/tipo-docum
 export class TipoDocumentoComponent implements OnInit {
 
   @Input() tipoDoc:TipoDocumento;
+  @Output() seleccionTipoDoc = new EventEmitter<TipoDocumento>();
   public tipoDocAux:TipoDocumento;
   public tiposDocumentos_1 = new Array<TipoDocumento>();
   constructor(private _dbServices:TipoDocumentoServices) {
@@ -29,12 +30,15 @@ export class TipoDocumentoComponent implements OnInit {
   }
 
   actualizarTipoDoc(){
-    var tipoDocAux2 = new TipoDocumento();
-    tipoDocAux2.id = this.tipoDoc.id;
-    tipoDocAux2.nombre = this.tipoDoc.nombre;
+    if (this.tipoDoc) {
+      var tipoDocAux2 = new TipoDocumento();
+      tipoDocAux2.id = this.tipoDoc.id;
+      tipoDocAux2.nombre = this.tipoDoc.nombre;
+      this.tipoDoc.id = this.tipoDocAux.id;
+      this.tipoDoc.nombre = this.tipoDocAux.nombre;
+    }
+    this.seleccionTipoDoc.emit(this.tipoDocAux);
 
-    this.tipoDoc.id = this.tipoDocAux.id;
-    this.tipoDoc.nombre = this.tipoDocAux.nombre;
   }
 
   getTiposDoc(){
