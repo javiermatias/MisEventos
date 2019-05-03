@@ -7,7 +7,7 @@ import { DomicilioComponent } from '../domicilio/domicilio.component';
 import { TipoDocumento } from '../../resources/tipo-documento.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PersonaServices, Persona, Contacto, Domicilio } from '../../resources/persona.service';
-
+import { validarMail } from '../utils/validaciones';
 @Component({
   selector: 'az-socios',
   templateUrl: './socios.component.html',
@@ -21,7 +21,7 @@ export class SociosComponent implements OnInit {
   @Input() personas = new Array<Persona>();
   public showDetail: boolean = false;
   public searchText: string = "";
-
+  public mailCorrecto = true;
   constructor(
     //private _socioService: SocioServices,
     private _personaService: PersonaServices
@@ -65,6 +65,12 @@ export class SociosComponent implements OnInit {
     //this.showDetail = true;
     this._personaService.get({ "id": item.id }, (resp: Persona) => {
       this._persona = resp;
+      if (!this._persona.domicilio) {
+        this._persona.domicilio = new Domicilio();
+      }
+      if (!this._persona.contacto) {
+        this._persona.contacto = new Contacto();
+      }
       //this._persona.fechaNacimiento.format("mm/dd/yy", "AR");
       /*       var mifecha;
             var mifecha2;
@@ -124,5 +130,9 @@ export class SociosComponent implements OnInit {
         this.showDetail = false;
       });
     }
+  }
+
+  public validarMail() {
+    this.mailCorrecto = validarMail(this._persona.email);
   }
 }
