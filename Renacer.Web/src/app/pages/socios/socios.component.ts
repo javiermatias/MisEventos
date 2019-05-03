@@ -61,8 +61,6 @@ export class SociosComponent implements OnInit {
 
   }
   verItem(item: Persona) {
-    //his._persona = item;
-    //this.showDetail = true;
     this._personaService.get({ "id": item.id }, (resp: Persona) => {
       this._persona = resp;
       if (!this._persona.domicilio) {
@@ -71,16 +69,6 @@ export class SociosComponent implements OnInit {
       if (!this._persona.contacto) {
         this._persona.contacto = new Contacto();
       }
-      //this._persona.fechaNacimiento.format("mm/dd/yy", "AR");
-      /*       var mifecha;
-            var mifecha2;
-            console.log(this._persona.fechaNacimiento);
-            mifecha = this.datePipe.transform(this._persona.fechaNacimiento, 'yyyy-MM-dd');
-            mifecha2 = this.datePipe.transform(this._persona.fechaNacimiento, 'dd/MM/yyyy');
-            this._persona.fechaNacimiento = this.datePipe.transform(this._persona.fechaNacimiento, 'dd/MM/yyyy');
-            console.log(mifecha);
-            console.log(mifecha2);
-            console.log(this._persona.fechaNacimiento); */
       this.showDetail = true;
     });
   }
@@ -99,13 +87,6 @@ export class SociosComponent implements OnInit {
     this.showDetail = true;
   }
 
-  actualizarFecha(fecha: string) {
-    console.log(fecha);
-    let newDate = new Date(fecha);
-    //console.log(newDate);
-    this._persona.fechaNacimiento = newDate;
-
-  }
   limpiarForm() {
     this._persona = new Persona(0, "", "", "");
     this.showDetail = false;

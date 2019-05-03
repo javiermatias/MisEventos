@@ -189,8 +189,7 @@
                               <div class="form-group">
                                 <label for="input-2">Fecha de nacimiento</label>
                                 <input #fecha type="date" class="form-control" id="fechaNacimiento"
-                                  name="fechaNacimiento" [ngModel]="_persona.fechaNacimiento  | date:'yyyy-MM-dd'"
-                                  (ngModelChange)="actualizarFecha(fecha.value)">
+                                  name="fechaNacimiento" [(ngModel)]="_persona.fechaNacimiento">
                               </div>
                             </div>
                           </div>
@@ -200,7 +199,7 @@
                     </div>
                   </div>
 
-                  <div class="row">
+                  <div class=" row">
                     <div class="col col-lg-12" *ngIf="_persona.domicilio">
                       <az-domicilio [_domicilio]="_persona.domicilio">
                       </az-domicilio>
