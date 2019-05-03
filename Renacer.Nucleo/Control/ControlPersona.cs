@@ -109,7 +109,7 @@ namespace Renacer.Nucleo.Control
 
                 using (var db = new ModeloRenacer())
                 {
-                    TipoDocumento tp = ControlTipoDocumento.devolverInstacia().devolverTodos().Where(r => r.id == (int)_persona.idTipoDoc).FirstOrDefault();
+                    //TipoDocumento tp = ControlTipoDocumento.devolverInstacia().devolverTodos().Where(r => r.id == (int)_persona.idTipoDoc).FirstOrDefault();
                    
                     // Tag[] listaTags = new Tag[_persona.listaTags.Count];
                     //_persona.listaTags.CopyTo(listaTags,0);

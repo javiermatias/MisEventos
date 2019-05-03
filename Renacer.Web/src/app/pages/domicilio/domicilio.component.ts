@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {Domicilio} from '../../resources/socio.service';
+import { Domicilio } from '../../resources/persona.service';
 
 @Component({
   selector: 'az-domicilio',
@@ -8,11 +8,11 @@ import {Domicilio} from '../../resources/socio.service';
 })
 export class DomicilioComponent implements OnInit {
 
-  @Input() _domicilio:Domicilio;
+  @Input() _domicilio: Domicilio;
 
   constructor() {
-  this._domicilio = new Domicilio();
-   }
+    this._domicilio = new Domicilio();
+  }
 
   ngOnInit() {
   }
