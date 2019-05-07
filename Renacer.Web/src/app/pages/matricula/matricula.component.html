@@ -1,0 +1,75 @@
+<div class="row">
+  <div class="col-xl-12 col-lg-12 col-12 bottom-30">
+    <div class="row">
+      <div class="col">
+        <div widget class="card">
+          <div class="card-header">
+            <span class="text-uppercase">Matriculas</span>
+
+            <div class="widget-controls">
+              <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
+              <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
+              <a data-widgster="fullscreen" href="#" class="transition"><i class="fa fa-expand"></i></a>
+              <a data-widgster="restore" href="#" class="transition"><i class="fa fa-compress"></i></a>
+              <!-- <a data-widgster="close" href="#" class="transition"><i class="fa fa-times"></i></a> -->
+            </div>
+          </div>
+          <div class="card-block widget-body">
+            <p class="no-margin"> </p>
+            <div class="w-200 pull-left bottom-15">
+              <button style="margin-left: 20px;" class="btn btn-main" (click)="nuevoItem()">Nueva Matricula</button>
+            </div>
+
+            <div class="w-200 pull-right bottom-15">
+              <div class="input-group input-group-sm">
+                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input class="form-control" id="table-search-input" [(ngModel)]="searchText" type="text"
+                  placeholder="Buscar matricula...">
+              </div>
+            </div>
+            <div class="table-responsive datatable">
+              <!-- <table class="table table-striped table-hover table-sm" [mfData]="espacios  | SearchPipe : searchText" #mf="mfDataTable" [mfRowsOnPage]="10"> -->
+              <table class="table table-striped table-hover table-sm" [mfData]="matriculas" #mf="mfDataTable"
+                [mfRowsOnPage]="10">
+                <thead>
+                  <tr>
+                    <!-- <th><mfDefaultSorter by="id">Id</mfDefaultSorter></th> -->
+                    <th>
+                      <mfDefaultSorter by="año">Matricula</mfDefaultSorter>
+                    </th>
+                    <th>
+                      <mfDefaultSorter by="valor">Valor</mfDefaultSorter>
+                    </th>
+                    <th>
+                      <mfDefaultSorter by="valor">Valor</mfDefaultSorter>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of mf.data | SearchPipe : searchText">
+                    <td><strong>{{item.anio}}</strong></td>
+                    <td>{{item.valor}}</td>
+                    <td>{{item.fechaVencimiento | date:'medium'}}</td>
+                  </tr>
+                  <tr *ngIf="(mf.data | SearchPipe : searchText).length === 0">
+                    <td colspan="100">
+                      No encontrado
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="12">
+                      <mfBootstrapPaginator [rowsOnPageSet]="[10, 25, 50, 100]"></mfBootstrapPaginator>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
