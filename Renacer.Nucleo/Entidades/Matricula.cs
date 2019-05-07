@@ -11,10 +11,10 @@ namespace Renacer.Nucleo.Entidades
         public int id { get; set; }
         public DateTime anio{ get; set; }
 
-        public int valor;
-
+        public int valor{ get; set; }
         public DateTime fechaVencimiento { get; set; }
         
         public string estado { get; set; }
+        
     }
 }

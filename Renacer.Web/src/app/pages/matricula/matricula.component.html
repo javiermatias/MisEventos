@@ -41,15 +41,15 @@
                       <mfDefaultSorter by="valor">Valor</mfDefaultSorter>
                     </th>
                     <th>
-                      <mfDefaultSorter by="valor">Valor</mfDefaultSorter>
+                      <mfDefaultSorter by="fechaVencimiento">Fecha Vencimiento</mfDefaultSorter>
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr *ngFor="let item of mf.data | SearchPipe : searchText">
-                    <td><strong>{{item.anio}}</strong></td>
+                    <td><strong>{{item.anio | date:'longDate'}}</strong></td>
                     <td>{{item.valor}}</td>
-                    <td>{{item.fechaVencimiento | date:'medium'}}</td>
+                    <td>{{item.fechaVencimiento | date:'longDate'}}</td>
                   </tr>
                   <tr *ngIf="(mf.data | SearchPipe : searchText).length === 0">
                     <td colspan="100">
