@@ -87,6 +87,7 @@
     <Compile Include="Control\ControlInscripcion.cs" />
     <Compile Include="Control\ControlAsociacion.cs" />
     <Compile Include="Control\ControlAsistencia.cs" />
+    <Compile Include="Control\ControlMatricula.cs" />
     <Compile Include="Control\ControlPersona.cs" />
     <Compile Include="Control\ControlReporte.cs" />
     <Compile Include="Control\ControlDetalleEvento.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Entidades\EspacioComun.cs" />
     <Compile Include="Entidades\Evento.cs" />
     <Compile Include="Entidades\Inscripcion.cs" />
+    <Compile Include="Entidades\Matricula.cs" />
     <Compile Include="Entidades\Pago.cs" />
     <Compile Include="Entidades\Persona.cs" />
     <Compile Include="Entidades\Rol.cs" />
@@ -123,6 +125,18 @@
     <Compile Include="Migrations\201904010615503_inicialPersona.cs" />
     <Compile Include="Migrations\201904010615503_inicialPersona.Designer.cs">
       <DependentUpon>201904010615503_inicialPersona.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905030500574_matricual.cs" />
+    <Compile Include="Migrations\201905030500574_matricual.Designer.cs">
+      <DependentUpon>201905030500574_matricual.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905070628576_cambioenie.cs" />
+    <Compile Include="Migrations\201905070628576_cambioenie.Designer.cs">
+      <DependentUpon>201905070628576_cambioenie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905070637412_agregadoValor.cs" />
+    <Compile Include="Migrations\201905070637412_agregadoValor.Designer.cs">
+      <DependentUpon>201905070637412_agregadoValor.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
@@ -151,6 +165,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201904010615503_inicialPersona.resx">
       <DependentUpon>201904010615503_inicialPersona.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905030500574_matricual.resx">
+      <DependentUpon>201905030500574_matricual.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905070628576_cambioenie.resx">
+      <DependentUpon>201905070628576_cambioenie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905070637412_agregadoValor.resx">
+      <DependentUpon>201905070637412_agregadoValor.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -149,6 +149,7 @@
     <Compile Include="Controllers\AsociacionController.cs" />
     <Compile Include="Controllers\ComunController.cs" />
     <Compile Include="Controllers\InscripcionController.cs" />
+    <Compile Include="Controllers\MatriculaController.cs" />
     <Compile Include="Controllers\PersonaController.cs" />
     <Compile Include="Controllers\ReporteController.cs" />
     <Compile Include="Controllers\RolController.cs" />

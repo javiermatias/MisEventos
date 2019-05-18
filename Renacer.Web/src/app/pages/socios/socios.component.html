@@ -16,17 +16,20 @@
                     <div class="card-block widget-body">
                         <p class="no-margin"> </p>
                         <div class="w-200 pull-left bottom-15">
-                            <button style="margin-left: 20px;" class="btn btn-main" (click)="nuevoItem()">Nuevo Socio</button>
+                            <button style="margin-left: 20px;" class="btn btn-main" (click)="nuevoItem()">Nuevo
+                                Socio</button>
                         </div>
                         <div class="w-200 pull-right bottom-15">
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                                <input class="form-control" id="table-search-input" [(ngModel)]="searchText" type="text" placeholder="Buscar Socio...">
+                                <input class="form-control" id="table-search-input" [(ngModel)]="searchText" type="text"
+                                    placeholder="Buscar Socio...">
                             </div>
                         </div>
                         <div class="table-responsive datatable">
                             <!-- <table class="table table-striped table-hover table-sm" [mfData]="socios  | SearchPipe : searchText" #mf="mfDataTable" [mfRowsOnPage]="10"> -->
-                            <table class="table table-striped table-hover table-sm" [mfData]="socios" #mf="mfDataTable" [mfRowsOnPage]="10">
+                            <table class="table table-striped table-hover table-sm" [mfData]="personas"
+                                #mf="mfDataTable" [mfRowsOnPage]="10">
                                 <thead>
                                     <tr>
                                         <!-- <th><mfDefaultSorter by="id">Id</mfDefaultSorter></th> -->
@@ -54,7 +57,7 @@
                                         <td>{{item.fechaCreacion | date:'medium'}}</td>
                                         <td>
                                             <a style="color: #014c8c;cursor:pointer;" (click)="verItem(item)">ver</a>
-                                            <td>
+                                        <td>
                                     </tr>
                                     <tr *ngIf="(mf.data | SearchPipe : searchText).length === 0">
                                         <td colspan="100">
@@ -65,7 +68,8 @@
                                 <tfoot>
                                     <tr>
                                         <td colspan="12">
-                                            <mfBootstrapPaginator [rowsOnPageSet]="[10, 25, 50, 100]"></mfBootstrapPaginator>
+                                            <mfBootstrapPaginator [rowsOnPageSet]="[10, 25, 50, 100]">
+                                            </mfBootstrapPaginator>
                                         </td>
                                     </tr>
                                 </tfoot>
@@ -94,15 +98,17 @@
                     <div class="card-block widget-body">
                         <div class="row">
                             <div class="col-xl-9 col-lg-9 col-12">
-                                <form (ngSubmit)="onSubmit(socioForm)" #socioForm="ngForm">
+                                <form (ngSubmit)="onSubmit(personaForm)" #personaForm="ngForm">
                                     <div class="row">
                                         <div class="col col-lg-12">
                                             <div widget class="card" style="margin-bottom:20px">
                                                 <div class="card-header">
                                                     <span>Datos personales</span>
                                                     <div class="widget-controls">
-                                                        <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
-                                                        <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
+                                                        <a data-widgster="expand" href="#" class="transition"><i
+                                                                class="fa fa-chevron-down"></i></a>
+                                                        <a data-widgster="collapse" href="#" class="transition"><i
+                                                                class="fa fa-chevron-up"></i></a>
                                                     </div>
                                                 </div>
                                                 <div class="card-block widget-body">
@@ -110,26 +116,36 @@
                                                         <div class="col col-md-6">
                                                             <div class="form-group">
                                                                 <label for="nombre">Nombre</label>
-                                                                <input type="text" class="form-control" id="nombre" required #nombre="ngModel" name="nombre" [(ngModel)]="_socio.nombre">
-                                                                <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
+                                                                <input type="text" class="form-control" id="nombre"
+                                                                    required #nombre="ngModel" name="nombre"
+                                                                    [(ngModel)]="_persona.nombre">
+                                                                <div [hidden]="nombre.valid || nombre.pristine"
+                                                                    class="alert alert-danger">
                                                                     Debe ingresar el nombre
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="nombre">Apellido</label>
-                                                                <input type="text" class="form-control" id="apellido" required #apellido="ngModel" name="apellido" [(ngModel)]="_socio.apellido">
-                                                                <div [hidden]="apellido.valid || apellido.pristine" class="alert alert-danger">
+                                                                <input type="text" class="form-control" id="apellido"
+                                                                    required #apellido="ngModel" name="apellido"
+                                                                    [(ngModel)]="_persona.apellido">
+                                                                <div [hidden]="apellido.valid || apellido.pristine"
+                                                                    class="alert alert-danger">
                                                                     Debe ingresar el apellido
                                                                 </div>
                                                             </div>
                                                             <div class="row">
 
-                                                                <az-tipo-documento [tipoDoc]="_socio.tipoDoc"></az-tipo-documento>
+                                                                <az-tipo-documento [tipoDoc]="_persona.tipoDoc">
+                                                                </az-tipo-documento>
 
                                                                 <div class="col">
                                                                     <div class="form-group">
-                                                                        <label for="nroDocParam1">Nro de documento</label>
-                                                                        <input class="form-control" id="nroDocParam1" #nroDocParam1="ngModel" name="nroDocParam1" [(ngModel)]="_socio.nroDocumento">
+                                                                        <label for="nroDocParam1">Nro de
+                                                                            documento</label>
+                                                                        <input class="form-control" id="nroDocParam1"
+                                                                            #nroDocParam1="ngModel" name="nroDocParam1"
+                                                                            [(ngModel)]="_persona.nroDocumento">
                                                                     </div>
                                                                 </div>
 
@@ -138,7 +154,8 @@
                                                                 <div class="col">
                                                                     <div class="form-group">
                                                                         <label for="input-2">Genero</label>
-                                                                        <select class="form-control" id="sexo" name="sexo" [(ngModel)]="_socio.sexo">
+                                                                        <select class="form-control" id="sexo"
+                                                                            name="sexo" [(ngModel)]="_persona.sexo">
                                                                             <option value="M">Masculino</option>
                                                                             <option value="F">Femenino</option>
                                                                         </select>
@@ -148,11 +165,13 @@
                                                                 <div class="col">
                                                                     <div class="form-group">
                                                                         <label for="input-2">Estado civil</label>
-                                                                        <select class="form-control" id="estadoCivil" name="estadoCivil" [(ngModel)]="_socio.estadoCivil">
-                                                                              <option>Casado</option>
-                                                                              <option>Divorciado</option>
-                                                                                <option>Soltero</option>
-                                                                                <option>Viudo</option>
+                                                                        <select class="form-control" id="estadoCivil"
+                                                                            name="estadoCivil"
+                                                                            [(ngModel)]="_persona.estadoCivil">
+                                                                            <option>Casado</option>
+                                                                            <option>Divorciado</option>
+                                                                            <option>Soltero</option>
+                                                                            <option>Viudo</option>
                                                                         </select>
                                                                     </div>
                                                                 </div>
@@ -161,21 +180,27 @@
                                                         <div class="col col-md-6">
                                                             <div class="form-group">
                                                                 <label for="input-2">Email</label>
-                                                                <input type="text" class="form-control" id="email" name="email" [(ngModel)]="_socio.email">
+                                                                <input type="text" class="form-control" id="email"
+                                                                    name="email" [(ngModel)]="_persona.email">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="input-2">Teléfono</label>
-                                                                <input type="text" class="form-control" id="telefono" name="telefono" [(ngModel)]="_socio.telefono">
+                                                                <input type="text" class="form-control" id="telefono"
+                                                                    name="telefono" [(ngModel)]="_persona.telefono">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="input-2">Celular</label>
-                                                                <input type="text" class="form-control" id="celular" name="celular" [(ngModel)]="_socio.celular">
+                                                                <input type="text" class="form-control" id="celular"
+                                                                    name="celular" [(ngModel)]="_persona.celular">
                                                             </div>
 
                                                             <div class="form-group">
-                                                                    <label for="input-2">Fecha Nacimiento</label>
-                                                                    <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" [(ngModel)]="_socio.fechaNacimiento">
-                                                                </div>
+                                                                <label for="input-2">Fecha Nacimiento</label>
+                                                                <input #fecha type="date" class="form-control"
+                                                                    id="fechaNacimiento" name="fechaNacimiento"
+                                                                    [ngModel]="_persona.fechaNacimiento  | date:'yyyy-MM-dd'"
+                                                                    (ngModelChange)="actualizarFecha(fecha.value)">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -185,27 +210,31 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col col-lg-12" *ngIf="_socio.domicilio">
-                                            <az-domicilio [_domicilio]="_socio.domicilio">
+                                        <div class="col col-lg-12" *ngIf="_persona.domicilio">
+                                            <az-domicilio [_domicilio]="_persona.domicilio">
                                             </az-domicilio>
                                         </div>
                                     </div>
 
                                     <div class="row">
-                                        <div class="col col-lg-12" *ngIf="_socio.contacto">
-                                            <az-contacto [_contacto]="_socio.contacto">
+                                        <div class="col col-lg-12" *ngIf="_persona.contacto">
+                                            <az-contacto [_contacto]="_persona.contacto">
                                             </az-contacto>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-main" [disabled]="!socioForm.form.valid">Guardar</button>
-                                    <button (click)="limpiarForm();" type="button" style="margin-left: 30px;" class="btn btn-default">Cancelar</button>
-                                         
-                                    <button style="margin-left: 30px;" *ngIf="_socio.id > 0" class="btn btn-danger"  (click)="eliminarItem(_socio)">Dar de baja <i class="fa fa-trash"></i></button>
+                                    <button type="submit" class="btn btn-main"
+                                        [disabled]="!personaForm.form.valid">Guardar</button>
+                                    <button (click)="limpiarForm();" type="button" style="margin-left: 30px;"
+                                        class="btn btn-default">Cancelar</button>
+
+                                    <button style="margin-left: 30px;" *ngIf="_persona.id > 0" class="btn btn-danger"
+                                        (click)="eliminarItem(_persona)">Dar de baja <i
+                                            class="fa fa-trash"></i></button>
                                 </form>
                             </div>
 
                             <div class="col-xl-3 col-lg-3 col-12">
-                                <az-select-tags [listaTags]="_socio.listaTags"></az-select-tags>
+                                <az-select-tags [listaTags]="_persona.listaTags"></az-select-tags>
                             </div>
                         </div>
                     </div>
@@ -224,19 +253,21 @@
                         </div>
                     </div>
                     <div class="card-block widget-body">
-                        <form (ngSubmit)="onSubmit(socioForm)" #asociacionForm="ngForm">
+                        <form (ngSubmit)="onSubmit(personaForm)" #asociacionForm="ngForm">
                             <div class="row">
                                 <div class="col col-md-6">
                                     <div class="form-group">
                                         <label for="nombre">Nombre</label>
-                                        <input type="text" class="form-control" id="nombre" required #nombre="ngModel" name="nombre" [(ngModel)]="_socio.nombre">
+                                        <input type="text" class="form-control" id="nombre" required #nombre="ngModel"
+                                            name="nombre" [(ngModel)]="_persona.nombre">
                                         <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
                                             Debe ingresar el nombre
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="nombre">Apellido</label>
-                                        <input type="text" class="form-control" id="apellido" required #apellido="ngModel" name="apellido" [(ngModel)]="_socio.apellido">
+                                        <input type="text" class="form-control" id="apellido" required
+                                            #apellido="ngModel" name="apellido" [(ngModel)]="_persona.apellido">
                                         <div [hidden]="apellido.valid || apellido.pristine" class="alert alert-danger">
                                             Debe ingresar el apellido
                                         </div>
@@ -244,8 +275,10 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn btn-main" [disabled]="!asociacionForm.form.valid">Guardar</button>
-                            <button (click)="limpiarForm();" type="button" style="margin-left: 30px;" class="btn btn-default">Cancelar</button>
+                            <button type="submit" class="btn btn-main"
+                                [disabled]="!asociacionForm.form.valid">Guardar</button>
+                            <button (click)="limpiarForm();" type="button" style="margin-left: 30px;"
+                                class="btn btn-default">Cancelar</button>
 
                         </form>
                     </div>

@@ -54,6 +54,7 @@ namespace Renacer.Nucleo.Entidades
 
         public string rol { get; set; }
 
+        public bool baja { get; set; }
 
 
     }

@@ -22,7 +22,8 @@ import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import { RolServices } from './resources/rol.service';
 import { TipoEspacioServices } from '../app/pages/tipoEspacio/tipoEspacio.service';
 import { AccessGuard } from './resources/accessGuard.service';
-
+import { DatePipe } from '@angular/common';
+import { MatriculaServices } from './resources/matricula.service';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,9 @@ import { AccessGuard } from './resources/accessGuard.service';
     AsociacionServices,
     InscripcionServices,
     RolServices,
-    TipoEspacioServices],
+    TipoEspacioServices,
+    MatriculaServices,
+    DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
