@@ -32,6 +32,8 @@ import { ContactoModelComponent } from './contacto-model/contacto-model.componen
 import { RolComponent } from './rol/rol.component';
 import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import { UsuarioComponent } from './usuarios/usuarios.component';
+import { MatriculaComponent } from './matricula/matricula.component';
+import { NuevaMatriculaComponent } from './matricula/nueva-matricula/nueva-matricula.component';
 
 @NgModule({
   imports: [
@@ -64,7 +66,9 @@ import { UsuarioComponent } from './usuarios/usuarios.component';
     EncargadosComponent,
     RolComponent,
     ContactoModelComponent,
-    UsuarioComponent
+    UsuarioComponent,
+    MatriculaComponent,
+    NuevaMatriculaComponent
   ]
   , exports: [
     BreadcrumbComponent,

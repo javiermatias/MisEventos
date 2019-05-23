@@ -5,45 +5,74 @@ import { RequestMethod } from '@angular/http';
 import { Variables } from './variables';
 import { BaseServices } from './base.service';
 import { TipoDocumento } from './tipo-documento.service';
+import { Tag } from './tag.service';
 
 
 
-class Persona {
+export class Persona {
   constructor(
     public id: number,
     public nombre?: string,
     public apellido?: string,
-    public nroDocumento?: string,
-    public rol?: string,
+    public telefono?: string,
+    public celular?: string,
     public email?: string,
+    public sexo?: string,
+    public estadoCivil?: string,
+    public idTipoDoc?: string,
+    public tipoDoc?: TipoDocumento,
+    public nroDocumento?: string,
+    public idDomicilio?: number,
+    public idContacto?: number,
     public fechaCreacion?: Date,
-    public fechaBaja?: Date
-    //    public telefono: null,
-    //         public celular?: number, null,
-    /*   id int(11) AI PK
-    nombre longtext
-    apellido longtext
-    telefono longtext
-    celular longtext
-    email longtext
-    sexo longtext
-    estadoCivil longtext
-    idTipoDoc int(11)
-    nroDocumento longtext
-    idDomicilio int(11)
-    idContacto int(11)
-    fechaCreacion datetime
-    fechaNacimiento datetime
-    fechaBaja datetime
-    fechaModificacion datetime
-    rol longtext */
-    //         public listaInscripciones?: number, null,
-    //         public listaAsistencias?: number, null,
-    //         public listaTags?: number, [],
-    //         public rol?: number, null
-  ) { }
+    public fechaNacimiento?: Date,
+    public fechaBaja?: Date,
+    public domicilio?: Domicilio,
+    public contacto?: Contacto,
+    public fechaModificacion?: Date,
+    public rol?: string,
+    public listaTags?: Array<Tag>,
+  ) {
+    this.tipoDoc = new TipoDocumento();
+    this.listaTags = new Array<Tag>();
+  }
 }
-
+export class Domicilio {
+  constructor(
+    public id?: number,
+    public barrio?: string,
+    public calle?: string,
+    public piso?: string,
+    public nro?: string,
+    public codPostal?: number,
+    public depto?: string) {
+    this.id = 0;
+    this.barrio = "";
+    this.calle = "";
+    this.piso = "";
+    this.nro = "";
+    this.codPostal = 0;
+    this.depto = "";
+  }
+}
+export class Contacto {
+  constructor(
+    public id?: number,
+    public nombre?: string,
+    public apellido?: string,
+    public telefono?: string,
+    public email?: string,
+    public relacion?: string,
+    public celular?: string) {
+    this.id = 0;
+    this.nombre = "";
+    this.apellido = "";
+    this.telefono = "";
+    this.email = "";
+    this.relacion = "";
+    this.celular = "";
+  }
+}
 
 @Injectable()
 @ResourceParams({
