@@ -83,7 +83,9 @@ namespace Renacer.Nucleo.Migrations
 
             Socio socio = new Socio() { nombre = "Juan", apellido = "Perez", fechaCreacion = DateTime.Now, email = "" };
 
-
+            context.matricula.AddOrUpdate(new Matricula() { anio = new DateTime(2016, 7, 15), valor =500, fechaVencimiento = new DateTime(2016, 12, 15),estado="baja"});
+            context.matricula.AddOrUpdate(new Matricula() { anio = new DateTime(2017, 7, 15), valor = 500, fechaVencimiento = new DateTime(2017, 12, 15), estado = "baja" });
+            context.matricula.AddOrUpdate(new Matricula() { anio = new DateTime(2018, 7, 15), valor = 500, fechaVencimiento = new DateTime(2018, 12, 15), estado = "baja" });
         }
     }
 }
