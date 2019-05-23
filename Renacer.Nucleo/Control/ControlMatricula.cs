@@ -91,7 +91,7 @@ namespace Renacer.Nucleo.Controlmatricula
             {
                 using (var db = new ModeloRenacer())
                 {
-                    return db.matricula.ToList();
+                    return db.matricula.OrderByDescending(x => x.anio).ToList();
                 }
             }
             catch (Exception ex)

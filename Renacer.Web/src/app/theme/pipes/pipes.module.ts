@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AppPicturePipe } from './appPicture/appPicture.pipe';
 import { ProfilePicturePipe } from './profilePicture/profilePicture.pipe';
 import { MailSearchPipe } from './search/mail-search.pipe';
-import { SearchPipe } from './search/search.pipe';
+import { SearchPipe,buscarMatriculaPipe } from './search/search.pipe';
 
 @NgModule({
     imports: [ 
@@ -14,13 +14,15 @@ import { SearchPipe } from './search/search.pipe';
         AppPicturePipe, 
         ProfilePicturePipe,
         MailSearchPipe,
-        SearchPipe
+        SearchPipe,
+        buscarMatriculaPipe 
     ],
     exports: [
         AppPicturePipe,
         ProfilePicturePipe,
         MailSearchPipe,
-        SearchPipe
+        SearchPipe,
+        buscarMatriculaPipe 
     ]
 })
 export class PipesModule { }

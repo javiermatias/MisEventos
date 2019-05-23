@@ -33,9 +33,9 @@
                 [mfRowsOnPage]="10">
                 <thead>
                   <tr>
-                    <!-- <th><mfDefaultSorter by="id">Id</mfDefaultSorter></th> -->
+                <!-- <th><mfDefaultSorter by="id">Id</mfDefaultSorter></th>  -->
                     <th>
-                      <mfDefaultSorter by="año">Matricula</mfDefaultSorter>
+                      <mfDefaultSorter by="anio">Año</mfDefaultSorter>
                     </th>
                     <th>
                       <mfDefaultSorter by="valor">Valor</mfDefaultSorter>
@@ -43,13 +43,23 @@
                     <th>
                       <mfDefaultSorter by="fechaVencimiento">Fecha Vencimiento</mfDefaultSorter>
                     </th>
+                    <th>
+                        <mfDefaultSorter by="estado">Estado</mfDefaultSorter>
+                      </th>
+                      <th></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let item of mf.data | SearchPipe : searchText">
-                    <td><strong>{{item.anio | date:'longDate'}}</strong></td>
+                  <tr *ngFor="let item of mf.data | buscarMatriculaPipe : searchText; trackBy: trackElement">
+                      <!-- <td><strong>{{item.id}}</strong></td> -->
+                    <td><strong>{{item.anio | date:"yyyy"}}</strong></td>
                     <td>{{item.valor}}</td>
-                    <td>{{item.fechaVencimiento | date:'longDate'}}</td>
+                    <td>{{item.fechaVencimiento | date:"dd/MM/yyyy"}}</td>
+                    <td>{{item.estado}}</td>
+                    <td *ngIf="item.estado == 'Alta'; else other_content">
+                        <a style="color: #014c8c;cursor:pointer;" (click)="verItem(item)">Ver</a>
+                    <td>
+                        <ng-template #other_content><td></td></ng-template>
                   </tr>
                   <tr *ngIf="(mf.data | SearchPipe : searchText).length === 0">
                     <td colspan="100">
@@ -57,7 +67,7 @@
                     </td>
                   </tr>
                 </tbody>
-                <tfoot>
+                <tfoot>               
                   <tr>
                     <td colspan="12">
                       <mfBootstrapPaginator [rowsOnPageSet]="[10, 25, 50, 100]"></mfBootstrapPaginator>

@@ -83,9 +83,20 @@ namespace Renacer.Nucleo.Migrations
 
             Socio socio = new Socio() { nombre = "Juan", apellido = "Perez", fechaCreacion = DateTime.Now, email = "" };
 
-            context.matricula.AddOrUpdate(new Matricula() { anio = new DateTime(2016, 7, 15), valor =500, fechaVencimiento = new DateTime(2016, 12, 15),estado="baja"});
+            context.matricula.AddOrUpdate(new Matricula() { anio = new DateTime(2006, 7, 15), valor =500, fechaVencimiento = new DateTime(2006, 12, 15),estado="baja"});
+            context.matricula.AddOrUpdate(new Matricula() { anio = new DateTime(2007, 7, 15), valor = 500, fechaVencimiento = new DateTime(2007, 12, 15), estado = "baja" });
+            context.matricula.AddOrUpdate(new Matricula() { anio = new DateTime(2008, 7, 15), valor = 500, fechaVencimiento = new DateTime(2008, 12, 15), estado = "baja" });
+            context.matricula.AddOrUpdate(new Matricula() { anio = new DateTime(2009, 7, 15), valor = 500, fechaVencimiento = new DateTime(2009, 12, 15), estado = "baja" });
+            context.matricula.AddOrUpdate(new Matricula() { anio = new DateTime(2010, 7, 15), valor = 500, fechaVencimiento = new DateTime(2010, 12, 15), estado = "baja" });
+            context.matricula.AddOrUpdate(new Matricula() { anio = new DateTime(2011, 7, 15), valor = 500, fechaVencimiento = new DateTime(2011, 12, 15), estado = "baja" });
+            context.matricula.AddOrUpdate(new Matricula() { anio = new DateTime(2012, 7, 15), valor = 500, fechaVencimiento = new DateTime(2012, 12, 15), estado = "baja" });
+            context.matricula.AddOrUpdate(new Matricula() { anio = new DateTime(2013, 7, 15), valor = 500, fechaVencimiento = new DateTime(2013, 12, 15), estado = "baja" });
+            context.matricula.AddOrUpdate(new Matricula() { anio = new DateTime(2014, 7, 15), valor = 500, fechaVencimiento = new DateTime(2014, 12, 15), estado = "baja" });
+            context.matricula.AddOrUpdate(new Matricula() { anio = new DateTime(2015, 7, 15), valor = 500, fechaVencimiento = new DateTime(2015, 12, 15), estado = "baja" });
+            context.matricula.AddOrUpdate(new Matricula() { anio = new DateTime(2016, 7, 15), valor = 500, fechaVencimiento = new DateTime(2016, 12, 15), estado = "baja" });
             context.matricula.AddOrUpdate(new Matricula() { anio = new DateTime(2017, 7, 15), valor = 500, fechaVencimiento = new DateTime(2017, 12, 15), estado = "baja" });
             context.matricula.AddOrUpdate(new Matricula() { anio = new DateTime(2018, 7, 15), valor = 500, fechaVencimiento = new DateTime(2018, 12, 15), estado = "baja" });
+            context.matricula.AddOrUpdate(new Matricula() { anio = new DateTime(2019, 7, 15), valor = 500, fechaVencimiento = new DateTime(2019, 12, 15), estado = "alta" });
         }
     }
 }

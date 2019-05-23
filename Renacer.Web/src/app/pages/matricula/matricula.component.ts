@@ -20,9 +20,12 @@ export class MatriculaComponent implements OnInit {
   getItems() {
     this._matriculaService.query({}, (items: Matricula[]) => {
       this.matriculas = items;
-    }
-    );
-  }
+    });
 
+    
+  }
+  trackElement(index: number, element: any) {
+    return element ? element.id : null;
+  }
 
 }
