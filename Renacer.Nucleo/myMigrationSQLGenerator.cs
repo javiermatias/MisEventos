@@ -18,6 +18,15 @@ namespace Renacer.Nucleo
             return table;
         }
 
+        //Para que no agregue los .dbo
+        protected override MigrationStatement Generate(AddForeignKeyOperation addForeignKeyOperation)
+        {
+            addForeignKeyOperation.PrincipalTable = addForeignKeyOperation.PrincipalTable.Replace("dbo.", "");
+            addForeignKeyOperation.DependentTable = addForeignKeyOperation.DependentTable.Replace("dbo.", "");
+            MigrationStatement ms = base.Generate(addForeignKeyOperation);
+            return ms;
+        }
+
         protected override MigrationStatement Generate(CreateIndexOperation op)
         {
             StringBuilder sb = new StringBuilder();

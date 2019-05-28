@@ -44,5 +44,7 @@ namespace Renacer.Nucleo.Entidades
         public DateTime? fechaBaja { get; set; }
         public DateTime? fechaModificacion { get; set; }
 
+
+
     }
 }
