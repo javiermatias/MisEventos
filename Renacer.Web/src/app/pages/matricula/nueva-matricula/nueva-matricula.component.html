@@ -1,8 +1,8 @@
 <div class="row">
-  <div class="col-xl-12 col-lg-12 col-12 bottom-30" [hidden]="!showDetail">
+  <div class="col-xl-12 col-lg-12 col-12 bottom-30">
     <div widget class="card">
       <div class="card-header">
-        <span>Datos Matrículas</span>
+        <span>Matricula Detalle</span>
         <div class="widget-controls">
           <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
           <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
@@ -14,55 +14,45 @@
       <div class="card-block widget-body">
         <div class="row">
           <div class="col-xl-9 col-lg-9 col-12">
-            <form (ngSubmit)="onSubmit(espacioForm)" #espacioForm="ngForm">
+            <form (ngSubmit)="onSubmit()" #espacioForm="ngForm">
               <div class="form-group">
-                <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" id="nombre" required #nombre="ngModel" name="nombre"
-                  [(ngModel)]="_espacio.nombre">
+                <label for="nombre">Año</label>
+                <input type="text" class="form-control" id="nombre" required #nombre="ngModel"  name="nombre"
+                [(ngModel)]="anioActual" readonly>
                 <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
-                  Debe ingresar el nombre
+                  Debe ingresar el año
                 </div>
               </div>
 
-              <div class="form-group">
-                <label for="capacidad">Capacidad de personas</label>
+              <div class="form-group"> 
+                <label for="capacidad">Valor</label>
+                <div class="input-group">
+                    <div class="input-group-addon">$</div>
                 <input type="number" class="form-control" id="capacidad" required #capacidad="ngModel" name="capacidad"
-                  [(ngModel)]="_espacio.capacidad">
+                  [(ngModel)]="matricula.valor">
+                  <div class="input-group-addon">.00</div>
                 <div [hidden]="capacidad.valid || capacidad.pristine" class="alert alert-danger">
-                  Debe ingresar la capacidad del lugar
+                  Debe ingresar el valor de la matricula
                 </div>
               </div>
-
-              <div class="form-group">
-                <label for="idTipoEspacio">Tipo de espacio</label>
-                <!-- <input type="text" class="form-control" id="idTipoEspacio" required
-                #idTipoEspacio="ngModel" name="idTipoEspacio" [(ngModel)]="_espacio.idTipoEspacio"> -->
-
-                <select class="form-control" id="idTipoEspacio" required #idTipoEspacio="ngModel" name="idTipoEspacio"
-                  [(ngModel)]="_espacio.idTipoEspacio">
-                  <option value="1">Abierto</option>
-                  <option value="2">Cerrado</option>
-                </select>
-
-                <div [hidden]="idTipoEspacio.valid || idTipoEspacio.pristine" class="alert alert-danger">
-                  Debe ingresar el tipo de espacio común
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="nombre">descripcion</label>
-                <textarea type="text" class="form-control" id="descripcion" #descripcion="ngModel" name="descripcion"
-                  [(ngModel)]="_espacio.descripcion"></textarea>
-                <span class="help-block">Aquí puedes agregar cualquier dato relevante del espacio
-                  comun.</span>
-              </div>
+            </div>
+              
+            <div class="form-group">
+            <label for="fechaDesde">Fecha Vigencia</label>
+            <input type="date" class="form-control" id="fechaDesde" required #fechaDesde="ngModel" name="fechaDesde" [ngModel]="matricula.fechaVencimiento | date:'yyyy-MM-dd'"
+            (change)="actualizarFecha(fechaDesde.value)">
+            <div [hidden]="fechaDesde.valid || fechaDesde.pristine" class="alert alert-danger">
+                Debe ingresar la fecha de Vigencia
+            </div>
+          </div>
+         
 
               <button type="submit" class="btn btn-main" [disabled]="!espacioForm.form.valid">Guardar</button>
 
-              <button (click)="limpiarForm();" type="button" style="margin-left: 30px;"
+              <button (click)="volver();" type="button" style="margin-left: 30px;"
                 class="btn btn-default">Cancelar</button>
             </form>
-          </div>
+          </div> 
 
         </div>
 

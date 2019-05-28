@@ -138,6 +138,14 @@
     <Compile Include="Migrations\201905070637412_agregadoValor.Designer.cs">
       <DependentUpon>201905070637412_agregadoValor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905272106314_agregado-matricula-socio.cs" />
+    <Compile Include="Migrations\201905272106314_agregado-matricula-socio.Designer.cs">
+      <DependentUpon>201905272106314_agregado-matricula-socio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905272122223_prueba.cs" />
+    <Compile Include="Migrations\201905272122223_prueba.Designer.cs">
+      <DependentUpon>201905272122223_prueba.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
     <Compile Include="myMigrationSQLGenerator.cs" />
@@ -174,6 +182,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905070637412_agregadoValor.resx">
       <DependentUpon>201905070637412_agregadoValor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905272106314_agregado-matricula-socio.resx">
+      <DependentUpon>201905272106314_agregado-matricula-socio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905272122223_prueba.resx">
+      <DependentUpon>201905272122223_prueba.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

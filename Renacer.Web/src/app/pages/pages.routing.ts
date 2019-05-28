@@ -12,6 +12,7 @@ import { RolComponent } from './rol/rol.component';
 import { TipoEspacioComponent } from './tipoEspacio/tipoEspacio.component';
 import { UsuarioComponent } from './usuarios/usuarios.component';
 import { MatriculaComponent } from './matricula/matricula.component';
+import { NuevaMatriculaComponent } from './matricula/nueva-matricula/nueva-matricula.component';
 
 
 export const routes: Routes = [
@@ -41,6 +42,7 @@ export const routes: Routes = [
             { path: 'encargados', component: EncargadosComponent, data: { breadcrumb: 'Encargados' } },
             { path: 'usuario', component: UsuarioComponent, data: { breadcrumb: 'Usuarios' } },
             { path: 'matricula', component: MatriculaComponent, data: { breadcrumb: 'Matricula' } },
+            { path: 'edit-matricula/:id', component: NuevaMatriculaComponent, data: { breadcrumb: '' } },
             // { path: 'seleccionarRol', component: RolesUsuarioComponent, data: { breadcrumb: 'Selecionar rol'}},
             { path: 'blank', component: BlankComponent, data: { breadcrumb: 'Blank page' } }
         ]
