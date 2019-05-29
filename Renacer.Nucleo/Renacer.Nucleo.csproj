@@ -146,6 +146,10 @@
     <Compile Include="Migrations\201905272122223_prueba.Designer.cs">
       <DependentUpon>201905272122223_prueba.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905280543566_nose.cs" />
+    <Compile Include="Migrations\201905280543566_nose.Designer.cs">
+      <DependentUpon>201905280543566_nose.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
     <Compile Include="myMigrationSQLGenerator.cs" />
@@ -188,6 +192,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905272122223_prueba.resx">
       <DependentUpon>201905272122223_prueba.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905280543566_nose.resx">
+      <DependentUpon>201905280543566_nose.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
