@@ -44,6 +44,7 @@ namespace Renacer.Nucleo.Entidades
         public DateTime? fechaBaja { get; set; }
         public DateTime? fechaModificacion { get; set; }
 
+        public string estado { get; set; } = "DebeMatricula"; //DebeMatricula Baja, Activo
 
 
     }

@@ -39,7 +39,7 @@ export class MatriculaComponent implements OnInit {
 
   verItem(_item){
 
-    console.log('id: '+ _item.id);
+   // console.log('id: '+ _item.id);
     this.router.navigate(['/pages/edit-matricula/' + _item.id]);
 
   }

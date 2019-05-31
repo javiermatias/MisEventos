@@ -25,6 +25,7 @@ export class Socio {
     public domicilio?:Domicilio,
     public contacto?:Contacto,
     public listaTags?:Array<Tag>,
+    public estado?:string
   ) {
   this.tipoDoc = new TipoDocumento();
   this.listaTags = new Array<Tag>();

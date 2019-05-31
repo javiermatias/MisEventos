@@ -120,17 +120,38 @@ namespace Renacer.Nucleo.Control
         /// SELECT * FROM Socio
         /// </summary>
         /// <returns></returns>
-        public List<Socio> devolverTodos(int page,int limit,string search)
+        public List<Socio> devolverTodos(/*int page,int limit,string search*/)
         {
             try
             {
                 using (var db = new ModeloRenacer())
                 {
-                    if(search != null)
-                    return db.socio.Where(x=> x.fechaBaja == null && x.nombre.Contains(@search)).ToList();
-                    //return db.socio.Where(x=> x.nombre.Contains(@search)).Skip(page*limit).Take(limit).ToList();
-                    else
+                    //if (search != null)
+                    //    return db.socio.Where(x => x.fechaBaja == null && x.nombre.Contains(@search)).ToList();
+                    //return db.socio.Where(x => x.nombre.Contains(@search)).Skip(page * limit).Take(limit).ToList();
+                    //else
                         return db.socio.ToList();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ServicioSentry.devolverSentry().informarExcepcion(ex);
+            }
+            return null;
+        }
+
+        public List<Socio> devolverTodosDebeMatricula(/*int page,int limit,string search*/)
+        {
+            try
+            {
+                using (var db = new ModeloRenacer())
+                {
+                    //if (search != null)
+                    //    return db.socio.Where(x => x.fechaBaja == null && x.nombre.Contains(@search)).ToList();
+                    //return db.socio.Where(x => x.nombre.Contains(@search)).Skip(page * limit).Take(limit).ToList();
+                    //else
+                    return db.socio.Where(socio => socio.estado == "DebeMatricula").ToList();
 
                 }
             }

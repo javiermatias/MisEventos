@@ -19,13 +19,42 @@ namespace Renacer.Nucleo.Migrations
 
         protected override void Seed(ModeloRenacer context)
         {
-            //context.Database.ExecuteSqlCommand("TRUNCATE TABLE Rol");
-            //context.Database.ExecuteSqlCommand("TRUNCATE TABLE usuarios");
-            //context.Database.ExecuteSqlCommand("TRUNCATE TABLE usuariorols");
-            //context.Database.ExecuteSqlCommand("TRUNCATE TABLE persona");
-            //context.Database.ExecuteSqlCommand("TRUNCATE TABLE TipoDocumento");
-            // context.usuario.RemoveRange(context.usuario.ToList());
-            // TODO: hacer carga de permisos
+            Socio socio = new Socio()
+            {
+                
+                nombre = "jfsa321",
+                apellido = "joseds",
+                telefono = "3543604130",
+                email = "juanjose@gmail.com",
+                idTipoDoc=1,
+                idContacto=1,
+                idDomicilio=1
+            };
+
+           // context.socio.AddOrUpdate(socio);
+
+            Matricula matricula = new Matricula()
+            {
+               
+               anio=DateTime.Parse("29/05/2029"),
+               valor=1000,
+               estado="Activo"
+
+            };
+
+            MatriculaXSocio matriculaxsocio = new MatriculaXSocio()
+            {
+                matricula = matricula,
+                socio= socio,               
+                fechaPago = DateTime.Parse("29/05/2019"),
+                pago=false
+
+
+
+            };
+
+            //context.matricula.AddOrUpdate(matricula);
+            context.matriculaXSocio.AddOrUpdate(matriculaxsocio);
 
             // Carga de roles
             //Rol admin = new Rol() { nombre = "Administrador", descripcion = "Administrador del sistema" };
