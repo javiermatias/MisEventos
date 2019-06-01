@@ -75,3 +75,10 @@ export class Domicilio{
     })
     export class SocioServices extends BaseServices<Socio> {
     }
+
+    @Injectable()
+    @ResourceParams({
+      url:new Variables().urlBase + "socio/pagoMatricula"
+    })
+    export class SocioMatriculaServices extends BaseServices<Socio> {
+    }

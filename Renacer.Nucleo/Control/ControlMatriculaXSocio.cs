@@ -91,7 +91,7 @@ namespace Renacer.Nucleo.Control
             {
                 using (var db = new ModeloRenacer())
                 {
-                    return db.matriculaXSocio.ToList();
+                    return db.matriculaXSocio.Include("socio").Include("matricula").ToList();
                 }
             }
             catch (Exception ex)

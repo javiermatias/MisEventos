@@ -51,6 +51,21 @@ namespace Renacer.WebAPI.Controllers
             }
         }
 
+        [Route("api/socio/pagoMatricula")]
+        [HttpPost]
+        public IHttpActionResult PostPagaMatricula([FromBody]Socio value)
+        {
+            try
+            {
+                //if (value.id == 0) value.fechaCreacion = DateTime.Now;
+                ControlSocio.devolverInstancia().actualizarSocioPagoMatricula(value);
+                return Ok(value);
+            }
+            catch (UsuarioException ex)
+            {
+                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.BadRequest, ex.errores));
+            }
+        }
         // PUT: api/cliente/5
         public void Put(int id, [FromBody]Socio value)
         {

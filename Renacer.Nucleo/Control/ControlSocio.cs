@@ -1,4 +1,5 @@
-﻿using Renacer.Nucleo.Entidades;
+﻿using Renacer.Nucleo.Controlmatricula;
+using Renacer.Nucleo.Entidades;
 using Renacer.Nucleo.Servicio;
 using System;
 using System.Collections.Generic;
@@ -139,6 +140,30 @@ namespace Renacer.Nucleo.Control
                 ServicioSentry.devolverSentry().informarExcepcion(ex);
             }
             return null;
+        }
+
+        public void actualizarSocioPagoMatricula(Socio _socio) {
+            using (var db = new ModeloRenacer())
+            {
+                _socio.estado = "Activo";
+                db.Entry(_socio).State = System.Data.Entity.EntityState.Modified;
+                db.socio.AddOrUpdate(_socio);
+                //ControlMatriculaXSocio.devolverInstacia().
+                Matricula matricula = ControlMatricula.devolverInstacia().devolverMatriculaActiva();
+                db.Entry(matricula).State = System.Data.Entity.EntityState.Modified;
+                MatriculaXSocio matriculaxsocio = new MatriculaXSocio()
+                {
+                    matricula = matricula,
+                    socio = _socio,
+                    fechaPago = DateTime.Now,
+                    pago = true
+                    
+                };
+                db.matriculaXSocio.Add(matriculaxsocio);
+
+                db.SaveChanges();
+
+            }
         }
 
         public List<Socio> devolverTodosDebeMatricula(/*int page,int limit,string search*/)

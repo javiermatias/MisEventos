@@ -35,6 +35,7 @@ import { UsuarioComponent } from './usuarios/usuarios.component';
 import { MatriculaComponent } from './matricula/matricula.component';
 import { NuevaMatriculaComponent } from './matricula/nueva-matricula/nueva-matricula.component';
 import { CobroMatriculaComponent } from './cobro-matricula/cobro-matricula.component';
+import { MatriculasPagadasComponent } from './matricula/matriculas-pagadas/matriculas-pagadas.component';
 
 @NgModule({
   imports: [
@@ -70,7 +71,8 @@ import { CobroMatriculaComponent } from './cobro-matricula/cobro-matricula.compo
     UsuarioComponent,
     MatriculaComponent,
     NuevaMatriculaComponent,
-    CobroMatriculaComponent
+    CobroMatriculaComponent,
+    MatriculasPagadasComponent
   ]
   , exports: [
     BreadcrumbComponent,

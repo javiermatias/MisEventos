@@ -249,7 +249,17 @@ export class MenuComponent implements OnInit {
                 icon: 'fa-user',
                 expanded: false,
                 order: 800,
-                rolesVisible: [this.roles.secretario]
+                rolesVisible: [this.roles.secretario],
+                subMenu: [
+                    {
+                        title: 'Cobrar Matricula',
+                        routerLink: 'cobro-matricula'
+                    },
+                    {
+                        title: 'Matriculas Pagadas',
+                        routerLink: 'pago-matricula'
+                    }
+                ]
             },
             {
                 title: 'Mis Datos',
