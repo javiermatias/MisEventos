@@ -1,0 +1,41 @@
+<div class="row bottom-30">
+    <div toastContainer>
+      <button>Aceptar</button>
+    </div>
+  <div class="col">
+      <div class="card">
+          <div class="card-header">
+              <span>Recordatorios</span>
+          </div>
+          <div class="card-block">
+             <p></p>
+
+              <div class="row mbm-20" [dragula]="'bag-container'" >
+                <!--   <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 bottom-30 draggable">
+                      <div class="card">
+                          <div class="card-header">
+                              Drag me
+                          </div>
+                          <div class="card-block">
+                              <p class="card-text">There's also the possibility of moving elements around in the same container, changing their position.</p>
+                          </div>
+                      </div>
+                  </div> -->
+                  <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 bottom-30 draggable" *ngFor="let item of items">
+                      <div class="card card-primary">
+                          <div class="card-header">
+                            {{item.name}}
+                            <button class="remove-image" style="display: inline;" (click)="cerrar()">x</button>
+                            
+                          </div>
+                          <div class="card-block">
+                              <p class="card-text">{{item.name}}</p>
+                          </div>
+                      </div>
+                  </div>
+                 
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

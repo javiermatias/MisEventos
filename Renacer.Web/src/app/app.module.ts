@@ -25,6 +25,7 @@ import { AccessGuard } from './resources/accessGuard.service';
 import { DatePipe } from '@angular/common';
 import { MatriculaServices } from './resources/matricula.service';
 import { MatriculaxsocioService } from './resources/matriculaxsocio.service';
+import { DragulaModule } from 'ng2-dragula';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { MatriculaxsocioService } from './resources/matriculaxsocio.service';
     }),
     routing,
     HttpModule,
+    DragulaModule,
     NguiAutoCompleteModule
   ],
   providers: [
