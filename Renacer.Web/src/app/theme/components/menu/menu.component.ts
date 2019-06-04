@@ -214,8 +214,19 @@ export class MenuComponent implements OnInit {
                 target: '_blank',
                 routerLink: 'usuario/',
                 rolesVisible: [this.roles.administrador, this.roles.secretario]
+            },
+            {
+                title: 'Recordatorios',
+                icon: 'fa-users',
+                selected: false,
+                expanded: false,
+                order: 800,
+                target: '_blank',
+                routerLink: 'recordatorios/',
+                rolesVisible: [this.roles.administrador, this.roles.secretario]
             }
-            , {
+            , 
+            {
                 title: 'Reportes',
                 routerLink: 'reportes',
                 icon: 'fa-file',
@@ -252,11 +263,15 @@ export class MenuComponent implements OnInit {
                 rolesVisible: [this.roles.secretario],
                 subMenu: [
                     {
+                        title: 'Crear Matricula',
+                        routerLink: 'matricula'
+                    },
+                    {
                         title: 'Cobrar Matricula',
                         routerLink: 'cobro-matricula'
                     },
                     {
-                        title: 'Matriculas Pagadas',
+                        title: 'Ver Matriculas Pagadas',
                         routerLink: 'pago-matricula'
                     }
                 ]

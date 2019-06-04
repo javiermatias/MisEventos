@@ -1,35 +1,59 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
-import { ToastContainerDirective, ToastrService } from 'ngx-toastr';
+import {  ToastrService } from 'ngx-toastr';
+import { RecordatorioServices } from '../../resources/recordatorio.service';
+import { Recordatorio } from '../../models/recordatorio';
 
 @Component({
   selector: 'az-recordatorios',
-  encapsulation: ViewEncapsulation.None,
   templateUrl: './recordatorios.component.html',
   styleUrls: ['./recordatorios.component.scss']
 })
 export class RecordatoriosComponent implements OnInit {
   //items=[];
-  @ViewChild(ToastContainerDirective) toastContainer: ToastContainerDirective;
-  items = [
-    { "id": 0, "name": "Available" },
-    { "id": 1, "name": "Ready" },
-    { "id": 2, "name": "Started" },
-    { "id": 3, "name": "Available" },
-    { "id": 4, "name": "Ready" }
- 
-  ];
-  constructor(private toastrService: ToastrService) { }
+  showRecordatorio: boolean = false;
+
+  recordatorios: Recordatorio[];
+  
+  constructor(private _recordatorioService: RecordatorioServices,private toastrService: ToastrService) { }
 
   ngOnInit() {
-   /*  this.items =[
-      "hola ","asdasdasd","HUguito","Augusto","Mago"
-    ] */
-    this.toastrService.overlayContainer = this.toastContainer;
+  
+    this.getItems();
+ 
+  }
+
+  getItems() {
+   
+    this._recordatorioService.query({}, (items: Recordatorio[]) => {
+      console.log(items);
+      this.recordatorios = items;
+      console.log(this.recordatorios);
+      
+    });
   }
 
   cerrar(){
-    console.log("Hizo Click en borrar");
+    //console.log("Hizo Click en borrar");
+    //aca tengo que hacer el cuadro de dialogo
     this.toastrService.warning('Esta seguro de eliminar el recordatorio?');
+  }
+
+  nuevoRecordatorio(){
+    this.showRecordatorio = true;
+  }
+
+  guardo(cancelar: boolean){
+    //console.log("pase por guarod");
+    console.log(cancelar);
+    if(cancelar){
+      this.showRecordatorio = false;
+      //console.log("se hizo click en cancelar");
+    }else{
+      this.showRecordatorio = false;
+      this.getItems();
+      //console.log("se hizo click en guardar");
+    }
+    
   }
 
 }

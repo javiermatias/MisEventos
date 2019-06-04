@@ -38,6 +38,7 @@ import { CobroMatriculaComponent } from './cobro-matricula/cobro-matricula.compo
 import { MatriculasPagadasComponent } from './matricula/matriculas-pagadas/matriculas-pagadas.component';
 import { RecordatoriosComponent } from './recordatorios/recordatorios.component';
 import { DragulaModule } from 'ng2-dragula';
+import { NuevoRecordatorioComponent } from './recordatorios/nuevo-recordatorio/nuevo-recordatorio.component';
 
 
 @NgModule({
@@ -78,7 +79,8 @@ import { DragulaModule } from 'ng2-dragula';
     NuevaMatriculaComponent,
     CobroMatriculaComponent,
     MatriculasPagadasComponent,
-    RecordatoriosComponent
+    RecordatoriosComponent,
+    NuevoRecordatorioComponent
   ]
   , exports: [
     BreadcrumbComponent,
