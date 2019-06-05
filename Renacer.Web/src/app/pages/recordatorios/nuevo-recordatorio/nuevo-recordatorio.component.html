@@ -16,40 +16,41 @@
           <div class="col-xl-9 col-lg-9 col-12">
             <form (ngSubmit)="onSubmit()" #espacioForm="ngForm">
               <div class="form-group">
-                <label for="nombre">Titulo</label>
-                <input type="text" class="form-control" id="nombre" required #nombre="ngModel"  name="nombre"
-                [(ngModel)]="recordatorio.titulo" >
+                <label for="nombre">Título</label>
+                <input type="text" class="form-control" id="nombre" required #nombre="ngModel" name="nombre"
+                  [(ngModel)]="recordatorio.titulo">
                 <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
-                  Debe ingresar el titulo
+                  Debe ingresar el título
                 </div>
               </div>
 
-              <div class="form-group"> 
+              <div class="form-group">
                 <label for="capacidad">Descripción</label>
-             <input type="text" class="form-control" id="capacidad" required #capacidad="ngModel" name="capacidad"
-                  [(ngModel)]="recordatorio.descripcion">               
+                <input type="text" class="form-control" id="capacidad" required #capacidad="ngModel" name="capacidad"
+                  [(ngModel)]="recordatorio.descripcion">
                 <div [hidden]="capacidad.valid || capacidad.pristine" class="alert alert-danger">
-                  Debe ingresar la descripcion
+                  Debe ingresar la descripción
                 </div>
               </div>
-           
-              
-            <div class="form-group">
-            <label for="fechaDesde">Fecha Recordatorio</label>
-            <input type="date" class="form-control" id="fechaDesde" required #fechaDesde="ngModel" name="fechaDesde" [ngModel]="recordatorio.fechaRecordatorio | date:'yyyy-MM-dd'"
-            (change)="actualizarFecha(fechaDesde.value)">
-            <div [hidden]="fechaDesde.valid || fechaDesde.pristine" class="alert alert-danger">
-                Debe ingresar la Fecha del Recordatorio.
-            </div>
-          </div>
-         
+
+
+              <div class="form-group">
+                <label for="fechaDesde">Fecha Recordatorio</label>
+                <input type="date" class="form-control" id="fechaDesde" required #fechaDesde="ngModel" name="fechaDesde"
+                  [ngModel]="recordatorio.fechaRecordatorio | date:'yyyy-MM-dd'"
+                  (change)="actualizarFecha(fechaDesde.value)">
+                <div [hidden]="fechaDesde.valid || fechaDesde.pristine" class="alert alert-danger">
+                  Debe ingresar la Fecha del Recordatorio.
+                </div>
+              </div>
+
 
               <button type="submit" class="btn btn-main" [disabled]="!espacioForm.form.valid">Guardar</button>
 
               <button (click)="volver(true);" type="button" style="margin-left: 30px;"
                 class="btn btn-default">Cancelar</button>
             </form>
-          </div> 
+          </div>
 
         </div>
 
