@@ -101,6 +101,28 @@ namespace Renacer.Nucleo.Control
             return null;
         }
 
+        public List<Recordatorio> devolverDiaHoy()
+        {
+            List<Recordatorio> recordatorios = new List<Recordatorio>();
+            try
+            {
+                using (var db = new ModeloRenacer())
+                {
+                    var personas_db = db.Database.SqlQuery<Recordatorio>("SELECT * FROM renacer.recordatorios where LEFT(fechaRecordatorio ,10) =CURDATE()");
+                    foreach (var item in personas_db)
+                    {
+                        recordatorios.Add(item);
+                    }
+                    return recordatorios;
+                }
+            }
+            catch (Exception ex)
+            {
+                ServicioSentry.devolverSentry().informarExcepcion(ex);
+            }
+            return null;
+        }
+
         /// <summary>
         /// Metodo utilizado para eliminar un Matricula.
         /// TODO: El metodo se tiene que cambiar para actualizar un atributo del Matricula 
@@ -112,7 +134,10 @@ namespace Renacer.Nucleo.Control
             {
                 using (var db = new ModeloRenacer())
                 {
-                    db.recordatorio.Remove(db.recordatorio.Where(x => x.id.Equals(id)).FirstOrDefault());
+                    Recordatorio reco= db.recordatorio.Where(x => x.id.Equals(id)).FirstOrDefault();
+                    
+                    db.recordatorio.Remove(reco);
+                    db.SaveChanges();
                 }
             }
             catch (Exception ex)

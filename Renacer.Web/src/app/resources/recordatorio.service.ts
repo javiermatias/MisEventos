@@ -13,3 +13,11 @@ let variable = new Variables();
 export class RecordatorioServices extends BaseServices<Recordatorio> {
 
 }
+
+@Injectable()
+@ResourceParams({
+    url: variable.urlBase + "recordatorio/hoy"
+})
+export class RecordatorioHoyServices extends BaseServices<Recordatorio> {
+
+}

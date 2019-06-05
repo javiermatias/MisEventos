@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import {  ToastrService } from 'ngx-toastr';
 import { RecordatorioServices } from '../../resources/recordatorio.service';
 import { Recordatorio } from '../../models/recordatorio';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component({
   selector: 'az-recordatorios',
@@ -11,7 +12,8 @@ import { Recordatorio } from '../../models/recordatorio';
 export class RecordatoriosComponent implements OnInit {
   //items=[];
   showRecordatorio: boolean = false;
-
+  borrar:boolean = true;
+ 
   recordatorios: Recordatorio[];
   
   constructor(private _recordatorioService: RecordatorioServices,private toastrService: ToastrService) { }
@@ -32,10 +34,26 @@ export class RecordatoriosComponent implements OnInit {
     });
   }
 
-  cerrar(){
+  cerrar(reco:Recordatorio){
     //console.log("Hizo Click en borrar");
     //aca tengo que hacer el cuadro de dialogo
-    this.toastrService.warning('Esta seguro de eliminar el recordatorio?');
+    let id:any;
+    id=reco.id;
+    console.log(reco.id);
+    if(confirm("Estas seguro de eliminar el recordatorio " + reco.descripcion)) {
+      console.log("pase por el si");
+      this._recordatorioService.remove({id},(resp:any) => {
+        //Callback
+           this.getItems();
+          this.toastrService.success('Se elimino el recordatorio!', 'Aviso!');
+          //this.volver();
+     });
+    }
+
+  
+
+
+    //this.toastrService.warning('Esta seguro de eliminar el recordatorio?');
   }
 
   nuevoRecordatorio(){

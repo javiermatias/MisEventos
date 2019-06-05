@@ -32,28 +32,29 @@
     <li class="dropdown notification-menu">
         <a href class="dropdown-toggle notification" data-toggle="dropdown" aria-expanded="false">
             <i class="fa fa-bell-o"></i>
-            <span>5</span>
+            <span>{{ recordatorios?.length }}</span>
             <div class="pulsate"></div>
         </a>
 
         <div class="top-dropdown-menu dropdown-menu">
             <i class="dropdown-arr"></i>
             <div class="header clearfix">
-                <span>Notifications</span>
+                    <span>Alertas para hoy</span>
+             <!--    <span>Notifications</span>
                 <a href class="transition">Mark All as Read</a>
-                <a href class="transition">Settings</a>
+                <a href class="transition">Settings</a> -->
             </div>
             <div class="list" slim-scroll [slimScrollOptions]="{height: 250}">
-                <a *ngFor="let notification of notifications" href class="transition">
-                    <!-- <img src="{{ ( notification.image || (notification.name | profilePicture)) }}"> -->
+                <a *ngFor="let recordatorio of recordatorios" href class="transition">
+                    <img src="/assets/img/recordatorio.png"> 
                     <div class="list-content">
-                        <h3>{{notification.name}} <span class="pull-right"> {{notification.time}}</span></h3>
-                        <p>{{notification.text}}</p>
+                        <h3>{{recordatorio.titulo}} <span class="pull-right"> {{recordatorio.fechaRecordatorio | date:'dd-MM-yyyy'}}</span></h3>
+                        <p>{{recordatorio.descripcion}}</p>
                     </div>
                 </a>
             </div>
             <div class="footer">
-                <a href="#" class="transition">View all notifications</a>
+              <a routerLink="/pages/recordatorios" class="transition">Ver todos los recordatorios</a> 
             </div>
         </div>
     </li>

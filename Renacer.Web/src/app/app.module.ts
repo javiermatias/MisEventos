@@ -26,7 +26,7 @@ import { DatePipe } from '@angular/common';
 import { MatriculaServices } from './resources/matricula.service';
 import { MatriculaxsocioService } from './resources/matriculaxsocio.service';
 import { DragulaModule } from 'ng2-dragula';
-import { RecordatorioServices } from './resources/recordatorio.service';
+import { RecordatorioServices, RecordatorioHoyServices } from './resources/recordatorio.service';
 
 @NgModule({
   declarations: [
@@ -67,6 +67,7 @@ import { RecordatorioServices } from './resources/recordatorio.service';
     MatriculaServices,
     MatriculaxsocioService,
     RecordatorioServices,
+    RecordatorioHoyServices,
     DatePipe],
   bootstrap: [AppComponent]
 })

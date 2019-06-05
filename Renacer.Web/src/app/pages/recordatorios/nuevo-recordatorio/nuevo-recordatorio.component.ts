@@ -25,7 +25,7 @@ export class NuevoRecordatorioComponent implements OnInit {
     //función asincrónica, puede tardar varios segundos   
     this._recordatorioService.save(this.recordatorio,(resp:any) => {
        //Callback
-         this.mensajeServ.success('Se han guardado los cambios!', 'Aviso!');
+         this.mensajeServ.success('Se guardo el recordatorio!', 'Aviso!');
          this.mostrarRecordatorio.emit(false);
          //this.volver();
     });

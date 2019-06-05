@@ -16,6 +16,14 @@ namespace Renacer.WebAPI.Controllers
         {
             return ControlRecordatorio.devolverInstacia().devolverTodos();
         }
+        //devolverDiaHoy()
+        [Route("api/recordatorio/hoy")]
+        [HttpGet]
+        public IEnumerable<Recordatorio> GetDiaHoy()
+        {
+            return ControlRecordatorio.devolverInstacia().devolverDiaHoy();
+
+        }
 
         // GET: api/cliente/5
         public Recordatorio Get(int id)

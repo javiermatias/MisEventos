@@ -5,9 +5,6 @@
 
 </div>
 
-
-
-
 <div class="row bottom-30" *ngIf="!showRecordatorio">
      <div class="col">
       <div class="card">
@@ -39,7 +36,7 @@
                       <div class="card card-primary">
                           <div class="card-header">
                             {{item.titulo}}  {{item.fechaRecordatorio | date:'dd-MM-yyyy'}}
-                            <button class="remove-image" style="display: inline;" (click)="cerrar()">x</button>
+                            <button class="remove-image" style="display: inline;" (click)="cerrar(item)">x</button>
                             
                           </div>
                           <div class="card-block">
