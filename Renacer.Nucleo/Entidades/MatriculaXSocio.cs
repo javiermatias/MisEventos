@@ -24,7 +24,7 @@ namespace Renacer.Nucleo.Entidades
 
         public DateTime fechaPago { get; set; }
 
-        public bool pago { get; set; }
+        public decimal pago { get; set; }
 
 
 
