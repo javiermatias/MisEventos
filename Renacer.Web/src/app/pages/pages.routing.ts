@@ -45,7 +45,7 @@ export const routes: Routes = [
             { path: 'encargados', component: EncargadosComponent, data: { breadcrumb: 'Encargados' } },
             { path: 'usuario', component: UsuarioComponent, data: { breadcrumb: 'Usuarios' } },
             { path: 'matricula', component: MatriculaComponent, data: { breadcrumb: 'Matricula' } },
-            { path: 'edit-matricula/:id', component: NuevaMatriculaComponent, data: { breadcrumb: '' } },
+            { path: 'formulario-matricula/:id', component: NuevaMatriculaComponent, data: { breadcrumb: '' } },
             { path: 'cobro-matricula', component: CobroMatriculaComponent, data: { breadcrumb: '' } },
             { path: 'pago-matricula', component: MatriculasPagadasComponent, data: { breadcrumb: '' } },
             { path: 'recordatorios', component: RecordatoriosComponent, data: { breadcrumb: '' } },
