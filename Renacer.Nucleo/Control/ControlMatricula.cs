@@ -79,21 +79,7 @@ namespace Renacer.Nucleo.Controlmatricula
             }
             return null;
         }
-        public Matricula devolverMatriculaActiva()
-        {
-            try
-            {
-                using (var db = new ModeloRenacer())
-                {
-                    return db.matricula.Where(x => x.estado.Equals("Activo")).FirstOrDefault();
-                }
-            }
-            catch (Exception ex)
-            {
-                ServicioSentry.devolverSentry().informarExcepcion(ex);
-            }
-            return null;
-        }
+
         /// <summary>
         /// Metodo utilizado para devolver todos los Matricula
         /// SELECT * FROM Matricula

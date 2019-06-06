@@ -16,7 +16,6 @@ interface IQueryInput {
   idEvento?: number;
   id?: number;
   rol?: string;
-  estado?: string;
 }
 
 export class BaseEntity {

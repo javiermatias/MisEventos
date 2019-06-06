@@ -6,7 +6,7 @@ import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
-import { ToastrModule, ToastContainerModule  } from 'ngx-toastr';
+import { ToastrModule } from 'ngx-toastr';
 import { DirectivesModule } from '../theme/directives/directives.module';
 import { PipesModule } from '../theme/pipes/pipes.module';
 import { SharedModule } from './shared/shared.module';
@@ -34,27 +34,19 @@ import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import { UsuarioComponent } from './usuarios/usuarios.component';
 import { MatriculaComponent } from './matricula/matricula.component';
 import { NuevaMatriculaComponent } from './matricula/nueva-matricula/nueva-matricula.component';
-import { CobroMatriculaComponent } from './cobro-matricula/cobro-matricula.component';
-import { MatriculasPagadasComponent } from './matricula/matriculas-pagadas/matriculas-pagadas.component';
-import { RecordatoriosComponent } from './recordatorios/recordatorios.component';
-import { DragulaModule } from 'ng2-dragula';
-import { NuevoRecordatorioComponent } from './recordatorios/nuevo-recordatorio/nuevo-recordatorio.component';
-
 
 @NgModule({
   imports: [
     CommonModule,
     PerfectScrollbarModule.forChild(),
     ToastrModule.forRoot(),
-    ToastContainerModule,
     DirectivesModule,
     PipesModule,
     routing,
     FormsModule,
     DataTableModule,
     NguiAutoCompleteModule,
-    SharedModule,
-    DragulaModule
+    SharedModule
   ],
   declarations: [
     PagesComponent,
@@ -76,11 +68,7 @@ import { NuevoRecordatorioComponent } from './recordatorios/nuevo-recordatorio/n
     ContactoModelComponent,
     UsuarioComponent,
     MatriculaComponent,
-    NuevaMatriculaComponent,
-    CobroMatriculaComponent,
-    MatriculasPagadasComponent,
-    RecordatoriosComponent,
-    NuevoRecordatorioComponent
+    NuevaMatriculaComponent
   ]
   , exports: [
     BreadcrumbComponent,
@@ -93,7 +81,6 @@ import { NuevoRecordatorioComponent } from './recordatorios/nuevo-recordatorio/n
     RolComponent,
     EncargadosComponent,
     ContactoModelComponent
-   
   ]
 })
 

@@ -16,9 +16,9 @@ namespace Renacer.Nucleo.Entidades
         public int valor{ get; set; }
         public DateTime fechaVencimiento { get; set; }
         
-        public string estado { get; set; } //Baja, Activa
+        public string estado { get; set; }
 
-   
+        public string estado2 { get; set; }
 
 
     }

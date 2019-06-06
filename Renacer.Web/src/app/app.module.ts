@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { UserServices } from './resources/users.service';
 import { PersonaServices } from './resources/persona.service';
-import { SocioServices, SocioMatriculaServices } from './resources/socio.service';
+import { SocioServices } from './resources/socio.service';
 import { EspacioServices } from './resources/espacio.service';
 import { EncargadoEventoServices } from './resources/encargado.service';
 import { ReporteServices } from './resources/reporte.service';
@@ -24,9 +24,6 @@ import { TipoEspacioServices } from '../app/pages/tipoEspacio/tipoEspacio.servic
 import { AccessGuard } from './resources/accessGuard.service';
 import { DatePipe } from '@angular/common';
 import { MatriculaServices } from './resources/matricula.service';
-import { MatriculaxsocioService } from './resources/matriculaxsocio.service';
-import { DragulaModule } from 'ng2-dragula';
-import { RecordatorioServices, RecordatorioHoyServices } from './resources/recordatorio.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +38,6 @@ import { RecordatorioServices, RecordatorioHoyServices } from './resources/recor
     }),
     routing,
     HttpModule,
-    DragulaModule,
     NguiAutoCompleteModule
   ],
   providers: [
@@ -50,7 +46,6 @@ import { RecordatorioServices, RecordatorioHoyServices } from './resources/recor
     UserServices,
     PersonaServices,
     SocioServices,
-    SocioMatriculaServices,
     EspacioServices,
     TagServices,
     EventoServices,
@@ -65,9 +60,6 @@ import { RecordatorioServices, RecordatorioHoyServices } from './resources/recor
     RolServices,
     TipoEspacioServices,
     MatriculaServices,
-    MatriculaxsocioService,
-    RecordatorioServices,
-    RecordatorioHoyServices,
     DatePipe],
   bootstrap: [AppComponent]
 })

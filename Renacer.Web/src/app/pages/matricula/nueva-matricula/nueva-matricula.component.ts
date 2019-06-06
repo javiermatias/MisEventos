@@ -64,7 +64,7 @@ actualizarFecha(fecha: string) {
   let newDate = new Date(fecha);
    newDate.setDate(newDate.getDate() + 1 );
   console.log(newDate);
-  this.matricula.fechaVencimiento = newDate;
+  //this.matricula.fechaVencimiento = newDate;
 
 }
     

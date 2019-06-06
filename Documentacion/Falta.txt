@@ -1,3 +1,0 @@
--Procesar el pago (Ver el botón sombreado)
--Ver el tema de recordatorios.(Crear y borrar)
--Eventos con el tipo screen
