@@ -12,6 +12,10 @@ import { RolComponent } from './rol/rol.component';
 import { TipoEspacioComponent } from './tipoEspacio/tipoEspacio.component';
 import { UsuarioComponent } from './usuarios/usuarios.component';
 import { MatriculaComponent } from './matricula/matricula.component';
+import { NuevaMatriculaComponent } from './matricula/nueva-matricula/nueva-matricula.component';
+import { CobroMatriculaComponent } from './cobro-matricula/cobro-matricula.component';
+import { MatriculasPagadasComponent } from './matricula/matriculas-pagadas/matriculas-pagadas.component';
+import { RecordatoriosComponent } from './recordatorios/recordatorios.component';
 
 
 export const routes: Routes = [
@@ -41,6 +45,10 @@ export const routes: Routes = [
             { path: 'encargados', component: EncargadosComponent, data: { breadcrumb: 'Encargados' } },
             { path: 'usuario', component: UsuarioComponent, data: { breadcrumb: 'Usuarios' } },
             { path: 'matricula', component: MatriculaComponent, data: { breadcrumb: 'Matricula' } },
+            { path: 'formulario-matricula/:id', component: NuevaMatriculaComponent, data: { breadcrumb: '' } },
+            { path: 'cobro-matricula', component: CobroMatriculaComponent, data: { breadcrumb: '' } },
+            { path: 'pago-matricula', component: MatriculasPagadasComponent, data: { breadcrumb: '' } },
+            { path: 'recordatorios', component: RecordatoriosComponent, data: { breadcrumb: '' } },
             // { path: 'seleccionarRol', component: RolesUsuarioComponent, data: { breadcrumb: 'Selecionar rol'}},
             { path: 'blank', component: BlankComponent, data: { breadcrumb: 'Blank page' } }
         ]

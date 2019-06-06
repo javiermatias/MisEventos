@@ -12,12 +12,22 @@ namespace Renacer.WebAPI.Controllers
     public class SocioController : ApiController
     {
         // GET: api/Socios
-        public IEnumerable<Socio> Get([FromUri]int page,[FromUri] int limit, [FromUri] string search)
+        public IEnumerable<Socio> Get(/*[FromUri]int page,[FromUri] int limit, [FromUri] string search*/)
         {
-            if (page <= 0) page = 1;
-            if (limit <= 0) limit = 10;
+            //if (page <= 0) page = 1;
+            //if (limit <= 0) limit = 10;
 
-            return ControlSocio.devolverInstancia().devolverTodos(page,limit,search);
+            return ControlSocio.devolverInstancia().devolverTodos(/*page,limit,search*/);
+        }
+
+        //[Route("api/socio/sinMatricula")]
+        [HttpGet]
+        public IEnumerable<Socio> GetMatriculas([FromUri] string estado)
+        {
+            //if (page <= 0) page = 1;
+            //if (limit <= 0) limit = 10;
+
+            return ControlSocio.devolverInstancia().devolverTodosDebeMatricula(/*page,limit,search*/);
         }
 
         // GET: api/Socios/5
@@ -41,6 +51,21 @@ namespace Renacer.WebAPI.Controllers
             }
         }
 
+        [Route("api/socio/pagoMatricula")]
+        [HttpPost]
+        public IHttpActionResult PostPagaMatricula([FromBody]Socio value)
+        {
+            try
+            {
+                //if (value.id == 0) value.fechaCreacion = DateTime.Now;
+                ControlSocio.devolverInstancia().actualizarSocioPagoMatricula(value);
+                return Ok(value);
+            }
+            catch (UsuarioException ex)
+            {
+                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.BadRequest, ex.errores));
+            }
+        }
         // PUT: api/cliente/5
         public void Put(int id, [FromBody]Socio value)
         {

@@ -4,7 +4,7 @@
       <div class="col">
         <div widget class="card">
           <div class="card-header">
-            <span class="text-uppercase">Matriculas</span>
+            <span class="text-uppercase">Matrículas</span>
 
             <div class="widget-controls">
               <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
@@ -17,14 +17,14 @@
           <div class="card-block widget-body">
             <p class="no-margin"> </p>
             <div class="w-200 pull-left bottom-15">
-              <button style="margin-left: 20px;" class="btn btn-main" (click)="nuevoItem()">Nueva Matricula</button>
+              <button style="margin-left: 20px;" class="btn btn-main" (click)="nuevoItem()">Nueva Matrícula</button>
             </div>
 
             <div class="w-200 pull-right bottom-15">
               <div class="input-group input-group-sm">
                 <span class="input-group-addon"><i class="fa fa-search"></i></span>
                 <input class="form-control" id="table-search-input" [(ngModel)]="searchText" type="text"
-                  placeholder="Buscar matricula...">
+                  placeholder="Buscar matrícula...">
               </div>
             </div>
             <div class="table-responsive datatable">
@@ -33,23 +33,35 @@
                 [mfRowsOnPage]="10">
                 <thead>
                   <tr>
-                    <!-- <th><mfDefaultSorter by="id">Id</mfDefaultSorter></th> -->
+                    <!-- <th><mfDefaultSorter by="id">Id</mfDefaultSorter></th>  -->
                     <th>
-                      <mfDefaultSorter by="año">Matricula</mfDefaultSorter>
+                      <mfDefaultSorter by="anio">Año</mfDefaultSorter>
                     </th>
                     <th>
                       <mfDefaultSorter by="valor">Valor</mfDefaultSorter>
                     </th>
                     <th>
-                      <mfDefaultSorter by="fechaVencimiento">Fecha Vencimiento</mfDefaultSorter>
+                      <mfDefaultSorter by="fechaVencimiento">Validez</mfDefaultSorter>
                     </th>
+                    <th>
+                      <mfDefaultSorter by="estado">Estado</mfDefaultSorter>
+                    </th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let item of mf.data | SearchPipe : searchText">
-                    <td><strong>{{item.anio | date:'longDate'}}</strong></td>
+                  <tr *ngFor="let item of mf.data | buscarMatriculaPipe : searchText; trackBy: trackElement">
+                    <!-- <td><strong>{{item.id}}</strong></td> -->
+                    <td><strong>{{item.anio | date:"yyyy"}}</strong></td>
                     <td>{{item.valor}}</td>
-                    <td>{{item.fechaVencimiento | date:'longDate'}}</td>
+                    <td>{{item.fechaVencimiento | date:"dd/MM/yyyy"}}</td>
+                    <td>{{item.estado}}</td>
+                    <td *ngIf="item.estado == 'Alta'; else other_content">
+                      <a style="color: #014c8c;cursor:pointer;" (click)="verItem(item)">Ver</a>
+                    <td>
+                      <ng-template #other_content>
+                    <td></td>
+                    </ng-template>
                   </tr>
                   <tr *ngIf="(mf.data | SearchPipe : searchText).length === 0">
                     <td colspan="100">
