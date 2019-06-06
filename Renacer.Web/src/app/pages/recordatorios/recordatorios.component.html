@@ -1,0 +1,52 @@
+
+<div *ngIf="showRecordatorio">  
+
+    <az-nuevo-recordatorio  (mostrarRecordatorio)="guardo($event)"></az-nuevo-recordatorio>
+
+</div>
+
+<div class="row bottom-30" *ngIf="!showRecordatorio">
+     <div class="col">
+      <div class="card">
+          <div class="card-header">
+              <span>Recordatorios</span>
+          </div>
+          <div class="card-block">
+            <div>
+                <button style="margin-left: 20px;" class="btn btn-main" (click)="nuevoRecordatorio()">Nuevo Recordatorio</button>
+              </div> 
+              
+<br>    <br>
+              <div class="row mbm-20" [dragula]="'bag-container'" >
+                <!--   <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 bottom-30 draggable">
+                      <div class="card">
+                          <div class="card-header">
+                              Drag me
+                          </div>
+                          <div class="card-block">
+                              <p class="card-text">There's also the possibility of moving elements around in the same container, changing their position.</p>
+                          </div>
+                      </div>
+                  </div> -->
+                
+
+
+
+                  <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 bottom-30 draggable" *ngFor="let item of recordatorios">
+                      <div class="card card-primary">
+                          <div class="card-header">
+                            {{item.titulo}}  {{item.fechaRecordatorio | date:'dd-MM-yyyy'}}
+                            <button class="remove-image" style="display: inline;" (click)="cerrar(item)">x</button>
+                            
+                          </div>
+                          <div class="card-block">
+                              <p class="card-text">{{item.descripcion}}</p>
+                          </div>
+                      </div>
+                  </div>
+                 
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

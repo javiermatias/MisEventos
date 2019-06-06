@@ -44,6 +44,12 @@ namespace Renacer.Nucleo.Entidades
         public DateTime? fechaBaja { get; set; }
         public DateTime? fechaModificacion { get; set; }
 
+        //Cuando el admin crea la matricula del año, todos los socios pasan a el estado debeMatricula
+        //no se puede inscribir el socio a ningun evento hasta que no pague la matricula y pase al estado activo
+        //Cuando el socio pague la matricula, se pone en estado activo y se almacena el registro MatriculaXSocio.
+        public string estado { get; set; } = "DebeMatricula"; //DebeMatricula Baja, Activo
+
+
 
 
     }
