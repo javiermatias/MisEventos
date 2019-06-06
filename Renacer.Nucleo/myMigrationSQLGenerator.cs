@@ -19,12 +19,21 @@ namespace Renacer.Nucleo
         }
 
         //Para que no agregue los .dbo
-        protected override MigrationStatement Generate(AddForeignKeyOperation addForeignKeyOperation)
+        //protected override MigrationStatement Generate(AddForeignKeyOperation addForeignKeyOperation)
+        //{
+        //    addForeignKeyOperation.PrincipalTable = addForeignKeyOperation.PrincipalTable.Replace("dbo.", "");
+        //    addForeignKeyOperation.DependentTable = addForeignKeyOperation.DependentTable.Replace("dbo.", "");
+        //    MigrationStatement ms = base.Generate(addForeignKeyOperation);
+        //    return ms;
+        //}
+        public override IEnumerable<MigrationStatement> Generate(IEnumerable<MigrationOperation> migrationOperations, string providerManifestToken)
         {
-            addForeignKeyOperation.PrincipalTable = addForeignKeyOperation.PrincipalTable.Replace("dbo.", "");
-            addForeignKeyOperation.DependentTable = addForeignKeyOperation.DependentTable.Replace("dbo.", "");
-            MigrationStatement ms = base.Generate(addForeignKeyOperation);
-            return ms;
+            IEnumerable<MigrationStatement> res = base.Generate(migrationOperations, providerManifestToken);
+            foreach (MigrationStatement ms in res)
+            {
+                ms.Sql = ms.Sql.Replace("dbo.", "");
+            }
+            return res;
         }
 
         protected override MigrationStatement Generate(CreateIndexOperation op)

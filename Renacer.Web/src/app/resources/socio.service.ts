@@ -25,6 +25,7 @@ export class Socio {
     public domicilio?:Domicilio,
     public contacto?:Contacto,
     public listaTags?:Array<Tag>,
+    public estado?:string
   ) {
   this.tipoDoc = new TipoDocumento();
   this.listaTags = new Array<Tag>();
@@ -73,4 +74,11 @@ export class Domicilio{
       url:new Variables().urlBase + "socio/"
     })
     export class SocioServices extends BaseServices<Socio> {
+    }
+
+    @Injectable()
+    @ResourceParams({
+      url:new Variables().urlBase + "socio/pagoMatricula"
+    })
+    export class SocioMatriculaServices extends BaseServices<Socio> {
     }
