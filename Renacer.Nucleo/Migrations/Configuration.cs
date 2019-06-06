@@ -46,8 +46,8 @@ namespace Renacer.Nucleo.Migrations
             {
                 matricula = matricula,
                 socio= socio,               
-                fechaPago = DateTime.Parse("29/05/2019"),
-                pago=false
+                fechaPago = DateTime.Parse("29/05/2019")
+                //pago=false
 
 
 

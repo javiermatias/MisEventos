@@ -177,6 +177,10 @@
     <Compile Include="Migrations\201906040346448_recordatorios.Designer.cs">
       <DependentUpon>201906040346448_recordatorios.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906060508594_cambioSocio.cs" />
+    <Compile Include="Migrations\201906060508594_cambioSocio.Designer.cs">
+      <DependentUpon>201906060508594_cambioSocio.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
     <Compile Include="myMigrationSQLGenerator.cs" />
@@ -238,6 +242,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906040346448_recordatorios.resx">
       <DependentUpon>201906040346448_recordatorios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906060508594_cambioSocio.resx">
+      <DependentUpon>201906060508594_cambioSocio.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
