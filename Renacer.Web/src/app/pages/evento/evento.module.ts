@@ -12,10 +12,13 @@ import { DetalleEventoComponent } from './detalle-evento.component';
 import { EventoComponent } from './evento.component';
 import { CalendarComponent } from './calendar.component';
 import { ListaComponent } from './lista/lista.component';
+import { EventoWizardComponent } from './evento-wizard/evento-wizard.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 export const routes = [
   { path: '', redirectTo: 'lista', pathMatch: 'full'},
   { path: 'calendario', component: CalendarComponent, data: { breadcrumb: '' } },
+  { path: 'evento-wizard', component: EventoWizardComponent, data: { breadcrumb: '' } },
   { path: 'lista', component: ListaComponent, data: { breadcrumb: 'Lista' } },
   { path: ':id', component: EventoComponent, data: { breadcrumb: 'Evento' } },
   { path: ':idEvento/detalle/:idDetalle', component: DetalleEventoComponent, data: { breadcrumb: 'Detalle' } }
@@ -30,13 +33,15 @@ export const routes = [
       FormsModule,
       DataTableModule,
       NguiAutoCompleteModule,
+      ReactiveFormsModule,
       RouterModule.forChild(routes)
   ],
   declarations: [
     DetalleEventoComponent,
     EventoComponent,
     CalendarComponent,
-    ListaComponent
+    ListaComponent,
+    EventoWizardComponent
   ]
 })
 export class EventoModule { }
