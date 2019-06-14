@@ -6,9 +6,9 @@ import {EspacioServices,EspacioComun} from '../../../resources/espacio.service';
   template:`<div class="form-group">
   <label>Espacio Comun
   </label>
-  <select class="form-control" id="select_item" (change)="actualizarItem()"
+  <select class="form-control" id="select_item" (change)="actualizarItem(select_item)"
   required #select_item="ngModel" name="select_item" [(ngModel)]="itemSelected">
-  <option *ngFor="let item of items;trackBy:item?.id" [ngValue]="item">{{item.nombre}} {{item.apellido}}
+  <option *ngFor="let item of items;trackBy:item?.id" [ngValue]="item">{{item.nombre}}
   </option>
   </select>
   <div [hidden]="select_item.valid || select_item.pristine" class="alert alert-danger">
@@ -27,6 +27,7 @@ export class SelectEspacioComponent implements OnInit {
 
   ngOnInit() {
     this.getItems();
+    console.log("item:" + this.item);
   }
 
   ngOnChanges(){
@@ -47,9 +48,13 @@ export class SelectEspacioComponent implements OnInit {
     }
   }
 
-  actualizarItem(){
+  actualizarItem(_item:EspacioComun){
+    if(this.item){
     this.item.id = this.itemSelected.id;
     this.item.nombre = this.itemSelected.nombre;
+    }else{
+      this.item = new EspacioComun(this.itemSelected.id,this.itemSelected.nombre)
+    }
   }
 
   getItems(){

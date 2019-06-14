@@ -17,24 +17,27 @@ export class Evento {
     public descripcion?: string,
     public idTipoEvento?:number,
     public tipoEvento?:TipoEvento,
-    public listaTags?:Array<Tag>,
+    public idEspacio?:number,
+    public espacio?:EspacioComun,
     public cupoMinimo?: number,
     public cupoMaximo?: number,
-    public monto?: number,    
-    public estado?: string, 
-    public fechaHasta?: Date,
+    public costo?:boolean, // true es gratiuto
+    public monto?:number,
+    public cantidadCuota?:number,
+    public listaCuotas?:Array<Cuota>,
     public fechaDesde?: Date,
+    public fechaHasta?: Date,    
     public fechaDesdeInscripcion?: Date,
     public fechaHastaInscripcion?: Date,
+    public listaTags?:Array<Tag>,        
+    public estado?: string, 
     public fechaCreacion?: Date,
     public fechaModificacion?: Date,
-    public fechaBaja?: Date,
-    public espacio?:EspacioComun,
+    public fechaBaja?: Date,    
     public responsable?:EncargadoEvento,    
     public listaSocios?:Array<Socio>,
     public listaInscripciones?:Array<Inscripcion>,
-    public listaDetalleEvento?:Array<DetalleEvento>,
-    public idEspacio?:number,
+    public listaDetalleEvento?:Array<DetalleEvento>,    
     public idEncargado?:number
   ) {
     this.listaTags = new Array<Tag>();
@@ -122,6 +125,14 @@ export class Pago {
     this.inscripcion = new Inscripcion(0);
     this.asociacion = new Asociacion(0);
   }
+}
+
+export class Cuota
+{
+    public id: number;
+    public nombre?: string;
+    public decimal: number;
+    
 }
 
 let variable = new Variables();

@@ -19,42 +19,42 @@ namespace Renacer.Nucleo.Migrations
 
         protected override void Seed(ModeloRenacer context)
         {
-            Socio socio = new Socio()
-            {
+           // Socio socio = new Socio()
+           // {
                 
-                nombre = "jfsa321",
-                apellido = "joseds",
-                telefono = "3543604130",
-                email = "juanjose@gmail.com",
-                idTipoDoc=1,
-                idContacto=1,
-                idDomicilio=1
-            };
+           //     nombre = "jfsa321",
+           //     apellido = "joseds",
+           //     telefono = "3543604130",
+           //     email = "juanjose@gmail.com",
+           //     idTipoDoc=1,
+           //     idContacto=1,
+           //     idDomicilio=1
+           // };
 
-           // context.socio.AddOrUpdate(socio);
+           //// context.socio.AddOrUpdate(socio);
 
-            Matricula matricula = new Matricula()
-            {
+           // Matricula matricula = new Matricula()
+           // {
                
-               anio=DateTime.Parse("29/05/2029"),
-               valor=1000,
-               estado="Activo"
+           //    anio=DateTime.Parse("29/05/2029"),
+           //    valor=1000,
+           //    estado="Activo"
 
-            };
+           // };
 
-            MatriculaXSocio matriculaxsocio = new MatriculaXSocio()
-            {
-                matricula = matricula,
-                socio= socio,               
-                fechaPago = DateTime.Parse("29/05/2019")
-                //pago=false
+           // MatriculaXSocio matriculaxsocio = new MatriculaXSocio()
+           // {
+           //     matricula = matricula,
+           //     socio= socio,               
+           //     fechaPago = DateTime.Parse("29/05/2019")
+           //     //pago=false
 
 
 
-            };
+           // };
 
-            //context.matricula.AddOrUpdate(matricula);
-            context.matriculaXSocio.AddOrUpdate(matriculaxsocio);
+           // //context.matricula.AddOrUpdate(matricula);
+           // context.matriculaXSocio.AddOrUpdate(matriculaxsocio);
 
             // Carga de roles
             //Rol admin = new Rol() { nombre = "Administrador", descripcion = "Administrador del sistema" };

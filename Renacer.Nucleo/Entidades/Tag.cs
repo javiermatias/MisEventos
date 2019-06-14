@@ -21,7 +21,7 @@
         public string descripcion { get; set; }
 
         public List<Encargado> listaEncargados { get; set; }
-        public List<Evento> listaEventos { get; set; }
+        //public List<Evento> listaEventos { get; set; }
         public List<EspacioComun> listaEspacios { get; set; }
         public List<Socio> listaSocios { get; set; }
 

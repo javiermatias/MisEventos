@@ -69,7 +69,7 @@ public searchText:string="";
     }
     nuevoItem()
     {
-      this._item =  new Evento();
+      this._item =  new Evento(0,"","");
       this._item.responsable = new EncargadoEvento(0);
       this._item.espacio = new EspacioComun(0);
       this._item.tipoEvento = new TipoEvento(0);

@@ -1,3 +1,4 @@
 -Procesar el pago (Ver el botón sombreado)
 -Ver el tema de recordatorios.(Crear y borrar)
 -Eventos con el tipo screen
+-alerta poder marcar como lista. fecha cargar alerta dia de hoy en adelante. Eliminar con confirmación de dialogo.
