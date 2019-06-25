@@ -28,9 +28,9 @@ namespace Renacer.Nucleo.Entidades
         [ForeignKey("idEspacio")]
         public EspacioComun espacio { get; set; }
 
-        public int idAsistencia { get; set; }
-        [ForeignKey("idAsistencia")]
-        public Asistencia asistencia { get; set; }
+        //public int idAsistencia { get; set; }
+        //[ForeignKey("idAsistencia")]
+        //public Asistencia asistencia { get; set; }
 
         public EstadoEvento estado { get; set; }
         

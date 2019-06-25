@@ -34,12 +34,12 @@ namespace Renacer.Nucleo.Entidades
         public float monto { get; set; }
         public int cantidadCuota { get; set; }
         public List<Cuota> listaCuotas { get; set; }
-
         public DateTime fechaDesde { get; set; }
         public DateTime fechaHasta { get; set; }
         public DateTime fechaDesdeInscripcion { get; set; }
         public DateTime fechaHastaInscripcion { get; set; }
 
+        public List<Horario> listaHorarios { get; set; }
         public EstadoEvento estado { get; set; } = EstadoEvento.Nuevo;
 
         

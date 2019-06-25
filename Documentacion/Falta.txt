@@ -2,3 +2,71 @@
 -Ver el tema de recordatorios.(Crear y borrar)
 -Eventos con el tipo screen
 -alerta poder marcar como lista. fecha cargar alerta dia de hoy en adelante. Eliminar con confirmación de dialogo.
+
+_23-06-2019
+1.Que guarde un Evento (Sin subeventos) , 
+Sacar boton guardar y texto debajo de Tipo de Evento. Texto Validacion Cuota en blanco. Valor cuota no se debe modificar.
+Fecha de Fin no debe ser menor a fecha de inicio.El texo esta en fecha fin de inscripcion.
+HOra de Inicio NO debe ser mas grande que Hora de FIn. Permite ingresar varios dias-horarios que se superponen en el tiempo.
+
+
+2.Que guarde un Evento (con subeventos)
+3.Que cuano grabe se comparta en Facebook y Twitter.
+
+Ver el tema de Evento unico y por fechas y grabado en base
+Ver tema de la capacidad del aula con la cantidad de cupos 
+
+
+
+_30-06-2019
+Sacar boton guardar de Solapa fechas.
+Que no permita ingresar un evento de una fecha menor que hoy.
+Corregir mensaje de validación cupo excede la capacidad del aula.
+Matriculas Pagadas, solo se ve la fecha de cobro. Que sea una pantalla más general, que muestre por cada socio si esta pagada o no,
+que te permita seleccionar un socio y un boton o algo que te permita pagar la matricula.
+Al inscribir al socio al Evento que en la tabla MatriculaXSocios se grabe en el campo pago el campo valor de matricula
+
+
+DER
+===
+Tabla Cliente volarla a la mierda!!! 
+Tabla Recordatorios esta sola en el mundo....
+Hacer Un DER
+
+
+
+
+_VEr Detalle Evento desde el Calendario
+Revisar Botón Guardar solapa Asistencia
+
+
+Roles
+================
+Secretario
+Administrador
+Encargado de Evento
+Socio
+
+
+
+Vista Secretario
+====================
+ABM Espacios -- ABM Encargado (usuario) -- ABM Socio(usuario) -- Cobrar Matricula  -- ABM Evento (Redes Sociales) -- Cobrar Eventos(cuotas) -- Calendario -- Inscripciones
+-- Recordatorios -- Dashboard 
+
+Vista Administrador
+====================
+Crear Usuarios/Modificar contraseña/Baja usuarios -- Crear Matricula anual -- Reportes -- Dashboard 
+
+Vista Encargado
+====================
+Ver Evento -- Calendario -- Tomar Asistencia -- Dashboard 
+
+Vista Socio
+====================
+Sus Asistencias -- Calendario -- Cuotas Pagas -- Dashboard 
+
+
+
+
+

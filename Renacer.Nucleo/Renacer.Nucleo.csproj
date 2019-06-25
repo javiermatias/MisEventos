@@ -117,6 +117,7 @@
     <Compile Include="Entidades\Encargado.cs" />
     <Compile Include="Entidades\EspacioComun.cs" />
     <Compile Include="Entidades\Evento.cs" />
+    <Compile Include="Entidades\Horario.cs" />
     <Compile Include="Entidades\Inscripcion.cs" />
     <Compile Include="Entidades\Matricula.cs" />
     <Compile Include="Entidades\MatriculaXSocio.cs" />
@@ -198,6 +199,22 @@
     <Compile Include="Migrations\201906132014352_agregado-cantidad-cuota.Designer.cs">
       <DependentUpon>201906132014352_agregado-cantidad-cuota.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906150456219_agregarHorario.cs" />
+    <Compile Include="Migrations\201906150456219_agregarHorario.Designer.cs">
+      <DependentUpon>201906150456219_agregarHorario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906200315593_cambioHorario.cs" />
+    <Compile Include="Migrations\201906200315593_cambioHorario.Designer.cs">
+      <DependentUpon>201906200315593_cambioHorario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906202020093_cambioAsistencias.cs" />
+    <Compile Include="Migrations\201906202020093_cambioAsistencias.Designer.cs">
+      <DependentUpon>201906202020093_cambioAsistencias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906232304148_cambios.cs" />
+    <Compile Include="Migrations\201906232304148_cambios.Designer.cs">
+      <DependentUpon>201906232304148_cambios.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
     <Compile Include="myMigrationSQLGenerator.cs" />
@@ -274,6 +291,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906132014352_agregado-cantidad-cuota.resx">
       <DependentUpon>201906132014352_agregado-cantidad-cuota.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906150456219_agregarHorario.resx">
+      <DependentUpon>201906150456219_agregarHorario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906200315593_cambioHorario.resx">
+      <DependentUpon>201906200315593_cambioHorario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906202020093_cambioAsistencias.resx">
+      <DependentUpon>201906202020093_cambioAsistencias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906232304148_cambios.resx">
+      <DependentUpon>201906232304148_cambios.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -14,7 +14,9 @@ namespace Renacer.WebAPI.Controllers
         // GET: api/Eventos
         public IEnumerable<DetalleEvento> Get([FromUri]DateTime fechaDesde, [FromUri]DateTime fechaHasta)
         {
-            return ControlDetalleEvento.devolverInstancia().devolverTodos(fechaDesde,fechaHasta);
+            IEnumerable <DetalleEvento> detalle = ControlDetalleEvento.devolverInstancia().devolverTodos(fechaDesde, fechaHasta);
+            return detalle;
+
         }
 
         // GET: api/Eventos/5

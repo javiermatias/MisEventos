@@ -14,6 +14,8 @@ import { CalendarComponent } from './calendar.component';
 import { ListaComponent } from './lista/lista.component';
 import { EventoWizardComponent } from './evento-wizard/evento-wizard.component';
 import { ReactiveFormsModule } from '@angular/forms';
+// import social buttons module//import { JwSocialButtonsModule } from 'jw-angular-social-buttons';
+//import { JwSocialButtonsModule } from 'jw-angular-social-buttons';
 
 export const routes = [
   { path: '', redirectTo: 'lista', pathMatch: 'full'},
@@ -34,6 +36,7 @@ export const routes = [
       DataTableModule,
       NguiAutoCompleteModule,
       ReactiveFormsModule,
+      //JwSocialButtonsModule,
       RouterModule.forChild(routes)
   ],
   declarations: [

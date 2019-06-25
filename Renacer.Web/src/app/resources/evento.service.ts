@@ -29,6 +29,7 @@ export class Evento {
     public fechaHasta?: Date,    
     public fechaDesdeInscripcion?: Date,
     public fechaHastaInscripcion?: Date,
+    public listaHorarios?:Array<Horario>,
     public listaTags?:Array<Tag>,        
     public estado?: string, 
     public fechaCreacion?: Date,
@@ -43,6 +44,7 @@ export class Evento {
     this.listaTags = new Array<Tag>();
     this.listaSocios = new Array<Socio>();
     this.listaDetalleEvento = new Array<DetalleEvento>();
+    //this.tipoEvento= new TipoEvento(0);
   }
 }
 export class TipoEvento {
@@ -108,6 +110,20 @@ export class Asociacion {
     this.listaPagos = new Array<Pago>();
   }
 }
+
+export class Horario
+{
+  constructor(
+    public id: number,
+    public  dia?: string,
+    public dayOfWeek?: string,
+    public horaDesde?: string,
+    public horaHasta?: string
+  ){}
+   
+
+}
+
 
 export class Pago {
   constructor(

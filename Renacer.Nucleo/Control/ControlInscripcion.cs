@@ -44,7 +44,7 @@ namespace Renacer.Nucleo.Control
               
 
                 if (inscripcion.id == 0) inscripcion.fechaCreacion = DateTime.Now;
-                if (inscripcion.id > 0) inscripcion.fechaModificacion = DateTime.Now;
+                //if (inscripcion.id > 0) inscripcion.fechaModificacion = DateTime.Now;
 
                 using (var db = new ModeloRenacer())
                 {

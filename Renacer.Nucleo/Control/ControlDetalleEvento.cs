@@ -43,8 +43,8 @@ namespace Renacer.Nucleo.Control
                     if (detalleEvento.espacio != null)
                         detalleEvento.espacio = db.espacioComun.Single(a => a.id == detalleEvento.espacio.id);
 
-                    if (detalleEvento.asistencia != null)
-                        detalleEvento.asistencia = db.asistencia.Single(a => a.id == detalleEvento.asistencia.id);
+                    //if (detalleEvento.asistencia != null)
+                    //    detalleEvento.asistencia = db.asistencia.Single(a => a.id == detalleEvento.asistencia.id);
 
                     if (detalleEvento.responsable != null)
                         detalleEvento.responsable = db.encargado.Single(a => a.id == detalleEvento.responsable.id);
@@ -81,7 +81,7 @@ namespace Renacer.Nucleo.Control
                         .Where(x => x.id.Equals(id)).FirstOrDefault();
 
                     if (detalleEvento.idEspacio > 0) detalleEvento.espacio = db.espacioComun.Single(x => x.id == detalleEvento.idEspacio);
-                    if (detalleEvento.idAsistencia > 0) detalleEvento.asistencia = db.asistencia.Single(x => x.id == detalleEvento.idAsistencia);
+                    //if (detalleEvento.idAsistencia > 0) detalleEvento.asistencia = db.asistencia.Single(x => x.id == detalleEvento.idAsistencia);
                     if (detalleEvento.idEncargado > 0) detalleEvento.responsable = db.encargado.Single(x => x.id == detalleEvento.idEncargado);
 
                     return detalleEvento;

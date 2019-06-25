@@ -18,15 +18,15 @@ namespace Renacer.Nucleo.Entidades
         [ForeignKey("idEvento")]
         public Evento Evento { get; set; }
 
-        public List<Pago> listaPagos { get; set; }
+        //public List<Pago> listaPagos { get; set; }
 
         public int idSocio { get; set; }
         [ForeignKey("idSocio")]
         public Socio Socio { get; set; }
 
         public DateTime fechaCreacion { get; set; }
-        public DateTime? fechaBaja { get; set; }
-        public DateTime? fechaModificacion { get; set; }
+        //public DateTime? fechaBaja { get; set; }
+       // public DateTime? fechaModificacion { get; set; }
 
     }
 }

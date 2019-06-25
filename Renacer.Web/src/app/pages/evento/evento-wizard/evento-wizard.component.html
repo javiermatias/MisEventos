@@ -68,7 +68,7 @@
                             <label class="form-control-label">Tipo de evento: </label>
                             <select formControlName="tipoEvento" class="form-control" [ngClass]="{'has-danger' : step.hasError && eventoForm.get('tipoEvento').hasError('required'), 
                                 'has-success' : !eventoForm.get('tipoEvento').hasError('required') }">
-                                <option *ngFor="let tipoevento of tiposEventos" [value]="tipoevento.id">
+                                <option *ngFor="let tipoevento of tiposEventos" [ngValue]="tipoevento">
                                     {{tipoevento.nombre}}</option>
 
                             </select>
@@ -84,7 +84,7 @@
                             <label class="form-control-label">Espacio: </label>
                             <select formControlName="tipoEspacio" class="form-control" [ngClass]="{'has-danger' : step.hasError && eventoForm.get('tipoEspacio').hasError('required'), 'has-success' : 
                                 !eventoForm.get('tipoEspacio').hasError('required') }">
-                                <option *ngFor="let tipoespacio of tiposEspacios" [value]="tipoespacio.id">
+                                <option *ngFor="let tipoespacio of tiposEspacios" [ngValue]="tipoespacio">
                                     {{tipoespacio.nombre}}</option>
 
                             </select>
@@ -134,8 +134,8 @@
                             <label class="form-control-label">Encargado: </label>
                             <select formControlName="encargado" class="form-control"
                                 [ngClass]="{'validationOK': !detalleForm.get('encargado').hasError('required')}">
-                                <option *ngFor="let item of encargados" [value]="item.id">
-                                    {{item.nombre}}</option>
+                                <option *ngFor="let item of encargados" [ngValue]="item">
+                                    {{item.nombre + ' ' + item.apellido }}</option>
 
 
                             </select>
@@ -168,38 +168,35 @@
 
                         </div>
 
-
                         <div class="form-group col-md-7" [ngClass]="{'has-danger' : (step.hasError && detalleForm.get('cupoMax').hasError('required')) || 
-                            (step.hasError && detalleForm.get('cupoMax').hasError('min')), 
-                                                               'has-success' : !detalleForm.get('cupoMax').hasError('required') 
-                                                               && !detalleForm.get('cupoMax').hasError('rango')}">
-                            <label class="form-control-label">Cupo Máximo: </label>
-                            <div class="input-group">
-                                <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
-                                <input formControlName="cupoMax" class="form-control"
-                                 [ngClass]="{'form-control-danger' : (step.hasError && detalleForm.get('cupoMax').hasError('required')) 
-                                || (step.hasError && detalleForm.get('cupoMax').hasError('rango')), 
-                                'form-control-success' : !detalleForm.get('cupoMax').hasError('required') && 
-                                !detalleForm.get('cupoMax').hasError('rango')}" type="number">
-                            </div>
-                            <span class="help-block text-danger"
-                                *ngIf="step.hasError && detalleForm.get('cupoMax').hasError('required') ; else comparar">Cupo
-                                Máximo es requerido.</span>
+                        (step.hasError && detalleForm.get('cupoMax').hasError('rango')), 
+                                                           'has-success' : !detalleForm.get('cupoMax').hasError('required') 
+                                                           && !detalleForm.get('cupoMax').hasError('rango')}">
+                        <label class="form-control-label">Cupo Máximo: </label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
+                            <input formControlName="cupoMax" class="form-control" [ngClass]="{'form-control-danger' : (step.hasError && detalleForm.get('cupoMax').hasError('required')) 
+                            || (step.hasError && detalleForm.get('cupoMax').hasError('rango')), 
+                            'form-control-success' : !detalleForm.get('cupoMax').hasError('required') && 
+                            !detalleForm.get('cupoMax').hasError('rango')}" type="number">
+                        </div>
+                        <span class="help-block text-danger"
+                            *ngIf="step.hasError && detalleForm.get('cupoMax').hasError('required') ; else compararRangos">Cupo
+                            Máximo es requerido.</span>
 
-                            <ng-template #comparar>
-                                <!-- <span class="help-block text-danger"
-                                    *ngIf="step.hasError && detalleForm.get('cupoMax').hasError('min')">
-                                    Cupo Máximo tiene que ser mayor a uno.</span> -->
-                                <span class="help-block text-danger" *ngIf=" step.hasError && 
-                                    detalleForm.get('cupoMax').hasError('rango')">Cupo Máximo tiene que ser mayor al
-                                    cupo Mínimo </span>
-
-
-
+                        <ng-template #compararRangos> 
+                               <span class="help-block text-danger"
+                                *ngIf="step.hasError && detalleForm.get('cupoMax').hasError('rango')">Cupo Máximo
+                                tiene que ser mayor al cupo Mínimo .</span>
+                                <span class="help-block text-danger"
+                                *ngIf="step.hasError && detalleForm.get('cupoMax').hasError('max')">Cupo Máximo
+                                no puede excederse a la capacidad del aula {{ eventoForm.value.tipoEspacio.capacidad}}.</span>
+                            
                             </ng-template>
 
 
-                        </div>
+                    </div>
+                   
                         <div class="form-group col-md-5">
 
                         </div>
@@ -238,8 +235,7 @@
                             <label class="form-control-label">Monto: </label>
                             <div class="input-group">
                                 <div class="input-group-addon"><i class="fa fa-money"></i></div>
-                                <input formControlName="monto" class="form-control"  #montoTemplate
-                                [ngClass]="{'form-control-danger' : (step.hasError && detalleForm.get('monto').hasError('required')) 
+                                <input formControlName="monto" class="form-control" #montoTemplate [ngClass]="{'form-control-danger' : (step.hasError && detalleForm.get('monto').hasError('required')) 
                             || (step.hasError && detalleForm.get('monto').hasError('min')), 
                             'form-control-success' : !detalleForm.get('monto').hasError('required') && 
                             !detalleForm.get('monto').hasError('min')}" type="number">
@@ -262,7 +258,7 @@
                             <label class="form-control-label">Cuota: </label>
                             <div class="input-group">
                                 <div class="input-group-addon"><i class="fa fa-money"></i></div>
-                                <input formControlName="cuota" class="form-control"  [ngClass]="{'form-control-danger' : (step.hasError && detalleForm.get('cuota').hasError('required')) 
+                                <input formControlName="cuota" class="form-control" [ngClass]="{'form-control-danger' : (step.hasError && detalleForm.get('cuota').hasError('required')) 
                         || (step.hasError && detalleForm.get('cuota').hasError('min')), 
                         'form-control-success' : !detalleForm.get('cuota').hasError('required') && 
                         !detalleForm.get('cuota').hasError('min')}" type="number">
@@ -277,20 +273,21 @@
 
 
                         </div>
-                        
-                           
-                           
-                            <div class="form-group col-md-4" *ngIf="mostrarSaldoCuota">
-                                    <label class="form-control-label">Valor Cuota: </label>
-                                    <div class="input-group">
-                                        <div class="input-group-addon"><i class="fa fa-money"></i></div>
-                                        <input  class="form-control" [value]="valorCuota" type="text">
-                                    </div>                                         
-        
-                                </div>
-                          
-                        
-                      
+
+
+
+                        <div class="form-group col-md-4" *ngIf="mostrarSaldoCuota">
+                            <label class="form-control-label">Valor Cuota: </label>
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-money"></i></div>
+                                <input class="form-control" [value]="valorCuota" type="text" disabled>
+                            </div>
+
+                        </div>
+
+
+
+
                         <!-- <div *ngIf="costoTemplate.value == '1'">
                             <div class="form-group col-md-4" *ngIf="cuota">
                                 
@@ -299,17 +296,13 @@
     
                             </div> 
                         </div> -->
-                        
 
 
 
 
 
-                        <div>
 
-                            <button (click)="guardar()">Guardar</button>
 
-                        </div>
 
 
 
@@ -452,53 +445,183 @@
 
                     <form *ngIf="step.name=='Fechas'" [formGroup]="fechaForm" class="row">
                         <div class="form-group col-md-5"
-                        [ngClass]="{'has-danger' : step.hasError && fechaForm.get('fechaDesde').hasError('required'), 'has-success' : !fechaForm.get('fechaDesde').hasError('required') }">
-                        <label class="form-control-label">Fecha inicio evento: </label>
-                       
-                            <input formControlName="fechaDesde" class="form-control"
-                                [ngClass]="{'form-control-danger' :  fechaForm.get('fechaDesde').hasError('required'), 
+                            [ngClass]="{'has-danger' : step.hasError && fechaForm.get('fechaDesde').hasError('required'), 'has-success' : !fechaForm.get('fechaDesde').hasError('required') }">
+                            <label class="form-control-label">Fecha inicio evento: </label>
+
+                            <input formControlName="fechaDesde" class="form-control" [ngClass]="{'form-control-danger' :  fechaForm.get('fechaDesde').hasError('required'), 
                                 'form-control-success' :  !fechaForm.get('fechaDesde').hasError('required') }"
                                 type="date">
-                       
-                        <span class="help-block text-danger"
-                            *ngIf="step.hasError && fechaForm.get('fechaDesde').hasError('required')">La fecha desde es
-                            requerida</span>
-                    </div>
-
-                    <div class="form-group col-md-5"
-                    [ngClass]="{'has-danger' : step.hasError && fechaForm.get('fechaHasta').hasError('required')
-                    ||  (step.hasError && fechaForm.get('fechaHasta').hasError('fechaError'))
-                    , 'has-success' : !fechaForm.get('fechaHasta').hasError('required')  && !fechaForm.get('fechaHasta').hasError('fechaError')  }">
-                    <label class="form-control-label">Fecha fin evento: </label>
-                   
-                        <input formControlName="fechaHasta" class="form-control"
-                            [ngClass]="{'form-control-danger' : fechaForm.get('fechaHasta').hasError('required') 
-                            || fechaForm.get('fechaHasta').hasError('fechaError'),
-                            'form-control-success' :  !fechaForm.get('fechaHasta').hasError('required') || !fechaForm.get('fechaHasta').hasError('fechaError') }"
-                            type="date">
 
                             <span class="help-block text-danger"
-                            *ngIf="step.hasError && fechaForm.get('fechaHasta').hasError('required') ; else comparar">Fecha fin es requerida.</span>
+                                *ngIf="step.hasError && fechaForm.get('fechaDesde').hasError('required')">La fecha desde
+                                es
+                                requerida</span>
+                        </div>
 
-                        <ng-template #comparar>
-                            <!-- <span class="help-block text-danger"
+                        <div class="form-group col-md-5"
+                            [ngClass]="{'has-danger' : step.hasError && fechaForm.get('fechaHasta').hasError('required')
+                    ||  (step.hasError && fechaForm.get('fechaHasta').hasError('fechaError'))
+                    , 'has-success' : !fechaForm.get('fechaHasta').hasError('required')  && !fechaForm.get('fechaHasta').hasError('fechaError')  }">
+                            <label class="form-control-label">Fecha fin evento: </label>
+
+                            <input formControlName="fechaHasta" class="form-control"
+                                [ngClass]="{'form-control-danger' : fechaForm.get('fechaHasta').hasError('required') 
+                            || fechaForm.get('fechaHasta').hasError('fechaError'),
+                            'form-control-success' :  !fechaForm.get('fechaHasta').hasError('required') || !fechaForm.get('fechaHasta').hasError('fechaError') }"
+                                type="date">
+
+                            <span class="help-block text-danger"
+                                *ngIf="step.hasError && fechaForm.get('fechaHasta').hasError('required') ; else comparar">Fecha
+                                fin es requerida.</span>
+
+                            <ng-template #comparar>
+                                <!-- <span class="help-block text-danger"
                                 *ngIf="step.hasError && detalleForm.get('cupoMax').hasError('min')">
                                 Cupo Máximo tiene que ser mayor a uno.</span> -->
-                            <span class="help-block text-danger" *ngIf=" step.hasError && 
-                            fechaForm.get('fechaHasta').hasError('fechaError')">Fecha fin tiene que ser mas grande que fecha inicio </span>
+                                <span class="help-block text-danger" *ngIf=" step.hasError && 
+                            fechaForm.get('fechaHasta').hasError('fechaError')">Fecha fin tiene que ser mas grande que
+                                    fecha inicio </span>
 
 
 
-                        </ng-template>
+                            </ng-template>
 
 
-                <!--    
+                            <!--    
                     <span class="help-block text-danger"
                         *ngIf="step.hasError && fechaForm.get('fechaHasta').hasError('required')">La fecha hasta es
                         requerida</span> -->
-                </div>
-                 
-                <div class="form-group col-md-5"
+                        </div>
+
+                        <div class="form-group col-md-5"
+                            [ngClass]="{'has-danger' : step.hasError && fechaForm.get('fechaDesdeInscripcion').hasError('required'), 'has-success' : !fechaForm.get('fechaDesdeInscripcion').hasError('required') }">
+                            <label class="form-control-label">Fecha inicio inscripciones: </label>
+
+                            <input formControlName="fechaDesdeInscripcion" class="form-control" [ngClass]="{'form-control-danger' :  fechaForm.get('fechaDesdeInscripcion').hasError('required'), 
+                        'form-control-success' :  !fechaForm.get('fechaDesdeInscripcion').hasError('required') }"
+                                type="date">
+
+                            <span class="help-block text-danger" *ngIf="step.hasError && 
+                    fechaForm.get('fechaDesdeInscripcion').hasError('required')">La fecha inicio inscripción es
+                                requerida</span>
+                        </div>
+
+                        <div class="form-group col-md-5"
+                            [ngClass]="{'has-danger' : step.hasError && fechaForm.get('fechaHastaInscripcion').hasError('required')
+            ||  (step.hasError && fechaForm.get('fechaHastaInscripcion').hasError('fechaError'))
+            , 'has-success' : !fechaForm.get('fechaHastaInscripcion').hasError('required')  && !fechaForm.get('fechaHastaInscripcion').hasError('fechaError')  }">
+                            <label class="form-control-label">Fecha fin inscripciones: </label>
+
+                            <input formControlName="fechaHastaInscripcion" class="form-control"
+                                [ngClass]="{'form-control-danger' : fechaForm.get('fechaHastaInscripcion').hasError('required') 
+                    || fechaForm.get('fechaHastaInscripcion').hasError('fechaError'),
+                    'form-control-success' :  !fechaForm.get('fechaHastaInscripcion').hasError('required') || !fechaForm.get('fechaHastaInscripcion').hasError('fechaError') }"
+                                type="date">
+
+                            <span class="help-block text-danger" *ngIf="step.hasError && fechaForm.get('fechaHastaInscripcion').hasError('required') ; 
+                    else comparar">Fecha fin es requerida.</span>
+
+                            <ng-template #comparar>
+                                <!-- <span class="help-block text-danger"
+                        *ngIf="step.hasError && detalleForm.get('cupoMax').hasError('min')">
+                        Cupo Máximo tiene que ser mayor a uno.</span> -->
+                                <span class="help-block text-danger" *ngIf=" step.hasError && 
+                    fechaForm.get('fechaHastaInscripcion').hasError('fechaError')">Fecha fin inscripción tiene que ser
+                                    mas grande que fecha inicio </span>
+
+
+
+                            </ng-template>
+
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label class="form-control-label">Día: </label>
+                            <select formControlName="dia" class="form-control"
+                                [ngClass]="{'validationOK': !fechaForm.get('dia').hasError('required')}">
+
+                                <option *ngFor="let item of diaSemanas" [ngValue]="item">
+                                    {{item}}</option>
+                            </select>
+
+                            <span class="help-block text-danger"
+                                *ngIf="step.hasError && fechaForm.get('dia').hasError('required')">Día es
+                                requerido</span>
+                        </div>
+
+                        <div class="form-group col-md-3"
+                            [ngClass]="{'has-danger' : step.hasError && fechaForm.get('horaInicio').hasError('required'), 'has-success' : !fechaForm.get('horaInicio').hasError('required') }">
+                            <label class="form-control-label">Horario Inicio: </label>
+
+
+                            <input formControlName="horaInicio" class="form-control"
+                                [ngClass]="{'form-control-danger' :  fechaForm.get('horaInicio').hasError('required'), 'form-control-success' :  !fechaForm.get('horaInicio').hasError('required') }"
+                                type="time">
+
+                            <span class="help-block text-danger"
+                                *ngIf="step.hasError && fechaForm.get('horaInicio').hasError('required')">El horario
+                                inicio es
+                                requerido</span>
+                        </div>
+
+                        <div class="form-group col-md-3"
+                            [ngClass]="{'has-danger' : step.hasError && fechaForm.get('horaFin').hasError('required'), 'has-success' : !fechaForm.get('horaFin').hasError('required') }">
+                            <label class="form-control-label">Horario Fin: </label>
+
+
+                            <input formControlName="horaFin" class="form-control"
+                                [ngClass]="{'form-control-danger' :  fechaForm.get('horaFin').hasError('required'), 'form-control-success' :  !fechaForm.get('horaFin').hasError('required') }"
+                                type="time">
+
+                            <span class="help-block text-danger"
+                                *ngIf="step.hasError && fechaForm.get('horaFin').hasError('required')">El horario fin es
+                                requerido</span>
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label class="form-control-label"></label>
+                            <br>
+
+                            <!-- <button  type="button" class="btn btn-main"  
+        [disabled]="fechaForm.get('horaFin').hasError('required') || fechaForm.get('horaInicio').hasError('required')
+        ">Agregar</button> -->
+
+                            <input class="btn btn-main" value="Agregar" type="button" (click)="agregarHorario()"
+                                [disabled]="fechaForm.get('horaFin').hasError('required') || fechaForm.get('horaInicio').hasError('required')
+        ">
+                        </div>
+
+                        <div class="form-group col-md-6 ">
+                            <div>
+                                <ul class="list-group">
+
+                                    <li class="list-group-item" *ngFor="let horario of horarios; let i = index">
+                                        <span class="col col-10">
+                                            Horario: {{horario.dia}} desde {{horario.horaDesde}} hasta
+                                            {{horario.horaHasta}}.
+                                        </span>
+                                        <span class="col col-2">
+                                            <i style="cursor:pointer;" (click)="horarios.splice(i,1);"
+                                                class="fa fa-trash"></i>
+                                        </span>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div>
+
+                            <button (click)="guardar()">Guardar</button>
+
+                        </div>
+
+
+
+
+
+
+                        <!--     <div class="form-group col-md-5"
                 [ngClass]="{'has-danger' : step.hasError && fechaForm.get('fechaDesdeInscripcion').hasError('required'), 
                 'has-success' : !fechaForm.get('fechaDesdeInscripcion').hasError('required') }">
                 <label class="form-control-label">Fecha inicio inscripciones: </label>
@@ -521,7 +644,7 @@
            
             <span class="help-block text-danger"
                 *ngIf="step.hasError && fechaForm.get('fechaHastaInscripcion').hasError('required')">La fecha fin inscripción es requerida</span>
-        </div>
+        </div> -->
 
 
 
@@ -606,12 +729,55 @@
                         </div> -->
                     </form>
 
-                    <div *ngIf="step.name=='Confirmación'" class="row">
-                        <div class="col-2"><strong class="text-truncate">Username</strong></div>
-                        <div class="col-10"><i>{{details.username}}</i></div>
-                        <div class="col-2"><strong class="text-truncate">Full Name</strong></div>
-                        <div class="col-10"><i>{{details.fullname}}</i></div>
-                        <div class="col-2"><strong class="text-truncate">Gender</strong></div>
+                    <div *ngIf="step.name =='Confirmación'" class="row">
+                     <!--     <div class="col-6"><strong class="text-truncate">Nombre evento:</strong>
+                            <i>{{evento.nombre}}</i>
+                        </div>
+
+                        <div class="col-6"><strong class="text-truncate">Descripción:</strong>
+                            <i>{{evento.descripcion}}</i>
+                        </div>
+
+                        <div class="col-6"><strong class="text-truncate">Tipo de evento:</strong>
+                            <i>{{evento.tipoEvento.nombre}}</i>
+                        </div>
+
+                        <div class="col-6"><strong class="text-truncate">Espacio:</strong>
+                            <i>{{evento.espacio.nombre}}</i></div>
+
+                        <div class="col-6"><strong class="text-truncate">Encargado:</strong>
+                            <i>{{evento.responsable.nombre}}</i></div>
+ -->
+                    
+
+                        <!-- <div class="col-6"><strong class="text-truncate">Cupo Mínimo:</strong>
+                            <i>{{detalleForm.value.cupoMin}}</i></div>
+
+                        <div class="col-6"><strong class="text-truncate">Cupo Máximo:</strong>
+                            <i>{{detalleForm.value.cupoMax}}</i></div>
+                        <div class="col-6" *ngIf="costoTemplate.value == '1'"><strong
+                                class="text-truncate">Costo:</strong>
+                            <i>${{detalleForm.value.costo}}</i></div>
+
+                        <div class="col-6" *ngIf="costoTemplate.value == '1'"><strong
+                                class="text-truncate">Monto:</strong>
+                            <i>{{detalleForm.value.monto}}</i></div>
+
+
+                        <div class="col-6" *ngIf="costoTemplate.value == '1'"><strong
+                                class="text-truncate">Cuota:</strong>
+                            <i>{{detalleForm.value.cuota}}</i></div>
+
+                        <div class="col-6"><strong class="text-truncate">Fecha inicio evento:</strong>
+                            <i>{{fechaForm.value.fechaDesde}}</i></div>
+                        <div class="col-6"><strong class="text-truncate">Fecha fin evento:</strong>
+                            <i>{{fechaForm.value.fechaHasta}}</i></div>
+                        <div class="col-6"><strong class="text-truncate">Fecha inicio inscripciones:</strong>
+                            <i>{{fechaForm.value.fechaDesdeInscripcion}}</i></div>
+
+                        <div class="col-6"><strong class="text-truncate">Fecha fin inscripciones:</strong>
+                            <i>{{fechaForm.value.fechaHastaInscripcion}}</i></div> -->
+                        <!--  <div class="col-2"><strong class="text-truncate">Gender</strong></div>
                         <div class="col-10"><i>{{details.gender}} &nbsp;</i></div>
                         <div class="col-2"><strong class="text-truncate">Contact Email</strong></div>
                         <div class="col-10"><i>{{details.email}}</i></div>
@@ -627,6 +793,13 @@
                         <div class="col-10"><i>{{details.cardtype}}</i></div>
                         <div class="col-2"><strong class="text-truncate">Card Number</strong></div>
                         <div class="col-10"><i>{{details.cardnumber}}</i></div>
+                        <div class="col-2"><strong class="text-truncate">Compartir:</strong></div>-->
+                        <!-- <div class="col-6"><strong class="text-truncate">Encargado:</strong>
+                            <i>{{evento.responsable.nombre}}</i></div> -->
+              <!--           <div class="col-10"><fb-like url="http://www.smart-soft.com.ar"></fb-like></div>
+
+                        <tweet url="http://jasonwatmore.com" text="Jason Watmore's Blog"></tweet> -->
+
                     </div>
 
                 </div>

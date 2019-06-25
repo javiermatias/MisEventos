@@ -24,6 +24,9 @@ namespace Renacer.Nucleo.Control
             return control;
         }
 
+
+
+
         /// <summary>
         /// Metodo utilizado para Insertar un nuevo evento.
         /// </summary>
@@ -148,6 +151,12 @@ namespace Renacer.Nucleo.Control
 
             try
             {
+                evento.fechaCreacion = DateTime.Now;
+                diasSemamas(evento.listaHorarios);
+                List<DetalleEvento> detalleEventos = diasEntreDosFechas(evento.fechaDesde, evento.fechaHasta, evento.listaHorarios, evento);
+
+                evento.listaDetalleEvento = detalleEventos;
+
                 //var errores = this.validar(Matricula);
                 //if (errores.Count > 0)
                 //{
@@ -172,6 +181,95 @@ namespace Renacer.Nucleo.Control
 
 
         }
+
+
+        public void diasSemamas(List<Horario> horarios) {
+            //["Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"];
+            //List<DayOfWeek> dias = new List<DayOfWeek>();
+            foreach (var horario in horarios)
+            {
+                switch (horario.dia)
+                {
+                    case "Lunes":
+                        horario.dayOfWeek= DayOfWeek.Monday;
+
+                        break;
+                    case "Martes":
+                        horario.dayOfWeek = DayOfWeek.Tuesday;
+
+                        break;
+                    case "Miercoles":
+                        horario.dayOfWeek = DayOfWeek.Wednesday;
+
+                        break;
+                    case "Jueves":
+                        horario.dayOfWeek = DayOfWeek.Thursday;
+
+                        break;
+                    case "Viernes":
+                        horario.dayOfWeek = DayOfWeek.Friday;
+
+                        break;
+                    case "Sabado":
+                        horario.dayOfWeek = DayOfWeek.Saturday;
+
+                        break;
+                    case "Domingo":
+                        horario.dayOfWeek = DayOfWeek.Sunday;
+
+                        break;
+                   
+                    default:
+                        Console.WriteLine("error dia");
+                        break;
+                }
+            }
+
+            //return horarios;
+        }
+
+        public List<DetalleEvento> diasEntreDosFechas(DateTime _inicio, DateTime _fin, List<Horario> dias, Evento _evento)
+        {
+            //List<DateTime> listDias = new List<DateTime>();
+            List<DetalleEvento> listDias = new List<DetalleEvento>();
+   
+
+            while (_inicio <= _fin)
+            {
+
+                foreach (var diaSemana in dias)
+                {
+                    if (_inicio.DayOfWeek == diaSemana.dayOfWeek)
+                    {
+                        DetalleEvento detalleEvento = new DetalleEvento();
+                        detalleEvento.descripcion = _evento.descripcion;
+                        detalleEvento.idEspacio = _evento.idEspacio;
+                        detalleEvento.idEncargado = _evento.idEncargado;
+                        //detalleEvento.idAsistencia = 1;
+                        detalleEvento.nombre = _evento.nombre;
+                        detalleEvento.estado = EstadoEvento.Nuevo;
+                        detalleEvento.fechaCreacion = DateTime.Now;
+                        string[] horarioDesde = diaSemana.horaDesde.Split(':');
+                        string[] horarioHasta = diaSemana.horaHasta.Split(':');
+                        var horaDesde = _inicio.Date.Add(new TimeSpan(int.Parse(horarioDesde[0]), int.Parse(horarioDesde[1]), 0));
+                        var horaHasta = _inicio.Date.Add(new TimeSpan(int.Parse(horarioHasta[0]), int.Parse(horarioHasta[1]), 0));
+                        detalleEvento.fechaDesde = horaDesde;
+                        detalleEvento.fechaHasta = horaHasta;
+                        listDias.Add(detalleEvento);
+
+                    }
+                }
+
+
+                _inicio = _inicio.AddDays(1);
+            }
+
+            return listDias;
+            //return listDias;
+
+        }
+            
+
         public void actualizar(Evento evento) {
             try
             {
@@ -231,7 +329,7 @@ namespace Renacer.Nucleo.Control
                         foreach (var inscripto in listaInscripciones)
                         {
                             inscripto.fechaCreacion = DateTime.Now;
-                            inscripto.fechaModificacion = DateTime.Now;
+                            //inscripto.fechaModificacion = DateTime.Now;
                             inscripto.Socio = db.socio.Where(enc => enc.id == inscripto.idSocio).FirstOrDefault();
                             inscripto.Evento = evento;
                             db.Entry(inscripto).State = System.Data.Entity.EntityState.Added;

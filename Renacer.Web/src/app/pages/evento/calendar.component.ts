@@ -173,7 +173,7 @@ addEvent(event): void {
 
 ngOnInit(): void {
   this.fechaDesde = new Date('2017-08-01')
-  this.fechaHasta = new Date('2018-08-01')
+  this.fechaHasta = new Date('2020-08-01')
   this.CargarEventos();
 
 
