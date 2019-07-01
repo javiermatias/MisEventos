@@ -30,10 +30,10 @@ export class Evento {
     public fechaDesdeInscripcion?: Date,
     public fechaHastaInscripcion?: Date,
     public listaHorarios?:Array<Horario>,
-    public listaTags?:Array<Tag>,        
+    //public listaTags?:Array<Tag>,        
     public estado?: string, 
     public fechaCreacion?: Date,
-    public fechaModificacion?: Date,
+    //public fechaModificacion?: Date,
     public fechaBaja?: Date,    
     public responsable?:EncargadoEvento,    
     public listaSocios?:Array<Socio>,
@@ -41,7 +41,7 @@ export class Evento {
     public listaDetalleEvento?:Array<DetalleEvento>,    
     public idEncargado?:number
   ) {
-    this.listaTags = new Array<Tag>();
+    //this.listaTags = new Array<Tag>();
     this.listaSocios = new Array<Socio>();
     this.listaDetalleEvento = new Array<DetalleEvento>();
     //this.tipoEvento= new TipoEvento(0);
@@ -80,19 +80,32 @@ export class DetalleEvento {
 export class Inscripcion {
   constructor(
     public id: number,
-    public evento?: Evento,
-    public estado?: string,
-    public idSocio?: number,
     public idEvento?: number,
+    public evento?: Evento,
+    //public estado?: string,
+    public idSocio?: number,
+    public socio?:Socio,
     public listaPagos?: Array<Pago>,
-    public fechaCreacion?: Date,
-    public fechaModificacion?: Date,
+    public fechaCreacion?: Date,  
     public fechaBaja?: Date,
   ) {
-    this.evento = new Evento(0);
-    this.listaPagos = new Array<Pago>();
+    this.evento = new Evento(this.idEvento);
+    //this.listaPagos = new Array<Pago>();
   }
 }
+/* public int id { get; set; }
+
+public int idEvento { get; set; }
+[ForeignKey("idEvento")]
+public Evento Evento { get; set; }
+
+public List<Pago> listaPagos { get; set; }
+
+public int idSocio { get; set; }
+[ForeignKey("idSocio")]
+public Socio Socio { get; set; }
+
+public DateTime fechaCreacion { get; set; } */
 
 export class Asociacion {
   constructor(

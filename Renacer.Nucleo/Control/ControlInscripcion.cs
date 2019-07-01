@@ -44,13 +44,14 @@ namespace Renacer.Nucleo.Control
               
 
                 if (inscripcion.id == 0) inscripcion.fechaCreacion = DateTime.Now;
-                //if (inscripcion.id > 0) inscripcion.fechaModificacion = DateTime.Now;
+               
 
                 using (var db = new ModeloRenacer())
                 {
+                    db.Entry(inscripcion.socio).State = System.Data.Entity.EntityState.Unchanged;
                     db.inscripcion.AddOrUpdate(inscripcion);
                     db.SaveChanges();
-                    db.SaveChanges();
+                    //db.SaveChanges();
                 }
             }
             catch (UsuarioException ex)
@@ -116,6 +117,26 @@ namespace Renacer.Nucleo.Control
             return null;
         }
 
+        public List<Inscripcion> devolverInscripcionEvento(int idEvento)
+        {
+
+            try
+            {
+                using (var db = new ModeloRenacer())
+                {
+                     return db.inscripcion
+                             .Include("ListaPagos")
+                             .Include("Socio")
+                             .Where(x => x.Evento.id == idEvento).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                ServicioSentry.devolverSentry().informarExcepcion(ex);
+            }
+            return null;
+        }
+
         /// <summary>
         /// Metodo utilizado para eliminar un inscripcion.
         /// TODO: El metodo se tiene que cambiar para actualizar un atributo del inscripcion 
@@ -128,6 +149,7 @@ namespace Renacer.Nucleo.Control
                 using (var db = new ModeloRenacer())
                 {
                     db.inscripcion.Remove(db.inscripcion.Where(x => x.id.Equals(id)).FirstOrDefault());
+                    db.SaveChanges();
                 }
             }
             catch (Exception ex)

@@ -1,5 +1,5 @@
 import { ValidatorFn, AbstractControl, FormGroup} from "@angular/forms";
-
+import * as moment from 'moment'; 
 
 export class ValidationService {
 
@@ -76,9 +76,21 @@ export class ValidationService {
         };
     } */
 
+   
     static minValidador(min: number): ValidatorFn {
         return (control: AbstractControl): { [key: string]: boolean } | null => {
             if (control.value !== undefined && (isNaN(control.value) || control.value < min )) {
+              //  console.log("valide por true");
+                return { 'min': true };
+            }
+            //console.log("valide por false");
+            return null;
+        };
+    }
+
+    static fechaMenorHoyValidador(fecha: Date): ValidatorFn {
+        return (control: AbstractControl): { [key: string]: boolean } | null => {
+            if (control.value !== undefined && (isNaN(control.value) || control.value <moment().format("MMM Do YY"))) {
               //  console.log("valide por true");
                 return { 'min': true };
             }

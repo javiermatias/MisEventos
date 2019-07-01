@@ -21,7 +21,7 @@ export class SociosComponent implements OnInit {
   @Input() personas = new Array<Persona>();
   public showDetail: boolean = false;
   public searchText: string = "";
-
+  //detaFactura = DetalleFActura
   constructor(
     //private _socioService: SocioServices,
     private _personaService: PersonaServices
@@ -105,6 +105,7 @@ export class SociosComponent implements OnInit {
     this.showDetail = false;
   }
   saveItem(item: Persona): any {
+    //Guarde en SOcio y persona. En persona va generar el usuario y el ROL
     if (item.id == 0) {
       this._personaService.save(item, (resp: Persona) => {
         item = resp;
@@ -113,6 +114,7 @@ export class SociosComponent implements OnInit {
         this.mensajeServ.success('se han guardado los cambios!', 'Aviso!');
       });
     } else {
+      //Solamente la tabla Socio
       this._personaService.update(item, (resp: Persona) => {
         let items = this.personas;
         for (var i = 0; i < items.length; i++) {

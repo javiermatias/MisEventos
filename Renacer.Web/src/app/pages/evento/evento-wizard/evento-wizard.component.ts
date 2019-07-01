@@ -23,7 +23,7 @@ export class EventoWizardComponent implements OnInit {
   public eventoForm:FormGroup;
   public detalleForm:FormGroup;
   public fechaForm:FormGroup;
-  public detalles:any = {};
+  public detalles:any = {}; //Confirmacion
   public showConfirm:boolean;
   
   

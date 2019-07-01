@@ -12,11 +12,11 @@ namespace Renacer.Nucleo.Entidades
     [Table("Persona")]
     public class Persona
     {
-        public Persona()
-        {
-            this.listaTags = new HashSet<Tag>();
+        //public Persona()
+        //{
+        //    this.listaTags = new HashSet<Tag>();
 
-        }
+        //}
 
         [Key]
         public int id { get; set; }
@@ -44,13 +44,13 @@ namespace Renacer.Nucleo.Entidades
         public DateTime fechaCreacion { get; set; }
         public DateTime? fechaNacimiento { get; set; }
         public DateTime? fechaBaja { get; set; }
-        public DateTime? fechaModificacion { get; set; }
+        //public DateTime? fechaModificacion { get; set; }
 
-        public List<Asociacion> listaAsociaciones { get; set; }
-        public List<Inscripcion> listaInscripciones { get; set; }
-        public List<Asistencia> listaAsistencias { get; set; }
+        //public List<Asociacion> listaAsociaciones { get; set; }
+        //public List<Inscripcion> listaInscripciones { get; set; }
+        //public List<Asistencia> listaAsistencias { get; set; }
      
-        public virtual ICollection<Tag> listaTags { get; set; }
+        //public virtual ICollection<Tag> listaTags { get; set; }
 
         public string rol { get; set; }
 

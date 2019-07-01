@@ -6,14 +6,14 @@ namespace Renacer.Nucleo.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    [GeneratedCode("EntityFramework.Migrations", "6.2.0-beta1-60406")]
-    public sealed partial class matriculaXsocio : IMigrationMetadata
+    [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
+    public sealed partial class cambioSocio : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(matriculaXsocio));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(cambioSocio));
         
         string IMigrationMetadata.Id
         {
-            get { return "201905292303357_matriculaXsocio"; }
+            get { return "201906290432113_cambioSocio"; }
         }
         
         string IMigrationMetadata.Source

@@ -17,6 +17,15 @@ namespace Renacer.WebAPI.Controllers
             return ControlInscripcion.devolverInstacia().devolverTodos(idEvento,idSocio);
         }
 
+        public IEnumerable<Inscripcion> GetInscripcion([FromUri]int idEvento)
+        {
+
+            //if (estado == null) estado = "Nuevo";
+            //return null;
+
+            return ControlInscripcion.devolverInstacia().devolverInscripcionEvento(idEvento);
+        }
+
         // GET: api/cliente/5
         public Inscripcion Get(int id)
         {

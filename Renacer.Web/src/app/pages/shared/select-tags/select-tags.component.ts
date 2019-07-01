@@ -20,7 +20,7 @@ export class SelectTagsComponent implements OnInit {
   }
 
   ngOnInit() {
-   // this.getTags();
+    this.getTags();
   }
 
   ngOnChanges(){
@@ -74,16 +74,14 @@ export class SelectTagsComponent implements OnInit {
     if(this.listaTags.filter(function(item2){ return item2.nombre === item.nombre}).length==0) {
       this.listaTags.push(item);
       return;
-    }else{
-
     }
- /*    else{
+     else{
       for(var j = 0; j < this.listaTags.length;j++){
         if(item.nombre == this.listaTags[j].nombre){
           this.listaTags.splice(j,1);
         }
       }
-    } */
+    } 
     this.selectedTag = "";
   }
 

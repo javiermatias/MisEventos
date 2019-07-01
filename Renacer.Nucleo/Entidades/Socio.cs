@@ -39,10 +39,10 @@ namespace Renacer.Nucleo.Entidades
         public List<Asistencia> listaAsistencias { get; set; }
         public List<Tag> listaTags { get; set; }
 
-        public DateTime fechaCreacion { get; set; }
+        public DateTime fechaCreacion { get; set; } = DateTime.Now;
         public DateTime? fechaNacimiento { get; set; }
         public DateTime? fechaBaja { get; set; }
-        public DateTime? fechaModificacion { get; set; }
+        public DateTime? fechaModificacion { get; set; } 
 
         //Cuando el admin crea la matricula del año, todos los socios pasan a el estado debeMatricula
         //no se puede inscribir el socio a ningun evento hasta que no pague la matricula y pase al estado activo

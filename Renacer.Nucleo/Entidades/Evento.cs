@@ -40,27 +40,18 @@ namespace Renacer.Nucleo.Entidades
         public DateTime fechaHastaInscripcion { get; set; }
 
         public List<Horario> listaHorarios { get; set; }
-        public EstadoEvento estado { get; set; } = EstadoEvento.Nuevo;
+        public string estado { get; set; } = "Nuevo"; //Nuevo,Cancelado,Progreso,Finalizado
 
-        
+
         public List<DetalleEvento> listaDetalleEvento { get; set; }
 
        // public List<Socio> listaSocios { get; set; }
         public List<Inscripcion> listaInscripciones { get; set; }
 
-      
- 
-
-        
-
-      
-
-       
-
          public DateTime fechaCreacion { get; set; }
 
          public DateTime? fechaBaja { get; set; }
-         public DateTime? fechaModificacion { get; set; }
+         //public DateTime? fechaModificacion { get; set; }
 
         // public List<Tag> listaTags { get; set; }
     }

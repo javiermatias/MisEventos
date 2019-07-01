@@ -18,7 +18,7 @@ Ver tema de la capacidad del aula con la cantidad de cupos
 
 
 
-_30-06-2019
+07-07-2019
 Sacar boton guardar de Solapa fechas.
 Que no permita ingresar un evento de una fecha menor que hoy.
 Corregir mensaje de validación cupo excede la capacidad del aula.
