@@ -16,6 +16,7 @@ import { EventoWizardComponent } from './evento-wizard/evento-wizard.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InscripcionComponent } from './inscripcion/inscripcion.component';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
+import { EventoDetalleComponent } from './evento-detalle/evento-detalle.component';
 // import social buttons module//import { JwSocialButtonsModule } from 'jw-angular-social-buttons';
 //import { JwSocialButtonsModule } from 'jw-angular-social-buttons';
 
@@ -49,7 +50,8 @@ export const routes = [
     CalendarComponent,
     ListaComponent,
     EventoWizardComponent,
-    InscripcionComponent
+    InscripcionComponent,
+    EventoDetalleComponent
   ]
 })
 export class EventoModule { }

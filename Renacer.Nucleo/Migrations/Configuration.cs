@@ -61,46 +61,46 @@ namespace Renacer.Nucleo.Migrations
             // };
 
             //  context.socio.AddOrUpdate(socio);
-            Socio socio = new Socio()
-            {
+            //Socio socio = new Socio()
+            //{
 
-                nombre = "Augusto",
-                apellido = "galan",
-                telefono = "3543604130",
-                email = "juanjose@gmail.com",
-                idDomicilio=1,
-                idTipoDoc=1,
-                idContacto=1,
+            //    nombre = "Augusto",
+            //    apellido = "galan",
+            //    telefono = "3543604130",
+            //    email = "juanjose@gmail.com",
+            //    idDomicilio=1,
+            //    idTipoDoc=1,
+            //    idContacto=1,
                 
-            };
-            Socio socio1 = new Socio()
-            {
+            //};
+            //Socio socio1 = new Socio()
+            //{
 
-                nombre = "Laura",
-                apellido = "Miguez",
-                telefono = "3543604130",
-                email = "laura1Miguez@gmail.com",
-                idDomicilio = 1,
-                idTipoDoc = 1,
-                idContacto = 1,
+            //    nombre = "Laura",
+            //    apellido = "Miguez",
+            //    telefono = "3543604130",
+            //    email = "laura1Miguez@gmail.com",
+            //    idDomicilio = 1,
+            //    idTipoDoc = 1,
+            //    idContacto = 1,
 
-            };
-            Socio socio2 = new Socio()
-            {
+            //};
+            //Socio socio2 = new Socio()
+            //{
 
-                nombre = "Maria",
-                apellido = "Del Valle",
-                telefono = "3543604132",
-                email = "mariadelvalle@gmail.com",
-                idDomicilio = 1,
-                idTipoDoc = 1,
-                idContacto = 1,
+            //    nombre = "Maria",
+            //    apellido = "Del Valle",
+            //    telefono = "3543604132",
+            //    email = "mariadelvalle@gmail.com",
+            //    idDomicilio = 1,
+            //    idTipoDoc = 1,
+            //    idContacto = 1,
 
-            };
+            //};
 
-            context.socio.AddOrUpdate(socio);
-            context.socio.AddOrUpdate(socio1);
-            context.socio.AddOrUpdate(socio2);
+            //context.socio.AddOrUpdate(socio);
+            //context.socio.AddOrUpdate(socio1);
+            //context.socio.AddOrUpdate(socio2);
             // // Matricula matricula = new Matricula()
             // // {
 

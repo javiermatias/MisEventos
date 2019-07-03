@@ -21,7 +21,7 @@ export class Evento {
     public espacio?:EspacioComun,
     public cupoMinimo?: number,
     public cupoMaximo?: number,
-    public costo?:boolean, // true es gratiuto
+    public gratuito?:boolean, // true es gratiuto
     public monto?:number,
     public cantidadCuota?:number,
     public listaCuotas?:Array<Cuota>,
@@ -141,18 +141,19 @@ export class Horario
 export class Pago {
   constructor(
     public id: number,
+    public nombre:string,
     public monto?: number,
     public nroRecibo?: number,
+    public idInscripcion?: number,
     public inscripcion?: Inscripcion,
     public asociacion?: Asociacion,
     public estado?: string,
     public fechaCobro?: Date,
-    public fechaCreacion?: Date,
-    public fechaModificacion?: Date,
     public fechaBaja?: Date,
+    public estaPagado?:boolean,
   ) {
     this.inscripcion = new Inscripcion(0);
-    this.asociacion = new Asociacion(0);
+   
   }
 }
 

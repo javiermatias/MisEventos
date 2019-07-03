@@ -16,7 +16,7 @@ namespace Renacer.Nucleo.Entidades
 
         public int idEvento { get; set; }
         [ForeignKey("idEvento")]
-        public Evento Evento { get; set; }
+        public Evento evento { get; set; }
 
         public List<Pago> listaPagos { get; set; }
 

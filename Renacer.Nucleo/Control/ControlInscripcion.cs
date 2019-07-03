@@ -40,15 +40,30 @@ namespace Renacer.Nucleo.Control
                     throw new UsuarioException(errores);
                 }
 
-
-              
-
+                List<Pago> listaPagos = new List<Pago>();
                 if (inscripcion.id == 0) inscripcion.fechaCreacion = DateTime.Now;
+
+                if (!inscripcion.evento.gratuito)
+                {
+                    for (int i = 1; i <= inscripcion.evento.cantidadCuota; i++)
+                    {
+                        Pago pago = new Pago();
+                        pago.nombre = "Cuota" + i;
+                        pago.monto = (float)(inscripcion.evento.monto / inscripcion.evento.cantidadCuota);
+                        
+                        listaPagos.Add(pago);
+
+                    }
+                    inscripcion.listaPagos = listaPagos;
+
+                }
+                             
                
 
                 using (var db = new ModeloRenacer())
                 {
                     db.Entry(inscripcion.socio).State = System.Data.Entity.EntityState.Unchanged;
+                    db.Entry(inscripcion.evento).State = System.Data.Entity.EntityState.Unchanged;
                     db.inscripcion.AddOrUpdate(inscripcion);
                     db.SaveChanges();
                     //db.SaveChanges();
@@ -96,15 +111,15 @@ namespace Renacer.Nucleo.Control
                 {
                     if (idSocio != null && idSocio > 0) 
                     return db.inscripcion
-                            .Include("ListaPagos")
-                            .Include("Evento")
+                            .Include("listaPagos")
+                            .Include("evento")
                             .Where(x => x.idSocio == idSocio)
                             .ToList();
                     else if(idEvento != null && idEvento > 0)
                         return db.inscripcion
-                             .Include("ListaPagos")
-                             .Include("Socio")
-                             .Where(x => x.Evento.id == idEvento).ToList();
+                             .Include("listaPagos")
+                             .Include("socio")
+                             .Where(x => x.evento.id == idEvento).ToList();
 
                     else
                         return db.inscripcion.ToList();
@@ -127,7 +142,7 @@ namespace Renacer.Nucleo.Control
                      return db.inscripcion
                              .Include("ListaPagos")
                              .Include("Socio")
-                             .Where(x => x.Evento.id == idEvento).ToList();
+                             .Where(x => x.evento.id == idEvento).ToList();
                 }
             }
             catch (Exception ex)

@@ -226,10 +226,12 @@ export class EventoWizardComponent implements OnInit {
     this.evento.idEncargado=this.detalleForm.value.encargado.id;
     this.evento.cupoMinimo=this.detalleForm.value.cupoMin;
     this.evento.cupoMaximo=this.detalleForm.value.cupoMax;
-    if(this.detalleForm.value.costo == 0){
-       this.evento.costo= true;
-    }else{
-       this.evento.costo=false;
+    if(this.detalleForm.value.costo == "0"){
+       this.evento.gratuito= true;
+       console.log("vale 0");
+    }else if(this.detalleForm.value.costo == "1") {
+        console.log("vale 1");
+       this.evento.gratuito=false;
     }
     //this.evento.costo=this.detalleForm.value.costo;
     this.evento.monto=this.detalleForm.value.monto;

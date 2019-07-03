@@ -143,6 +143,14 @@
     <Compile Include="Migrations\201906290432113_cambioSocio.Designer.cs">
       <DependentUpon>201906290432113_cambioSocio.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907030412073_cambioPago.cs" />
+    <Compile Include="Migrations\201907030412073_cambioPago.Designer.cs">
+      <DependentUpon>201907030412073_cambioPago.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907030441419_cambioEventoCuotas.cs" />
+    <Compile Include="Migrations\201907030441419_cambioEventoCuotas.Designer.cs">
+      <DependentUpon>201907030441419_cambioEventoCuotas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
     <Compile Include="myMigrationSQLGenerator.cs" />
@@ -177,6 +185,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906290432113_cambioSocio.resx">
       <DependentUpon>201906290432113_cambioSocio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907030412073_cambioPago.resx">
+      <DependentUpon>201907030412073_cambioPago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907030441419_cambioEventoCuotas.resx">
+      <DependentUpon>201907030441419_cambioEventoCuotas.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

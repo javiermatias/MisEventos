@@ -11,7 +11,6 @@ import { Observable } from 'rxjs';
   selector: 'az-inscripcion',
     encapsulation: ViewEncapsulation.None,
   templateUrl: './inscripcion.component.html',
-  styleUrls: ['./inscripcion.component.scss'],
   providers: [DatePipe]
 })
 export class InscripcionComponent implements OnInit {
@@ -28,10 +27,7 @@ export class InscripcionComponent implements OnInit {
   mostrarGrilla=false;
   mostrarInscripcion=false;
   eliminaInscripcion:Inscripcion;
-  //Nuevo,Cancelado,Progreso,Finalizado
-  //Filter
-  
-  //
+
   constructor( private _itemsService:EventoServices, private inscripcionServ:InscripcionServices, 
     private datePipe: DatePipe, private mensajeServ: ToastrService) { 
     this.listaSocios=new Array<Socio>();
@@ -43,6 +39,8 @@ export class InscripcionComponent implements OnInit {
     
     this.fecha =new Date(this.fechaHoy.getFullYear() + "-" + (this.fechaHoy.getMonth() + 1) + "-" + this.fechaHoy.getDate());
     this.fecha.setDate( this.fecha.getDate());
+
+    
 
   }
 
@@ -75,8 +73,9 @@ export class InscripcionComponent implements OnInit {
 
   cambioEvento(){
     this.traerInscripciones(this.seleccionEvento.id);
-    /* console.log(this.seleccionEvento.fechaHastaInscripcion.toString());
-    console.log(this.fecha.toISOString()); */
+    //console.log(this.seleccionEvento.fechaHastaInscripcion.getFullYear().toString());
+    //console.log(this.datePipe.transform(this.fecha,'yyyy'));
+   
     if(this.seleccionEvento.fechaHastaInscripcion.toString() >= this.datePipe.transform(this.fecha,'yyyy-MM-dd')){
       this.mostrarInscripcion = true;
     } else{
@@ -121,7 +120,7 @@ export class InscripcionComponent implements OnInit {
         inscripcion.socio=socio;
         inscripcion.idEvento= this.seleccionEvento.id;
         inscripcion.idSocio= socio.id;
-        inscripcion.evento=null;
+        inscripcion.evento=this.seleccionEvento;
         //this.listaInscripcion.push(inscripcion);
         this.guardarInscripcion(inscripcion);
         
@@ -132,12 +131,7 @@ export class InscripcionComponent implements OnInit {
     
   }
 
-
-  //this.evento.listaInscripciones = this.listaInscripcion;
-  //this.listaInscripcion=new Array<Inscripcion>();
-  //this.listaSocios=new Array<Socio>();
-
-  }
+}
 
  
 

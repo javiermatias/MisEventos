@@ -152,17 +152,27 @@ namespace Renacer.Nucleo.Control
 
             try
             {
+                //List<Cuota> cuotas = new List<Cuota>();
                 evento.fechaCreacion = DateTime.Now;
                 diasSemamas(evento.listaHorarios);
                 List<DetalleEvento> detalleEventos = diasEntreDosFechas(evento.fechaDesde, evento.fechaHasta, evento.listaHorarios, evento);
 
                 evento.listaDetalleEvento = detalleEventos;
 
-                //var errores = this.validar(Matricula);
-                //if (errores.Count > 0)
+                //if (!evento.gratuito)
                 //{
-                //    throw new UsuarioException(errores);
+                //    for (int i = 1; i <= evento.cantidadCuota; i++)
+                //    {
+                //        Cuota cuota = new Cuota();
+                //        cuota.nombre = "Cuota" + i;
+                //        cuota.monto = (decimal)(evento.monto / evento.cantidadCuota);
+                //        cuotas.Add(cuota);
+
+                //    }
+                //    evento.listaCuotas = cuotas;
+                    
                 //}
+
 
                 using (var db = new ModeloRenacer())
                 {
@@ -355,7 +365,7 @@ namespace Renacer.Nucleo.Control
                     db.Entry(evento).State = EntityState.Unchanged;
                     foreach (var item in evento.listaInscripciones)
                     {
-                        item.Evento.id = item.idEvento;
+                        item.evento.id = item.idEvento;
                     }
                     evento.listaInscripciones.ForEach(p => db.Entry(p).State = EntityState.Added);
                     //var entity = db.evento.Find(evento.id);

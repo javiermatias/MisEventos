@@ -61,6 +61,7 @@ public searchText:string="";
     {
       this._itemsService.get({"id":this.id},(resp:Evento) => {
         this._item = resp;
+        console.log(this._item);
         this.espacioServ.get({"id":this._item.idEspacio},(resp2:EspacioComun) => {  this._item.espacio = resp2;});
         this.responsableServ.get({"id":this._item.idEncargado},(resp3:EncargadoEvento) => {  this._item.responsable = resp3;});
         this.inscripcionServ.query({"idEvento":this._item.id} ,(resp3:Array<Inscripcion>) => {  this._item.listaInscripciones = resp3;   });
