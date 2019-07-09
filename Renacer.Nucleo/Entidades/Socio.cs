@@ -33,8 +33,7 @@ namespace Renacer.Nucleo.Entidades
         public int idContacto { get; set; }
         [ForeignKey("idContacto")]
         public Contacto contacto { get; set; }
-
-        public List<Asociacion> listaAsociaciones { get; set; }
+                
         public List<Inscripcion> listaInscripciones { get; set; }
         public List<Asistencia> listaAsistencias { get; set; }
         public List<Tag> listaTags { get; set; }

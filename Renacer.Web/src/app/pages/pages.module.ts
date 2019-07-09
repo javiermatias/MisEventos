@@ -39,6 +39,8 @@ import { MatriculasPagadasComponent } from './matricula/matriculas-pagadas/matri
 import { RecordatoriosComponent } from './recordatorios/recordatorios.component';
 import { DragulaModule } from 'ng2-dragula';
 import { NuevoRecordatorioComponent } from './recordatorios/nuevo-recordatorio/nuevo-recordatorio.component';
+import { PagoCuotaComponent } from './pagos/pago-cuota/pago-cuota.component';
+import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 
 
 @NgModule({
@@ -54,7 +56,8 @@ import { NuevoRecordatorioComponent } from './recordatorios/nuevo-recordatorio/n
     DataTableModule,
     NguiAutoCompleteModule,
     SharedModule,
-    DragulaModule
+    DragulaModule,    
+    MultiselectDropdownModule,
   ],
   declarations: [
     PagesComponent,
@@ -80,7 +83,8 @@ import { NuevoRecordatorioComponent } from './recordatorios/nuevo-recordatorio/n
     CobroMatriculaComponent,
     MatriculasPagadasComponent,
     RecordatoriosComponent,
-    NuevoRecordatorioComponent
+    NuevoRecordatorioComponent,
+    PagoCuotaComponent
   ]
   , exports: [
     BreadcrumbComponent,

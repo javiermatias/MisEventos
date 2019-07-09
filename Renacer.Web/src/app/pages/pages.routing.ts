@@ -16,6 +16,7 @@ import { NuevaMatriculaComponent } from './matricula/nueva-matricula/nueva-matri
 import { CobroMatriculaComponent } from './cobro-matricula/cobro-matricula.component';
 import { MatriculasPagadasComponent } from './matricula/matriculas-pagadas/matriculas-pagadas.component';
 import { RecordatoriosComponent } from './recordatorios/recordatorios.component';
+import { PagoCuotaComponent } from './pagos/pago-cuota/pago-cuota.component';
 
 
 export const routes: Routes = [
@@ -49,6 +50,7 @@ export const routes: Routes = [
             { path: 'cobro-matricula', component: CobroMatriculaComponent, data: { breadcrumb: '' } },
             { path: 'pago-matricula', component: MatriculasPagadasComponent, data: { breadcrumb: '' } },
             { path: 'recordatorios', component: RecordatoriosComponent, data: { breadcrumb: '' } },
+            { path: 'pago-cuota', component: PagoCuotaComponent, data: { breadcrumb: '' } },
             // { path: 'seleccionarRol', component: RolesUsuarioComponent, data: { breadcrumb: 'Selecionar rol'}},
             { path: 'blank', component: BlankComponent, data: { breadcrumb: 'Blank page' } }
         ]

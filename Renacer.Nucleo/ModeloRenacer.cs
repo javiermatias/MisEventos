@@ -24,12 +24,12 @@ namespace Renacer.Nucleo
         public virtual DbSet<Encargado> encargado { get; set; }
 
         public virtual DbSet<Asistencia> asistencia { get; set; }
-        public virtual DbSet<Asociacion> asociacion { get; set; }
+      
 
         public virtual DbSet<Domicilio> domicilio { get; set; }
         public virtual DbSet<Tag> tag { get; set; }
         public virtual DbSet<Evento> evento { get; set; }
-        public virtual DbSet<Pago> pago { get; set; }
+        //public virtual DbSet<Pago> pago { get; set; }
         public virtual DbSet<Inscripcion> inscripcion { get; set; }
         public virtual DbSet<TipoEvento> tipoEvento { get; set; }
         public virtual DbSet<DetalleEvento> detalleEvento { get; set; }
@@ -43,7 +43,9 @@ namespace Renacer.Nucleo
         public virtual DbSet<Matricula> matricula{ get; set; }
         public virtual DbSet<Recordatorio> recordatorio { get; set; }
 
-        public virtual DbSet<MatriculaXSocio> matriculaXSocio { get; set; }       
+        public virtual DbSet<MatriculaXSocio> matriculaXSocio { get; set; }
+
+        public virtual DbSet<Pago> pagoCuota { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
 
         {

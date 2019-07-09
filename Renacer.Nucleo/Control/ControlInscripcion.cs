@@ -48,22 +48,30 @@ namespace Renacer.Nucleo.Control
                     for (int i = 1; i <= inscripcion.evento.cantidadCuota; i++)
                     {
                         Pago pago = new Pago();
-                        pago.nombre = "Cuota" + i;
+                        pago.nombre = "Cuota " + i;
                         pago.monto = (float)(inscripcion.evento.monto / inscripcion.evento.cantidadCuota);
-                        
+
                         listaPagos.Add(pago);
 
                     }
                     inscripcion.listaPagos = listaPagos;
 
                 }
-                             
-               
+
+
 
                 using (var db = new ModeloRenacer())
                 {
-                    db.Entry(inscripcion.socio).State = System.Data.Entity.EntityState.Unchanged;
-                    db.Entry(inscripcion.evento).State = System.Data.Entity.EntityState.Unchanged;
+                    if (inscripcion.socio != null)
+                    {
+                        db.Entry(inscripcion.socio).State = System.Data.Entity.EntityState.Unchanged;
+                    }
+
+                    if (inscripcion.evento != null)
+                    {
+                        db.Entry(inscripcion.evento).State = System.Data.Entity.EntityState.Unchanged;
+                    }
+                    
                     db.inscripcion.AddOrUpdate(inscripcion);
                     db.SaveChanges();
                     //db.SaveChanges();
@@ -109,13 +117,13 @@ namespace Renacer.Nucleo.Control
             {
                 using (var db = new ModeloRenacer())
                 {
-                    if (idSocio != null && idSocio > 0) 
-                    return db.inscripcion
-                            .Include("listaPagos")
-                            .Include("evento")
-                            .Where(x => x.idSocio == idSocio)
-                            .ToList();
-                    else if(idEvento != null && idEvento > 0)
+                    if (idSocio != null && idSocio > 0)
+                        return db.inscripcion
+                                .Include("listaPagos")
+                                .Include("evento")
+                                .Where(x => x.idSocio == idSocio)
+                                .ToList();
+                    else if (idEvento != null && idEvento > 0)
                         return db.inscripcion
                              .Include("listaPagos")
                              .Include("socio")
@@ -139,10 +147,10 @@ namespace Renacer.Nucleo.Control
             {
                 using (var db = new ModeloRenacer())
                 {
-                     return db.inscripcion
-                             .Include("ListaPagos")
-                             .Include("Socio")
-                             .Where(x => x.evento.id == idEvento).ToList();
+                    return db.inscripcion
+                            .Include("ListaPagos")
+                            .Include("Socio")
+                            .Where(x => x.evento.id == idEvento).ToList();
                 }
             }
             catch (Exception ex)
@@ -171,6 +179,29 @@ namespace Renacer.Nucleo.Control
             {
                 ServicioSentry.devolverSentry().informarExcepcion(ex);
             }
+        }
+
+        public List<Inscripcion> devolverInscripcionXSocio(int idSocio) {
+
+            try
+            {
+                using (var db = new ModeloRenacer())
+                {
+                   
+                        return db.inscripcion
+                                .Include("listaPagos")
+                                .Include("evento")
+                                .Where(x => x.idSocio == idSocio)
+                                .ToList();
+                  
+                }
+            }
+            catch (Exception ex)
+            {
+                ServicioSentry.devolverSentry().informarExcepcion(ex);
+            }
+            return null;
+
         }
 
 

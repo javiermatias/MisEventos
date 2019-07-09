@@ -88,10 +88,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Control\ControlInscripcion.cs" />
-    <Compile Include="Control\ControlAsociacion.cs" />
     <Compile Include="Control\ControlAsistencia.cs" />
     <Compile Include="Control\ControlMatricula.cs" />
     <Compile Include="Control\ControlMatriculaXSocio.cs" />
+    <Compile Include="Control\ControlPagoCuota.cs" />
     <Compile Include="Control\ControlPersona.cs" />
     <Compile Include="Control\ControlRecordatorio.cs" />
     <Compile Include="Control\ControlReporte.cs" />
@@ -107,7 +107,6 @@
     <Compile Include="Control\ControlUsuario.cs" />
     <Compile Include="Control\ControlEspacioComun.cs" />
     <Compile Include="Control\ControlCliente.cs" />
-    <Compile Include="Entidades\Asociacion.cs" />
     <Compile Include="Entidades\Asistencia.cs" />
     <Compile Include="Entidades\Cliente.cs" />
     <Compile Include="Entidades\Contacto.cs" />
@@ -151,6 +150,10 @@
     <Compile Include="Migrations\201907030441419_cambioEventoCuotas.Designer.cs">
       <DependentUpon>201907030441419_cambioEventoCuotas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907080314316_quitarAsociacion.cs" />
+    <Compile Include="Migrations\201907080314316_quitarAsociacion.Designer.cs">
+      <DependentUpon>201907080314316_quitarAsociacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
     <Compile Include="myMigrationSQLGenerator.cs" />
@@ -191,6 +194,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907030441419_cambioEventoCuotas.resx">
       <DependentUpon>201907030441419_cambioEventoCuotas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907080314316_quitarAsociacion.resx">
+      <DependentUpon>201907080314316_quitarAsociacion.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

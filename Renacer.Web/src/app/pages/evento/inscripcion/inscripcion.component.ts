@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'az-inscripcion',
-    encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './inscripcion.component.html',
   providers: [DatePipe]
 })
@@ -127,7 +127,7 @@ export class InscripcionComponent implements OnInit {
     });
     //setTimeout(() => console.log('espero'), 2000);
     this.mostrarInscripcion=false;
-    this.mensajeServ.success('se han guardado los cambios!', 'Aviso!');
+    this.mensajeServ.success('Se han guardado los cambios!', 'Aviso!');
     
   }
 

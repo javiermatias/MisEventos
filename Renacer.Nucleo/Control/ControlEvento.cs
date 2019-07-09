@@ -545,5 +545,39 @@ namespace Renacer.Nucleo.Control
             return errores;
         }
 
+        public void actualizarEstadoEvento() {
+
+            List<Evento> listEventos;
+
+            using (var db = new ModeloRenacer())
+            {
+                listEventos = db.evento
+                    .Where(ev => ev.estado != "Cancelado" && ev.estado != "Finalizado" && ev.fechaBaja == null)
+                    .ToList();
+
+                foreach (var evento in listEventos)
+                {
+                    if ( (evento.fechaDesde<=DateTime.Now) && (DateTime.Now <= evento.fechaHasta))
+                    {
+                        evento.estado = "Progreso";
+                        db.evento.AddOrUpdate(evento);
+                        db.SaveChanges();
+                    }else if (DateTime.Now >= evento.fechaHasta)
+                    {
+                        evento.estado = "Finalizado";
+                        db.evento.AddOrUpdate(evento);
+                        db.SaveChanges();
+                    }
+
+
+
+                }
+
+
+            }
+
+
+        }
+
     }
 }

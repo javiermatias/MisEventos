@@ -21,3 +21,11 @@ export class RecordatorioServices extends BaseServices<Recordatorio> {
 export class RecordatorioHoyServices extends BaseServices<Recordatorio> {
 
 }
+
+@Injectable()
+@ResourceParams({
+    url: variable.urlBase + "ActualizarEvento"
+})
+export class ActualizarEventoServices extends BaseServices<any> {
+
+}

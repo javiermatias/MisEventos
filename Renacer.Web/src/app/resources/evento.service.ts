@@ -24,7 +24,7 @@ export class Evento {
     public gratuito?:boolean, // true es gratiuto
     public monto?:number,
     public cantidadCuota?:number,
-    public listaCuotas?:Array<Cuota>,
+    /* public listaCuotas?:Array<Cuota>, */
     public fechaDesde?: Date,
     public fechaHasta?: Date,    
     public fechaDesdeInscripcion?: Date,
@@ -107,22 +107,7 @@ public Socio Socio { get; set; }
 
 public DateTime fechaCreacion { get; set; } */
 
-export class Asociacion {
-  constructor(
-    public id: number,
-    public socio?: Socio,
-    public estado?: string,
-    public listaPagos?: Array<Pago>,
-    public fechaInicio?: Date,
-    public fechaFin?: Date,
-    public fechaCreacion?: Date,
-    public fechaModificacion?: Date,
-    public fechaBaja?: Date
-  ) {
-    this.socio = new Socio(0,"","");
-    this.listaPagos = new Array<Pago>();
-  }
-}
+
 
 export class Horario
 {
@@ -146,7 +131,7 @@ export class Pago {
     public nroRecibo?: number,
     public idInscripcion?: number,
     public inscripcion?: Inscripcion,
-    public asociacion?: Asociacion,
+    //public asociacion?: Asociacion,
     public estado?: string,
     public fechaCobro?: Date,
     public fechaBaja?: Date,
@@ -157,13 +142,13 @@ export class Pago {
   }
 }
 
-export class Cuota
+/* export class Cuota
 {
     public id: number;
     public nombre?: string;
     public decimal: number;
     
-}
+} */
 
 let variable = new Variables();
 
@@ -191,9 +176,9 @@ export class DetalleEventoServices extends BaseServices<DetalleEvento> {
 
 @Injectable()
 @ResourceParams({
-  url:variable.urlBase + "asociacion/"
+  url:variable.urlBase + "pago/"
 })
-export class AsociacionServices extends BaseServices<Asociacion> {
+export class PagoServices extends BaseServices<Pago> {
 }
 
 

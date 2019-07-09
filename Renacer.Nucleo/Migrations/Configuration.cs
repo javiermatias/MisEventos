@@ -19,6 +19,7 @@ namespace Renacer.Nucleo.Migrations
 
         protected override void Seed(ModeloRenacer context)
         {
+            //ControlEvento.devolverInstancia().devolverTodosEvento(estado);
             // TipoDocumento tipoDoc = new TipoDocumento()
             // {
             //     nombre = "DNI"
@@ -71,7 +72,7 @@ namespace Renacer.Nucleo.Migrations
             //    idDomicilio=1,
             //    idTipoDoc=1,
             //    idContacto=1,
-                
+
             //};
             //Socio socio1 = new Socio()
             //{
