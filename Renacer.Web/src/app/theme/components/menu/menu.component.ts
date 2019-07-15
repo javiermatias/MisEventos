@@ -18,7 +18,7 @@ export class MenuComponent implements OnInit {
     private roles = { // TODO: buscar enum 
         administrador: 'Administrador del sistema',
         secretario: 'Secretario',
-        encargadoEvento: 'Encargado de Evento',
+        encargadoEvento: 'Encargado',
         socio: 'Socio'
     };
     private todosRoles = [this.roles.administrador, this.roles.encargadoEvento, this.roles.secretario, this.roles.socio];

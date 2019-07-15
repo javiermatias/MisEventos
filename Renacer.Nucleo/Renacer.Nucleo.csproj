@@ -154,6 +154,26 @@
     <Compile Include="Migrations\201907080314316_quitarAsociacion.Designer.cs">
       <DependentUpon>201907080314316_quitarAsociacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907100533526_cambioAsistencia.cs" />
+    <Compile Include="Migrations\201907100533526_cambioAsistencia.Designer.cs">
+      <DependentUpon>201907100533526_cambioAsistencia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907100536384_cambioAsistenciaDetalle.cs" />
+    <Compile Include="Migrations\201907100536384_cambioAsistenciaDetalle.Designer.cs">
+      <DependentUpon>201907100536384_cambioAsistenciaDetalle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907110529136_changeAsistenica.cs" />
+    <Compile Include="Migrations\201907110529136_changeAsistenica.Designer.cs">
+      <DependentUpon>201907110529136_changeAsistenica.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907110555291_changeDetalleEvento.cs" />
+    <Compile Include="Migrations\201907110555291_changeDetalleEvento.Designer.cs">
+      <DependentUpon>201907110555291_changeDetalleEvento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907130338509_cambioUsuario.cs" />
+    <Compile Include="Migrations\201907130338509_cambioUsuario.Designer.cs">
+      <DependentUpon>201907130338509_cambioUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
     <Compile Include="myMigrationSQLGenerator.cs" />
@@ -197,6 +217,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907080314316_quitarAsociacion.resx">
       <DependentUpon>201907080314316_quitarAsociacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907100533526_cambioAsistencia.resx">
+      <DependentUpon>201907100533526_cambioAsistencia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907100536384_cambioAsistenciaDetalle.resx">
+      <DependentUpon>201907100536384_cambioAsistenciaDetalle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907110529136_changeAsistenica.resx">
+      <DependentUpon>201907110529136_changeAsistenica.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907110555291_changeDetalleEvento.resx">
+      <DependentUpon>201907110555291_changeDetalleEvento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907130338509_cambioUsuario.resx">
+      <DependentUpon>201907130338509_cambioUsuario.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

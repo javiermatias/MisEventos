@@ -11,7 +11,7 @@ namespace Renacer.WebAPI.Controllers
 {
     public class AsistenciaController : ApiController
     {
-        // GET: api/cliente
+        //GET: api/cliente
         public IEnumerable<Asistencia> Get()
         {
             return ControlAsistencia.devolverInstacia().devolverTodos();

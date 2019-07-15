@@ -3,60 +3,88 @@ import { ActivatedRoute } from '@angular/router';
 import {FormGroup} from '@angular/forms';
 import {DatePipe} from '@angular/common' ;
 import { ToastrService, ToastrConfig } from 'ngx-toastr';
-import { EventoServices ,Evento,TipoEventoServices,TipoEvento,DetalleEvento,InscripcionServices,Inscripcion} from '../../resources/evento.service';
+import { EventoServices ,Evento,TipoEventoServices,TipoEvento,DetalleEvento,InscripcionServices,Inscripcion, DetalleEventoServices} from '../../resources/evento.service';
 import { EncargadoEvento,EncargadoEventoServices} from '../../resources/encargado.service';
 import { EspacioComun,EspacioServices} from '../../resources/espacio.service';
 import { AsistenciaServices,Asistencia} from '../../resources/asistencia.service';
 import { Socio} from '../../resources/socio.service';
+import { RolServices, Rol } from '../../resources/rol.service';
+import { Usuario, UserServices } from '../../resources/users.service';
 
 
 @Component({
   selector: 'az-asistencia',
-  templateUrl: './asistencia.component.html',
-  styleUrls: ['./asistencia.component.css']
+  templateUrl: './asistencia.component.html'
 })
 export class AsistenciaComponent implements OnInit {
 
-  public eventoSeleccionado:Evento;
-  public eventoSelected:string;
-  public cursoSelected:string;
-  public _item = new Asistencia(0,"");
-  @Input() detalle:DetalleEvento ;
+  public eventos:Evento[];
+  //seleccionEvento
+   public eventoSeleccionado:Evento;
+  //public eventoSelected:string;
+  //public cursoSelected:string;
+  public usuario:Usuario;
+  //public _item = new Asistencia(0,"");
+  //@Input() detalle:DetalleEvento ;
   public listaInscripciones:any[] ;
   public fechaActual:string;
+  public mostrarGrilla:boolean=false;
+  public detalleEvento:DetalleEvento[];
 
-  constructor(private eventoServ:EventoServices
-    ,private asistenciaServ:AsistenciaServices
-    ,private inscripcionServ:InscripcionServices
-    ,private mensajeServ: ToastrService) { }
+  constructor(private _eventoServ:EventoServices
+    ,private asistenciaServ:AsistenciaServices    
+    ,private mensajeServ: ToastrService,
+    private _userService: UserServices,
+    private _detalleEvento:DetalleEventoServices) { }
 
   ngOnInit() {
-   this.fechaActual = new Date().toISOString();
+   //this.fechaActual = new Date().toISOString();
+   this.usuario = this._userService.getCurrent();
+   //console.log(this.usuario.idEncargado);
+   this.getEventosXencargado();
+  }
+  getEventosXencargado(){
+    
+    this._eventoServ.query(
+      {'idEncargado':this.usuario.idEncargado},
+      (items:Evento[]) => {
+        this.eventos = items;
+      //console.log(items);
+    });
+
+  }
+
+  getAsistenciaDetalleEvento(_idEvento:number){
+    this._detalleEvento.query(
+      {'idEvento':_idEvento,
+      'idEncargado':this.usuario.idEncargado},
+      (items:DetalleEvento[]) => {          
+          this.detalleEvento= items;
+          this.mostrarGrilla=true;
+        //console.log(items);
+    });
+
+
+  }
+  cambioEvento(){
+    this.getAsistenciaDetalleEvento(this.eventoSeleccionado.id);
+  
   }
 
   ngOnChanges(){
-    if(this.detalle.asistencia){
-      if(this.detalle.asistencia.id != 0){
-        this.asistenciaServ.get({"id":this.detalle.asistencia.id},resp => {
-          this._item = resp;
-                   })  
-        this.inscripcionServ.query({"idEvento":this.detalle.idEvento},resp => {
-           this.listaInscripciones = resp;
-        })  
-        }
-      }
+    
     }
 
   guardarAsistencia(){
-    this.asistenciaServ.save(this._item,resp => {
+/*     this.asistenciaServ.save(this._item,resp => {
       this.asistenciaServ.get({"id":this.detalle.asistencia.id},resp => {
         this._item = resp;
         this.mensajeServ.success('Se han guardado las asistencias!', 'Aviso!');
                  }) 
       
-    });
+    }); */
   }
-
+/* 
   estaPresente(idSocio){
   if(this._item.listaSocios == null) this._item.listaSocios = new Array<Socio>();
    return this._item.listaSocios.filter(item => item.id == idSocio).length == 1
@@ -73,9 +101,9 @@ export class AsistenciaComponent implements OnInit {
   var itemAux = this._item.listaSocios.filter(item => item.id == socio.id)[0];
   var index = this._item.listaSocios.indexOf(itemAux, 0);
   this._item.listaSocios.splice(index, 1);
-   }
+   } */
   
     
-  }
+ // }
 
 }

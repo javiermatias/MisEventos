@@ -13,12 +13,23 @@ namespace Renacer.Nucleo.Entidades
     {
         [Key]
         public int id { get; set; }
-        public List<Socio> listaSocios { get; set; }
-        public EstadoAsistencia estado { get; set; }
+
+        public int idSocio { get; set; }
+        [ForeignKey("idSocio")]
+        public Socio socio { get; set; }
+
+        public int idEncargado { get; set; }
+        [ForeignKey("idEncargado")]
+        public Encargado responsable { get; set; }
+
+        public int idDetalleEvento { get; set; }
+        [ForeignKey("idDetalleEvento")]
+        public DetalleEvento detalleEvento { get; set; }
+
+        public bool estado { get; set; } //
         public DateTime fechaAsistencia { get; set; }
-        public DateTime fechaCreacion { get; set; }
-        public DateTime? fechaModificacion { get; set; }
+
     }
 
-    public enum EstadoAsistencia {Pendiente,Finalizada,Cancelada}
+   
 }

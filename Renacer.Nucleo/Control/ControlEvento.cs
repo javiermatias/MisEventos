@@ -258,14 +258,15 @@ namespace Renacer.Nucleo.Control
                         detalleEvento.idEncargado = _evento.idEncargado;
                         //detalleEvento.idAsistencia = 1;
                         detalleEvento.nombre = _evento.nombre;
-                        detalleEvento.estado = EstadoEvento.Nuevo;
-                        detalleEvento.fechaCreacion = DateTime.Now;
+                        detalleEvento.estado = "Nuevo";
+                        //detalleEvento.fechaCreacion = DateTime.Now;
                         string[] horarioDesde = diaSemana.horaDesde.Split(':');
                         string[] horarioHasta = diaSemana.horaHasta.Split(':');
                         var horaDesde = _inicio.Date.Add(new TimeSpan(int.Parse(horarioDesde[0]), int.Parse(horarioDesde[1]), 0));
                         var horaHasta = _inicio.Date.Add(new TimeSpan(int.Parse(horarioHasta[0]), int.Parse(horarioHasta[1]), 0));
                         detalleEvento.fechaDesde = horaDesde;
                         detalleEvento.fechaHasta = horaHasta;
+                        detalleEvento.dia = diaSemana.dia;
                         listDias.Add(detalleEvento);
 
                     }
@@ -487,6 +488,30 @@ namespace Renacer.Nucleo.Control
                 {
                     return db.evento
                         .Where(ev => ev.estado == _estado && ev.fechaBaja == null)
+                        .ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                ServicioSentry.devolverSentry().informarExcepcion(ex);
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Aca se podría preguntar por el estado de cada Evento. Si por ejemplo es nuevo no se si traer las asistencias.
+        /// </summary>
+        /// <param name="encargado"></param>
+        /// <returns></returns>
+        public List<Evento> devolverEventosEncargado(Int64 encargado)
+        {
+
+            try
+            {
+                using (var db = new ModeloRenacer())
+                {
+                    return db.evento
+                        .Where(ev => ev.idEncargado == encargado && ev.fechaBaja == null)
                         .ToList();
                 }
             }

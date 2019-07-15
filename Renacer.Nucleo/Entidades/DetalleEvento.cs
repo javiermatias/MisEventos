@@ -26,20 +26,16 @@ namespace Renacer.Nucleo.Entidades
 
         public int idEspacio { get; set; }
         [ForeignKey("idEspacio")]
-        public EspacioComun espacio { get; set; }
-
-        //public int idAsistencia { get; set; }
-        //[ForeignKey("idAsistencia")]
-        //public Asistencia asistencia { get; set; }
-
-        public EstadoEvento estado { get; set; }
+        public EspacioComun espacio { get; set; }   
         
         public DateTime fechaDesde { get; set; }
         public DateTime fechaHasta { get; set; }
-        public DateTime fechaCancelacion { get; set; }
-        public DateTime fechaCreacion { get; set; }
         public DateTime? fechaBaja { get; set; }
-        public DateTime? fechaModificacion { get; set; }
+        public string estado { get; set; }
+        public string dia { get; set; }
+        public bool asistencia { get; set; } = false; //true se tomo asistencia
+
+
     }
 
     [Table("TipoEvento")]

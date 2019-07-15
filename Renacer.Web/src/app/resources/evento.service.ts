@@ -57,22 +57,24 @@ export class TipoEvento {
 
 export class DetalleEvento {
   constructor(
-    public id: number,
-    public idEvento?: number,
+    public id: number,    
     public nombre?: string,
-    public descripcion?: string,
-    public estado?: string,
+    public descripcion?: string,    
+    public idEncargado?: number,
     public responsable?:EncargadoEvento,
-    public espacio?:EspacioComun,
-    public asistencia?: Asistencia,
-    public fechaHasta?: Date,
-    public fechaDesde?: Date,
-    public fechaCancelacion?: Date,
-    public fechaCreacion?: Date,
-    public fechaModificacion?: Date,
+    public idEvento?: number,
+    public evento?: Evento,
+    public idEspacio?:number,
+    public espacio?:EspacioComun,    
+    public fechaDesde?: Date, 
+    public fechaHasta?: Date,    
     public fechaBaja?: Date,
+    public estado?: string,
+    public dia?:string,
+    public asistencia?:boolean
+   
   ) {
-    this.asistencia = new Asistencia(0,"Pendiente");
+    //this.asistencia = new Asistencia(0,"Pendiente");
     this.espacio = new EspacioComun();
   }
 }

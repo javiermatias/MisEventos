@@ -19,6 +19,13 @@ namespace Renacer.WebAPI.Controllers
 
         }
 
+        public IEnumerable<DetalleEvento> GetAsistencias([FromUri]int idEvento, [FromUri]int idEncargado)
+        {
+            IEnumerable<DetalleEvento> detalle = ControlDetalleEvento.devolverInstancia().devolverTodosXEncargado(idEvento, idEncargado);
+            return detalle;
+
+        }
+
         // GET: api/Eventos/5
         public DetalleEvento Get(int id)
         {
@@ -42,7 +49,7 @@ namespace Renacer.WebAPI.Controllers
         // PUT: api/cliente/5
         public void Put(int id, [FromBody]DetalleEvento value)
         {
-            value.fechaModificacion = DateTime.Now;
+            //value.fechaModificacion = DateTime.Now;
             ControlDetalleEvento.devolverInstancia().grabar(value);
         }
 

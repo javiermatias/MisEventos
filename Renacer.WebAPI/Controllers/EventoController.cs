@@ -20,6 +20,13 @@ namespace Renacer.WebAPI.Controllers
             return ControlEvento.devolverInstancia().devolverTodos(search);
         }
 
+        public IEnumerable<Evento> GetEncargadosXevento([FromUri]int idEncargado)
+        {
+           
+            return ControlEvento.devolverInstancia().devolverEventosEncargado(idEncargado);
+
+        }
+
         // GET: api/Eventos
         public IEnumerable<Evento> GetEstado([FromUri]String estado)
         {

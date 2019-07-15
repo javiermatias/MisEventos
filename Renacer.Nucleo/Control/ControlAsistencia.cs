@@ -39,20 +39,20 @@ namespace Renacer.Nucleo.Control
                 if (errores.Count > 0)
                     throw new UsuarioException(errores);
 
-                if (asistencia.id == 0) asistencia.fechaCreacion = DateTime.Now;
-                if (asistencia.id > 0) asistencia.fechaModificacion = DateTime.Now;
+                //if (asistencia.id == 0) asistencia.fechaCreacion = DateTime.Now;
+                //if (asistencia.id > 0) asistencia.fechaModificacion = DateTime.Now;
 
                 using (var db = new ModeloRenacer())
                 {
-                    Socio[] listaSocios = new Socio[asistencia.listaSocios.Count];
-                    asistencia.listaSocios.CopyTo(listaSocios);
-                    asistencia.listaSocios.RemoveAll(soc => true);
+                    //Socio[] listaSocios = new Socio[asistencia.listaSocios.Count];
+                    //asistencia.listaSocios.CopyTo(listaSocios);
+                    //asistencia.listaSocios.RemoveAll(soc => true);
 
                     db.asistencia.AddOrUpdate(asistencia);
                     db.SaveChanges();
 
-                    asistencia = db.asistencia.Include("listaSocios").Single(a => a.id == asistencia.id);
-                    ControlSocio.devolverInstancia().actualizarListaDeSocios(db, listaSocios, asistencia.listaSocios);
+                   // asistencia = db.asistencia.Include("listaSocios").Single(a => a.id == asistencia.id);
+                    //ControlSocio.devolverInstancia().actualizarListaDeSocios(db, listaSocios, asistencia.listaSocios);
                     db.SaveChanges();
                 }
             }

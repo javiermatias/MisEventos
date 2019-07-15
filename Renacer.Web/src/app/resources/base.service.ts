@@ -15,6 +15,7 @@ interface IQueryInput {
   fechaHasta?: Date;
   idEvento?: number;
   idSocio?: number;
+  idEncargado?:number;
   id?: number;
   rol?: string;
   estado?: string;
