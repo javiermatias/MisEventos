@@ -6,8 +6,7 @@ import { ToastrService, ToastrConfig } from 'ngx-toastr';
 
 @Component({
   selector: 'az-espacios',
-  templateUrl: './espacios.component.html',
-  styleUrls: ['./espacios.component.scss']
+  templateUrl: './espacios.component.html'
 })
 export class EspaciosComponent implements OnInit {
 

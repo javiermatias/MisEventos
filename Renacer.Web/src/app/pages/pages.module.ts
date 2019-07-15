@@ -21,26 +21,27 @@ import { MessagesComponent } from '../theme/components/messages/messages.compone
 import { BreadcrumbComponent } from '../theme/components/breadcrumb/breadcrumb.component';
 import { BackTopComponent } from '../theme/components/back-top/back-top.component';
 import { SearchComponent } from './search/search.component';
-import { SociosComponent } from './socios/socios.component';
+import { SociosComponent } from '../mis-eventos/socios/socios.component';
 import { DataTableModule } from "angular2-datatable";
-import { EspaciosComponent } from './espacios/espacios.component';
-import { TipoEspacioComponent } from './tipoEspacio/tipoEspacio.component';
-import { DomicilioComponent } from './domicilio/domicilio.component';
-import { ContactoComponent } from './contacto/contacto.component';
-import { EncargadosComponent } from './encargados/encargados.component';
-import { ContactoModelComponent } from './contacto-model/contacto-model.component';
+import { EspaciosComponent } from '../mis-eventos/espacios/espacios.component';
+import { TipoEspacioComponent } from '../mis-eventos/espacios/tipoEspacio/tipoEspacio.component';
+import { DomicilioComponent } from '../mis-eventos/socios/domicilio/domicilio.component';
+import { ContactoComponent } from '../mis-eventos/socios/contacto/contacto.component';
+import { EncargadosComponent } from '../mis-eventos/encargados/encargados.component';
+
 import { RolComponent } from './rol/rol.component';
 import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import { UsuarioComponent } from './usuarios/usuarios.component';
-import { MatriculaComponent } from './matricula/matricula.component';
-import { NuevaMatriculaComponent } from './matricula/nueva-matricula/nueva-matricula.component';
-import { CobroMatriculaComponent } from './cobro-matricula/cobro-matricula.component';
-import { MatriculasPagadasComponent } from './matricula/matriculas-pagadas/matriculas-pagadas.component';
-import { RecordatoriosComponent } from './recordatorios/recordatorios.component';
+import { MatriculaComponent } from '../mis-eventos/matricula/matricula.component';
+import { NuevaMatriculaComponent } from '../mis-eventos/matricula/nueva-matricula/nueva-matricula.component';
+import { CobroMatriculaComponent } from '../mis-eventos/matricula/cobro-matricula/cobro-matricula.component';
+import { MatriculasPagadasComponent } from '../mis-eventos/matricula/matriculas-pagadas/matriculas-pagadas.component';
+import { RecordatoriosComponent } from '../mis-eventos/recordatorios/recordatorios.component';
 import { DragulaModule } from 'ng2-dragula';
-import { NuevoRecordatorioComponent } from './recordatorios/nuevo-recordatorio/nuevo-recordatorio.component';
-import { PagoCuotaComponent } from './pagos/pago-cuota/pago-cuota.component';
+import { NuevoRecordatorioComponent } from '../mis-eventos/recordatorios/nuevo-recordatorio/nuevo-recordatorio.component';
+import { PagoCuotaComponent } from '../mis-eventos/pagos/pago-cuota/pago-cuota.component';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
+import { NuevaAsistenciaComponent } from '../mis-eventos/asistencia/nueva-asistencia/nueva-asistencia.component';
 
 
 @NgModule({
@@ -75,8 +76,7 @@ import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
     DomicilioComponent,
     ContactoComponent,
     EncargadosComponent,
-    RolComponent,
-    ContactoModelComponent,
+    RolComponent,   
     UsuarioComponent,
     MatriculaComponent,
     NuevaMatriculaComponent,
@@ -84,7 +84,8 @@ import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
     MatriculasPagadasComponent,
     RecordatoriosComponent,
     NuevoRecordatorioComponent,
-    PagoCuotaComponent
+    PagoCuotaComponent,
+    NuevaAsistenciaComponent
   ]
   , exports: [
     BreadcrumbComponent,
@@ -95,8 +96,8 @@ import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
     DomicilioComponent,
     ContactoComponent,
     RolComponent,
-    EncargadosComponent,
-    ContactoModelComponent
+    EncargadosComponent
+
    
   ]
 })

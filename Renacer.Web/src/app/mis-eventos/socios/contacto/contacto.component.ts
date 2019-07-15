@@ -1,10 +1,9 @@
 import { Component, OnInit,Input } from '@angular/core';
-import {Contacto} from "../../resources/socio.service";
+import {Contacto} from "../../../resources/socio.service";
 
 @Component({
   selector: 'az-contacto',
-  templateUrl: './contacto.component.html',
-  styleUrls: ['./contacto.component.scss']
+  templateUrl: './contacto.component.html'
 })
 export class ContactoComponent implements OnInit {
 

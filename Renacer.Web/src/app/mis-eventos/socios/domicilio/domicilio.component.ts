@@ -1,10 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Domicilio } from '../../resources/persona.service';
+import { Domicilio } from '../../../resources/persona.service';
 
 @Component({
   selector: 'az-domicilio',
-  templateUrl: './domicilio.component.html',
-  styleUrls: ['./domicilio.component.scss']
+  templateUrl: './domicilio.component.html'
 })
 export class DomicilioComponent implements OnInit {
 

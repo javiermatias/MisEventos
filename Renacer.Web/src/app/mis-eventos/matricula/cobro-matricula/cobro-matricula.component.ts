@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Socio, SocioMatriculaServices, SocioServices } from '../../resources/socio.service';
+import { Socio, SocioMatriculaServices, SocioServices } from '../../../resources/socio.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

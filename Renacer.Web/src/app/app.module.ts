@@ -20,7 +20,7 @@ import { AsistenciaServices } from './resources/asistencia.service';
 import { TagServices } from './resources/tag.service';
 import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import { RolServices } from './resources/rol.service';
-import { TipoEspacioServices } from '../app/pages/tipoEspacio/tipoEspacio.service';
+import { TipoEspacioServices } from './mis-eventos/espacios/tipoEspacio/tipoEspacio.service';
 import { AccessGuard } from './resources/accessGuard.service';
 import { DatePipe } from '@angular/common';
 import { MatriculaServices } from './resources/matricula.service';

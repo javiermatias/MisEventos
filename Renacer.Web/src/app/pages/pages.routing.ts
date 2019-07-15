@@ -3,20 +3,20 @@ import { ModuleWithProviders } from '@angular/core';
 import { PagesComponent } from './pages.component';
 import { BlankComponent } from './blank/blank.component';
 import { SearchComponent } from './search/search.component';
-import { SociosComponent } from './socios/socios.component';
-import { EspaciosComponent } from './espacios/espacios.component';
-import { EncargadosComponent } from './encargados/encargados.component';
-import { AsistenciaComponent } from './asistencia/asistencia.component';
+import { SociosComponent } from '../mis-eventos/socios/socios.component';
+import { EspaciosComponent } from '../mis-eventos/espacios/espacios.component';
+import { EncargadosComponent } from '../mis-eventos/encargados/encargados.component';
+import { AsistenciaComponent } from '../mis-eventos/asistencia/asistencia.component';
 import { RolComponent } from './rol/rol.component';
 // import { RolesUsuarioComponent } from './rol/rolesUsuario.component';
-import { TipoEspacioComponent } from './tipoEspacio/tipoEspacio.component';
+import { TipoEspacioComponent } from '../mis-eventos/espacios/tipoEspacio/tipoEspacio.component';
 import { UsuarioComponent } from './usuarios/usuarios.component';
-import { MatriculaComponent } from './matricula/matricula.component';
-import { NuevaMatriculaComponent } from './matricula/nueva-matricula/nueva-matricula.component';
-import { CobroMatriculaComponent } from './cobro-matricula/cobro-matricula.component';
-import { MatriculasPagadasComponent } from './matricula/matriculas-pagadas/matriculas-pagadas.component';
-import { RecordatoriosComponent } from './recordatorios/recordatorios.component';
-import { PagoCuotaComponent } from './pagos/pago-cuota/pago-cuota.component';
+import { MatriculaComponent } from '../mis-eventos/matricula/matricula.component';
+import { NuevaMatriculaComponent } from '../mis-eventos/matricula/nueva-matricula/nueva-matricula.component';
+import { CobroMatriculaComponent } from '../mis-eventos/matricula/cobro-matricula/cobro-matricula.component';
+import { MatriculasPagadasComponent } from '../mis-eventos/matricula/matriculas-pagadas/matriculas-pagadas.component';
+import { RecordatoriosComponent } from '../mis-eventos/recordatorios/recordatorios.component';
+import { PagoCuotaComponent } from '../mis-eventos/pagos/pago-cuota/pago-cuota.component';
 
 
 export const routes: Routes = [
@@ -35,7 +35,7 @@ export const routes: Routes = [
             { path: 'form-elements', loadChildren: 'app/pages/form-elements/form-elements.module#FormElementsModule', data: { breadcrumb: 'Form Elements' } },
             { path: 'tables', loadChildren: 'app/pages/tables/tables.module#TablesModule', data: { breadcrumb: 'Tables' } },
             { path: 'editors', loadChildren: 'app/pages/editors/editors.module#EditorsModule', data: { breadcrumb: 'Editors' } },
-            { path: 'evento', loadChildren: 'app/pages/evento/evento.module#EventoModule', data: { breadcrumb: 'Eventos' } },
+            { path: 'evento', loadChildren: 'app/mis-eventos/evento/evento.module#EventoModule', data: { breadcrumb: 'Eventos' } },
             { path: 'reportes', loadChildren: 'app/pages/reportes/reporte.module#ReporteModule', data: { breadcrumb: 'Reportes' } },
             { path: 'search', component: SearchComponent, data: { breadcrumb: 'Search' } },
             { path: 'socios', component: SociosComponent, data: { breadcrumb: 'Socios' } },

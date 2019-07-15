@@ -3,15 +3,14 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { ToastrService, ToastrConfig } from 'ngx-toastr';
-import { DomicilioComponent } from '../domicilio/domicilio.component';
+import { DomicilioComponent } from './domicilio/domicilio.component';
 import { TipoDocumento } from '../../resources/tipo-documento.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PersonaServices, Persona, Contacto, Domicilio } from '../../resources/persona.service';
 
 @Component({
   selector: 'az-socios',
-  templateUrl: './socios.component.html',
-  styleUrls: ['./socios.component.scss']
+  templateUrl: './socios.component.html'
 })
 export class SociosComponent implements OnInit {
 

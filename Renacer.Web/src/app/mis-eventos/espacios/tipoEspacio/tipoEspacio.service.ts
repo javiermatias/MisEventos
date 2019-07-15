@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ResourceParams} from 'ngx-resource';
-import {BaseServices} from '../../resources/base.service';
-import {Variables} from '../../resources/variables';
+import {BaseServices} from '../../../resources/base.service';
+import {Variables} from '../../../resources/variables';
 
 export class TipoEspacio {
     public id: number;
