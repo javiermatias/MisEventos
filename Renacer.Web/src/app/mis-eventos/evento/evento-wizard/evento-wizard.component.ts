@@ -46,10 +46,10 @@ export class EventoWizardComponent implements OnInit {
     this.horarios= new Array<Horario>();
 
     this.steps = [
-      {name: 'Evento', icon: 'fa-home', active: true, valid: false, hasError:false },
+      {name: 'Evento', icon: 'fa-home', active: false, valid: false, hasError:false },
       {name: 'Detalles', icon: 'fa-pencil-square-o', active: false, valid: false, hasError:false },
       {name: 'Fechas', icon: 'fa-calendar', active: false, valid: false, hasError:false },
-      {name: 'Confirmación', icon: 'fa-check-square-o', active: false, valid: false, hasError:false }
+      {name: 'Confirmación', icon: 'fa-check-square-o', active: true, valid: false, hasError:false }
     ]
 
     this.eventoForm = this.formBuilder.group({

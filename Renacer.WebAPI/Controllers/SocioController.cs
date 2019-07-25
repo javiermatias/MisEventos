@@ -12,12 +12,15 @@ namespace Renacer.WebAPI.Controllers
     public class SocioController : ApiController
     {
         // GET: api/Socios
-        public IEnumerable<Socio> Get(/*[FromUri]int page,[FromUri] int limit, [FromUri] string search*/)
+        public IEnumerable<Socio> Get([FromUri] string search="")
         {
             //if (page <= 0) page = 1;
             //if (limit <= 0) limit = 10;
+            if (search == null) {
+                search = "";
+            }
 
-            return ControlSocio.devolverInstancia().devolverTodos(/*page,limit,search*/);
+            return ControlSocio.devolverInstancia().devolverTodos(search);
         }
 
         //[Route("api/socio/sinMatricula")]
@@ -70,7 +73,7 @@ namespace Renacer.WebAPI.Controllers
         public void Put(int id, [FromBody]Socio value)
         {
             var socio = ControlSocio.devolverInstancia().devolver(id);
-            value.fechaModificacion = DateTime.Now;
+            //value.fechaModificacion = DateTime.Now;
             ControlSocio.devolverInstancia().grabar(value);
         }
 

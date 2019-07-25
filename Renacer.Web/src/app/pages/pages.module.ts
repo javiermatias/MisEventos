@@ -28,7 +28,6 @@ import { TipoEspacioComponent } from '../mis-eventos/espacios/tipoEspacio/tipoEs
 import { DomicilioComponent } from '../mis-eventos/socios/domicilio/domicilio.component';
 import { ContactoComponent } from '../mis-eventos/socios/contacto/contacto.component';
 import { EncargadosComponent } from '../mis-eventos/encargados/encargados.component';
-
 import { RolComponent } from './rol/rol.component';
 import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import { UsuarioComponent } from './usuarios/usuarios.component';
@@ -42,6 +41,7 @@ import { NuevoRecordatorioComponent } from '../mis-eventos/recordatorios/nuevo-r
 import { PagoCuotaComponent } from '../mis-eventos/pagos/pago-cuota/pago-cuota.component';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { NuevaAsistenciaComponent } from '../mis-eventos/asistencia/nueva-asistencia/nueva-asistencia.component';
+import { AsistenciaComponent } from '../mis-eventos/asistencia/asistencia.component';
 
 
 @NgModule({
@@ -85,7 +85,8 @@ import { NuevaAsistenciaComponent } from '../mis-eventos/asistencia/nueva-asiste
     RecordatoriosComponent,
     NuevoRecordatorioComponent,
     PagoCuotaComponent,
-    NuevaAsistenciaComponent
+    NuevaAsistenciaComponent,
+    AsistenciaComponent
   ]
   , exports: [
     BreadcrumbComponent,

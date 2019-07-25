@@ -5,8 +5,7 @@ import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
 
 @Component({
   selector: 'az-select-tags',
-  templateUrl: './select-tags.component.html',
-  styleUrls: ['./select-tags.component.scss']
+  templateUrl: './select-tags.component.html'
 })
 export class SelectTagsComponent implements OnInit {
 
@@ -36,8 +35,8 @@ export class SelectTagsComponent implements OnInit {
 
   tagSelected(tag,removeTag){
     let tagItem ;
-    console.log (tag);
-    if(removeTag /* || tag.constructor.name == "Tag" */ ){
+    //console.log (tag);
+    if(removeTag  || tag.constructor.name == "Tag"  ){
       tagItem = new Tag(0,tag.nombre);
       this.borrarTag(tagItem);
     }else{
@@ -46,6 +45,9 @@ export class SelectTagsComponent implements OnInit {
       tagItem = tagNew;
       this.actualizarTags(tagItem);
     }
+
+    this.selectedTag = "";
+
     
   }
 

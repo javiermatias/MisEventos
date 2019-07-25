@@ -16,7 +16,7 @@ import { SelectEventoComponent } from './select-evento/select-evento.component';
 import { TipoDocumentoComponent } from './tipo-documento/tipo-documento.component';
 import { FilterSocioComponent } from './filter-socio/filter-socio.component';
 import { TablaComponent } from './tabla/tabla.component';
-import { AsistenciaComponent } from '../../mis-eventos/asistencia/asistencia.component';
+
 import { SelectOneSocioComponent } from './select-one-socio/select-one-socio/select-one-socio.component';
 
 
@@ -39,7 +39,7 @@ import { SelectOneSocioComponent } from './select-one-socio/select-one-socio/sel
     SelectEventoComponent, 
     FilterSocioComponent, 
     TablaComponent,
-    AsistenciaComponent, 
+    //AsistenciaComponent, 
     SelectOneSocioComponent
   ],
   exports:[
@@ -51,7 +51,7 @@ import { SelectOneSocioComponent } from './select-one-socio/select-one-socio/sel
    TipoDocumentoComponent,
    SelectEventoComponent,
    FilterSocioComponent,
-   TablaComponent,AsistenciaComponent,
+   TablaComponent,
    SelectOneSocioComponent
    ]
 })

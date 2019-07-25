@@ -50,7 +50,7 @@ namespace Renacer.WebAPI.Controllers
         public void Put(int id, [FromBody]DetalleEvento value)
         {
             //value.fechaModificacion = DateTime.Now;
-            ControlDetalleEvento.devolverInstancia().grabar(value);
+            ControlDetalleEvento.devolverInstancia().actualizar(value);
         }
 
         // DELETE: api/ApiCliente/5

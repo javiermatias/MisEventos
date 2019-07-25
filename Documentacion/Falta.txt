@@ -36,6 +36,26 @@ _ Lista de Eventos no se visualiza el estado, deberia ser fecha de inicio de eve
 _ Cobrar Matricula: no muestra el año, y no graba en base el campo pago. Agregar mensaje de Aviso: Está seguro que desea registra el pago de matrícula del Socio[socio}.
 _ Matricula: que no permita cargar más de una matricula por año.
 
+
+* Evento
+_ Búsqueda. Actualmente solo busca en la hoja en la que se encuentra y deberia buscar en todas las hojas. 
+
+* Pago de Cuotas
+_ No debe mostrar los Eventos que sean gratuitos.
+_ Verificar que no se estan mostrando las cuotas de algunos eventos. Revisar si es por la fecha de fin de inscripcion.
+
+* Asistencia
+_ No trae todos los eventos del encargado. Evento nuevo y no lo muestra para tomar asistencia.
+_ Corregir mensaje de Aviso, que dice dias posteriores y debe decir anteriores.
+_ Agregar un detalle de Asistencias, para ver las asistencias de los socios de cada evento.
+
+* Pagar Matricula
+_ Cambiar el boton de Cobrar por el billetito
+_ Agregar el mensaje de confirmación al pagar, como lo hace con el pago de cuota. 
+
+
+
+
 DER
 ===
 Tabla Cliente volarla a la mierda!!! 
@@ -74,6 +94,11 @@ Ver Evento -- Calendario -- Tomar Asistencia -- Dashboard
 Vista Socio
 ====================
 Mis Asistencias -- Calendario -- Cuotas/Matricula Pagas -- Eventos a los que estoy inscripto-- Dashboard 
+
+
+
+15/7/2019
+En pagar Cuotas, ponerle fecha al evento.
 
 
 

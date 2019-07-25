@@ -1,4 +1,10 @@
-<div class="row">
+<div *ngIf="showRecordatorio">  
+
+  <az-nueva-asistencia [detalleEvento]="detalleSelecionado" (guardoAsistencia)="guardo($event)" ></az-nueva-asistencia>
+
+</div>
+
+<div class="row" *ngIf="!showRecordatorio">
     <div class="col-xl-12 col-lg-12 col-12 bottom-30"> 
   
       <div class="row">
@@ -71,10 +77,10 @@
                                       <td><strong>{{item.dia}}</strong></td>
                                       <td>{{item.fechaDesde}}</td>  
                                       <td *ngIf="!item.asistencia; else other_content">
-                                        <a style="color: #014c8c;cursor:pointer;" (click)="verItem(item)">Tomar</a>
+                                        <a style="color: #014c8c;cursor:pointer;" (click)="tomarAsistencia(item)">Tomar</a>
                                       <td>
                                         <ng-template #other_content>
-                                          <td>  <i style="cursor:pointer; align-content: right" (click)="eliminarInscripcion(item)"
+                                          <td>  <i style="cursor:pointer; align-content: right" (click)="tomarAsistencia(item)"
                                             class="fa fa-check"></i></td>
                                           </ng-template>                             
                            

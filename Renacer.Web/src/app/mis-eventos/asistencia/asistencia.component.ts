@@ -30,6 +30,8 @@ export class AsistenciaComponent implements OnInit {
   public fechaActual:string;
   public mostrarGrilla:boolean=false;
   public detalleEvento:DetalleEvento[];
+  public detalleSelecionado:DetalleEvento;
+  public showRecordatorio:Boolean=false;
 
   constructor(private _eventoServ:EventoServices
     ,private asistenciaServ:AsistenciaServices    
@@ -73,8 +75,25 @@ export class AsistenciaComponent implements OnInit {
 
   ngOnChanges(){
     
+  }
+
+  tomarAsistencia(item:DetalleEvento){
+    this.detalleSelecionado=item;
+    this.showRecordatorio=true;
+   console.log(item);
+  }
+
+  guardo(cancelar: boolean) {
+    this.showRecordatorio = false;
+    if (cancelar) {
+      this.detalleSelecionado.asistencia=true;
+      this._detalleEvento.update(this.detalleSelecionado,(resp:DetalleEvento) => {
+        this.cambioEvento();
+      });
+       //Aca deberia guardar la asistencia del detalle evento.
     }
 
+  }
   guardarAsistencia(){
 /*     this.asistenciaServ.save(this._item,resp => {
       this.asistenciaServ.get({"id":this.detalle.asistencia.id},resp => {

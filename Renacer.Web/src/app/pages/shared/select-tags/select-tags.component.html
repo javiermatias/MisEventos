@@ -2,7 +2,7 @@
     <div class="card-header">
       <span class="text-uppercase">
         <i class="fa fa-tags" aria-hidden="true" style="margin-right: 10px;margin-top: 3px;"></i>
-        Tags
+        Intereses
     </span>
       <div class="widget-controls">
         <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
@@ -15,8 +15,8 @@
           placeholder="Agregar Tag..."
           class="form-control"
           display-property-name="nombre"
-          value-property-name="id"
-          no-match-found-text="Enter para agregar Tag"
+          no-match-found-text=" "
+          value-property-name="id"          
           max-num-list="4"
           [list-formatter]="autocompleListFormatter"
           [(ngModel)]="selectedTag"
@@ -34,7 +34,8 @@
       </div>
 
     </div>
-
+<!-- 
     <div>
-      {{selectedTag}} </div>
+      
+      {{selectedTag}} </div> -->
   </div>

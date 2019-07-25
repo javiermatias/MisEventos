@@ -1,3 +1,113 @@
-<p>
-  nueva-asistencia works!
-</p>
+<div class="row" >
+  <div class="col-xl-12 col-lg-12 col-12 bottom-30"> 
+
+    <div class="row">
+      <div class="col">
+        <div widget class="card">
+          <div class="card-header">
+            <span class="text-uppercase">Lista Asistencias</span>
+
+            <div class="widget-controls">
+              <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
+              <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
+              <a data-widgster="fullscreen" href="#" class="transition"><i class="fa fa-expand"></i></a>
+              <a data-widgster="restore" href="#" class="transition"><i class="fa fa-compress"></i></a>
+              <!-- <a data-widgster="close" href="#" class="transition"><i class="fa fa-times"></i></a> -->
+            </div>
+          </div>
+          <div class="card-block widget-body">
+            <p class="no-margin"> </p>
+      
+ 
+
+      <div class="row" >
+        <div class="col col-lg-9">
+            <div widget class="card" style="margin-bottom:20px">
+                <div class="card-header">
+                    <span>Fecha: Día {{detalleEvento.dia}} {{detalleEvento.fechaDesde | date: 'dd/MM/yyyy'}} </span>
+                    <div class="widget-controls">
+                        <a data-widgster="expand" href="#" class="transition"><i
+                                class="fa fa-chevron-down"></i></a>
+                        <a data-widgster="collapse" href="#" class="transition"><i
+                                class="fa fa-chevron-up"></i></a>
+                    </div>
+                </div>
+                <div class="card-block widget-body">
+                    <div class="row">
+                      <div class="table-responsive datatable" >
+                        <!-- <table class="table table-striped table-hover table-sm" [mfData]="socios  | SearchPipe : searchText" #mf="mfDataTable" [mfRowsOnPage]="10"> -->
+                        <table class="table table-striped table-hover table-sm" [mfData]="listaInscripcion"
+                            #mf="mfDataTable" [mfRowsOnPage]="10">
+                            <thead>
+                                <tr>
+                                    <!-- <th><mfDefaultSorter by="id">Id</mfDefaultSorter></th> -->
+                                    <th>
+                                        <mfDefaultSorter by="nombre">Socio</mfDefaultSorter>
+                                    </th>
+                                    <th>
+                                        <mfDefaultSorter by="apellido">Asistencia</mfDefaultSorter>
+                                    </th>
+                                                                    
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                          <tr *ngFor="let item of mf.data | SearchPipe : searchText">
+                                    
+                                    <td><strong>{{item.socio.nombre}} {{item.socio.apellido}}</strong></td>
+                                    <td>
+                                        <label class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input checkbox-success" (change)="asistio(item.socio)">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description">Asistió</span>
+                                  </label>
+                                  </td>
+                                    <!-- <td>{{item.fechaDesde}}</td>   -->
+                                <!--     <td *ngIf="!item.asistencia; else other_content">
+                                      <a style="color: #014c8c;cursor:pointer;" (click)="verItem(item)">Tomar</a>
+                                    <td>
+                                      <ng-template #other_content>
+                                        <td>  <i style="cursor:pointer; align-content: right" (click)="eliminarInscripcion(item)"
+                                          class="fa fa-check"></i></td>
+                                        </ng-template>  -->                            
+                         
+                                </tr>
+                           <tr *ngIf="(mf.data | SearchPipe : searchText).length === 0">
+                                    <td colspan="100">
+                                        No encontrado
+                                    </td>
+                                </tr>  
+                            </tbody>
+                            <tfoot>
+                           <!--      <tr>
+                                    <td colspan="12">
+                                        <mfBootstrapPaginator [rowsOnPageSet]="[10, 25, 50, 100]">
+                                        </mfBootstrapPaginator>
+                                    </td>
+                                </tr> -->
+                            </tfoot>
+                        </table>
+                    </div>
+                    </div>
+                </div>
+            </div>
+  
+        </div>
+    </div>
+    
+ <div class="col col-lg-9">
+<div >   
+  <button  *ngIf="sinAsistencia" type="submit" class="btn btn-main" 
+    [disabled]="!socios?.length" (click)="guardar()">Guardar</button>
+  
+    <button (click)="volver();" type="button" style="margin-left: 30px;"
+    class="btn btn-default">Cancelar</button>
+</div>
+   
+    </div> 
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

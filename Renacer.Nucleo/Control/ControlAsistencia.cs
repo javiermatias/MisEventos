@@ -47,8 +47,8 @@ namespace Renacer.Nucleo.Control
                     //Socio[] listaSocios = new Socio[asistencia.listaSocios.Count];
                     //asistencia.listaSocios.CopyTo(listaSocios);
                     //asistencia.listaSocios.RemoveAll(soc => true);
-
-                    db.asistencia.AddOrUpdate(asistencia);
+                    asistencia.fechaAsistencia = DateTime.Now;
+                    db.asistencia.Add(asistencia);
                     db.SaveChanges();
 
                    // asistencia = db.asistencia.Include("listaSocios").Single(a => a.id == asistencia.id);

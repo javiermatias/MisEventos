@@ -17,7 +17,8 @@ export class NuevaMatriculaComponent implements OnInit {
   anioActual:string;
   id:number= 0;
 
-  constructor(private _matriculaService:MatriculaServices, private mensajeServ: ToastrService,
+  constructor(private _matriculaService:MatriculaServices, 
+    private mensajeServ: ToastrService,
     private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {

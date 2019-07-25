@@ -7,6 +7,8 @@ import { DomicilioComponent } from './domicilio/domicilio.component';
 import { TipoDocumento } from '../../resources/tipo-documento.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PersonaServices, Persona, Contacto, Domicilio } from '../../resources/persona.service';
+import { Socio, SocioServices } from '../../resources/socio.service';
+import { sexo, estadoCivil } from '../../models/enums';
 
 @Component({
   selector: 'az-socios',
@@ -14,16 +16,24 @@ import { PersonaServices, Persona, Contacto, Domicilio } from '../../resources/p
 })
 export class SociosComponent implements OnInit {
 
-  //public _socio = new Socio(0, "", "", "");
+  public _socio = new Socio(0, "", "", "");
   public _persona = new Persona(0, "", "", "");
   //@Input() socios = new Array<Socio>();
   @Input() personas = new Array<Persona>();
+
+  public socios =new Array<Socio>();
   public showDetail: boolean = false;
   public searchText: string = "";
+
+  public _sexo = sexo; //traido de un enum
+
+  public _estadoCivil=estadoCivil;
+
   //detaFactura = DetalleFActura
   constructor(
     //private _socioService: SocioServices,
-    private _personaService: PersonaServices
+    private _personaService: PersonaServices,
+    private _socioService: SocioServices
     , private mensajeServ: ToastrService
     , private route: ActivatedRoute
     , private router: Router
@@ -32,29 +42,28 @@ export class SociosComponent implements OnInit {
   }
 
   onSubmit(myForm: FormGroup) {
-
+    /* this.saveItem(newSocio)
     let newSocio = Object.assign({}, this._persona);
-    this._persona = new Persona(0, "", "", "", "", "", "", "", "", undefined, "", undefined, undefined, undefined);
-    this.saveItem(newSocio)
-    myForm.reset();
+    this._persona = new Persona(0, "", "", "", "", "", "", "", "", undefined, "", undefined, undefined, undefined); */
+    console.log(this._socio);
+    //myForm.reset();
   }
   ngOnInit() {
     this.getItems();
     //this.mensajeServ.success('Estas viendo tus Socios!', 'Mensaje!');
   }
   getItems() {
-    /* this._socioService.query(
-      {'limit':10,
-      'page':1,
-      'search':this.searchText},
+     this._socioService.query(
+      { 'search':this.searchText},
       (items:Socio[]) => {
+        console.log(items);
       this.socios = items;
-    }); */
-    this._personaService.query(
+    }); 
+/*     this._personaService.query(
       { 'rol': "Socio" },
       (items: Persona[]) => {
         this.personas = items;
-      });
+      }); */
 
 
 
@@ -86,9 +95,9 @@ export class SociosComponent implements OnInit {
   }
 
   nuevoItem() {
-    this._persona = new Persona(0, "", "", "");
-    this._persona.domicilio = new Domicilio();
-    this._persona.contacto = new Contacto();
+    this._socio = new Socio(0, "", "", "");
+/*     this._persona.domicilio = new Domicilio();
+    this._persona.contacto = new Contacto(); */
     this.showDetail = true;
   }
 
@@ -100,21 +109,22 @@ export class SociosComponent implements OnInit {
 
   }
   limpiarForm() {
-    this._persona = new Persona(0, "", "", "");
+    // this._persona = new Persona(0, "", "", "");
+      this._socio = new Socio(0, "", "", "");
     this.showDetail = false;
   }
-  saveItem(item: Persona): any {
+  saveItem(item: Socio): any {
     //Guarde en SOcio y persona. En persona va generar el usuario y el ROL
     if (item.id == 0) {
-      this._personaService.save(item, (resp: Persona) => {
+      this._socioService.save(item, (resp: Socio) => {
         item = resp;
-        this.personas.push(item);
+        this.socios.push(item);
         this.showDetail = false;
         this.mensajeServ.success('se han guardado los cambios!', 'Aviso!');
       });
     } else {
       //Solamente la tabla Socio
-      this._personaService.update(item, (resp: Persona) => {
+  /*     this._personaService.update(item, (resp: Persona) => {
         let items = this.personas;
         for (var i = 0; i < items.length; i++) {
           if (items[i].id == resp.id) {
@@ -123,7 +133,7 @@ export class SociosComponent implements OnInit {
           }
         }
         this.showDetail = false;
-      });
+      }); */
     }
   }
 }

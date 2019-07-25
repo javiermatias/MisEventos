@@ -49,6 +49,37 @@ namespace Renacer.Nucleo.Control
                     if (detalleEvento.responsable != null)
                         detalleEvento.responsable = db.encargado.Single(a => a.id == detalleEvento.responsable.id);
 
+                    db.detalleEvento.Add(detalleEvento);
+                    db.SaveChanges();
+                }
+            }
+            catch (UsuarioException ex)
+            {
+                ServicioSentry.devolverSentry().informarExcepcionUsuario(ex);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                ServicioSentry.devolverSentry().informarExcepcion(ex);
+            }
+        }
+
+        public void actualizar(DetalleEvento detalleEvento) {
+
+            try
+            {
+              
+                using (var db = new ModeloRenacer())
+                {
+                    if (detalleEvento.espacio != null)
+                        detalleEvento.espacio = db.espacioComun.Single(a => a.id == detalleEvento.espacio.id);
+
+                    //if (detalleEvento.asistencia != null)
+                    //    detalleEvento.asistencia = db.asistencia.Single(a => a.id == detalleEvento.asistencia.id);
+
+                    if (detalleEvento.responsable != null)
+                        detalleEvento.responsable = db.encargado.Single(a => a.id == detalleEvento.responsable.id);
+
                     db.detalleEvento.AddOrUpdate(detalleEvento);
                     db.SaveChanges();
                 }
@@ -62,6 +93,12 @@ namespace Renacer.Nucleo.Control
             {
                 ServicioSentry.devolverSentry().informarExcepcion(ex);
             }
+
+
+
+
+
+
         }
 
 
