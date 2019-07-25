@@ -1,3 +1,106 @@
 -Procesar el pago (Ver el botón sombreado)
 -Ver el tema de recordatorios.(Crear y borrar)
 -Eventos con el tipo screen
+-alerta poder marcar como lista. fecha cargar alerta dia de hoy en adelante. Eliminar con confirmación de dialogo.
+
+_23-06-2019
+1.Que guarde un Evento (Sin subeventos) , 
+Sacar boton guardar y texto debajo de Tipo de Evento. Texto Validacion Cuota en blanco. Valor cuota no se debe modificar.
+Fecha de Fin no debe ser menor a fecha de inicio.El texo esta en fecha fin de inscripcion.
+HOra de Inicio NO debe ser mas grande que Hora de FIn. Permite ingresar varios dias-horarios que se superponen en el tiempo.
+
+
+2.Que guarde un Evento (con subeventos)
+3.Que cuano grabe se comparta en Facebook y Twitter.
+
+Ver el tema de Evento unico y por fechas y grabado en base
+Ver tema de la capacidad del aula con la cantidad de cupos 
+
+
+
+07-07-2019
+Sacar boton guardar de Solapa fechas.
+Que no permita ingresar un evento de una fecha menor que hoy.
+Al inscribir al socio al Evento que en la tabla MatriculaXSocios se grabe en el campo pago el campo valor de matricula
+
+
+Validar:
+_ Inscripciones: que si el evento esta cancelado o finalizado no se permita inscribir ni eliminar socios.
+_ Cuando se inscriba un socio que permita seguir inscribiendo. que no desaparezca el combo.
+_ Si el socio debe matricula no deberia mostrarse en el combo para inscribir.
+_ Ver si en el combo de socios puede devolver solo los que no esten inscriptos al curso.
+_ inscripciones que no respetan los cupos maximos y minimos.
+
+_ Lista de Eventos no se visualiza el estado, deberia ser fecha de inicio de evento
+
+_ Cobrar Matricula: no muestra el año, y no graba en base el campo pago. Agregar mensaje de Aviso: Está seguro que desea registra el pago de matrícula del Socio[socio}.
+_ Matricula: que no permita cargar más de una matricula por año.
+
+
+* Evento
+_ Búsqueda. Actualmente solo busca en la hoja en la que se encuentra y deberia buscar en todas las hojas. 
+
+* Pago de Cuotas
+_ No debe mostrar los Eventos que sean gratuitos.
+_ Verificar que no se estan mostrando las cuotas de algunos eventos. Revisar si es por la fecha de fin de inscripcion.
+
+* Asistencia
+_ No trae todos los eventos del encargado. Evento nuevo y no lo muestra para tomar asistencia.
+_ Corregir mensaje de Aviso, que dice dias posteriores y debe decir anteriores.
+_ Agregar un detalle de Asistencias, para ver las asistencias de los socios de cada evento.
+
+* Pagar Matricula
+_ Cambiar el boton de Cobrar por el billetito
+_ Agregar el mensaje de confirmación al pagar, como lo hace con el pago de cuota. 
+
+
+
+
+DER
+===
+Tabla Cliente volarla a la mierda!!! 
+Tabla Recordatorios esta sola en el mundo....
+Hacer Un DER
+
+
+
+
+_VEr Detalle Evento desde el Calendario
+Revisar Botón Guardar solapa Asistencia
+
+
+Roles
+================
+Secretario
+Administrador
+Encargado de Evento
+Socio
+
+
+
+Vista Secretario
+====================
+ABM Espacios -- ABM Encargado (usuario) -- ABM Socio(usuario) -- Cobrar Matricula  -- ABM Evento (Redes Sociales) -- Cobrar Eventos(cuotas) -- Calendario -- Inscripciones
+-- Recordatorios -- Dashboard 
+
+Vista Administrador
+====================
+Crear Usuarios/Modificar contraseña/Baja usuarios -- Crear Matricula anual -- Reportes -- Dashboard 
+
+Vista Encargado
+====================
+Ver Evento -- Calendario -- Tomar Asistencia -- Dashboard 
+
+Vista Socio
+====================
+Mis Asistencias -- Calendario -- Cuotas/Matricula Pagas -- Eventos a los que estoy inscripto-- Dashboard 
+
+
+
+15/7/2019
+En pagar Cuotas, ponerle fecha al evento.
+
+
+
+
+

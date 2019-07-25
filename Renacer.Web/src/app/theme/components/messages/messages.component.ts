@@ -1,7 +1,7 @@
 import {Component, ViewEncapsulation, OnInit} from '@angular/core';
 
 import {MessagesService} from './messages.service';
-import { RecordatorioServices, RecordatorioHoyServices } from '../../../resources/recordatorio.service';
+import { RecordatorioServices, RecordatorioHoyServices, ActualizarEventoServices } from '../../../resources/recordatorio.service';
 import { Recordatorio } from '../../../models/recordatorio';
 
 @Component({
@@ -18,7 +18,8 @@ export class MessagesComponent implements OnInit{
     public notifications:Array<Object>;
     public tasks:Array<Object>;
     recordatorios: Recordatorio[];
-    constructor (private _messagesService:MessagesService , private _recordatorioService: RecordatorioHoyServices){
+    constructor (private _messagesService:MessagesService , private _recordatorioService: RecordatorioHoyServices,
+        private _actualizarEvento:ActualizarEventoServices){
         this.messages = _messagesService.getMessages();
        // this.notifications = _messagesService.getNotifications();
        
@@ -26,18 +27,33 @@ export class MessagesComponent implements OnInit{
     }
     ngOnInit(): void {
         this.getItems();
+        this.actualizarEventos();
     } 
 
     getItems(){
    
         this._recordatorioService.query({}, (items: Recordatorio[]) => {
-         console.log(items);
+         //console.log(items);
           this.recordatorios = items;
-          console.log(this.recordatorios); 
+          //console.log(this.recordatorios); 
          
           
         });
       }
+
+      actualizarEventos(){
+   
+        this._actualizarEvento.query({}, (items: any[]) => {
+         //console.log('hola desde actualziar'+items);
+         // this.recordatorios = items;
+         // console.log(this.recordatorios); 
+         
+          
+        });
+      }
+      //ActualizarEvento
+
+
 
 
 }

@@ -121,7 +121,7 @@ namespace Renacer.Nucleo.Control
         /// SELECT * FROM Socio
         /// </summary>
         /// <returns></returns>
-        public List<Socio> devolverTodos(/*int page,int limit,string search*/)
+        public List<Socio> devolverTodos(string search)
         {
             try
             {
@@ -131,7 +131,7 @@ namespace Renacer.Nucleo.Control
                     //    return db.socio.Where(x => x.fechaBaja == null && x.nombre.Contains(@search)).ToList();
                     //return db.socio.Where(x => x.nombre.Contains(@search)).Skip(page * limit).Take(limit).ToList();
                     //else
-                        return db.socio.ToList();
+                        return db.socio.Where(x => x.fechaBaja == null && x.nombre.Contains(@search)).ToList();
 
                 }
             }

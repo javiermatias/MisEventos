@@ -40,6 +40,10 @@ namespace Renacer.Nucleo
         public Persona persona { get; set; }
         public int contador { get; set; }
 
+        public int? idEncargado { get; set; }
+
+        public int? idSocio { get; set; }
+
         [NotMapped]
         public IIdentity Identity
         {

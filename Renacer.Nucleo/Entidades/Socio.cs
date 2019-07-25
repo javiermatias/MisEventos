@@ -18,31 +18,27 @@ namespace Renacer.Nucleo.Entidades
         public string telefono { get; set; }
         public string celular { get; set; }
         public string email { get; set; }
-        public string sexo { get; set; }
-        public string estadoCivil { get; set; }
- //       ForeignKey
+        public string sexo { get; set; } //Masculino,Femenino,N/C
+        public string estadoCivil { get; set; } //Soltero,Casado,Viudo,Divorciado
         public int idTipoDoc { get; set; }
         [ForeignKey("idTipoDoc")]
         public TipoDocumento tipoDoc { get; set; }
         public string nroDocumento { get; set; }
-
         public int idDomicilio { get; set; }
         [ForeignKey("idDomicilio")]
         public Domicilio domicilio { get; set; }
-
         public int idContacto { get; set; }
         [ForeignKey("idContacto")]
         public Contacto contacto { get; set; }
-
-        public List<Asociacion> listaAsociaciones { get; set; }
-        public List<Inscripcion> listaInscripciones { get; set; }
-        public List<Asistencia> listaAsistencias { get; set; }
+                
+       // public List<Inscripcion> listaInscripciones { get; set; }
+        //public List<Asistencia> listaAsistencias { get; set; }
         public List<Tag> listaTags { get; set; }
-
-        public DateTime fechaCreacion { get; set; }
         public DateTime? fechaNacimiento { get; set; }
+        public DateTime fechaCreacion { get; set; } = DateTime.Now;
+        
         public DateTime? fechaBaja { get; set; }
-        public DateTime? fechaModificacion { get; set; }
+        //public DateTime? fechaModificacion { get; set; } 
 
         //Cuando el admin crea la matricula del año, todos los socios pasan a el estado debeMatricula
         //no se puede inscribir el socio a ningun evento hasta que no pague la matricula y pase al estado activo

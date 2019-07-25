@@ -134,7 +134,7 @@ namespace Renacer.Nucleo.Control
                 {
                     tag = new Tag();
                     tag.nombre = itemTag.nombre;
-                    tag.descripcion = (itemTag.descripcion != null) ? itemTag.descripcion : "";
+                   // tag.descripcion = (itemTag.descripcion != null) ? itemTag.descripcion : "";
                     db.tag.Add(tag);
                 }
                 listaFinal.Add(tag);

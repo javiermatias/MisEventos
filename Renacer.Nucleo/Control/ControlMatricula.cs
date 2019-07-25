@@ -39,9 +39,10 @@ namespace Renacer.Nucleo.Controlmatricula
                 //{
                 //    throw new UsuarioException(errores);
                 //}
-
+                Matricula.estado = "Activa";
                 using (var db = new ModeloRenacer())
                 {
+
                     db.matricula.AddOrUpdate(Matricula);
                     db.SaveChanges();
                 }
@@ -85,7 +86,7 @@ namespace Renacer.Nucleo.Controlmatricula
             {
                 using (var db = new ModeloRenacer())
                 {
-                    return db.matricula.Where(x => x.estado.Equals("Activo")).FirstOrDefault();
+                    return db.matricula.Where(x => x.estado.Equals("Activa")).FirstOrDefault();
                 }
             }
             catch (Exception ex)

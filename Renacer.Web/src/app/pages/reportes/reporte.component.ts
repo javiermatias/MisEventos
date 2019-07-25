@@ -13,7 +13,7 @@ import { EspacioComun,EspacioServices} from '../../resources/espacio.service';
 })
 export class ReporteComponent implements OnInit,OnDestroy  {
 
-  @Input() _item = new Evento(0,0,0,0,"","","");
+  @Input() _item = new Evento();
   @Input() evento:string;
   public tiposDeEventos:TipoEvento[];
   public espacios:EspacioComun[];
@@ -66,7 +66,7 @@ export class ReporteComponent implements OnInit,OnDestroy  {
     }
     nuevoItem()
     {
-      this._item =  new Evento(0,0,0,0,"","","");
+      this._item =  new Evento();
       this._item.responsable = new EncargadoEvento(0);
       this._item.espacio = new EspacioComun(0);
       this._item.tipoEvento = new TipoEvento(0);

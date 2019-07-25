@@ -88,10 +88,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Control\ControlInscripcion.cs" />
-    <Compile Include="Control\ControlAsociacion.cs" />
     <Compile Include="Control\ControlAsistencia.cs" />
     <Compile Include="Control\ControlMatricula.cs" />
     <Compile Include="Control\ControlMatriculaXSocio.cs" />
+    <Compile Include="Control\ControlPagoCuota.cs" />
     <Compile Include="Control\ControlPersona.cs" />
     <Compile Include="Control\ControlRecordatorio.cs" />
     <Compile Include="Control\ControlReporte.cs" />
@@ -107,15 +107,16 @@
     <Compile Include="Control\ControlUsuario.cs" />
     <Compile Include="Control\ControlEspacioComun.cs" />
     <Compile Include="Control\ControlCliente.cs" />
-    <Compile Include="Entidades\Asociacion.cs" />
     <Compile Include="Entidades\Asistencia.cs" />
     <Compile Include="Entidades\Cliente.cs" />
     <Compile Include="Entidades\Contacto.cs" />
+    <Compile Include="Entidades\Cuota.cs" />
     <Compile Include="Entidades\DetalleEvento.cs" />
     <Compile Include="Entidades\Domicilio.cs" />
     <Compile Include="Entidades\Encargado.cs" />
     <Compile Include="Entidades\EspacioComun.cs" />
     <Compile Include="Entidades\Evento.cs" />
+    <Compile Include="Entidades\Horario.cs" />
     <Compile Include="Entidades\Inscripcion.cs" />
     <Compile Include="Entidades\Matricula.cs" />
     <Compile Include="Entidades\MatriculaXSocio.cs" />
@@ -129,57 +130,57 @@
     <Compile Include="Entidades\TipoEspacio.cs" />
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Entidades\UsuarioException.cs" />
-    <Compile Include="Migrations\201904010615503_inicialPersona.cs" />
-    <Compile Include="Migrations\201904010615503_inicialPersona.Designer.cs">
-      <DependentUpon>201904010615503_inicialPersona.cs</DependentUpon>
+    <Compile Include="Migrations\201906270522334_inicial.cs" />
+    <Compile Include="Migrations\201906270522334_inicial.Designer.cs">
+      <DependentUpon>201906270522334_inicial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905030500574_matricual.cs" />
-    <Compile Include="Migrations\201905030500574_matricual.Designer.cs">
-      <DependentUpon>201905030500574_matricual.cs</DependentUpon>
+    <Compile Include="Migrations\201906290345294_cambiosPersona.cs" />
+    <Compile Include="Migrations\201906290345294_cambiosPersona.Designer.cs">
+      <DependentUpon>201906290345294_cambiosPersona.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905070628576_cambioenie.cs" />
-    <Compile Include="Migrations\201905070628576_cambioenie.Designer.cs">
-      <DependentUpon>201905070628576_cambioenie.cs</DependentUpon>
+    <Compile Include="Migrations\201906290432113_cambioSocio.cs" />
+    <Compile Include="Migrations\201906290432113_cambioSocio.Designer.cs">
+      <DependentUpon>201906290432113_cambioSocio.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905070637412_agregadoValor.cs" />
-    <Compile Include="Migrations\201905070637412_agregadoValor.Designer.cs">
-      <DependentUpon>201905070637412_agregadoValor.cs</DependentUpon>
+    <Compile Include="Migrations\201907030412073_cambioPago.cs" />
+    <Compile Include="Migrations\201907030412073_cambioPago.Designer.cs">
+      <DependentUpon>201907030412073_cambioPago.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905272106314_agregado-matricula-socio.cs" />
-    <Compile Include="Migrations\201905272106314_agregado-matricula-socio.Designer.cs">
-      <DependentUpon>201905272106314_agregado-matricula-socio.cs</DependentUpon>
+    <Compile Include="Migrations\201907030441419_cambioEventoCuotas.cs" />
+    <Compile Include="Migrations\201907030441419_cambioEventoCuotas.Designer.cs">
+      <DependentUpon>201907030441419_cambioEventoCuotas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905272122223_prueba.cs" />
-    <Compile Include="Migrations\201905272122223_prueba.Designer.cs">
-      <DependentUpon>201905272122223_prueba.cs</DependentUpon>
+    <Compile Include="Migrations\201907080314316_quitarAsociacion.cs" />
+    <Compile Include="Migrations\201907080314316_quitarAsociacion.Designer.cs">
+      <DependentUpon>201907080314316_quitarAsociacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905280543566_nose.cs" />
-    <Compile Include="Migrations\201905280543566_nose.Designer.cs">
-      <DependentUpon>201905280543566_nose.cs</DependentUpon>
+    <Compile Include="Migrations\201907100533526_cambioAsistencia.cs" />
+    <Compile Include="Migrations\201907100533526_cambioAsistencia.Designer.cs">
+      <DependentUpon>201907100533526_cambioAsistencia.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905292303357_matriculaXsocio.cs" />
-    <Compile Include="Migrations\201905292303357_matriculaXsocio.Designer.cs">
-      <DependentUpon>201905292303357_matriculaXsocio.cs</DependentUpon>
+    <Compile Include="Migrations\201907100536384_cambioAsistenciaDetalle.cs" />
+    <Compile Include="Migrations\201907100536384_cambioAsistenciaDetalle.Designer.cs">
+      <DependentUpon>201907100536384_cambioAsistenciaDetalle.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905301855029_agregado-pago.cs" />
-    <Compile Include="Migrations\201905301855029_agregado-pago.Designer.cs">
-      <DependentUpon>201905301855029_agregado-pago.cs</DependentUpon>
+    <Compile Include="Migrations\201907110529136_changeAsistenica.cs" />
+    <Compile Include="Migrations\201907110529136_changeAsistenica.Designer.cs">
+      <DependentUpon>201907110529136_changeAsistenica.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905310425335_cambiosSocio.cs" />
-    <Compile Include="Migrations\201905310425335_cambiosSocio.Designer.cs">
-      <DependentUpon>201905310425335_cambiosSocio.cs</DependentUpon>
+    <Compile Include="Migrations\201907110555291_changeDetalleEvento.cs" />
+    <Compile Include="Migrations\201907110555291_changeDetalleEvento.Designer.cs">
+      <DependentUpon>201907110555291_changeDetalleEvento.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201906010344547_matriculacambios.cs" />
-    <Compile Include="Migrations\201906010344547_matriculacambios.Designer.cs">
-      <DependentUpon>201906010344547_matriculacambios.cs</DependentUpon>
+    <Compile Include="Migrations\201907130338509_cambioUsuario.cs" />
+    <Compile Include="Migrations\201907130338509_cambioUsuario.Designer.cs">
+      <DependentUpon>201907130338509_cambioUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201906040346448_recordatorios.cs" />
-    <Compile Include="Migrations\201906040346448_recordatorios.Designer.cs">
-      <DependentUpon>201906040346448_recordatorios.cs</DependentUpon>
+    <Compile Include="Migrations\201907221821439_cambioSocio1.cs" />
+    <Compile Include="Migrations\201907221821439_cambioSocio1.Designer.cs">
+      <DependentUpon>201907221821439_cambioSocio1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201906060508594_cambioSocio.cs" />
-    <Compile Include="Migrations\201906060508594_cambioSocio.Designer.cs">
-      <DependentUpon>201906060508594_cambioSocio.cs</DependentUpon>
+    <Compile Include="Migrations\201907221918016_cambioTag.cs" />
+    <Compile Include="Migrations\201907221918016_cambioTag.Designer.cs">
+      <DependentUpon>201907221918016_cambioTag.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
@@ -207,44 +208,44 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201904010615503_inicialPersona.resx">
-      <DependentUpon>201904010615503_inicialPersona.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906270522334_inicial.resx">
+      <DependentUpon>201906270522334_inicial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905030500574_matricual.resx">
-      <DependentUpon>201905030500574_matricual.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906290345294_cambiosPersona.resx">
+      <DependentUpon>201906290345294_cambiosPersona.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905070628576_cambioenie.resx">
-      <DependentUpon>201905070628576_cambioenie.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906290432113_cambioSocio.resx">
+      <DependentUpon>201906290432113_cambioSocio.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905070637412_agregadoValor.resx">
-      <DependentUpon>201905070637412_agregadoValor.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907030412073_cambioPago.resx">
+      <DependentUpon>201907030412073_cambioPago.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905272106314_agregado-matricula-socio.resx">
-      <DependentUpon>201905272106314_agregado-matricula-socio.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907030441419_cambioEventoCuotas.resx">
+      <DependentUpon>201907030441419_cambioEventoCuotas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905272122223_prueba.resx">
-      <DependentUpon>201905272122223_prueba.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907080314316_quitarAsociacion.resx">
+      <DependentUpon>201907080314316_quitarAsociacion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905280543566_nose.resx">
-      <DependentUpon>201905280543566_nose.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907100533526_cambioAsistencia.resx">
+      <DependentUpon>201907100533526_cambioAsistencia.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905292303357_matriculaXsocio.resx">
-      <DependentUpon>201905292303357_matriculaXsocio.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907100536384_cambioAsistenciaDetalle.resx">
+      <DependentUpon>201907100536384_cambioAsistenciaDetalle.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905301855029_agregado-pago.resx">
-      <DependentUpon>201905301855029_agregado-pago.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907110529136_changeAsistenica.resx">
+      <DependentUpon>201907110529136_changeAsistenica.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905310425335_cambiosSocio.resx">
-      <DependentUpon>201905310425335_cambiosSocio.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907110555291_changeDetalleEvento.resx">
+      <DependentUpon>201907110555291_changeDetalleEvento.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906010344547_matriculacambios.resx">
-      <DependentUpon>201906010344547_matriculacambios.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907130338509_cambioUsuario.resx">
+      <DependentUpon>201907130338509_cambioUsuario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906040346448_recordatorios.resx">
-      <DependentUpon>201906040346448_recordatorios.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907221821439_cambioSocio1.resx">
+      <DependentUpon>201907221821439_cambioSocio1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906060508594_cambioSocio.resx">
-      <DependentUpon>201906060508594_cambioSocio.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907221918016_cambioTag.resx">
+      <DependentUpon>201907221918016_cambioTag.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

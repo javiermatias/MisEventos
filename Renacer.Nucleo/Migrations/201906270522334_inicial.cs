@@ -1,0 +1,617 @@
+namespace Renacer.Nucleo.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class inicial : DbMigration
+    {
+        public override void Up()
+        {
+            CreateTable(
+                "dbo.Asistencia",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        estado = c.Int(nullable: false),
+                        fechaAsistencia = c.DateTime(nullable: false, precision: 0),
+                        fechaCreacion = c.DateTime(nullable: false, precision: 0),
+                        fechaModificacion = c.DateTime(precision: 0),
+                        Persona_id = c.Int(),
+                    })
+                .PrimaryKey(t => t.id)
+                .ForeignKey("dbo.Persona", t => t.Persona_id)
+                .Index(t => t.Persona_id);
+            
+            CreateTable(
+                "dbo.Socio",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        nombre = c.String(unicode: false),
+                        apellido = c.String(unicode: false),
+                        telefono = c.String(unicode: false),
+                        celular = c.String(unicode: false),
+                        email = c.String(unicode: false),
+                        sexo = c.String(unicode: false),
+                        estadoCivil = c.String(unicode: false),
+                        idTipoDoc = c.Int(nullable: false),
+                        nroDocumento = c.String(unicode: false),
+                        idDomicilio = c.Int(nullable: false),
+                        idContacto = c.Int(nullable: false),
+                        fechaCreacion = c.DateTime(nullable: false, precision: 0),
+                        fechaNacimiento = c.DateTime(precision: 0),
+                        fechaBaja = c.DateTime(precision: 0),
+                        fechaModificacion = c.DateTime(precision: 0),
+                        estado = c.String(unicode: false),
+                    })
+                .PrimaryKey(t => t.id)
+                .ForeignKey("dbo.Contacto", t => t.idContacto, cascadeDelete: true)
+                .ForeignKey("dbo.Domicilio", t => t.idDomicilio, cascadeDelete: true)
+                .ForeignKey("dbo.TipoDocumento", t => t.idTipoDoc, cascadeDelete: true)
+                .Index(t => t.idTipoDoc)
+                .Index(t => t.idDomicilio)
+                .Index(t => t.idContacto);
+            
+            CreateTable(
+                "dbo.Contacto",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        nombre = c.String(unicode: false),
+                        apellido = c.String(unicode: false),
+                        telefono = c.String(unicode: false),
+                        celular = c.String(unicode: false),
+                        email = c.String(unicode: false),
+                        relacion = c.String(unicode: false),
+                    })
+                .PrimaryKey(t => t.id);
+            
+            CreateTable(
+                "dbo.Domicilio",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        barrio = c.String(unicode: false),
+                        calle = c.String(unicode: false),
+                        piso = c.String(unicode: false),
+                        nro = c.String(unicode: false),
+                        codPostal = c.Int(nullable: false),
+                        depto = c.String(unicode: false),
+                    })
+                .PrimaryKey(t => t.id);
+            
+            CreateTable(
+                "dbo.Asociacion",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        idSocio = c.Int(nullable: false),
+                        estado = c.Int(nullable: false),
+                        fechaInicio = c.DateTime(nullable: false, precision: 0),
+                        fechaFin = c.DateTime(nullable: false, precision: 0),
+                        fechaCreacion = c.DateTime(nullable: false, precision: 0),
+                        fechaModificacion = c.DateTime(precision: 0),
+                        Persona_id = c.Int(),
+                    })
+                .PrimaryKey(t => t.id)
+                .ForeignKey("dbo.Persona", t => t.Persona_id)
+                .ForeignKey("dbo.Socio", t => t.idSocio, cascadeDelete: true)
+                .Index(t => t.idSocio)
+                .Index(t => t.Persona_id);
+            
+            CreateTable(
+                "dbo.Pago",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        monto = c.Single(nullable: false),
+                        nroRecibo = c.Int(nullable: false),
+                        idInscripcion = c.Int(nullable: false),
+                        fechaCobro = c.DateTime(nullable: false, precision: 0),
+                        fechaCreacion = c.DateTime(nullable: false, precision: 0),
+                        Asociacion_id = c.Int(),
+                    })
+                .PrimaryKey(t => t.id)
+                .ForeignKey("dbo.Inscripcion", t => t.idInscripcion, cascadeDelete: true)
+                .ForeignKey("dbo.Asociacion", t => t.Asociacion_id)
+                .Index(t => t.idInscripcion)
+                .Index(t => t.Asociacion_id);
+            
+            CreateTable(
+                "dbo.Inscripcion",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        idEvento = c.Int(nullable: false),
+                        idSocio = c.Int(nullable: false),
+                        fechaCreacion = c.DateTime(nullable: false, precision: 0),
+                        fechaBaja = c.DateTime(precision: 0),
+                        Persona_id = c.Int(),
+                    })
+                .PrimaryKey(t => t.id)
+                .ForeignKey("dbo.Persona", t => t.Persona_id)
+                .ForeignKey("dbo.Evento", t => t.idEvento, cascadeDelete: true)
+                .ForeignKey("dbo.Socio", t => t.idSocio, cascadeDelete: true)
+                .Index(t => t.idEvento)
+                .Index(t => t.idSocio)
+                .Index(t => t.Persona_id);
+            
+            CreateTable(
+                "dbo.Evento",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        nombre = c.String(unicode: false),
+                        descripcion = c.String(unicode: false),
+                        idTipoEvento = c.Int(nullable: false),
+                        idEspacio = c.Int(nullable: false),
+                        idEncargado = c.Int(nullable: false),
+                        cupoMinimo = c.Int(nullable: false),
+                        cupoMaximo = c.Int(nullable: false),
+                        gratuito = c.Boolean(nullable: false),
+                        monto = c.Single(nullable: false),
+                        cantidadCuota = c.Int(nullable: false),
+                        fechaDesde = c.DateTime(nullable: false, precision: 0),
+                        fechaHasta = c.DateTime(nullable: false, precision: 0),
+                        fechaDesdeInscripcion = c.DateTime(nullable: false, precision: 0),
+                        fechaHastaInscripcion = c.DateTime(nullable: false, precision: 0),
+                        estado = c.String(unicode: false),
+                        fechaCreacion = c.DateTime(nullable: false, precision: 0),
+                        fechaBaja = c.DateTime(precision: 0),
+                    })
+                .PrimaryKey(t => t.id)
+                .ForeignKey("dbo.EspacioComun", t => t.idEspacio, cascadeDelete: true)
+                .ForeignKey("dbo.Encargado", t => t.idEncargado, cascadeDelete: true)
+                .ForeignKey("dbo.TipoEvento", t => t.idTipoEvento, cascadeDelete: true)
+                .Index(t => t.idTipoEvento)
+                .Index(t => t.idEspacio)
+                .Index(t => t.idEncargado);
+            
+            CreateTable(
+                "dbo.EspacioComun",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        nombre = c.String(unicode: false),
+                        descripcion = c.String(unicode: false),
+                        capacidad = c.Int(nullable: false),
+                        fechaCreacion = c.DateTime(nullable: false, precision: 0),
+                        fechaBaja = c.DateTime(precision: 0),
+                        fechaModificacion = c.DateTime(precision: 0),
+                        idTipoEspacio = c.Int(nullable: false),
+                        estado = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.id)
+                .ForeignKey("dbo.TipoEspacio", t => t.idTipoEspacio, cascadeDelete: true)
+                .Index(t => t.idTipoEspacio);
+            
+            CreateTable(
+                "dbo.Tags",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        nombre = c.String(unicode: false),
+                        descripcion = c.String(unicode: false),
+                    })
+                .PrimaryKey(t => t.id);
+            
+            CreateTable(
+                "dbo.Encargado",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        nombre = c.String(unicode: false),
+                        apellido = c.String(unicode: false),
+                        telefono = c.String(unicode: false),
+                        celular = c.String(unicode: false),
+                        email = c.String(unicode: false),
+                        idTipoDoc = c.Int(nullable: false),
+                        nroDocumento = c.String(unicode: false),
+                        idDomicilio = c.Int(nullable: false),
+                        fechaCreacion = c.DateTime(nullable: false, precision: 0),
+                        fechaBaja = c.DateTime(precision: 0),
+                        fechaModificacion = c.DateTime(precision: 0),
+                    })
+                .PrimaryKey(t => t.id)
+                .ForeignKey("dbo.Domicilio", t => t.idDomicilio, cascadeDelete: true)
+                .ForeignKey("dbo.TipoDocumento", t => t.idTipoDoc, cascadeDelete: true)
+                .Index(t => t.idTipoDoc)
+                .Index(t => t.idDomicilio);
+            
+            CreateTable(
+                "dbo.TipoDocumento",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        nombre = c.String(unicode: false),
+                    })
+                .PrimaryKey(t => t.id);
+            
+            CreateTable(
+                "dbo.Persona",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        nombre = c.String(unicode: false),
+                        apellido = c.String(unicode: false),
+                        telefono = c.String(unicode: false),
+                        celular = c.String(unicode: false),
+                        email = c.String(unicode: false),
+                        sexo = c.String(unicode: false),
+                        estadoCivil = c.String(unicode: false),
+                        idTipoDoc = c.Int(),
+                        nroDocumento = c.String(unicode: false),
+                        idDomicilio = c.Int(),
+                        idContacto = c.Int(),
+                        fechaCreacion = c.DateTime(nullable: false, precision: 0),
+                        fechaNacimiento = c.DateTime(precision: 0),
+                        fechaBaja = c.DateTime(precision: 0),
+                        fechaModificacion = c.DateTime(precision: 0),
+                        rol = c.String(unicode: false),
+                        baja = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.id)
+                .ForeignKey("dbo.Contacto", t => t.idContacto)
+                .ForeignKey("dbo.Domicilio", t => t.idDomicilio)
+                .ForeignKey("dbo.TipoDocumento", t => t.idTipoDoc)
+                .Index(t => t.idTipoDoc)
+                .Index(t => t.idDomicilio)
+                .Index(t => t.idContacto);
+            
+            CreateTable(
+                "dbo.TipoEspacio",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        nombre = c.String(unicode: false),
+                    })
+                .PrimaryKey(t => t.id);
+            
+            CreateTable(
+                "dbo.Cuotas",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        nombre = c.String(unicode: false),
+                        monto = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Evento_id = c.Int(),
+                    })
+                .PrimaryKey(t => t.id)
+                .ForeignKey("dbo.Evento", t => t.Evento_id)
+                .Index(t => t.Evento_id);
+            
+            CreateTable(
+                "dbo.DetalleEvento",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        nombre = c.String(unicode: false),
+                        descripcion = c.String(unicode: false),
+                        idEncargado = c.Int(nullable: false),
+                        idEvento = c.Int(nullable: false),
+                        idEspacio = c.Int(nullable: false),
+                        estado = c.Int(nullable: false),
+                        fechaDesde = c.DateTime(nullable: false, precision: 0),
+                        fechaHasta = c.DateTime(nullable: false, precision: 0),
+                        fechaCancelacion = c.DateTime(nullable: false, precision: 0),
+                        fechaCreacion = c.DateTime(nullable: false, precision: 0),
+                        fechaBaja = c.DateTime(precision: 0),
+                        fechaModificacion = c.DateTime(precision: 0),
+                    })
+                .PrimaryKey(t => t.id)
+                .ForeignKey("dbo.EspacioComun", t => t.idEspacio, cascadeDelete: true)
+                .ForeignKey("dbo.Evento", t => t.idEvento, cascadeDelete: true)
+                .ForeignKey("dbo.Encargado", t => t.idEncargado, cascadeDelete: true)
+                .Index(t => t.idEncargado)
+                .Index(t => t.idEvento)
+                .Index(t => t.idEspacio);
+            
+            CreateTable(
+                "dbo.Horarios",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        dia = c.String(unicode: false),
+                        dayOfWeek = c.Int(nullable: false),
+                        horaDesde = c.String(unicode: false),
+                        horaHasta = c.String(unicode: false),
+                        Evento_id = c.Int(),
+                    })
+                .PrimaryKey(t => t.id)
+                .ForeignKey("dbo.Evento", t => t.Evento_id)
+                .Index(t => t.Evento_id);
+            
+            CreateTable(
+                "dbo.TipoEvento",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        nombre = c.String(unicode: false),
+                        descripcion = c.String(unicode: false),
+                    })
+                .PrimaryKey(t => t.id);
+            
+            CreateTable(
+                "dbo.Cliente",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        nombre = c.String(unicode: false),
+                        apellido = c.String(unicode: false),
+                        tipoDoc_id = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.id)
+                .ForeignKey("dbo.TipoDocumento", t => t.tipoDoc_id, cascadeDelete: true)
+                .Index(t => t.tipoDoc_id);
+            
+            CreateTable(
+                "dbo.Matricula",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        anio = c.DateTime(nullable: false, precision: 0),
+                        valor = c.Int(nullable: false),
+                        fechaVencimiento = c.DateTime(nullable: false, precision: 0),
+                        estado = c.String(unicode: false),
+                    })
+                .PrimaryKey(t => t.id);
+            
+            CreateTable(
+                "dbo.MatriculaXSocios",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        idSocio = c.Int(nullable: false),
+                        idMatricula = c.Int(nullable: false),
+                        fechaPago = c.DateTime(nullable: false, precision: 0),
+                        pago = c.Decimal(nullable: false, precision: 18, scale: 2),
+                    })
+                .PrimaryKey(t => t.id)
+                .ForeignKey("dbo.Matricula", t => t.idMatricula, cascadeDelete: true)
+                .ForeignKey("dbo.Socio", t => t.idSocio, cascadeDelete: true)
+                .Index(t => t.idSocio)
+                .Index(t => t.idMatricula);
+            
+            CreateTable(
+                "dbo.Recordatorios",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        titulo = c.String(unicode: false),
+                        descripcion = c.String(unicode: false),
+                        fechaRecordatorio = c.DateTime(nullable: false, precision: 0),
+                    })
+                .PrimaryKey(t => t.id);
+            
+            CreateTable(
+                "dbo.Rol",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        nombre = c.String(unicode: false),
+                        descripcion = c.String(unicode: false),
+                    })
+                .PrimaryKey(t => t.id);
+            
+            CreateTable(
+                "dbo.Usuario",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        nombre = c.String(unicode: false),
+                        usuario = c.String(unicode: false),
+                        clave = c.String(unicode: false),
+                        imagen = c.String(unicode: false),
+                        rol = c.String(unicode: false),
+                        email = c.String(unicode: false),
+                        fechaCreacion = c.DateTime(nullable: false, precision: 0),
+                        fechaBaja = c.DateTime(nullable: false, precision: 0),
+                        fechaUltimoAcceso = c.DateTime(nullable: false, precision: 0),
+                        fechaModificacion = c.DateTime(nullable: false, precision: 0),
+                        idFacebook = c.String(unicode: false),
+                        idGoogle = c.String(unicode: false),
+                        token = c.String(unicode: false),
+                        idPersona = c.Int(),
+                        contador = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.id)
+                .ForeignKey("dbo.Persona", t => t.idPersona)
+                .Index(t => t.idPersona);
+            
+            CreateTable(
+                "dbo.SocioAsistencias",
+                c => new
+                    {
+                        Socio_id = c.Int(nullable: false),
+                        Asistencia_id = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.Socio_id, t.Asistencia_id })
+                .ForeignKey("dbo.Socio", t => t.Socio_id, cascadeDelete: true)
+                .ForeignKey("dbo.Asistencia", t => t.Asistencia_id, cascadeDelete: true)
+                .Index(t => t.Socio_id)
+                .Index(t => t.Asistencia_id);
+            
+            CreateTable(
+                "dbo.EncargadoTags",
+                c => new
+                    {
+                        Encargado_id = c.Int(nullable: false),
+                        Tag_id = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.Encargado_id, t.Tag_id })
+                .ForeignKey("dbo.Encargado", t => t.Encargado_id, cascadeDelete: true)
+                .ForeignKey("dbo.Tags", t => t.Tag_id, cascadeDelete: true)
+                .Index(t => t.Encargado_id)
+                .Index(t => t.Tag_id);
+            
+            CreateTable(
+                "dbo.TagEspacioComuns",
+                c => new
+                    {
+                        Tag_id = c.Int(nullable: false),
+                        EspacioComun_id = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.Tag_id, t.EspacioComun_id })
+                .ForeignKey("dbo.Tags", t => t.Tag_id, cascadeDelete: true)
+                .ForeignKey("dbo.EspacioComun", t => t.EspacioComun_id, cascadeDelete: true)
+                .Index(t => t.Tag_id)
+                .Index(t => t.EspacioComun_id);
+            
+            CreateTable(
+                "dbo.PersonaTags",
+                c => new
+                    {
+                        Persona_id = c.Int(nullable: false),
+                        Tag_id = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.Persona_id, t.Tag_id })
+                .ForeignKey("dbo.Persona", t => t.Persona_id, cascadeDelete: true)
+                .ForeignKey("dbo.Tags", t => t.Tag_id, cascadeDelete: true)
+                .Index(t => t.Persona_id)
+                .Index(t => t.Tag_id);
+            
+            CreateTable(
+                "dbo.TagSocios",
+                c => new
+                    {
+                        Tag_id = c.Int(nullable: false),
+                        Socio_id = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.Tag_id, t.Socio_id })
+                .ForeignKey("dbo.Tags", t => t.Tag_id, cascadeDelete: true)
+                .ForeignKey("dbo.Socio", t => t.Socio_id, cascadeDelete: true)
+                .Index(t => t.Tag_id)
+                .Index(t => t.Socio_id);
+            
+            CreateTable(
+                "dbo.UsuarioRols",
+                c => new
+                    {
+                        Usuario_id = c.Int(nullable: false),
+                        Rol_id = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.Usuario_id, t.Rol_id })
+                .ForeignKey("dbo.Usuario", t => t.Usuario_id, cascadeDelete: true)
+                .ForeignKey("dbo.Rol", t => t.Rol_id, cascadeDelete: true)
+                .Index(t => t.Usuario_id)
+                .Index(t => t.Rol_id);
+            
+        }
+        
+        public override void Down()
+        {
+            DropForeignKey("dbo.UsuarioRols", "Rol_id", "dbo.Rol");
+            DropForeignKey("dbo.UsuarioRols", "Usuario_id", "dbo.Usuario");
+            DropForeignKey("dbo.Usuario", "idPersona", "dbo.Persona");
+            DropForeignKey("dbo.MatriculaXSocios", "idSocio", "dbo.Socio");
+            DropForeignKey("dbo.MatriculaXSocios", "idMatricula", "dbo.Matricula");
+            DropForeignKey("dbo.Cliente", "tipoDoc_id", "dbo.TipoDocumento");
+            DropForeignKey("dbo.Socio", "idTipoDoc", "dbo.TipoDocumento");
+            DropForeignKey("dbo.Asociacion", "idSocio", "dbo.Socio");
+            DropForeignKey("dbo.Pago", "Asociacion_id", "dbo.Asociacion");
+            DropForeignKey("dbo.Inscripcion", "idSocio", "dbo.Socio");
+            DropForeignKey("dbo.Pago", "idInscripcion", "dbo.Inscripcion");
+            DropForeignKey("dbo.Evento", "idTipoEvento", "dbo.TipoEvento");
+            DropForeignKey("dbo.Evento", "idEncargado", "dbo.Encargado");
+            DropForeignKey("dbo.Inscripcion", "idEvento", "dbo.Evento");
+            DropForeignKey("dbo.Horarios", "Evento_id", "dbo.Evento");
+            DropForeignKey("dbo.DetalleEvento", "idEncargado", "dbo.Encargado");
+            DropForeignKey("dbo.DetalleEvento", "idEvento", "dbo.Evento");
+            DropForeignKey("dbo.DetalleEvento", "idEspacio", "dbo.EspacioComun");
+            DropForeignKey("dbo.Cuotas", "Evento_id", "dbo.Evento");
+            DropForeignKey("dbo.Evento", "idEspacio", "dbo.EspacioComun");
+            DropForeignKey("dbo.EspacioComun", "idTipoEspacio", "dbo.TipoEspacio");
+            DropForeignKey("dbo.TagSocios", "Socio_id", "dbo.Socio");
+            DropForeignKey("dbo.TagSocios", "Tag_id", "dbo.Tags");
+            DropForeignKey("dbo.Persona", "idTipoDoc", "dbo.TipoDocumento");
+            DropForeignKey("dbo.PersonaTags", "Tag_id", "dbo.Tags");
+            DropForeignKey("dbo.PersonaTags", "Persona_id", "dbo.Persona");
+            DropForeignKey("dbo.Inscripcion", "Persona_id", "dbo.Persona");
+            DropForeignKey("dbo.Asociacion", "Persona_id", "dbo.Persona");
+            DropForeignKey("dbo.Asistencia", "Persona_id", "dbo.Persona");
+            DropForeignKey("dbo.Persona", "idDomicilio", "dbo.Domicilio");
+            DropForeignKey("dbo.Persona", "idContacto", "dbo.Contacto");
+            DropForeignKey("dbo.TagEspacioComuns", "EspacioComun_id", "dbo.EspacioComun");
+            DropForeignKey("dbo.TagEspacioComuns", "Tag_id", "dbo.Tags");
+            DropForeignKey("dbo.Encargado", "idTipoDoc", "dbo.TipoDocumento");
+            DropForeignKey("dbo.EncargadoTags", "Tag_id", "dbo.Tags");
+            DropForeignKey("dbo.EncargadoTags", "Encargado_id", "dbo.Encargado");
+            DropForeignKey("dbo.Encargado", "idDomicilio", "dbo.Domicilio");
+            DropForeignKey("dbo.SocioAsistencias", "Asistencia_id", "dbo.Asistencia");
+            DropForeignKey("dbo.SocioAsistencias", "Socio_id", "dbo.Socio");
+            DropForeignKey("dbo.Socio", "idDomicilio", "dbo.Domicilio");
+            DropForeignKey("dbo.Socio", "idContacto", "dbo.Contacto");
+            DropIndex("dbo.UsuarioRols", new[] { "Rol_id" });
+            DropIndex("dbo.UsuarioRols", new[] { "Usuario_id" });
+            DropIndex("dbo.TagSocios", new[] { "Socio_id" });
+            DropIndex("dbo.TagSocios", new[] { "Tag_id" });
+            DropIndex("dbo.PersonaTags", new[] { "Tag_id" });
+            DropIndex("dbo.PersonaTags", new[] { "Persona_id" });
+            DropIndex("dbo.TagEspacioComuns", new[] { "EspacioComun_id" });
+            DropIndex("dbo.TagEspacioComuns", new[] { "Tag_id" });
+            DropIndex("dbo.EncargadoTags", new[] { "Tag_id" });
+            DropIndex("dbo.EncargadoTags", new[] { "Encargado_id" });
+            DropIndex("dbo.SocioAsistencias", new[] { "Asistencia_id" });
+            DropIndex("dbo.SocioAsistencias", new[] { "Socio_id" });
+            DropIndex("dbo.Usuario", new[] { "idPersona" });
+            DropIndex("dbo.MatriculaXSocios", new[] { "idMatricula" });
+            DropIndex("dbo.MatriculaXSocios", new[] { "idSocio" });
+            DropIndex("dbo.Cliente", new[] { "tipoDoc_id" });
+            DropIndex("dbo.Horarios", new[] { "Evento_id" });
+            DropIndex("dbo.DetalleEvento", new[] { "idEspacio" });
+            DropIndex("dbo.DetalleEvento", new[] { "idEvento" });
+            DropIndex("dbo.DetalleEvento", new[] { "idEncargado" });
+            DropIndex("dbo.Cuotas", new[] { "Evento_id" });
+            DropIndex("dbo.Persona", new[] { "idContacto" });
+            DropIndex("dbo.Persona", new[] { "idDomicilio" });
+            DropIndex("dbo.Persona", new[] { "idTipoDoc" });
+            DropIndex("dbo.Encargado", new[] { "idDomicilio" });
+            DropIndex("dbo.Encargado", new[] { "idTipoDoc" });
+            DropIndex("dbo.EspacioComun", new[] { "idTipoEspacio" });
+            DropIndex("dbo.Evento", new[] { "idEncargado" });
+            DropIndex("dbo.Evento", new[] { "idEspacio" });
+            DropIndex("dbo.Evento", new[] { "idTipoEvento" });
+            DropIndex("dbo.Inscripcion", new[] { "Persona_id" });
+            DropIndex("dbo.Inscripcion", new[] { "idSocio" });
+            DropIndex("dbo.Inscripcion", new[] { "idEvento" });
+            DropIndex("dbo.Pago", new[] { "Asociacion_id" });
+            DropIndex("dbo.Pago", new[] { "idInscripcion" });
+            DropIndex("dbo.Asociacion", new[] { "Persona_id" });
+            DropIndex("dbo.Asociacion", new[] { "idSocio" });
+            DropIndex("dbo.Socio", new[] { "idContacto" });
+            DropIndex("dbo.Socio", new[] { "idDomicilio" });
+            DropIndex("dbo.Socio", new[] { "idTipoDoc" });
+            DropIndex("dbo.Asistencia", new[] { "Persona_id" });
+            DropTable("dbo.UsuarioRols");
+            DropTable("dbo.TagSocios");
+            DropTable("dbo.PersonaTags");
+            DropTable("dbo.TagEspacioComuns");
+            DropTable("dbo.EncargadoTags");
+            DropTable("dbo.SocioAsistencias");
+            DropTable("dbo.Usuario");
+            DropTable("dbo.Rol");
+            DropTable("dbo.Recordatorios");
+            DropTable("dbo.MatriculaXSocios");
+            DropTable("dbo.Matricula");
+            DropTable("dbo.Cliente");
+            DropTable("dbo.TipoEvento");
+            DropTable("dbo.Horarios");
+            DropTable("dbo.DetalleEvento");
+            DropTable("dbo.Cuotas");
+            DropTable("dbo.TipoEspacio");
+            DropTable("dbo.Persona");
+            DropTable("dbo.TipoDocumento");
+            DropTable("dbo.Encargado");
+            DropTable("dbo.Tags");
+            DropTable("dbo.EspacioComun");
+            DropTable("dbo.Evento");
+            DropTable("dbo.Inscripcion");
+            DropTable("dbo.Pago");
+            DropTable("dbo.Asociacion");
+            DropTable("dbo.Domicilio");
+            DropTable("dbo.Contacto");
+            DropTable("dbo.Socio");
+            DropTable("dbo.Asistencia");
+        }
+    }
+}

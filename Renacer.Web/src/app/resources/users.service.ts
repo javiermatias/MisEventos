@@ -14,7 +14,9 @@ export class Usuario {
     public email?:string,
     public fechaCreacion?: Date,
     public fechaBaja?: Date,
-    public imagen?: string
+    public imagen?: string,
+    public idEncargado?:number,
+    public idSocio?:number
   ) {  }
 }
 

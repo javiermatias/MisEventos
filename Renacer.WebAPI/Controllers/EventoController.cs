@@ -20,11 +20,30 @@ namespace Renacer.WebAPI.Controllers
             return ControlEvento.devolverInstancia().devolverTodos(search);
         }
 
+        public IEnumerable<Evento> GetEncargadosXevento([FromUri]int idEncargado)
+        {
+           
+            return ControlEvento.devolverInstancia().devolverEventosEncargado(idEncargado);
+
+        }
+
+        // GET: api/Eventos
+        public IEnumerable<Evento> GetEstado([FromUri]String estado)
+        {
+
+            if (estado == null) estado = "Nuevo";
+            //return null;
+
+             return ControlEvento.devolverInstancia().devolverTodosEvento(estado);
+        }
+
         // GET: api/Eventos/5
         public Evento Get(int id)
         {
             return ControlEvento.devolverInstancia().devolver(id);
         }
+
+   
 
         // POST: api/cliente
         public IHttpActionResult Post([FromBody]Evento value)
@@ -58,13 +77,13 @@ namespace Renacer.WebAPI.Controllers
 
 
 
-        [ActionName("inscriptos")]
-        [Route("{id}/inscriptos")]
-        [AcceptVerbs("GET")]
-        public IList<Inscripcion> GetInscriptos(int id)
-        {
-            return ControlEvento.devolverInstancia().devolverInscriptos(id);
-        }
+        //[ActionName("inscriptos")]
+        //[Route("{id}/inscriptos")]
+        //[AcceptVerbs("GET")]
+        //public IList<Inscripcion> GetInscriptos(int id)
+        //{
+        //    return ControlEvento.devolverInstancia().devolverInscriptos(id);
+        //}
 
     }
 }

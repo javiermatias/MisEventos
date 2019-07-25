@@ -45,7 +45,7 @@
                 <a href class="transition">Settings</a> -->
             </div>
             <div class="list" slim-scroll [slimScrollOptions]="{height: 250}">
-                <a *ngFor="let recordatorio of recordatorios" href class="transition">
+                <a *ngFor="let recordatorio of recordatorios" href class="transition" routerLink="/pages/recordatorios">
                     <img src="/assets/img/recordatorio.png"> 
                     <div class="list-content">
                         <h3>{{recordatorio.titulo}} <span class="pull-right"> {{recordatorio.fechaRecordatorio | date:'dd-MM-yyyy'}}</span></h3>

@@ -14,7 +14,16 @@ namespace Renacer.WebAPI.Controllers
         // GET: api/Eventos
         public IEnumerable<DetalleEvento> Get([FromUri]DateTime fechaDesde, [FromUri]DateTime fechaHasta)
         {
-            return ControlDetalleEvento.devolverInstancia().devolverTodos(fechaDesde,fechaHasta);
+            IEnumerable <DetalleEvento> detalle = ControlDetalleEvento.devolverInstancia().devolverTodos(fechaDesde, fechaHasta);
+            return detalle;
+
+        }
+
+        public IEnumerable<DetalleEvento> GetAsistencias([FromUri]int idEvento, [FromUri]int idEncargado)
+        {
+            IEnumerable<DetalleEvento> detalle = ControlDetalleEvento.devolverInstancia().devolverTodosXEncargado(idEvento, idEncargado);
+            return detalle;
+
         }
 
         // GET: api/Eventos/5
@@ -40,8 +49,8 @@ namespace Renacer.WebAPI.Controllers
         // PUT: api/cliente/5
         public void Put(int id, [FromBody]DetalleEvento value)
         {
-            value.fechaModificacion = DateTime.Now;
-            ControlDetalleEvento.devolverInstancia().grabar(value);
+            //value.fechaModificacion = DateTime.Now;
+            ControlDetalleEvento.devolverInstancia().actualizar(value);
         }
 
         // DELETE: api/ApiCliente/5

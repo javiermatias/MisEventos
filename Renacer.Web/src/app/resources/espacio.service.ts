@@ -10,7 +10,7 @@ export class EspacioComun {
   constructor(
     public id?: number,
     public nombre?: string,
-    public descripcio?: string,
+    public descripcion?: string,
     public idDireccion?: number,
     public idTipoEspacio?: number,
     public capacidad?: number,

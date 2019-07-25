@@ -12,7 +12,7 @@ export class AppConfig {
         this.sassVariables = this.getSassVariables();
         this.config = {
             name: 'Mis Eventos',
-            title: 'Mis Eventos 2017',
+            title: 'Mis Eventos 2019',
             version: '1.0',
             colors:{
                 main: this.sassVariables['main-color'],

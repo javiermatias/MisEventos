@@ -12,22 +12,27 @@ export class Socio {
     public id: number,
     public nombre: string,
     public apellido: string,
-    public email?:string,
     public telefono?:string,
-    public fechaNacimiento?: Date,
-    public fechaCreacion?: Date,
-    public fechaBaja?: Date,
-    public nroSocio?: string,
-    public nroDocumento?: string,
-    public estadoCivil?: string,
-    public tipoDoc?:TipoDocumento,
+    public celular?:string,
+    public email?:string,
     public sexo?:string,
-    public domicilio?:Domicilio,
+    public estadoCivil?: string,
+    public idTipoDoc?: number,       
+    public tipoDoc?:TipoDocumento,
+    public nroDocumento?: string,    
+    public idDomicilio?: number, 
+    public domicilio?:Domicilio,    
+    public idContacto?: number, 
     public contacto?:Contacto,
     public listaTags?:Array<Tag>,
+    public fechaNacimiento?: Date,
+    public fechaCreacion?: Date,
+    public fechaBaja?: Date,    
     public estado?:string
   ) {
   this.tipoDoc = new TipoDocumento();
+  this.domicilio=new Domicilio();
+  this.contacto=new Contacto();
   this.listaTags = new Array<Tag>();
   }
 }
@@ -40,8 +45,10 @@ export class Domicilio{
     public piso?:string,
     public nro?:string,
     public codPostal?:number,
-    public depto?:string){
-      this.id = 0;
+    public depto?:string
+    )
+    {
+      //this.id = 0;
       this.barrio = "";
       this.calle = "";
       this.piso = "";
@@ -56,10 +63,13 @@ export class Domicilio{
       public nombre?:string,
       public apellido?:string,
       public telefono?:string,
+      public celular?:string,
       public email?:string,
       public relacion?:string,
-      public celular?:string){
-        this.id = 0;
+      
+      )
+      {
+        //this.id = 0;
         this.nombre = "";
         this.apellido = "";
         this.telefono = "";

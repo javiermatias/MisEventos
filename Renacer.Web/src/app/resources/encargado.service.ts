@@ -26,6 +26,7 @@ export class EncargadoEvento {
     this.tipoDoc = new TipoDocumento();
     this.listaTags = new Array<Tag>();
   }
+
 }
 
 let variable = new Variables();

@@ -13,25 +13,19 @@ namespace Renacer.Nucleo.Entidades
     {
         [Key]
         public int id { get; set; }
+
+        public string nombre { get; set; }
         public float monto { get; set; }
         public int nroRecibo { get; set; }
-
-
         public int idInscripcion { get; set; }
         [ForeignKey("idInscripcion")]
         public Inscripcion Inscripcion { get; set; }
-
-        public int idAsociacion { get; set; }
-        [ForeignKey("idAsociacion")]
-        public Asociacion Asociacion { get; set; }
-
-
-
         public DateTime fechaCobro { get; set; }
-        public DateTime fechaCreacion { get; set; }
-        public DateTime? fechaBaja { get; set; }
-        public DateTime? fechaModificacion { get; set; }
+        public DateTime fechaBaja { get; set; }
+        public bool estaPagado { get; set; } = false; //si es true esta pagado.
+       // public bool baja { get; set; } = false; // si es true este pago se dio de baja.
 
+        //Podria agregarse eventualmente que secretaria hizo el cobro. Por el momento lo dejamos asi.
 
     }
 }

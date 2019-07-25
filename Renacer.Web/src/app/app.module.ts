@@ -14,19 +14,19 @@ import { SocioServices, SocioMatriculaServices } from './resources/socio.service
 import { EspacioServices } from './resources/espacio.service';
 import { EncargadoEventoServices } from './resources/encargado.service';
 import { ReporteServices } from './resources/reporte.service';
-import { EventoServices, TipoEventoServices, DetalleEventoServices, AsociacionServices, InscripcionServices } from './resources/evento.service';
+import { EventoServices, TipoEventoServices, DetalleEventoServices, InscripcionServices, PagoServices } from './resources/evento.service';
 import { TipoDocumentoServices } from './resources/tipo-documento.service';
 import { AsistenciaServices } from './resources/asistencia.service';
 import { TagServices } from './resources/tag.service';
 import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import { RolServices } from './resources/rol.service';
-import { TipoEspacioServices } from '../app/pages/tipoEspacio/tipoEspacio.service';
+import { TipoEspacioServices } from './mis-eventos/espacios/tipoEspacio/tipoEspacio.service';
 import { AccessGuard } from './resources/accessGuard.service';
 import { DatePipe } from '@angular/common';
 import { MatriculaServices } from './resources/matricula.service';
 import { MatriculaxsocioService } from './resources/matriculaxsocio.service';
 import { DragulaModule } from 'ng2-dragula';
-import { RecordatorioServices, RecordatorioHoyServices } from './resources/recordatorio.service';
+import { RecordatorioServices, RecordatorioHoyServices,ActualizarEventoServices } from './resources/recordatorio.service';
 
 @NgModule({
   declarations: [
@@ -60,7 +60,6 @@ import { RecordatorioServices, RecordatorioHoyServices } from './resources/recor
     TipoDocumentoServices,
     AsistenciaServices,
     ReporteServices,
-    AsociacionServices,
     InscripcionServices,
     RolServices,
     TipoEspacioServices,
@@ -68,6 +67,8 @@ import { RecordatorioServices, RecordatorioHoyServices } from './resources/recor
     MatriculaxsocioService,
     RecordatorioServices,
     RecordatorioHoyServices,
+    ActualizarEventoServices,
+    PagoServices,
     DatePipe],
   bootstrap: [AppComponent]
 })
