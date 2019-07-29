@@ -10,11 +10,13 @@ export class Usuario {
   constructor(
     public id: number,
     public nombre?: string,
+    public usuario?: string,
+    public imagen?: string,
     public rol?: string,
     public email?:string,
     public fechaCreacion?: Date,
     public fechaBaja?: Date,
-    public imagen?: string,
+    public token?:string,    
     public idEncargado?:number,
     public idSocio?:number
   ) {  }

@@ -1,7 +1,7 @@
 <div class="sidebar" [ngClass]="{'menu-collapsed': isMenuCollapsed}" (mouseleave)="hoverElemTop=-200">
     <ul class="nav nav-sidebar flex-column" perfect-scrollbar>
         <div *ngFor="let item of menuItems">
-            <li *ngIf="item.rolesVisible.includes(rol.nombre)" class="sidebar-list-item">
+            <li  class="sidebar-list-item">
                 <a *ngIf="!item.routerLink && !item.subMenu" [attr.href]="item.url || ''" [attr.target]="item.target || ''" (mouseenter)="hoverItem($event, item)"  class="sidebar-list-link">
                     <i class="fa {{ item.icon }}"></i><span>{{ item.title }}</span>
                 </a>

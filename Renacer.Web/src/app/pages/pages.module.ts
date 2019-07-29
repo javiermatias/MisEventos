@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -42,6 +42,7 @@ import { PagoCuotaComponent } from '../mis-eventos/pagos/pago-cuota/pago-cuota.c
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { NuevaAsistenciaComponent } from '../mis-eventos/asistencia/nueva-asistencia/nueva-asistencia.component';
 import { AsistenciaComponent } from '../mis-eventos/asistencia/asistencia.component';
+//import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { AsistenciaComponent } from '../mis-eventos/asistencia/asistencia.compon
     SharedModule,
     DragulaModule,    
     MultiselectDropdownModule,
+    ReactiveFormsModule
   ],
   declarations: [
     PagesComponent,
@@ -86,7 +88,8 @@ import { AsistenciaComponent } from '../mis-eventos/asistencia/asistencia.compon
     NuevoRecordatorioComponent,
     PagoCuotaComponent,
     NuevaAsistenciaComponent,
-    AsistenciaComponent
+    AsistenciaComponent,
+   // LoginComponent 
   ]
   , exports: [
     BreadcrumbComponent,

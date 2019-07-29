@@ -23,9 +23,13 @@ export class NavbarComponent {
             this.isMenuCollapsed = isCollapsed;
         });
          this.usuario = this._usersService.getCurrent();
+         if(this.usuario ==null  ){
+            this.router.navigate(['']);
+         }else{
          if(this.usuario['nombre'] == ''){
-          this.router.navigate(['/login']);
+          this.router.navigate(['']);
          }
+        }
     }
 
     public closeSubMenus(){
@@ -38,8 +42,13 @@ export class NavbarComponent {
     }
     public cerrarSesion() {
         this._usersService.setCurrent(null);
-        this._rolService.setCurrent(null);
-        this.router.navigate(['/sesion']);
+        //this._rolService.setCurrent(null);
+        this.router.navigate([''])
+  .then(() => {
+   //   console.log("se cargo bien");
+    window.location.reload();
+  });
+       // this.router.navigate(['']);
     }
 
 }

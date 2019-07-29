@@ -3,6 +3,7 @@ import { menuItems } from './menu';
 import { itemsAdmin } from './menuAdmin';
 import { itemsSocio } from './menuSocio';
 import { itemsResponsable } from './menuResponsable';
+import { itemsSecretario } from './menuSecretario';
 
 @Injectable()
 export class MenuService {
@@ -11,9 +12,10 @@ export class MenuService {
     let menuItemsSelected;
 
     switch(userType){
-      case "Administrador": menuItemsSelected = itemsAdmin;break;
-      case "Socio": menuItemsSelected = itemsSocio;break;
-      case "Encargado": menuItemsSelected = itemsResponsable;break;
+      case "ADMIN": menuItemsSelected = itemsAdmin;break;
+      case "SECRETARIO": menuItemsSelected = itemsSecretario;break;
+      case "SOCIO": menuItemsSelected = itemsSocio;break;
+      case "ENCARGADO": menuItemsSelected = itemsResponsable;break;
       default: menuItemsSelected = menuItems;break;
     }
     return menuItemsSelected;

@@ -1,7 +1,7 @@
 <h2 class="card-title">Mis Eventos</h2>
 <!-- <a routerLink="/register" class="btn btn-link transition bottom-15">No tienes una cuenta? Crea una ahora!</a> -->
-
-<form *ngIf="rolesUsuario?.length <= 1" [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class=" text-left">
+<!-- *ngIf="rolesUsuario?.length <= 1" -->
+<form  [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class=" text-left">
   <div class="form-group">
     <input [formControl]="username" class="form-control checking-field" placeholder="Usuario" type="text">
     <span class="help-block text-danger" *ngIf="form.get('username').touched && form.get('username').hasError('required')">Ingresa un nombre de Usuario</span>

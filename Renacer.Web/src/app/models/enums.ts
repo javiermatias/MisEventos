@@ -12,3 +12,11 @@ export const sexo: any[] = [
     { nombre: 'Divorciado' }
    
   ];
+
+  export const roles: any[] = [
+    { nombre: 'ADMIN' },
+    { nombre: 'SECRETARIO' },
+    { nombre: 'ENCARGADO' },
+    { nombre: 'SOCIO' }
+   
+  ];

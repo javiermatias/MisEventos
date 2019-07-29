@@ -17,6 +17,7 @@ import { CobroMatriculaComponent } from '../mis-eventos/matricula/cobro-matricul
 import { MatriculasPagadasComponent } from '../mis-eventos/matricula/matriculas-pagadas/matriculas-pagadas.component';
 import { RecordatoriosComponent } from '../mis-eventos/recordatorios/recordatorios.component';
 import { PagoCuotaComponent } from '../mis-eventos/pagos/pago-cuota/pago-cuota.component';
+//import { LoginComponent } from './login/login.component';
 
 
 export const routes: Routes = [
@@ -24,7 +25,7 @@ export const routes: Routes = [
         path: '',
         component: PagesComponent,
         children: [
-            { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+            { path: '', redirectTo: 'login', pathMatch: 'full' },
             { path: 'dashboard', loadChildren: 'app/pages/dashboard/dashboard.module#DashboardModule', data: { breadcrumb: 'Dashboard' } },
             { path: 'maps', loadChildren: 'app/pages/maps/maps.module#MapsModule', data: { breadcrumb: 'Maps' } },
             { path: 'charts', loadChildren: 'app/pages/charting/charting.module#ChartingModule', data: { breadcrumb: 'Charts' } },
@@ -51,6 +52,7 @@ export const routes: Routes = [
             { path: 'pago-matricula', component: MatriculasPagadasComponent, data: { breadcrumb: '' } },
             { path: 'recordatorios', component: RecordatoriosComponent, data: { breadcrumb: '' } },
             { path: 'pago-cuota', component: PagoCuotaComponent, data: { breadcrumb: '' } },
+            //{ path: 'login', component: LoginComponent, data: { breadcrumb: '' } },
             // { path: 'seleccionarRol', component: RolesUsuarioComponent, data: { breadcrumb: 'Selecionar rol'}},
             { path: 'blank', component: BlankComponent, data: { breadcrumb: 'Blank page' } }
         ]
