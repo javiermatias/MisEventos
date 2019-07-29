@@ -182,6 +182,14 @@
     <Compile Include="Migrations\201907221918016_cambioTag.Designer.cs">
       <DependentUpon>201907221918016_cambioTag.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907250459067_cambioUsuario1.cs" />
+    <Compile Include="Migrations\201907250459067_cambioUsuario1.Designer.cs">
+      <DependentUpon>201907250459067_cambioUsuario1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907270500071_cambiosPersona1.cs" />
+    <Compile Include="Migrations\201907270500071_cambiosPersona1.Designer.cs">
+      <DependentUpon>201907270500071_cambiosPersona1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
     <Compile Include="myMigrationSQLGenerator.cs" />
@@ -246,6 +254,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907221918016_cambioTag.resx">
       <DependentUpon>201907221918016_cambioTag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907250459067_cambioUsuario1.resx">
+      <DependentUpon>201907250459067_cambioUsuario1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907270500071_cambiosPersona1.resx">
+      <DependentUpon>201907270500071_cambiosPersona1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

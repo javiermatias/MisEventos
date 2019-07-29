@@ -11,10 +11,10 @@ namespace Renacer.Nucleo
     [Table("Usuario")]
     public partial class Usuario : System.Security.Principal.IPrincipal
     {
-        public Usuario()
-        {
-            this.roles = new HashSet<Rol>();
-        }
+        //public Usuario()
+        //{
+        //    this.roles = new HashSet<Rol>();
+        //}
 
         [Key]
         public int id { get; set; }
@@ -22,26 +22,21 @@ namespace Renacer.Nucleo
         public string usuario { get; set; }
         public string clave { get; set; }
         public string imagen { get; set; }
-        public string rol { get; set; }
+        public string rol { get; set; } //ADMIN, SECRETARIO, ENCARGADO, SOCIO
         public string email { get; set; }
         public DateTime fechaCreacion { get; set; }
         public DateTime fechaBaja { get; set; }
-        public DateTime fechaUltimoAcceso { get; set; }
-        public DateTime fechaModificacion { get; set; }
-
-        public string idFacebook { get; set; }
-        public string idGoogle { get; set; }
-        public string token { get; set; }
-        
-        public virtual ICollection<Rol> roles { get; set; }
-
-        public int? idPersona { get; set; }
-        [ForeignKey("idPersona")]
-        public Persona persona { get; set; }
-        public int contador { get; set; }
-
+       // public DateTime fechaUltimoAcceso { get; set; }
+       //public DateTime fechaModificacion { get; set; }
+        //public string idFacebook { get; set; }
+        //public string idGoogle { get; set; }
+        public string token { get; set; }        
+       // public virtual ICollection<Rol> roles { get; set; }
+        //public int? idPersona { get; set; }
+        //[ForeignKey("idPersona")]
+        //public Persona persona { get; set; }
+        //public int contador { get; set; }
         public int? idEncargado { get; set; }
-
         public int? idSocio { get; set; }
 
         [NotMapped]
