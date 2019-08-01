@@ -90,7 +90,7 @@
                             </select>
                             <span class="help-block"
                             *ngIf="eventoForm.value.tipoEspacio.capacidad">La capacidad Máxima del aula es:
-                            {{ eventoForm.value.tipoEspacio.capacidad}}</span>
+                            {{ eventoForm.value.tipoEspacio.capacidad}} personas.</span>
 
                             <span class="help-block text-danger"
                                 *ngIf="step.hasError && eventoForm.get('tipoEspacio').hasError('required')">Espacio es
@@ -617,11 +617,11 @@
                             </div>
                         </div>
 
-                        <div>
+                    <!--     <div>
 
                             <button (click)="guardar()">Guardar</button>
 
-                        </div>
+                        </div> -->
 
 
 

@@ -1,5 +1,5 @@
 import { Component, OnInit , Input} from '@angular/core';
-import { RolServices, Rol } from '../../resources/rol.service';
+import { RolServices, Rol } from '../../servicios/rol.service';
 import {FormGroup} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 

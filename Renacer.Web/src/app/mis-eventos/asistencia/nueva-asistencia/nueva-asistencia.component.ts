@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output, AfterViewInit } from '@angular/core';
-import { Evento, DetalleEvento, InscripcionServices, Inscripcion } from '../../../resources/evento.service';
-import { Socio } from '../../../resources/socio.service';
-import { AsistenciaServices, Asistencia } from '../../../resources/asistencia.service';
+import { Evento, DetalleEvento, InscripcionServices, Inscripcion } from '../../../servicios/evento.service';
+import { Socio } from '../../../servicios/socio.service';
+import { AsistenciaServices, Asistencia } from '../../../servicios/asistencia.service';
 import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
 

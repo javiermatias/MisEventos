@@ -93,14 +93,22 @@ Ver Evento -- Calendario -- Tomar Asistencia -- Dashboard
 
 Vista Socio
 ====================
-Mis Asistencias -- Calendario -- Cuotas/Matricula Pagas -- Eventos a los que estoy inscripto-- Dashboard 
+Mis Asistencias -- Calendario -- Cuotas/Matricula Pagas -- Eventos a los que estoy inscripto-- Mis Intereses Dashboard 
 
 
 
 15/7/2019
 En pagar Cuotas, ponerle fecha al evento.
 
+El admin puede crear Secretarias
+
+Cosas que estaban: Socios, Encargado, Espacios.
+
+Mostrarle al Profe: mejora nuevo evento en Wizard. Nuevo Pantalla de inscripciones.Nueva pantalla Matriculas, Nueva pantalla Matriculas.  Cobrar Cuota. 
+Mostrar asistencia 
 
 
-
+Falta: Reportes, Vista Socio, Vista Encargado
+Reportes de Pago de cuotas.
+Reportes de Asistencia.
 

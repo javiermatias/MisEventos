@@ -46,7 +46,7 @@ namespace Renacer.WebAPI.Controllers
         public void Put(int id, [FromBody]Usuario value)
         {
             var usuario = ControlUsuario.devolverInstancia().devolver(id);
-            value.fechaModificacion = DateTime.Now;
+            //value.fechaModificacion = DateTime.Now;
             ControlUsuario.devolverInstancia().grabar(value);
         }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { EventoServices, Evento, InscripcionServices, Inscripcion } from '../../../resources/evento.service';
-import { Socio } from '../../../resources/socio.service';
+import { EventoServices, Evento, InscripcionServices, Inscripcion } from '../../../servicios/evento.service';
+import { Socio } from '../../../servicios/socio.service';
 import { DatePipe } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';

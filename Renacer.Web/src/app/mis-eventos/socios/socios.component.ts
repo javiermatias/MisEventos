@@ -4,11 +4,11 @@ import { FormGroup } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { ToastrService, ToastrConfig } from 'ngx-toastr';
 import { DomicilioComponent } from './domicilio/domicilio.component';
-import { TipoDocumento } from '../../resources/tipo-documento.service';
+import { TipoDocumento } from '../../servicios/tipo-documento.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PersonaServices, Persona, Contacto, Domicilio } from '../../resources/persona.service';
-import { Socio, SocioServices } from '../../resources/socio.service';
-import { sexo, estadoCivil } from '../../models/enums';
+import { PersonaServices, Persona, Contacto, Domicilio } from '../../servicios/persona.service';
+import { Socio, SocioServices } from '../../servicios/socio.service';
+import { sexo, estadoCivil } from '../../modelos/enums';
 
 @Component({
   selector: 'az-socios',

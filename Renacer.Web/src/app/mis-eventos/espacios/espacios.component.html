@@ -39,30 +39,29 @@
                                     <tr>
                                         <!-- <th><mfDefaultSorter by="id">Id</mfDefaultSorter></th> -->
                                         <th>
-                                            <mfDefaultSorter by="nombre">Nombre</mfDefaultSorter>
+                                            <mfDefaultSorter by="nombre"><strong>Nombre</strong></mfDefaultSorter>
                                         </th>
                                         <th>
-                                            <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
+                                            <mfDefaultSorter by="descripcion"><strong>Descripción</strong></mfDefaultSorter>
                                         </th>
                                         <th>
-                                            <mfDefaultSorter by="fechaCreacion">Fecha Alta</mfDefaultSorter>
+                                            <mfDefaultSorter by="fechaCreacion"><strong>Estado</strong></mfDefaultSorter>
                                         </th>
                                         <th>
-                                            <mfDefaultSorter by="estado">Estado</mfDefaultSorter>
+                                            <mfDefaultSorter by="estado"><strong>Acción</strong></mfDefaultSorter>
                                         </th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let item of mf.data | SearchPipe : searchText">
-                                        <td><strong>{{item.nombre}}</strong></td>
-                                        <td>{{item.descripcion}}</td>
-                                        <td>{{item.fechaCreacion | date:'medium'}}</td>
+                                        <td>{{item.nombre}}</td>
+                                        <td>{{item.descripcion}}</td>                                       
                                         <td>
                                             <span class="alert-success" *ngIf="item.estado == 0">Activo</span>
                                             <span class="alert-danger" *ngIf="item.estado == 1">No disponible</span>
                                         </td>
-                                        <td><a style="color: #014c8c;cursor:pointer;" (click)="verItem(item)">ver</a>
+                                        <td><a style="color: #014c8c;cursor:pointer;" (click)="verItem(item)">Ver Detalle</a>
                                         <td>
                                     </tr>
                                     <tr *ngIf="(mf.data | SearchPipe : searchText).length === 0">
@@ -128,8 +127,7 @@
 
                                 <select class="form-control" id="idTipoEspacio" required #idTipoEspacio="ngModel"
                                     name="idTipoEspacio" [(ngModel)]="_espacio.idTipoEspacio">
-                                    <option value="1">Abierto</option>
-                                    <option value="2">Cerrado</option>
+                                    <option *ngFor="let tipo of tiposEspacio" [ngValue]="tipo.id">{{tipo.nombre}}</option>                                    
                                 </select>
 
                                 <div [hidden]="idTipoEspacio.valid || idTipoEspacio.pristine"
@@ -139,7 +137,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="nombre">descripcion</label>
+                                <label for="nombre">Descripción</label>
                                 <textarea type="text" class="form-control" id="descripcion" #descripcion="ngModel"
                                     name="descripcion" [(ngModel)]="_espacio.descripcion"></textarea>
                                 <span class="help-block">Aquí puedes agregar cualquier dato relevante del espacio
@@ -156,12 +154,12 @@
                     <div class="col-xl-3 col-lg-3 col-12">
                         <az-select-tags [listaTags]="_espacio.listaTags"></az-select-tags>
                     </div>
-                    <div > 
+ <!--                    <div > 
                             <li *ngFor="let item of _espacio.listaTags;">
                                     {{item.nombre}}
 
                             </li>
-                    </div>
+                    </div> -->
                 </div>
 
             </div>

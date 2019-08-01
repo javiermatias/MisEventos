@@ -1,8 +1,8 @@
 import {Component, ViewEncapsulation, OnInit} from '@angular/core';
 
 import {MessagesService} from './messages.service';
-import { RecordatorioServices, RecordatorioHoyServices, ActualizarEventoServices } from '../../../resources/recordatorio.service';
-import { Recordatorio } from '../../../models/recordatorio';
+import { RecordatorioServices, RecordatorioHoyServices, ActualizarEventoServices } from '../../../servicios/recordatorio.service';
+import { Recordatorio } from '../../../modelos/recordatorio';
 
 @Component({
     selector: 'az-messages',

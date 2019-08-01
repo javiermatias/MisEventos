@@ -2,8 +2,8 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, AbstractControl, FormBuilder, Validators} from '@angular/forms';
-import { UserServices } from '../../resources/users.service';
-import { RolServices, Rol } from '../../resources/rol.service';
+import { UserServices } from '../../servicios/users.service';
+import { RolServices, Rol } from '../../servicios/rol.service';
 import * as shajs from 'sha.js';
 @Component({
   selector: 'az-login',
@@ -26,7 +26,7 @@ export class LoginComponent {
    * @type {Rol[]}
    * @memberof LoginPComponent
    */
-  public rolesUsuario: Rol[] = [];
+  //public rolesUsuario: Rol[] = [];
   constructor(router: Router, fb: FormBuilder, private _usersService: UserServices, private _rolesService: RolServices) {
     // constructor(router:Router, fb:FormBuilder,private _usersService:UserServices) {
     this.router = router;
@@ -53,14 +53,16 @@ export class LoginComponent {
         if (result["result"] == "ok") {
 
           this._usersService.setCurrent(result["user"]);
-
+          this.router.navigate(['pages/dashboard']);
+/* 
           this.rolesUsuario = result["user"].roles;
           if (this.rolesUsuario && this.rolesUsuario.length === 1) { // si es mayor a 1 ya lo maneja el html
             this._rolesService.setCurrent(this.rolesUsuario[0]);
             this.router.navigate(['pages/dashboard']);
-          } else {
-            this.router.navigate(['sesion/seleccionarRol']);
-          }
+           } else {
+            //this.router.navigate(['sesion/seleccionarRol']);
+            this.router.navigate(['pages/dashboard']);
+          }  */ 
         } else {
           this.error = "Error en el usuario o contraseña";
         }

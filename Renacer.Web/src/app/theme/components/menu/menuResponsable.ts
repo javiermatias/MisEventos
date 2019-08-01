@@ -1,14 +1,14 @@
 export const itemsResponsable = [
- {
-    title: 'Eventos',
-    icon: 'fa-paper',
-    routerLink: 'evento/lista',
+  {
+    title: 'Calendario',
+    icon: 'fa-calendar',
+    routerLink: 'evento/calendario/',
     selected: false,
     expanded: false,
-    order: 800,
+    order: 100,
   },
   {
-    title: 'Socios',
+    title: 'Mis Cursos',
     routerLink: 'socios',
     icon: 'fa-users',
     selected: false,
@@ -16,12 +16,11 @@ export const itemsResponsable = [
     order: 500
   },
   {
-      title: 'Asistencia',
-      icon: 'fa-pencil-square-o',
-      selected: false,
-      expanded: false,
-      order: 800,
-      target: '_blank',
-      routerLink: 'asistencia/'
+    title: 'Asistencias',
+    icon: 'fa-pencil-square-o',
+    selected: false,
+    expanded: false,
+    order: 800,
+    routerLink: 'asistencia/'
   }
 ];

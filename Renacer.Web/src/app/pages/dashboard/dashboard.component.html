@@ -1,4 +1,4 @@
-<div class="row" *ngIf="user.rol == 'Administrador'">
+<div class="row" *ngIf="user.rol == 'ADMIN'">
 
   <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6 bottom-30">
     <div class="card small-info-box">
@@ -54,7 +54,7 @@
         <div class="media-body text-right">
           <h6 class="media-heading no-margin">ASISTENCIAS TOTALES</h6>
           <span *ngIf="cantAsistencias == -1"  class="fa fa-spin fa-spinner"></span>
-          <span *ngIf="cantAsistencias != -1">{{cantAsistencias}}</span>
+          <!-- <span *ngIf="cantAsistencias != -1">{{cantAsistencias}}</span> -->
         </div>
       </div>
     </div>

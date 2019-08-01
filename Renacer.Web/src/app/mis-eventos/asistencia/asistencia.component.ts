@@ -3,13 +3,13 @@ import { ActivatedRoute } from '@angular/router';
 import {FormGroup} from '@angular/forms';
 import {DatePipe} from '@angular/common' ;
 import { ToastrService, ToastrConfig } from 'ngx-toastr';
-import { EventoServices ,Evento,TipoEventoServices,TipoEvento,DetalleEvento,InscripcionServices,Inscripcion, DetalleEventoServices} from '../../resources/evento.service';
-import { EncargadoEvento,EncargadoEventoServices} from '../../resources/encargado.service';
-import { EspacioComun,EspacioServices} from '../../resources/espacio.service';
-import { AsistenciaServices,Asistencia} from '../../resources/asistencia.service';
-import { Socio} from '../../resources/socio.service';
-import { RolServices, Rol } from '../../resources/rol.service';
-import { Usuario, UserServices } from '../../resources/users.service';
+import { EventoServices ,Evento,TipoEventoServices,TipoEvento,DetalleEvento,InscripcionServices,Inscripcion, DetalleEventoServices} from '../../servicios/evento.service';
+import { EncargadoEvento,EncargadoEventoServices} from '../../servicios/encargado.service';
+import { EspacioComun,EspacioServices} from '../../servicios/espacio.service';
+import { AsistenciaServices,Asistencia} from '../../servicios/asistencia.service';
+import { Socio} from '../../servicios/socio.service';
+import { RolServices, Rol } from '../../servicios/rol.service';
+import { Usuario, UserServices } from '../../servicios/users.service';
 
 
 @Component({

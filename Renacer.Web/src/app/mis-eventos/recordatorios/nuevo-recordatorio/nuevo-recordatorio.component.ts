@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
-import { Recordatorio } from '../../../models/recordatorio';
-import { RecordatorioServices } from '../../../resources/recordatorio.service';
+import { Recordatorio } from '../../../modelos/recordatorio';
+import { RecordatorioServices } from '../../../servicios/recordatorio.service';
 import { ToastrService } from 'ngx-toastr/toastr/toastr-service';
 
 

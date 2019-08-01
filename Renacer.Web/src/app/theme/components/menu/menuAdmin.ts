@@ -1,6 +1,6 @@
 export const itemsAdmin = [
   {
-    title: 'Dashboard',
+    title: 'Principal',
     routerLink: 'dashboard',
     icon: 'fa-home',
     selected: false,
@@ -13,41 +13,89 @@ export const itemsAdmin = [
     routerLink: 'evento/calendario/',
     selected: false,
     expanded: false,
-    order: 800,
+    order: 100,
   },
   {
     title: 'Eventos',
     icon: 'fa-pencil-square-o',
-    routerLink: 'evento/lista',
+    routerLink: 'evento',
+    selected: false,
+    expanded: false,
+    order: 150,
+    subMenu: [
+      {
+        title: 'Ver Eventos',
+        routerLink: 'evento/lista'
+      },
+      {
+        title: 'Inscripciones',
+        routerLink: 'evento/inscripcion'
+      },
+      {
+        title: 'Cobrar cuotas',
+        routerLink: 'pago-cuota'
+      }
+
+    ]
+  },
+  {
+    title: 'Matricula',
+    icon: 'fa-thumb-tack',
+    routerLink: 'matricula',
+    selected: false,
+    expanded: false,
+    order: 150,
+    subMenu: [
+      {
+        title: 'Matriculas',
+        routerLink: 'matricula'
+      },
+      {
+        title: 'Cobrar Matricula',
+        routerLink: 'cobro-matricula'
+      },
+      {
+        title: 'Matricula Pagadas',
+        routerLink: 'pago-matricula'
+      },
+
+
+    ]
+  },
+  {
+    title: 'Recordatorios',
+    icon: 'fa-clock-o',
     selected: false,
     expanded: false,
     order: 800,
+    routerLink: 'recordatorios/'
+  }
+  ,
+  {
+    title: 'Socios',
+    icon: 'fa fa-user',
+    selected: false,
+    expanded: false,
+    order: 200,
+    routerLink: 'socios/'
   },
   {
-    title: 'Encargados de evento',
+    title: 'Encargados',
     routerLink: 'encargados/',
     icon: 'fa-users',
     selected: false,
     expanded: false,
-    order: 600
-  },
-  {
-    title: 'Socios',
-    routerLink: 'socios/',
-    icon: 'fa-users',
-    selected: false,
-    expanded: false,
-    order: 500,
+    order: 300
   },
   {
     title: 'Espacios',
     icon: 'fa-map-marker',
     selected: false,
     expanded: false,
-    order: 800,
+    order: 400,
     routerLink: 'espacios/'
-  }
-  ,{
+  }, 
+  {
     title: 'Reportes',
     routerLink: 'reportes',
     icon: 'fa-file',
@@ -68,7 +116,7 @@ export const itemsAdmin = [
       //   routerLink: 'reportes/encargados'
       // },
       {
-        title: 'Nube de Etiquetas',
+        title: 'Nube de Intereses',
         routerLink: 'reportes/tags'
       }
     ]

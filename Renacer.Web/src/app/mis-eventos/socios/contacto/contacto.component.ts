@@ -1,5 +1,5 @@
 import { Component, OnInit,Input } from '@angular/core';
-import {Contacto} from "../../../resources/socio.service";
+import {Contacto} from "../../../servicios/socio.service";
 
 @Component({
   selector: 'az-contacto',

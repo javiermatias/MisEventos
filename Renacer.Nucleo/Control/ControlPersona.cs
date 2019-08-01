@@ -137,14 +137,14 @@ namespace Renacer.Nucleo.Control
                     {
                         Rol rol = ControlRol.devolverInstacia().devolverTodos().Where(r => r.nombre== _persona.rol).FirstOrDefault();
                         roles.Add(rol);
-                        usuario.persona = _persona;
+                        //usuario.persona = _persona;
                         usuario.nombre = _persona.nombre;
                         usuario.usuario = _persona.nombre.Substring(0,2) + _persona.apellido + _persona.nroDocumento.Substring(_persona.nroDocumento.Length - 4, 3);
                         usuario.clave = _persona.nroDocumento;
                         usuario.rol = _persona.rol;
                         usuario.fechaCreacion = DateTime.Now;
                         usuario.email = _persona.email;
-                        usuario.roles = roles;
+                        //usuario.roles = roles;
                         ControlUsuario.devolverInstancia().grabar(usuario);
                     
                     }

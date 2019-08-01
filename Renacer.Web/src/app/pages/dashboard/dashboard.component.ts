@@ -1,10 +1,11 @@
 import { Component, ViewEncapsulation,OnInit } from '@angular/core';
 import { AppConfig } from "../../app.config";
 import { DashboardService } from './dashboard.service';
-import {ReporteServices} from '../../resources/reporte.service';
-import { UserServices } from '../../resources/users.service';
-import { RolServices } from '../../resources/rol.service';
-import { Rol } from '../../resources/rol.service';
+import {ReporteServices} from '../../servicios/reporte.service';
+import { UserServices } from '../../servicios/users.service';
+import { RolServices } from '../../servicios/rol.service';
+import { Rol } from '../../servicios/rol.service';
+import { roles } from '../../modelos/enums';
 
 @Component({
   selector: 'az-dashboard',
@@ -27,6 +28,7 @@ export class DashboardComponent  {
     public crecimientoSocios =[];
     public user : any;
     private rol: Rol;
+    //private _roles = roles;
     constructor(private _appConfig:AppConfig
         , private _reporteServ:ReporteServices
         ,private _userServices:UserServices,
@@ -38,11 +40,12 @@ export class DashboardComponent  {
     
     ngOnInit()
     {
-      this.rol = this._rolService.getCurrent();
+      //this.rol = this._rolService.getCurrent();
       this.user =  this._userServices.getCurrent();
-      if(this.rol.nombre == "Administrador") this.loadAdminData(); // TODO: actualizar esto. Debe verse por permisos y no por rol
-      if(this.rol.nombre == "Encargado") this.loadEncargadoData();
-      if(this.rol.nombre == "Socio") this.loadSocioData();
+      if(this.user.rol == "ADMIN") this.loadAdminData(); // TODO: actualizar esto. Debe verse por permisos y no por rol
+      if(this.user.rol == "ENCARGADO") this.loadEncargadoData();
+      if(this.user.rol == "SOCIO") this.loadSocioData();
+      if(this.user.rol == "SECRETARIO") this.loadSecretariaData();
     }
 
     public loadAdminData():void {
@@ -57,9 +60,9 @@ export class DashboardComponent  {
       this._reporteServ.getEntidadCount({"Entidad":"socios"},function(count){
           self.cantSocios = count.count;
       });
-      this._reporteServ.getEntidadCount({"Entidad":"asistencias"},function(count){
+    /*   this._reporteServ.getEntidadCount({"Entidad":"asistencias"},function(count){
           self.cantAsistencias = count.count;
-      });
+      }); */
       this._reporteServ.getEntidadCount({"Entidad":"encargados"},function(count){
           self.cantEncargados = count.count;
       });
@@ -80,5 +83,7 @@ export class DashboardComponent  {
 
 
     public loadSocioData():void{}
+
+    public loadSecretariaData():void{}
 
 }

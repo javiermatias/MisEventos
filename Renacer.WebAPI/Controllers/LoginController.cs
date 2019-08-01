@@ -28,13 +28,13 @@ namespace Renacer.WebAPI
                 //FormsAuthentication.SetAuthCookie(usuario.usuario, false);
                 var token = System.Guid.NewGuid().ToString().Replace("-", "");
 
-                usuario.fechaUltimoAcceso = DateTime.Now;
+               // usuario.fechaUltimoAcceso = DateTime.Now;
                 usuario.token = token;
                 ControlUsuario.devolverInstancia().grabar(usuario);
 
                 usuario.clave = "";
-                usuario.idGoogle = "";
-                usuario.idFacebook = "";
+               // usuario.idGoogle = "";
+               // usuario.idFacebook = "";
                 resp.Add("user", usuario);
                 resp["token"] = token;
                 resp["result"] = "ok";

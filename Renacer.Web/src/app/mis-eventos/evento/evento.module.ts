@@ -7,7 +7,7 @@ import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
 import { DataTableModule } from "angular2-datatable";
 import { ToastrModule } from 'ngx-toastr';
 import { PipesModule } from '../../theme/pipes/pipes.module';
-import { SharedModule } from '../../pages/shared/shared.module';
+import { SharedModule } from '../componentesCompartidos/shared.module';
 import { DetalleEventoComponent } from './detalle-evento.component';
 import { EventoComponent } from './evento.component';
 import { CalendarComponent } from './calendar.component';

@@ -1,8 +1,9 @@
 import { Component, OnInit , Input} from '@angular/core';
-import {EspacioComun,EspacioServices} from '../../resources/espacio.service';
+import {EspacioComun,EspacioServices} from '../../servicios/espacio.service';
 import {FormGroup} from '@angular/forms';
 import {DatePipe} from '@angular/common' ;
 import { ToastrService, ToastrConfig } from 'ngx-toastr';
+import { TipoEspacioServices, TipoEspacio } from './tipoEspacio/tipoEspacio.service';
 
 @Component({
   selector: 'az-espacios',
@@ -10,11 +11,12 @@ import { ToastrService, ToastrConfig } from 'ngx-toastr';
 })
 export class EspaciosComponent implements OnInit {
 
-  public _espacio = new EspacioComun(0,"","",0,0,10);
+  public _espacio = new EspacioComun(0,"","",0,0);
   @Input() espacios = new Array<EspacioComun>();
   public showDetail:boolean = false;
-
-  constructor(private _espacioService:EspacioServices,private mensajeServ: ToastrService) {
+  public tiposEspacio: TipoEspacio[] = [];
+  constructor(private _espacioService:EspacioServices,private mensajeServ: ToastrService,
+    private _tipoEspacioService:TipoEspacioServices) {
 
   }
 
@@ -28,11 +30,15 @@ export class EspaciosComponent implements OnInit {
       this.espacios = items;
     }
   );
+  this._tipoEspacioService.query({},(items:TipoEspacio[]) => {
+    this.tiposEspacio = items;
+  }
+);
 }
 
 onSubmit(myForm: FormGroup) {
   let newEspacio = Object.assign({}, this._espacio);
-  this._espacio = new EspacioComun(0,"","",0,0,10);
+  this._espacio = new EspacioComun(0,"","",0,0);
   // newEspacio.fechaCreacion = new Date();
   this.saveItem(newEspacio)
   myForm.reset();
@@ -45,11 +51,11 @@ verItem(item:EspacioComun){
   });
 }
 nuevoItem(){
-  this._espacio =  new EspacioComun(0,"","",0,0,10);
+  this._espacio =  new EspacioComun(0,"","",0,0);
   this.showDetail = true;
 }
 limpiarForm(){
-  this._espacio =  new EspacioComun(0,"","",0,0,10);
+  this._espacio =  new EspacioComun(0,"","",0,0);
   this.showDetail = false;
 }
 

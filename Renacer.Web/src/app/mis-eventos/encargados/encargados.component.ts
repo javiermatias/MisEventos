@@ -1,11 +1,11 @@
 import { Component, OnInit , Input} from '@angular/core';
-import {EncargadoEvento,EncargadoEventoServices} from '../../resources/encargado.service';
-import {Domicilio} from '../../resources/socio.service';
+import {EncargadoEvento,EncargadoEventoServices} from '../../servicios/encargado.service';
+import {Domicilio} from '../../servicios/socio.service';
 import {FormGroup} from '@angular/forms';
 import {DatePipe} from '@angular/common' ;
 import { ToastrService, ToastrConfig } from 'ngx-toastr';
 //import { TipoDocumentoComponent } from '../tipo-documento/tipo-documento.component';
-import { TipoDocumento } from '../../resources/tipo-documento.service';
+import { TipoDocumento } from '../../servicios/tipo-documento.service';
 
 @Component({
   selector: 'az-encargados',

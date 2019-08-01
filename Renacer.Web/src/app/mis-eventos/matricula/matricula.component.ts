@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterContentInit, OnChanges, Input } from '@angular/core';
-import { MatriculaServices } from '../../resources/matricula.service';
-import { Matricula } from '../../models/matricula';
+import { MatriculaServices } from '../../servicios/matricula.service';
+import { Matricula } from '../../modelos/matricula';
 import { Router } from '@angular/router';
 
 @Component({

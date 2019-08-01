@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { RecordatorioServices } from '../../resources/recordatorio.service';
-import { Recordatorio } from '../../models/recordatorio';
+import { RecordatorioServices } from '../../servicios/recordatorio.service';
+import { Recordatorio } from '../../modelos/recordatorio';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component({

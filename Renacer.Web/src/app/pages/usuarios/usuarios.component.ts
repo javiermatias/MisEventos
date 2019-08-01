@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Usuario, UserServices } from '../../resources/users.service';
-import { Contacto } from "../../resources/socio.service";
-import { TipoDocumento } from '../../resources/tipo-documento.service';
-import { RolServices, Rol } from '../../resources/rol.service';
+import { Usuario, UserServices } from '../../servicios/users.service';
+import { Contacto } from "../../servicios/socio.service";
+import { TipoDocumento } from '../../servicios/tipo-documento.service';
+import { RolServices, Rol } from '../../servicios/rol.service';
 import { ToastrService } from 'ngx-toastr';
-import { PersonaServices } from '../../resources/persona.service';
+import { PersonaServices } from '../../servicios/persona.service';
 // import { RolesEnum } from '../utils/enumerados'; // TODO: hay que actualizar a typescript 2.4 minimo para usar esto
 @Component({
   selector: 'az-usuarios',

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EventoServices ,Evento} from '../../../resources/evento.service';
+import { EventoServices ,Evento} from '../../../servicios/evento.service';
 
 @Component({
   selector: 'lista-eventos',

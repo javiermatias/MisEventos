@@ -2,8 +2,8 @@ import { Component, OnInit, ViewEncapsulation, ElementRef, HostListener } from '
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { MenuService } from './menu.service';
 import { AppState } from "../../../app.state";
-import { UserServices } from '../../../resources/users.service';
-import { RolServices } from '../../../resources/rol.service';
+import { UserServices } from '../../../servicios/users.service';
+import { RolServices } from '../../../servicios/rol.service';
 
 
 @Component({
@@ -16,10 +16,10 @@ import { RolServices } from '../../../resources/rol.service';
 
 export class MenuComponent implements OnInit {
     private roles = { // TODO: buscar enum 
-        administrador: 'Administrador del sistema',
-        secretario: 'Secretario',
-        encargadoEvento: 'Encargado',
-        socio: 'Socio'
+        administrador: 'ADMIN',
+        secretario: 'SECRETARIO',
+        encargadoEvento: 'ENCARGADO',
+        socio: 'SOCIO'
     };
     private todosRoles = [this.roles.administrador, this.roles.encargadoEvento, this.roles.secretario, this.roles.socio];
     public menuItems: Array<any>;
@@ -43,7 +43,7 @@ export class MenuComponent implements OnInit {
         private _rolesService: RolServices) {
 
         let user = this._userServices.getCurrent();
-        // this.menuItems = _menuService.getMenuItems(user.rol);
+        this.menuItems = _menuService.getMenuItems(user.rol);
         this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
             this.isMenuCollapsed = isCollapsed;
         });
@@ -61,12 +61,33 @@ export class MenuComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.rol = this._rolesService.getCurrent();
+/*         let user = this._userServices.getCurrent();
+        console.log(user);
+        console.log(user.rol);
+        switch (user.rol)  
+{  
+  case 'ADMIN' :  
+  this.rol=this.roles.administrador;  
+   
+  break;  
+  case 'SECRETARIO' :  
+  this.rol=this.roles.secretario;
+  console.log(this.rol);
+    break;  
+  
+    case 'ENCARGADO' :  
+    this.rol=this.roles.encargadoEvento;  
+      break;  
+      case 'SOCIO' :  
+      this.rol=this.roles.socio;  
+        break;  
+} */
+        //this.rol = this._rolesService.getCurrent();
         if (this._shouldMenuCollapse()) {
             this.menuCollapse();
         }
         this.updateSidebarHeight();
-        this.cargarItems();
+        //this.cargarItems();
     }
 
     @HostListener('window:resize')

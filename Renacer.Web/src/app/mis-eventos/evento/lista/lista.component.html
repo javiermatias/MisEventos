@@ -16,7 +16,7 @@
                         <div class="card-block widget-body">
                             <p class="no-margin">  </p>
                             <div class="w-200 pull-left bottom-15">
-                                <button style="margin-left: 20px;" class="btn btn-main" [routerLink]="['/pages/evento', 'nuevo']" >Nuevo Evento</button>
+                                <button style="margin-left: 20px;" class="btn btn-main" [routerLink]="['/pages/evento/evento-wizard']" >Nuevo Evento</button>
                             </div>
                             <div class="w-200 pull-right bottom-15">
                                 <div class="input-group input-group-sm">
@@ -30,23 +30,22 @@
                                     <thead>
                                         <tr>
                                             <!-- <th><mfDefaultSorter by="id">Id</mfDefaultSorter></th> -->
-                                            <th><mfDefaultSorter by="nombre">Nombre</mfDefaultSorter></th>
-                                            <th><mfDefaultSorter by="descripcion">Description</mfDefaultSorter></th>
-                                            <th><mfDefaultSorter by="fechaCreacion">Fecha Alta</mfDefaultSorter></th>
-                                            <th><mfDefaultSorter by="estado">Estado</mfDefaultSorter></th>
+                                            <th><mfDefaultSorter by="nombre"><strong>Nombre</strong></mfDefaultSorter></th>
+                                            <th><mfDefaultSorter by="descripcion"><strong>Descripción</strong></mfDefaultSorter></th>
+                                            <th><mfDefaultSorter by="fechaCreacion"><strong>Estado</strong></mfDefaultSorter></th>
+                                            <th><mfDefaultSorter by="estado"><strong>Acción</strong></mfDefaultSorter></th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let item of mf.data | SearchPipe : searchText">
-                                            <td><strong>{{item.nombre}}</strong></td>
-                                            <td>{{item.descripcion}}</td>
-                                            <td>{{item.fechaCreacion | date:'yyyy-MM-dd'}}</td>
+                                            <td>{{item.nombre}}</td>
+                                            <td>{{item.descripcion}}</td>                                            
                                             <td>
-                                              <span class="alert-success"  *ngIf="item.estado == 0">Activo</span>
-                                              <span class="alert-danger"  *ngIf="item.estado == 1">No disponible</span>
+                                              <span class="alert-success"  *ngIf="item.estado != 'Cancelado' && item.estado != 'Finalizado'">{{item.estado}}</span>
+                                              <span class="alert-danger"  *ngIf="item.estado == 'Cancelado'  || item.estado == 'Finalizado'">{{item.estado}}</span>
                                               </td>
-                                            <td><a style="color: #014c8c;cursor:pointer;" [routerLink]="['/pages/evento', item.id]"  >ver</a>
+                                            <td><a style="color: #014c8c;cursor:pointer;" [routerLink]="['/pages/evento', item.id]"  >Ver Detalle</a>
                                             <td>
                                         </tr>
                                         <tr *ngIf="(mf.data | SearchPipe : searchText).length === 0">

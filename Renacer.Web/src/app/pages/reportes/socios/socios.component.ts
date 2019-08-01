@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ReporteServices,FiltroReporte} from '../../../resources/reporte.service';
-import {Socio} from '../../../resources/socio.service';
+import {ReporteServices,FiltroReporte} from '../../../servicios/reporte.service';
+import {Socio} from '../../../servicios/socio.service';
 
 @Component({
   selector: 'reporte-socios',
