@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatriculaxsocioService } from '../../../resources/matriculaxsocio.service';
-import { MatriculaXsocio } from '../../../models/matricula-xsocio';
+import { MatriculaxsocioService } from '../../../servicios/matriculaxsocio.service';
+import { MatriculaXsocio } from '../../../modelos/matricula-xsocio';
 
 @Component({
   selector: 'az-matriculas-pagadas',

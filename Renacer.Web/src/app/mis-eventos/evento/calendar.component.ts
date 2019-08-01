@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation, Output, EventEmitter,OnInit } from '@angular/core';
 import { AppConfig } from "../../app.config";
 import 'style-loader!fullcalendar/dist/fullcalendar.min.css';
-import {DetalleEventoServices,DetalleEvento} from "../../resources/evento.service"
+import {DetalleEventoServices,DetalleEvento} from "../../servicios/evento.service"
 
 @Component({
   selector: 'az-calendar',

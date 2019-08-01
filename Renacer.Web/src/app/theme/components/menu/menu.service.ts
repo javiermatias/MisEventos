@@ -16,6 +16,7 @@ export class MenuService {
       case "SECRETARIO": menuItemsSelected = itemsSecretario;break;
       case "SOCIO": menuItemsSelected = itemsSocio;break;
       case "ENCARGADO": menuItemsSelected = itemsResponsable;break;
+      case "DASH": menuItemsSelected = menuItems;break;
       default: menuItemsSelected = menuItems;break;
     }
     return menuItemsSelected;

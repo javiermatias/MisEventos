@@ -9,7 +9,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 import { ToastrModule, ToastContainerModule  } from 'ngx-toastr';
 import { DirectivesModule } from '../theme/directives/directives.module';
 import { PipesModule } from '../theme/pipes/pipes.module';
-import { SharedModule } from './shared/shared.module';
+import { SharedModule } from '../mis-eventos/componentesCompartidos/shared.module';
 
 import { routing } from './pages.routing';
 import { PagesComponent } from './pages.component';

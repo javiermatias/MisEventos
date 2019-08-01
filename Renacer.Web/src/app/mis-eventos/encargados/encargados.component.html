@@ -30,21 +30,22 @@
                                 <thead>
                                     <tr>
                                         <!-- <th><mfDefaultSorter by="id">Id</mfDefaultSorter></th> -->
-                                        <th><mfDefaultSorter by="nombre">Nombre</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="apellido">Apellido</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="telefono">Telefono</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="fechaCreacion">Fecha Alta</mfDefaultSorter></th>
-                                        <th><mfDefaultSorter by="fechaCreacion">Fecha Modificacion</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="nombre"><strong>Nombre</strong></mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="apellido"><strong>Apellido</strong></mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="telefono"><strong>Dni</strong></mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="accion"><strong>Acción</strong></mfDefaultSorter></th>
+                                       <!--  <th><mfDefaultSorter by="fechaCreacion">Fecha Alta</mfDefaultSorter></th>
+                                        <th><mfDefaultSorter by="fechaCreacion">Fecha Modificacion</mfDefaultSorter></th> -->
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let item of mf.data | SearchPipe : searchText">
-                                        <td><strong>{{item.nombre}}</strong></td>
-                                        <td><strong>{{item.apellido}}</strong></td>
-                                        <td><strong>{{item.telefono}}</strong></td>
-                                        <td>{{item.fechaCreacion | date:'medium'}}</td>
-                                        <td>{{item.fechaModificacion | date:'medium'}}</td>
+                                        <td>{{item.nombre}}</td>
+                                        <td>{{item.apellido}}</td>
+                                        <td>{{item.nroDocumento}}</td>
+                                    <!--     <td>{{item.fechaCreacion | date:'medium'}}</td>
+                                        <td>{{item.fechaModificacion | date:'medium'}}</td> -->
                                         <td><a style="color: #014c8c;cursor:pointer;" (click)="verItem(item)">Ver detalle</a>
                                         <td>
                                     </tr>

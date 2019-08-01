@@ -1,8 +1,8 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { AppState } from '../../../app.state';
 import { SidebarService } from '../sidebar/sidebar.service';
-import { UserServices } from '../../../resources/users.service';
-import { RolServices } from '../../../resources/rol.service';
+import { UserServices } from '../../../servicios/users.service';
+import { RolServices } from '../../../servicios/rol.service';
 import { Router } from '@angular/router';
 
 @Component({

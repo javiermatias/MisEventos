@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { SocioServices, Socio } from '../../../../resources/socio.service';
+import { SocioServices, Socio } from '../../../../servicios/socio.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({

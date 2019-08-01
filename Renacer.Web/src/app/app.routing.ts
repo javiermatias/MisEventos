@@ -1,7 +1,7 @@
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 import { ErrorComponent } from './pages/error/error.component';
-import { AccessGuard } from './resources/accessGuard.service';
+import { AccessGuard } from './servicios/accessGuard.service';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'sesion', pathMatch: 'full' },

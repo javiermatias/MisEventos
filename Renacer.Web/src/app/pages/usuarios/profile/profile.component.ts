@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario,UserServices } from '../../../resources/users.service';
+import { Usuario,UserServices } from '../../../servicios/users.service';
 import { ToastrService, ToastrConfig } from 'ngx-toastr';
 import {FormGroup} from '@angular/forms';
 

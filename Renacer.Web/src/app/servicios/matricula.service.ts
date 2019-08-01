@@ -4,19 +4,14 @@ import { ResourceMethod } from 'ngx-resource/src/Interfaces';
 import { RequestMethod } from '@angular/http';
 import { BaseServices } from './base.service';
 import { Variables } from './variables';
-import { MatriculaXsocio } from '../models/matricula-xsocio';
-
+import { Matricula } from '../modelos/matricula';
 
 let variable = new Variables();
 
 @Injectable()
 @ResourceParams({
-    url: variable.urlBase + "matriculasocio/"
+    url: variable.urlBase + "matricula/"
 })
-
-
-export class MatriculaxsocioService extends BaseServices<MatriculaXsocio>{
-
-  
+export class MatriculaServices extends BaseServices<Matricula> {
 
 }

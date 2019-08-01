@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CloudData, CloudOptions } from 'angular-tag-cloud-module';
-import {ReporteServices,FiltroReporte} from '../../../resources/reporte.service';
+import {ReporteServices,FiltroReporte} from '../../../servicios/reporte.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 

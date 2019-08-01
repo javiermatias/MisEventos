@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { AppConfig } from "../../../app.config";
-import {ReporteServices} from '../../../resources/reporte.service';
+import {ReporteServices} from '../../../servicios/reporte.service';
 
 @Component({
   selector: 'az-socio-chart',

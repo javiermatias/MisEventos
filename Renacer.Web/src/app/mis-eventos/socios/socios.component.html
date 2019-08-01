@@ -34,19 +34,19 @@
                                     <tr>
                                         <!-- <th><mfDefaultSorter by="id">Id</mfDefaultSorter></th> -->
                                         <th>
-                                            <mfDefaultSorter by="nombre">Nombre</mfDefaultSorter>
+                                            <mfDefaultSorter by="nombre"><strong>Nombre</strong></mfDefaultSorter>
                                         </th>
                                         <th>
-                                            <mfDefaultSorter by="apellido">Apellido</mfDefaultSorter>
+                                            <mfDefaultSorter by="apellido"><strong>Apellido</strong></mfDefaultSorter>
                                         </th>
                                         <th>
-                                            <mfDefaultSorter by="nroDocumento">Dni</mfDefaultSorter>
+                                            <mfDefaultSorter by="nroDocumento"><strong>Dni</strong></mfDefaultSorter>
                                         </th>
                                         <th>
-                                            <mfDefaultSorter by="fechaCreacion">Estado</mfDefaultSorter>
+                                            <mfDefaultSorter by="fechaCreacion"><strong>Estado</strong></mfDefaultSorter>
                                         </th>
                                         <th>
-                                            <mfDefaultSorter by="fechaCreacion">Acción</mfDefaultSorter>
+                                            <mfDefaultSorter by="fechaCreacion"><strong>Acción</strong></mfDefaultSorter>
                                         </th>
                                         <th></th>
                                     </tr>
@@ -54,15 +54,15 @@
                                 <tbody>
                                     <tr *ngFor="let item of mf.data | SearchPipe : searchText">
                                         <!-- <td>{{item.id}}</td> -->
-                                        <td><strong>{{item.nombre}}</strong></td>
-                                        <td><strong>{{item.apellido}}</strong></td>
+                                        <td>{{item.nombre}}</td>
+                                        <td>{{item.apellido}}</td>
                                         <td>{{item.nroDocumento}}</td>
                                         <td>
                                             <span class="alert-success" *ngIf="item.estado == 'Activo'">Activo</span>
                                             <span class="alert-danger" *ngIf="item.estado == 'DebeMatricula'">Debe Matrícula</span>
                                         </td>
                                         <td>
-                                            <a style="color: #014c8c;cursor:pointer;" (click)="verItem(item)">Ver</a>
+                                            <a style="color: #014c8c;cursor:pointer;" (click)="verItem(item)">Ver detalle</a>
                                         <td>
                                     </tr>
                                     <tr *ngIf="(mf.data | SearchPipe : searchText).length === 0">

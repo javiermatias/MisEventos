@@ -1,4 +1,12 @@
 export const itemsSocio = [
+   {
+    title: 'Calendario',
+    icon: 'fa-calendar',
+    routerLink: 'evento/calendario/',
+    selected: false,
+    expanded: false,
+    order: 100,
+  },
   {
     title: 'Mis Datos',
     selected: false,
@@ -8,7 +16,7 @@ export const itemsSocio = [
     order: 800,
   },
   {
-    title: 'Mis Inscripciones',
+    title: 'Mis Asistencias',
     selected: false,
     routerLink: 'inscripciones',
     icon: 'fa-pencil',
@@ -25,6 +33,14 @@ export const itemsSocio = [
   },
   {
     title: 'Mis Pagos',
+    routerLink: 'pagos',
+    icon: 'fa-money',
+    selected: false,
+    expanded: false,
+    order: 500,
+  },
+  {
+    title: 'Donaciones',
     routerLink: 'pagos',
     icon: 'fa-money',
     selected: false,

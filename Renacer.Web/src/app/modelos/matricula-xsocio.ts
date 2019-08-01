@@ -1,5 +1,5 @@
 import { Matricula } from "./matricula";
-import { Socio } from "../resources/socio.service";
+import { Socio } from "../servicios/socio.service";
 
 export class MatriculaXsocio {
    

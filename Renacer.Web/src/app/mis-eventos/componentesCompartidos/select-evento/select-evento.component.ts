@@ -1,17 +1,28 @@
 import { Component, OnInit,Input,OnChanges } from '@angular/core';
-import {TipoEventoServices,TipoEvento} from '../../../resources/evento.service';
+import {EventoServices,Evento} from '../../../servicios/evento.service';
 
 @Component({
-  selector: 'select-tipo-evento',
-  templateUrl: './select-tipo-evento.component.html',
-  styleUrls: ['./select-tipo-evento.component.scss']
+  selector: 'select-evento',
+  template:`<div class="form-group">
+  <label>evento
+  </label>
+  <select class="form-control" id="select_item" (change)="actualizarItem()"
+  required #select_item="ngModel" name="select_item" [(ngModel)]="itemSelected">
+  <option *ngFor="let item of items;trackBy:item?.id" [ngValue]="item">{{item.nombre}}
+  </option>
+  </select>
+  <div [hidden]="select_item.valid || select_item.pristine" class="alert alert-danger">
+  Debe ingresar el Evento
+  </div>
+  </div>
+  `
 })
-export class SelectTipoEventoComponent implements OnInit {
+export class SelectEventoComponent implements OnInit {
 
-  @Input() item:TipoEvento;
-  public itemSelected:TipoEvento;
-  public items = new Array<TipoEvento>();
-  constructor(private _dbServices:TipoEventoServices) {
+  @Input() item:Evento;
+  public itemSelected:Evento;
+  public items = new Array<Evento>();
+  constructor(private _dbServices:EventoServices) {
   }
 
   ngOnInit() {
@@ -42,10 +53,12 @@ export class SelectTipoEventoComponent implements OnInit {
   }
 
   getItems(){
-    this._dbServices.query({},(items) => {
+    this._dbServices.query({
+      "search":""
+    },(items) => {
       this.items = [];
       for(var i = 0; i < items.length;i++){
-        var itemAux = new TipoEvento(0);
+        var itemAux = new Evento(0);
         itemAux.id = items[i].id;
         itemAux.nombre = items[i].nombre;
         this.items.push(itemAux);

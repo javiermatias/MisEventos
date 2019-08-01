@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ValidationService } from './ValidationService';
 import { FormGroup, FormBuilder, Validators, FormControl, ValidatorFn, AbstractControl } from '@angular/forms';
-import { TipoEventoServices, TipoEvento, Evento, EventoServices, Horario } from '../../../resources/evento.service';
-import { EspacioComun, EspacioServices } from '../../../resources/espacio.service';
+import { TipoEventoServices, TipoEvento, Evento, EventoServices, Horario } from '../../../servicios/evento.service';
+import { EspacioComun, EspacioServices } from '../../../servicios/espacio.service';
 import { _ } from 'core-js';
-import { EncargadoEventoServices, EncargadoEvento } from '../../../resources/encargado.service';
+import { EncargadoEventoServices, EncargadoEvento } from '../../../servicios/encargado.service';
 import { ToastrService } from 'ngx-toastr';
 
 
@@ -46,10 +46,10 @@ export class EventoWizardComponent implements OnInit {
     this.horarios= new Array<Horario>();
 
     this.steps = [
-      {name: 'Evento', icon: 'fa-home', active: false, valid: false, hasError:false },
+      {name: 'Evento', icon: 'fa-home', active: true, valid: false, hasError:false },
       {name: 'Detalles', icon: 'fa-pencil-square-o', active: false, valid: false, hasError:false },
       {name: 'Fechas', icon: 'fa-calendar', active: false, valid: false, hasError:false },
-      {name: 'Confirmación', icon: 'fa-check-square-o', active: true, valid: false, hasError:false }
+      {name: 'Confirmación', icon: 'fa-check-square-o', active: false, valid: false, hasError:false }
     ]
 
     this.eventoForm = this.formBuilder.group({

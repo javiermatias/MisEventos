@@ -2,8 +2,8 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, AbstractControl, FormBuilder, Validators} from '@angular/forms';
-import { UserServices } from '../../resources/users.service';
-import { RolServices, Rol } from '../../resources/rol.service';
+import { UserServices } from '../../servicios/users.service';
+import { RolServices, Rol } from '../../servicios/rol.service';
 import * as shajs from 'sha.js';
 @Component({
   selector: 'az-login',

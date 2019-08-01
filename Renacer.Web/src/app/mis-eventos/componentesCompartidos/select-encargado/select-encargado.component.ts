@@ -1,5 +1,5 @@
 import { Component, OnInit,Input,OnChanges } from '@angular/core';
-import {EncargadoEventoServices,EncargadoEvento} from '../../../resources/encargado.service';
+import {EncargadoEventoServices,EncargadoEvento} from '../../../servicios/encargado.service';
 
 
 @Component({

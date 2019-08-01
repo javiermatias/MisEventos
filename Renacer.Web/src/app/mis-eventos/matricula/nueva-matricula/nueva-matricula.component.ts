@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Matricula } from '../../../models/matricula';
+import { Matricula } from '../../../modelos/matricula';
 import { ToastrService } from 'ngx-toastr';
-import { MatriculaServices } from '../../../resources/matricula.service';
+import { MatriculaServices } from '../../../servicios/matricula.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';

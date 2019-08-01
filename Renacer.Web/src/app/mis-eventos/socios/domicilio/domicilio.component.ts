@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Domicilio } from '../../../resources/persona.service';
+import { Domicilio } from '../../../servicios/persona.service';
 
 @Component({
   selector: 'az-domicilio',

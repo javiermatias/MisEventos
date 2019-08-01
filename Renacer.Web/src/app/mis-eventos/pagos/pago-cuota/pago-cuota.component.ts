@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IMultiSelectSettings, IMultiSelectTexts, IMultiSelectOption } from 'angular-2-dropdown-multiselect';
-import { Socio, SocioServices } from '../../../resources/socio.service';
+import { Socio, SocioServices } from '../../../servicios/socio.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import { InscripcionServices, Inscripcion, Evento, PagoServices, Pago } from '../../../resources/evento.service';
+import { InscripcionServices, Inscripcion, Evento, PagoServices, Pago } from '../../../servicios/evento.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

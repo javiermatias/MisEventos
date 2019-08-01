@@ -43,7 +43,7 @@
                                 <tbody>
                                     <tr *ngFor="let item of mf.data | SearchPipe : searchText">
                                         <td><strong>{{item.nombre}}</strong></td>
-                                        <td><a style="color: #014c8c;cursor:pointer;" (click)="verItem(item)">ver</a>
+                                        <td><a style="color: #014c8c;cursor:pointer;" (click)="verItem(item)">Ver</a>
                                         <td>
                                     </tr>
                                     <tr *ngIf="(mf.data | SearchPipe : searchText).length === 0">

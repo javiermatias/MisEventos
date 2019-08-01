@@ -1,5 +1,5 @@
 import { Component, OnInit,Input,OnChanges } from '@angular/core';
-import {EspacioServices,EspacioComun} from '../../../resources/espacio.service';
+import {EspacioServices,EspacioComun} from '../../../servicios/espacio.service';
 
 @Component({
   selector: 'select-espacio',

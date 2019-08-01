@@ -2,8 +2,8 @@ import { Component, OnInit, ViewEncapsulation, ElementRef, HostListener } from '
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { MenuService } from './menu.service';
 import { AppState } from "../../../app.state";
-import { UserServices } from '../../../resources/users.service';
-import { RolServices } from '../../../resources/rol.service';
+import { UserServices } from '../../../servicios/users.service';
+import { RolServices } from '../../../servicios/rol.service';
 
 
 @Component({

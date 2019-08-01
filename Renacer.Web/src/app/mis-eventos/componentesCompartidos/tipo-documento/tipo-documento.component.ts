@@ -1,5 +1,5 @@
 import { Component, OnInit,Input,OnChanges,Output,EventEmitter } from '@angular/core';
-import {TipoDocumentoServices,TipoDocumento} from '../../../resources/tipo-documento.service';
+import {TipoDocumentoServices,TipoDocumento} from '../../../servicios/tipo-documento.service';
 
 @Component({
   selector: 'az-tipo-documento',

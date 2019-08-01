@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RolServices, Rol } from '../../resources/rol.service';
+import { RolServices, Rol } from '../../servicios/rol.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 

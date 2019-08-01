@@ -1,11 +1,11 @@
 import { Component, ViewEncapsulation,OnInit } from '@angular/core';
 import { AppConfig } from "../../app.config";
 import { DashboardService } from './dashboard.service';
-import {ReporteServices} from '../../resources/reporte.service';
-import { UserServices } from '../../resources/users.service';
-import { RolServices } from '../../resources/rol.service';
-import { Rol } from '../../resources/rol.service';
-import { roles } from '../../models/enums';
+import {ReporteServices} from '../../servicios/reporte.service';
+import { UserServices } from '../../servicios/users.service';
+import { RolServices } from '../../servicios/rol.service';
+import { Rol } from '../../servicios/rol.service';
+import { roles } from '../../modelos/enums';
 
 @Component({
   selector: 'az-dashboard',
@@ -60,9 +60,9 @@ export class DashboardComponent  {
       this._reporteServ.getEntidadCount({"Entidad":"socios"},function(count){
           self.cantSocios = count.count;
       });
-      this._reporteServ.getEntidadCount({"Entidad":"asistencias"},function(count){
+    /*   this._reporteServ.getEntidadCount({"Entidad":"asistencias"},function(count){
           self.cantAsistencias = count.count;
-      });
+      }); */
       this._reporteServ.getEntidadCount({"Entidad":"encargados"},function(count){
           self.cantEncargados = count.count;
       });
