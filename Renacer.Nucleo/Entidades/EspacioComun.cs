@@ -15,22 +15,16 @@ namespace Renacer.Nucleo
         public string nombre { get; set; }
         public string descripcion { get; set; }
         public Int32 capacidad { get; set; }
-        public DateTime fechaCreacion { get; set; }
-        public DateTime? fechaBaja { get; set; }
-        public DateTime? fechaModificacion { get; set; }
-        // public int idTipoEspacio { get; set; }
-        
         public int idTipoEspacio { get; set; }
         [ForeignKey("idTipoEspacio")]
         public TipoEspacio tipoEspacio { get; set; }
 
-
-        public int estado { get; set; }
+        public int estado { get; set; } //Activo //1 No disponible
 
         public List<Tag> listaTags { get; set; }
 
-        //public int idDomicilio { get; set; }
-        //[ForeignKey("idDomicilio")]
-        //public Domicilio domicilio { get; set; }
+        public DateTime fechaCreacion { get; set; }
+        public DateTime? fechaBaja { get; set; }
+        public DateTime? fechaModificacion { get; set; }
     }
 }
