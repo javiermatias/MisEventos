@@ -10,7 +10,7 @@ import { PipesModule } from '../../theme/pipes/pipes.module';
 import { SharedModule } from '../componentesCompartidos/shared.module';
 import { DetalleEventoComponent } from './detalle-evento.component';
 import { EventoComponent } from './evento.component';
-import { CalendarComponent } from './calendar.component';
+import { CalendarComponent } from './calendario/calendar.component';
 import { ListaComponent } from './lista/lista.component';
 import { EventoWizardComponent } from './evento-wizard/evento-wizard.component';
 import { ReactiveFormsModule } from '@angular/forms';

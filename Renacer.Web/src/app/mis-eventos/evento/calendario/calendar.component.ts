@@ -1,7 +1,8 @@
 import { Component, ViewEncapsulation, Output, EventEmitter,OnInit } from '@angular/core';
-import { AppConfig } from "../../app.config";
+import { AppConfig } from "../../../app.config";
 import 'style-loader!fullcalendar/dist/fullcalendar.min.css';
-import {DetalleEventoServices,DetalleEvento} from "../../servicios/evento.service"
+import {DetalleEventoServices,DetalleEvento} from "../../../servicios/evento.service"
+import { EspacioServices, EspacioComun } from '../../../servicios/espacio.service';
 
 @Component({
   selector: 'az-calendar',
@@ -21,6 +22,8 @@ export class CalendarComponent {
   public search:string ="";
   public fechaDesde:Date = new Date();
   public fechaHasta:Date = new Date();
+  public espacios = new Array<EspacioComun>();
+  public _espacio = new EspacioComun(0,"","",0,0);
   @Output() nuevoItemEvent:EventEmitter<string> = new EventEmitter();
 
   nuevoItem() {
@@ -50,6 +53,7 @@ export class CalendarComponent {
       "fechaDesde":this.fechaDesde,
       "fechaHasta":this.fechaHasta
     },(items) => {
+      console.log(items);
       this.calendarOptions.events = [];
 
       for(var i = 0; i < items.length;i++){
@@ -64,7 +68,10 @@ export class CalendarComponent {
           backgroundColor: color,
           textColor: this.config.colors.default,
           id:items[i].id,
-          idEvento:items[i].idEvento
+          idEvento:items[i].idEvento,
+          dia:items[i].dia,
+          encargado: items[i].descripcion,
+          aula:items[i].espacio.nombre
         }
         this.calendarOptions.events.push(itemAux);
       }
@@ -79,7 +86,7 @@ export class CalendarComponent {
     return result;
   }
 
-  constructor(private _appConfig:AppConfig,private detalleEventServ:DetalleEventoServices) {
+  constructor(private _appConfig:AppConfig,private detalleEventServ:DetalleEventoServices, private _espacioService:EspacioServices) {
     this.config = this._appConfig.config;
     this.configFn = this._appConfig;
 
@@ -172,13 +179,60 @@ addEvent(event): void {
 };
 
 ngOnInit(): void {
-  this.fechaDesde = new Date('2017-08-01')
-  this.fechaHasta = new Date('2020-08-01')
+  this.fechaDesde = new Date('2017-08-01');
+  this.fechaHasta = new Date('2020-08-01');
+  this.getEspacios();
   this.CargarEventos();
 
 
   // jQuery('.draggable').draggable(this.dragOptions);
 
+}
+
+getEspacios(){
+  this._espacioService.query({},(items:EspacioComun[]) => {
+    this.espacios = items;
+  }
+);
+}
+
+
+cambioAula(){
+  this.cargarEventosxAula(this._espacio.id);
+  console.log(this._espacio.id);
+}
+
+
+
+cargarEventosxAula(_idEspacio:number){
+  this.detalleEventServ.query({
+    "fechaDesde":this.fechaDesde,
+    "fechaHasta":this.fechaHasta,
+    "idEspacio":_idEspacio
+  },(items) => {
+    console.log(items);
+    this.calendarOptions.events = [];
+
+    for(var i = 0; i < items.length;i++){
+
+      var color = this.getEventoColor(items[i].idEvento); 
+
+      var itemAux = {
+        title: items[i].nombre,
+        start: items[i].fechaDesde,
+        end: items[i].fechaHasta,
+        allDay: false,
+        backgroundColor: color,
+        textColor: this.config.colors.default,
+        id:items[i].id,
+        idEvento:items[i].idEvento
+      }
+      this.calendarOptions.events.push(itemAux);
+    }
+
+    this.$calendar = jQuery('#calendar');
+    this.$calendar.fullCalendar(this.calendarOptions);
+  });
 }
 
 }

@@ -14,7 +14,17 @@
             <div class="card-block widget-body row">
                 <div class="col-xl-12 col-lg-12 col-12">
                     <div class="card-block">
-                            
+    <!--                     <div class="form-group">
+                            <label for="idTipoEspacio">Filtrar por Aula: </label>
+                      
+
+                            <select class="form-control" id="idTipoEspacio" 
+                                name="idTipoEspacio" [(ngModel)]="_espacio.id" (change)="cambioAula($event.target.value)">                                
+                                <option *ngFor="let espacio of espacios" [ngValue]="espacio.id">{{espacio.nombre}}</option>                                    
+                            </select>
+
+                           
+                        </div> -->
                         <div id="calendar" lang="es" ></div>
 
                             <div class="modal fade" id="show-event-modal">
@@ -25,8 +35,9 @@
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                         </div>
                                         <div class="modal-body">
-                                            <p><i class="fa fa-calendar"></i> &nbsp; {{ event.start | date: 'dd-MM-yyyy' }}</p>
-                                            <p *ngIf="event.description">{{ event.description }}</p>
+                                            <p><i class="fa fa-calendar"></i> &nbsp;{{event.dia}} {{ event.start | date: 'dd-MM-yyyy' }}</p>
+                                            <p>Encargado: {{event.encargado}}</p>
+                                            <p>Aula: {{event.aula}}</p>
                                         </div>
                                         <div class="modal-footer">
                                           <button type="button" class="btn btn-info btn-sm" [routerLink]="['/pages/evento/', event.idEvento,'detalle',event.id]" >VER DETALLE</button>

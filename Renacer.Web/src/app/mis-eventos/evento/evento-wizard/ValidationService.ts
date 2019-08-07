@@ -61,6 +61,22 @@ export class ValidationService {
         }
        }
     }
+    static fechaMenorHoyValidador(_fechaDesde: string, _fechaHasta: string) {
+        return (group) => {
+           // console.log('pasa por el validador?');
+            //let fechadesde= group.controls[_fechaDesde].value;
+            let fechahasta= group.controls[_fechaHasta].value;
+            let fecha = group.controls[_fechaHasta];         
+            if (fechahasta){                   
+                console.log(_fechaDesde);
+                console.log(fechahasta);
+                if (_fechaDesde > fechahasta) {
+                console.log("esta mal");
+                return fecha.setErrors({fechaMayor: true})
+            }
+        }
+       }
+    }
      
 
 /*     static rangosValidador(): ValidatorFn {
@@ -88,16 +104,16 @@ export class ValidationService {
         };
     }
 
-    static fechaMenorHoyValidador(fecha: Date): ValidatorFn {
+/*     static fechaMenorHoyValidador(fecha: Date): ValidatorFn {
         return (control: AbstractControl): { [key: string]: boolean } | null => {
-            if (control.value !== undefined && (isNaN(control.value) || control.value <moment().format("MMM Do YY"))) {
+            if (control.value !== undefined && (isNaN(control.value) || control.value < moment().format("MMM Do YY"))) {
               //  console.log("valide por true");
                 return { 'min': true };
             }
             //console.log("valide por false");
             return null;
         };
-    }
+    } */
 
     static maxValidador(max: number): ValidatorFn {
         return (control: AbstractControl): { [key: string]: boolean } | null => {
