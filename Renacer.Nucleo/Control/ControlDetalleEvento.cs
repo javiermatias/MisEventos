@@ -159,8 +159,34 @@ namespace Renacer.Nucleo.Control
             {
                 using (var db = new ModeloRenacer())
                 {
-                    return db.detalleEvento
+                    return db.detalleEvento.
+                        Include("espacio").
+                        Include("responsable")
                         .Where(ev => ev.fechaDesde >= fechaDesde && ev.fechaDesde <= fechaHasta && ev.fechaBaja == null)
+                        .ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                ServicioSentry.devolverSentry().informarExcepcion(ex);
+            }
+            return null;
+        }
+
+
+        /// <summary>
+        /// Metodo utilizado para devolver todos los DetalleEvento por Aula
+        /// SELECT * FROM DetalleEvento
+        /// </summary>
+        /// <returns></returns>
+        public List<DetalleEvento> devolverTodos(DateTime fechaDesde, DateTime fechaHasta, Int32 _idEvento)
+        {
+            try
+            {
+                using (var db = new ModeloRenacer())
+                {
+                    return db.detalleEvento
+                        .Where(ev => ev.fechaDesde >= fechaDesde && ev.fechaDesde <= fechaHasta && ev.fechaBaja == null && ev.idEvento ==_idEvento)
                         .ToList();
                 }
             }

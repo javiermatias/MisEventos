@@ -452,29 +452,37 @@
 
                     <form *ngIf="step.name=='Fechas'" [formGroup]="fechaForm" class="row">
                         <div class="form-group col-md-5"
-                            [ngClass]="{'has-danger' : step.hasError && fechaForm.get('fechaDesde').hasError('required'), 'has-success' : !fechaForm.get('fechaDesde').hasError('required') }">
+                            [ngClass]="{'has-danger' : step.hasError && (fechaForm.get('fechaDesde').hasError('required') || fechaForm.get('fechaDesde').hasError('fechaMayor')), 'has-success' : !fechaForm.get('fechaDesde').hasError('required') && !fechaForm.get('fechaDesde').hasError('fechaMayor') }">
                             <label class="form-control-label">Fecha inicio evento: </label>
 
-                            <input formControlName="fechaDesde" class="form-control" [ngClass]="{'form-control-danger' :  fechaForm.get('fechaDesde').hasError('required'), 
-                                'form-control-success' :  !fechaForm.get('fechaDesde').hasError('required') }"
+                            <input formControlName="fechaDesde" class="form-control" [ngClass]="{'form-control-danger' :  fechaForm.get('fechaDesde').hasError('required') 
+                            || fechaForm.get('fechaDesde').hasError('fechaMayor') , 
+                                'form-control-success' :  !fechaForm.get('fechaDesde').hasError('required') && !fechaForm.get('fechaDesde').hasError('fechaMayor') }"
                                 type="date">
 
                             <span class="help-block text-danger"
                                 *ngIf="step.hasError && fechaForm.get('fechaDesde').hasError('required')">La fecha desde
                                 es
                                 requerida</span>
+
+                                <span class="help-block text-danger"
+                                *ngIf="step.hasError && fechaForm.get('fechaDesde').hasError('fechaMayor')">La fecha no puede ser menor a la fecha de hoy.
+                            </span>
                         </div>
 
                         <div class="form-group col-md-5"
                             [ngClass]="{'has-danger' : step.hasError && fechaForm.get('fechaHasta').hasError('required')
-                    ||  (step.hasError && fechaForm.get('fechaHasta').hasError('fechaError'))
-                    , 'has-success' : !fechaForm.get('fechaHasta').hasError('required')  && !fechaForm.get('fechaHasta').hasError('fechaError')  }">
+                    ||  (step.hasError && fechaForm.get('fechaHasta').hasError('fechaError') || (fechaForm.get('fechaHasta').hasError('fechaMayor')))
+                    , 'has-success' : !fechaForm.get('fechaHasta').hasError('required')  && !fechaForm.get('fechaHasta').hasError('fechaError') 
+                
+                    &&  !fechaForm.get('fechaHasta').hasError('fechaMayor')}">
                             <label class="form-control-label">Fecha fin evento: </label>
 
                             <input formControlName="fechaHasta" class="form-control"
                                 [ngClass]="{'form-control-danger' : fechaForm.get('fechaHasta').hasError('required') 
-                            || fechaForm.get('fechaHasta').hasError('fechaError'),
-                            'form-control-success' :  !fechaForm.get('fechaHasta').hasError('required') || !fechaForm.get('fechaHasta').hasError('fechaError') }"
+                            || fechaForm.get('fechaHasta').hasError('fechaError') || fechaForm.get('fechaHasta').hasError('fechaMayor'),
+                            'form-control-success' :  !fechaForm.get('fechaHasta').hasError('required') || !fechaForm.get('fechaHasta').hasError('fechaError') 
+                            ||  !fechaForm.get('fechaHasta').hasError('fechaMayor') }"
                                 type="date">
 
                             <span class="help-block text-danger"
@@ -489,7 +497,9 @@
                             fechaForm.get('fechaHasta').hasError('fechaError')">Fecha fin tiene que ser mas grande que
                                     fecha inicio </span>
 
-
+                                    <span class="help-block text-danger"
+                                    *ngIf="step.hasError && fechaForm.get('fechaHasta').hasError('fechaMayor')">La fecha no puede ser menor a la fecha de hoy.
+                                </span>
 
                             </ng-template>
 
@@ -617,42 +627,7 @@
                             </div>
                         </div>
 
-                    <!--     <div>
-
-                            <button (click)="guardar()">Guardar</button>
-
-                        </div> -->
-
-
-
-
-
-
-                        <!--     <div class="form-group col-md-5"
-                [ngClass]="{'has-danger' : step.hasError && fechaForm.get('fechaDesdeInscripcion').hasError('required'), 
-                'has-success' : !fechaForm.get('fechaDesdeInscripcion').hasError('required') }">
-                <label class="form-control-label">Fecha inicio inscripciones: </label>
-               
-                    <input formControlName="fechaDesdeInscripcion" class="form-control"
-                        [ngClass]="{'form-control-danger' :  fechaForm.get('fechaDesdeInscripcion').hasError('required'), 'form-control-success' :  !fechaForm.get('fechaDesdeInscripcion').hasError('required') }"
-                        type="date">
-               
-                <span class="help-block text-danger"
-                    *ngIf="step.hasError && fechaForm.get('fechaDesdeInscripcion').hasError('required')">La fecha inicio inscripción es requerida</span>
-            </div>
-
-            <div class="form-group col-md-5"
-            [ngClass]="{'has-danger' : step.hasError && fechaForm.get('fechaHastaInscripcion').hasError('required'), 'has-success' : !fechaForm.get('fechaHastaInscripcion').hasError('required') }">
-            <label class="form-control-label">Fecha fin inscripciones: </label>
-           
-                <input formControlName="fechaHastaInscripcion" class="form-control"
-                    [ngClass]="{'form-control-danger' :  fechaForm.get('fechaHastaInscripcion').hasError('required'), 'form-control-success' :  !fechaForm.get('fechaHastaInscripcion').hasError('required') }"
-                    type="date">
-           
-            <span class="help-block text-danger"
-                *ngIf="step.hasError && fechaForm.get('fechaHastaInscripcion').hasError('required')">La fecha fin inscripción es requerida</span>
-        </div> -->
-
+              
 
 
 
