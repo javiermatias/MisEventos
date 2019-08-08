@@ -8,7 +8,10 @@ namespace Renacer.Nucleo.Migrations
         public override void Up()
         {
             //AddColumn("dbo.Persona", "Tag_id", c => c.Int());
+
+            DropColumn("dbo.Asistencia", "idDetalleEvento");
             AddColumn("dbo.Asistencia", "idDetalleEvento", c => c.Int());
+
             AlterColumn("dbo.Asistencia", "idDetalleEvento", c => c.Int(nullable: false));
             CreateIndex("dbo.Asistencia", "idDetalleEvento");
             AddForeignKey("dbo.Asistencia", "idDetalleEvento", "dbo.DetalleEvento", "id", cascadeDelete: true);
