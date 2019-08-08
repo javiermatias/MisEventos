@@ -3,6 +3,7 @@ import { AppConfig } from "../../../app.config";
 import 'style-loader!fullcalendar/dist/fullcalendar.min.css';
 import {DetalleEventoServices,DetalleEvento} from "../../../servicios/evento.service"
 import { EspacioServices, EspacioComun } from '../../../servicios/espacio.service';
+import { CalendarioServices } from '../../../servicios/calendario.service';
 
 @Component({
   selector: 'az-calendar',
@@ -86,7 +87,9 @@ export class CalendarComponent {
     return result;
   }
 
-  constructor(private _appConfig:AppConfig,private detalleEventServ:DetalleEventoServices, private _espacioService:EspacioServices) {
+  constructor(private _appConfig:AppConfig,private detalleEventServ:DetalleEventoServices, 
+    private _espacioService:EspacioServices,
+    private _calendarioService:CalendarioServices ) {
     this.config = this._appConfig.config;
     this.configFn = this._appConfig;
 
@@ -102,6 +105,9 @@ export class CalendarComponent {
         right: 'month,agendaWeek,agendaDay,listMonth'
       },
       defaultView:"agendaWeek",
+      minTime: "07:00:00",
+      maxTime: "23:00:00",
+      allDaySlot: false,
       events: [ ],
       eventColor: this.config.colors.info,
       selectable: true,
@@ -181,8 +187,10 @@ addEvent(event): void {
 ngOnInit(): void {
   this.fechaDesde = new Date('2017-08-01');
   this.fechaHasta = new Date('2020-08-01');
-  this.getEspacios();
-  this.CargarEventos();
+  //this.getEspacios();
+  //this.CargarEventos();
+  this.cargarEventos();
+  //this.cargarCalendario();
 
 
   // jQuery('.draggable').draggable(this.dragOptions);
@@ -197,18 +205,25 @@ getEspacios(){
 }
 
 
-cambioAula(){
+/* cambioAula(){
   this.cargarEventosxAula(this._espacio.id);
   console.log(this._espacio.id);
+} */
+
+cargarCalendario(){
+  this._calendarioService.query({
+    "fechaDesde":this.fechaDesde,
+    "fechaHasta":this.fechaHasta
+  },(items) => {
+    console.log(items);
+    
+  });
 }
 
-
-
-cargarEventosxAula(_idEspacio:number){
-  this.detalleEventServ.query({
+cargarEventos(){
+  this._calendarioService.query({
     "fechaDesde":this.fechaDesde,
-    "fechaHasta":this.fechaHasta,
-    "idEspacio":_idEspacio
+    "fechaHasta":this.fechaHasta
   },(items) => {
     console.log(items);
     this.calendarOptions.events = [];
@@ -216,16 +231,20 @@ cargarEventosxAula(_idEspacio:number){
     for(var i = 0; i < items.length;i++){
 
       var color = this.getEventoColor(items[i].idEvento); 
-
+      let titulo =  items[i].nombre + "-" +  items[i].aula;
       var itemAux = {
-        title: items[i].nombre,
+        title: titulo,
         start: items[i].fechaDesde,
         end: items[i].fechaHasta,
+        id:items[i].id,
+        idEvento:items[i].idEvento,
+        encargado:items[i].encargado,
+        aula:items[i].aula,
+        descripcion:items[i].descripcion,
+        dia:items[i].dia,
         allDay: false,
         backgroundColor: color,
-        textColor: this.config.colors.default,
-        id:items[i].id,
-        idEvento:items[i].idEvento
+        textColor: this.config.colors.default,        
       }
       this.calendarOptions.events.push(itemAux);
     }

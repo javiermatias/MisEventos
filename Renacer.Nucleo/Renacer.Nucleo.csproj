@@ -92,11 +92,9 @@
     <Compile Include="Control\ControlMatricula.cs" />
     <Compile Include="Control\ControlMatriculaXSocio.cs" />
     <Compile Include="Control\ControlPagoCuota.cs" />
-    <Compile Include="Control\ControlPersona.cs" />
     <Compile Include="Control\ControlRecordatorio.cs" />
     <Compile Include="Control\ControlReporte.cs" />
     <Compile Include="Control\ControlDetalleEvento.cs" />
-    <Compile Include="Control\ControlRol.cs" />
     <Compile Include="Control\ControlTipoEspacio.cs" />
     <Compile Include="Control\ControlTipoEvento.cs" />
     <Compile Include="Control\ControlEvento.cs" />
@@ -108,6 +106,7 @@
     <Compile Include="Control\ControlEspacioComun.cs" />
     <Compile Include="Control\ControlCliente.cs" />
     <Compile Include="Entidades\Asistencia.cs" />
+    <Compile Include="Entidades\Calendario.cs" />
     <Compile Include="Entidades\Cliente.cs" />
     <Compile Include="Entidades\Contacto.cs" />
     <Compile Include="Entidades\Cuota.cs" />
@@ -121,9 +120,7 @@
     <Compile Include="Entidades\Matricula.cs" />
     <Compile Include="Entidades\MatriculaXSocio.cs" />
     <Compile Include="Entidades\Pago.cs" />
-    <Compile Include="Entidades\Persona.cs" />
     <Compile Include="Entidades\Recordatorio.cs" />
-    <Compile Include="Entidades\Rol.cs" />
     <Compile Include="Entidades\Socio.cs" />
     <Compile Include="Entidades\Tag.cs" />
     <Compile Include="Entidades\TipoDocumento.cs" />
@@ -189,6 +186,10 @@
     <Compile Include="Migrations\201907270500071_cambiosPersona1.cs" />
     <Compile Include="Migrations\201907270500071_cambiosPersona1.Designer.cs">
       <DependentUpon>201907270500071_cambiosPersona1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908070422350_quitadoRolyPersona.cs" />
+    <Compile Include="Migrations\201908070422350_quitadoRolyPersona.Designer.cs">
+      <DependentUpon>201908070422350_quitadoRolyPersona.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
@@ -260,6 +261,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907270500071_cambiosPersona1.resx">
       <DependentUpon>201907270500071_cambiosPersona1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908070422350_quitadoRolyPersona.resx">
+      <DependentUpon>201908070422350_quitadoRolyPersona.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

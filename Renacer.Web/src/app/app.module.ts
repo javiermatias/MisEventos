@@ -27,6 +27,7 @@ import { MatriculaServices } from './servicios/matricula.service';
 import { MatriculaxsocioService } from './servicios/matriculaxsocio.service';
 import { DragulaModule } from 'ng2-dragula';
 import { RecordatorioServices, RecordatorioHoyServices,ActualizarEventoServices } from './servicios/recordatorio.service';
+import { CalendarioServices } from './servicios/calendario.service';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { RecordatorioServices, RecordatorioHoyServices,ActualizarEventoServices 
     RecordatorioHoyServices,
     ActualizarEventoServices,
     PagoServices,
+    CalendarioServices,
     DatePipe],
   bootstrap: [AppComponent]
 })

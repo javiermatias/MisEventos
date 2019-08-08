@@ -197,6 +197,44 @@ namespace Renacer.Nucleo.Control
             return null;
         }
 
+
+        public List<Calendario> devolverTodosCalendario(DateTime fechaDesde, DateTime fechaHasta)
+        {
+            try
+            {
+                List<Calendario> listaCalendario = new List<Calendario>();
+                using (var db = new ModeloRenacer())
+                {
+                    List<DetalleEvento> listaDetalle = db.detalleEvento.
+                        Include("espacio").
+                        Include("responsable")
+                        .Where(ev => ev.fechaDesde >= fechaDesde && ev.fechaDesde <= fechaHasta && ev.fechaBaja == null)
+                        .ToList();
+                    foreach (var item in listaDetalle)
+                    {
+                        Calendario itemCalendario = new Calendario();
+                        itemCalendario.id = item.id;
+                        itemCalendario.nombre = item.nombre;
+                        itemCalendario.descripcion = item.descripcion;
+                        itemCalendario.idEvento = item.idEvento;
+                        itemCalendario.dia = item.dia;
+                        itemCalendario.fechaDesde = item.fechaDesde;
+                        itemCalendario.fechaHasta = item.fechaHasta;
+                        itemCalendario.aula = item.espacio.nombre;
+                        itemCalendario.encargado = item.responsable.nombre + " " + item.responsable.apellido;
+                        listaCalendario.Add(itemCalendario);
+                    }
+
+                    return listaCalendario;
+                }
+            }
+            catch (Exception ex)
+            {
+                ServicioSentry.devolverSentry().informarExcepcion(ex);
+            }
+            return null;
+        }
+
         /// <summary>
         /// Metodo utilizado para eliminar un detalleEvento.
         /// TODO: El metodo se tiene que cambiar para actualizar un atributo del detalleEvento 
