@@ -19,6 +19,13 @@ namespace Renacer.WebAPI.Controllers
 
         }
 
+        public IEnumerable<DetalleEvento> Get([FromUri]DateTime fechaDesde, [FromUri]DateTime fechaHasta, [FromUri]Int32 idEspacio)
+        {
+            IEnumerable<DetalleEvento> detalle = ControlDetalleEvento.devolverInstancia().devolverTodos(fechaDesde, fechaHasta, idEspacio);
+            return detalle;
+
+        }
+
         public IEnumerable<DetalleEvento> GetAsistencias([FromUri]int idEvento, [FromUri]int idEncargado)
         {
             IEnumerable<DetalleEvento> detalle = ControlDetalleEvento.devolverInstancia().devolverTodosXEncargado(idEvento, idEncargado);

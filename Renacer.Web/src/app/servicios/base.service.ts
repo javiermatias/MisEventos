@@ -16,6 +16,7 @@ interface IQueryInput {
   idEvento?: number;
   idSocio?: number;
   idEncargado?:number;
+  idEspacio?:number;
   id?: number;
   rol?: string;
   estado?: string;

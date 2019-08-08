@@ -6,6 +6,7 @@ import { EspacioComun, EspacioServices } from '../../../servicios/espacio.servic
 import { _ } from 'core-js';
 import { EncargadoEventoServices, EncargadoEvento } from '../../../servicios/encargado.service';
 import { ToastrService } from 'ngx-toastr';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -37,18 +38,22 @@ export class EventoWizardComponent implements OnInit {
   horarios:Horario[];
   contador:number =0;
 
+  fechaHoy = new Date();
+  //fecha:Date;
+
   public diaSemanas:string[] = ["Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"];
 
   constructor(private formBuilder: FormBuilder,
     private tipoEventoServ:TipoEventoServices ,private _eventoService:EventoServices,
     private tipoEspacioSer:EspacioServices, private encargadoServ:EncargadoEventoServices,
-    private mensajeServ: ToastrService) {
+    private mensajeServ: ToastrService,
+    private datePipe: DatePipe) {
     this.horarios= new Array<Horario>();
 
     this.steps = [
-      {name: 'Evento', icon: 'fa-home', active: true, valid: false, hasError:false },
+      {name: 'Evento', icon: 'fa-home', active: false, valid: false, hasError:false },
       {name: 'Detalles', icon: 'fa-pencil-square-o', active: false, valid: false, hasError:false },
-      {name: 'Fechas', icon: 'fa-calendar', active: false, valid: false, hasError:false },
+      {name: 'Fechas', icon: 'fa-calendar', active: true, valid: false, hasError:false },
       {name: 'Confirmación', icon: 'fa-check-square-o', active: false, valid: false, hasError:false }
     ]
 
@@ -105,6 +110,8 @@ export class EventoWizardComponent implements OnInit {
         'expiryyear': ['', Validators.required] */
     }, { validator: Validators.compose([
         ValidationService.fechasValidador('fechaDesde','fechaHasta'), 
+        ValidationService.fechaMenorHoyValidador(this.datePipe.transform(this.fechaHoy,'yyyy-MM-dd'),'fechaDesde'),
+        ValidationService.fechaMenorHoyValidador(this.datePipe.transform(this.fechaHoy,'yyyy-MM-dd'),'fechaHasta'),
          ValidationService.fechasValidador('fechaDesdeInscripcion','fechaHastaInscripcion')
 ])       }); 
  /*    { validator: Validators.compose([
