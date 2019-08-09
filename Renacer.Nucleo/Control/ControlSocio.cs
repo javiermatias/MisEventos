@@ -150,6 +150,10 @@ namespace Renacer.Nucleo.Control
                 db.socio.AddOrUpdate(_socio);
                 //ControlMatriculaXSocio.devolverInstacia().
                 Matricula matricula = ControlMatricula.devolverInstacia().devolverMatriculaActiva();
+                if (matricula == null) {
+                    return;
+                }
+
                 db.Entry(matricula).State = System.Data.Entity.EntityState.Modified;
                 MatriculaXSocio matriculaxsocio = new MatriculaXSocio()
                 {
