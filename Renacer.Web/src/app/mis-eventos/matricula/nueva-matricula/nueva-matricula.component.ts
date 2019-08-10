@@ -5,6 +5,7 @@ import { MatriculaServices } from '../../../servicios/matricula.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -16,31 +17,40 @@ export class NuevaMatriculaComponent implements OnInit {
   matricula:Matricula;
   anioActual:string;
   id:number= 0;
-
+  matriculas: Matricula[];
   constructor(private _matriculaService:MatriculaServices, 
     private mensajeServ: ToastrService,
-    private router: Router, private route: ActivatedRoute) { }
+    private router: Router, private route: ActivatedRoute, private datePipe: DatePipe) { }
 
   ngOnInit() {
     this.anioActual=new Date().getFullYear().toString();
     this.matricula = new Matricula();
+    this.getItems();
 
-    this.id = Number(this.route.snapshot.params['id']);
+    /* this.id = Number(this.route.snapshot.params['id']);
     if(this.id != 0){
       //console.log('si no es un nuevo elemento');
       this.getByID();
     
-     }
+     } */
   }
 
   onSubmit() {
     this.matricula.anio = new Date();
+
+    for (let matricula of this.matriculas) {
+      if(this.anioActual == this.datePipe.transform(matricula.anio,'yyyy')){
+        this.mensajeServ.error('Ya existe la matrícula de este año', 'Aviso!');
+        return;
+      }
+   }
+  
     //función asincrónica, puede tardar varios segundos   
     this._matriculaService.save(this.matricula,(resp:Matricula) => {
        //Callback
          this.mensajeServ.success('Se han guardado los cambios!', 'Aviso!');
          this.volver();
-    });
+    }); 
     
   }
 
@@ -50,7 +60,14 @@ export class NuevaMatriculaComponent implements OnInit {
   }
 
 
+  getItems() {
 
+    this._matriculaService.query({}, (items: Matricula[]) => {
+      this.matriculas = items;
+    });
+
+
+  }
   getByID(){
     this._matriculaService.get({ "id": this.id }, (resp: Matricula) => {
       this.matricula = resp;

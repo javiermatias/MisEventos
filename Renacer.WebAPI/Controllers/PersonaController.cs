@@ -11,55 +11,55 @@ namespace Renacer.WebAPI.Controllers
 {
     public class PersonaController : ApiController
     {
-        // GET: api/Personas
-        public IEnumerable<Persona> GetAll([FromUri]string rol)
-        {
-            //if (page <= 0) page = 1;
-            //if (limit <= 0) limit = 10;
+        //GET: api/Personas
+        //public IEnumerable<Persona> GetAll([FromUri]string rol)
+        //{
+        //    if (page <= 0) page = 1;
+        //    if (limit <= 0) limit = 10;
 
-            return ControlPersona.devolverInstancia().devolverTodos(rol);
-        }
+        //    return ControlPersona.devolverInstancia().devolverTodos(rol);
+        //}
 
-        // GET: api/Personas/5
-        public Persona Get(int id)
-        {
-            return ControlPersona.devolverInstancia().devolver(id);
-        }
+        //GET: api/Personas/5
+        //public Persona Get(int id)
+        //{
+        //    return ControlPersona.devolverInstancia().devolver(id);
+        //}
 
-        // POST: api/cliente
-        public IHttpActionResult Post([FromBody]Persona value)
-        {
-            try
-            {
-                if (value.id == 0) value.fechaCreacion = DateTime.Now;
-                int id = ControlPersona.devolverInstancia().grabar(value);
-                value = Get(id);
-                //value.id = id;
-                return Ok(value);
-            }
-            catch (UsuarioException ex)
-            {
-                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.BadRequest, ex.errores));
-            }
-        }
+        //POST: api/cliente
+        //public IHttpActionResult Post([FromBody]Persona value)
+        //{
+        //    try
+        //    {
+        //        if (value.id == 0) value.fechaCreacion = DateTime.Now;
+        //        int id = ControlPersona.devolverInstancia().grabar(value);
+        //        value = Get(id);
+        //        value.id = id;
+        //        return Ok(value);
+        //    }
+        //    catch (UsuarioException ex)
+        //    {
+        //        throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.BadRequest, ex.errores));
+        //    }
+        //}
 
-        // PUT: api/cliente/5
-        public void Put(int id, [FromBody]Persona value)
-        {
-            var socio = ControlPersona.devolverInstancia().devolver(id);
-            //value.fechaModificacion = DateTime.Now;
-            ControlPersona.devolverInstancia().grabar(value);
-        }
+        //PUT: api/cliente/5
+        //public void Put(int id, [FromBody]Persona value)
+        //{
+        //    var socio = ControlPersona.devolverInstancia().devolver(id);
+        //    value.fechaModificacion = DateTime.Now;
+        //    ControlPersona.devolverInstancia().grabar(value);
+        //}
 
-        // DELETE: api/ApiCliente/5
-        public void Delete(int id)
-        {
-            var socio = ControlPersona.devolverInstancia().devolver(id);
-            socio.fechaBaja = DateTime.Now;
-            ControlPersona.devolverInstancia().grabar(socio);
+        //DELETE: api/ApiCliente/5
+        //public void Delete(int id)
+        //{
+        //    var socio = ControlPersona.devolverInstancia().devolver(id);
+        //    socio.fechaBaja = DateTime.Now;
+        //    ControlPersona.devolverInstancia().grabar(socio);
 
-            //ControlPersona.devolverInstancia().eliminar(id);
-        }
+        //    ControlPersona.devolverInstancia().eliminar(id);
+        //}
 
     }
 }

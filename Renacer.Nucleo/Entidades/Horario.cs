@@ -15,5 +15,7 @@ namespace Renacer.Nucleo.Entidades
 
         public string horaHasta { get; set; }
 
+        //public int espacio { get; set; } // va indicar el aula a la que esta asignada
+
     }
 }
