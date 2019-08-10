@@ -191,6 +191,14 @@
     <Compile Include="Migrations\201908070422350_quitadoRolyPersona.Designer.cs">
       <DependentUpon>201908070422350_quitadoRolyPersona.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908080418492_agregadoCambioHorario.cs" />
+    <Compile Include="Migrations\201908080418492_agregadoCambioHorario.Designer.cs">
+      <DependentUpon>201908080418492_agregadoCambioHorario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908080425339_agregadoCambioHorario1.cs" />
+    <Compile Include="Migrations\201908080425339_agregadoCambioHorario1.Designer.cs">
+      <DependentUpon>201908080425339_agregadoCambioHorario1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
     <Compile Include="myMigrationSQLGenerator.cs" />
@@ -264,6 +272,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908070422350_quitadoRolyPersona.resx">
       <DependentUpon>201908070422350_quitadoRolyPersona.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908080418492_agregadoCambioHorario.resx">
+      <DependentUpon>201908080418492_agregadoCambioHorario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908080425339_agregadoCambioHorario1.resx">
+      <DependentUpon>201908080425339_agregadoCambioHorario1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
