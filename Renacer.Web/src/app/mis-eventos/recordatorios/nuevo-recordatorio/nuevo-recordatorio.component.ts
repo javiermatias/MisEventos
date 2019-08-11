@@ -1,8 +1,7 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { Recordatorio } from '../../../modelos/recordatorio';
 import { RecordatorioServices } from '../../../servicios/recordatorio.service';
-import { ToastrService } from 'ngx-toastr/toastr/toastr-service';
-
+import { ToastrService } from 'ngx-toastr/toastr/toastr-service'; 
 
 @Component({
   selector: 'az-nuevo-recordatorio',

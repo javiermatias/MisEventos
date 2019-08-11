@@ -1,9 +1,5 @@
-<div class="row">
-  <div class="col">
-      <a (click)="printPDF()">Imprimir</a>
-  </div>
-</div>
-<div class="row">
+
+<div class="row" *ngIf="!showModalCobro">
   <div class="col-xl-12 col-lg-12 col-12 bottom-30">
     <div class="row">
       <div class="col">
@@ -57,7 +53,7 @@
                     <td>{{item.nombre}} {{item.apellido}} </td>
                     <td>{{item.nroDocumento}} </td>
                     <td *ngIf="item.estado == 'DebeMatricula'; else other_content">
-                       <button type="button" class="btn .btn-outline-success btn-rounded" (click)="cobrar(item)">Cobrar</button>
+                       <button type="button" class="btn .btn-outline-success btn-rounded" (click)="abrirModalCobro(item)">Cobrar</button>
                     <td>
                         <ng-template #other_content><td></td></ng-template>
                   </tr>
@@ -83,3 +79,58 @@
   </div>
 
 </div>
+
+  
+    <div class="row"  *ngIf="showModalCobro">
+        <div class="col-xl-12 col-lg-12 col-12 bottom-30">
+          <div widget class="card">
+            <div class="card-header">
+              <span>Pago de matricula</span>
+              <div class="widget-controls">
+                <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
+                <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
+                <a data-widgster="fullscreen" href="#" class="transition"><i class="fa fa-expand"></i></a>
+                <a data-widgster="restore" href="#" class="transition"><i class="fa fa-compress"></i></a>
+                <!-- <a data-widgster="close" href="#" class="transition"><i class="fa fa-times"></i></a> -->
+              </div>
+            </div>
+            <div class="card-block widget-body">
+              <div class="row">
+                <div class="col-xl-9 col-lg-9 col-12">
+                    <div class="form-group" #imprimirPDF>
+                         <p>
+                           Socio: {{socioSeleccionado?.nombre}} {{socioSeleccionado?.apellido}}
+                           <br><br>
+                          DNI {{socioSeleccionado?.nroDocumento}} 
+                          </p> 
+                      <div> 
+                          <table style="width:600px">
+                            <thead>
+                              <tr>
+                                <th colspan="2">Comprobante de pago</th>
+                              </tr>
+                              <tr>
+                                  <th>Descripción</th>
+                                  <th>Monto</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>Matricula para el año {{matricula?.anio | date: 'yyyy'}}</td>
+                                <td><strong>${{matricula?.valor}}</strong></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                      </div>
+                    </div>
+      
+                    <button class="btn btn-main" (click)="cobrar()">Confirmar Pago</button>
+      
+                    <button (click)="showModalCobro=false;" type="button" style="margin-left: 30px;"
+                      class="btn btn-default">Cancelar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>

@@ -23,6 +23,13 @@ namespace Renacer.WebAPI.Controllers
             return ControlMatricula.devolverInstacia().devolver(id);
         }
 
+        [Route("api/matricula/activa")]
+        [HttpGet]
+        public Matricula GetActual()
+        {
+            return ControlMatricula.devolverInstacia().devolverMatriculaActiva();
+        }
+
         // POST: api/cliente
         public IHttpActionResult Post([FromBody]Matricula value)
         {
