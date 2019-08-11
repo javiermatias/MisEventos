@@ -36,8 +36,9 @@
                                         </div>
                                         <div class="modal-body">
                                             <p><i class="fa fa-calendar"></i> &nbsp;{{event.dia}} {{ event.start | date: 'dd-MM-yyyy' }}</p>
+                                            <p>Descripción: {{event.descripcion}}</p>
                                             <p>Encargado: {{event.encargado}}</p>
-                                            <p>Aula: {{event.aula}}</p>
+                                            <p>Espacio: {{event.aula}}</p>
                                         </div>
                                         <div class="modal-footer">
                                           <button type="button" class="btn btn-info btn-sm" [routerLink]="['/pages/evento/', event.idEvento,'detalle',event.id]" >VER DETALLE</button>

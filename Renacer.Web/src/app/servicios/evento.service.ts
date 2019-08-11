@@ -118,7 +118,8 @@ export class Horario
     public  dia?: string,
     public dayOfWeek?: string,
     public horaDesde?: string,
-    public horaHasta?: string
+    public horaHasta?: string,
+    //public espacio?: number
   ){}
    
 

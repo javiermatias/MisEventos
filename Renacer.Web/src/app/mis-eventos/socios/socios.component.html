@@ -124,7 +124,7 @@
                                                                 <label for="nombre">Nombre</label>
                                                                 <input type="text" class="form-control" id="nombre"
                                                                     required #nombre="ngModel" name="nombre"
-                                                                    [(ngModel)]="_persona.nombre">
+                                                                    [(ngModel)]="_socio.nombre">
                                                                 <div [hidden]="nombre.valid || nombre.pristine"
                                                                     class="alert alert-danger">
                                                                     Debe ingresar el nombre
@@ -134,7 +134,7 @@
                                                                 <label for="nombre">Apellido</label>
                                                                 <input type="text" class="form-control" id="apellido"
                                                                     required #apellido="ngModel" name="apellido"
-                                                                    [(ngModel)]="_persona.apellido">
+                                                                    [(ngModel)]="_socio.apellido">
                                                                 <div [hidden]="apellido.valid || apellido.pristine"
                                                                     class="alert alert-danger">
                                                                     Debe ingresar el apellido
@@ -142,7 +142,7 @@
                                                             </div>
                                                             <div class="row">
 
-                                                                <az-tipo-documento [tipoDoc]="_persona.tipoDoc">
+                                                                <az-tipo-documento [tipoDoc]="_socio.tipoDoc">
                                                                 </az-tipo-documento>
 
                                                                 <div class="col">
@@ -151,7 +151,7 @@
                                                                             documento</label>
                                                                         <input class="form-control" id="nroDocParam1"
                                                                             #nroDocParam1="ngModel" name="nroDocParam1"
-                                                                            [(ngModel)]="_persona.nroDocumento">
+                                                                            [(ngModel)]="_socio.nroDocumento">
                                                                     </div>
                                                                 </div>
 
@@ -161,7 +161,7 @@
                                                                     <div class="form-group">
                                                                         <label for="input-2">Género</label>
                                                                         <select class="form-control" id="sexo"
-                                                                            name="sexo" [(ngModel)]="_persona.sexo">
+                                                                            name="sexo" [(ngModel)]="_socio.sexo">
                                                                             <option *ngFor="let sex of _sexo" [value]="sex.nombre">{{sex.nombre}}</option>                                                                          
                                                                         </select>
                                                                     </div>
@@ -172,7 +172,7 @@
                                                                         <label for="input-2">Estado civil</label>
                                                                         <select class="form-control" id="estadoCivil"
                                                                             name="estadoCivil"
-                                                                            [(ngModel)]="_persona.estadoCivil">
+                                                                            [(ngModel)]="_socio.estadoCivil">
                                                                             <option *ngFor="let civil of _estadoCivil" [value]="civil.nombre">{{civil.nombre}}</option> 
                                                                         </select>
                                                                     </div>
@@ -183,24 +183,24 @@
                                                             <div class="form-group">
                                                                 <label for="input-2">Email</label>
                                                                 <input type="text" class="form-control" id="email"
-                                                                    name="email" [(ngModel)]="_persona.email">
+                                                                    name="email" [(ngModel)]="_socio.email">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="input-2">Teléfono</label>
                                                                 <input type="text" class="form-control" id="telefono"
-                                                                    name="telefono" [(ngModel)]="_persona.telefono">
+                                                                    name="telefono" [(ngModel)]="_socio.telefono">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="input-2">Celular</label>
                                                                 <input type="text" class="form-control" id="celular"
-                                                                    name="celular" [(ngModel)]="_persona.celular">
+                                                                    name="celular" [(ngModel)]="_socio.celular">
                                                             </div>
 
                                                             <div class="form-group">
                                                                 <label for="input-2">Fecha Nacimiento</label>
                                                                 <input #fecha type="date" class="form-control"
                                                                     id="fechaNacimiento" name="fechaNacimiento"
-                                                                    [ngModel]="_persona.fechaNacimiento  | date:'yyyy-MM-dd'"
+                                                                    [ngModel]="_socio.fechaNacimiento  | date:'yyyy-MM-dd'"
                                                                     (ngModelChange)="actualizarFecha(fecha.value)">
                                                             </div>
                                                         </div>
@@ -212,15 +212,15 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col col-lg-12" *ngIf="_persona.domicilio">
-                                            <az-domicilio [_domicilio]="_persona.domicilio">
+                                        <div class="col col-lg-12" *ngIf="_socio.domicilio">
+                                            <az-domicilio [_domicilio]="_socio.domicilio">
                                             </az-domicilio>
                                         </div>
                                     </div>
 
                                     <div class="row">
-                                        <div class="col col-lg-12" *ngIf="_persona.contacto">
-                                            <az-contacto [_contacto]="_persona.contacto">
+                                        <div class="col col-lg-12" *ngIf="_socio.contacto">
+                                            <az-contacto [_contacto]="_socio.contacto">
                                             </az-contacto>
                                         </div>
                                     </div>
@@ -229,7 +229,7 @@
                                     <button (click)="limpiarForm();" type="button" style="margin-left: 30px;"
                                         class="btn btn-default">Cancelar</button>
 
-                                    <button style="margin-left: 30px;" *ngIf="_persona.id > 0" class="btn btn-danger"
+                                    <button style="margin-left: 30px;" *ngIf="_socio.id > 0" class="btn btn-danger"
                                         (click)="eliminarItem(_socio)">Dar de baja <i
                                             class="fa fa-trash"></i></button>
                                 </form>
@@ -261,7 +261,7 @@
                                     <div class="form-group">
                                         <label for="nombre">Nombre</label>
                                         <input type="text" class="form-control" id="nombre" required #nombre="ngModel"
-                                            name="nombre" [(ngModel)]="_persona.nombre">
+                                            name="nombre" [(ngModel)]="_socio.nombre">
                                         <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
                                             Debe ingresar el nombre
                                         </div>
@@ -269,7 +269,7 @@
                                     <div class="form-group">
                                         <label for="nombre">Apellido</label>
                                         <input type="text" class="form-control" id="apellido" required
-                                            #apellido="ngModel" name="apellido" [(ngModel)]="_persona.apellido">
+                                            #apellido="ngModel" name="apellido" [(ngModel)]="_socio.apellido">
                                         <div [hidden]="apellido.valid || apellido.pristine" class="alert alert-danger">
                                             Debe ingresar el apellido
                                         </div>

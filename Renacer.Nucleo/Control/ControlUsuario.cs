@@ -70,7 +70,7 @@ namespace Renacer.Nucleo.Control
             {
                 using (var db = new ModeloRenacer())
                 {
-                    List<Rol> listroles = new List<Rol>();
+                    
 
                     Usuario _usuario = db.usuario.ToList().
                     Where(x => x.usuario.Equals(usuario) && x.clave.Equals(clave)).FirstOrDefault();

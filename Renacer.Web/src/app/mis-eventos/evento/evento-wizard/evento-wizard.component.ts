@@ -453,7 +453,7 @@ agregarHorario(){
     horario.dia=this.fechaForm.value.dia;
     horario.horaDesde=this.fechaForm.value.horaInicio;
     horario.horaHasta=this.fechaForm.value.horaFin;
-
+    //horario.espacio = this.eventoForm.value.tipoEspacio.id;
     this.horarios.push(horario);
 
     //console.log('hola puchero');
