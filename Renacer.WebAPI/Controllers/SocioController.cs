@@ -54,15 +54,17 @@ namespace Renacer.WebAPI.Controllers
             }
         }
 
-        [Route("api/socio/pagoMatricula")]
+        [Route("api/socio/{idSocio}/matricula")]
         [HttpPost]
-        public IHttpActionResult PostPagaMatricula([FromBody]Socio value)
+        public IHttpActionResult PostPagaMatricula([FromUri]int idSocio,[FromBody] Matricula matricula)
         {
             try
             {
-                //if (value.id == 0) value.fechaCreacion = DateTime.Now;
-                ControlSocio.devolverInstancia().actualizarSocioPagoMatricula(value);
-                return Ok(value);
+                var socio = ControlSocio.devolverInstancia().devolver(idSocio);
+                if (socio == null) return NotFound();
+
+                ControlSocio.devolverInstancia().actualizarSocioPagoMatricula(socio);
+                return Ok(socio);
             }
             catch (UsuarioException ex)
             {

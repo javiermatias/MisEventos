@@ -168,26 +168,25 @@ namespace Renacer.Nucleo.Control
         public List<Dictionary<string, object>> GetTagsPorSocios(filterSocio filtro)
         {
             var DbHelper = new DBBase(strConnection);
-            var sql = @"SELECT
+            var sql = String.Format(@"SELECT
 	ts.Tag_id as 'id',
     t.nombre,
 	COUNT(ts.Tag_id) as 'cantidad'
 FROM
-	tagsocios ts INNER JOIN tags t on t.id = ts.Tag_id
+	{0} ts INNER JOIN tags t on t.id = ts.Tag_id
 WHERE
 	ts.Socio_id IN (
 		SELECT
 			s.id AS 'Socio_id'
         FROM
-            socio s {filtro_socio}
+            socio s {1}
 	)
 GROUP BY
-    ts.Tag_id";
-
-            sql = sql.Replace("{filtro_socio}", filtro.getFilterSqlSocio());
+    ts.Tag_id",
+    "sociotags",
+    filtro.getFilterSqlSocio());
 
             var tabla = DbHelper.ExecuteDataTable(sql);
-
             return Helper.Helper.ConvertDT(tabla);
         }
 

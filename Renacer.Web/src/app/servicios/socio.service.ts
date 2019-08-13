@@ -88,7 +88,14 @@ export class Domicilio{
 
     @Injectable()
     @ResourceParams({
-      url:new Variables().urlBase + "socio/pagoMatricula"
+      url:new Variables().urlBase
     })
     export class SocioMatriculaServices extends BaseServices<Socio> {
+
+      @ResourceAction({
+        path:"/socio/{!idSocio}/matricula",
+        method: RequestMethod.Post
+      })
+      cambiarEstadoMatricula: ResourceMethod<{ idSocio: number },Socio>;
+
     }

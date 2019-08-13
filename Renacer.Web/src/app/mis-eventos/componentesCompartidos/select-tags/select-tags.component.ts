@@ -36,7 +36,7 @@ export class SelectTagsComponent implements OnInit {
   tagSelected(tag,removeTag){
     let tagItem ;
     //console.log (tag);
-    if(removeTag  || tag.constructor.name == "Tag"  ){
+    if(removeTag){
       tagItem = new Tag(0,tag.nombre);
       this.borrarTag(tagItem);
     }else{
@@ -75,7 +75,6 @@ export class SelectTagsComponent implements OnInit {
 
     if(this.listaTags.filter(function(item2){ return item2.nombre === item.nombre}).length==0) {
       this.listaTags.push(item);
-      return;
     }
      else{
       for(var j = 0; j < this.listaTags.length;j++){
