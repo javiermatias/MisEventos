@@ -80,6 +80,14 @@ export const itemsAdmin = [
     routerLink: 'socios/'
   },
   {
+    title: 'Secretarios',
+    icon: 'fa fa-user',
+    selected: false,
+    expanded: false,
+    order: 200,
+    routerLink: 'secretarios/'
+},
+  {
     title: 'Encargados',
     routerLink: 'encargados/',
     icon: 'fa-users',
