@@ -28,8 +28,7 @@ namespace Renacer.Nucleo.Entidades
         public DateTime? fechaNacimiento { get; set; }
         public DateTime fechaCreacion { get; set; } = DateTime.Now;
 
-        public DateTime? fechaBaja { get; set; }
-        //public DateTime? fechaModificacion { get; set; } 
+        public DateTime? fechaBaja { get; set; }   
 
         public string estado { get; set; } = "Activo"; //Baja, Activo
     }
