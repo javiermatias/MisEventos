@@ -11,6 +11,7 @@ import { ErrorComponent } from './pages/error/error.component';
 import { UserServices } from './servicios/users.service';
 import { PersonaServices } from './servicios/persona.service';
 import { SocioServices, SocioMatriculaServices } from './servicios/socio.service';
+import { SecretarioServices } from './servicios/secretario.service';
 import { EspacioServices } from './servicios/espacio.service';
 import { EncargadoEventoServices } from './servicios/encargado.service';
 import { ReporteServices } from './servicios/reporte.service';
@@ -52,6 +53,7 @@ import { CalendarioServices } from './servicios/calendario.service';
     PersonaServices,
     SocioServices,
     SocioMatriculaServices,
+    SecretarioServices,
     EspacioServices,
     TagServices,
     EventoServices,
