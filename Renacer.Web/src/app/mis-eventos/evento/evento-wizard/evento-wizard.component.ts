@@ -54,7 +54,7 @@ export class EventoWizardComponent implements OnInit {
       {name: 'Evento', icon: 'fa-home', active: false, valid: false, hasError:false },
       {name: 'Detalles', icon: 'fa-pencil-square-o', active: false, valid: false, hasError:false },
       {name: 'Fechas', icon: 'fa-calendar', active: true, valid: false, hasError:false },
-      {name: 'Confirmación', icon: 'fa-check-square-o', active: false, valid: false, hasError:false }
+      {name: 'Detalles Confirmación', icon: 'fa-check-square-o', active: false, valid: false, hasError:false }
     ]
 
     this.eventoForm = this.formBuilder.group({
@@ -170,7 +170,7 @@ export class EventoWizardComponent implements OnInit {
                     }                      
                 }
 
-                if(step.name=='Confirmación'){
+                if(step.name=='Detalles Confirmación'){
                     /* this.evento.nombre = this.eventoForm.value.nombre;
                     this.evento.descripcion = this.eventoForm.value.descripcion;
                     this.evento.tipoEvento=this.eventoForm.value.tipoEvento;

@@ -97,7 +97,7 @@
                                 requerido</span>
                               
 
-
+                                
                         </div>
 
                        
@@ -628,96 +628,73 @@
                         </div>
 
               
-
-
-
-
-
-
-
-
-                        <!--  <div class="form-group col-md-7"
-                            [ngClass]="{'has-danger' : (step.hasError && paymentForm.get('cardnumber').hasError('required')) || (step.hasError && paymentForm.get('cardnumber').hasError('invalidNumber')), 
-                                                                   'has-success' : !paymentForm.get('cardnumber').hasError('required') && !paymentForm.get('cardnumber').hasError('invalidNumber')}">
-                            <label class="form-control-label">Card Number</label>
-                            <input formControlName="cardnumber" class="form-control"
-                                [ngClass]="{'form-control-danger' : (step.hasError && paymentForm.get('cardnumber').hasError('required')) || (step.hasError && paymentForm.get('cardnumber').hasError('invalidNumber')), 
-                                                                                               'form-control-success' : !paymentForm.get('cardnumber').hasError('required') && !paymentForm.get('cardnumber').hasError('invalidNumber') }"
-                                type="text" maxlength="16">
-                            <span class="help-block text-danger"
-                                *ngIf="step.hasError && paymentForm.get('cardnumber').hasError('required')">Card Number
-                                is required</span>
-                            <span class="help-block text-danger"
-                                *ngIf="step.hasError && paymentForm.get('cardnumber').hasError('invalidNumber')">Invalid
-                                Card Number</span>
-                        </div>
-
-                        <div class="form-group col-md-7"
-                            [ngClass]="{'has-danger' : (step.hasError && paymentForm.get('cvc').hasError('required')) || (step.hasError && paymentForm.get('cvc').hasError('invalidNumber')), 
-                                                                   'has-success' : !paymentForm.get('cvc').hasError('required') && !paymentForm.get('cvc').hasError('invalidNumber') }">
-                            <label class="form-control-label">CVC</label>
-                            <input formControlName="cvc" class="form-control"
-                                [ngClass]="{'form-control-danger' : (step.hasError && paymentForm.get('cvc').hasError('required')) || (step.hasError && paymentForm.get('cvc').hasError('invalidNumber')), 
-                                                                                        'form-control-success' : !paymentForm.get('cvc').hasError('required') && !paymentForm.get('cvc').hasError('invalidNumber') }"
-                                type="text" maxlength="3">
-                            <span class="help-block text-danger"
-                                *ngIf="step.hasError && paymentForm.get('cvc').hasError('required')">CVC is
-                                required</span>
-                            <span class="help-block text-danger"
-                                *ngIf="step.hasError && paymentForm.get('cvc').hasError('invalidNumber')">Invalid
-                                CVC</span>
-                        </div>
-
-                        <div class="form-group col-md-7"
-                            [ngClass]="{'has-danger' : step.hasError && paymentForm.get('expirymonth').hasError('required'), 'has-success' : !paymentForm.get('expirymonth').hasError('required') }">
-                            <label class="form-control-label">Expiry Month</label>
-                            <select formControlName="expirymonth" class="form-control"
-                                [ngClass]="{'form-control-danger' : step.hasError && paymentForm.get('expirymonth').hasError('required'), 'form-control-success' : !paymentForm.get('expirymonth').hasError('required') }">
-                                <option>01</option>
-                                <option>02</option>
-                                <option>03</option>
-                                <option>04</option>
-                                <option>05</option>
-                                <option>06</option>
-                                <option>07</option>
-                                <option>08</option>
-                                <option>09</option>
-                                <option>10</option>
-                                <option>11</option>
-                                <option>12</option>
-                            </select>
-                            <span class="help-block text-danger"
-                                *ngIf="step.hasError && paymentForm.get('expirymonth').hasError('required')">Expiry
-                                Month is required</span>
-                        </div>
-
-                        <div class="form-group col-md-7"
-                            [ngClass]="{'has-danger' : step.hasError && paymentForm.get('expiryyear').hasError('required'), 'has-success' : !paymentForm.get('expiryyear').hasError('required') }">
-                            <label class="form-control-label">Expiry Year</label>
-                            <select formControlName="expiryyear" class="form-control"
-                                [ngClass]="{'form-control-danger' : step.hasError && paymentForm.get('expiryyear').hasError('required'), 'form-control-success' : !paymentForm.get('expiryyear').hasError('required') }">
-                                <option>2017</option>
-                                <option>2018</option>
-                                <option>2019</option>
-                                <option>2020</option>
-                                <option>2021</option>
-                                <option>2022</option>
-                                <option>2023</option>
-                                <option>2024</option>
-                            </select>
-                            <span class="help-block text-danger"
-                                *ngIf="step.hasError && paymentForm.get('expiryyear').hasError('required')">Expiry Year
-                                is required</span>
-                        </div> -->
                     </form>
 
-                    <div *ngIf="step.name =='Confirmación'" class="row">
+                    <div *ngIf="step.name =='Detalles Confirmación'" class="row">
 
-                            <fb-like url="http://jasonwatmore.com"></fb-like>
-                     <!--     <div class="col-6"><strong class="text-truncate">Nombre evento:</strong>
-                            <i>{{evento.nombre}}</i>
+                        <div class="col-6"><strong class="text-truncate">Nombre evento:</strong>
+                            <i>{{eventoForm.value.nombre}}</i>
                         </div>
+                        <div class="col-6"><strong class="text-truncate">Descripción:</strong>
+                            <i>{{eventoForm.value.descripcion}}</i>
+                        </div>
+                        <div class="col-6"><strong class="text-truncate">Tipo de evento:</strong>
+                            <i>{{eventoForm.value.tipoEvento.nombre}}</i>
+                        </div>
+                      <div class="col-6"><strong class="text-truncate">Espacio:</strong>
+                            <i>{{eventoForm.value.tipoEspacio.nombre}}</i></div> 
+                        <div class="col-6"><strong class="text-truncate">Encargado:</strong>
+                            <i>{{detalleForm.value.encargado.nombre}}</i></div>
+                            <div class="col-6"><strong class="text-truncate">Cupo Mínimo:</strong>
+                                <i>{{detalleForm.value.cupoMin}}</i></div>
+    
+                            <div class="col-6"><strong class="text-truncate">Cupo Máximo:</strong>
+                                <i>{{detalleForm.value.cupoMax}}</i></div>
 
+                                <div  *ngIf="costoTemplate.value == '0'">
+                                    <div class="col-6"><strong class="text-truncate">Costo:</strong>
+                                        <i>Gratuito</i></div>
+                                  </div>
+                                                              
+    
+                            <div class="col-6"  *ngIf="costoTemplate.value == '1'"><strong
+                                    class="text-truncate">Monto:</strong>
+                                <i>{{detalleForm.value.monto}}</i></div>
+    
+    
+                            <div class="col-6"  *ngIf="costoTemplate.value == '1'"><strong
+                                    class="text-truncate">Cuota:</strong>
+                                <i>{{detalleForm.value.cuota}}</i></div>
+
+                                <div class="col-6"><strong class="text-truncate">Fecha inicio evento:</strong>
+                                    <i>{{fechaForm.value.fechaDesde}}</i></div>
+                                <div class="col-6"><strong class="text-truncate">Fecha fin evento:</strong>
+                                    <i>{{fechaForm.value.fechaHasta}}</i></div>
+                                <div class="col-6"><strong class="text-truncate">Fecha inicio inscripciones:</strong>
+                                    <i>{{fechaForm.value.fechaDesdeInscripcion}}</i></div>
+        
+                                <div class="col-6"><strong class="text-truncate">Fecha fin inscripciones:</strong>
+                                    <i>{{fechaForm.value.fechaHastaInscripcion}}</i></div>
+                        
+                            <fb-like url="http://jasonwatmore.com"></fb-like>
+                     <!--    
+   console.log('log de eventoForm')
+    console.log(this.eventoForm.value.nombre);
+    console.log(this.eventoForm.value.descripcion);
+    console.log(this.eventoForm.value.tipoEvento.id);
+    console.log(this.eventoForm.value.tipoEspacio.id);
+    console.log('log de detalleForm')
+    console.log(this.detalleForm.value.encargado.id);
+    console.log(this.detalleForm.value.cupoMin);
+    console.log(this.detalleForm.value.cupoMax);
+    console.log(this.detalleForm.value.costo);
+    console.log(this.detalleForm.value.monto);
+    console.log(this.detalleForm.value.cuota);
+    console.log('log de fechasForm')
+    console.log(this.fechaForm.value.fechaDesde);
+    console.log(this.fechaForm.value.fechaHasta);
+    console.log(this.fechaForm.value.fechaDesdeInscripcion);
+    console.log(this.fechaForm.value.fechaHastaInscripcion);
                         <div class="col-6"><strong class="text-truncate">Descripción:</strong>
                             <i>{{evento.descripcion}}</i>
                         </div>
