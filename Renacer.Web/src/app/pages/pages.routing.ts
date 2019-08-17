@@ -4,6 +4,7 @@ import { PagesComponent } from './pages.component';
 import { BlankComponent } from './blank/blank.component';
 import { SearchComponent } from './search/search.component';
 import { SociosComponent } from '../mis-eventos/socios/socios.component';
+import { SecretariosComponent } from '../mis-eventos/secretarios/secretarios.component';
 import { EspaciosComponent } from '../mis-eventos/espacios/espacios.component';
 import { EncargadosComponent } from '../mis-eventos/encargados/encargados.component';
 import { AsistenciaComponent } from '../mis-eventos/asistencia/asistencia.component';
@@ -40,6 +41,7 @@ export const routes: Routes = [
             { path: 'reportes', loadChildren: 'app/pages/reportes/reporte.module#ReporteModule', data: { breadcrumb: 'Reportes' } },
             { path: 'search', component: SearchComponent, data: { breadcrumb: 'Search' } },
             { path: 'socios', component: SociosComponent, data: { breadcrumb: 'Socios' } },
+            { path: 'secretarios', component: SecretariosComponent, data: { breadcrumb: 'Secretarios' } },
             { path: 'espacios', component: EspaciosComponent, data: { breadcrumb: 'Espacios' } },
             { path: 'tipoEspacio', component: TipoEspacioComponent, data: { breadcrumb: 'Tipo Espacios' } },
             { path: 'asistencia', component: AsistenciaComponent, data: { breadcrumb: 'Asistencias' } },
