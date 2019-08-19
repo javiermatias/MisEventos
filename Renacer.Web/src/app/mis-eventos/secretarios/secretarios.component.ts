@@ -38,8 +38,10 @@ export class SecretariosComponent implements OnInit {
   }
 
   onSubmit(myForm: FormGroup) {
-      this.saveItem(this._secretario);
-    
+    let newEspacio = Object.assign({}, this._secretario);
+    this._secretario = new Secretario(0,"","");
+    this.saveItem(newEspacio);
+    this.showDetail = false;
     myForm.reset();
   }
   ngOnInit() {
@@ -103,31 +105,29 @@ export class SecretariosComponent implements OnInit {
 
   }
   limpiarForm() {
-    // this._persona = new Persona(0, "", "", "");
-      this._secretario = new Secretario(0, "", "", "");
+    this._secretario = new Secretario(0, "", "", "");
     this.showDetail = false;
   }
-  saveItem(item: Secretario): any {
-    //Guarde en Secretario y persona. En persona va generar el usuario y el ROL
-    if (item.id == 0) {
-      this._secretarioService.save(item, (resp: Secretario) => {
-        item = resp;
-        this.secretarios.push(item);
+  saveItem(secre: Secretario): any {
+    if (secre.id == 0) {
+      this._secretarioService.save(secre, (resp: Secretario) => {
+        secre = resp;
+        this.secretarios.push(secre);
         this.showDetail = false;
-        this.mensajeServ.success('se han guardado los cambios!', 'Aviso!');
+        this.mensajeServ.success('Se han guardado los cambios!', 'Aviso!');
       });
     } else {
-      //Solamente la tabla Socio
-  /*     this._personaService.update(item, (resp: Persona) => {
-        let items = this.personas;
-        for (var i = 0; i < items.length; i++) {
-          if (items[i].id == resp.id) {
-            items[i] = resp;
-            this.mensajeServ.success('se han guardado los cambios!', 'Aviso!');
+      this._secretarioService.update(secre,(resp:Secretario) => {
+        let secretarios = this.secretarios;
+        for (var i = 0; i < secretarios.length; i++)
+        {
+          if(secretarios[i].id == resp.id)
+          { secretarios[i] = resp;
+            this.mensajeServ.success('Se han guardado los cambios!', 'Aviso!');
           }
         }
         this.showDetail = false;
-      }); */
+      });
     }
   }
 }
