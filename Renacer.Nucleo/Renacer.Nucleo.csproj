@@ -108,6 +108,7 @@
     <Compile Include="Control\ControlCliente.cs" />
     <Compile Include="Entidades\Asistencia.cs" />
     <Compile Include="Entidades\Calendario.cs" />
+    <Compile Include="Entidades\Secretario.cs" />
     <Compile Include="Entidades\Cliente.cs" />
     <Compile Include="Entidades\Contacto.cs" />
     <Compile Include="Entidades\Cuota.cs" />
