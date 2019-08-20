@@ -163,60 +163,7 @@ namespace Renacer.Nucleo.Migrations
 //                nro = "50"
 //            };
             
-<<<<<<< HEAD
-            Socio socio = new Socio()
-            {
-                nombre = "Augusto",
-                apellido = "galan",
-                telefono = "3543604130",
-                email = "juanjose@gmail.com",
-                domicilio = domicilio,
-                tipoDoc = tipoDoc,
-                contacto = contacto
-            };
-            Socio socio1 = new Socio()
-            {
-                nombre = "Laura",
-                apellido = "Miguez",
-                telefono = "3543604130",
-                email = "laura1Miguez@gmail.com",
-                domicilio = domicilio,
-                tipoDoc = tipoDoc,
-                contacto = contacto
-            };
-            Socio socio2 = new Socio()
-            {
-                nombre = "Maria",
-                apellido = "Del Valle",
-                telefono = "3543604132",
-                email = "mariadelvalle@gmail.com",
-                domicilio = domicilio,
-                tipoDoc = tipoDoc,
-                contacto = contacto,
-            };
-            context.socio.AddOrUpdate(socio);
-            context.socio.AddOrUpdate(socio1);
-            context.socio.AddOrUpdate(socio2);
 
-            Matricula matricula = new Matricula()
-            {
-                anio = DateTime.Parse("29/05/2029"),
-                valor = 1000,
-                estado = "Activo"
-            };
-
-            MatriculaXSocio matriculaxsocio = new MatriculaXSocio()
-            {
-                matricula = matricula,
-                socio = socio,
-                fechaPago = DateTime.Parse("29/05/2019")
-            };
-
-            context.matricula.AddOrUpdate(matricula);
-            context.matriculaXSocio.AddOrUpdate(matriculaxsocio);
-
-            //Carga de roles
-=======
 //            Socio socio = new Socio()
 //            {
 //                nombre = "Augusto",
@@ -269,7 +216,7 @@ namespace Renacer.Nucleo.Migrations
 //            context.matriculaXSocio.AddOrUpdate(matriculaxsocio);
 
             ////Carga de roles
->>>>>>> 5273c0f8a547814e82c5a74b682d10ca9077ecc6
+
             //Rol admin = new Rol() { nombre = "Administrador", descripcion = "Administrador del sistema" };
             //Rol secre = new Rol() { nombre = "Secretario", descripcion = "Encargado de Recepción" };
             //Rol encargado = new Rol() { nombre = "Encargado", descripcion = "Encargado de evento" };

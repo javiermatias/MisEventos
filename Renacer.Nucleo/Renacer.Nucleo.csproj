@@ -123,7 +123,6 @@
     <Compile Include="Entidades\MatriculaXSocio.cs" />
     <Compile Include="Entidades\Pago.cs" />
     <Compile Include="Entidades\Recordatorio.cs" />
-    <Compile Include="Entidades\Secretario.cs" />
     <Compile Include="Entidades\Socio.cs" />
     <Compile Include="Entidades\Tag.cs" />
     <Compile Include="Entidades\TipoDocumento.cs" />
