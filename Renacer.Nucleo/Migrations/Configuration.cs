@@ -22,7 +22,7 @@ namespace Renacer.Nucleo.Migrations
         {
 
 
-           
+           var  tt = "Hola"
         //    TipoDocumento tipoDoc = new TipoDocumento()
         //    { nombre = "DNI" };
         //    TipoDocumento tipoDoc2 = new TipoDocumento()
