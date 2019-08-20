@@ -20,9 +20,7 @@ namespace Renacer.Nucleo.Migrations
 
         protected override void Seed(ModeloRenacer context)
         {
-
-
-           var  tt = "Hola"
+            
         //    TipoDocumento tipoDoc = new TipoDocumento()
         //    { nombre = "DNI" };
         //    TipoDocumento tipoDoc2 = new TipoDocumento()
