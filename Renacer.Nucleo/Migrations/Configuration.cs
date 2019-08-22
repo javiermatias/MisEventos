@@ -20,9 +20,7 @@ namespace Renacer.Nucleo.Migrations
 
         protected override void Seed(ModeloRenacer context)
         {
-
-
-           
+            
         //    TipoDocumento tipoDoc = new TipoDocumento()
         //    { nombre = "DNI" };
         //    TipoDocumento tipoDoc2 = new TipoDocumento()
@@ -163,6 +161,7 @@ namespace Renacer.Nucleo.Migrations
 //                nro = "50"
 //            };
             
+
 //            Socio socio = new Socio()
 //            {
 //                nombre = "Augusto",
@@ -215,6 +214,7 @@ namespace Renacer.Nucleo.Migrations
 //            context.matriculaXSocio.AddOrUpdate(matriculaxsocio);
 
             ////Carga de roles
+
             //Rol admin = new Rol() { nombre = "Administrador", descripcion = "Administrador del sistema" };
             //Rol secre = new Rol() { nombre = "Secretario", descripcion = "Encargado de Recepción" };
             //Rol encargado = new Rol() { nombre = "Encargado", descripcion = "Encargado de evento" };

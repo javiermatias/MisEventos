@@ -108,6 +108,7 @@
     <Compile Include="Control\ControlCliente.cs" />
     <Compile Include="Entidades\Asistencia.cs" />
     <Compile Include="Entidades\Calendario.cs" />
+    <Compile Include="Entidades\Secretario.cs" />
     <Compile Include="Entidades\Cliente.cs" />
     <Compile Include="Entidades\Contacto.cs" />
     <Compile Include="Entidades\Cuota.cs" />
@@ -122,7 +123,6 @@
     <Compile Include="Entidades\MatriculaXSocio.cs" />
     <Compile Include="Entidades\Pago.cs" />
     <Compile Include="Entidades\Recordatorio.cs" />
-    <Compile Include="Entidades\Secretario.cs" />
     <Compile Include="Entidades\Socio.cs" />
     <Compile Include="Entidades\Tag.cs" />
     <Compile Include="Entidades\TipoDocumento.cs" />
