@@ -95,6 +95,7 @@
     <Compile Include="Control\ControlRecordatorio.cs" />
     <Compile Include="Control\ControlReporte.cs" />
     <Compile Include="Control\ControlDetalleEvento.cs" />
+    <Compile Include="Control\ControlSecretario.cs" />
     <Compile Include="Control\ControlTipoEspacio.cs" />
     <Compile Include="Control\ControlTipoEvento.cs" />
     <Compile Include="Control\ControlEvento.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="Control\ControlCliente.cs" />
     <Compile Include="Entidades\Asistencia.cs" />
     <Compile Include="Entidades\Calendario.cs" />
+    <Compile Include="Entidades\Secretario.cs" />
     <Compile Include="Entidades\Cliente.cs" />
     <Compile Include="Entidades\Contacto.cs" />
     <Compile Include="Entidades\Cuota.cs" />
@@ -199,6 +201,10 @@
     <Compile Include="Migrations\201908080425339_agregadoCambioHorario1.Designer.cs">
       <DependentUpon>201908080425339_agregadoCambioHorario1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908160559443_agregarSecretario.cs" />
+    <Compile Include="Migrations\201908160559443_agregarSecretario.Designer.cs">
+      <DependentUpon>201908160559443_agregarSecretario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
     <Compile Include="myMigrationSQLGenerator.cs" />
@@ -278,6 +284,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908080425339_agregadoCambioHorario1.resx">
       <DependentUpon>201908080425339_agregadoCambioHorario1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908160559443_agregarSecretario.resx">
+      <DependentUpon>201908160559443_agregarSecretario.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

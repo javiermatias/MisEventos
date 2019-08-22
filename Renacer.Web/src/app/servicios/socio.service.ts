@@ -6,6 +6,7 @@ import {BaseServices} from './base.service';
 import {Variables} from './variables';
 import {TipoDocumento} from './tipo-documento.service';
 import {Tag} from './tag.service';
+import { Matricula } from '../modelos/matricula';
 
 export class Socio {
   constructor(
@@ -97,5 +98,11 @@ export class Domicilio{
         method: RequestMethod.Post
       })
       cambiarEstadoMatricula: ResourceMethod<{ idSocio: number },Socio>;
+
+      @ResourceAction({
+        path:"/matricula/activa",
+        method: RequestMethod.Get
+      })
+      getMatriculaActual: ResourceMethod<{},Matricula>;
 
     }

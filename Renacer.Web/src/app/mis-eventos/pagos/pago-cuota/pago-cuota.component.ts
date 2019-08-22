@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { IMultiSelectSettings, IMultiSelectTexts, IMultiSelectOption } from 'angular-2-dropdown-multiselect';
 import { Socio, SocioServices } from '../../../servicios/socio.service';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -17,11 +17,11 @@ export class PagoCuotaComponent implements OnInit {
   mostrarGrilla=false;
   cuota:Pago;
   confirmarPago:boolean=false;
+  @ViewChild('imprimirPDF') myPrintHtml: ElementRef;
  
   constructor( private _dbServices:SocioServices,private inscripcionServ:InscripcionServices, private pagoServ:PagoServices
     ,private mensajeServ: ToastrService) { 
 
-    
   }
 
   cambioEvento(){
@@ -59,12 +59,23 @@ jQuery('#show-event-modal').modal('show');
 
 }
 
+printPDF(){
+  let popupWinindow = window.open('', '_blank', 'width=600,height=300,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no'); 
+  popupWinindow.document.open(); 
+  popupWinindow.document.write(
+    '<html><head><link rel="stylesheet" type="text/css" href="style.css" /> <style>td,th{border: 1px solid;margin:0;padding:0;}</style></head><body onload="window.print()">'  +
+   this.myPrintHtml.nativeElement.innerHTML+
+  '</html>'); 
+  popupWinindow.document.close(); 
+}
+
 pagoConfirmado(){
   this.confirmarPago=false;
   this.cuota.estaPagado=true;
   jQuery('#show-event-modal').modal('hide');
   this.pagoServ.save(this.cuota,(resp:any) => {
     //Callback
+    this.printPDF();
       this.mensajeServ.success('Se registro correctamente el pago!', 'Aviso!');
       //this.volver();
  });

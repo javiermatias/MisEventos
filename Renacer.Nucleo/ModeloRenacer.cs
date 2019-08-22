@@ -38,6 +38,8 @@ namespace Renacer.Nucleo
         public virtual DbSet<Contacto> contacto { get; set; }
 
         public virtual DbSet<Matricula> matricula{ get; set; }
+
+        public virtual DbSet<Secretario> secretario { get; set; }
         public virtual DbSet<Recordatorio> recordatorio { get; set; }
 
         public virtual DbSet<MatriculaXSocio> matriculaXSocio { get; set; }
