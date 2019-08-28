@@ -27,12 +27,12 @@ export class NuevaMatriculaComponent implements OnInit {
     this.matricula = new Matricula();
     this.getItems();
 
-    /* this.id = Number(this.route.snapshot.params['id']);
+    this.id = Number(this.route.snapshot.params['id']);
     if(this.id != 0){
       //console.log('si no es un nuevo elemento');
       this.getByID();
     
-     } */
+     } 
   }
 
   onSubmit() {

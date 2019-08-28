@@ -10,7 +10,7 @@ import { DataTableModule } from "angular2-datatable";
 import { ToastrModule } from 'ngx-toastr';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
-import { LoginComponent } from '../login/login.component';
+import { LoginComponent } from '../../mis-eventos/usuarios/login/login.component';
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };

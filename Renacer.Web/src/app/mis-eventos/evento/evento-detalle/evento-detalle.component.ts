@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { EventoServices, Evento } from '../../../servicios/evento.service';
 
 @Component({
   selector: 'az-evento-detalle',
@@ -6,9 +8,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventoDetalleComponent implements OnInit {
 
-  constructor() { }
+  id:number= 0;
+  evento:Evento;
+
+  mostrar:boolean=false;
+  constructor(private router: Router, private route: ActivatedRoute, private _eventoService:EventoServices) { }
 
   ngOnInit() {
+    this.id = Number(this.route.snapshot.params['id']);
+    if(this.id != 0){      
+     this.getByID();
+     //console.log(this.id);
+   
+     } 
   }
+
+
+  getByID(){
+    this._eventoService.get({ "id": this.id }, (resp: Evento) => {
+      this.evento = resp;
+      console.log(this.evento);
+      this.mostrar=true;
+     });
+   
+  
+}
 
 }

@@ -431,6 +431,7 @@ namespace Renacer.Nucleo.Control
                         .Include("responsable")
                         .Include("tipoEvento")
                         .Include("listaInscripciones")
+                        .Include("listaHorarios")
                         .Where(x => x.id.Equals(id)).FirstOrDefault();
 
                     //if (evento.idEncargado > 0)  evento.responsable = db.encargado.FirstOrDefault(x => x.id.Equals(evento.idEncargado));

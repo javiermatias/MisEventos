@@ -2,15 +2,15 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, AbstractControl, FormBuilder, Validators} from '@angular/forms';
-import { UserServices } from '../../servicios/users.service';
-import { RolServices, Rol } from '../../servicios/rol.service';
-import * as shajs from 'sha.js';
+import { UserServices } from '../../../servicios/users.service';
+//import { RolServices, Rol } from '../../servicios/rol.service';
+//import * as shajs from 'sha.js';
 @Component({
   selector: 'az-login',
   encapsulation: ViewEncapsulation.None,
   providers: [],
-  templateUrl: './login.component.html',
-  styleUrls: ['../sesion/sesion.component.scss']
+  templateUrl: './login.component.html'
+  //styleUrls: ['../sesion/sesion.component.scss']
 })
 export class LoginComponent {
   public router: Router;
@@ -21,13 +21,8 @@ export class LoginComponent {
   public loading: boolean = false;
 
 
-  /**
-   * Son los roles del usuario logueado
-   * @type {Rol[]}
-   * @memberof LoginPComponent
-   */
-  //public rolesUsuario: Rol[] = [];
-  constructor(router: Router, fb: FormBuilder, private _usersService: UserServices, private _rolesService: RolServices) {
+
+  constructor(router: Router, fb: FormBuilder, private _usersService: UserServices) {
     // constructor(router:Router, fb:FormBuilder,private _usersService:UserServices) {
     this.router = router;
     this.form = fb.group({
