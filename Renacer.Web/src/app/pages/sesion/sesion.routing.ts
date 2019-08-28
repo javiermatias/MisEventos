@@ -3,6 +3,8 @@ import { ModuleWithProviders } from '@angular/core';
 import { SesionComponent } from './sesion.component';
 import { LoginComponent } from '../../mis-eventos/usuarios/login/login.component';
 import { RolesUsuarioComponent } from '../rol/rolesUsuario.component';
+import { CambioContraseniaComponent } from '../../mis-eventos/usuarios/cambio-contrasenia/cambio-contrasenia.component';
+//import { CambioContraseñaComponent } from '../../mis-eventos/usuarios/cambio-contraseña/cambio-contraseña.component';
 
 
 export const routes: Routes = [
@@ -13,7 +15,7 @@ export const routes: Routes = [
             { path:'', redirectTo:'login', pathMatch:'full' },
             { path: 'sesion',component: SesionComponent, data: { breadcrumb: 'Sesión' }  }, // TODO: este deberiamos borrarlo?
             { path: 'login',component: LoginComponent, data: { breadcrumb: 'Login' }  },
-            { path: 'seleccionarRol', component: RolesUsuarioComponent, data: { breadcrumb: 'Selecionar rol'}},
+            //{ path: 'cambioContrasena', component: CambioContraseniaComponent, data: { breadcrumb: 'Cambiar Contraseña'}},
         ]
     }
 ];

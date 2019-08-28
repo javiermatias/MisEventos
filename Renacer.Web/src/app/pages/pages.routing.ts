@@ -18,6 +18,8 @@ import { CobroMatriculaComponent } from '../mis-eventos/matricula/cobro-matricul
 import { MatriculasPagadasComponent } from '../mis-eventos/matricula/matriculas-pagadas/matriculas-pagadas.component';
 import { RecordatoriosComponent } from '../mis-eventos/recordatorios/recordatorios.component';
 import { PagoCuotaComponent } from '../mis-eventos/pagos/pago-cuota/pago-cuota.component';
+import { CambioContraseniaComponent } from '../mis-eventos/usuarios/cambio-contrasenia/cambio-contrasenia.component';
+
 //import { LoginComponent } from './login/login.component';
 
 
@@ -54,6 +56,8 @@ export const routes: Routes = [
             { path: 'pago-matricula', component: MatriculasPagadasComponent, data: { breadcrumb: '' } },
             { path: 'recordatorios', component: RecordatoriosComponent, data: { breadcrumb: '' } },
             { path: 'pago-cuota', component: PagoCuotaComponent, data: { breadcrumb: '' } },
+            { path: 'cambio-contrasena', component: CambioContraseniaComponent, data: { breadcrumb: '' } },
+            
             //{ path: 'login', component: LoginComponent, data: { breadcrumb: '' } },
             // { path: 'seleccionarRol', component: RolesUsuarioComponent, data: { breadcrumb: 'Selecionar rol'}},
             { path: 'blank', component: BlankComponent, data: { breadcrumb: 'Blank page' } }

@@ -43,6 +43,8 @@ import { PagoCuotaComponent } from '../mis-eventos/pagos/pago-cuota/pago-cuota.c
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { NuevaAsistenciaComponent } from '../mis-eventos/asistencia/nueva-asistencia/nueva-asistencia.component';
 import { AsistenciaComponent } from '../mis-eventos/asistencia/asistencia.component';
+import { CambioContraseniaComponent } from '../mis-eventos/usuarios/cambio-contrasenia/cambio-contrasenia.component';
+
 //import { LoginComponent } from './login/login.component';
 
 
@@ -91,6 +93,7 @@ import { AsistenciaComponent } from '../mis-eventos/asistencia/asistencia.compon
     PagoCuotaComponent,
     NuevaAsistenciaComponent,
     AsistenciaComponent,
+    CambioContraseniaComponent
    // LoginComponent 
   ]
   , exports: [
