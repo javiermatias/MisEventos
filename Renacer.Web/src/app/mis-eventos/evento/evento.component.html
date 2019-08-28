@@ -190,7 +190,7 @@
     </div>
 </div>
 
-<div widget class="card" *ngIf="_item.id > 0 && !editing">
+<!-- <div widget class="card" *ngIf="_item.id > 0 && !editing">
     <div class="card-header">
         <span>{{_item.nombre}} -
             <span class="badge badge-main">{{_item.tipoEvento.nombre}}</span>
@@ -212,9 +212,9 @@
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#inscriptos">Inscriptos</a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#publicaciones">publicaciones</a>
-                        </li>
+                        </li> - ->
                     </ul>
                 </div>
                 <div class="tab-content top">
@@ -345,7 +345,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <!-- " *ngStyle="'opacity: 0.7':item.fechaDesde <= fechaActual" -->
+                                            <!-- " *ngStyle="'opacity: 0.7':item.fechaDesde <= fechaActual" - ->
                                             <tr *ngFor="let item of mf.data | SearchPipe : searchText">
                                                 <td>{{item.id}}</td>
                                                 <td>
@@ -576,7 +576,8 @@
 
            <!--  <div class="col-xl-3 col-lg-3 col-12">
                 <az-select-tags [enabled]="_item.id > 0" [listaTags]="_item.listaTags"></az-select-tags>
-            </div> -->
+            </div> - ->
         </div>
     </div>
-</div>
+
+</div> -->

@@ -56,7 +56,7 @@
                     <td>{{item.valor}}</td>
                     <td>{{item.fechaVencimiento | date:"dd/MM/yyyy"}}</td>
                     <td>{{item.estado}}</td>
-                    <td *ngIf="item.estado == 'Alta'; else other_content">
+                    <td *ngIf="item.estado == 'Activa'; else other_content">
                       <a style="color: #014c8c;cursor:pointer;" (click)="verItem(item)">Ver</a>
                     <td>
                       <ng-template #other_content>

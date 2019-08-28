@@ -180,9 +180,9 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Configuracion\local-01.config">
+    <None Include="Configuracion\local-01.config">
       <SubType>Designer</SubType>
-    </Content>
+    </None>
     <Content Include="Configuracion\local-02.config">
       <SubType>Designer</SubType>
     </Content>
