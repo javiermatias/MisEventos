@@ -16,16 +16,14 @@
                 <div class="form-group row text-right">
                     <label for="passwordA" class="col-sm-3 form-control-label m-t-5">Contraseña Actual: </label>
                     <div class="col-sm-9">
-                        <input type="password" class="form-control" id="passwordA" required minlength="4"
-                            [(ngModel)]="contrasenia.contraseniaActual" #passwordA="ngModel" name="passwordA"
-                            #spy>
-                        
-                            <br>TODO: remove this: {{spy.className}}
-                        
-                            <div *ngIf="passwordA.invalid && (passwordA.dirty || passwordA.touched)"
-                            class="alert alert-danger">
+                        <input type="password" class="form-control" id="password" required
+                            [(ngModel)]="contrasenia.contraseniaActual" #password="ngModel" name="password">
 
-                            <div *ngIf="passwordA.errors.required">
+
+
+                        <div *ngIf="password.invalid && password.touched" class="alert alert-danger">
+
+                            <div *ngIf="password.errors.required">
                                 <div class="row">
                                     <div class="col-sm-6">
                                         La Contraseña actual es requerida.
@@ -35,56 +33,126 @@
 
 
                             </div>
-                            <div *ngIf="passwordA.errors.minlength">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        La Contraseña actual debe tener como minimo 4 caracteres.
-
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-
-                            <!--  <div *ngIf="name.errors.forbiddenName">
-                            Name cannot be Bob.
-                          </div> -->
 
                         </div>
                     </div>
 
 
                 </div>
-               <div class="form-group row text-right">
-                  <label for="password-h-f" class="col-sm-3 form-control-label m-t-5">Nueva Contraseña:	</label>
-                  <div class="col-sm-9">
-                      <input type="password" [(ngModel)]="contrasenia.nuevaContrasenia"
-                      class="form-control" id="password-h-f" name="nuevaContrasenia">
-                  </div>
-              </div> 
-                <div class="form-group row text-right">
-                    <label for="re-password-h-f" class="col-sm-3 form-control-label m-t-5">Repite Nueva Contraseña:
-                    </label>
-                    <div class="col-sm-9">
-                        <input type="password" class="form-control" id="re-password-h-f" name="password"
-                            [(ngModel)]="contrasenia.repiteContrasenia" #password12="ngModel">
+
+                <div ngModelGroup="passwords" #passwords="ngModelGroup" appCheckPassword>
+
+                    <div class="form-group row text-right">
+                        <label for="password-h-f" class="col-sm-3 form-control-label m-t-5">Nueva Contraseña: </label>
+                        <div class="col-sm-9">
+                            <input type="password" [(ngModel)]="contrasenia.nuevaContrasenia" class="form-control"
+                                id="password-h-f" name="passwordA" #passwordA="ngModel" required id="passwordA"
+                                minlength="4">
+
+                            <div *ngIf="(passwordA.touched && passwordA.dirty) && passwordA.invalid"
+                                class="alert alert-danger">
+
+                                <div *ngIf="passwordA.errors.required">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            La contraseña es requerida.
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div *ngIf="passwordA.errors.minlength">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            La Contraseña actual debe tener como minimo 4 caracteres.
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row text-right">
-                    <label for="re-password-h-f" class="col-sm-3 form-control-label m-t-5">Nivel de Seguridad: </label>
 
-                    <ng2-password-strength-bar [passwordToCheck]="contrasenia.repiteContrasenia" [barColors]="myColors">
-                    </ng2-password-strength-bar>
+                    <div class="form-group row text-right">
+                        <label for="re-password-h-f" class="col-sm-3 form-control-label m-t-5">Nivel de Seguridad:
+                        </label>
+
+                        <ng2-password-strength-bar [passwordToCheck]="contrasenia.nuevaContrasenia"
+                            [barColors]="myColors">
+                        </ng2-password-strength-bar>
 
 
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-9 offset-sm-3">
-                        <button class="btn btn-main pull-right" type="submit">Guardar</button>
-                        <button class="btn btn-main pull-right" type="button">Cancelar</button>
                     </div>
+
+
+
+
+                    <div class="form-group row text-right">
+                        <label for="re-password-h-f" class="col-sm-3 form-control-label m-t-5">Repite Nueva Contraseña:
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" id="passwordB" name="passwordB"
+                                [(ngModel)]="contrasenia.repiteContrasenia" #passwordB="ngModel" required>
+                        
+                        <div *ngIf="(passwordB.touched && passwordB.dirty) && passwordB.invalid"
+                            class="alert alert-danger">
+
+                            <div *ngIf="passwordB.errors.required">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        La contraseña es requerida.
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        
+
+                        </div>
+                        
+                            
+                                <div *ngIf="passwords.errors?.passwordCheck  && passwordB.touched " class="alert alert-danger">
+                                    <div class="row">
+                                        <div class="col-sm-9">
+                                            Las contraseñas tienen que ser iguales.
+    
+                                        </div>
+                                    </div>
+                                
+                                    
+                                
+                                
+                                </div>
+                            
+    
+    
+                        
+
+
+                    </div>
+
+
+                    </div>
+               
+
                 </div>
+         <!--        <button type="submit" class="btn btn-main"
+                [disabled]="!asociacionForm.form.valid">Guardar</button>
+            <button (click)="limpiarForm();" type="button" style="margin-left: 30px;"
+                class="btn btn-default">Cancelar</button> -->
+<br>
+            <div class="row">
+                    <div class="col-lg-12 offset-lg-8 col-xs-12 col-sm-9">
+                        <button class="btn btn-main" type="submit">Guardar</button>
+                        <button class="btn btn-default" type="button">Cancelar</button>
+                    </div>
+                </div> 
             </form>
 
         </div>

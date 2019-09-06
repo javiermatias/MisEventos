@@ -32,7 +32,7 @@ namespace Renacer.WebAPI
                 usuario.token = token;
                 ControlUsuario.devolverInstancia().grabar(usuario);
 
-                usuario.clave = "";
+                //usuario.clave = "";
                // usuario.idGoogle = "";
                // usuario.idFacebook = "";
                 resp.Add("user", usuario);

@@ -29,6 +29,7 @@ import { MatriculaxsocioService } from './servicios/matriculaxsocio.service';
 import { DragulaModule } from 'ng2-dragula';
 import { RecordatorioServices, RecordatorioHoyServices,ActualizarEventoServices } from './servicios/recordatorio.service';
 import { CalendarioServices } from './servicios/calendario.service';
+import { CheckPasswordDirective } from './mis-eventos/usuarios/cambio-contrasenia/check-password.directive';
 
 @NgModule({
   declarations: [
