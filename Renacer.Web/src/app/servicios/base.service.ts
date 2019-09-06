@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpParams } from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import { Variables } from "./variables";
 import { Observable } from 'rxjs/observable';
@@ -46,7 +46,12 @@ export class BaseServices<T> {
   }
 
   query(query: IQueryInput): Observable<T[]>{
-    return this.http.get<T[]>(`${this.url}`)
+    let Params = new HttpParams();   
+    Object.keys(query).forEach(function (item) {  
+      Params = Params.append(item, query[item]);
+    });
+   
+    return this.http.get<T[]>(`${this.url}`,  { params:  Params });
   }
 
   get(id:any):Observable<T>
