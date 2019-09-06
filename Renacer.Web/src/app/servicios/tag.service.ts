@@ -15,7 +15,7 @@ let variable = new Variables();
 
 @Injectable()
 export class TagServices extends BaseServices<Tag> {
-  public url:string = `${new Variables().urlBase}tag/`;
+  public url:string = `${new Variables().urlBase}tag`;
   constructor(public http:HttpClient){
     super(http);
      }

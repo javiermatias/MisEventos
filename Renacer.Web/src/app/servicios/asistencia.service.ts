@@ -46,7 +46,7 @@ let variable = new Variables();
 
 @Injectable()
 export class AsistenciaServices extends BaseServices<Asistencia> {
-  public url:string = variable.urlBase + "asistencia/";
+  public url:string = variable.urlBase + "asistencia";
   
   constructor(public http:HttpClient){
     super(http);

@@ -16,7 +16,7 @@ export class TipoDocumento extends BaseEntity{
 @Injectable()
 export class TipoDocumentoServices extends BaseServices<TipoDocumento> {
 
-  public url:string = `${new Variables().urlBase}tipoDocumento/`;
+  public url:string = `${new Variables().urlBase}tipoDocumento`;
   constructor(public http:HttpClient){
     super(http);
      }

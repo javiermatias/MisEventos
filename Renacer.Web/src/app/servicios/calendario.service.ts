@@ -10,7 +10,7 @@ let variable = new Variables();
 
 @Injectable()
 export class CalendarioServices extends BaseServices<Calendario> {
-  public url:string = `${variable.urlBase}calendario/`;
+  public url:string = `${variable.urlBase}calendario`;
   
   constructor(public http:HttpClient){
     super(http);

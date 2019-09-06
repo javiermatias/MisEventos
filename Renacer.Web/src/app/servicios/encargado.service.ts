@@ -33,7 +33,7 @@ let variable = new Variables();
 
 @Injectable()
 export class EncargadoEventoServices extends BaseServices<EncargadoEvento> {
-  public url:string = `${new Variables().urlBase}encargado/`;
+  public url:string = `${new Variables().urlBase}encargado`;
   
   constructor(public http:HttpClient){
     super(http);

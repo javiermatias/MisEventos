@@ -75,7 +75,7 @@ export class Contacto {
 
 @Injectable()
 export class PersonaServices extends BaseServices<Persona> {
-  public url:string = `${new Variables().urlBase}persona/`;
+  public url:string = `${new Variables().urlBase}persona`;
   constructor(public http:HttpClient){
     super(http);
      }

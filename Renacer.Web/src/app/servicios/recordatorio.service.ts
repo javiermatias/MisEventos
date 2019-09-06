@@ -8,7 +8,7 @@ let variable = new Variables();
 
 @Injectable()
 export class RecordatorioServices extends BaseServices<Recordatorio> {
-    public url:string = `${new Variables().urlBase}recordatorio/`;
+    public url:string = `${new Variables().urlBase}recordatorio`;
     constructor(public http:HttpClient){
         super(http);
          }

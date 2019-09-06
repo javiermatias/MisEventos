@@ -82,7 +82,7 @@ export class Domicilio{
 
     @Injectable()
     export class SocioServices extends BaseServices<Socio> {
-      public url:string = `${new Variables().urlBase}socio/`;
+      public url:string = `${new Variables().urlBase}socio`;
       constructor(public http:HttpClient){
         super(http);
          }

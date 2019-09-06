@@ -24,7 +24,7 @@ export class Usuario {
 
 @Injectable()
 export class UserServices extends BaseServices<Usuario> {
-  public url:string = `${new Variables().urlBase}usuario/`;
+  public url:string = `${new Variables().urlBase}usuario`;
   
   constructor(public http:HttpClient){
     super(http);
@@ -54,6 +54,6 @@ export class UserServices extends BaseServices<Usuario> {
   }
 
   subirImagen(Name:string,Bytes:number[]):Observable<any>{
-    return this.http.post(`${this.url}subirImagen/`,{'Name':Name,'Bytes':Bytes})
+    return this.http.post(`${this.url}/subirImagen/`,{'Name':Name,'Bytes':Bytes})
   }
 }

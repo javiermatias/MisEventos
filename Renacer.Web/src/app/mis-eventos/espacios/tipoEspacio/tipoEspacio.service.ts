@@ -17,7 +17,7 @@ let variable = new Variables();
 
 @Injectable()
 export class TipoEspacioServices extends BaseServices<TipoEspacio> {
-  public url:string = `${new Variables().urlBase}tipoEspacio/`;
+  public url:string = `${new Variables().urlBase}tipoEspacio`;
   
     constructor(http:HttpClient){
     super(http);

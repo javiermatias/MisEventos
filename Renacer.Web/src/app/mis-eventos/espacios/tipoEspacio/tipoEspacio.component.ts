@@ -38,7 +38,7 @@ onSubmit(myForm: FormGroup) {
 }
 
 verItem(item:TipoEspacio){
-  this._tipoEspacioService.get({"id":item.id}).subscribe(resp => {
+  this._tipoEspacioService.get(item.id).subscribe(resp => {
     this._tipoEspacio = resp;
     this.showDetail = true;
   });

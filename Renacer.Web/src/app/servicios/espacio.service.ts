@@ -30,7 +30,7 @@ let variable = new Variables();
 
 @Injectable()
 export class EspacioServices extends BaseServices<EspacioComun> {
-  public url:string = `${new Variables().urlBase}espacio/`;
+  public url:string = `${new Variables().urlBase}espacio`;
   
   constructor(public http:HttpClient){
     super(http);

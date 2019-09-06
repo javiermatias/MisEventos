@@ -156,7 +156,7 @@ let variable = new Variables();
 
 @Injectable()
 export class TipoEventoServices extends BaseServices<TipoEvento> {
-  public url:string = `${new Variables().urlBase}tipoEvento/`;
+  public url:string = `${new Variables().urlBase}tipoEvento`;
   constructor(public http:HttpClient){
     super(http);
      }
@@ -164,7 +164,7 @@ export class TipoEventoServices extends BaseServices<TipoEvento> {
 
 @Injectable()
 export class EventoServices extends BaseServices<Evento> {
-  public url:string = `${new Variables().urlBase}evento/`;
+  public url:string = `${new Variables().urlBase}evento`;
   constructor(public http:HttpClient){
     super(http);
      }
@@ -173,7 +173,7 @@ export class EventoServices extends BaseServices<Evento> {
 
 @Injectable()
 export class DetalleEventoServices extends BaseServices<DetalleEvento> {
-  public url:string = `${new Variables().urlBase}detalleEvento/`;
+  public url:string = `${new Variables().urlBase}detalleEvento`;
   constructor(public http:HttpClient){
     super(http);
      }
@@ -183,13 +183,13 @@ export class DetalleEventoServices extends BaseServices<DetalleEvento> {
 
 @Injectable()
 export class PagoServices extends BaseServices<Pago> {
-  public url:string = `${new Variables().urlBase}pago/`;
+  public url:string = `${new Variables().urlBase}pago`;
   
 }
 
 
 @Injectable()
 export class InscripcionServices extends BaseServices<Inscripcion> {
-  public url:string = `${new Variables().urlBase}inscripcion/`;
+  public url:string = `${new Variables().urlBase}inscripcion`;
   
 }

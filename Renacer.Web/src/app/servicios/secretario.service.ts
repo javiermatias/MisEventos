@@ -29,7 +29,7 @@ export class Secretario {
 
 @Injectable()
     export class SecretarioServices extends BaseServices<Secretario> {
-      public url:string = `${new Variables().urlBase}secretario/`;
+      public url:string = `${new Variables().urlBase}secretario`;
 
       constructor(public http:HttpClient){
         super(http);

@@ -10,7 +10,7 @@ let variable = new Variables();
 
 @Injectable()
 export class MatriculaServices extends BaseServices<Matricula> {
-    public url:string = `${new Variables().urlBase}matricula/`;
+    public url:string = `${new Variables().urlBase}matricula`;
     constructor(public http:HttpClient){
         super(http);
          }

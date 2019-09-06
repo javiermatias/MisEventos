@@ -16,7 +16,7 @@ let variable = new Variables();
 @Injectable()
 export class RolServices extends BaseServices<Rol> {
 
-  public url:string = `${new Variables().urlBase}rol/`;
+  public url:string = `${new Variables().urlBase}rol`;
   constructor(public http:HttpClient){
     super(http);
      }
