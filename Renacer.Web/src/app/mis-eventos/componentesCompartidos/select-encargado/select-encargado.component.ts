@@ -54,7 +54,7 @@ export class SelectEncargadoComponent implements OnInit, OnChanges {
   }
 
   getItems(){
-    this._dbServices.query({},(items) => {
+    this._dbServices.query({}).subscribe(items => {
       this.items = [];
       for(var i = 0; i < items.length;i++){
         var itemAux = new EncargadoEvento(0);

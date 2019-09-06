@@ -16,7 +16,7 @@ export class ListaComponent implements OnInit {
   }
 
   getItems(){
-  this._itemsService.query({'search':' '},(items:Evento[]) => {
+  this._itemsService.query({'search':' '}).subscribe(items => {
     this.eventos = items;
     }
    );

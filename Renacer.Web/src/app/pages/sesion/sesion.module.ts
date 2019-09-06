@@ -7,7 +7,6 @@ import { SesionComponent } from './sesion.component';
 
 import { RolesUsuarioComponent } from '../rol/rolesUsuario.component';
 import { DataTableModule } from "angular2-datatable";
-import { ToastrModule } from 'ngx-toastr';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { LoginComponent } from '../login/login.component';
@@ -23,8 +22,7 @@ export const routes = [
 @NgModule({
   imports: [
     CommonModule,
-    PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG),
-    ToastrModule.forRoot(),
+    PerfectScrollbarModule,
     routing,
     FormsModule,
     ReactiveFormsModule,DataTableModule,

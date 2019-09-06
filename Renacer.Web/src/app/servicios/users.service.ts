@@ -1,9 +1,8 @@
 import {Injectable} from '@angular/core';
-import {Resource, ResourceParams, ResourceAction} from 'ngx-resource';
-import {ResourceMethod} from 'ngx-resource/src/Interfaces';
-import {RequestMethod} from '@angular/http';
 import {Variables} from './variables';
 import {BaseServices} from './base.service';
+import { Observable } from "rxjs/Observable";
+import { HttpClient } from "@angular/common/http";
 
 
 export class Usuario {
@@ -24,23 +23,22 @@ export class Usuario {
 
 
 @Injectable()
-@ResourceParams({
-  url:new Variables().urlBase + "usuario/"
-})
 export class UserServices extends BaseServices<Usuario> {
+  public url:string = `${new Variables().urlBase}usuario/`;
+  
+  constructor(public http:HttpClient){
+    super(http);
+     }
 
-  @ResourceAction({
-    method: RequestMethod.Post,
-    url:new Variables().urlBase + "login/",
-    noAuth:true
-  })
-  login: ResourceMethod<{usuario: string,clave:string},Object>;
-
-  @ResourceAction({
-    method: RequestMethod.Get
-  })
-  actual:ResourceMethod<{},Object>;
-
+  
+  login(usuario: string,clave:string){
+    return this.http.post(`${new Variables().urlBase}login/`,{usuario: usuario,clave:clave})
+  }
+ 
+  actual():Observable<Usuario>{
+    return this.http.get<Usuario>(`${this.url}/`)
+  }
+  
   getCurrent=function(){
     if(this.usuario == null){
       this.usuario = JSON.parse(localStorage.usuario);
@@ -53,5 +51,9 @@ export class UserServices extends BaseServices<Usuario> {
     if (usuario) { // cuando cierro sesion mando un usuario nulo
       sessionStorage["token"] = usuario["token"];
     }
+  }
+
+  subirImagen(Name:string,Bytes:number[]):Observable<any>{
+    return this.http.post(`${this.url}subirImagen/`,{'Name':Name,'Bytes':Bytes})
   }
 }

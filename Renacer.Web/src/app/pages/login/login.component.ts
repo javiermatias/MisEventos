@@ -41,13 +41,10 @@ export class LoginComponent {
 
   public onSubmit(values: Object): void {
     if (this.form.valid) {
-      let credenciales = {
-        "usuario": this.username.value,
-        "clave": this.password.value
-      } // TODO: volver a codificar una vez resuelto la codificacion al crear usuario
+     // TODO: volver a codificar una vez resuelto la codificacion al crear usuario
       // "clave": shajs('sha256').update(this.password.value).digest('hex')
       this.loading = true;
-      this._usersService.login(credenciales, (result) => {
+      this._usersService.login(this.username.value,this.password.value).subscribe(result => {
         this.loading = false;
 
         if (result["result"] == "ok") {

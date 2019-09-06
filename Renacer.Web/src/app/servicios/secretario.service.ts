@@ -1,10 +1,9 @@
 import {Injectable} from '@angular/core';
-import {Resource, ResourceParams, ResourceAction} from 'ngx-resource';
-import {ResourceMethod} from 'ngx-resource/src/Interfaces';
 import {RequestMethod} from '@angular/http';
 import {BaseServices} from './base.service';
 import {Variables} from './variables';
 import {TipoDocumento} from './tipo-documento.service';
+import { HttpClient } from "@angular/common/http";
 
 export class Secretario {
   constructor(
@@ -28,19 +27,28 @@ export class Secretario {
   }
 }
 
-    @Injectable()
-    @ResourceParams({
-      url:new Variables().urlBase + "secretario/"
-    })
+@Injectable()
     export class SecretarioServices extends BaseServices<Secretario> {
-        @ResourceAction({
-          path:"/secretario/{!idSecretario}",
-          method: RequestMethod.Post
-        })
-        guardarNuevo: ResourceMethod<{ idSecretario: number },Secretario>;
-        @ResourceAction({
-          path:"/secretario/{!idSecretario}",
-          method: RequestMethod.Patch
-        })
-        guardarEdicion: ResourceMethod<{ idSecretario: number },Secretario>;
+      public url:string = `${new Variables().urlBase}secretario/`;
+
+      constructor(public http:HttpClient){
+        super(http);
+         }
+        // @ResourceAction({
+        //   path:"/secretario/{!idSecretario}",
+        //   method: RequestMethod.Post
+        // })
+        guardarNuevo(){
+          this.save(null)
+        } 
+        // guardarNuevo:ResourceMethod<{ idSecretario: number },Secretario>;
+        // @ResourceAction({
+        //   path:"/secretario/{!idSecretario}",
+        //   method: RequestMethod.Patch
+        // })
+
+        guardarEdicion(idSecretario:number){
+          this.save(null)
+        } 
+        // guardarEdicion: ResourceMethod<{ idSecretario: number },Secretario>;
     }

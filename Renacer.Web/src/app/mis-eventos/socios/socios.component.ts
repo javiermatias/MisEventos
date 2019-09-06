@@ -54,24 +54,15 @@ export class SociosComponent implements OnInit {
   }
   getItems() {
      this._socioService.query(
-      { 'search':this.searchText},
-      (items:Socio[]) => {
+      { 'search':this.searchText}).subscribe
+      (items => {
         console.log(items);
       this.socios = items;
     }); 
-/*     this._personaService.query(
-      { 'rol': "Socio" },
-      (items: Persona[]) => {
-        this.personas = items;
-      }); */
-
-
 
   }
   verItem(item: Persona) {
-    //his._persona = item;
-    //this.showDetail = true;
-    this._personaService.get({ "id": item.id }, (resp: Persona) => {
+    this._personaService.get({ "id": item.id }).subscribe(resp => {
       this._persona = resp;
       //this._persona.fechaNacimiento.format("mm/dd/yy", "AR");
       /*       var mifecha;
@@ -88,7 +79,7 @@ export class SociosComponent implements OnInit {
   }
 
   eliminarItem(item: Persona) {
-    this._personaService.remove({ 'id': item.id }, resp => {
+    this._personaService.remove({ 'id': item.id }).subscribe(resp => {
       this.mensajeServ.info('Se ha dado de baja el socio', 'Aviso!');
       this.router.navigate(['/pages/socios']);
     })
@@ -116,7 +107,7 @@ export class SociosComponent implements OnInit {
   saveItem(item: Socio): any {
     //Guarde en SOcio y persona. En persona va generar el usuario y el ROL
     if (item.id == 0) {
-      this._socioService.save(item, (resp: Socio) => {
+      this._socioService.save(item).subscribe(resp => {
         item = resp;
         this.socios.push(item);
         this.showDetail = false;

@@ -8,6 +8,12 @@ using Renacer.Nucleo.Control;
 using Renacer.Nucleo.Entidades;
 using Renacer.Nucleo;
 using Renacer.WebAPI.Filters;
+using System.Web.UI.WebControls;
+using System.Web.Http.Description;
+using System.Web;
+using System.IO;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace Renacer.WebAPI.Controllers
 {
@@ -60,5 +66,63 @@ namespace Renacer.WebAPI.Controllers
             //ControlUsuario.devolverInstancia().eliminar(id);
         }
 
+        [ActionName("subirImagen")]
+        [Route("api/usuario/subirImagen")]
+        public IHttpActionResult SubirImagenDePerfil(ImageModel model)
+        {
+            var imgUrl = "Error";
+            try
+            {
+                var usuarioActual = ControlUsuario.devolverInstancia().devolverPorUsuario(User.Identity.Name);
+                usuarioActual.imagen = WriteImage(model.Bytes, $@"perfil-{usuarioActual.id}", "perfiles");
+                ControlUsuario.devolverInstancia().grabar(usuarioActual);
+                return Ok(usuarioActual);
+            }
+            catch (UsuarioException ex)
+            {
+                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.BadRequest, ex.errores));
+            }
+            
+        }
+
+        private string WriteImage(byte[] arr, string name,string folder)
+        {
+
+            var filename = $@"images\{folder}\{name}.";
+            using (var im = System.Drawing.Image.FromStream(new MemoryStream(arr)))
+            {
+                ImageFormat frmt;
+                if (ImageFormat.Png.Equals(im.RawFormat))
+                {
+                    filename += "png";
+                    frmt = ImageFormat.Png;
+                }
+                else
+                {
+                    filename += "jpg";
+                    frmt = ImageFormat.Jpeg;
+                }
+                string path = HttpContext.Current.Server.MapPath("~/") + filename;
+                
+                im.Save(path,frmt);
+            }
+
+            return $@"http:\\{Request.RequestUri.Host}\images\{folder}\{filename}";
+        }
+
     }
+
+
+    public class ImageModel
+    {
+        public string Name { get; set; }
+        public byte[] Bytes { get; set; }
+    }
+
+
+
+
 }
+
+
+

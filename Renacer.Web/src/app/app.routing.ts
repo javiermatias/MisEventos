@@ -2,20 +2,21 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 import { ErrorComponent } from './pages/error/error.component';
 import { AccessGuard } from './servicios/accessGuard.service';
+import { PagesModule } from './pages/pages.module';
+import { SesionModule } from './pages/sesion/sesion.module';
+import { RegisterModule } from './pages/register/register.module';
 
-export const routes: Routes = [
+ const routes: Routes = [
   { path: '', redirectTo: 'sesion', pathMatch: 'full' },
-  { path: 'pages', loadChildren: 'app/pages/pages.module#PagesModule'/* , data: { requiereRol: true }, canActivate: [AccessGuard] */ }, // el canActivate: [AccessGuard] indica que debe hacer este chequeo antes de entrar al módulo
-  { path: 'sesion', loadChildren: 'app/pages/sesion/sesion.module#SesionModule' },
-  { path: 'register', loadChildren: 'app/pages/register/register.module#RegisterModule' },/* 
-  { path: 'eventos', loadChildren: 'app/mis-eventos/peventos.module#PeventosModule' }, */
-
-
-  // dejar siempre al último esta ruta. Se utiliza cuando no matchea ninguna de las rutas anteriores
+  { path: 'pages', loadChildren: () => import('./pages/pages.module').then(mod => mod.PagesModule) },
+  { path: 'sesion', loadChildren:  ()=> SesionModule },
+  { path: 'register', loadChildren: ()=> RegisterModule },
   { path: '**', component: ErrorComponent }
 ];
 
-export const routing: ModuleWithProviders = RouterModule.forRoot(routes, {
+ const routing: ModuleWithProviders = RouterModule.forRoot(routes, {
   preloadingStrategy: PreloadAllModules,
   useHash: true
 });
+
+export {routing}

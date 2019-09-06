@@ -48,8 +48,8 @@ export class AsistenciaComponent implements OnInit {
   getEventosXencargado(){
     
     this._eventoServ.query(
-      {'idEncargado':this.usuario.idEncargado},
-      (items:Evento[]) => {
+      {'idEncargado':this.usuario.idEncargado}).subscribe
+      (items => {
         this.eventos = items;
       //console.log(items);
     });
@@ -59,8 +59,8 @@ export class AsistenciaComponent implements OnInit {
   getAsistenciaDetalleEvento(_idEvento:number){
     this._detalleEvento.query(
       {'idEvento':_idEvento,
-      'idEncargado':this.usuario.idEncargado},
-      (items:DetalleEvento[]) => {          
+      'idEncargado':this.usuario.idEncargado}).subscribe
+      (items => {          
           this.detalleEvento= items;
           this.mostrarGrilla=true;
         //console.log(items);
@@ -87,7 +87,7 @@ export class AsistenciaComponent implements OnInit {
     this.showRecordatorio = false;
     if (cancelar) {
       this.detalleSelecionado.asistencia=true;
-      this._detalleEvento.update(this.detalleSelecionado,(resp:DetalleEvento) => {
+      this._detalleEvento.save(this.detalleSelecionado).subscribe(resp => {
         this.cambioEvento();
       });
        //Aca deberia guardar la asistencia del detalle evento.

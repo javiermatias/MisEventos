@@ -23,7 +23,7 @@ export class TipoEspacioComponent implements OnInit {
   }
 
   getItems(){
-    this._tipoEspacioService.query({},(items:TipoEspacio[]) => {
+    this._tipoEspacioService.query({}).subscribe(items => {
       this.tiposEspacio = items;
     }
   );
@@ -38,7 +38,7 @@ onSubmit(myForm: FormGroup) {
 }
 
 verItem(item:TipoEspacio){
-  this._tipoEspacioService.get({"id":item.id},(resp:TipoEspacio) => {
+  this._tipoEspacioService.get({"id":item.id}).subscribe(resp => {
     this._tipoEspacio = resp;
     this.showDetail = true;
   });
@@ -54,14 +54,14 @@ limpiarForm(){
 
 saveItem(item:TipoEspacio):any{
   if(item.id == 0){
-    this._tipoEspacioService.save(item,(resp:TipoEspacio) => {
+    this._tipoEspacioService.save(item).subscribe(resp => {
       item = resp;
       this.tiposEspacio.push(item);
       this.showDetail = false;
       this.mensajeServ.success('Se han guardado los cambios!', 'Aviso!');
     });
   }else{
-    this._tipoEspacioService.update(item,(resp:TipoEspacio) => {
+    this._tipoEspacioService.update(item).subscribe(resp => {
       let index = this.tiposEspacio.findIndex(t => t.id == resp.id);
       this.tiposEspacio[index] = resp;
       this.showDetail = false;

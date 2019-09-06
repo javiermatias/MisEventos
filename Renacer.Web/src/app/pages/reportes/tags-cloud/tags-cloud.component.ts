@@ -29,7 +29,7 @@ export class TagsCloudComponent implements OnInit {
   }
 
   getTags(){
-    this.itemsServ.tags(this.filter,(result) => {
+    this.itemsServ.tags(this.filter).subscribe(result => {
       var items = [];
       for(var i = 0; i < result.length;i++)
       {

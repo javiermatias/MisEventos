@@ -59,7 +59,7 @@ export class ReporteComponent implements OnInit,OnDestroy  {
 
     verItem()
     {
-      this._itemsService.get({"id":this.id},(resp:Evento) => {
+      this._itemsService.get(this.id).subscribe(resp => {
         this._item = resp;
 
       });
@@ -82,21 +82,21 @@ export class ReporteComponent implements OnInit,OnDestroy  {
       {
         item.listaDetalleEvento = this.armarDetalleEvento(item,this.horarios);
 
-        this._itemsService.save(item,(resp:Evento) => {
+        this._itemsService.save(item).subscribe(resp => {
           item = resp;
           this.mensajeServ.success('Se ha creado un nuevo Evento!', 'Aviso!');
         });
       }
       else
       {
-        this._itemsService.update(item,(resp:Evento) => {
+        this._itemsService.update(item).subscribe(resp => {
           this.mensajeServ.success('Se han guardado los cambios!', 'Aviso!');
         });
       }
     }
 
     getEspacios(){
-      this.espacioServ.query({},(items) => {
+      this.espacioServ.query({}).subscribe(items => {
         this.espacios = [];
         for(var i = 0; i < items.length;i++){
           var itemAux = new EspacioComun(0,"");
@@ -108,7 +108,7 @@ export class ReporteComponent implements OnInit,OnDestroy  {
     }
 
     getResponsables(){
-      this.responsableServ.query({},(items) => {
+      this.responsableServ.query({}).subscribe(items => {
         this.responsables = [];
         for(var i = 0; i < items.length;i++){
           var itemAux = new EncargadoEvento(0,"");

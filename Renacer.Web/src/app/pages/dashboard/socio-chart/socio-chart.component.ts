@@ -50,7 +50,7 @@ export class SocioChartComponent {
 
         self.pieChartData = [0,0,0,0,0];
       
-        this._reporteServ.getCrecimientoSocios({},(result:any) => {
+        this._reporteServ.getCrecimientoSocios({}).subscribe(result => {
 
             this.lineChartColors = [
                 { 
@@ -130,7 +130,7 @@ export class SocioChartComponent {
                }
         })
 
-        this._reporteServ.getSociosPorEdad({},(result:any) =>{
+        this._reporteServ.getSociosPorEdad({}).subscribe(result =>{
 
             result.forEach(item => {
               

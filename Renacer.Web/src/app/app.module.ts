@@ -1,8 +1,9 @@
 import 'pace';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpModule } from '@angular/http';
+import { DatePipe,CommonModule } from '@angular/common';
 import { AgmCoreModule } from '@agm/core';
 import { routing } from './app.routing';
 import { AppConfig } from './app.config';
@@ -23,12 +24,13 @@ import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import { RolServices } from './servicios/rol.service';
 import { TipoEspacioServices } from './mis-eventos/espacios/tipoEspacio/tipoEspacio.service';
 import { AccessGuard } from './servicios/accessGuard.service';
-import { DatePipe } from '@angular/common';
 import { MatriculaServices } from './servicios/matricula.service';
 import { MatriculaxsocioService } from './servicios/matriculaxsocio.service';
 import { DragulaModule } from 'ng2-dragula';
 import { RecordatorioServices, RecordatorioHoyServices,ActualizarEventoServices } from './servicios/recordatorio.service';
 import { CalendarioServices } from './servicios/calendario.service';
+import { AuthInterceptorProvider } from './servicios/request.interceptor';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -38,17 +40,20 @@ import { CalendarioServices } from './servicios/calendario.service';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDe_oVpi9eRSN99G4o6TwVjJbFBNr58NxE'
     }),
     routing,
-    HttpModule,
     DragulaModule,
-    NguiAutoCompleteModule
+    NguiAutoCompleteModule,
+    CommonModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     AppConfig,
     AccessGuard,
+    AuthInterceptorProvider,
     UserServices,
     PersonaServices,
     SocioServices,
@@ -74,6 +79,6 @@ import { CalendarioServices } from './servicios/calendario.service';
     PagoServices,
     CalendarioServices,
     DatePipe],
-  bootstrap: [AppComponent]
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

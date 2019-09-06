@@ -36,11 +36,23 @@
             <div class="col col-6 col-xs-12">
                 <div class="card card-main justify-content-between">
                     <div class="card-header">
-                       {{_item.nombre}}
+
                     </div>
-                    <img class="w-100" src="{{_item.imagen}}" alt="Perfil" style="margin: 0 auto;max-width:200px">
+                    <img class="w-100" 
+                    [src]="_item.imagen"
+                    *ngIf="_item.imagen"
+                    alt="imagen" style="margin: 0 auto;max-width:200px">
+
+                    <div *ngIf="!_item.imagen">
+                        <input type="file" 
+                        (change)="onFileSelected($event)">
+                        <button type="button" 
+                        (click)="onUploadFile()" class="btn btn-main">Cargar Imagen</button>
+                    </div>
+                    
+
                     <div class="card-footer text-right">
-                        {{_item.rol}}
+                        
                     </div>
                 </div>
             </div>

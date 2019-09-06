@@ -5,13 +5,15 @@ import { FormsModule }   from '@angular/forms';
 import { DirectivesModule } from '../../theme/directives/directives.module';
 import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
 import { DataTableModule } from "angular2-datatable";
-import { ToastrModule } from 'ngx-toastr';
 import { PipesModule } from '../../theme/pipes/pipes.module';
 import { SharedModule } from '../../mis-eventos/componentesCompartidos/shared.module';
 import { TagsCloudComponent } from './tags-cloud/tags-cloud.component';
 import { TagCloudModule } from 'angular-tag-cloud-module';
 import { SociosComponent } from './socios/socios.component';
 import { EventosComponent } from './eventos/eventos.component'
+import { ReporteComponent } from './reporte.component';
+
+
 
 export const routes = [
   { path: '', redirectTo: 'tags', pathMatch: 'full'},
@@ -35,6 +37,7 @@ export const routes = [
   declarations: [
     TagsCloudComponent,
     SociosComponent,
+    ReporteComponent,
     EventosComponent
   ]
 })

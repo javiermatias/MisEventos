@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Resource, ResourceParams, ResourceAction } from 'ngx-resource';
-import { ResourceMethod } from 'ngx-resource/src/Interfaces';
 import { RequestMethod } from '@angular/http';
 import { Variables } from './variables';
 import { BaseServices } from './base.service';
 import { TipoDocumento } from './tipo-documento.service';
 import { Tag } from './tag.service';
+import { HttpClient } from "@angular/common/http";
 
 
 
@@ -75,9 +74,9 @@ export class Contacto {
 }
 
 @Injectable()
-@ResourceParams({
-  url: new Variables().urlBase + 'persona/'
-})
-
 export class PersonaServices extends BaseServices<Persona> {
+  public url:string = `${new Variables().urlBase}persona/`;
+  constructor(public http:HttpClient){
+    super(http);
+     }
 }

@@ -262,7 +262,7 @@ GROUP BY
             {
                 if (this.Tags == null || this.Tags.Count == 0) return "";
 
-                return " LEFT JOIN tagsocios ts2 on ts2.Socio_id = s.id ";
+                return " LEFT JOIN sociotags ts2 on ts2.Socio_id = s.id ";
             }
 
             private string getJoinDomicilio()

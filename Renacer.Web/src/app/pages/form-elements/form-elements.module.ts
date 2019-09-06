@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
+// import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { DirectivesModule } from '../../theme/directives/directives.module';
 import { InputsComponent } from './inputs/inputs.component';
 import { FileUploaderComponent } from './inputs/file-uploader/file-uploader.component';
@@ -26,7 +26,7 @@ export const routes = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    MultiselectDropdownModule,
+    // MultiselectDropdownModule,
     DirectivesModule,    
     RouterModule.forChild(routes)
   ],

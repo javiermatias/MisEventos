@@ -44,7 +44,7 @@ export class NuevaAsistenciaComponent implements OnInit, AfterViewInit {
 
   traerInscripciones(idEvento:number){
     
-    this.inscripcionServ.query({'idEvento':idEvento},(items:Inscripcion[]) => {
+    this.inscripcionServ.query({'idEvento':idEvento}).subscribe(items => {
       this.listaInscripcion = items;
       //console.log(items);   
      // this.mostrarGrilla=true;
@@ -73,7 +73,7 @@ guardar(){
     asistencia.idSocio=value;
     asistencia.idDetalleEvento = this.detalleEvento.id;
     asistencia.idEncargado=this.detalleEvento.idEncargado;
-    this._asistenciaServ.save(asistencia, (resp: any) => {          
+    this._asistenciaServ.save(asistencia).subscribe(resp => {          
     });
     
 })
