@@ -1,9 +1,7 @@
 import {Injectable} from '@angular/core';
-import {Resource, ResourceParams, ResourceAction} from 'ngx-resource';
-import {ResourceMethod} from 'ngx-resource/src/Interfaces';
-import {RequestMethod} from '@angular/http';
 import {BaseServices} from './base.service';
 import {Variables} from './variables';
+import { HttpClient } from "@angular/common/http";
 
 export class Tag {
   constructor(
@@ -16,8 +14,9 @@ export class Tag {
 let variable = new Variables();
 
 @Injectable()
-@ResourceParams({
-  url:variable.urlBase + "tag/"
-})
 export class TagServices extends BaseServices<Tag> {
+  public url:string = `${new Variables().urlBase}tag`;
+  constructor(public http:HttpClient){
+    super(http);
+     }
 }

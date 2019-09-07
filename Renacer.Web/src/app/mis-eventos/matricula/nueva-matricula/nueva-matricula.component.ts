@@ -46,7 +46,7 @@ export class NuevaMatriculaComponent implements OnInit {
    }
   
     //función asincrónica, puede tardar varios segundos   
-    this._matriculaService.save(this.matricula,(resp:Matricula) => {
+    this._matriculaService.save(this.matricula).subscribe(resp => {
        //Callback
          this.mensajeServ.success('Se han guardado los cambios!', 'Aviso!');
          this.volver();
@@ -62,14 +62,14 @@ export class NuevaMatriculaComponent implements OnInit {
 
   getItems() {
 
-    this._matriculaService.query({}, (items: Matricula[]) => {
+    this._matriculaService.query({}).subscribe(items => {
       this.matriculas = items;
     });
 
 
   }
   getByID(){
-    this._matriculaService.get({ "id": this.id }, (resp: Matricula) => {
+    this._matriculaService.get(this.id).subscribe(resp => {
       this.matricula = resp;
       //console.log(this.matricula.fechaVencimiento);
      });

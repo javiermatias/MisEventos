@@ -19,7 +19,7 @@ export class SociosComponent implements OnInit {
     }
   
     getItems(){
-      this.itemsServ.socios(this.filter,(items:Socio[]) => {
+      this.itemsServ.socios(this.filter).subscribe(items => {
         this.items = items;
       })
     }

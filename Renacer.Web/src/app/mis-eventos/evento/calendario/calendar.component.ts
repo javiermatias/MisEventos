@@ -53,7 +53,7 @@ export class CalendarComponent {
     this.detalleEventServ.query({
       "fechaDesde":this.fechaDesde,
       "fechaHasta":this.fechaHasta
-    },(items) => {
+    }).subscribe(items => {
       console.log(items);
       this.calendarOptions.events = [];
 
@@ -198,7 +198,7 @@ ngOnInit(): void {
 }
 
 getEspacios(){
-  this._espacioService.query({},(items:EspacioComun[]) => {
+  this._espacioService.query({}).subscribe(items => {
     this.espacios = items;
   }
 );
@@ -214,7 +214,7 @@ cargarCalendario(){
   this._calendarioService.query({
     "fechaDesde":this.fechaDesde,
     "fechaHasta":this.fechaHasta
-  },(items) => {
+  }).subscribe(items => {
     console.log(items);
     
   });
@@ -224,7 +224,7 @@ cargarEventos(){
   this._calendarioService.query({
     "fechaDesde":this.fechaDesde,
     "fechaHasta":this.fechaHasta
-  },(items) => {
+  }).subscribe(items => {
     console.log(items);
     this.calendarOptions.events = [];
 

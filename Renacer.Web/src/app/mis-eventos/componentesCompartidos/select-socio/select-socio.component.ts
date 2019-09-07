@@ -72,7 +72,7 @@ export class SelectSocioComponent implements OnInit {
     this._dbServices.query(
       {'limit':10,
        'page':1,
-       'search':this.selectedSocio?this.selectedSocio.nombre:""},(items) => {
+       'search':this.selectedSocio?this.selectedSocio.nombre:""}).subscribe(items => {
       this.socios = [];
       for(var i = 0; i < items.length;i++){
         // itemAux.id = items[i].id;

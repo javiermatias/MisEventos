@@ -32,7 +32,7 @@ export class MessagesComponent implements OnInit{
 
     getItems(){
    
-        this._recordatorioService.query({}, (items: Recordatorio[]) => {
+        this._recordatorioService.query({}).subscribe(items => {
          //console.log(items);
           this.recordatorios = items;
           //console.log(this.recordatorios); 
@@ -43,7 +43,7 @@ export class MessagesComponent implements OnInit{
 
       actualizarEventos(){
    
-        this._actualizarEvento.query({}, (items: any[]) => {
+        this._actualizarEvento.query({}).subscribe(items => {
          //console.log('hola desde actualziar'+items);
          // this.recordatorios = items;
          // console.log(this.recordatorios); 

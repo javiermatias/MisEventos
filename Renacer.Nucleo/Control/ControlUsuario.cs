@@ -144,8 +144,7 @@ namespace Renacer.Nucleo.Control
                 {
                     var userLog = db.usuario.
                         Where(x => x.usuario.Equals(usuario)).FirstOrDefault();
-
-                    userLog.clave = "";
+                    
                     if (!System.IO.File.Exists(userLog.imagen)) userLog.imagen = "";
 
                     return userLog;

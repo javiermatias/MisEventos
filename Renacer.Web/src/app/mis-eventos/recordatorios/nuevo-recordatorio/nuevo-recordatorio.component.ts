@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { Recordatorio } from '../../../modelos/recordatorio';
 import { RecordatorioServices } from '../../../servicios/recordatorio.service';
-import { ToastrService } from 'ngx-toastr/toastr/toastr-service'; 
+import { ToastrService } from 'ngx-toastr'; 
 
 @Component({
   selector: 'az-nuevo-recordatorio',
@@ -22,7 +22,7 @@ export class NuevoRecordatorioComponent implements OnInit {
   onSubmit() {
     //this.matricula.anio = new Date();
     //función asincrónica, puede tardar varios segundos   
-    this._recordatorioService.save(this.recordatorio,(resp:any) => {
+    this._recordatorioService.save(this.recordatorio).subscribe(resp => {
        //Callback
          this.mensajeServ.success('Se guardo el recordatorio!', 'Aviso!');
          this.mostrarRecordatorio.emit(false);

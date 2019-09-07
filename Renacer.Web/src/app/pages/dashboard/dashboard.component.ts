@@ -50,27 +50,27 @@ export class DashboardComponent  {
 
     public loadAdminData():void {
         var self = this;
-        this._reporteServ.getEntidadCount({"Entidad":"cursos"},function(count){
+        this._reporteServ.getEntidadCount({"Entidad":"cursos"}).subscribe(function(count){
           self.cantCursos = count.count;
       });
 
-      this._reporteServ.getEntidadCount({"Entidad":"eventos"},function(count){
+      this._reporteServ.getEntidadCount({"Entidad":"eventos"}).subscribe(function(count){
           self.cantEventos = count.count;
       });
-      this._reporteServ.getEntidadCount({"Entidad":"socios"},function(count){
+      this._reporteServ.getEntidadCount({"Entidad":"socios"}).subscribe(function(count){
           self.cantSocios = count.count;
       });
     /*   this._reporteServ.getEntidadCount({"Entidad":"asistencias"},function(count){
           self.cantAsistencias = count.count;
       }); */
-      this._reporteServ.getEntidadCount({"Entidad":"encargados"},function(count){
+      this._reporteServ.getEntidadCount({"Entidad":"encargados"}).subscribe(function(count){
           self.cantEncargados = count.count;
       });
-      this._reporteServ.getEntidadCount({"Entidad":"espacios"},function(count){
+      this._reporteServ.getEntidadCount({"Entidad":"espacios"}).subscribe(function(count){
           self.cantEspacios = count.count;
       });
 
-      this._reporteServ.getCrecimientoSocios({},function(result){
+      this._reporteServ.getCrecimientoSocios({}).subscribe(function(result){
           self.crecimientoSocios = result;
       });
     }

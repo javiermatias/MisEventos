@@ -42,7 +42,7 @@ export class TipoDocumentoComponent implements OnInit {
   }
 
   getTiposDoc(){
-    this._dbServices.query({},(items) => {
+    this._dbServices.query({}).subscribe(items => {
       this.tiposDocumentos_1 = [];
       for(var i = 0; i < items.length;i++){
         var itemAux = new TipoDocumento();

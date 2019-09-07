@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
-import {Resource, ResourceParams, ResourceAction} from 'ngx-resource';
-import {ResourceMethod} from 'ngx-resource/src/Interfaces';
 import {RequestMethod} from '@angular/http';
 import {BaseServices} from './base.service';
 import {Variables} from './variables';
 import {TipoDocumento} from './tipo-documento.service';
 import {Tag} from './tag.service';
 import { Matricula } from '../modelos/matricula';
+import { Observable } from "rxjs/Observable";
 
+import { HttpClient } from "@angular/common/http";
 export class Socio {
   constructor(
     public id: number,
@@ -81,28 +81,24 @@ export class Domicilio{
     }
 
     @Injectable()
-    @ResourceParams({
-      url:new Variables().urlBase + "socio/"
-    })
     export class SocioServices extends BaseServices<Socio> {
+      public url:string = `${new Variables().urlBase}socio`;
+      constructor(public http:HttpClient){
+        super(http);
+         }
     }
 
     @Injectable()
-    @ResourceParams({
-      url:new Variables().urlBase
-    })
     export class SocioMatriculaServices extends BaseServices<Socio> {
+      public url:string = `${new Variables().urlBase}`;
+      constructor(public http:HttpClient){
+        super(http);
+         }
+      cambiarEstadoMatricula(idSocio: number):Observable<any>{
+              return this.http.post(`${this.url}socio/${idSocio}/matricula`,{idSocio:idSocio})
+      }
 
-      @ResourceAction({
-        path:"/socio/{!idSocio}/matricula",
-        method: RequestMethod.Post
-      })
-      cambiarEstadoMatricula: ResourceMethod<{ idSocio: number },Socio>;
-
-      @ResourceAction({
-        path:"/matricula/activa",
-        method: RequestMethod.Get
-      })
-      getMatriculaActual: ResourceMethod<{},Matricula>;
-
+      getMatriculaActual():Observable<Matricula>{
+        return this.http.get<Matricula>(`${this.url}/matricula/activa`)
+      }
     }

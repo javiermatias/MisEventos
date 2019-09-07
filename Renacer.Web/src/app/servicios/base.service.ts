@@ -1,7 +1,10 @@
-import { Injectable } from '@angular/core';
-import { Resource, ResourceParams, ResourceAction } from 'ngx-resource';
-import { ResourceMethod } from 'ngx-resource/src/Interfaces';
-import { RequestMethod } from '@angular/http';
+import { HttpClient,HttpParams } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import { Variables } from "./variables";
+import { Observable } from 'rxjs/observable';
+
+let variable = new Variables();
+
 
 interface IQueryInput {
   page?: number;
@@ -32,42 +35,43 @@ BaseEntity.prototype.equals = function (o) {
   return this["id"] === o["id"];
 };
 
+
 @Injectable()
-@ResourceParams({
-  path: ''
-})
-export class BaseServices<T> extends Resource {
+export class BaseServices<T> {
 
-  @ResourceAction({
-    isArray: true
-  })
-  query: ResourceMethod<IQueryInput, T[]>;
+  public url:string = variable.urlBase;
 
-  @ResourceAction({
-    path: '/{!id}'
-  })
-  get: ResourceMethod<{ id: any }, T>;
+  constructor(public http:HttpClient){
+ 
+  }
 
-  @ResourceAction({
-    path: '/{?tipoDni;?dni}'
-  })
-  getUsuario: ResourceMethod<{ tipoDni: number, dni: number }, T>;
+  query(query: IQueryInput): Observable<T[]>{
+    let Params = new HttpParams();   
+    Object.keys(query).forEach(function (item) {  
+      Params = Params.append(item, query[item]);
+    });
+   
+    return this.http.get<T[]>(`${this.url}`,  { params:  Params });
+  }
 
-  @ResourceAction({
-    method: RequestMethod.Post
-  })
-  save: ResourceMethod<T, Object>;
+  get(id:any):Observable<T>
+  {
+    return this.http.get<T>(`${this.url}/${id}`);
+  }
 
-  @ResourceAction({
-    method: RequestMethod.Put,
-    path: '/{!id}'
-  })
-  update: ResourceMethod<T, Object>;
+  getUsuario(req:{ tipoDni: number, dni: number }):Observable<T>{
+    return this.http.get<T>(this.url);
+  } 
 
-  @ResourceAction({
-    method: RequestMethod.Delete,
-    path: '/{!id}'
-  })
-  remove: ResourceMethod<{ id: any }, any>;
+  save(entidad:T):Observable<T>{
+    return this.http.post<T>(this.url,entidad);
+  }
+  update(entidad:T):Observable<T>{
+    return this.http.post<T>(this.url,entidad);
+  }
+
+  remove(value:{id:any}):Observable<any>{
+    return this.http.delete(`${this.url}/${value.id}`);
+  }
 
 }

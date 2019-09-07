@@ -48,8 +48,8 @@ export class SecretariosComponent implements OnInit {
   }
   getItems() {
      this._secretarioService.query(
-      { 'search':this.searchText},
-      (items:Secretario[]) => {
+      { 'search':this.searchText}).subscribe
+      (items => {
         console.log(items);
       this.secretarios = items;
     }); 
@@ -65,7 +65,7 @@ export class SecretariosComponent implements OnInit {
   verItem(item: Persona) {
     //his._persona = item;
     //this.showDetail = true;
-    this._personaService.get({ "id": item.id }, (resp: Persona) => {
+    this._personaService.get(item.id).subscribe(resp => {
       this._persona = resp;
       //this._persona.fechaNacimiento.format("mm/dd/yy", "AR");
       /*       var mifecha;
@@ -82,7 +82,7 @@ export class SecretariosComponent implements OnInit {
   }
 
   eliminarItem(item: Persona) {
-    this._personaService.remove({ 'id': item.id }, resp => {
+    this._personaService.remove({ 'id': item.id }).subscribe(resp => {
       this.mensajeServ.info('Se ha dado de baja el secretario', 'Aviso!');
       this.router.navigate(['/pages/secretarios']);
     })
@@ -110,7 +110,7 @@ export class SecretariosComponent implements OnInit {
   saveItem(item: Secretario): any {
     //Guarde en Secretario y persona. En persona va generar el usuario y el ROL
     if (item.id == 0) {
-      this._secretarioService.save(item, (resp: Secretario) => {
+      this._secretarioService.save(item).subscribe(resp => {
         item = resp;
         this.secretarios.push(item);
         this.showDetail = false;

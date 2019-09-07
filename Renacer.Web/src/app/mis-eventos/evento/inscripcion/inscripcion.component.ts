@@ -46,9 +46,8 @@ export class InscripcionComponent implements OnInit {
 
   traerEventos(estado:string){
     
-      this._itemsService.query({'estado':estado},(items:Evento[]) => {
+      this._itemsService.query({'estado':estado}).subscribe(items => {
         this.eventos = items;
-        
         }
        );
       
@@ -56,10 +55,9 @@ export class InscripcionComponent implements OnInit {
 
   traerInscripciones(idEvento:number){
     
-    this.inscripcionServ.query({'idEvento':idEvento},(items:Inscripcion[]) => {
+    this.inscripcionServ.query({'idEvento':idEvento}).subscribe(items => {
       this.listaInscripcion = items;    
       this.mostrarGrilla=true;
-      
       }
      );
     
@@ -136,13 +134,9 @@ export class InscripcionComponent implements OnInit {
  
 
   guardarInscripcion(inscripc:Inscripcion){
-    
-    this.inscripcionServ.save(inscripc, (resp: any) => {
-      //console.log('guardado'+inscripc.idEvento);
+    this.inscripcionServ.save(inscripc).subscribe(resp => {
       this.traerInscripciones(this.seleccionEvento.id);
        });
-       
-      
   }
 
   eliminarInscripcion(inscripcion: Inscripcion){
@@ -151,12 +145,11 @@ export class InscripcionComponent implements OnInit {
     
   }
   eliminar(){
-//onsole.log("se elimino");
-jQuery('#show-event-modal').modal('hide');
-this.inscripcionServ.remove({'id':this.eliminaInscripcion.id},resp =>{
-  this.mensajeServ.info('Se dio de baja la inscripción', 'Aviso!');
-  this.traerInscripciones(this.seleccionEvento.id);
- })
+    jQuery('#show-event-modal').modal('hide');
+    this.inscripcionServ.remove({'id':this.eliminaInscripcion.id}).subscribe(resp =>{
+      this.mensajeServ.info('Se dio de baja la inscripción', 'Aviso!');
+      this.traerInscripciones(this.seleccionEvento.id);
+    })
 
   }
 

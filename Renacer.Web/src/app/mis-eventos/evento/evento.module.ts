@@ -5,7 +5,6 @@ import { FormsModule }   from '@angular/forms';
 import { DirectivesModule } from '../../theme/directives/directives.module';
 import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
 import { DataTableModule } from "angular2-datatable";
-import { ToastrModule } from 'ngx-toastr';
 import { PipesModule } from '../../theme/pipes/pipes.module';
 import { SharedModule } from '../componentesCompartidos/shared.module';
 import { DetalleEventoComponent } from './detalle-evento.component';
@@ -15,7 +14,7 @@ import { ListaComponent } from './lista/lista.component';
 import { EventoWizardComponent } from './evento-wizard/evento-wizard.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InscripcionComponent } from './inscripcion/inscripcion.component';
-import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
+// import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { EventoDetalleComponent } from './evento-detalle/evento-detalle.component';
 import { FbkComponent } from './fbk/fbk.component';
 // import social buttons module//import { JwSocialButtonsModule } from 'jw-angular-social-buttons';
@@ -42,7 +41,7 @@ export const routes = [
       DataTableModule,
       NguiAutoCompleteModule,
       ReactiveFormsModule,
-      MultiselectDropdownModule,
+      // MultiselectDropdownModule,
       //JwSocialButtonsModule,
       RouterModule.forChild(routes)
   ],

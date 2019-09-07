@@ -29,7 +29,7 @@ export class EncargadosComponent implements OnInit {
 
   getItems()
   {
-    this._itemsService.query({},(items:EncargadoEvento[]) => {
+    this._itemsService.query({}).subscribe(items => {
       this.items = items;
     });
   }
@@ -44,7 +44,7 @@ export class EncargadosComponent implements OnInit {
 
   verItem(item:EncargadoEvento)
   {
-    this._itemsService.get({"id":item.id},(resp:EncargadoEvento) => {
+    this._itemsService.get(item.id).subscribe(resp => {
       this._item = resp;
       this.showDetail = true;
     });
@@ -66,7 +66,7 @@ export class EncargadosComponent implements OnInit {
   {
     if(item.id == 0)
     {
-      this._itemsService.save(item,(resp:EncargadoEvento) => {
+      this._itemsService.save(item).subscribe(resp => {
         item = resp;
         this.items.push(item);
         this.showDetail = false;
@@ -75,7 +75,7 @@ export class EncargadosComponent implements OnInit {
     }
     else
     {
-      this._itemsService.update(item,(resp:EncargadoEvento) => {
+      this._itemsService.update(item).subscribe(resp => {
         let items = this.items;
         for (var i = 0; i < items.length; i++)
         {

@@ -23,7 +23,6 @@
 	      "../node_modules/bootstrap/scss/bootstrap.scss",
         "../node_modules/socicon/css/socicon.css",
         "../node_modules/metrojs/release/MetroJs.Full/MetroJs.css",
-        "../node_modules/froala-editor/css/froala_editor.pkgd.min.css",
         "../node_modules/dragula/dist/dragula.min.css",
         "../node_modules/ngx-toastr/toastr.css",
         "styles.scss"
@@ -41,8 +40,7 @@
         "../node_modules/moment/moment.js",
         "../node_modules/fullcalendar/dist/fullcalendar.min.js",
         "../node_modules/fullcalendar/dist/locale/es.js",
-        "../node_modules/dropzone/dist/min/dropzone.min.js",
-        "../node_modules/froala-editor/js/froala_editor.pkgd.min.js"
+        "../node_modules/dropzone/dist/min/dropzone.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

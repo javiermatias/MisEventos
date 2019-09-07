@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { IMultiSelectSettings, IMultiSelectTexts, IMultiSelectOption } from 'angular-2-dropdown-multiselect';
+// import { IMultiSelectSettings, IMultiSelectTexts, IMultiSelectOption } from 'angular-2-dropdown-multiselect';
 import { Socio, SocioServices } from '../../../servicios/socio.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { InscripcionServices, Inscripcion, Evento, PagoServices, Pago } from '../../../servicios/evento.service';
@@ -40,11 +40,9 @@ export class PagoCuotaComponent implements OnInit {
 
   traerInscripciones(idSocio:number){
     
-    this.inscripcionServ.query({'idSocio':idSocio},(items:Inscripcion[]) => {
+    this.inscripcionServ.query({'idSocio':idSocio}).subscribe(items => {
       this.listaInscripcion = items;    
       console.log(items);
-      //this.mostrarGrilla=true;
-      
       }
      );
     
@@ -73,7 +71,7 @@ pagoConfirmado(){
   this.confirmarPago=false;
   this.cuota.estaPagado=true;
   jQuery('#show-event-modal').modal('hide');
-  this.pagoServ.save(this.cuota,(resp:any) => {
+  this.pagoServ.save(this.cuota).subscribe(resp => {
     //Callback
     this.printPDF();
       this.mensajeServ.success('Se registro correctamente el pago!', 'Aviso!');

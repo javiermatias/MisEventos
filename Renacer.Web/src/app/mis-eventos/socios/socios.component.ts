@@ -42,11 +42,8 @@ export class SociosComponent implements OnInit {
   }
 
   onSubmit(myForm: FormGroup) {
-    /* this.saveItem(newSocio)
-    let newSocio = Object.assign({}, this._persona);
-    this._persona = new Persona(0, "", "", "", "", "", "", "", "", undefined, "", undefined, undefined, undefined); */
-    console.log(this._socio);
-    //myForm.reset();
+    let newSocio = Object.assign({}, this._socio);
+    this.saveItem(newSocio)
   }
   ngOnInit() {
     this.getItems();
@@ -54,41 +51,22 @@ export class SociosComponent implements OnInit {
   }
   getItems() {
      this._socioService.query(
-      { 'search':this.searchText},
-      (items:Socio[]) => {
+      { 'search':this.searchText}).subscribe
+      (items => {
         console.log(items);
       this.socios = items;
     }); 
-/*     this._personaService.query(
-      { 'rol': "Socio" },
-      (items: Persona[]) => {
-        this.personas = items;
-      }); */
-
-
 
   }
   verItem(item: Persona) {
-    //his._persona = item;
-    //this.showDetail = true;
-    this._personaService.get({ "id": item.id }, (resp: Persona) => {
-      this._persona = resp;
-      //this._persona.fechaNacimiento.format("mm/dd/yy", "AR");
-      /*       var mifecha;
-            var mifecha2;
-            console.log(this._persona.fechaNacimiento);
-            mifecha = this.datePipe.transform(this._persona.fechaNacimiento, 'yyyy-MM-dd');
-            mifecha2 = this.datePipe.transform(this._persona.fechaNacimiento, 'dd/MM/yyyy');
-            this._persona.fechaNacimiento = this.datePipe.transform(this._persona.fechaNacimiento, 'dd/MM/yyyy');
-            console.log(mifecha);
-            console.log(mifecha2);
-            console.log(this._persona.fechaNacimiento); */
+    this._socioService.get(item.id).subscribe(resp => {
+      this._socio = resp;
       this.showDetail = true;
     });
   }
 
   eliminarItem(item: Persona) {
-    this._personaService.remove({ 'id': item.id }, resp => {
+    this._personaService.remove({ 'id': item.id }).subscribe(resp => {
       this.mensajeServ.info('Se ha dado de baja el socio', 'Aviso!');
       this.router.navigate(['/pages/socios']);
     })
@@ -109,31 +87,15 @@ export class SociosComponent implements OnInit {
 
   }
   limpiarForm() {
-    // this._persona = new Persona(0, "", "", "");
       this._socio = new Socio(0, "", "", "");
     this.showDetail = false;
   }
   saveItem(item: Socio): any {
-    //Guarde en SOcio y persona. En persona va generar el usuario y el ROL
-    if (item.id == 0) {
-      this._socioService.save(item, (resp: Socio) => {
+      this._socioService.save(item).subscribe(resp => {
         item = resp;
         this.socios.push(item);
         this.showDetail = false;
         this.mensajeServ.success('se han guardado los cambios!', 'Aviso!');
       });
-    } else {
-      //Solamente la tabla Socio
-  /*     this._personaService.update(item, (resp: Persona) => {
-        let items = this.personas;
-        for (var i = 0; i < items.length; i++) {
-          if (items[i].id == resp.id) {
-            items[i] = resp;
-            this.mensajeServ.success('se han guardado los cambios!', 'Aviso!');
-          }
-        }
-        this.showDetail = false;
-      }); */
-    }
   }
 }
