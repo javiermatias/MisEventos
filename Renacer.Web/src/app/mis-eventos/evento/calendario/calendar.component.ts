@@ -187,6 +187,8 @@ addEvent(event): void {
 ngOnInit(): void {
   this.fechaDesde = new Date('2017-08-01');
   this.fechaHasta = new Date('2020-08-01');
+  console.log(this.fechaDesde);
+  console.log(this.fechaHasta );
   //this.getEspacios();
   //this.CargarEventos();
   this.cargarEventos();

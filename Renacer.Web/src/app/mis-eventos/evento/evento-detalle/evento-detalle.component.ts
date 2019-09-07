@@ -25,12 +25,17 @@ export class EventoDetalleComponent implements OnInit {
 
 
   getByID(){
-    this._eventoService.get({ "id": this.id }, (resp: Evento) => {
+    
+ /*  this._eventoService.get({ "id": this.id }, (resp: Evento) => {
       this.evento = resp;
       console.log(this.evento);
       this.mostrar=true;
-     });
-   
+     }); */
+     this._eventoService.get(this.id).subscribe(resp => {
+      this.evento = resp;
+      console.log(this.evento);
+      this.mostrar=true;
+    });
   
 }
 
