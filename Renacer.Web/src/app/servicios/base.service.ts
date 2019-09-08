@@ -14,8 +14,8 @@ interface IQueryInput {
   dateTo?: string;
   isRead?: string;
   search?: string;
-  fechaDesde?: Date;
-  fechaHasta?: Date;
+  fechaDesde?: String;
+  fechaHasta?: String;
   idEvento?: number;
   idSocio?: number;
   idEncargado?:number;
