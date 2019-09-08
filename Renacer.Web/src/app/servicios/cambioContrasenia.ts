@@ -1,23 +1,14 @@
 import { Injectable } from '@angular/core';
-import { ResourceParams} from 'ngx-resource';
 import { BaseServices } from './base.service';
 import { Variables } from './variables';
+import { HttpClient } from "@angular/common/http";
 import { Contrasenia } from '../modelos/contrasenia';
 
 
-
-let variable = new Variables();
-
 @Injectable()
-@ResourceParams({
-    url: variable.urlBase + "cambioContrasenia/"
-})
-
-
-
-
-export class CambioContraseniaService extends BaseServices<Contrasenia>{
-
-  
-
+export class CambioContraseniaService extends BaseServices<Contrasenia> {
+    public url:string = `${new Variables().urlBase}cambioContrasenia`;
+    constructor(public http:HttpClient){
+        super(http);
+         }
 }
