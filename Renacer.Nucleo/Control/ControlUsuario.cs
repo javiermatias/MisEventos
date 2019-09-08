@@ -207,6 +207,8 @@ namespace Renacer.Nucleo.Control
         }
 
 
+
+
         private List<string> validar(Usuario usuario)
         {
             var errores = new List<string>();
@@ -228,5 +230,29 @@ namespace Renacer.Nucleo.Control
 
             return errores;
         }
+
+
+
+        //public void cambiarContrasenia(Usuario usuario)
+        //{
+        //    try
+        //    {
+            
+        //        using (var db = new ModeloRenacer())
+        //        {
+        //            db.usuario.AddOrUpdate(usuario);
+        //            db.SaveChanges();
+        //        }
+        //    }
+        //    catch (UsuarioException ex)
+        //    {
+        //        ServicioSentry.devolverSentry().informarExcepcionUsuario(ex);
+        //        throw ex;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ServicioSentry.devolverSentry().informarExcepcion(ex);
+        //    }
+        //}
     }
 }

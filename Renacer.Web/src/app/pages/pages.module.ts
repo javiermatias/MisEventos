@@ -43,8 +43,10 @@ import { NuevoRecordatorioComponent } from '../mis-eventos/recordatorios/nuevo-r
 import { PagoCuotaComponent } from '../mis-eventos/pagos/pago-cuota/pago-cuota.component';
 import { NuevaAsistenciaComponent } from '../mis-eventos/asistencia/nueva-asistencia/nueva-asistencia.component';
 import { AsistenciaComponent } from '../mis-eventos/asistencia/asistencia.component';
-
- 
+import { CambioContraseniaComponent } from '../mis-eventos/usuarios/cambio-contrasenia/cambio-contrasenia.component';
+import { PasswordStrengthBarModule } from 'ng2-password-strength-bar';
+import { CheckPasswordDirective } from '../mis-eventos/usuarios/cambio-contrasenia/check-password.directive';
+//import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -60,7 +62,8 @@ import { AsistenciaComponent } from '../mis-eventos/asistencia/asistencia.compon
     NguiAutoCompleteModule,
     SharedModule,
     DragulaModule,    
-    ReactiveFormsModule
+     ReactiveFormsModule,
+    PasswordStrengthBarModule,
   ],
   providers: [
     {
@@ -94,7 +97,10 @@ import { AsistenciaComponent } from '../mis-eventos/asistencia/asistencia.compon
     NuevoRecordatorioComponent,
     PagoCuotaComponent,
     NuevaAsistenciaComponent,
-    AsistenciaComponent
+    AsistenciaComponent,
+    CambioContraseniaComponent,    
+    CheckPasswordDirective
+   // LoginComponent 
   ]
   , exports: [
     BreadcrumbComponent,

@@ -10,6 +10,8 @@ import { DataTableModule } from "angular2-datatable";
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { LoginComponent } from '../../mis-eventos/usuarios/login/login.component';
+import { CambioContraseniaComponent } from '../../mis-eventos/usuarios/cambio-contrasenia/cambio-contrasenia.component';
+//import { CambioContraseñaComponent } from '../../mis-eventos/usuarios/cambio-contraseña/cambio-contraseña.component';
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -28,7 +30,7 @@ export const routes = [
     ReactiveFormsModule,DataTableModule,
     RouterModule.forChild(routes),
   ],
-  declarations: [SesionComponent, RolesUsuarioComponent, LoginComponent ]
+  declarations: [SesionComponent, RolesUsuarioComponent, LoginComponent]
 })
 
 export class SesionModule { }
