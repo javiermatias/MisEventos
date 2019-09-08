@@ -55,21 +55,12 @@ export class DetalleEventoComponent implements OnInit,OnDestroy  {
 
     verItem()
     {
-      this._itemsService.get({"id":this.id},(resp:DetalleEvento) => {
-        this._item = resp;
-
-        
-
-        // for(var i = 0; i < this.espacios.length;i++){
-        //   if(this._item.espacio.id = this.espacios[i].id) this.espacios[i] = this._item.espacio;
-        // }
-
-      });
+      this._itemsService.get(this.id).subscribe(resp => this._item = resp);
     }
 
     saveItem(item:DetalleEvento):any
     {
-      this._itemsService.update(item,(resp:DetalleEvento) => {
+      this._itemsService.update(item).subscribe(resp => {
         this.mensajeServ.success('Se han guardado los cambios!', 'Aviso!');
       });
     }

@@ -26,7 +26,7 @@ export class RecordatoriosComponent implements OnInit {
 
   getItems() {
 
-    this._recordatorioService.query({}, (items: Recordatorio[]) => {
+    this._recordatorioService.query({}).subscribe(items => {
       // console.log(items);
       this.recordatorios = items;
       // console.log(this.recordatorios);
@@ -42,7 +42,7 @@ export class RecordatoriosComponent implements OnInit {
     // console.log(reco.id);
     if (confirm("¿Estás seguro de eliminar el recordatorio " + reco.descripcion)) {
       // console.log("pase por el si");
-      this._recordatorioService.remove({ id }, (resp: any) => {
+      this._recordatorioService.remove(id).subscribe(resp => {
         //Callback
         this.getItems();
         this.toastrService.success('¡Se eliminó el recordatorio!', 'Aviso!');

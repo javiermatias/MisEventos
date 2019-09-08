@@ -25,14 +25,13 @@ export class CobroMatriculaComponent implements OnInit {
   }
 
   getItems() {  
-    this._socioService.query({'estado': "DebeMatricula" }, (items: Socio[]) => {
+    this._socioService.query({'estado': "DebeMatricula" }).subscribe(items => {
       this.socios= items;
     });
   }
 
   getMatricula(){
-    this._matriculaService.getMatriculaActual(
-      (item: Matricula) => {
+    this._matriculaService.getMatriculaActual().subscribe(item => {
       this.matricula= item;
     });
   }
@@ -43,9 +42,8 @@ export class CobroMatriculaComponent implements OnInit {
   }
 
   cobrar(){
-    this._matriculaService.cambiarEstadoMatricula(
-      {'idSocio': this.socioSeleccionado.id},
-      (resp:any) => {
+    this._matriculaService.cambiarEstadoMatricula(this.socioSeleccionado.id).subscribe
+      (resp => {
         this.showModalCobro = false;
         this.socioSeleccionado = null;
         this.mensajeServ.success('Se ha registrado el pago!', 'Aviso!');

@@ -87,7 +87,7 @@ export class SelectTagsComponent implements OnInit {
   }
 
   getTags(){
-    this._dbServices.query({},(items) => {
+    this._dbServices.query({}).subscribe(items => {
       this.tags = [];
       for(var i = 0; i < items.length;i++){
         var itemAux = new Tag(0,"");

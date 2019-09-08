@@ -1,6 +1,4 @@
 import {Injectable} from '@angular/core';
-import {Resource, ResourceParams, ResourceAction} from 'ngx-resource';
-import {ResourceMethod} from 'ngx-resource/src/Interfaces';
 import {RequestMethod} from '@angular/http';
 import {BaseServices} from './base.service';
 import {Variables} from './variables';
@@ -9,6 +7,7 @@ import {Socio} from './socio.service';
 import {EncargadoEvento} from './encargado.service';
 import {Tag} from './tag.service';
 import { DetalleEvento } from './evento.service';
+import { HttpClient } from "@angular/common/http";
 
 export class Asistencia {
   constructor(
@@ -43,13 +42,13 @@ public string estado { get; set; } //Lista
 public DateTime fechaAsistencia { get; set; } */
 
 
-
-
 let variable = new Variables();
 
 @Injectable()
-@ResourceParams({
-  url:variable.urlBase + "asistencia/"
-})
 export class AsistenciaServices extends BaseServices<Asistencia> {
+  public url:string = variable.urlBase + "asistencia";
+  
+  constructor(public http:HttpClient){
+    super(http);
+     }
 }

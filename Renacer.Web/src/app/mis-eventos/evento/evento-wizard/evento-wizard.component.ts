@@ -278,7 +278,7 @@ public confirm(){
   this.evento.responsable=null;
   this.evento.espacio=null;
   this.evento.tipoEvento=null;
-  this._eventoService.save(this.evento,(resp:Evento) => {
+  this._eventoService.save(this.evento).subscribe(resp => {
     //Callback
       this.mensajeServ.success('Se ha guardado el evento!', 'Aviso!');
       //this.volver();
@@ -287,15 +287,15 @@ public confirm(){
 
 
 ngOnInit() {
-    this.tipoEventoServ.query({}, (_items: TipoEvento[]) => {
+    this.tipoEventoServ.query({}).subscribe(_items => {
         this.tiposEventos = _items;
       });
       
-      this.tipoEspacioSer.query({}, (items: EspacioComun[]) => {
+      this.tipoEspacioSer.query({}).subscribe(items => {
         this.tiposEspacios = items;
       });
 
-      this.encargadoServ.query({}, (items: EncargadoEvento[]) => {
+      this.encargadoServ.query({}).subscribe(items => {
         this.encargados = items;
         console.log(this.encargados);
       });

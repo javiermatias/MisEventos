@@ -59,12 +59,11 @@ public searchText:string="";
 
     verItem()
     {
-      this._itemsService.get({"id":this.id},(resp:Evento) => {
+      this._itemsService.get(this.id).subscribe(resp => {
         this._item = resp;
-        console.log(this._item);
-        this.espacioServ.get({"id":this._item.idEspacio},(resp2:EspacioComun) => {  this._item.espacio = resp2;});
-        this.responsableServ.get({"id":this._item.idEncargado},(resp3:EncargadoEvento) => {  this._item.responsable = resp3;});
-        this.inscripcionServ.query({"idEvento":this._item.id} ,(resp3:Array<Inscripcion>) => {  this._item.listaInscripciones = resp3;   });
+        this.espacioServ.get(this._item.idEspacio).subscribe(resp2 =>  this._item.espacio = resp2);
+        this.responsableServ.get(this._item.idEncargado).subscribe(resp3 => {  this._item.responsable = resp3;});
+        this.inscripcionServ.query({"idEvento":this._item.id}).subscribe(resp3 => {  this._item.listaInscripciones = resp3;   });
      
       });
     }
@@ -87,7 +86,7 @@ public searchText:string="";
         item.listaDetalleEvento = this.armarDetalleEvento(item,this.horarios);
         item.listaInscripciones = this.armarInscripciones(item);
         
-        this._itemsService.save(item,(resp:Evento) => {
+        this._itemsService.save(item).subscribe(resp => {
           item = resp;
           this.mensajeServ.success('Se ha creado un nuevo Evento!', 'Aviso!');
           this.router.navigate(['/pages/evento/',item.id]);
@@ -95,7 +94,7 @@ public searchText:string="";
       }
       else
       {
-        this._itemsService.update(item,(resp:Evento) => {
+        this._itemsService.save(item).subscribe(resp => {
           this.mensajeServ.success('Se han guardado los cambios!', 'Aviso!');
           this.verItem();
         });
@@ -160,7 +159,7 @@ public searchText:string="";
 
     saveSocios(){
       this._item.listaInscripciones = this.armarInscripciones(this._item);
-        this.inscripcionServ.save();
+        // this.inscripcionServ.save();
     }
 
     obtenerProximoEvento(eventoAux:Evento){
@@ -206,7 +205,7 @@ public searchText:string="";
    }
 
    eliminarEvento(eventoAux:Evento){
-     this._itemsService.remove({'id':eventoAux.id},resp =>{
+     this._itemsService.remove({'id':eventoAux.id}).subscribe(resp =>{
       this.mensajeServ.info('Se ha dado de baja el evento', 'Aviso!');
       this.router.navigate(['/pages/evento/lista']);
      })

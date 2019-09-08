@@ -21,8 +21,11 @@ export class CalendarComponent {
   public listaColores:any = {};
 
   public search:string ="";
-  public fechaDesde:Date = new Date();
-  public fechaHasta:Date = new Date();
+  // public fechaDesde:Date = new Date();
+  // public fechaHasta:Date = new Date();
+
+  public fechaDesde:String;
+  public fechaHasta:String;
   public espacios = new Array<EspacioComun>();
   public _espacio = new EspacioComun(0,"","",0,0);
   @Output() nuevoItemEvent:EventEmitter<string> = new EventEmitter();
@@ -53,7 +56,7 @@ export class CalendarComponent {
     this.detalleEventServ.query({
       "fechaDesde":this.fechaDesde,
       "fechaHasta":this.fechaHasta
-    },(items) => {
+    }).subscribe(items => {
       console.log(items);
       this.calendarOptions.events = [];
 
@@ -185,8 +188,10 @@ addEvent(event): void {
 };
 
 ngOnInit(): void {
-  this.fechaDesde = new Date('2017-08-01');
-  this.fechaHasta = new Date('2020-08-01');
+  this.fechaDesde = new Date('2017-08-01').toISOString();
+  this.fechaHasta = new Date('2020-08-01').toISOString();
+  console.log(this.fechaDesde);
+  console.log(this.fechaHasta );
   //this.getEspacios();
   //this.CargarEventos();
   this.cargarEventos();
@@ -198,7 +203,7 @@ ngOnInit(): void {
 }
 
 getEspacios(){
-  this._espacioService.query({},(items:EspacioComun[]) => {
+  this._espacioService.query({}).subscribe(items => {
     this.espacios = items;
   }
 );
@@ -214,7 +219,7 @@ cargarCalendario(){
   this._calendarioService.query({
     "fechaDesde":this.fechaDesde,
     "fechaHasta":this.fechaHasta
-  },(items) => {
+  }).subscribe(items => {
     console.log(items);
     
   });
@@ -224,7 +229,7 @@ cargarEventos(){
   this._calendarioService.query({
     "fechaDesde":this.fechaDesde,
     "fechaHasta":this.fechaHasta
-  },(items) => {
+  }).subscribe(items => {
     console.log(items);
     this.calendarOptions.events = [];
 

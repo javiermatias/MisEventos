@@ -55,7 +55,7 @@ export class SelectEventoComponent implements OnInit {
   getItems(){
     this._dbServices.query({
       "search":""
-    },(items) => {
+    }).subscribe(items => {
       this.items = [];
       for(var i = 0; i < items.length;i++){
         var itemAux = new Evento(0);

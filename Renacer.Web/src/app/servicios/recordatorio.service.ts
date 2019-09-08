@@ -1,31 +1,31 @@
 import { Injectable } from '@angular/core';
-import { ResourceParams} from 'ngx-resource';
 import { BaseServices } from './base.service';
 import { Variables } from './variables';;
 import { Recordatorio } from '../modelos/recordatorio';
+import { HttpClient } from "@angular/common/http";
 
 let variable = new Variables();
 
 @Injectable()
-@ResourceParams({
-    url: variable.urlBase + "recordatorio/"
-})
 export class RecordatorioServices extends BaseServices<Recordatorio> {
-
+    public url:string = `${new Variables().urlBase}recordatorio`;
+    constructor(public http:HttpClient){
+        super(http);
+         }
 }
 
 @Injectable()
-@ResourceParams({
-    url: variable.urlBase + "recordatorio/hoy"
-})
 export class RecordatorioHoyServices extends BaseServices<Recordatorio> {
-
+    public url:string = `${new Variables().urlBase}recordatorio/hoy`;
+    constructor(public http:HttpClient){
+        super(http);
+         }
 }
 
 @Injectable()
-@ResourceParams({
-    url: variable.urlBase + "ActualizarEvento"
-})
 export class ActualizarEventoServices extends BaseServices<any> {
-
+    public url:string = `${new Variables().urlBase}ActualizarEvento`;
+    constructor(public http:HttpClient){
+        super(http);
+         }
 }

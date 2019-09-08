@@ -22,7 +22,7 @@ export class RolComponent implements OnInit {
   }
 
   getRoles() {
-    this._rolService.query({},(rols:Rol[]) => {
+    this._rolService.query({}).subscribe(rols => {
       this.roles = rols;
     }
   );
@@ -36,7 +36,7 @@ onSubmit(myForm: FormGroup) {
 }
 
 verItem(item:Rol){
-  this._rolService.get({"id":item.id},(resp:Rol) => {
+  this._rolService.get(item.id).subscribe(resp => {
     this._rol = resp;
     this.showDetail = true;
   });
@@ -52,14 +52,14 @@ limpiarForm(){
 
 saveItem(item:Rol):any{
   if(item.id == 0){
-    this._rolService.save(item,(resp:Rol) => {
+    this._rolService.save(item).subscribe(resp => {
       item = resp;
       this.roles.push(item);
       this.showDetail = false;
       this.mensajeServ.success('Se han guardado los cambios!', 'Aviso!');
     });
   }else{
-    this._rolService.update(item,(resp:Rol) => {
+    this._rolService.update(item).subscribe(resp => {
       let index = this.roles.findIndex(t => t.id == resp.id);
       this.roles[index] = resp;
       this.showDetail = false;

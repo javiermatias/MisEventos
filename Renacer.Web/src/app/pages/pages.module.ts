@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
-const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
-import { ToastrModule, ToastContainerModule  } from 'ngx-toastr';
+
+import {  ToastContainerModule  } from 'ngx-toastr';
 import { DirectivesModule } from '../theme/directives/directives.module';
 import { PipesModule } from '../theme/pipes/pipes.module';
 import { SharedModule } from '../mis-eventos/componentesCompartidos/shared.module';
@@ -31,7 +33,6 @@ import { ContactoComponent } from '../mis-eventos/socios/contacto/contacto.compo
 import { EncargadosComponent } from '../mis-eventos/encargados/encargados.component';
 import { RolComponent } from './rol/rol.component';
 import { NguiAutoCompleteModule } from '@ngui/auto-complete';
-import { UsuarioComponent } from './usuarios/usuarios.component';
 import { MatriculaComponent } from '../mis-eventos/matricula/matricula.component';
 import { NuevaMatriculaComponent } from '../mis-eventos/matricula/nueva-matricula/nueva-matricula.component';
 import { CobroMatriculaComponent } from '../mis-eventos/matricula/cobro-matricula/cobro-matricula.component';
@@ -40,11 +41,10 @@ import { RecordatoriosComponent } from '../mis-eventos/recordatorios/recordatori
 import { DragulaModule } from 'ng2-dragula';
 import { NuevoRecordatorioComponent } from '../mis-eventos/recordatorios/nuevo-recordatorio/nuevo-recordatorio.component';
 import { PagoCuotaComponent } from '../mis-eventos/pagos/pago-cuota/pago-cuota.component';
-import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { NuevaAsistenciaComponent } from '../mis-eventos/asistencia/nueva-asistencia/nueva-asistencia.component';
 import { AsistenciaComponent } from '../mis-eventos/asistencia/asistencia.component';
 import { CambioContraseniaComponent } from '../mis-eventos/usuarios/cambio-contrasenia/cambio-contrasenia.component';
-import { PasswordStrengthBarModule } from 'ng2-password-strength-bar';
+//import { PasswordStrengthBarModule } from 'ng2-password-strength-bar';
 import { CheckPasswordDirective } from '../mis-eventos/usuarios/cambio-contrasenia/check-password.directive';
 //import { LoginComponent } from './login/login.component';
 
@@ -52,8 +52,7 @@ import { CheckPasswordDirective } from '../mis-eventos/usuarios/cambio-contrasen
 @NgModule({
   imports: [
     CommonModule,
-    PerfectScrollbarModule.forChild(),
-    ToastrModule.forRoot(),
+    PerfectScrollbarModule,
     ToastContainerModule,
     DirectivesModule,
     PipesModule,
@@ -63,9 +62,14 @@ import { CheckPasswordDirective } from '../mis-eventos/usuarios/cambio-contrasen
     NguiAutoCompleteModule,
     SharedModule,
     DragulaModule,    
-    MultiselectDropdownModule,
-    ReactiveFormsModule,
-    PasswordStrengthBarModule,
+     ReactiveFormsModule,
+    //PasswordStrengthBarModule,
+  ],
+  providers: [
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+    }
   ],
   declarations: [
     PagesComponent,
@@ -85,7 +89,6 @@ import { CheckPasswordDirective } from '../mis-eventos/usuarios/cambio-contrasen
     ContactoComponent,
     EncargadosComponent,
     RolComponent,   
-    UsuarioComponent,
     MatriculaComponent,
     NuevaMatriculaComponent,
     CobroMatriculaComponent,

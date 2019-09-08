@@ -21,7 +21,7 @@ export class MatriculaComponent implements OnInit {
   //Get All
   getItems() {
 
-    this._matriculaService.query({}, (items: Matricula[]) => {
+    this._matriculaService.query({}).subscribe(items => {
       this.matriculas = items;
     });
 

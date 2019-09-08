@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Renacer.WebAPI.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
@@ -24,7 +25,7 @@ namespace Renacer.WebAPI
                 defaults: new { id = RouteParameter.Optional }
             );
 
-         //   config.Filters.Add(new IdentityBasicAuthenticationAttribute());
+            config.Filters.Add(new IdentityBasicAuthenticationAttribute());
        
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
 

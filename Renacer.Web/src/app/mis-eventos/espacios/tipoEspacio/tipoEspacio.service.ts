@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {ResourceParams} from 'ngx-resource';
 import {BaseServices} from '../../../servicios/base.service';
 import {Variables} from '../../../servicios/variables';
+import { HttpClient } from "@angular/common/http";
 
 export class TipoEspacio {
     public id: number;
@@ -16,8 +16,10 @@ export class TipoEspacio {
 let variable = new Variables();
 
 @Injectable()
-@ResourceParams({
-  url:variable.urlBase + "tipoEspacio/"
-})
 export class TipoEspacioServices extends BaseServices<TipoEspacio> {
+  public url:string = `${new Variables().urlBase}tipoEspacio`;
+  
+    constructor(http:HttpClient){
+    super(http);
+     }
 }

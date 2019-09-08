@@ -26,11 +26,11 @@ export class EspaciosComponent implements OnInit {
   }
 
   getItems(){
-    this._espacioService.query({},(items:EspacioComun[]) => {
+    this._espacioService.query({}).subscribe(items => {
       this.espacios = items;
     }
   );
-  this._tipoEspacioService.query({},(items:TipoEspacio[]) => {
+  this._tipoEspacioService.query({}).subscribe(items => {
     this.tiposEspacio = items;
   }
 );
@@ -45,7 +45,7 @@ onSubmit(myForm: FormGroup) {
 }
 
 verItem(item:EspacioComun){
-  this._espacioService.get({"id":item.id},(resp:EspacioComun) => {
+  this._espacioService.get(item.id).subscribe(resp => {
     this._espacio = resp;
     this.showDetail = true;
   });
@@ -61,14 +61,14 @@ limpiarForm(){
 
 saveItem(item:EspacioComun):any{
   if(item.id == 0){
-    this._espacioService.save(item,(resp:EspacioComun) => {
+    this._espacioService.save(item).subscribe(resp => {
       item = resp;
       this.espacios.push(item);
       this.showDetail = false;
       this.mensajeServ.success('Se han guardado los cambios!', 'Aviso!');
     });
   }else{
-    this._espacioService.update(item,(resp:EspacioComun) => {
+    this._espacioService.update(item).subscribe(resp => {
       let espacios = this.espacios;
       for (var i = 0; i < espacios.length; i++) {
         if(espacios[i].id == resp.id)

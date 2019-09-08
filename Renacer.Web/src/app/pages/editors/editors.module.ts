@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { CKEditorModule } from 'ng2-ckeditor';
-import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
+// import { CKEditorModule } from 'ng2-ckeditor';
+// import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
 import { CkeditorComponent } from './ckeditor/ckeditor.component';
 import { FroalaComponent } from './froala/froala.component';
 
@@ -17,8 +17,8 @@ export const routes = [
   imports: [
     CommonModule,
     FormsModule,
-    FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
-    CKEditorModule,    
+    // FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
+    // CKEditorModule,    
     RouterModule.forChild(routes)
   ],
   declarations: [

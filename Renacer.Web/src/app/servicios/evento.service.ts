@@ -1,6 +1,4 @@
 import {Injectable} from '@angular/core';
-import {Resource, ResourceParams, ResourceAction} from 'ngx-resource';
-import {ResourceMethod} from 'ngx-resource/src/Interfaces';
 import {RequestMethod} from '@angular/http';
 import {BaseServices} from './base.service';
 import {Variables} from './variables';
@@ -9,6 +7,7 @@ import {Socio} from './socio.service';
 import {EncargadoEvento} from './encargado.service';
 import {Asistencia} from './asistencia.service';
 import {Tag} from './tag.service';
+import { HttpClient } from "@angular/common/http";
 
 export class Evento {
   constructor(
@@ -156,38 +155,41 @@ export class Pago {
 let variable = new Variables();
 
 @Injectable()
-@ResourceParams({
-  url:variable.urlBase + "tipoEvento/"
-})
 export class TipoEventoServices extends BaseServices<TipoEvento> {
+  public url:string = `${new Variables().urlBase}tipoEvento`;
+  constructor(public http:HttpClient){
+    super(http);
+     }
 }
 
 @Injectable()
-@ResourceParams({
-  url:variable.urlBase + "evento/"
-})
 export class EventoServices extends BaseServices<Evento> {
+  public url:string = `${new Variables().urlBase}evento`;
+  constructor(public http:HttpClient){
+    super(http);
+     }
 }
 
+
 @Injectable()
-@ResourceParams({
-  url:variable.urlBase + "detalleEvento/"
-})
 export class DetalleEventoServices extends BaseServices<DetalleEvento> {
+  public url:string = `${new Variables().urlBase}detalleEvento`;
+  constructor(public http:HttpClient){
+    super(http);
+     }
 }
 
 
+
 @Injectable()
-@ResourceParams({
-  url:variable.urlBase + "pago/"
-})
 export class PagoServices extends BaseServices<Pago> {
+  public url:string = `${new Variables().urlBase}pago`;
+  
 }
 
 
 @Injectable()
-@ResourceParams({
-  url:variable.urlBase + "inscripcion/"
-})
 export class InscripcionServices extends BaseServices<Inscripcion> {
+  public url:string = `${new Variables().urlBase}inscripcion`;
+  
 }

@@ -1,12 +1,11 @@
 import {Injectable} from '@angular/core';
-import {Resource, ResourceParams, ResourceAction} from 'ngx-resource';
-import {ResourceMethod} from 'ngx-resource/src/Interfaces';
-import {RequestMethod} from '@angular/http';
 import {BaseServices} from './base.service';
 import {Variables} from './variables';
 import {Tag} from './tag.service';
 import {Socio} from './socio.service';
 import {Evento} from './evento.service';
+import { Observable } from "rxjs/Observable";
+import { HttpClient } from "@angular/common/http";
 
 
 export class FiltroReporte {
@@ -32,49 +31,34 @@ export class FiltroReporte {
 let variable = new Variables();
 
 @Injectable()
-@ResourceParams({
-  url:variable.urlBase + "reporte/"
-})
 export class ReporteServices extends BaseServices<Object> {
+  public url:string = `${new Variables().urlBase}reporte/`;
+  constructor(public http:HttpClient){
+    super(http);
+     }
+  
+  tags(filtro:FiltroReporte):Observable<Tag[]>{
+    return this.http.post<Tag[]>(`${this.url}tags`,filtro)
+  } 
+  
+  socios(filtro:FiltroReporte):Observable<Socio[]>{ 
+    return this.http.post<Socio[]>(`${this.url}socios`,filtro)
+  }
 
-  @ResourceAction({
-    method: RequestMethod.Post,
-    path: '/tags',
-    isArray: true
-  })
-  tags: ResourceMethod<FiltroReporte,Tag[]>;
-  @ResourceAction({
-    method: RequestMethod.Post,
-    path: '/socios',
-    isArray: true
-  })
-  socios: ResourceMethod<FiltroReporte,Socio[]>;
-  @ResourceAction({
-    method: RequestMethod.Post,
-    path: '/eventos',
-    isArray: true
-  })
-  eventos: ResourceMethod<FiltroReporte,Evento[]>;
+  eventos(filtro:FiltroReporte):Observable<Evento[]>{ 
+    return this.http.post<Evento[]>(`${this.url}eventos`,filtro)
+  }
 
-  @ResourceAction({
-    method: RequestMethod.Get,
-    path: '/count'
-  })
-  getEntidadCount: ResourceMethod<object,any>;
+  getEntidadCount(filtro:Object):Observable<any>{ 
+    return this.http.get(`${this.url}count?Entidad=${filtro['Entidad']}`,filtro)
+  }
 
-  @ResourceAction({
-    method: RequestMethod.Post,
-    path: '/crecimiento-socios',
-    isArray: true
-  })
-  getCrecimientoSocios: ResourceMethod<FiltroReporte,any[]>;
+  getCrecimientoSocios(filtro:FiltroReporte):Observable<any[]>{ 
+    return this.http.post<any[]>(`${this.url}crecimiento-socios`,filtro)
+  } 
 
-
-  @ResourceAction({
-    method: RequestMethod.Post,
-    path: '/socios-por-edad',
-    isArray: true
-  })
-  getSociosPorEdad: ResourceMethod<FiltroReporte,any[]>;
+  getSociosPorEdad(filtro:FiltroReporte):Observable<any[]>{
+    return this.http.post<any[]>(`${this.url}socios-por-edad`,filtro)
+  }
 
 }

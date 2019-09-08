@@ -30,7 +30,7 @@ export class UsuarioComponent implements OnInit {
   ngOnInit() {
     this.contacto = new Contacto();
     this.limpiarForm();
-    this._rolService.query({}, (resp: Rol[]) => {
+    this._rolService.query({}).subscribe(resp => {
       // this.roles = resp; 
       this.roles = [];
       resp.forEach((rol: Rol) => { this.roles.push({ rol: rol, asignado: false }); })
@@ -49,7 +49,7 @@ export class UsuarioComponent implements OnInit {
   buscarUsuario() {
     if (this.tipoDoc && this.nroDocumento) {
       this.limpiarForm(false);
-      this._userService.getUsuario({ tipoDni: this.tipoDoc.id, dni: Number(this.nroDocumento) }, (user: any) => {
+      this._userService.getUsuario({ tipoDni: this.tipoDoc.id, dni: Number(this.nroDocumento) }).subscribe(user => {
         this._usuario = user;
         this.rolesAsignado = [];
         const rolesUsuario: Rol[] = this._usuario.roles;
@@ -92,7 +92,7 @@ export class UsuarioComponent implements OnInit {
   saveItem(item) {
     if (this.tieneAsignadoSocio()) {
       item.persona.contacto = this.contacto;  
-      this._personaService.save(item.persona, (resp: any) => {
+      this._personaService.save(item.persona).subscribe(resp => {
         this.actualizarUsuario(item);
       })
     } else {
@@ -100,7 +100,7 @@ export class UsuarioComponent implements OnInit {
     } 
   }
   private actualizarUsuario(item) {
-          this._userService.save(item, (resp: any) => {
+          this._userService.save(item).subscribe(resp => {
             
             this.limpiarForm();
             this.mensajeServ.success('se han guardado los cambios!', 'Aviso!');
