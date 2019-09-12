@@ -17,7 +17,7 @@
                     <label for="passwordA" class="col-sm-3 form-control-label m-t-5">Contraseña Actual: </label>
                     <div class="col-sm-9">
                         <input type="password" class="form-control" id="password" required
-                            [(ngModel)]="contrasenia.contraseniaActual" #password="ngModel" name="password">
+                            [(ngModel)]="contrasenia.contraseniaActual" #password="ngModel" name="password" minlength="4">
 
 
 
@@ -32,6 +32,15 @@
                                 </div>
 
 
+                            </div>
+
+                            <div *ngIf="password.errors.minlength">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        La Contraseña actual debe tener como mínimo 4 caracteres.
+
+                                    </div>
+                                </div>
                             </div>
 
                         </div>
@@ -66,7 +75,7 @@
                                 <div *ngIf="passwordA.errors.minlength">
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            La Contraseña actual debe tener como minimo 4 caracteres.
+                                            La Contraseña nueva debe tener como mínimo 4 caracteres.
 
                                         </div>
                                     </div>
@@ -148,9 +157,10 @@
                 class="btn btn-default">Cancelar</button> -->
 <br>
             <div class="row">
-                    <div class="col-lg-12 offset-lg-8 col-xs-12 col-sm-9">
-                        <button class="btn btn-main" type="submit">Guardar</button>
-                        <button class="btn btn-default" type="button">Cancelar</button>
+                    <div class="col-lg-12 offset-lg-8 col-md-9 col-sm-12 col-xs-12  ">
+                        <button class="btn btn-main" type="submit" (click)="onSubmit()"
+                        [disabled]="!passwordForm.form.valid">Guardar</button>
+                        <button class="btn btn-default" type="button" (click)="cancelar()">Cancelar</button>
                     </div>
                 </div> 
             </form>

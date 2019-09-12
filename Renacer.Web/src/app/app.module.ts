@@ -31,6 +31,7 @@ import { RecordatorioServices, RecordatorioHoyServices,ActualizarEventoServices 
 import { CalendarioServices } from './servicios/calendario.service';
 import { AuthInterceptorProvider } from './servicios/request.interceptor';
 import { ToastrModule } from 'ngx-toastr';
+import { CambioContraseniaService } from './servicios/cambioContrasenia';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { ToastrModule } from 'ngx-toastr';
     ActualizarEventoServices,
     PagoServices,
     CalendarioServices,
+    CambioContraseniaService,
     DatePipe],
     bootstrap: [AppComponent]
 })

@@ -15,10 +15,12 @@ export class EventoDetalleComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private _eventoService:EventoServices) { }
 
   ngOnInit() {
+    
     this.id = Number(this.route.snapshot.params['id']);
+   
     if(this.id != 0){      
      this.getByID();
-     //console.log(this.id);
+     console.log(this.id);
    
      } 
   }
