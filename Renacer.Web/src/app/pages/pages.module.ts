@@ -46,6 +46,7 @@ import { AsistenciaComponent } from '../mis-eventos/asistencia/asistencia.compon
 import { CambioContraseniaComponent } from '../mis-eventos/usuarios/cambio-contrasenia/cambio-contrasenia.component';
 import { PasswordStrengthBarModule } from 'ng2-password-strength-bar';
 import { CheckPasswordDirective } from '../mis-eventos/usuarios/cambio-contrasenia/check-password.directive';
+import { PruebaComponent } from './prueba/prueba.component';
 //import { LoginComponent } from './login/login.component';
 
 
@@ -99,7 +100,7 @@ import { CheckPasswordDirective } from '../mis-eventos/usuarios/cambio-contrasen
     NuevaAsistenciaComponent,
     AsistenciaComponent,
     CambioContraseniaComponent,    
-    CheckPasswordDirective
+    CheckPasswordDirective, PruebaComponent
    // LoginComponent 
   ]
   , exports: [

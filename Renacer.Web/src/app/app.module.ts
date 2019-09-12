@@ -1,9 +1,9 @@
 import 'pace';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DatePipe,CommonModule } from '@angular/common';
+import { DatePipe,CommonModule, registerLocaleData } from '@angular/common';
 import { AgmCoreModule } from '@agm/core';
 import { routing } from './app.routing';
 import { AppConfig } from './app.config';
@@ -32,7 +32,9 @@ import { CalendarioServices } from './servicios/calendario.service';
 import { AuthInterceptorProvider } from './servicios/request.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { CambioContraseniaService } from './servicios/cambioContrasenia';
+import localeEs from '@angular/common/locales/es-AR';
 
+registerLocaleData(localeEs, 'es-AR');
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,6 +82,8 @@ import { CambioContraseniaService } from './servicios/cambioContrasenia';
     PagoServices,
     CalendarioServices,
     CambioContraseniaService,
+    
+    { provide: LOCALE_ID, useValue: "es-AR" },
     DatePipe],
     bootstrap: [AppComponent]
 })

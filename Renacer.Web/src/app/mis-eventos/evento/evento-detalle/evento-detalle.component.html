@@ -1,122 +1,145 @@
-<div widget class="card" *ngIf="mostrar" > 
-  <div class="card-header">
-      <span>{{ evento.nombre}} -
-          <span class="badge badge-main">{{evento.tipoEvento.nombre}}</span>
-      </span>
-  </div>
+<div widget class="card" *ngIf="mostrar">
+    <div class="card-header">
+        <span>{{ evento.nombre}} -
+            <span class="badge badge-main">{{evento.tipoEvento.nombre}}</span>
+        </span>
+    </div>
 
 
-  <div class="card-block widget-body">
+    <div class="card-block widget-body">
 
-      <div class="row">
-          <div class="col-xl-12 col-lg-12 col-12">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-12">
 
-              <div class="clearfix">
-                  <ul class="nav nav-tabs top pull-left w-100p">
-                      <li class="nav-item">
-                          <a class="nav-link active" data-toggle="tab" href="#datos-evento">Datos</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" data-toggle="tab" href="#fechas">Fechas</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" data-toggle="tab" href="#inscriptos">Inscriptos</a>
-                      </li>
-                      <!-- <li class="nav-item">
+                <div class="clearfix">
+                    <ul class="nav nav-tabs top pull-left w-100p">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#datos-evento">Datos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#fechas">Fechas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#inscriptos">Inscriptos</a>
+                        </li>
+                        <!-- <li class="nav-item">
                           <a class="nav-link" data-toggle="tab" href="#publicaciones">publicaciones</a>
                       </li> -->
-                  </ul>
-              </div>
-              <div class="tab-content top">
-                  <div class="tab-pane active" id="datos-evento">
+                    </ul>
+                </div>
+                <div class="tab-content top">
+                    <div class="tab-pane active" id="datos-evento">
 
-                      <div class="container">
-                          <div class="row p-2">
+                        <div class="container">
+                            <div class="row p-2">
 
-                              <div class="col col-6">
-                                 <strong>Descripción: </strong> {{evento.descripcion}}
-                                  <br>
-                                  <br>
-                                 <strong>Responsable: </strong>  {{evento.responsable.nombre}} {{evento.responsable.apellido}}
-                                  <br>
-                                  <br> 
-                                  <strong>Espacio: </strong> {{evento.espacio.nombre}}
-                                  <br>
-                                  <br>
-                                  <div *ngIf="evento.gratuito">
+                                <div class="col col-6">
+                                    <strong>Descripción: </strong> {{evento.descripcion}}
+                                    <br>
+                                    <br>
+                                    <strong>Responsable: </strong> {{evento.responsable.nombre}}
+                                    {{evento.responsable.apellido}}
+                                    <br>
+                                    <br>
+                                    <strong>Espacio: </strong> {{evento.espacio.nombre}}
+                                    <br>
+                                    <br>
+                                    <div *ngIf="evento.gratuito">
                                         <strong>Costo: </strong> Gratuito
-                                  </div>
-                                  <div *ngIf="!evento.gratuito">
-                                        <strong>Costo: $</strong>{{evento.monto}} <br> <br> <strong>Cuotas: </strong> {{evento.cantidadCuota}}
-                                  </div>
-                                  
-                              </div>
+                                    </div>
+                                    <div *ngIf="!evento.gratuito">
+                                        <strong>Costo: $</strong>{{evento.monto}} <br> <br> <strong>Cuotas: </strong>
+                                        {{evento.cantidadCuota}}
+                                    </div>
 
-                              <div class="col col-6">
-                                  <div class="alert alert-success" *ngIf="evento.estado=='Progreso'" role="alert">
-                                      <strong> Evento en progreso</strong>
-                                  </div>
-                                  <div class="alert alert-danger" *ngIf="evento.estado=='Cancelado'" role="alert">
-                                      <strong> Evento Cancelado</strong>
-                                  </div>
-                                  <div class="alert alert-info" *ngIf="evento.estado=='Nuevo'" role="alert">
-                                      <strong> Evento Nuevo</strong>
-                                  </div>
-                                  <div class="alert alert-warning" *ngIf="evento.estado=='Finalizado'" role="alert">
+                                </div>
+
+                                <div class="col col-6">
+                                    <div class="alert alert-success" *ngIf="evento.estado=='Progreso'" role="alert">
+                                        <strong> Evento en progreso</strong>
+                                    </div>
+                                    <div class="alert alert-danger" *ngIf="evento.estado=='Cancelado'" role="alert">
+                                        <strong> Evento Cancelado</strong>
+                                    </div>
+                                    <div class="alert alert-info" *ngIf="evento.estado=='Nuevo'" role="alert">
+                                        <strong> Evento Nuevo</strong>
+                                    </div>
+                                    <div class="alert alert-warning" *ngIf="evento.estado=='Finalizado'" role="alert">
                                         <strong> Evento Finalizado</strong>
                                     </div>
-                                    
-                                    <strong>Cupo Mínimo: </strong>  {{evento.cupoMinimo}} 
-                                    <br> 
-                                    <br> 
-                                    <strong>Cupo Máximo: </strong>  {{evento.cupoMaximo}} 
-                              </div>
- 
 
-                          </div>
-             
-                      </div>
-                  </div>
-                  
-                  <div class="tab-pane" id="fechas">
-                      <div widget class="card">
+                                    <strong>Cupo Mínimo: </strong> {{evento.cupoMinimo}}
+                                    <br>
+                                    <br>
+                                    <strong>Cupo Máximo: </strong> {{evento.cupoMaximo}}
+                                </div>
 
-                          <div class="card-block widget-body">
-                              <div class="container">
-                                  <div class="row p-2">
-                                      <div class="col col-6">
-                                            <strong>Fecha Inicio: </strong>   
-                                            <span class="badge badge-default">{{evento.fechaDesde | date:'yyyy-MM-dd'}}
-                                                    <i class="fa fa-calendar"></i> </span>
-                                  <br>
-                                  <br>
-                                 <strong>Fecha Fin: </strong>  
-                                 <span class="badge badge-default">{{evento.fechaHasta | date:'yyyy-MM-dd'}}
-                                        <i class="fa fa-calendar"></i> </span>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="fechas">
+                        <div widget class="card">
+
+                            <div class="card-block widget-body">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col col-6">
+
+                                                <h5>Evento:</h5>
+                                                
+                                                <br>
+                                                
+                                            <strong>Fecha Inicio: </strong>
+                                            <span class="badge badge-default">{{evento.fechaDesde | date:'fullDate'}}
+                                                <i class="fa fa-calendar"></i></span>
+                                            <br>
+                                            <br>
+                                            <strong>Fecha Fin: </strong>
+                                            <span class="badge badge-default">{{evento.fechaHasta | date:'fullDate'}}
+                                                <i class="fa fa-calendar"></i> </span>
+                                                
+
+
+                                            <br>
+                                            <br>
+                                        </div>
+
+                                             <div class="col col-6">
+                                                    <h5>Inscripciones:</h5>
+                                          <br>
                                           
-                                        
-                                         
+                                          <strong>Desde:</strong>
+                                          <span class="badge badge-default">{{evento.fechaDesdeInscripcion | date:'fullDate'}}
+                                              <i class="fa fa-calendar"></i>
+                                          </span>
+                                          <br>
+                                            <br>
+                                            <strong>Hasta:</strong>
+                                          <span class="badge badge-default">{{evento.fechaHastaInscripcion | date:'fullDate'}}
+                                              <i class="fa fa-calendar"></i>
+                                          </span>
                                           <br>
                                           <br>
                                       </div>
+                                    </div>
+                                     
+                                    <div class="row">   
 
-                                 <!--      <div class="col col-6">
-                                          Inscripciones
-                                          <br>
-                                          <span class="badge badge-default">{{_item.fechaDesdeInscripcion | date:'yyyy-MM-dd'}}
-                                              <i class="fa fa-calendar"></i>
-                                          </span>
-                                          hasta
-                                          <span class="badge badge-default">{{_item.fechaHastaInscripcion | date:'yyyy-MM-dd'}}
-                                              <i class="fa fa-calendar"></i>
-                                          </span>
-                                          <br>
-                                          <br>
-                                      </div> -->
-                                  </div>
-                              </div>
+                                        <div class="col col-9">   
+                                          <h5> Horarios de Dictado: </h5> 
 
-                             <!--  <div class="w-200 pull-left bottom-15">
+                                        </div>
+                                    
+
+                                    </div>
+
+
+                                </div>
+
+                                <!--  <div class="w-200 pull-left bottom-15">
                                   <button class="btn btn-main" *ngIf="!addDetalle" (click)="addDetalle= !addDetalle">
                                       Nueva Fecha
                                   </button>
@@ -181,12 +204,12 @@
                               </div>
                           </div>
                           -->
-                      </div> 
+                            </div>
 
-                  
-                </div>
-                
-                  <!--
+
+                        </div>
+
+                        <!--
                   <div class="tab-pane" id="inscriptos">
 
                       <div class="w-15 pull-right card card-outline-default text-center">
@@ -389,8 +412,9 @@
       </div>
   </div>
   -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-</div>
-</div>
-</div>
- 
