@@ -1,0 +1,16 @@
+<div class="timeline">
+  <ul>
+    <li *ngFor="let item of eventos">
+      <div class="content">
+          <br>
+        <h4>{{item.nombre}}</h4> 
+        <p>{{item.descripcion}}</p>
+      </div>
+      <div class="time">
+        <h4>{{item.fechaDesde | date:'fullDate'}}</h4>
+      </div>
+    </li>
+    
+    <div style="clear:both;"></div>
+  </ul>
+</div>

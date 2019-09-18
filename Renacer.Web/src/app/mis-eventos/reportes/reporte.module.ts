@@ -6,12 +6,13 @@ import { DirectivesModule } from '../../theme/directives/directives.module';
 import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
 import { DataTableModule } from "angular2-datatable";
 import { PipesModule } from '../../theme/pipes/pipes.module';
-import { SharedModule } from '../../mis-eventos/componentesCompartidos/shared.module';
+import { SharedModule } from '../componentesCompartidos/shared.module';
 import { TagsCloudComponent } from './tags-cloud/tags-cloud.component';
 import { TagCloudModule } from 'angular-tag-cloud-module';
 import { SociosComponent } from './socios/socios.component';
 import { EventosComponent } from './eventos/eventos.component'
 import { ReporteComponent } from './reporte.component';
+import { TimeLineComponent } from './eventos/time-line/time-line.component';
 
 
 
@@ -19,7 +20,8 @@ export const routes = [
   { path: '', redirectTo: 'tags', pathMatch: 'full'},
   { path: 'tags', component: TagsCloudComponent, data: { breadcrumb: 'Nube de Etiquetas' } },
   { path: 'eventos', component: EventosComponent, data: { breadcrumb: 'Eventos' } },
-  { path: 'socios', component: SociosComponent, data: { breadcrumb: 'Socios' } }
+  { path: 'socios', component: SociosComponent, data: { breadcrumb: 'Socios' } },
+  { path: 'time-line', component: TimeLineComponent, data: { breadcrumb: 'Socios' } },
 ];
 
 @NgModule({
@@ -38,7 +40,8 @@ export const routes = [
     TagsCloudComponent,
     SociosComponent,
     ReporteComponent,
-    EventosComponent
+    EventosComponent,
+    TimeLineComponent
   ]
 })
 export class ReporteModule { }

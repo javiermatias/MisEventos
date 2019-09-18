@@ -24,7 +24,7 @@ import { CambioContraseniaComponent } from '../mis-eventos/usuarios/cambio-contr
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ChartingModule } from './charting/charting.module';
 import { EventoModule } from '../mis-eventos/evento/evento.module';
-import { ReporteModule } from './reportes/reporte.module';
+import { ReporteModule } from '../mis-eventos/reportes/reporte.module';
 import { UsuariosModule } from './usuarios/usuarios.module';
 import { PruebaComponent } from './prueba/prueba.component';
 
