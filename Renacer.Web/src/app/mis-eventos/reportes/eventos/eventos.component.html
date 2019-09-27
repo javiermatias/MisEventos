@@ -1,3 +1,172 @@
-<p>
-  eventos works!
-</p>
+<div class="row bottom-30">
+    
+  <div class="col">
+      <div widget class="card">
+          <div class="card-header">
+              <span>Filtros</span>
+              <div class="widget-controls">              
+                  <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
+                  <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
+                  <a data-widgster="fullscreen" href="#" class="transition"><i class="fa fa-expand"></i></a>
+                  <a data-widgster="restore" href="#" class="transition"><i class="fa fa-compress"></i></a>                          
+                  <a data-widgster="close" href="#" class="transition"><i class="fa fa-times"></i></a>
+              </div>        
+          </div>
+          <div class="card-block widget-body row mbm-20">
+
+              <div class="col-md-4 col-12 bottom-15">   
+                  <!-- <strong><h6>Fechas</h6>  </strong> -->
+                  <div class="form-group">
+                     
+        
+                        <div class="form-group">
+                          <label for="input-2">Encargado:</label>
+                          <!-- style="width: 200px;" -->
+                          <select class="form-control" id="Encargado" 
+                          name="Encargado" [(ngModel)]="encargado">
+                          <option *ngFor="let encargado of encargados" [ngValue]="encargado">{{encargado.apellido}}
+                            {{encargado.nombre}}
+                          </option>                                    
+                      </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="input-2">Espacio</label>
+                          <select class="form-control" id="Espacio" 
+                          name="Espacio" [(ngModel)]="espacio">
+                          <option *ngFor="let espacio of espacios" [ngValue]="espacio">{{espacio.nombre}} </option>                                    
+                      </select>
+                        </div>
+                        <div class="form-group">
+                        <label class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input checkbox-primary"
+                          [(ngModel)]="gratuito">
+                          <span class="custom-control-indicator"></span>
+                          <span class="custom-control-description">Gratuito</span>
+                      </label>
+                    </div>
+                       
+                      
+                  </div>
+              </div> 
+              <div class="col-md-4 col-12 bottom-15">   
+                  <!-- <strong> <h6>Rangos</h6>  </strong> -->
+                  <div class="form-group">
+                      <label for="input-2">Fecha Desde:</label>
+                      <input type="date" class="form-control" id="fechaDesde" name="fechaDesde" 
+                      [(ngModel)]="fechaDesde">
+                      <label for="input-2">Fecha Hasta:</label>
+                      <input type="date" class="form-control" id="fechaHasta" name="fechaHasta" 
+                      [(ngModel)]="fechaHasta">
+                      <label for="input-2">Monto:</label>
+                      <input type="text" class="form-control" id="fechaHasta" name="fechaHasta" 
+                      [(ngModel)]="monto">
+                 
+                    </div>
+              </div>
+              <div class="col-md-4 col-12">   
+                 <!-- <strong> <h6>Filtrar</h6></strong> -->
+                  <div class="form-group">
+                      <label for="input-2">Estado Evento:</label>
+                      <select class="form-control" id="estado" name="estado"  [(ngModel)]="estado" >
+                          <option value="Todos">Todos</option>
+                          <option value="Nuevo">Nuevo</option>
+                          <option value="Progreso">Progreso</option>
+                          <option value="Finalizado">Finalizado</option>
+                          <option value="Cancelado">Cancelado</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="input-2">Tipo de Evento: </label>
+                      <select class="form-control" id="tipoEvento" 
+                      name="tipoEvento" [(ngModel)]="tipoEvento">
+                      <option *ngFor="let tipoEvento of tiposEventos" [ngValue]="tipoEvento">{{tipoEvento.nombre}} </option>                                    
+                  </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-main" (click)="filtrar()">Filtrar</button>
+                  
+              </div>  
+
+          </div>
+      </div>
+  </div>    
+
+</div>
+
+
+
+<div class="row">
+  <div class="col-xl-12 col-lg-12 col-12 bottom-30" [hidden]="showDetail">
+      <div class="row">
+          <div class="col">
+              <div widget class="card">
+                  <div class="card-header">
+                    <span>Eventos</span>
+
+                      <div class="widget-controls">
+                          <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
+                          <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
+                          <a data-widgster="fullscreen" href="#" class="transition"><i class="fa fa-expand"></i></a>
+                          <a data-widgster="restore" href="#" class="transition"><i class="fa fa-compress"></i></a>
+                      </div>
+                  </div>
+                  <div class="card-block widget-body">
+                      <p class="no-margin">  </p>
+             
+                      <div class="w-200 pull-right bottom-15">
+                          <div class="input-group input-group-sm">
+                              <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                              <input class="form-control" id="table-search-input" [(ngModel)]="searchText" type="text" placeholder="Buscar evento...">
+                          </div>
+                      </div>
+                      <div class="table-responsive datatable">
+                          <!-- <table class="table table-striped table-hover table-sm" [mfData]="eventos  | SearchPipe : searchText" #mf="mfDataTable" [mfRowsOnPage]="10"> -->
+                          <table class="table table-striped table-hover table-sm" [mfData]="eventos" #mf="mfDataTable" [mfRowsOnPage]="100">
+                              <thead>
+                                  <tr>
+                                      <!-- <th><mfDefaultSorter by="id">Id</mfDefaultSorter></th> -->
+                                      <th><mfDefaultSorter by="nombre"><strong>Nombre</strong></mfDefaultSorter></th>
+                                      <th><mfDefaultSorter by="descripcion"><strong>Descripción</strong></mfDefaultSorter></th>
+                                      <th><mfDefaultSorter by="descripcion"><strong>Fecha Inicio</strong></mfDefaultSorter></th>
+                                      <th><mfDefaultSorter by="descripcion"><strong>Fecha Fin</strong></mfDefaultSorter></th>
+                                      <th><mfDefaultSorter by="descripcion"><strong>Monto</strong></mfDefaultSorter></th>
+                                      <th><mfDefaultSorter by="fechaCreacion"><strong>Estado</strong></mfDefaultSorter></th>
+                                     
+                                      <th></th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor="let item of mf.data | SearchPipe : searchText">
+                                      <td>{{item.nombre}}</td>
+                                      <td>{{item.descripcion}}</td>  
+                                      <td>{{item.fechaDesde | date: 'shortDate'}}</td>   
+                                      <td>{{item.fechaHasta | date: 'shortDate'}}</td>    
+                                      <td>{{item.monto}}</td>                                         
+                                      <td>
+                                        <span class="alert-success"  *ngIf="item.estado != 'Cancelado' && item.estado != 'Finalizado'">{{item.estado}}</span>
+                                        <span class="alert-danger"  *ngIf="item.estado == 'Cancelado'  || item.estado == 'Finalizado'">{{item.estado}}</span>
+                                        </td>
+                                   
+                                  </tr>
+                                  <tr *ngIf="(mf.data | SearchPipe : searchText).length === 0">
+                                      <td colspan="100">
+                                          No encontrado
+                                      </td>
+                                  </tr>
+                              </tbody>
+                              <tfoot>
+                                  <tr>
+                                      <td colspan="12">
+                                          <mfBootstrapPaginator [rowsOnPageSet]="[10, 25, 50, 100]"></mfBootstrapPaginator>
+                                      </td>
+                                  </tr>
+                              </tfoot>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>   
+</div>

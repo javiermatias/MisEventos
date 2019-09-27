@@ -464,7 +464,7 @@ namespace Renacer.Nucleo.Control
                 using (var db = new ModeloRenacer())
                 {
                     return db.evento
-                        .Where(ev => ev.nombre.Contains(search) && ev.fechaBaja == null)
+                        .Where(ev => ev.nombre.Contains(search) /*&& ev.fechaBaja == null*/)
                         .ToList();
                 }
             }

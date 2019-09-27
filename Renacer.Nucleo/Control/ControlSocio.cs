@@ -159,8 +159,8 @@ namespace Renacer.Nucleo.Control
                 {
                     matricula = matricula,
                     socio = _socio,
-                    fechaPago = DateTime.Now
-                    //pago = true
+                    fechaPago = DateTime.Now,
+                    pago = matricula.valor
                     
                 };
                 db.matriculaXSocio.Add(matriculaxsocio);

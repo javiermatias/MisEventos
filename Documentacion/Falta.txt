@@ -111,4 +111,7 @@ Mostrar asistencia
 Falta: Reportes, Vista Socio, Vista Encargado
 Reportes de Pago de cuotas.
 Reportes de Asistencia.
+Reporte Evento:FechaDesde FechaHasta estado gratuito tipoEvento, Encargado, Espacio
+
+
 

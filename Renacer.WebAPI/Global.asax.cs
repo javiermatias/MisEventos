@@ -15,6 +15,8 @@ namespace Renacer.WebAPI
             GlobalConfiguration.Configure(WebApiConfig.Register);
             //GlobalConfiguration.Configuration.Services.Replace(typeof(IHttpControllerSelector),
             //        new ApiControllerSelector(GlobalConfiguration.Configuration));
+
+           
         }
     }
 }

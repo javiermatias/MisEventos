@@ -28,9 +28,14 @@ export const itemsAdmin = [
         routerLink: 'evento/lista'
       },
       {
+        title: 'Cronograma',
+        routerLink: 'reportes/time-line'
+      },
+      {
         title: 'Inscripciones',
         routerLink: 'evento/inscripcion'
       },
+
       {
         title: 'Cobrar cuotas',
         routerLink: 'pago-cuota'
@@ -86,7 +91,7 @@ export const itemsAdmin = [
     expanded: false,
     order: 200,
     routerLink: 'secretarios/'
-},
+  },
   {
     title: 'Encargados',
     routerLink: 'encargados/',
@@ -102,7 +107,7 @@ export const itemsAdmin = [
     expanded: false,
     order: 400,
     routerLink: 'espacios/'
-  }, 
+  },
   {
     title: 'Reportes',
     routerLink: 'reportes',

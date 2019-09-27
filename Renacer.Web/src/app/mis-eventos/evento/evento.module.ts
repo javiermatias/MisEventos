@@ -17,8 +17,7 @@ import { InscripcionComponent } from './inscripcion/inscripcion.component';
 // import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { EventoDetalleComponent } from './evento-detalle/evento-detalle.component';
 import { FbkComponent } from './fbk/fbk.component';
-import { TimeLineComponent } from './time-line/time-line.component';
-import { LineaTiempoComponent } from './linea-tiempo/linea-tiempo.component';
+
 // import social buttons module//import { JwSocialButtonsModule } from 'jw-angular-social-buttons';
 //import { JwSocialButtonsModule } from 'jw-angular-social-buttons';
 
@@ -29,10 +28,10 @@ export const routes = [
   { path: 'inscripcion', component: InscripcionComponent, data: { breadcrumb: '' } },
   { path: 'lista', component: ListaComponent, data: { breadcrumb: 'Lista' } },
   { path: ':id', component: EventoComponent, data: { breadcrumb: 'Evento' } },
-  { path: 'linea', component: LineaTiempoComponent, data: { breadcrumb: 'Linea' }},
+  
   { path: ':idEvento/detalle/:idDetalle', component: DetalleEventoComponent, data: { breadcrumb: 'Detalle' }}, 
   { path: 'detalleEvento/:id', component: EventoDetalleComponent, data: { breadcrumb: 'Detalle Evento' }},
-  { path: 'time-line', component: TimeLineComponent, data: { breadcrumb: 'Linea de tiempo' }}
+ 
 ];
 
 @NgModule({
@@ -57,9 +56,7 @@ export const routes = [
     EventoWizardComponent,
     InscripcionComponent,
     EventoDetalleComponent,
-    FbkComponent,
-    TimeLineComponent,
-    LineaTiempoComponent
+    FbkComponent
   ]
 })
 export class EventoModule { }

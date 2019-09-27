@@ -21,7 +21,7 @@ export const routes = [
   { path: 'tags', component: TagsCloudComponent, data: { breadcrumb: 'Nube de Etiquetas' } },
   { path: 'eventos', component: EventosComponent, data: { breadcrumb: 'Eventos' } },
   { path: 'socios', component: SociosComponent, data: { breadcrumb: 'Socios' } },
-  { path: 'time-line', component: TimeLineComponent, data: { breadcrumb: 'Socios' } },
+  { path: 'time-line', component: TimeLineComponent, data: { breadcrumb: 'Cronograma' } },
 ];
 
 @NgModule({
