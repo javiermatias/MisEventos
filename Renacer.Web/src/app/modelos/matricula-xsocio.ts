@@ -9,7 +9,7 @@ export class MatriculaXsocio {
     idMatricula: number;
     matricula:Matricula;
     fechaPago: Date;
-    pago: boolean;
+    pago: number;
 
 
 

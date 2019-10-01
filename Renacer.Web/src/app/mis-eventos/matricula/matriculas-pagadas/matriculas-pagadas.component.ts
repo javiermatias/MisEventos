@@ -1,6 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatriculaxsocioService } from '../../../servicios/matriculaxsocio.service';
 import { MatriculaXsocio } from '../../../modelos/matricula-xsocio';
+import { SocioServices, SocioMatriculaServices, Socio } from '../../../servicios/socio.service';
+import { Matricula } from '../../../modelos/matricula';
+import { MatriculaServices } from '../../../servicios/matricula.service';
+import { Array } from 'core-js';
+/* import 'jspdf';
+import 'jspdf-autotable';
+declare let jsPDF; */
+declare const require: any;
+const jsPDF = require('jspdf');
+require('jspdf-autotable');
 
 @Component({
   selector: 'az-matriculas-pagadas',
@@ -10,19 +20,89 @@ import { MatriculaXsocio } from '../../../modelos/matricula-xsocio';
 export class MatriculasPagadasComponent implements OnInit {
   matriculas: MatriculaXsocio[];
 
-  constructor(private _matriculaService: MatriculaxsocioService) { }
+  _matriculaXsocio: MatriculaXsocio;
+  //_matriculasSinPagar: MatriculaXsocio[];
+  socios:Socio[];
+  matricula:Matricula;
+
+  largo:string;
+
+  filtro:string;
+
+  @ViewChild('contenidoTabla') tabla: ElementRef;
+
+  constructor(private _matriculaxsocioService: MatriculaxsocioService,
+    private _matriculaService:SocioMatriculaServices,
+    private _socioService:SocioServices ) { }
 
   ngOnInit() {
-    this.getItems();
+    this.filtro="pagadas";
+    this.getMatriculasPagadas();
+    this.getMatricula();
   }
 
-  getItems() {
+  getMatriculasPagadas() {
    
-    this._matriculaService.query({}).subscribe(items => {
-      console.log(items);
-      this.matriculas = items;
+    this._matriculaxsocioService.query({}).subscribe(items => {
+      //console.log(items);
+      this. matriculas = items;
+      this.largo=this.matriculas.length.toString();
     })
   }
+
+  matriculasSinPagar(){
+    //this. matriculas.length = 0;
+    let _matriculas: MatriculaXsocio[] = [];
+    this._socioService.query({'estado': "DebeMatricula" }).subscribe(items => {
+      this.socios= items;
+      for (var _socio of this.socios) {
+        let matriculaXsocio = new MatriculaXsocio();
+             matriculaXsocio.socio=_socio;
+             matriculaXsocio.matricula= this.matricula;
+            // matriculaXsocio.pago=0.0;
+            _matriculas.push(matriculaXsocio);
+      }
+      this.matriculas=_matriculas;
+      this.largo=this.matriculas.length.toString();
+    }); 
+  }
+  getMatricula(){
+    this._matriculaService.getMatriculaActual().subscribe(item => {
+      this.matricula= item;
+      //this.matriculasSinPagar();
+    });
+  }
+
+  filtrar(){
+  
+    switch (this.filtro) {
+      case ("pagadas"):
+        this.getMatriculasPagadas();
+      break;
+      case ("sinPagar"):
+        this.matriculasSinPagar();
+      break;  
+  
+  
+  }
+}
+
+Imprimir(){
+  let doc = new jsPDF();
+
+  let columns = ["ID", "Name", "Country"];
+  let rows = [
+      [1, "Shaw", "Tanzania"],
+      [2, "Nelson", "Kazakhstan"],
+      [3, "Garcia", "Madagascar"],
+  ];
+
+ 
+
+  doc.autoTable(columns, rows)
+  doc.save('table.pdf'); 
+
+}
 
 
 }

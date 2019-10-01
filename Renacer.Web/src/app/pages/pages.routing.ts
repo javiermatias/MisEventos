@@ -24,8 +24,9 @@ import { CambioContraseniaComponent } from '../mis-eventos/usuarios/cambio-contr
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ChartingModule } from './charting/charting.module';
 import { EventoModule } from '../mis-eventos/evento/evento.module';
-import { ReporteModule } from './reportes/reporte.module';
+import { ReporteModule } from '../mis-eventos/reportes/reporte.module';
 import { UsuariosModule } from './usuarios/usuarios.module';
+import { PruebaComponent } from './prueba/prueba.component';
 
 
 export const routes: Routes = [
@@ -54,7 +55,8 @@ export const routes: Routes = [
             { path: 'recordatorios', component: RecordatoriosComponent, data: { breadcrumb: '' } },
             { path: 'pago-cuota', component: PagoCuotaComponent, data: { breadcrumb: '' } },
             { path: 'cambio-contrasena', component: CambioContraseniaComponent, data: { breadcrumb: '' } },
-            { path: 'blank', component: BlankComponent, data: { breadcrumb: 'Blank page' } }
+            { path: 'blank', component: BlankComponent, data: { breadcrumb: 'Blank page' } },
+            { path: 'prueba', component: PruebaComponent, data: { breadcrumb: 'Prueba' } }
         ]
     }
 ];

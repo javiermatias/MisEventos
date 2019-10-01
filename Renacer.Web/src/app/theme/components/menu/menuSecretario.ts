@@ -28,6 +28,10 @@ export const itemsSecretario = [
                 routerLink: 'evento/lista'
             },
             {
+                title: 'Cronograma',
+                routerLink: 'reportes/time-line'
+            },
+            {
                 title: 'Inscripciones',
                 routerLink: 'evento/inscripcion'
             },            

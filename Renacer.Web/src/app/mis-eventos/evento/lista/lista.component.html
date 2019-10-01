@@ -21,7 +21,7 @@
                             <div class="w-200 pull-right bottom-15">
                                 <div class="input-group input-group-sm">
                                     <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                                    <input class="form-control" id="table-search-input" [(ngModel)]="searchText" type="text" placeholder="Buscar espacio comun...">
+                                    <input class="form-control" id="table-search-input" [(ngModel)]="searchText" type="text" placeholder="Buscar evento...">
                                 </div>
                             </div>
                             <div class="table-responsive datatable">
@@ -45,7 +45,7 @@
                                               <span class="alert-success"  *ngIf="item.estado != 'Cancelado' && item.estado != 'Finalizado'">{{item.estado}}</span>
                                               <span class="alert-danger"  *ngIf="item.estado == 'Cancelado'  || item.estado == 'Finalizado'">{{item.estado}}</span>
                                               </td>
-                                            <td><a style="color: #014c8c;cursor:pointer;" [routerLink]="['/pages/evento', item.id]"  >Ver Detalle</a>
+                                            <td><a style="color: #014c8c;cursor:pointer;" [routerLink]="['/pages/evento/detalleEvento/', item.id]"  >Ver Detalle</a>
                                             <td>
                                         </tr>
                                         <tr *ngIf="(mf.data | SearchPipe : searchText).length === 0">

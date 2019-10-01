@@ -17,6 +17,7 @@ import { InscripcionComponent } from './inscripcion/inscripcion.component';
 // import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { EventoDetalleComponent } from './evento-detalle/evento-detalle.component';
 import { FbkComponent } from './fbk/fbk.component';
+
 // import social buttons module//import { JwSocialButtonsModule } from 'jw-angular-social-buttons';
 //import { JwSocialButtonsModule } from 'jw-angular-social-buttons';
 
@@ -27,8 +28,10 @@ export const routes = [
   { path: 'inscripcion', component: InscripcionComponent, data: { breadcrumb: '' } },
   { path: 'lista', component: ListaComponent, data: { breadcrumb: 'Lista' } },
   { path: ':id', component: EventoComponent, data: { breadcrumb: 'Evento' } },
+  
   { path: ':idEvento/detalle/:idDetalle', component: DetalleEventoComponent, data: { breadcrumb: 'Detalle' }}, 
-  { path: 'detalleEvento/:id', component: EventoDetalleComponent, data: { breadcrumb: 'Detalle Evento' } }
+  { path: 'detalleEvento/:id', component: EventoDetalleComponent, data: { breadcrumb: 'Detalle Evento' }},
+ 
 ];
 
 @NgModule({
