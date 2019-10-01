@@ -14,6 +14,7 @@ using System.Web;
 using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Configuration;
 
 namespace Renacer.WebAPI.Controllers
 {
@@ -30,7 +31,10 @@ namespace Renacer.WebAPI.Controllers
         // GET: api/Usuarios/5
         public Usuario Get()
         {
-            return ControlUsuario.devolverInstancia().devolverPorUsuario(User.Identity.Name);
+            var usuario = ControlUsuario.devolverInstancia().devolverPorUsuario(User.Identity.Name);
+            usuario.imagen = ConfigurationManager.AppSettings["url_base"] + usuario.imagen;
+
+            return usuario;
         }
 
         // POST: api/cliente
@@ -40,6 +44,8 @@ namespace Renacer.WebAPI.Controllers
             {
                 if (value.id == 0) value.fechaCreacion = DateTime.Now;
                 ControlUsuario.devolverInstancia().grabar(value);
+
+                value.imagen = ConfigurationManager.AppSettings["url_base"] + value.imagen;
                 return Ok(value);
             }
             catch (UsuarioException ex)
@@ -52,7 +58,6 @@ namespace Renacer.WebAPI.Controllers
         public void Put(int id, [FromBody]Usuario value)
         {
             var usuario = ControlUsuario.devolverInstancia().devolver(id);
-            //value.fechaModificacion = DateTime.Now;
             ControlUsuario.devolverInstancia().grabar(value);
         }
 
@@ -76,18 +81,20 @@ namespace Renacer.WebAPI.Controllers
                 var usuarioActual = ControlUsuario.devolverInstancia().devolverPorUsuario(User.Identity.Name);
                 usuarioActual.imagen = WriteImage(model.Bytes, $@"perfil-{usuarioActual.id}", "perfiles");
                 ControlUsuario.devolverInstancia().grabar(usuarioActual);
+
+                usuarioActual.imagen = ConfigurationManager.AppSettings["url_base"] + usuarioActual.imagen;
+
                 return Ok(usuarioActual);
             }
             catch (UsuarioException ex)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.BadRequest, ex.errores));
             }
-            
+
         }
 
-        private string WriteImage(byte[] arr, string name,string folder)
+        private string WriteImage(byte[] arr, string name, string folder)
         {
-
             var filename = $@"images\{folder}\{name}.";
             using (var im = System.Drawing.Image.FromStream(new MemoryStream(arr)))
             {
@@ -103,11 +110,11 @@ namespace Renacer.WebAPI.Controllers
                     frmt = ImageFormat.Jpeg;
                 }
                 string path = HttpContext.Current.Server.MapPath("~/") + filename;
-                
-                im.Save(path,frmt);
+
+                im.Save(path, frmt);
             }
 
-            return $@"http:\\{Request.RequestUri.Host}\images\{folder}\{filename}";
+            return filename;
         }
 
     }
