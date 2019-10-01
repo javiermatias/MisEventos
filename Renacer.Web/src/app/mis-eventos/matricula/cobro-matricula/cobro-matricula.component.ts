@@ -13,11 +13,12 @@ export class CobroMatriculaComponent implements OnInit {
 
   socios:Socio[];
   socioSeleccionado:Socio;
-  matricula:any;
+  matricula:Matricula;
   showModalCobro:boolean= false;
   @ViewChild('imprimirPDF') myPrintHtml: ElementRef;
 
-  constructor(private _socioService:SocioServices, private _matriculaService:SocioMatriculaServices,private  mensajeServ: ToastrService ) { }
+  constructor(private _socioService:SocioServices, private _matriculaService:SocioMatriculaServices,
+    private  mensajeServ: ToastrService ) { }
 
   ngOnInit() {
     this.getItems();

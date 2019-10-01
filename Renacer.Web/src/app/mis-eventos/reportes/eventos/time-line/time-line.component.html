@@ -1,0 +1,104 @@
+<div class="row bottom-30">
+    
+    <div class="col">
+        <div widget class="card">
+            <div class="card-header">
+                <span>Cronograma</span>
+                <div class="widget-controls">              
+                    <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
+                    <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
+                    <a data-widgster="fullscreen" href="#" class="transition"><i class="fa fa-expand"></i></a>
+                    <a data-widgster="restore" href="#" class="transition"><i class="fa fa-compress"></i></a>                          
+                    <a data-widgster="close" href="#" class="transition"><i class="fa fa-times"></i></a>
+                </div>        
+            </div>
+            <div class="card-block widget-body row mbm-20">
+
+                <div class="col-md-4 col-12 bottom-15">   
+                    <strong><h6>Fechas</h6>  </strong>
+                    <div class="form-group">
+                        <div class="custom-controls-stacked">
+          
+                            <label class="custom-control custom-radio">
+                                <input type="radio" name="stacked-radio" class="custom-control-input radio-primary"
+                                [(ngModel)]="fecha"  value="fechaInicio">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">Fecha Inicio Evento</span>
+                            </label>
+                            <label class="custom-control custom-radio">
+                                <input type="radio" name="stacked-radio" class="custom-control-input radio-primary"
+                                [(ngModel)]="fecha"  value="fechaFin">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">Fecha Fin Evento</span>
+                            </label>
+                            <label class="custom-control custom-radio">
+                                <input type="radio" name="stacked-radio" class="custom-control-input radio-primary"
+                                [(ngModel)]="fecha"  value="fechaInicioInscripcion">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">Fecha Inicio Inscripciones</span>
+                            </label>
+                            <label class="custom-control custom-radio">
+                                <input type="radio" name="stacked-radio" class="custom-control-input radio-primary"
+                                [(ngModel)]="fecha"  value="fechaFinInscripcion">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">Fecha Fin Inscripciones</span>
+                            </label>
+                         
+                        </div>
+                    </div>
+                </div> 
+                <div class="col-md-4 col-12 bottom-15">   
+                    <strong> <h6>Rangos</h6>  </strong>
+                    <div class="form-group">
+                        <label for="input-2">Fecha Desde:</label>
+                        <input type="date" class="form-control" id="fechaDesde" name="fechaDesde" style="width: 180px;"
+                        [(ngModel)]="fechaDesde">
+                        <label for="input-2">Fecha Hasta:</label>
+                        <input type="date" class="form-control" id="fechaHasta" name="fechaHasta" style="width: 180px;"
+                        [(ngModel)]="fechaHasta">
+                   
+                   
+                      </div>
+                </div>
+                <div class="col-md-4 col-12">   
+                   <strong> <h6>Filtrar</h6></strong>
+                    <div class="form-group">
+                        <label for="input-2">Estado Evento:</label>
+                        <select class="form-control" id="estado" name="estado" style="width: 180px;" [(ngModel)]="estado" >
+                            <option value="Todos">Todos</option>
+                            <option value="Nuevo">Nuevo</option>
+                            <option value="Progreso">Progreso</option>
+                            <option value="Finalizado">Finalizado</option>
+                            <option value="Cancelado">Cancelado</option>
+                        </select>
+                      </div>
+
+                      <button type="submit" class="btn btn-main" (click)="filtrar()">Mostrar</button>
+                    
+                </div>  
+
+            </div>
+        </div>
+    </div>    
+
+</div>
+
+
+
+
+<div class="timeline">
+  <ul>
+    <li *ngFor="let item of eventos">
+      <div class="content">
+          <br>
+        <h4>{{item.nombre}}</h4> 
+        <p>{{item.descripcion}}</p>
+      </div>
+      <div class="time">
+        <h4>{{item.fechaDesde | date:'fullDate'}}</h4>
+      </div>
+    </li>
+    
+    <div style="clear:both;"></div>
+  </ul>
+</div>
