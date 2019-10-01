@@ -1,6 +1,7 @@
 ﻿using Renacer.Nucleo.Control;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -33,8 +34,11 @@ namespace Renacer.WebAPI
                 ControlUsuario.devolverInstancia().grabar(usuario);
 
                 //usuario.clave = "";
-               // usuario.idGoogle = "";
-               // usuario.idFacebook = "";
+                // usuario.idGoogle = "";
+                // usuario.idFacebook = "";
+
+                usuario.imagen = ConfigurationManager.AppSettings["url_base"] + usuario.imagen;
+
                 resp.Add("user", usuario);
                 resp["token"] = token;
                 resp["result"] = "ok";

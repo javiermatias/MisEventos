@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Variables} from './variables';
 import {BaseServices} from './base.service';
-import { Observable } from "rxjs/Observable";
-import { HttpClient } from "@angular/common/http";
+import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
 
 
 export class Usuario {
@@ -34,26 +34,26 @@ export class UserServices extends BaseServices<Usuario> {
   login(usuario: string,clave:string){
     return this.http.post(`${new Variables().urlBase}login/`,{usuario: usuario,clave:clave})
   }
- 
-  actual():Observable<Usuario>{
+
+  actual(): Observable<Usuario> {
     return this.http.get<Usuario>(`${this.url}/`)
   }
-  
-  getCurrent=function(){
-    if(this.usuario == null){
+
+  getCurrent= function(){
+    if (this.usuario == null) {
       this.usuario = JSON.parse(localStorage.usuario);
     }
     return this.usuario;
   }
-  setCurrent = function(usuario:Usuario){
+  setCurrent = function(usuario: Usuario){
     this.usuario = usuario;
     localStorage.usuario = JSON.stringify(usuario) ;
     if (usuario) { // cuando cierro sesion mando un usuario nulo
-      sessionStorage["token"] = usuario["token"];
+      sessionStorage['token'] = usuario['token'];
     }
   }
 
-  subirImagen(Name:string,Bytes:number[]):Observable<any>{
-    return this.http.post(`${this.url}/subirImagen/`,{'Name':Name,'Bytes':Bytes})
+  subirImagen(Name: string, Bytes: number[]): Observable<any> {
+    return this.http.post(`${this.url}/subirImagen/`, {'Name': Name, 'Bytes': Bytes})
   }
 }
