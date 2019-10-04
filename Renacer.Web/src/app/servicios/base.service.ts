@@ -67,7 +67,7 @@ export class BaseServices<T> {
     return this.http.post<T>(this.url,entidad);
   }
   update(entidad:T):Observable<T>{
-    return this.http.post<T>(this.url,entidad);
+    return this.http.put<T>(this.url,entidad);
   }
 
   remove(value:{id:any}):Observable<any>{

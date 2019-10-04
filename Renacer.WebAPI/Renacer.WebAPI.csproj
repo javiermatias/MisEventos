@@ -147,6 +147,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ActualizarEventoController.cs" />
     <Compile Include="Controllers\AsistenciaController.cs" />
+    <Compile Include="Controllers\AsistenciaSocioController.cs" />
     <Compile Include="Controllers\CalendarioController.cs" />
     <Compile Include="Controllers\CambioContraseniaController.cs" />
     <Compile Include="Controllers\ComunController.cs" />
@@ -155,6 +156,7 @@
     <Compile Include="Controllers\MatriculaSocioController.cs" />
     <Compile Include="Controllers\PagoController.cs" />
     <Compile Include="Controllers\PersonaController.cs" />
+    <Compile Include="Controllers\RatingEventoController.cs" />
     <Compile Include="Controllers\RecordatorioController.cs" />
     <Compile Include="Controllers\ReporteController.cs" />
     <Compile Include="Controllers\SecretarioController.cs" />

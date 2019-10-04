@@ -46,6 +46,7 @@ export class NuevaAsistenciaComponent implements OnInit, AfterViewInit {
     
     this.inscripcionServ.query({'idEvento':idEvento}).subscribe(items => {
       this.listaInscripcion = items;
+      
       //console.log(items);   
      // this.mostrarGrilla=true;
       

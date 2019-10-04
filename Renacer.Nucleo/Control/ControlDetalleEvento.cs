@@ -274,6 +274,30 @@ namespace Renacer.Nucleo.Control
             return null;
         }
 
+
+        public List<DetalleEvento> devolverTodosXEncargado(int _idEvento)
+        {
+
+            try
+            {
+                using (var db = new ModeloRenacer())
+                {
+                    return db.detalleEvento
+                        .Where(ev => ev.idEvento == _idEvento && ev.fechaBaja == null)
+                        .ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                ServicioSentry.devolverSentry().informarExcepcion(ex);
+            }
+            return null;
+        }
+
+
+
+
+
         private List<string> validar(DetalleEvento detalleEvento)
         {
             var errores = new List<string>();

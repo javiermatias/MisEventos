@@ -7,12 +7,11 @@ import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
-
+import { NgxStarsModule } from 'ngx-stars';
 import {  ToastContainerModule  } from 'ngx-toastr';
 import { DirectivesModule } from '../theme/directives/directives.module';
 import { PipesModule } from '../theme/pipes/pipes.module';
 import { SharedModule } from '../mis-eventos/componentesCompartidos/shared.module';
-
 import { routing } from './pages.routing';
 import { PagesComponent } from './pages.component';
 import { BlankComponent } from './blank/blank.component';
@@ -46,7 +45,12 @@ import { AsistenciaComponent } from '../mis-eventos/asistencia/asistencia.compon
 import { CambioContraseniaComponent } from '../mis-eventos/usuarios/cambio-contrasenia/cambio-contrasenia.component';
 import { PasswordStrengthBarModule } from 'ng2-password-strength-bar';
 import { CheckPasswordDirective } from '../mis-eventos/usuarios/cambio-contrasenia/check-password.directive';
-import { PruebaComponent } from './prueba/prueba.component';
+import { EventosxsocioComponent } from '../mis-eventos/socios/eventosxsocio/eventosxsocio.component';
+import { OpinionEventoComponent } from '../mis-eventos/socios/opinion-evento/opinion-evento.component';
+import { AsistenciasSocioComponent } from '../mis-eventos/socios/asistencias-socio/asistencias-socio.component';
+import { SocioInscripcionComponent } from '../mis-eventos/socios/socio-inscripcion/socio-inscripcion.component';
+import { DetalleComponent } from '../mis-eventos/socios/socio-inscripcion/detalle/detalle.component';
+
 //import { LoginComponent } from './login/login.component';
 
 
@@ -65,6 +69,7 @@ import { PruebaComponent } from './prueba/prueba.component';
     DragulaModule,    
      ReactiveFormsModule,
     PasswordStrengthBarModule,
+    NgxStarsModule
   ],
   providers: [
     {
@@ -100,7 +105,12 @@ import { PruebaComponent } from './prueba/prueba.component';
     NuevaAsistenciaComponent,
     AsistenciaComponent,
     CambioContraseniaComponent,    
-    CheckPasswordDirective, PruebaComponent
+    CheckPasswordDirective, 
+    EventosxsocioComponent,
+    OpinionEventoComponent,
+    AsistenciasSocioComponent,
+    SocioInscripcionComponent,
+    DetalleComponent
    // LoginComponent 
   ]
   , exports: [

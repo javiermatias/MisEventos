@@ -215,15 +215,7 @@ getEspacios(){
   console.log(this._espacio.id);
 } */
 
-cargarCalendario(){
-  this._calendarioService.query({
-    "fechaDesde":this.fechaDesde,
-    "fechaHasta":this.fechaHasta
-  }).subscribe(items => {
-    console.log(items);
-    
-  });
-}
+
 
 cargarEventos(){
   this._calendarioService.query({

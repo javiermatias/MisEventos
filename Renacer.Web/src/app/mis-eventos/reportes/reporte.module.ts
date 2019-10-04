@@ -13,6 +13,8 @@ import { SociosComponent } from './socios/socios.component';
 import { EventosComponent } from './eventos/eventos.component'
 import { ReporteComponent } from './reporte.component';
 import { TimeLineComponent } from './eventos/time-line/time-line.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { DeudoresCuotaComponent } from './deudores-cuota/deudores-cuota.component';
 
 
 
@@ -22,6 +24,7 @@ export const routes = [
   { path: 'eventos', component: EventosComponent, data: { breadcrumb: 'Eventos' } },
   { path: 'socios', component: SociosComponent, data: { breadcrumb: 'Socios' } },
   { path: 'time-line', component: TimeLineComponent, data: { breadcrumb: 'Cronograma' } },
+  { path: 'deudores', component: DeudoresCuotaComponent, data: { breadcrumb: 'Deudores' } }
 ];
 
 @NgModule({
@@ -31,6 +34,7 @@ export const routes = [
       DirectivesModule,
       PipesModule,
       FormsModule,
+      NgSelectModule,
       DataTableModule,
       NguiAutoCompleteModule,
       TagCloudModule,
@@ -41,7 +45,8 @@ export const routes = [
     SociosComponent,
     ReporteComponent,
     EventosComponent,
-    TimeLineComponent
+    TimeLineComponent,
+    DeudoresCuotaComponent
   ]
 })
 export class ReporteModule { }
