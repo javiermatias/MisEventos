@@ -45,6 +45,8 @@ namespace Renacer.Nucleo
         public virtual DbSet<MatriculaXSocio> matriculaXSocio { get; set; }
 
         public virtual DbSet<Pago> pagoCuota { get; set; }
+
+        public virtual DbSet<RatingEvento> rating { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
 
         {

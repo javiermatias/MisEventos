@@ -151,12 +151,14 @@
                                   <td><strong>{{item.socio.nombre}} {{item.socio.apellido}}</strong></td>
                                   <td>{{item.fechaCreacion | date:'medium'}}</td>                                   
                                   <td>
+                                     <div *ngIf="mostrarInscripcion">
                                       <span class="col col-3"> 
                                       <i style="cursor:pointer; align-content: center" (click)="eliminarInscripcion(item)"
                                                 class="fa fa-trash"></i>
                                               </span>
                                       <!-- <a style="color: #014c8c;cursor:pointer;" (click)="eliminarInscripcion(item)">Eliminar</a> -->
-                                  <td>
+                                    </div> 
+                                      <td>
                               </tr>
                               <tr *ngIf="(mf.data | SearchPipe : searchText).length === 0">
                                   <td colspan="100">

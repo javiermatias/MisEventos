@@ -24,12 +24,13 @@ namespace Renacer.WebAPI.Controllers
         }
 
         // POST: api/cliente
-        public IHttpActionResult Post([FromBody]Pago value)
+        public IHttpActionResult Post([FromBody]Pago _pago)
         {
             try
             {
-                ControlPagoCuota.devolverInstacia().grabar(value);
-                return Ok(value);
+                _pago.fechaCobro = DateTime.Now;
+                ControlPagoCuota.devolverInstacia().grabar(_pago);
+                return Ok(_pago);
             }
             catch (UsuarioException ex)
             {
@@ -38,17 +39,12 @@ namespace Renacer.WebAPI.Controllers
         }
 
         // PUT: api/cliente/5
-        public void Put(int id, [FromBody]Pago value)
+        public void Put(int id, [FromBody]Pago _pago)
         {
-            //var espacio = ControlPagoCuota.devolverInstacia().devolver(id);
-            //espacio.nombre = value.nombre;
-            //espacio.capacidad = value.capacidad;
-            //espacio.estado = value.estado;
-            //espacio.descripcion = value.descripcion;
-            //espacio.fechaModificacion = DateTime.Now;
-            //espacio.idMatricula = value.idMatricula;
-
-            ControlPagoCuota.devolverInstacia().grabar(value);
+ 
+            _pago.fechaCobro = DateTime.Now;
+            ControlPagoCuota.devolverInstacia().grabar(_pago);
+            
         }
 
         // DELETE: api/ApiCliente/5

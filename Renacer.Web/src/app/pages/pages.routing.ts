@@ -26,7 +26,10 @@ import { ChartingModule } from './charting/charting.module';
 import { EventoModule } from '../mis-eventos/evento/evento.module';
 import { ReporteModule } from '../mis-eventos/reportes/reporte.module';
 import { UsuariosModule } from './usuarios/usuarios.module';
-import { PruebaComponent } from './prueba/prueba.component';
+import { EventosxsocioComponent } from '../mis-eventos/socios/eventosxsocio/eventosxsocio.component';
+import { OpinionEventoComponent } from '../mis-eventos/socios/opinion-evento/opinion-evento.component';
+import { AsistenciasSocioComponent } from '../mis-eventos/socios/asistencias-socio/asistencias-socio.component';
+import { SocioInscripcionComponent } from '../mis-eventos/socios/socio-inscripcion/socio-inscripcion.component';
 
 
 export const routes: Routes = [
@@ -56,7 +59,10 @@ export const routes: Routes = [
             { path: 'pago-cuota', component: PagoCuotaComponent, data: { breadcrumb: '' } },
             { path: 'cambio-contrasena', component: CambioContraseniaComponent, data: { breadcrumb: '' } },
             { path: 'blank', component: BlankComponent, data: { breadcrumb: 'Blank page' } },
-            { path: 'prueba', component: PruebaComponent, data: { breadcrumb: 'Prueba' } }
+            { path: 'eventos-socio', component: EventosxsocioComponent, data: { breadcrumb: 'Mis Eventos' } },
+            { path: 'opinion-evento/:id', component: OpinionEventoComponent, data: { breadcrumb: '' } },
+            { path: 'asistencia-socio/:id', component: AsistenciasSocioComponent , data: { breadcrumb: '' } },
+            { path: 'inscripcion-socio', component: SocioInscripcionComponent , data: { breadcrumb: '' } }
         ]
     }
 ];

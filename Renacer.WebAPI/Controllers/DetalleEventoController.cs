@@ -33,6 +33,8 @@ namespace Renacer.WebAPI.Controllers
 
         }
 
+       
+
         // GET: api/Eventos/5
         public DetalleEvento Get(int id)
         {
@@ -54,7 +56,7 @@ namespace Renacer.WebAPI.Controllers
         }
 
         // PUT: api/cliente/5
-        public void Put(int id, [FromBody]DetalleEvento value)
+        public void Put([FromBody]DetalleEvento value)
         {
             //value.fechaModificacion = DateTime.Now;
             ControlDetalleEvento.devolverInstancia().actualizar(value);

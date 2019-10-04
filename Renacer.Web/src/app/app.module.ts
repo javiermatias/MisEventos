@@ -33,12 +33,21 @@ import { AuthInterceptorProvider } from './servicios/request.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { CambioContraseniaService } from './servicios/cambioContrasenia';
 import localeEs from '@angular/common/locales/es-AR';
+import { RatingServices } from './servicios/rating.service';
+import { AsistenciaSocioServices } from './servicios/asistenciaSocio.service';
+
+
+
 
 registerLocaleData(localeEs, 'es-AR');
 @NgModule({
   declarations: [
     AppComponent,
     ErrorComponent
+    
+    
+    
+ 
   ],
   imports: [
     BrowserModule,
@@ -82,7 +91,8 @@ registerLocaleData(localeEs, 'es-AR');
     PagoServices,
     CalendarioServices,
     CambioContraseniaService,
-    
+    RatingServices,
+    AsistenciaSocioServices,    
     { provide: LOCALE_ID, useValue: "es-AR" },
     DatePipe],
     bootstrap: [AppComponent]

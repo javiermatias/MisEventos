@@ -92,6 +92,27 @@ namespace Renacer.Nucleo.Control
             return null;
         }
 
+
+
+        public Asistencia devolverXdetalleEventoYSocio(int _idDetalleEvento, int _idSocio)
+        {
+            try
+            {
+                using (var db = new ModeloRenacer())
+                {
+                    var item = db.asistencia.Where(x => x.idDetalleEvento == _idDetalleEvento
+                    && x.idSocio == _idSocio).FirstOrDefault();
+                    
+                    return item;
+                }
+            }
+            catch (Exception ex)
+            {
+                ServicioSentry.devolverSentry().informarExcepcion(ex);
+            }
+            return null;
+        }
+
         /// <summary>
         /// Metodo utilizado para devolver todos los Asistencia
         /// SELECT * FROM Asistencia
