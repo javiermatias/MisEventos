@@ -1,96 +1,69 @@
-import { Component, OnInit,Input,OnChanges,Output,EventEmitter } from '@angular/core';
-import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
-import {TagServices,Tag} from '../../../servicios/tag.service';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import {TagServices, Tag} from '../../../servicios/tag.service';
 import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
 
 @Component({
   selector: 'az-select-tags',
   templateUrl: './select-tags.component.html'
 })
-export class SelectTagsComponent implements OnInit {
+export class SelectTagsComponent implements OnInit, OnChanges {
 
-  @Input() listaTags:Tag[];
-  @Input() enabled:boolean;
+  @Input() listaTags: Tag[];
+  @Input() enabled: boolean;
   public tags = new Array<Tag>();
   public tagsIds = [];
-  public selectedTag:string;
+  public selectedTag: string;
 
-  constructor(private _dbServices:TagServices,private _sanitizer: DomSanitizer) {
+  constructor(private _dbServices: TagServices, private _sanitizer: DomSanitizer) {
   }
 
   ngOnInit() {
+    if (this.listaTags == null) {this.listaTags = new Array<Tag>(); }
     this.getTags();
   }
 
-  ngOnChanges(){
-  if(this.listaTags == null){this.listaTags = new Array<Tag>();}
-    for(var i = 0; i < this.tags.length;i++){
-      for(var j = 0; j < this.listaTags.length;j++){
-        if(this.tags[i].id == this.listaTags[j].id){
-          this.tags[i]["selected"] = true;
+  ngOnChanges() {
+    this.tags.forEach(element => {
+        if (this.estaSeleccionado(element)) {
+          element['selected'] = true;
         }
-      }
-    } 
+    });
   }
 
-  tagSelected(tag,removeTag){
-    let tagItem ;
-    //console.log (tag);
-    if(removeTag){
-      tagItem = new Tag(0,tag.nombre);
-      this.borrarTag(tagItem);
-    }else{
-      var tagNew = new Tag(0,this.selectedTag);
-       this.tags.push(tagNew);
-      tagItem = tagNew;
-      this.actualizarTags(tagItem);
-    }
-
-    this.selectedTag = "";
-
-    
+  estaSeleccionado(item) {
+   return this.listaTags.find(x => x.nombre === item.nombre) != null;
   }
 
-  estaSeleccionado(item){
-    var result = false;
-    if(this.listaTags == null){ return false;}
-    for(var j = 0; j < this.listaTags.length;j++){
-      if(item.nombre == this.listaTags[j].nombre){
-        result = true;
-      }
-    }
-    return result;
+  borrarTag(item) {
+    const indiceABorrar = this.listaTags.findIndex(x => x.nombre === item.nombre);
+    if (indiceABorrar > -1) { this.listaTags.splice(indiceABorrar, 1) };
   }
 
-  borrarTag(item){
-    for(var j = 0; j < this.listaTags.length;j++){
-      if(item.nombre == this.listaTags[j].nombre){
-        this.listaTags.splice(j,1);
-      }
-    }
-}
+  actualizarTags(item) {
+    let tagAActualizar = null;
+    if (typeof item === 'string') {
 
-  actualizarTags(item){
-    if(this.listaTags == null){this.listaTags = new Array<Tag>();}
+      if (item === '') {return; }
 
-    if(this.listaTags.filter(function(item2){ return item2.nombre === item.nombre}).length==0) {
-      this.listaTags.push(item);
-    }
-     else{
-      for(var j = 0; j < this.listaTags.length;j++){
-        if(item.nombre == this.listaTags[j].nombre){
-          this.listaTags.splice(j,1);
-        }
-      }
-    } 
-    this.selectedTag = "";
+        tagAActualizar = this.tags.find(x => x.nombre === item);
+
+        if (tagAActualizar == null) {
+          tagAActualizar = new Tag(0, item);
+            this.tags.push(tagAActualizar);
+          }
+    } else { tagAActualizar = item; }
+
+    if (this.estaSeleccionado(tagAActualizar)) { this.borrarTag(tagAActualizar); }
+    else { this.listaTags.push(tagAActualizar); }
+     this.selectedTag = '';
   }
 
-  getTags(){
+  getTags() {
     this._dbServices.query({}).subscribe(items => {
       this.tags = [];
-      for(var i = 0; i < items.length;i++){
-        var itemAux = new Tag(0,"");
+      for ( let i = 0; i < items.length; i++) {
+        const itemAux = new Tag(0, '');
         itemAux.id = items[i].id;
         itemAux.nombre = items[i].nombre;
         this.tags.push(itemAux);
@@ -99,12 +72,12 @@ export class SelectTagsComponent implements OnInit {
   }
 
   autocompleListFormatter = (data: any) => {
-    let selected = this.listaTags.filter((item)=> item.nombre == data.nombre).length == 1;
+    const selected = this.listaTags.filter((item) => item.nombre === data.nombre).length === 1;
     let html = `<span>${data.nombre}`;
-    if(selected){
-      html +=`<span class="fa fa-check" style='color:green;'></span>`
+    if (selected === true) {
+      html += `<span class='fa fa-check' style='color:green;'></span>`
     }
-    html +=`</span>`
+    html += `</span>`
     return this._sanitizer.bypassSecurityTrustHtml(html);
   }
 }

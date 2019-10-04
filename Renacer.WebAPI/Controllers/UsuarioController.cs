@@ -43,7 +43,12 @@ namespace Renacer.WebAPI.Controllers
             try
             {
                 if (value.id == 0) value.fechaCreacion = DateTime.Now;
-                ControlUsuario.devolverInstancia().grabar(value);
+
+                var usuarioActual = ControlUsuario.devolverInstancia().devolverPorUsuario(User.Identity.Name);
+                value.imagen = usuarioActual.imagen;
+                usuarioActual.nombre = value.nombre;
+                usuarioActual.email = value.email;
+                ControlUsuario.devolverInstancia().grabar(usuarioActual);
 
                 value.imagen = ConfigurationManager.AppSettings["url_base"] + value.imagen;
                 return Ok(value);

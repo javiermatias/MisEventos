@@ -32,7 +32,7 @@ onFileSelected(event) {
       const arr = Array.from(new Uint8Array(this.result));
       aux.baseServ.subirImagen('Name of Image', arr).subscribe(resp => {
         console.log(resp);
-        aux._item.imagen = resp.imagen;
+        aux._item.imagen = resp.imagen + '?' + Date.toString();
         aux.mensajeServ.success('se han guardado los cambios!', 'Aviso!');
       });
   }
@@ -43,18 +43,16 @@ onFileSelected(event) {
 
 
   onSubmit(myForm: FormGroup) {
-    let usuario = Object.assign({}, this._item);
-    this.saveItem(usuario)
-    myForm.reset();
+    const usuario = Object.assign({}, this._item);
+    this.saveItem(usuario);
   }
 
-  saveItem(item:Usuario):any{
-    if(item.id == 0){
+  saveItem(item: Usuario): any {
+    if (item.id === 0) {
       this.baseServ.save(item).subscribe(resp => {
-        item = resp;
         this.mensajeServ.success('se han guardado los cambios!', 'Aviso!');
       });
-    }else{
+    }else {
       this.baseServ.save(item).subscribe(resp => {
         this.mensajeServ.success('se han guardado los cambios!', 'Aviso!');
       });
