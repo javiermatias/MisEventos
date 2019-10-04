@@ -93,7 +93,7 @@ Ver Evento -- Calendario -- Tomar Asistencia -- Dashboard
 
 Vista Socio
 ====================
-Mis Asistencias -- Calendario -- Cuotas/Matricula Pagas -- Eventos a los que estoy inscripto-- Mis Intereses Dashboard 
+Mis Asistencias -- Calendario -- Cuotas/Matricula Pagas -- Eventos a los que estoy inscripto-- Mis Intereses Dashboard -Inscripcion Eventos
 
 
 
@@ -113,5 +113,34 @@ Reportes de Pago de cuotas.
 Reportes de Asistencia.
 Reporte Evento:FechaDesde FechaHasta estado gratuito tipoEvento, Encargado, Espacio
 
+
+Estadisticas: +Crecimiento Socios +Pagos acreditados Matricula/cuotas
+
+
+Reportes: Preguntar si es necesario exportar a un excel.
+
+Estadisticas: Cursos con mas publico.... Profesores con mas cursos, Tags con mas inscriptos.  Cantidad de inscriptos por evento.
+
+Dar feedBack del curso que ya finalizo, se puede hacer una estadistica sobre los cursos con mas puntajes/rating.(Listo, falta nomas saber si ya completo o no
+la encuesta)
+
+
+Pueda ver los eventos que ya asistió y pueda inscribirse a un futuro evento.
+
+Mas contadores, y dejar la estadistica de socios aparte en una seccion estadistica.
+
+
+1/11/2019
+-Validar si ya hizo la encuesta.
+-Hacer pagina de asistencia del socio.
+
+1/12/2019
+-Hacer reporte deuda de cuotas del socio.
+
+
+
+pages/eventos-socio-->Mis Eventos
+
+Eventos OrderBy fechaCreacion mas reciente
 
 

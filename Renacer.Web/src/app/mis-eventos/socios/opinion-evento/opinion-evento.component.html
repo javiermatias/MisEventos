@@ -1,0 +1,62 @@
+
+<!--     <ngx-stars></ngx-stars>
+
+    <ngx-stars [readonly]="true" [color]="'dodgerblue'" [size]="2"></ngx-stars>
+<ngx-stars [readonly]="true" [color]="'#FF0000'" [size]="5"></ngx-stars>
+      <div>Rating: {{ rating3 }}</div>
+
+      <ngx-stars (ratingOutput)="puntaje($event)"></ngx-stars> -->
+
+      <div class="col-xl-12 col-lg-12 col-12 bottom-30">
+          <div widget class="card">
+              <div class="card-header">
+                  <span>Encuesta</span>
+                  <div class="widget-controls">              
+                      <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
+                      <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
+                      <a data-widgster="fullscreen" href="#" class="transition"><i class="fa fa-expand"></i></a>
+                      <a data-widgster="restore" href="#" class="transition"><i class="fa fa-compress"></i></a>                          
+                      <a data-widgster="close" href="#" class="transition"><i class="fa fa-times"></i></a>
+                  </div>        
+              </div>
+              <div class="card-block widget-body">
+  
+                  <h6 class="card-title text-center">Esta encuesta es de carácter privada y anónima!</h6>
+  <br>
+                  <form class="form-horizontal">
+                      <div class="form-group row text-right">
+                          <label for="email-h-f" class="col-sm-6 form-control-label m-t-5">¿Que valoración haces del evento?</label>
+                          <div class="col-sm-6">
+                              <ngx-stars (ratingOutput)="puntajeEvento($event)"></ngx-stars>
+                          </div>
+                      </div>
+                      <div class="form-group row text-right">
+                          <label for="password-h-f" class="col-sm-6 form-control-label m-t-5">¿Que te pareció el contenido del evento?</label>
+                          <div class="col-sm-6">
+                              <ngx-stars (ratingOutput)="puntajeContenido($event)"></ngx-stars>
+                          </div>
+                      </div>
+                      <div class="form-group row text-right">
+                          <label for="re-password-h-f" class="col-sm-6 form-control-label m-t-5">¿Como valoras al encargado de llevar acabo el evento?</label>
+                          <div class="col-sm-6">
+                              <ngx-stars (ratingOutput)="puntajeEncargado($event)"></ngx-stars>
+                          </div>
+                      </div>
+                      <div class="form-group row text-right">
+                          <label for="re-password-h-f" class="col-sm-6 form-control-label m-t-5">¿Quieres agregar algún comentario?</label>
+                          <div class="col-sm-6">
+                              <textarea class="form-control" id="textarea-1" name="textoArea" [(ngModel)]="textoDescripcion"></textarea>
+                          </div>
+                      </div>
+
+                      <div class="form-group row">
+                          <div class="col-sm-9 offset-sm-3">
+                              <button class="btn btn-main pull-right" type="submit" (click)="enviar()">Enviar</button>
+                          </div>
+                      </div>
+                  </form>
+  
+              </div>
+          </div>
+      </div>
+  

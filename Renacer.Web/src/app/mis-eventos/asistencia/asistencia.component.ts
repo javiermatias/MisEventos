@@ -87,7 +87,7 @@ export class AsistenciaComponent implements OnInit {
     this.showRecordatorio = false;
     if (cancelar) {
       this.detalleSelecionado.asistencia=true;
-      this._detalleEvento.save(this.detalleSelecionado).subscribe(resp => {
+      this._detalleEvento.update(this.detalleSelecionado).subscribe(resp => {
         this.cambioEvento();
       });
        //Aca deberia guardar la asistencia del detalle evento.

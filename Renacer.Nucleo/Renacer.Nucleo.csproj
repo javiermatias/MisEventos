@@ -92,6 +92,7 @@
     <Compile Include="Control\ControlMatricula.cs" />
     <Compile Include="Control\ControlMatriculaXSocio.cs" />
     <Compile Include="Control\ControlPagoCuota.cs" />
+    <Compile Include="Control\ControlRating.cs" />
     <Compile Include="Control\ControlRecordatorio.cs" />
     <Compile Include="Control\ControlReporte.cs" />
     <Compile Include="Control\ControlDetalleEvento.cs" />
@@ -107,8 +108,10 @@
     <Compile Include="Control\ControlEspacioComun.cs" />
     <Compile Include="Control\ControlCliente.cs" />
     <Compile Include="Entidades\Asistencia.cs" />
+    <Compile Include="Entidades\AsistenciaSocio.cs" />
     <Compile Include="Entidades\Calendario.cs" />
     <Compile Include="Entidades\CambioContrasenia.cs" />
+    <Compile Include="Entidades\RatingEvento.cs" />
     <Compile Include="Entidades\Secretario.cs" />
     <Compile Include="Entidades\Cliente.cs" />
     <Compile Include="Entidades\Contacto.cs" />
@@ -206,6 +209,14 @@
     <Compile Include="Migrations\201908160559443_agregarSecretario.Designer.cs">
       <DependentUpon>201908160559443_agregarSecretario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910010611149_agregadoRatingEvento.cs" />
+    <Compile Include="Migrations\201910010611149_agregadoRatingEvento.Designer.cs">
+      <DependentUpon>201910010611149_agregadoRatingEvento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910010626243_agregadoSocioRatingEvento.cs" />
+    <Compile Include="Migrations\201910010626243_agregadoSocioRatingEvento.Designer.cs">
+      <DependentUpon>201910010626243_agregadoSocioRatingEvento.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
     <Compile Include="myMigrationSQLGenerator.cs" />
@@ -288,6 +299,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908160559443_agregarSecretario.resx">
       <DependentUpon>201908160559443_agregarSecretario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910010611149_agregadoRatingEvento.resx">
+      <DependentUpon>201910010611149_agregadoRatingEvento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910010626243_agregadoSocioRatingEvento.resx">
+      <DependentUpon>201910010626243_agregadoSocioRatingEvento.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
