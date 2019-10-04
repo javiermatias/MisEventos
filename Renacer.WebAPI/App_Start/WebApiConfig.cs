@@ -24,6 +24,10 @@ namespace Renacer.WebAPI
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+            config.Routes.IgnoreRoute("FileJs","{file}.js");
+            config.Routes.IgnoreRoute("FileJpg", "{file}.jpg");
+            config.Routes.IgnoreRoute("FileJpeg", "{file}.Jpeg");
+
 
             config.Filters.Add(new IdentityBasicAuthenticationAttribute());
        

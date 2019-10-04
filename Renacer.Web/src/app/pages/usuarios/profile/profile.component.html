@@ -43,11 +43,13 @@
                     *ngIf="_item.imagen"
                     alt="imagen" style="margin: 0 auto;max-width:200px">
 
-                    <div *ngIf="!_item.imagen">
+                    <div>
                         <input type="file" 
                         (change)="onFileSelected($event)">
                         <button type="button" 
-                        (click)="onUploadFile()" class="btn btn-main">Cargar Imagen</button>
+                        (click)="onUploadFile()"
+                        *ngIf="imagen != null"
+                        class="btn btn-main">Cambiar Imagen</button>
                     </div>
                     
 

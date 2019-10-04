@@ -27,7 +27,7 @@
 
               <ul class="dropdown-menu">
                   <li class="user-info">
-                      <img src="{{usuario['imagen']}}" alt="user-img" class="img-circle user-img">
+                      <img [src]="usuario.imagen" alt="user-img" class="img-circle user-img">
                       <p>
                           {{usuario['nombre']}} - {{usuario['rol']}}
                       </p>

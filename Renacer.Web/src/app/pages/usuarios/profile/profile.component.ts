@@ -21,23 +21,23 @@ export class ProfileComponent implements OnInit {
      this.baseServ.actual().subscribe(item => this._item = item)
   }
 
-onFileSelected(event){
+onFileSelected(event) {
    this.imagen = <File> event.target.files[0];
 }
- onUploadFile(){
+ onUploadFile() {
   const r = new FileReader();
   const aux = this;
 
   r.onloadend = function (e) {
-      var arr = Array.from(new Uint8Array(this.result));
-      aux.baseServ.subirImagen("Name of Image",arr).subscribe(resp => {
+      const arr = Array.from(new Uint8Array(this.result));
+      aux.baseServ.subirImagen('Name of Image', arr).subscribe(resp => {
         console.log(resp);
         aux._item.imagen = resp.imagen;
         aux.mensajeServ.success('se han guardado los cambios!', 'Aviso!');
       });
   }
   r.readAsArrayBuffer(this.imagen);
-  
+
 }
 
 

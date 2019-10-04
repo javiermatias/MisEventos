@@ -70,20 +70,9 @@ namespace Renacer.Nucleo.Control
             {
                 using (var db = new ModeloRenacer())
                 {
-                    
-
                     Usuario _usuario = db.usuario.ToList().
                     Where(x => x.usuario.Equals(usuario) && x.clave.Equals(clave)).FirstOrDefault();
-
-                    //var roles = db.Database
-                    //    .SqlQuery<Rol>("Select rol.* from rol,usuariorols where usuariorols.Rol_id = rol.id and usuariorols.Usuario_id = @id", new MySqlParameter("@id", _usuario.id));
-
-                    //foreach (var item in roles)
-                    //{
-                    //    listroles.Add(item);
-                    //}
-                   // _usuario.roles = listroles;
-
+                    
                     return _usuario;
                 }
             }
@@ -142,12 +131,8 @@ namespace Renacer.Nucleo.Control
             {
                 using (var db = new ModeloRenacer())
                 {
-                    var userLog = db.usuario.
+                   return db.usuario.
                         Where(x => x.usuario.Equals(usuario)).FirstOrDefault();
-                    
-                    if (!System.IO.File.Exists(userLog.imagen)) userLog.imagen = "";
-
-                    return userLog;
                 }
             }
             catch (Exception ex)
@@ -171,11 +156,7 @@ namespace Renacer.Nucleo.Control
                 using (var db = new ModeloRenacer())
                 {
                     //var usuario = db.usuario.Include("persona").Include("roles").Where(user => user.persona.idTipoDoc == tipoDni && user.persona.nroDocumento ==dni).FirstOrDefault();
-
-                 
-
                     return null;
-                   
                     //.Where(x => x.id.Equals(id)).FirstOrDefault();
                 }
             }
