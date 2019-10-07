@@ -8,12 +8,12 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TablaComponent implements OnInit {
 
   @Input() data:any[];
-  @Input() columnas:string[];
+  @Input() config:any;
 
   constructor() { }
 
   ngOnInit() {
-
+  
   }
 
 }

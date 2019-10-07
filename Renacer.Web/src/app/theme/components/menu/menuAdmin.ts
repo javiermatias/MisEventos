@@ -118,7 +118,16 @@ export const itemsAdmin = [
     subMenu: [
       {
         title: 'Eventos',
-        routerLink: 'reportes/eventos'
+        routerLink: 'reportes/eventos',
+        selected: false,
+        expanded: false,
+        order: 150,
+        subMenu: [
+            {
+              title: 'Ranking',
+              routerLink: 'ranking'
+            }
+          ]
       },
       {
         title: 'Socios',
