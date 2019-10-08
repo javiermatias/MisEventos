@@ -2,14 +2,14 @@
     <table class="table table-striped table-hover table-sm" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="10">
         <thead>
             <tr>
-                <th *ngFor="let col of columnas" >
-                  <mfDefaultSorter by="{{col}}">{{col}}</mfDefaultSorter>
+                <th *ngFor="let col of config.columnas" >
+                  <mfDefaultSorter by="{{col.name}}">{{col.title}}</mfDefaultSorter>
                 </th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let item of mf.data | SearchPipe : searchText">
-                    <td *ngFor="let col of columnas">{{item[col]}}</td>
+                    <td *ngFor="let col of config.columnas">{{item[col.name]}}</td>
             </tr>
             <tr *ngIf="mf.data.length === 0">
                 <td colspan="100">

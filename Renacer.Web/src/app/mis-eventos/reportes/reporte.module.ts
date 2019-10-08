@@ -13,6 +13,7 @@ import { SociosComponent } from './socios/socios.component';
 import { EventosComponent } from './eventos/eventos.component'
 import { ReporteComponent } from './reporte.component';
 import { TimeLineComponent } from './eventos/time-line/time-line.component';
+import { RankingComponent } from './eventos/ranking/ranking.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { DeudoresCuotaComponent } from './deudores-cuota/deudores-cuota.component';
 
@@ -24,6 +25,7 @@ export const routes = [
   { path: 'eventos', component: EventosComponent, data: { breadcrumb: 'Eventos' } },
   { path: 'socios', component: SociosComponent, data: { breadcrumb: 'Socios' } },
   { path: 'time-line', component: TimeLineComponent, data: { breadcrumb: 'Cronograma' } },
+  { path: 'ranking', component: RankingComponent, data: { breadcrumb: 'Ranking' } },
   { path: 'deudores', component: DeudoresCuotaComponent, data: { breadcrumb: 'Deudores' } }
 ];
 
@@ -46,6 +48,7 @@ export const routes = [
     ReporteComponent,
     EventosComponent,
     TimeLineComponent,
+    RankingComponent,
     DeudoresCuotaComponent
   ]
 })
