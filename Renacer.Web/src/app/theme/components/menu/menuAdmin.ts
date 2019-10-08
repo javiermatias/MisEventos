@@ -125,7 +125,7 @@ export const itemsAdmin = [
         subMenu: [
             {
               title: 'Ranking',
-              routerLink: 'ranking'
+              routerLink: 'reportes/ranking'
             }
           ]
       },

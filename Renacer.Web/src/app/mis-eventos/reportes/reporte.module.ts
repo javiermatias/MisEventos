@@ -16,6 +16,11 @@ import { TimeLineComponent } from './eventos/time-line/time-line.component';
 import { RankingComponent } from './eventos/ranking/ranking.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { DeudoresCuotaComponent } from './deudores-cuota/deudores-cuota.component';
+import { EventoChartComponent } from './eventos/evento-chart/evento-chart.component';
+
+import { ChartsModule } from 'ng2-charts';
+import 'chart.js/dist/Chart.js';
+
 
 
 
@@ -40,6 +45,7 @@ export const routes = [
       DataTableModule,
       NguiAutoCompleteModule,
       TagCloudModule,
+      ChartsModule,
       RouterModule.forChild(routes)
   ],
   declarations: [
@@ -49,7 +55,8 @@ export const routes = [
     EventosComponent,
     TimeLineComponent,
     RankingComponent,
-    DeudoresCuotaComponent
+    DeudoresCuotaComponent,
+    EventoChartComponent
   ]
 })
 export class ReporteModule { }

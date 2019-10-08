@@ -8,27 +8,87 @@ import { Component, OnInit } from '@angular/core';
 export class RankingComponent implements OnInit {
 
   eventosRanking: any[];
+  encargadosRanking: any[];
+  contenidosRanking: any[];
   eventosRankingConfig: any;
+  encargadosTopConfig: any;
+  encargadosTop: any[];
 
   constructor() { }
 
   ngOnInit() {
 
-    this.eventosRankingConfig = { 
+    this.encargadosTopConfig = {
       columnas: [
-         {name:'nro',title:'Nro.'}
-        ,{name:'nombre',title:'Nombre'}
+         {name: 'nro', title: 'Nro.', type: 'text'}
+        , {name: 'nombre', title: 'Nombre', type: 'text'}
+        , {name: 'cursos', title: 'Cursos', type: 'text'}
+      ]
+    };
+    this.encargadosTop = [
+      {'nro': 1, 'nombre': 'Evento Prueba 1', 'cursos': 5},
+      {'nro': 2, 'nombre': 'Evento Prueba 2', 'cursos': 4.7},
+      {'nro': 3, 'nombre': 'Evento Prueba 2', 'cursos': 4.3},
+      {'nro': 4, 'nombre': 'Evento Prueba 2', 'cursos': 3.5},
+      {'nro': 5, 'nombre': 'Evento Prueba 2', 'cursos': 3.1},
+      {'nro': 6, 'nombre': 'Evento Prueba 2', 'cursos': 3},
+      {'nro': 7, 'nombre': 'Evento Prueba 2', 'cursos': 2.5},
+      {'nro': 8, 'nombre': 'Evento Prueba 2', 'cursos': 2.4},
+      {'nro': 9, 'nombre': 'Evento Prueba 2', 'cursos': 2.2},
+      {'nro': 10, 'nombre': 'Evento Prueba 2', 'cursos': 1.7}
+   ];
+
+
+
+
+    this.eventosRankingConfig = {
+      columnas: [
+         {name: 'nro', title: 'Nro.', type: 'text'}
+        , {name: 'nombre', title: 'Nombre', type: 'text'}
+        , {name: 'stars', title: 'Valoración', type: 'stars'}
       ]
     }
 
+
+
+
     this.eventosRanking = [
-       {'nro':1,
-       'nombre':"Evento Prueba 1"},
-       {'nro':2,
-       'nombre':"Evento Prueba 2"},
-       {'nro':3,
-       'nombre':"Evento Prueba 3"}
-    ]
+       {'nro': 1, 'nombre': 'Evento Prueba 1', 'stars': 5},
+       {'nro': 2, 'nombre': 'Evento Prueba 2', 'stars': 4.7},
+       {'nro': 3, 'nombre': 'Evento Prueba 2', 'stars': 4.3},
+       {'nro': 4, 'nombre': 'Evento Prueba 2', 'stars': 3.5},
+       {'nro': 5, 'nombre': 'Evento Prueba 2', 'stars': 3.1},
+       {'nro': 6, 'nombre': 'Evento Prueba 2', 'stars': 3},
+       {'nro': 7, 'nombre': 'Evento Prueba 2', 'stars': 2.5},
+       {'nro': 8, 'nombre': 'Evento Prueba 2', 'stars': 2.4},
+       {'nro': 9, 'nombre': 'Evento Prueba 2', 'stars': 2.2},
+       {'nro': 10, 'nombre': 'Evento Prueba 2', 'stars': 1.7}
+    ];
+    this.contenidosRanking = [
+      {'nro': 1, 'nombre': 'Evento Prueba 1', 'stars': 5},
+      {'nro': 2, 'nombre': 'Evento Prueba 2', 'stars': 4.7},
+      {'nro': 3, 'nombre': 'Evento Prueba 2', 'stars': 4.3},
+      {'nro': 4, 'nombre': 'Evento Prueba 2', 'stars': 3.5},
+      {'nro': 5, 'nombre': 'Evento Prueba 2', 'stars': 3.1},
+      {'nro': 6, 'nombre': 'Evento Prueba 2', 'stars': 3},
+      {'nro': 7, 'nombre': 'Evento Prueba 2', 'stars': 2.5},
+      {'nro': 8, 'nombre': 'Evento Prueba 2', 'stars': 2.4},
+      {'nro': 9, 'nombre': 'Evento Prueba 2', 'stars': 2.2},
+      {'nro': 10, 'nombre': 'Evento Prueba 2', 'stars': 1.7}
+   ];
+   this.encargadosRanking = [
+    {'nro': 1, 'nombre': 'Evento Prueba 1', 'stars': 5},
+    {'nro': 2, 'nombre': 'Evento Prueba 2', 'stars': 4.7},
+    {'nro': 3, 'nombre': 'Evento Prueba 2', 'stars': 4.3},
+    {'nro': 4, 'nombre': 'Evento Prueba 2', 'stars': 3.5},
+    {'nro': 5, 'nombre': 'Evento Prueba 2', 'stars': 3.1},
+    {'nro': 6, 'nombre': 'Evento Prueba 2', 'stars': 3},
+    {'nro': 7, 'nombre': 'Evento Prueba 2', 'stars': 2.5},
+    {'nro': 8, 'nombre': 'Evento Prueba 2', 'stars': 2.4},
+    {'nro': 9, 'nombre': 'Evento Prueba 2', 'stars': 2.2},
+    {'nro': 10, 'nombre': 'Evento Prueba 2', 'stars': 1.7}
+ ]
+
 
   }
 
