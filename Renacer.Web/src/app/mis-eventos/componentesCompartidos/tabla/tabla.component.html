@@ -8,13 +8,14 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let item of mf.data | SearchPipe : searchText">
+            <tr *ngFor="let item of mf.data | SearchPipe : searchText; let i = index">
                 <td *ngFor="let col of config.columnas">
                   <ngx-stars *ngIf="col.type == 'stars'" 
                   [readonly]="true" 
                   [initialStars]="item[col.name]"
                   ></ngx-stars>
                   <span *ngIf="col.type == 'text'">{{item[col.name]}}</span>     
+                  <span *ngIf="col.type == 'counter'">{{i + 1}}</span>     
                 </td>
             </tr>
             <tr *ngIf="mf.data.length === 0">

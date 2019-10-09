@@ -66,7 +66,25 @@ namespace Renacer.WebAPI.Controllers
             return result;
         }
 
-        
+
+
+        [ActionName("ranking")]
+        [Route("ranking")]
+        [AcceptVerbs("POST")]
+        public Dictionary<string, object> GetRanking()
+        {
+            return ControlReporte.GetInstance().GetRanking();
+        }
+
+        [ActionName("eventosportipo")]
+        [Route("eventosportipo")]
+        [AcceptVerbs("POST")]
+        public List<Dictionary<string, object>> GetEventosPorTipo()
+        {
+            return ControlReporte.GetInstance().GetEventosPorTipo();
+        }
+
+
 
 
     }
