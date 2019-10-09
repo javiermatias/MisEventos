@@ -4,7 +4,7 @@ import {Variables} from './variables';
 import {Tag} from './tag.service';
 import {Socio} from './socio.service';
 import {Evento} from './evento.service';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 

@@ -35,6 +35,7 @@ import { CambioContraseniaService } from './servicios/cambioContrasenia';
 import localeEs from '@angular/common/locales/es-AR';
 import { RatingServices } from './servicios/rating.service';
 import { AsistenciaSocioServices } from './servicios/asistenciaSocio.service';
+import { Angular2CsvModule } from 'angular2-csv';
 
 
 
@@ -61,6 +62,7 @@ registerLocaleData(localeEs, 'es-AR');
     NguiAutoCompleteModule,
     CommonModule,
     ToastrModule.forRoot(),
+    Angular2CsvModule
   ],
   providers: [
     AppConfig,
@@ -92,8 +94,8 @@ registerLocaleData(localeEs, 'es-AR');
     CalendarioServices,
     CambioContraseniaService,
     RatingServices,
-    AsistenciaSocioServices,    
-    { provide: LOCALE_ID, useValue: "es-AR" },
+    AsistenciaSocioServices,
+    { provide: LOCALE_ID, useValue: 'es-AR' },
     DatePipe],
     bootstrap: [AppComponent]
 })

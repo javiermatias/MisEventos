@@ -9,6 +9,7 @@
           
             <az-tabla *ngIf="generalRanking != null"  
                       [data]="generalRanking" 
+                      name="ranking_general"
                       [config]="eventosRankingConfig"></az-tabla>
 
         </div>
@@ -26,6 +27,7 @@
           
             <az-tabla *ngIf="contenidosRanking != null"  
                       [data]="contenidosRanking" 
+                      name="ranking_eventos"
                       [config]="eventosRankingConfig"></az-tabla>
 
         </div>
@@ -45,6 +47,7 @@
             
               <az-tabla *ngIf="contenidosRanking != null"  
                         [data]="contenidosRanking" 
+                        name="ranking_contenidos"
                         [config]="eventosRankingConfig"></az-tabla>
   
           </div>
@@ -62,7 +65,8 @@
               <span *ngIf="encargadosRanking == null"  class="fa fa-spin fa-spinner"></span>
             
               <az-tabla *ngIf="encargadosRanking != null"  
-                        [data]="encargadosRanking" 
+                        [data]="encargadosRanking"
+                        name="ranking_encargados" 
                         [config]="eventosRankingConfig"></az-tabla>
   
           </div>
