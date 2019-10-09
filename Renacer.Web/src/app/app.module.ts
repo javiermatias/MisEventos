@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DatePipe,CommonModule, registerLocaleData } from '@angular/common';
+import { DatePipe, CommonModule, registerLocaleData } from '@angular/common';
 import { AgmCoreModule } from '@agm/core';
 import { routing } from './app.routing';
 import { AppConfig } from './app.config';
@@ -35,8 +35,8 @@ import { CambioContraseniaService } from './servicios/cambioContrasenia';
 import localeEs from '@angular/common/locales/es-AR';
 import { RatingServices } from './servicios/rating.service';
 import { AsistenciaSocioServices } from './servicios/asistenciaSocio.service';
-import { Angular2CsvModule } from 'angular2-csv';
 
+import { Angular2CsvModule } from 'angular2-csv';
 
 
 
@@ -45,10 +45,6 @@ registerLocaleData(localeEs, 'es-AR');
   declarations: [
     AppComponent,
     ErrorComponent
-    
-    
-    
- 
   ],
   imports: [
     BrowserModule,

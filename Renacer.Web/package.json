@@ -25,11 +25,11 @@
     "@angular/platform-browser-dynamic": "^6.0.0",
     "@angular/platform-server": "^6.0.0",
     "@angular/router": "^6.0.0",
-    "@ng-select/ng-select": "^1.6.3",
+    "@ng-select/ng-select": "^2.3.6",
     "@ngui/auto-complete": "^0.13.8",
     "@ngx-resource/core": "^5.0.0",
     "angular-resizable-element": "^2.0.0",
-    "angular-tag-cloud-module": "^2.6.0",
+    "angular-tag-cloud-module": "^3.0.0",
     "angular2-csv": "^0.2.9",
     "angular2-datatable": "0.6.0",
     "awesome-bootstrap-checkbox": "1.0.0-alpha.4",
@@ -69,7 +69,7 @@
     "topojson": "2.2.0",
     "ts-helpers": "1.1.1",
     "widgster": "0.0.3",
-    "zone.js": "0.8.9"
+    "zone.js": "^0.8.29"
   },
   "napa": {
     "pace": "https://github.com/HubSpot/pace.git#v0.7.1",
