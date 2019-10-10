@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Variables} from './variables';
 import {BaseServices} from './base.service';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 

@@ -7,8 +7,21 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TablaComponent implements OnInit {
 
-  @Input() data:any[];
-  @Input() columnas:string[];
+  @Input() data: any[];
+  @Input() config: any;
+  @Input() name: string;
+  optionsCsv = {
+    fieldSeparator: ',',
+    quoteStrings: '"',
+    decimalseparator: '.',
+    showLabels: false,
+    headers: [],
+    showTitle: true,
+    title: 'asfasf',
+    useBom: false,
+    removeNewLines: true,
+    keys: ['approved', 'age', 'name' ]
+  };
 
   constructor() { }
 

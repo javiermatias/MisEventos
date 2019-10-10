@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule }   from '@angular/forms';
 import { DirectivesModule } from '../../theme/directives/directives.module';
 import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
-import { DataTableModule } from "angular2-datatable";
+import { DataTableModule } from 'angular-6-datatable';
 import { PipesModule } from '../../theme/pipes/pipes.module';
 import { SharedModule } from '../componentesCompartidos/shared.module';
 import { TagsCloudComponent } from './tags-cloud/tags-cloud.component';
@@ -13,8 +13,14 @@ import { SociosComponent } from './socios/socios.component';
 import { EventosComponent } from './eventos/eventos.component'
 import { ReporteComponent } from './reporte.component';
 import { TimeLineComponent } from './eventos/time-line/time-line.component';
+import { RankingComponent } from './eventos/ranking/ranking.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { DeudoresCuotaComponent } from './deudores-cuota/deudores-cuota.component';
+import { EventoChartComponent } from './eventos/evento-chart/evento-chart.component';
+
+import { ChartsModule } from 'ng2-charts';
+import 'chart.js/dist/Chart.js';
+
 
 
 
@@ -24,6 +30,7 @@ export const routes = [
   { path: 'eventos', component: EventosComponent, data: { breadcrumb: 'Eventos' } },
   { path: 'socios', component: SociosComponent, data: { breadcrumb: 'Socios' } },
   { path: 'time-line', component: TimeLineComponent, data: { breadcrumb: 'Cronograma' } },
+  { path: 'ranking', component: RankingComponent, data: { breadcrumb: 'Ranking' } },
   { path: 'deudores', component: DeudoresCuotaComponent, data: { breadcrumb: 'Deudores' } }
 ];
 
@@ -38,6 +45,7 @@ export const routes = [
       DataTableModule,
       NguiAutoCompleteModule,
       TagCloudModule,
+      ChartsModule,
       RouterModule.forChild(routes)
   ],
   declarations: [
@@ -46,7 +54,9 @@ export const routes = [
     ReporteComponent,
     EventosComponent,
     TimeLineComponent,
-    DeudoresCuotaComponent
+    RankingComponent,
+    DeudoresCuotaComponent,
+    EventoChartComponent
   ]
 })
 export class ReporteModule { }
