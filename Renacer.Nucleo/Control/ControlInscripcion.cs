@@ -110,7 +110,10 @@ namespace Renacer.Nucleo.Control
             {
                 using (var db = new ModeloRenacer())
                 {
-                    var item = db.inscripcion.Include("Socio").Include("listaPagos").Where(x => x.id.Equals(id)).FirstOrDefault();
+                    var item = db.inscripcion.
+                        Include("socio").
+                        Include("evento").
+                        Include("listaPagos").Where(x => x.id.Equals(id) && x.fechaBaja == null).FirstOrDefault();
                     return item;
                 }
             }
@@ -136,13 +139,13 @@ namespace Renacer.Nucleo.Control
                         return db.inscripcion
                                 .Include("listaPagos")
                                 .Include("evento")
-                                .Where(x => x.idSocio == idSocio)
+                                .Where(x => x.idSocio == idSocio && x.fechaBaja == null)
                                 .ToList();
                     else if (idEvento != null && idEvento > 0)
                         return db.inscripcion
                              .Include("listaPagos")
                              .Include("socio")
-                             .Where(x => x.evento.id == idEvento).ToList();
+                             .Where(x => x.evento.id == idEvento && x.fechaBaja == null).ToList();
 
                     else
                         return db.inscripcion.ToList();
@@ -165,7 +168,7 @@ namespace Renacer.Nucleo.Control
                     return db.inscripcion
                             .Include("ListaPagos")
                             .Include("Socio")
-                            .Where(x => x.evento.id == idEvento).ToList();
+                            .Where(x => x.evento.id == idEvento && x.fechaBaja == null).ToList();
                 }
             }
             catch (Exception ex)
@@ -206,7 +209,8 @@ namespace Renacer.Nucleo.Control
                         return db.inscripcion
                                 .Include("listaPagos")
                                 .Include("evento")
-                                .Where(x => x.idSocio == idSocio)
+                                
+                                .Where(x => x.idSocio == idSocio )
                                 .ToList();
                   
                 }

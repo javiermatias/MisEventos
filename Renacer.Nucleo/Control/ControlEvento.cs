@@ -164,7 +164,7 @@ namespace Renacer.Nucleo.Control
                     for (int i = 1; i <= evento.cantidadCuota; i++)
                     {
                         Cuota cuota = new Cuota();
-                        cuota.nombre = "Cuota" + i;
+                        cuota.nombre = "Cuota " + i;
                         cuota.monto = (decimal)(evento.monto / evento.cantidadCuota);
                         cuotas.Add(cuota);
 

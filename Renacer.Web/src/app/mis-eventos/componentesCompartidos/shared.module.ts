@@ -16,7 +16,7 @@ import { TipoDocumentoComponent } from './tipo-documento/tipo-documento.componen
 import { FilterSocioComponent } from './filter-socio/filter-socio.component';
 import { TablaComponent } from './tabla/tabla.component';
 import { NgxStarsModule } from 'ngx-stars';
-
+import { Angular2CsvModule } from 'angular2-csv';
 import { SelectOneSocioComponent } from './select-one-socio/select-one-socio/select-one-socio.component';
 
 
@@ -28,7 +28,8 @@ import { SelectOneSocioComponent } from './select-one-socio/select-one-socio/sel
       FormsModule,
       DataTableModule,
       NguiAutoCompleteModule,
-      NgxStarsModule
+      NgxStarsModule,
+      Angular2CsvModule
   ],
   declarations: [
     SelectSocioComponent,
