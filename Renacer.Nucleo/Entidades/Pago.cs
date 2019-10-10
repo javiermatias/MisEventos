@@ -23,7 +23,12 @@ namespace Renacer.Nucleo.Entidades
         public DateTime fechaCobro { get; set; }
         public DateTime fechaBaja { get; set; }
         public bool estaPagado { get; set; } = false; //si es true esta pagado.
-       // public bool baja { get; set; } = false; // si es true este pago se dio de baja.
+
+        public int idCuota { get; set; }
+        [ForeignKey("idCuota")]
+        public Cuota cuota { get; set; }
+
+        // public bool baja { get; set; } = false; // si es true este pago se dio de baja.
 
         //Podria agregarse eventualmente que secretaria hizo el cobro. Por el momento lo dejamos asi.
 

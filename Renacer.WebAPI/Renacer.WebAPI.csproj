@@ -151,6 +151,7 @@
     <Compile Include="Controllers\CalendarioController.cs" />
     <Compile Include="Controllers\CambioContraseniaController.cs" />
     <Compile Include="Controllers\ComunController.cs" />
+    <Compile Include="Controllers\DeudasCuotasController.cs" />
     <Compile Include="Controllers\InscripcionController.cs" />
     <Compile Include="Controllers\MatriculaController.cs" />
     <Compile Include="Controllers\MatriculaSocioController.cs" />

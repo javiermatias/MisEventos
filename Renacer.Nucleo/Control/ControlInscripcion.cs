@@ -39,24 +39,39 @@ namespace Renacer.Nucleo.Control
                 {
                     throw new UsuarioException(errores);
                 }
-
+                Evento evento = ControlEvento.devolverInstancia().devolver(inscripcion.idEvento);
                 List<Pago> listaPagos = new List<Pago>();
                 if (inscripcion.id == 0) inscripcion.fechaCreacion = DateTime.Now;
 
-                if (!inscripcion.evento.gratuito)
+                if (!evento.gratuito)
                 {
-                    for (int i = 1; i <= inscripcion.evento.cantidadCuota; i++)
+                    int contador = 1;
+                    foreach (var cuota in evento.listaCuotas)
                     {
                         Pago pago = new Pago();
-                        pago.nombre = "Cuota " + i;
-                        pago.monto = (float)(inscripcion.evento.monto / inscripcion.evento.cantidadCuota);
-
+                        pago.nombre = "Cuota " + contador;
+                        pago.monto = (float)(evento.monto / evento.cantidadCuota);
+                        pago.idCuota = cuota.id;
                         listaPagos.Add(pago);
-
+                        contador++;
                     }
                     inscripcion.listaPagos = listaPagos;
-
                 }
+
+                //if (!inscripcion.evento.gratuito)
+                //{
+                //    for (int i = 1; i <= inscripcion.evento.cantidadCuota; i++)
+                //    {
+                //        Pago pago = new Pago();
+                //        pago.nombre = "Cuota " + i;
+                //        pago.monto = (float)(inscripcion.evento.monto / inscripcion.evento.cantidadCuota);
+
+                //        listaPagos.Add(pago);
+
+                //    }
+                //    inscripcion.listaPagos = listaPagos;
+
+                //}
 
 
 
