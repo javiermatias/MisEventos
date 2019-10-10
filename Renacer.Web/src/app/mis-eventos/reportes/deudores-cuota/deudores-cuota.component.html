@@ -4,14 +4,102 @@
   observable when using angular <b> | async</b> pipe
 </p>
 
-<ng-select [items]="eventos"
-         bindLabel="nombre"
-         autofocus
-         bindValue="id"
-         notFoundText="No se encontraron eventos"
-         (change)="eventoSeleccionado()"
-         [(ngModel)]="idEvento">
-        
+<ng-select [items]="eventos" bindLabel="nombre" autofocus bindValue="id" notFoundText="No se encontraron eventos"
+  (change)="eventoSeleccionado()" [(ngModel)]="idEvento">
+
 </ng-select>
 
-<br/>Selected: {{idEvento}}
+<br />Selected: {{idEvento}}
+<div class="row" *ngIf="showDeudores">
+
+  <div class="col-xl-6 col-lg-6 col-12 bottom-30">
+
+      <div class="row mbm-20">    
+          <div class="col">
+              <div widget class="card">
+                  <div class="card-header">
+                      <span>Listado de Deudores</span>
+                      <div class="widget-controls">              
+                          <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
+                          <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
+                          <a data-widgster="fullscreen" href="#" class="transition"><i class="fa fa-expand"></i></a>
+                          <a data-widgster="restore" href="#" class="transition"><i class="fa fa-compress"></i></a>                          
+                         
+                      </div>        
+                  </div>
+              
+                  <div id="accordion" role="tablist" aria-multiselectable="true">
+                      <!--   href="#collapseTwo" -->
+                      <div class="card card-primary" *ngFor="let deuda of listaDeudas; let index = index">
+                        <div class="card-header" role="tab" id="headingTwo">
+                          <h5 class="mb-0">
+                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse{{deuda.idCuota}}"
+                            attr.aria-expanded="{{index == 0 ? 'true' : 'false'}}" aria-controls="collapseTwo">
+                              {{deuda.nombreCuota}}
+
+                              
+                            </a>
+                          </h5>
+                        </div>
+                        <div id="collapse{{deuda.idCuota}}" class="{{index == 0 ? 'collapse show' : 'collapse'}}" role="tabpanel" aria-labelledby="headingTwo">
+                          <div class="card-block">
+                            <ul>
+                              <li *ngFor="let socio of deuda.listaSocios" style="font-size:20px">
+                                {{socio.nombre}} {{socio.apellido}}
+                              </li>
+                            </ul>
+                
+                          </div>
+                        </div>
+                      </div>
+                
+                
+                    </div>
+
+
+
+
+
+
+              </div>
+          </div>
+      </div>
+
+
+
+    
+  </div>
+
+
+
+
+
+
+
+  <div class="col-xl-6 col-lg-6 col-12 bottom-30">
+    <div widget class="card">
+      <div class="card-header">
+        <span>Cantidad deudores por cuota.</span>
+        <div class="widget-controls">
+          <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
+          <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
+          <a data-widgster="close" href="#" class="transition"><i class="fa fa-times"></i></a>
+        </div>
+      </div>
+      <div class="card-block widget-body">
+        <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [legend]="doughnutChartLegend"
+          [options]="doughnutChartOptions" [colors]="doughnutChartColors" [chartType]="pieChartType"
+          (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+        </canvas>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+</div>

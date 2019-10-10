@@ -6,6 +6,8 @@ namespace Renacer.Nucleo
     using System.Linq;
     using Entidades;
     using System.Configuration;
+    using System.Data.Entity.ModelConfiguration.Conventions;
+    using System.Threading;
 
     public partial class ModeloRenacer : DbContext
     {
@@ -71,6 +73,9 @@ namespace Renacer.Nucleo
             modelBuilder.Entity<Cliente>()
                 .Property(e => e.nombre)
                 .IsUnicode(false);
+
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+     
         }
     }
 }

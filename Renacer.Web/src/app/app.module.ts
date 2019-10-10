@@ -37,6 +37,7 @@ import { RatingServices } from './servicios/rating.service';
 import { AsistenciaSocioServices } from './servicios/asistenciaSocio.service';
 
 import { Angular2CsvModule } from 'angular2-csv';
+import { DeudaCuotaServices } from './servicios/deudaCuota.service';
 
 
 
@@ -91,6 +92,7 @@ registerLocaleData(localeEs, 'es-AR');
     CambioContraseniaService,
     RatingServices,
     AsistenciaSocioServices,
+    DeudaCuotaServices,
     { provide: LOCALE_ID, useValue: 'es-AR' },
     DatePipe],
     bootstrap: [AppComponent]

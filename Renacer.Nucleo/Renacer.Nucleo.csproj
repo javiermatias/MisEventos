@@ -34,11 +34,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
@@ -111,6 +111,7 @@
     <Compile Include="Entidades\AsistenciaSocio.cs" />
     <Compile Include="Entidades\Calendario.cs" />
     <Compile Include="Entidades\CambioContrasenia.cs" />
+    <Compile Include="Entidades\DeudaCuota.cs" />
     <Compile Include="Entidades\RatingEvento.cs" />
     <Compile Include="Entidades\Secretario.cs" />
     <Compile Include="Entidades\Cliente.cs" />
@@ -133,89 +134,9 @@
     <Compile Include="Entidades\TipoEspacio.cs" />
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Entidades\UsuarioException.cs" />
-    <Compile Include="Migrations\201906270522334_inicial.cs" />
-    <Compile Include="Migrations\201906270522334_inicial.Designer.cs">
-      <DependentUpon>201906270522334_inicial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906290345294_cambiosPersona.cs" />
-    <Compile Include="Migrations\201906290345294_cambiosPersona.Designer.cs">
-      <DependentUpon>201906290345294_cambiosPersona.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906290432113_cambioSocio.cs" />
-    <Compile Include="Migrations\201906290432113_cambioSocio.Designer.cs">
-      <DependentUpon>201906290432113_cambioSocio.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907030412073_cambioPago.cs" />
-    <Compile Include="Migrations\201907030412073_cambioPago.Designer.cs">
-      <DependentUpon>201907030412073_cambioPago.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907030441419_cambioEventoCuotas.cs" />
-    <Compile Include="Migrations\201907030441419_cambioEventoCuotas.Designer.cs">
-      <DependentUpon>201907030441419_cambioEventoCuotas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907080314316_quitarAsociacion.cs" />
-    <Compile Include="Migrations\201907080314316_quitarAsociacion.Designer.cs">
-      <DependentUpon>201907080314316_quitarAsociacion.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907100533526_cambioAsistencia.cs" />
-    <Compile Include="Migrations\201907100533526_cambioAsistencia.Designer.cs">
-      <DependentUpon>201907100533526_cambioAsistencia.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907100536384_cambioAsistenciaDetalle.cs" />
-    <Compile Include="Migrations\201907100536384_cambioAsistenciaDetalle.Designer.cs">
-      <DependentUpon>201907100536384_cambioAsistenciaDetalle.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907110529136_changeAsistenica.cs" />
-    <Compile Include="Migrations\201907110529136_changeAsistenica.Designer.cs">
-      <DependentUpon>201907110529136_changeAsistenica.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907110555291_changeDetalleEvento.cs" />
-    <Compile Include="Migrations\201907110555291_changeDetalleEvento.Designer.cs">
-      <DependentUpon>201907110555291_changeDetalleEvento.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907130338509_cambioUsuario.cs" />
-    <Compile Include="Migrations\201907130338509_cambioUsuario.Designer.cs">
-      <DependentUpon>201907130338509_cambioUsuario.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907221821439_cambioSocio1.cs" />
-    <Compile Include="Migrations\201907221821439_cambioSocio1.Designer.cs">
-      <DependentUpon>201907221821439_cambioSocio1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907221918016_cambioTag.cs" />
-    <Compile Include="Migrations\201907221918016_cambioTag.Designer.cs">
-      <DependentUpon>201907221918016_cambioTag.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907250459067_cambioUsuario1.cs" />
-    <Compile Include="Migrations\201907250459067_cambioUsuario1.Designer.cs">
-      <DependentUpon>201907250459067_cambioUsuario1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907270500071_cambiosPersona1.cs" />
-    <Compile Include="Migrations\201907270500071_cambiosPersona1.Designer.cs">
-      <DependentUpon>201907270500071_cambiosPersona1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908070422350_quitadoRolyPersona.cs" />
-    <Compile Include="Migrations\201908070422350_quitadoRolyPersona.Designer.cs">
-      <DependentUpon>201908070422350_quitadoRolyPersona.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908080418492_agregadoCambioHorario.cs" />
-    <Compile Include="Migrations\201908080418492_agregadoCambioHorario.Designer.cs">
-      <DependentUpon>201908080418492_agregadoCambioHorario.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908080425339_agregadoCambioHorario1.cs" />
-    <Compile Include="Migrations\201908080425339_agregadoCambioHorario1.Designer.cs">
-      <DependentUpon>201908080425339_agregadoCambioHorario1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908160559443_agregarSecretario.cs" />
-    <Compile Include="Migrations\201908160559443_agregarSecretario.Designer.cs">
-      <DependentUpon>201908160559443_agregarSecretario.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910010611149_agregadoRatingEvento.cs" />
-    <Compile Include="Migrations\201910010611149_agregadoRatingEvento.Designer.cs">
-      <DependentUpon>201910010611149_agregadoRatingEvento.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910010626243_agregadoSocioRatingEvento.cs" />
-    <Compile Include="Migrations\201910010626243_agregadoSocioRatingEvento.Designer.cs">
-      <DependentUpon>201910010626243_agregadoSocioRatingEvento.cs</DependentUpon>
+    <Compile Include="Migrations\201910060709224_incial.cs" />
+    <Compile Include="Migrations\201910060709224_incial.Designer.cs">
+      <DependentUpon>201910060709224_incial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
@@ -232,9 +153,7 @@
     <None Include="Configuracion\local-02.config" />
     <None Include="Configuracion\local-01.config" />
     <None Include="Manuales\gitFlow.docx" />
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Renacer.Helper\Renacer.Helper.vbproj">
@@ -243,68 +162,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201906270522334_inicial.resx">
-      <DependentUpon>201906270522334_inicial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906290345294_cambiosPersona.resx">
-      <DependentUpon>201906290345294_cambiosPersona.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906290432113_cambioSocio.resx">
-      <DependentUpon>201906290432113_cambioSocio.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907030412073_cambioPago.resx">
-      <DependentUpon>201907030412073_cambioPago.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907030441419_cambioEventoCuotas.resx">
-      <DependentUpon>201907030441419_cambioEventoCuotas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907080314316_quitarAsociacion.resx">
-      <DependentUpon>201907080314316_quitarAsociacion.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907100533526_cambioAsistencia.resx">
-      <DependentUpon>201907100533526_cambioAsistencia.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907100536384_cambioAsistenciaDetalle.resx">
-      <DependentUpon>201907100536384_cambioAsistenciaDetalle.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907110529136_changeAsistenica.resx">
-      <DependentUpon>201907110529136_changeAsistenica.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907110555291_changeDetalleEvento.resx">
-      <DependentUpon>201907110555291_changeDetalleEvento.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907130338509_cambioUsuario.resx">
-      <DependentUpon>201907130338509_cambioUsuario.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907221821439_cambioSocio1.resx">
-      <DependentUpon>201907221821439_cambioSocio1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907221918016_cambioTag.resx">
-      <DependentUpon>201907221918016_cambioTag.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907250459067_cambioUsuario1.resx">
-      <DependentUpon>201907250459067_cambioUsuario1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907270500071_cambiosPersona1.resx">
-      <DependentUpon>201907270500071_cambiosPersona1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908070422350_quitadoRolyPersona.resx">
-      <DependentUpon>201908070422350_quitadoRolyPersona.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908080418492_agregadoCambioHorario.resx">
-      <DependentUpon>201908080418492_agregadoCambioHorario.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908080425339_agregadoCambioHorario1.resx">
-      <DependentUpon>201908080425339_agregadoCambioHorario1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908160559443_agregarSecretario.resx">
-      <DependentUpon>201908160559443_agregarSecretario.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910010611149_agregadoRatingEvento.resx">
-      <DependentUpon>201910010611149_agregadoRatingEvento.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910010626243_agregadoSocioRatingEvento.resx">
-      <DependentUpon>201910010626243_agregadoSocioRatingEvento.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201910060709224_incial.resx">
+      <DependentUpon>201910060709224_incial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
