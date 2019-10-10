@@ -80,6 +80,64 @@ namespace Renacer.Nucleo.Control
 
             return DictResult;
         }
+
+        public Dictionary<string, object> GetRanking()
+        {
+            var DictResult = new Dictionary<string, object>();
+
+            DictResult.Add("encargados", this.GetEncargadosRanking());
+            DictResult.Add("eventos", this.GetEventosRanking());
+            DictResult.Add("contenidos", this.GetContenidosRanking());
+            DictResult.Add("general", this.GetFullRating());
+
+            return DictResult;
+        }
+
+        private List<Dictionary<string, object>> GetEncargadosRanking()
+        {
+            var DbHelper = new DBBase(strConnection);
+            var sql = $@"SELECT Concat(en.nombre,' ',en.apellido) as 'nombre',
+                         SUM(r.ratingEncargado)/COUNT(r.id) as 'stars', 
+                         COUNT(r.id) as 'cantidadVotos'  
+                        FROM ratingevento r, evento e, encargado en where r.idEvento = e.id AND e.idEncargado = en.id
+                        group by idEvento order by stars desc";
+
+            return Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
+        }
+        private List<Dictionary<string, object>> GetEventosRanking()
+        {
+            return GetGenericRating("r.ratingEvento");
+        }
+        private List<Dictionary<string, object>> GetContenidosRanking()
+        {
+            return GetGenericRating("r.ratingContenido");
+        }
+        private List<Dictionary<string, object>> GetGenericRating(string ratingColName,int factor = 1)
+        {
+            var DbHelper = new DBBase(strConnection);
+            var sql = $@"SELECT e.nombre,
+                         SUM({ratingColName})/(COUNT(r.id)*{factor}) as 'stars', 
+                         COUNT(r.id) as 'cantidadVotos'  
+                        FROM ratingevento r, evento e where r.idEvento = e.id 
+                        group by idEvento order by stars desc";
+
+            return Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
+        }
+
+        public List<Dictionary<string, object>> GetEventosPorTipo()
+        {
+            var DbHelper = new DBBase(strConnection);
+            var sql = $@"SELECT t.nombre, count(e.id) as cantidad FROM  tipoevento t, evento e where t.id = e.idTipoEvento group by t.id";
+            return Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
+        }
+
+        private List<Dictionary<string, object>> GetFullRating()
+        {
+            return GetGenericRating("r.ratingEvento + r.ratingEncargado + r.ratingContenido",3);
+        }
+
+
+
         private Int64 GetSociosCount(filterSocio filtro)
         {
             var DbHelper = new DBBase(strConnection);

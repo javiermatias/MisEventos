@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EventoServices, Evento, InscripcionServices, Inscripcion } from '../../../servicios/evento.service';
 import { Observable } from 'rxjs';
-import 'rxjs/add/observable/of';
+
 @Component({
   selector: 'az-deudores-cuota',
   templateUrl: './deudores-cuota.component.html'

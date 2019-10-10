@@ -5,7 +5,7 @@ import {Variables} from './variables';
 import {TipoDocumento} from './tipo-documento.service';
 import {Tag} from './tag.service';
 import { Matricula } from '../modelos/matricula';
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 
 import { HttpClient } from "@angular/common/http";
 export class Socio {

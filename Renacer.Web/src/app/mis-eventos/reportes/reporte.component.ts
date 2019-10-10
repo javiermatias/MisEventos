@@ -11,7 +11,7 @@ import { EspacioComun,EspacioServices} from '../../servicios/espacio.service';
   selector: 'az-reportes',
   templateUrl: './reporte.component.html'
 })
-export class ReporteComponent implements OnInit,OnDestroy  {
+export class ReporteComponent implements OnInit, OnDestroy  {
 
   @Input() _item = new Evento();
   @Input() evento:string;
