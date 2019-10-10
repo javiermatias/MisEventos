@@ -24,7 +24,7 @@ import { BackTopComponent } from '../theme/components/back-top/back-top.componen
 import { SearchComponent } from './search/search.component';
 import { SociosComponent } from '../mis-eventos/socios/socios.component';
 import { SecretariosComponent } from '../mis-eventos/secretarios/secretarios.component';
-import { DataTableModule } from "angular2-datatable";
+import { DataTableModule } from 'angular-6-datatable';
 import { EspaciosComponent } from '../mis-eventos/espacios/espacios.component';
 import { TipoEspacioComponent } from '../mis-eventos/espacios/tipoEspacio/tipoEspacio.component';
 import { DomicilioComponent } from '../mis-eventos/socios/domicilio/domicilio.component';

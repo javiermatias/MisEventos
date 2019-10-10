@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { DataTableModule } from "angular2-datatable";
+import { DataTableModule } from "angular-6-datatable";
 import { PipesModule } from '../../theme/pipes/pipes.module';
 import { DirectivesModule } from '../../theme/directives/directives.module';
 import { BasicTablesComponent } from './basic-tables/basic-tables.component';

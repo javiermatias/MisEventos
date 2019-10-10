@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { DirectivesModule } from '../../theme/directives/directives.module';
 import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
-import { DataTableModule } from 'angular2-datatable';
+import { DataTableModule } from 'angular-6-datatable';
 import { PipesModule } from '../../theme/pipes/pipes.module';
 import { SelectSocioComponent } from './select-socio/select-socio.component';
 import { SelectTagsComponent } from './select-tags/select-tags.component';

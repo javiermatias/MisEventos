@@ -7,7 +7,7 @@ import {Socio} from './socio.service';
 import {EncargadoEvento} from './encargado.service';
 import {Tag} from './tag.service';
 import { DetalleEvento } from './evento.service';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient } from '@angular/common/http';
 
 export class Asistencia {
   constructor(
