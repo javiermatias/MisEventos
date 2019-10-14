@@ -1,6 +1,8 @@
+
+import {switchMap} from 'rxjs/operators';
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/switchMap';
+import { Observable } from 'rxjs';
+
 import { Router, ActivatedRoute, Params, NavigationEnd } from '@angular/router';
 import { Mail, MailService }  from '../mail.service';
 import { AppState } from "../../../app.state";
@@ -47,7 +49,7 @@ export class MailListComponent implements OnInit {
     }
 
     public getMails(){
-        this.mails = this.route.params.switchMap((params: Params) => { 
+        this.mails = this.route.params.pipe(switchMap((params: Params) => { 
             this.type = params['type']; 
             switch (this.type) {
                 case 'inbox': 
@@ -63,7 +65,7 @@ export class MailListComponent implements OnInit {
                 default:
                     return this.service.getInboxMails();
             }       
-        });
+        }));
     }
 
     public toggleAll(){

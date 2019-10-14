@@ -33,7 +33,7 @@ namespace Renacer.Nucleo.Entidades
         public bool gratuito { get; set; } //si es true es gratuito
         public float monto { get; set; }
         public int cantidadCuota { get; set; }
-        //public List<Cuota> listaCuotas { get; set; }
+        public List<Cuota> listaCuotas { get; set; }
         public DateTime fechaDesde { get; set; }
         public DateTime fechaHasta { get; set; }
         public DateTime fechaDesdeInscripcion { get; set; }

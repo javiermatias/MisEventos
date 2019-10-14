@@ -1,0 +1,173 @@
+﻿--
+-- Dumping data for table `contacto`
+--
+
+LOCK TABLES `contacto` WRITE;
+/*!40000 ALTER TABLE `contacto` DISABLE KEYS */;
+INSERT INTO `contacto` VALUES (1,'juan','jose','3432324324','242143134','juan@juan.com','Familiar');
+/*!40000 ALTER TABLE `contacto` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `cuotas`
+--
+
+LOCK TABLES `cuotas` WRITE;
+/*!40000 ALTER TABLE `cuotas` DISABLE KEYS */;
+INSERT INTO `cuotas` VALUES (1,'juan',400.00,1);
+/*!40000 ALTER TABLE `cuotas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+
+--
+-- Dumping data for table `domicilio`
+--
+
+LOCK TABLES `domicilio` WRITE;
+/*!40000 ALTER TABLE `domicilio` DISABLE KEYS */;
+INSERT INTO `domicilio` VALUES (1,'Poeta Lugones','Juan del campillo',NULL,'50',0,NULL),(2,'Los Paraisos','bernis','akakka','3567',5008,'1111ssss');
+/*!40000 ALTER TABLE `domicilio` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `encargado`
+--
+
+LOCK TABLES `encargado` WRITE;
+/*!40000 ALTER TABLE `encargado` DISABLE KEYS */;
+INSERT INTO `encargado` VALUES (1,'Augusto','Galan',NULL,NULL,NULL,2,'23423234',1,'0001-01-01 00:00:00',NULL,NULL),(2,'Javier','Pietro',NULL,NULL,NULL,2,'43232323',1,'0001-01-01 00:00:00',NULL,NULL),(3,'Emanuel Alejo','Lopez','skskkskskssksk','jsjsjsjjsjssj','emanuel@gmail',1,'28907654',2,'2019-08-17 20:25:33',NULL,'2019-08-17 20:29:33');
+/*!40000 ALTER TABLE `encargado` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+--
+-- Dumping data for table `espaciocomun`
+--
+
+LOCK TABLES `espaciocomun` WRITE;
+/*!40000 ALTER TABLE `espaciocomun` DISABLE KEYS */;
+INSERT INTO `espaciocomun` VALUES (1,'Aula 205','Usos Múltiples',20,'0001-01-01 00:00:00',NULL,'2019-07-30 01:43:36',3,0),(2,'Sum','Espacio al aire libre ',100,'2019-08-01 01:35:15',NULL,NULL,1,0),(3,'Aula 209','Laboratorio de computación',10,'2019-08-01 01:59:35',NULL,'2019-08-01 01:59:55',5,0);
+/*!40000 ALTER TABLE `espaciocomun` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+
+--
+-- Dumping data for table `matricula`
+--
+
+LOCK TABLES `matricula` WRITE;
+/*!40000 ALTER TABLE `matricula` DISABLE KEYS */;
+INSERT INTO `matricula` VALUES (3,'2019-08-08 04:27:48',1200,'2019-10-31 00:00:00','Activa');
+/*!40000 ALTER TABLE `matricula` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+
+
+
+
+--
+-- Dumping data for table `recordatorios`
+--
+
+LOCK TABLES `recordatorios` WRITE;
+/*!40000 ALTER TABLE `recordatorios` DISABLE KEYS */;
+INSERT INTO `recordatorios` VALUES (1,'Sacar la basura','Sacar la basura del patio','2019-07-30 05:28:45'),(2,'Dejar papeles al contador','Dejar papeles afip al contador','2019-07-30 05:29:11'),(3,'Avisar profesora computacion ','Llegada de nuevos mouses','2019-08-01 00:00:00'),(4,'Contadora','dasdas','2019-08-05 22:53:29'),(5,'Sacar el perro','asdasd','2019-08-07 00:00:00');
+/*!40000 ALTER TABLE `recordatorios` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `secretario`
+--
+
+LOCK TABLES `secretario` WRITE;
+/*!40000 ALTER TABLE `secretario` DISABLE KEYS */;
+INSERT INTO `secretario` VALUES (1,'jose','Jimenez','2312312','231312312','nose@gmail.com','MASCULINO','SOLTERO',1,'30822222','0001-01-01 00:00:00','0001-01-01 00:00:00','2019-08-16 03:19:58','ACTIVO'),(3,'Nelida','Gonzalez','',NULL,'nelida@gmail.com','Femenino','Soltero',1,'38907867',NULL,'2019-08-17 20:19:57',NULL,'Activo');
+/*!40000 ALTER TABLE `secretario` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `socio`
+--
+
+LOCK TABLES `socio` WRITE;
+/*!40000 ALTER TABLE `socio` DISABLE KEYS */;
+INSERT INTO `socio` VALUES (1,'JOse','Quinteros','3543604130',NULL,'juanjose@gmail.com',NULL,NULL,1,'32972080',1,1,'0001-01-01 00:00:00',NULL,NULL,'Activo'),(2,'Augusto','galan','3543604130',NULL,'juanjose@gmail.com',NULL,NULL,1,'32972081',1,1,'0001-01-01 00:00:00',NULL,NULL,'DebeMatricula'),(3,'Laura','Miguez','3543604130',NULL,'laura1Miguez@gmail.com',NULL,NULL,1,'30992080',1,1,'0001-01-01 00:00:00',NULL,NULL,'DebeMatricula'),(4,'Maria','Del Valle','3543604132',NULL,'mariadelvalle@gmail.com',NULL,NULL,1,'40000001',1,1,'0001-01-01 00:00:00',NULL,NULL,'Activo'),(10,'Jorge','galan','3543604130',NULL,'juanjose@gmail.com',NULL,NULL,1,'40000002',1,1,'2019-07-03 01:12:28',NULL,NULL,'Activo'),(11,'Soledad','Miguez','3543604130',NULL,'laura1Miguez@gmail.com',NULL,NULL,1,'40000003',1,1,'2019-07-03 01:12:28',NULL,NULL,'DebeMatricula'),(12,'Angelica','Valles','3543604132',NULL,'mariadelvalle@gmail.com',NULL,NULL,1,'40000004',1,1,'2019-07-03 01:12:28',NULL,NULL,'DebeMatricula');
+/*!40000 ALTER TABLE `socio` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+
+--
+-- Dumping data for table `tagespaciocomuns`
+--
+
+LOCK TABLES `tagespaciocomuns` WRITE;
+/*!40000 ALTER TABLE `tagespaciocomuns` DISABLE KEYS */;
+INSERT INTO `tagespaciocomuns` VALUES (3,3),(2,2),(1,2);
+/*!40000 ALTER TABLE `tagespaciocomuns` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `tags`
+--
+
+LOCK TABLES `tags` WRITE;
+/*!40000 ALTER TABLE `tags` DISABLE KEYS */;
+INSERT INTO `tags` VALUES (1,'Sum'),(2,'aire libre'),(3,'Laboratorio');
+/*!40000 ALTER TABLE `tags` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `tipodocumento`
+--
+
+LOCK TABLES `tipodocumento` WRITE;
+/*!40000 ALTER TABLE `tipodocumento` DISABLE KEYS */;
+INSERT INTO `tipodocumento` VALUES (1,'DNI'),(2,'PASAPORTE');
+/*!40000 ALTER TABLE `tipodocumento` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `tipoespacio`
+--
+
+LOCK TABLES `tipoespacio` WRITE;
+/*!40000 ALTER TABLE `tipoespacio` DISABLE KEYS */;
+INSERT INTO `tipoespacio` VALUES (1,'Aula'),(2,'SUM'),(3,'Patio'),(4,'Abierto'),(5,'Cerrado');
+/*!40000 ALTER TABLE `tipoespacio` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `tipoevento`
+--
+
+LOCK TABLES `tipoevento` WRITE;
+/*!40000 ALTER TABLE `tipoevento` DISABLE KEYS */;
+INSERT INTO `tipoevento` VALUES (1,'Curso','---'),(2,'Taller','---'),(3,'Conferencia','---'),(4,'Campaña social','---'),(5,'Festival','---');
+/*!40000 ALTER TABLE `tipoevento` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `usuario`
+--
+
+LOCK TABLES `usuario` WRITE;
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (1,'Augusto','admin','123456','assets/img/profile/users/augusto.png','ADMIN','admin@admin.com','0001-01-01 00:00:00','0001-01-01 00:00:00','d3fc09f79bf048d2bacc784c1938c972',1,2),(2,'Laura','secre','123456','assets/img/profile/users/augusto.png','SECRETARIO','secretario@secretario.com','0001-01-01 00:00:00','0001-01-01 00:00:00','fb536cce05054a06b393a54dbd124c87',NULL,2),(3,'Javier','socio','123456','assets/img/profile/users/augusto.png','SOCIO','socio@socio.com','0001-01-01 00:00:00','0001-01-01 00:00:00','53e6ff44ad0045848f672978f108d0a0',NULL,2),(4,'Jose','encargado','123456','assets/img/profile/users/augusto.png','ENCARGADO','encargado@encargado.com','0001-01-01 00:00:00','0001-01-01 00:00:00','fa86fc98e83a4c7c9ac2ab8649a35141',1,2),
+(5,'DASH','dash','123456','assets/img/profile/users/augusto.png','DASH','socio@socio.com','0001-01-01 00:00:00','0001-01-01 00:00:00','71193aa3c6054719861cc71bc2c90395',1,2);
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2019-10-06  3:37:17

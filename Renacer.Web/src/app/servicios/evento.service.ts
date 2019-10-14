@@ -8,6 +8,7 @@ import {EncargadoEvento} from './encargado.service';
 import {Asistencia} from './asistencia.service';
 import {Tag} from './tag.service';
 import { HttpClient } from "@angular/common/http";
+import { Cuota } from '../modelos/Cuota';
 
 export class Evento {
   constructor(
@@ -23,7 +24,7 @@ export class Evento {
     public gratuito?:boolean, // true es gratiuto
     public monto?:number,
     public cantidadCuota?:number,
-    /* public listaCuotas?:Array<Cuota>, */
+     public listaCuotas?:Array<Cuota>, 
     public fechaDesde?: Date,
     public fechaHasta?: Date,    
     public fechaDesdeInscripcion?: Date,
@@ -90,7 +91,7 @@ export class Inscripcion {
     public fechaCreacion?: Date,  
     public fechaBaja?: Date,
   ) {
-    this.evento = new Evento(this.idEvento);
+    //this.evento = new Evento(this.idEvento);
     //this.listaPagos = new Array<Pago>();
   }
 }
@@ -132,12 +133,13 @@ export class Pago {
     public monto?: number,
     public nroRecibo?: number,
     public idInscripcion?: number,
-    public inscripcion?: Inscripcion,
-    //public asociacion?: Asociacion,
+    public inscripcion?: Inscripcion,   
     public estado?: string,
     public fechaCobro?: Date,
     public fechaBaja?: Date,
     public estaPagado?:boolean,
+    public idCuota?:number,    
+    public cuota?: Cuota 
   ) {
     this.inscripcion = new Inscripcion(0);
    

@@ -152,26 +152,26 @@ namespace Renacer.Nucleo.Control
 
             try
             {
-                //List<Cuota> cuotas = new List<Cuota>();
+                List<Cuota> cuotas = new List<Cuota>();
                 evento.fechaCreacion = DateTime.Now;
                 diasSemamas(evento.listaHorarios);
                 List<DetalleEvento> detalleEventos = diasEntreDosFechas(evento.fechaDesde, evento.fechaHasta, evento.listaHorarios, evento);
 
                 evento.listaDetalleEvento = detalleEventos;
 
-                //if (!evento.gratuito)
-                //{
-                //    for (int i = 1; i <= evento.cantidadCuota; i++)
-                //    {
-                //        Cuota cuota = new Cuota();
-                //        cuota.nombre = "Cuota" + i;
-                //        cuota.monto = (decimal)(evento.monto / evento.cantidadCuota);
-                //        cuotas.Add(cuota);
+                if (!evento.gratuito)
+                {
+                    for (int i = 1; i <= evento.cantidadCuota; i++)
+                    {
+                        Cuota cuota = new Cuota();
+                        cuota.nombre = "Cuota " + i;
+                        cuota.monto = (decimal)(evento.monto / evento.cantidadCuota);
+                        cuotas.Add(cuota);
 
-                //    }
-                //    evento.listaCuotas = cuotas;
-                    
-                //}
+                    }
+                    evento.listaCuotas = cuotas;
+
+                }
 
 
                 using (var db = new ModeloRenacer())
@@ -432,6 +432,7 @@ namespace Renacer.Nucleo.Control
                         .Include("tipoEvento")
                         .Include("listaInscripciones")
                         .Include("listaHorarios")
+                        .Include("listaCuotas")
                         .Where(x => x.id.Equals(id)).FirstOrDefault();
 
                     //if (evento.idEncargado > 0)  evento.responsable = db.encargado.FirstOrDefault(x => x.id.Equals(evento.idEncargado));

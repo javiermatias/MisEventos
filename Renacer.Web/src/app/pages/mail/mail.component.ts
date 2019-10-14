@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd, Params } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Mail, MailService }  from './mail.service';
 import { AppState } from "../../app.state";
 

@@ -126,6 +126,10 @@ export const itemsAdmin = [
             {
               title: 'Ranking',
               routerLink: 'reportes/ranking'
+            },
+            {
+              title: 'Ingresos',
+              routerLink: 'reportes/ingresos'
             }
           ]
       },

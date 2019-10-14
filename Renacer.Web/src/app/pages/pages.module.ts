@@ -8,6 +8,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
 import { NgxStarsModule } from 'ngx-stars';
+
 import {  ToastContainerModule  } from 'ngx-toastr';
 import { DirectivesModule } from '../theme/directives/directives.module';
 import { PipesModule } from '../theme/pipes/pipes.module';
@@ -24,7 +25,7 @@ import { BackTopComponent } from '../theme/components/back-top/back-top.componen
 import { SearchComponent } from './search/search.component';
 import { SociosComponent } from '../mis-eventos/socios/socios.component';
 import { SecretariosComponent } from '../mis-eventos/secretarios/secretarios.component';
-import { DataTableModule } from "angular2-datatable";
+import { DataTableModule } from 'angular-6-datatable';
 import { EspaciosComponent } from '../mis-eventos/espacios/espacios.component';
 import { TipoEspacioComponent } from '../mis-eventos/espacios/tipoEspacio/tipoEspacio.component';
 import { DomicilioComponent } from '../mis-eventos/socios/domicilio/domicilio.component';
@@ -51,7 +52,6 @@ import { AsistenciasSocioComponent } from '../mis-eventos/socios/asistencias-soc
 import { SocioInscripcionComponent } from '../mis-eventos/socios/socio-inscripcion/socio-inscripcion.component';
 import { DetalleComponent } from '../mis-eventos/socios/socio-inscripcion/detalle/detalle.component';
 
-//import { LoginComponent } from './login/login.component';
 
 
 @NgModule({

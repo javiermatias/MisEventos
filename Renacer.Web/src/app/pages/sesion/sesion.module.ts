@@ -6,7 +6,7 @@ import { routing } from './sesion.routing';
 import { SesionComponent } from './sesion.component';
 
 import { RolesUsuarioComponent } from '../rol/rolesUsuario.component';
-import { DataTableModule } from "angular2-datatable";
+import { DataTableModule } from 'angular-6-datatable';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { LoginComponent } from '../../mis-eventos/usuarios/login/login.component';

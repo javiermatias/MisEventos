@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { DirectivesModule } from '../../theme/directives/directives.module';
 import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
-import { DataTableModule } from "angular2-datatable";
+import { DataTableModule } from 'angular-6-datatable';
 import { PipesModule } from '../../theme/pipes/pipes.module';
 import { SharedModule } from '../componentesCompartidos/shared.module';
 import { TagsCloudComponent } from './tags-cloud/tags-cloud.component';
@@ -20,6 +20,7 @@ import { EventoChartComponent } from './eventos/evento-chart/evento-chart.compon
 
 import { ChartsModule } from 'ng2-charts';
 import 'chart.js/dist/Chart.js';
+import { IngresosMonetariosComponent } from './ingresos-monetarios/ingresos-monetarios.component';
 
 
 
@@ -31,6 +32,7 @@ export const routes = [
   { path: 'socios', component: SociosComponent, data: { breadcrumb: 'Socios' } },
   { path: 'time-line', component: TimeLineComponent, data: { breadcrumb: 'Cronograma' } },
   { path: 'ranking', component: RankingComponent, data: { breadcrumb: 'Ranking' } },
+  { path: 'ingresos', component: IngresosMonetariosComponent, data: { breadcrumb: 'Ingresos' } },
   { path: 'deudores', component: DeudoresCuotaComponent, data: { breadcrumb: 'Deudores' } }
 ];
 
@@ -56,7 +58,8 @@ export const routes = [
     TimeLineComponent,
     RankingComponent,
     DeudoresCuotaComponent,
-    EventoChartComponent
+    EventoChartComponent,
+    IngresosMonetariosComponent
   ]
 })
 export class ReporteModule { }

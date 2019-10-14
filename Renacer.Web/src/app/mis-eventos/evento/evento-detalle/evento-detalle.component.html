@@ -19,7 +19,7 @@
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#fechas">Fechas</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" *ngIf="!esSocio">
                             <a class="nav-link" data-toggle="tab" href="#inscriptos">Inscriptos</a>
                         </li>
                         <!-- <li class="nav-item">
@@ -72,6 +72,11 @@
                                     <br>
                                     <br>
                                     <strong>Cupo Máximo: </strong> {{evento.cupoMaximo}}
+                                    <br>
+                                    <br>
+                                    <div class="d-inline-block" *ngIf="esSocio">
+                                        <button type="button" class="btn btn-outline-info transition" (click)="inscribirse()">Inscribirse</button>
+                                    </div>  
                                 </div>
 
 
@@ -131,8 +136,23 @@
                                         <div class="col col-9">   
                                           <h5> Horarios de Dictado: </h5> 
 
+                                        </div> 
+                                        <br>                                    
+                                          <div class="form-group col-md-6 ">
+                                            <div>
+                                                <ul class="list-group">
+                
+                                                    <li class="list-group-item" *ngFor="let horario of evento.listaHorarios;">
+                                                        <span class="col col-10">
+                                                            Día {{horario.dia}} desde {{horario.horaDesde}} hasta
+                                                            {{horario.horaHasta}}.
+                                                        </span>
+                                                </li>
+                
+                                                </ul>
+                                            </div>
                                         </div>
-                                    
+                                        
 
                                     </div>
 
@@ -413,6 +433,12 @@
   </div>
   -->
                     </div>
+
+
+                    <div class="tab-pane" id="inscriptos" *ngIf="!esSocio">
+
+                    </div>
+                    
                 </div>
             </div>
         </div>

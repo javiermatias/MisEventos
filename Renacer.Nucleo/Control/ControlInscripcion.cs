@@ -39,24 +39,39 @@ namespace Renacer.Nucleo.Control
                 {
                     throw new UsuarioException(errores);
                 }
-
+                Evento evento = ControlEvento.devolverInstancia().devolver(inscripcion.idEvento);
                 List<Pago> listaPagos = new List<Pago>();
                 if (inscripcion.id == 0) inscripcion.fechaCreacion = DateTime.Now;
 
-                if (!inscripcion.evento.gratuito)
+                if (!evento.gratuito)
                 {
-                    for (int i = 1; i <= inscripcion.evento.cantidadCuota; i++)
+                    int contador = 1;
+                    foreach (var cuota in evento.listaCuotas)
                     {
                         Pago pago = new Pago();
-                        pago.nombre = "Cuota " + i;
-                        pago.monto = (float)(inscripcion.evento.monto / inscripcion.evento.cantidadCuota);
-
+                        pago.nombre = "Cuota " + contador;
+                        pago.monto = (float)(evento.monto / evento.cantidadCuota);
+                        pago.idCuota = cuota.id;
                         listaPagos.Add(pago);
-
+                        contador++;
                     }
                     inscripcion.listaPagos = listaPagos;
-
                 }
+
+                //if (!inscripcion.evento.gratuito)
+                //{
+                //    for (int i = 1; i <= inscripcion.evento.cantidadCuota; i++)
+                //    {
+                //        Pago pago = new Pago();
+                //        pago.nombre = "Cuota " + i;
+                //        pago.monto = (float)(inscripcion.evento.monto / inscripcion.evento.cantidadCuota);
+
+                //        listaPagos.Add(pago);
+
+                //    }
+                //    inscripcion.listaPagos = listaPagos;
+
+                //}
 
 
 
@@ -95,7 +110,10 @@ namespace Renacer.Nucleo.Control
             {
                 using (var db = new ModeloRenacer())
                 {
-                    var item = db.inscripcion.Include("Socio").Include("listaPagos").Where(x => x.id.Equals(id)).FirstOrDefault();
+                    var item = db.inscripcion.
+                        Include("socio").
+                        Include("evento").
+                        Include("listaPagos").Where(x => x.id.Equals(id) && x.fechaBaja == null).FirstOrDefault();
                     return item;
                 }
             }
@@ -121,13 +139,13 @@ namespace Renacer.Nucleo.Control
                         return db.inscripcion
                                 .Include("listaPagos")
                                 .Include("evento")
-                                .Where(x => x.idSocio == idSocio)
+                                .Where(x => x.idSocio == idSocio && x.fechaBaja == null)
                                 .ToList();
                     else if (idEvento != null && idEvento > 0)
                         return db.inscripcion
                              .Include("listaPagos")
                              .Include("socio")
-                             .Where(x => x.evento.id == idEvento).ToList();
+                             .Where(x => x.evento.id == idEvento && x.fechaBaja == null).ToList();
 
                     else
                         return db.inscripcion.ToList();
@@ -150,7 +168,7 @@ namespace Renacer.Nucleo.Control
                     return db.inscripcion
                             .Include("ListaPagos")
                             .Include("Socio")
-                            .Where(x => x.evento.id == idEvento).ToList();
+                            .Where(x => x.evento.id == idEvento && x.fechaBaja == null).ToList();
                 }
             }
             catch (Exception ex)
@@ -191,7 +209,8 @@ namespace Renacer.Nucleo.Control
                         return db.inscripcion
                                 .Include("listaPagos")
                                 .Include("evento")
-                                .Where(x => x.idSocio == idSocio)
+                                
+                                .Where(x => x.idSocio == idSocio )
                                 .ToList();
                   
                 }

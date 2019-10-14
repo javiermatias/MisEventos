@@ -8,7 +8,8 @@
             <br>
           <h4>{{item.nombre}}</h4> 
           <p>{{item.descripcion}}</p>
-          <a style="color: #014c8c;cursor:pointer;">Detalle del Curso</a>
+          <a style="color: #014c8c;cursor:pointer;" [routerLink]="['/pages/evento/detalleEvento/', item.id]" >Detalle del Curso</a>
+         <!--  [routerLink]="['/pages/detalle-evento/', item.evento.id] -->
         </div>
         <div class="time">
           <h4>{{item.fechaDesde | date:'fullDate'}}</h4>

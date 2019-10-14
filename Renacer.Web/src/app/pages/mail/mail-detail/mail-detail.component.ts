@@ -1,3 +1,5 @@
+
+import {switchMap} from 'rxjs/operators';
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Mail, MailService }  from '../mail.service';
@@ -20,8 +22,8 @@ export class MailDetailComponent implements OnInit {
     } 
 
     ngOnInit() {
-        this.route.params
-        .switchMap((params: Params) => this.service.getMail(+params['id']))
+        this.route.params.pipe(
+        switchMap((params: Params) => this.service.getMail(+params['id'])))
         .subscribe((mail: Mail) => this.mail = mail);
     }
 
