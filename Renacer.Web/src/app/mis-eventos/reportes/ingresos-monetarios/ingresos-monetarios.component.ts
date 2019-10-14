@@ -89,7 +89,6 @@ export class IngresosMonetariosComponent implements OnInit {
 
     public randomizeType(): void {
         this.lineChartType = this.lineChartType === 'line' ? 'bar' : 'line';
-        this.pieChartType = this.pieChartType === 'doughnut' ? 'pie' : 'doughnut';
     }
 
     public chartClicked(e: any): void {
