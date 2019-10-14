@@ -11,7 +11,7 @@ export class TablaComponent implements OnInit {
   @Input() data: any[];
   @Input() config: any;
   @Input() name: string;
-  @ViewChild(Angular2CsvComponent) csvComponent: Angular2CsvComponent;
+  @ViewChild(Angular2CsvComponent, {static: false}) csvComponent: Angular2CsvComponent;
   optionsCsv: any;
 
   constructor() { }

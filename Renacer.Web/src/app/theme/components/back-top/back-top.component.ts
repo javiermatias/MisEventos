@@ -10,11 +10,11 @@ import {Component, ViewEncapsulation, ViewChild, HostListener, Input, ElementRef
 })
 export class BackTopComponent {
 
-  @Input() position:number = 400;
-  @Input() showSpeed:number = 500;
-  @Input() moveSpeed:number = 1000;
+  @Input() position = 400;
+  @Input() showSpeed = 500;
+  @Input() moveSpeed = 1000;
 
-  @ViewChild('backTop') private _selector:ElementRef;
+  @ViewChild('backTop', {static: false}) private _selector: ElementRef;
 
   ngAfterViewInit () {
     this._onWindowScroll();
