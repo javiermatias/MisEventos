@@ -25,7 +25,25 @@ export class EventoChartComponent implements OnInit {
         this.config = this._appConfig.config;
         this.configFn = this._appConfig;
 
-        this.pieChartColors = this.config.pieChartColors;
+        this.pieChartColors = [
+            {
+                backgroundColor: [
+                    this.configFn.rgba(this.config.colors.default, 0.7),
+                    this.configFn.rgba(this.config.colors.success, 0.7),
+                    this.configFn.rgba(this.config.colors.warning, 0.7),
+                    this.configFn.rgba(this.config.colors.info, 0.7)
+                ],
+                hoverBackgroundColor: [
+                    this.config.colors.default,
+                    this.config.colors.success,
+                    this.config.colors.warning,
+                    this.config.colors.info
+                ],
+                borderColor: this.config.colors.grayLight,
+                borderWidth: 1,
+                hoverBorderWidth: 3
+            }
+        ];
 
     }
 

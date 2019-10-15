@@ -11,20 +11,20 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class PagoCuotaComponent implements OnInit {
   public listaSocios = new Array<Socio>();
-   public selectedSocio: Socio;
-  listaInscripcion: Array<Inscripcion>;
-  seleccionInscripcion: Inscripcion; // evento Seleccionado
-  mostrarGrilla= false;
-  cuota: Pago;
-  confirmarPago = false;
-  @ViewChild('imprimirPDF', {static: false}) myPrintHtml: ElementRef;
+   public selectedSocio:Socio;
+  listaInscripcion:Array<Inscripcion>;
+  seleccionInscripcion:Inscripcion; // evento Seleccionado
+  mostrarGrilla=false;
+  cuota:Pago;
+  confirmarPago:boolean=false;
+  @ViewChild('imprimirPDF') myPrintHtml: ElementRef;
  
-  constructor( private _dbServices: SocioServices, private inscripcionServ: InscripcionServices, private pagoServ: PagoServices
-    , private mensajeServ: ToastrService) {
+  constructor( private _dbServices:SocioServices,private inscripcionServ:InscripcionServices, private pagoServ:PagoServices
+    ,private mensajeServ: ToastrService) { 
 
   }
 
-  cambioEvento() {
+  cambioEvento(){
     console.log(this.seleccionInscripcion);
     this.seleccionInscripcion.listaPagos.sort(function(a, b) { 
       return (a.id - b.id) 

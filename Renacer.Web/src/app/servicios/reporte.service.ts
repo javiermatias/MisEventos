@@ -32,7 +32,7 @@ const variable = new Variables();
 
 @Injectable()
 export class ReporteServices extends BaseServices<Object> {
-
+  
   public url = `${new Variables().urlBase}reporte/`;
   constructor(public http: HttpClient) {
     super(http);
@@ -69,20 +69,5 @@ export class ReporteServices extends BaseServices<Object> {
   getRankingEventos(): Observable<any[]> {
     return this.http.post<any[]>(`${this.url}ranking`, {})
   }
-
-
-  getIngresosPorTipoEvento(): Observable<any[]> {
-    return this.http.post<any[]>(`${this.url}ingresosportipoevento`, {})
-  }
-
-  getIngresosPorTipo(): Observable<any[]> {
-    return this.http.post<any[]>(`${this.url}ingresosportipo`, {})
-  }
-
-  getIngresosEnElTiempo(): Observable<any[]> {
-    return this.http.post<any[]>(`${this.url}ingresoseneltiempo`, {})
-  }
-
-
 
 }
