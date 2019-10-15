@@ -25,7 +25,7 @@ export class TablaComponent implements OnInit {
       title: 'asfasf',
       useBom: false,
       removeNewLines: true,
-      keys: this.config.columnas.map(x => ( x.name ));
+      keys: this.config.columnas.map(x => ( x.name ))
     };
   }
 
