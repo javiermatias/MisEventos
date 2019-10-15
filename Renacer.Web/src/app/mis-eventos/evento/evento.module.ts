@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { DirectivesModule } from '../../theme/directives/directives.module';
 import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
-import { DataTableModule } from "angular-6-datatable";
+import { DataTableModule } from 'angular-6-datatable';
 import { PipesModule } from '../../theme/pipes/pipes.module';
 import { SharedModule } from '../componentesCompartidos/shared.module';
 import { DetalleEventoComponent } from './detalle-evento.component';
@@ -28,10 +28,10 @@ export const routes = [
   { path: 'inscripcion', component: InscripcionComponent, data: { breadcrumb: '' } },
   { path: 'lista', component: ListaComponent, data: { breadcrumb: 'Lista' } },
   { path: ':id', component: EventoComponent, data: { breadcrumb: 'Evento' } },
-  
-  { path: ':idEvento/detalle/:idDetalle', component: DetalleEventoComponent, data: { breadcrumb: 'Detalle' }}, 
+
+  { path: ':idEvento/detalle/:idDetalle', component: DetalleEventoComponent, data: { breadcrumb: 'Detalle' }},
   { path: 'detalleEvento/:id', component: EventoDetalleComponent, data: { breadcrumb: 'Detalle Evento' }},
- 
+
 ];
 
 @NgModule({

@@ -32,5 +32,13 @@
             </tr>
         </tfoot>
     </table>
-    <angular2csv [data]="data" [filename]="name" [options]="options"></angular2csv>
+
+
+    <button type="button" (click)="downloadCsv()" class="btn btn-light" style="padding: 3px;color: #333;">
+            <span class="fa fa-download" ></span>
+    </button>
+    <div [hidden]="true">
+            <angular2csv [data]="data" filename="test" [options]="optionsCsv"></angular2csv>
+    </div>
+
 </div>
