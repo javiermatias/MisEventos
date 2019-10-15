@@ -192,7 +192,11 @@ ngOnInit(): void {
   this.fechaHasta = new Date('2020-08-01').toISOString();
   console.log(this.fechaDesde);
   console.log(this.fechaHasta );
+  //this.getEspacios();
+  //this.CargarEventos();
   this.cargarEventos();
+  //this.cargarCalendario();
+
 
   // jQuery('.draggable').draggable(this.dragOptions);
 

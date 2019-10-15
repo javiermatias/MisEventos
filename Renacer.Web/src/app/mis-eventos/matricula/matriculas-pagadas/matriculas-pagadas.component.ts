@@ -21,64 +21,69 @@ export class MatriculasPagadasComponent implements OnInit {
   matriculas: MatriculaXsocio[];
 
   _matriculaXsocio: MatriculaXsocio;
-  socios: Socio[];
-  matricula: Matricula;
+  //_matriculasSinPagar: MatriculaXsocio[];
+  socios:Socio[];
+  matricula:Matricula;
 
-  largo: string;
+  largo:string;
 
-  filtro: string;
+  filtro:string;
 
-  @ViewChild('contenidoTabla', {static: false}) tabla: ElementRef;
+  @ViewChild('contenidoTabla') tabla: ElementRef;
 
   constructor(private _matriculaxsocioService: MatriculaxsocioService,
-    private _matriculaService: SocioMatriculaServices,
-    private _socioService: SocioServices ) { }
+    private _matriculaService:SocioMatriculaServices,
+    private _socioService:SocioServices ) { }
 
   ngOnInit() {
-    this.filtro = 'pagadas';
+    this.filtro="pagadas";
     this.getMatriculasPagadas();
     this.getMatricula();
   }
 
   getMatriculasPagadas() {
-
+   
     this._matriculaxsocioService.query({}).subscribe(items => {
+      //console.log(items);
       this. matriculas = items;
-      this.largo = this.matriculas.length.toString();
+      this.largo=this.matriculas.length.toString();
     })
   }
 
-  matriculasSinPagar() {
+  matriculasSinPagar(){
+    //this. matriculas.length = 0;
     let _matriculas: MatriculaXsocio[] = [];
-    this._socioService.query({'estado': 'DebeMatricula' }).subscribe(items => {
-      this.socios = items;
-      for (let _socio of this.socios) {
+    this._socioService.query({'estado': "DebeMatricula" }).subscribe(items => {
+      this.socios= items;
+      for (var _socio of this.socios) {
         let matriculaXsocio = new MatriculaXsocio();
-             matriculaXsocio.socio = _socio;
-             matriculaXsocio.matricula = this.matricula;
+             matriculaXsocio.socio=_socio;
+             matriculaXsocio.matricula= this.matricula;
+            // matriculaXsocio.pago=0.0;
             _matriculas.push(matriculaXsocio);
       }
-      this.matriculas = _matriculas;
-      this.largo = this.matriculas.length.toString();
-    });
+      this.matriculas=_matriculas;
+      this.largo=this.matriculas.length.toString();
+    }); 
   }
-  getMatricula() {
+  getMatricula(){
     this._matriculaService.getMatriculaActual().subscribe(item => {
-      this.matricula = item;
+      this.matricula= item;
+      //this.matriculasSinPagar();
     });
   }
 
-  filtrar() {
-
+  filtrar(){
+  
     switch (this.filtro) {
-      case ('pagadas'):
+      case ("pagadas"):
         this.getMatriculasPagadas();
       break;
-      case ('sinPagar'):
+      case ("sinPagar"):
         this.matriculasSinPagar();
-      break;
-
-
+      break;  
+  
+  
   }
 }
 
