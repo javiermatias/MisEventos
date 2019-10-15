@@ -18,7 +18,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { DeudoresCuotaComponent } from './deudores-cuota/deudores-cuota.component';
 import { EventoChartComponent } from './eventos/evento-chart/evento-chart.component';
 
-import { ChartsModule } from 'ng2-charts';
+import { ChartsModule } from 'ng4-charts';
 import 'chart.js/dist/Chart.js';
 import { IngresosMonetariosComponent } from './ingresos-monetarios/ingresos-monetarios.component';
 
