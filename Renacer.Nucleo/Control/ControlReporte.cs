@@ -131,10 +131,51 @@ namespace Renacer.Nucleo.Control
             return Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
         }
 
+        public List<Dictionary<string, object>> GetIngresosPorTipoEvento()
+        {
+            var DbHelper = new DBBase(strConnection);
+            var sql = $@"SELECT t.nombre, count(e.id) as cantidad FROM  tipoevento t, evento e where t.id = e.idTipoEvento group by t.id";
+            return Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
+        }
+
+        public List<Dictionary<string, object>> GetIngresosPorTipo()
+        {
+            var DbHelper = new DBBase(strConnection);
+            var sql = $@"SELECT t.nombre, SUM(e.id) as monto FROM  tipoevento t, evento e where t.id = e.idTipoEvento group by t.id";
+            return Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
+        }
+        
+
+
+        public List<Dictionary<string, object>> GetIngresosEnElTiempo(filterSocio filtro)
+        {
+            var DbHelper = new DBBase(strConnection);
+            var sql = @"SELECT aux.fecha,SUM(aux.matriculas) as 'matriculas',SUM(aux.eventos) as 'eventos' from ( 
+                            SELECT 
+                            DATE_FORMAT(s.fechaCreacion, '%Y-%m') as 'fecha', Count(s.id) as 'eventos',0 as 'matriculas'
+                            FROM matriculasxsocio inner s {filtro_socio} 
+                            GROUP BY DATE_FORMAT(s.fechaCreacion, '%Y-%m') 
+                        UNION ALL SELECT
+                            DATE_FORMAT(s.fechaBaja, '%Y-%m') as 'fecha', 0 as 'altas', Count(s.id) as 'bajas'
+                            FROM socio s {filtro_socio} and not ISNULL(s.fechaBaja)
+                            GROUP BY DATE_FORMAT(s.fechaBaja, '%Y-%m')) as aux
+                        GROUP BY aux.fecha";
+
+            var tabla = DbHelper.ExecuteDataTable(sql);
+            return Helper.Helper.ConvertDT(tabla);
+
+        }
+
+
+
+
         private List<Dictionary<string, object>> GetFullRating()
         {
             return GetGenericRating("r.ratingEvento + r.ratingEncargado + r.ratingContenido",3);
         }
+
+
+     
 
 
 

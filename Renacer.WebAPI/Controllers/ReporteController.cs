@@ -84,7 +84,29 @@ namespace Renacer.WebAPI.Controllers
             return ControlReporte.GetInstance().GetEventosPorTipo();
         }
 
+        [ActionName("ingresosportipo")]
+        [Route("ingresosportipo")]
+        [AcceptVerbs("POST")]
+        public List<Dictionary<string, object>> GetIngresosPorTipo()
+        {
+            return ControlReporte.GetInstance().GetIngresosPorTipo();
+        }
 
+        [ActionName("ingresosportipoevento")]
+        [Route("ingresosporevento")]
+        [AcceptVerbs("POST")]
+        public List<Dictionary<string, object>> GetIngresosPorTipoEvento()
+        {
+            return ControlReporte.GetInstance().GetIngresosPorTipoEvento();
+        }
+
+        [ActionName("ingresoseneltiempo")]
+        [Route("ingresoseneltiempo")]
+        [AcceptVerbs("POST")]
+        public List<Dictionary<string, object>> GetIngresosEnElTiempo()
+        {
+            return ControlReporte.GetInstance().GetIngresosEnElTiempo();
+        }
 
 
     }

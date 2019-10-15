@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario,UserServices } from '../../../servicios/users.service';
+import { Usuario, UserServices } from '../../../servicios/users.service';
 import { ToastrService, ToastrConfig } from 'ngx-toastr';
 import {FormGroup} from '@angular/forms';
 
@@ -10,10 +10,10 @@ import {FormGroup} from '@angular/forms';
 })
 export class ProfileComponent implements OnInit {
 
-  public _item:Usuario;
-  imagen:File;
+  public _item: Usuario;
+  imagen: File;
 
-  constructor(private baseServ:UserServices,private mensajeServ: ToastrService) {
+  constructor(private baseServ: UserServices, private mensajeServ: ToastrService) {
    }
 
   ngOnInit() {
@@ -29,7 +29,10 @@ onFileSelected(event) {
   const aux = this;
 
   r.onloadend = function (e) {
-      const arr = Array.from(new Uint8Array(this.result));
+      const arr = Array.from(new Uint8Array(this.result as ArrayBuffer));
+
+
+      // const arr = Array.from(new Uint8Array( <ArrayBuffer>.readAsArrayBuffer(this.result)));
       aux.baseServ.subirImagen('Name of Image', arr).subscribe(resp => {
         console.log(resp);
         aux._item.imagen = resp.imagen + '?' + Date.toString();
