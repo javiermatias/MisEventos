@@ -19,7 +19,6 @@ import { NgxStarsModule } from 'ngx-stars';
 import { SelectOneSocioComponent } from './select-one-socio/select-one-socio/select-one-socio.component';
 import { Angular2CsvModule } from 'angular2-csv';
 
-
 @NgModule({
   imports: [
       CommonModule,
