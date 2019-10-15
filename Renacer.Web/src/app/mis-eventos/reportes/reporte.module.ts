@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule }   from '@angular/forms';
 import { DirectivesModule } from '../../theme/directives/directives.module';
 import { NguiAutoCompleteModule  } from '@ngui/auto-complete';
 import { DataTableModule } from 'angular-6-datatable';
@@ -20,7 +20,6 @@ import { EventoChartComponent } from './eventos/evento-chart/evento-chart.compon
 
 import { ChartsModule } from 'ng2-charts';
 import 'chart.js/dist/Chart.js';
-import { IngresosMonetariosComponent } from './ingresos-monetarios/ingresos-monetarios.component';
 
 
 
@@ -32,7 +31,6 @@ export const routes = [
   { path: 'socios', component: SociosComponent, data: { breadcrumb: 'Socios' } },
   { path: 'time-line', component: TimeLineComponent, data: { breadcrumb: 'Cronograma' } },
   { path: 'ranking', component: RankingComponent, data: { breadcrumb: 'Ranking' } },
-  { path: 'ingresos', component: IngresosMonetariosComponent, data: { breadcrumb: 'Ingresos' } },
   { path: 'deudores', component: DeudoresCuotaComponent, data: { breadcrumb: 'Deudores' } }
 ];
 
@@ -58,8 +56,7 @@ export const routes = [
     TimeLineComponent,
     RankingComponent,
     DeudoresCuotaComponent,
-    EventoChartComponent,
-    IngresosMonetariosComponent
+    EventoChartComponent
   ]
 })
 export class ReporteModule { }

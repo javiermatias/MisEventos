@@ -1,7 +1,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "importHelpers": true,
     "outDir": "../Renacer.WebAPI/dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -9,11 +8,6 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es5",
-    "lib": [
-      "es2016",
-      "dom"
-    ],
-    "module": "es2015",
-    "baseUrl": "./"
+    "lib": ["es2016",  "dom"  ]
   }
 }

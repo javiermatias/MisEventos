@@ -52,6 +52,7 @@ import { AsistenciasSocioComponent } from '../mis-eventos/socios/asistencias-soc
 import { SocioInscripcionComponent } from '../mis-eventos/socios/socio-inscripcion/socio-inscripcion.component';
 import { DetalleComponent } from '../mis-eventos/socios/socio-inscripcion/detalle/detalle.component';
 
+//import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
