@@ -25,10 +25,10 @@ export class DeudoresCuotaComponent implements OnInit {
     public doughnutChartType:string = 'doughnut';
     public pieChartType:string = 'pie';
     public doughnutChartLegend:boolean = true;
-    public doughnutChartLabels:string[];
-    public doughnutChartData:any;
-    public doughnutChartColors:any[];
-    public doughnutChartOptions:any;
+    public deudodoresChartLabels:string[];
+    public deudodoresChartData:any;
+    public deudodoresChartColors:any[];
+    public deudodoresChartOptions:any;
 
   constructor(private _itemsService:EventoServices, private deudaServ:DeudaCuotaServices,private _appConfig:AppConfig ) {
     this.config = this._appConfig.config;
@@ -39,9 +39,9 @@ export class DeudoresCuotaComponent implements OnInit {
    this.getEventos();
 
   //--- Doughnut/Pie Chart ---
-  this.doughnutChartLabels = ['Downloads', 'Sales', 'Orders'];
-  this.doughnutChartData = [350, 420, 130];
-  this.doughnutChartColors = [
+  this.deudodoresChartLabels = [];
+  this.deudodoresChartData = [];
+  this.deudodoresChartColors = [
       { 
           backgroundColor: [
               this.configFn.rgba(this.config.colors.success, 0.6),
@@ -58,7 +58,7 @@ export class DeudoresCuotaComponent implements OnInit {
           hoverBorderWidth: 3
       } 
   ]; 
-  this.doughnutChartOptions = {
+  this.deudodoresChartOptions = {
       legend: {
           labels: {
               fontColor: this.configFn.rgba(this.config.colors.gray, 0.9),
@@ -97,10 +97,16 @@ export class DeudoresCuotaComponent implements OnInit {
   
 
   traerDeudores(_idEvento:number){
-    
+  
     this.deudaServ.query({'idEvento':_idEvento}).subscribe(items => {
-      this.listaDeudas = items;    
-      console.log(items);
+      this.listaDeudas = items;
+      this.deudodoresChartLabels = [];
+      this.deudodoresChartData = [];    
+      this.listaDeudas.forEach(deuda => {
+        this.deudodoresChartLabels.push(deuda.nombreCuota);
+        this.deudodoresChartData.push(deuda.listaSocios.length);
+      });
+     // this.baseChart.update();
       this.showDeudores=true;
       }
      );
