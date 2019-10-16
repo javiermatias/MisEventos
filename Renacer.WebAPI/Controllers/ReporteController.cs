@@ -103,9 +103,9 @@ namespace Renacer.WebAPI.Controllers
         [ActionName("ingresoseneltiempo")]
         [Route("ingresoseneltiempo")]
         [AcceptVerbs("POST")]
-        public List<Dictionary<string, object>> GetIngresosEnElTiempo()
+        public List<Dictionary<string, object>> GetIngresosEnElTiempo([FromBody] ControlReporte.filterSocio filter)
         {
-            return ControlReporte.GetInstance().GetIngresosEnElTiempo();
+            return ControlReporte.GetInstance().GetIngresosEnElTiempo(filter);
         }
 
 
