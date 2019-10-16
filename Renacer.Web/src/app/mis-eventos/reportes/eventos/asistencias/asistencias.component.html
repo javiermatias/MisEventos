@@ -1,3 +1,98 @@
-<p>
-  asistencias works!
-</p>
+<div class="row" style="justify-content:center;">
+  
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 bottom-30">
+      <div class="float-box bottom-30">
+        <div class="card">
+
+          <div class="card-header">
+              <span>Asistentes según tipo de eventos</span>
+          </div>
+
+          <div class="media">
+            <div class="card-block widget-body">
+              <div class="chart-outher"> 
+                <canvas baseChart
+                        [data]="AsistenciasPorTipoEventoData"
+                        [labels]="AsistenciasPorTipoEventoLabels"
+                        [options]="pieChartOptions"
+                        [colors]="pieChartColors"
+                        [chartType]="'pie'"
+                        (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)"></canvas>
+              </div> 
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 bottom-30">
+        <div class="float-box bottom-30">
+          <div class="card">
+            
+              <div class="card-header">
+                  <span>Ausentismos según tipo de eventos</span>
+              </div>
+
+            <div class="media">
+              <div class="card-block widget-body">
+                <div class="chart-outher"> 
+                  <canvas baseChart
+                          [data]="AusentismoPorTipoEventoData"
+                          [labels]="IngresosTipoLabels"
+                          [options]="pieChartOptions"
+                          [colors]="pieChartColors"
+                          [chartType]="'pie'"
+                          (chartHover)="chartHovered($event)"
+                          (chartClick)="chartClicked($event)"></canvas>
+              </div> 
+  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    <div class="col-lg-8 col-md-12 col-sm-12 bottom-30">
+        <div class="float-box bottom-30">
+          <div class="card">
+
+              <div class="card-header">
+                  <span>Asistencias en los dias de la semana</span>
+              </div>
+
+
+            <div class="media">
+              <div class="card-block widget-body">
+                <div class="chart-outher"> 
+                 
+                    <canvas baseChart
+                    [datasets]="lineChartData"
+                    [labels]="lineChartLabels"
+                    [options]="lineChartOptions"
+                    [colors]="lineChartColors"
+                    [chartType]="lineChartType"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></canvas>
+
+                </div> 
+  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+   
+    
+ </div> 
+
+ <div class="row">
+    <div class="col text-center">
+        <button (click)="randomizeType()" class="btn btn-main btn-sm"> Toggle</button>
+      </div>
+ </div>

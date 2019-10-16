@@ -31,7 +31,6 @@ onFileSelected(event) {
   r.onloadend = function (e) {
       const arr = Array.from(new Uint8Array(this.result as ArrayBuffer));
 
-
       // const arr = Array.from(new Uint8Array( <ArrayBuffer>.readAsArrayBuffer(this.result)));
       aux.baseServ.subirImagen('Name of Image', arr).subscribe(resp => {
         console.log(resp);
