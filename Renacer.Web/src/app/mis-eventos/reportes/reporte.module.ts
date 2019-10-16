@@ -21,6 +21,7 @@ import { EventoChartComponent } from './eventos/evento-chart/evento-chart.compon
 import { ChartsModule } from 'ng2-charts';
 import 'chart.js/dist/Chart.js';
 import { IngresosMonetariosComponent } from './ingresos-monetarios/ingresos-monetarios.component';
+import { AsistenciasComponent } from './eventos/asistencias/asistencias.component';
 
 
 
@@ -59,7 +60,8 @@ export const routes = [
     RankingComponent,
     DeudoresCuotaComponent,
     EventoChartComponent,
-    IngresosMonetariosComponent
+    IngresosMonetariosComponent,
+    AsistenciasComponent
   ]
 })
 export class ReporteModule { }
