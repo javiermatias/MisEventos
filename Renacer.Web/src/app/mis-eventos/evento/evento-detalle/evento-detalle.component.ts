@@ -16,6 +16,7 @@ export class EventoDetalleComponent implements OnInit {
   mostrar:boolean=false;
   esSocio:boolean=false;
   listaInscripcion:Array<Inscripcion>;
+  listaInscripcionEvento:Array<Inscripcion>;
   inscripcionSocio:Inscripcion;
   constructor(private router: Router, private route: ActivatedRoute, private _eventoService:EventoServices,
     private _usersService:UserServices, private inscripcionServ:InscripcionServices,
@@ -30,6 +31,7 @@ export class EventoDetalleComponent implements OnInit {
    
     if(this.id != 0){      
      this.getByID();
+     this.traerInscripcionesEvento(this.id);
      this.traerInscripciones(); //Traigo las inscripciones para validar si ya se inscribio al curso
    
      } 
@@ -47,6 +49,24 @@ export class EventoDetalleComponent implements OnInit {
     });
   
 }
+
+
+traerInscripcionesEvento(idEvento:number){
+    
+  this.inscripcionServ.query({'idEvento':idEvento}).subscribe(items => {
+    this.listaInscripcionEvento = items;    
+  
+    }
+   );
+  
+}
+
+eliminarInscripcion(inscripcion: Inscripcion){
+/*   this.eliminaInscripcion = inscripcion;
+  jQuery('#show-event-modal').modal('show'); */
+  
+}
+
 traerInscripciones(){
     
   this.inscripcionServ.query({'idSocio':this.usuario.idSocio}).subscribe(items => {
