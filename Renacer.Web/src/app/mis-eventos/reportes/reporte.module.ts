@@ -21,6 +21,7 @@ import { EventoChartComponent } from './eventos/evento-chart/evento-chart.compon
 import { ChartsModule } from 'ng4-charts';
 import 'chart.js/dist/Chart.js';
 import { IngresosMonetariosComponent } from './ingresos-monetarios/ingresos-monetarios.component';
+import { AsistenciasComponent } from './eventos/asistencias/asistencias.component';
 
 
 
@@ -33,6 +34,7 @@ export const routes = [
   { path: 'time-line', component: TimeLineComponent, data: { breadcrumb: 'Cronograma' } },
   { path: 'ranking', component: RankingComponent, data: { breadcrumb: 'Ranking' } },
   { path: 'ingresos', component: IngresosMonetariosComponent, data: { breadcrumb: 'Ingresos' } },
+  { path: 'asistencias', component: AsistenciasComponent, data: { breadcrumb: 'Asistencias' } },
   { path: 'deudores', component: DeudoresCuotaComponent, data: { breadcrumb: 'Deudores' } }
 ];
 
@@ -59,7 +61,8 @@ export const routes = [
     RankingComponent,
     DeudoresCuotaComponent,
     EventoChartComponent,
-    IngresosMonetariosComponent
+    IngresosMonetariosComponent,
+    AsistenciasComponent
   ]
 })
 export class ReporteModule { }
