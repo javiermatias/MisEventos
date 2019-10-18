@@ -41,7 +41,11 @@ export class UserServices extends BaseServices<Usuario> {
 
   getCurrent= function(){
     if (this.usuario == null) {
-      this.usuario = JSON.parse(localStorage.usuario);
+      try {
+        this.usuario = JSON.parse(localStorage.usuario);
+      }catch (err) {
+        this.usuario = {}
+      }
     }
     return this.usuario;
   }

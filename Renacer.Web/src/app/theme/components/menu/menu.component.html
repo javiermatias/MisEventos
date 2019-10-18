@@ -26,9 +26,9 @@
                         <ul *ngIf="subitem.subMenu" class="sidebar-sublist subitem-submenu-list">
                             <li *ngFor="let subSubitem of subitem.subMenu" (mouseenter)="hoverItem($event, item)">
                             <a *ngIf="!subSubitem.routerLink" (mouseenter)="hoverItem($event, item)" [attr.href]="subSubitem.url || ''" [attr.target]="subSubitem.target || ''">
-                                {{ subSubitem.title }}</a>
+                               {{ subSubitem.title }}</a>
                             <a *ngIf="subSubitem.routerLink" (mouseenter)="hoverItem($event, item)" [attr.target]="subSubitem.target || ''" [routerLink]="[subSubitem.routerLink]" routerLinkActive="active-link">
-                                {{ subSubitem.title }}</a>
+                               {{ subSubitem.title }}</a>
                             </li>
                         </ul>
 
