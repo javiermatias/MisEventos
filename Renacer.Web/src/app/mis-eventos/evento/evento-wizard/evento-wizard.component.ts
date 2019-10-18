@@ -7,6 +7,7 @@ import { _ } from 'core-js';
 import { EncargadoEventoServices, EncargadoEvento } from '../../../servicios/encargado.service';
 import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -47,13 +48,14 @@ export class EventoWizardComponent implements OnInit {
     private tipoEventoServ:TipoEventoServices ,private _eventoService:EventoServices,
     private tipoEspacioSer:EspacioServices, private encargadoServ:EncargadoEventoServices,
     private mensajeServ: ToastrService,
-    private datePipe: DatePipe) {
+    private datePipe: DatePipe,
+    private router:Router,) {
     this.horarios= new Array<Horario>();
 
     this.steps = [
-      {name: 'Evento', icon: 'fa-home', active: false, valid: false, hasError:false },
+      {name: 'Evento', icon: 'fa-home', active: true, valid: false, hasError:false },
       {name: 'Detalles', icon: 'fa-pencil-square-o', active: false, valid: false, hasError:false },
-      {name: 'Fechas', icon: 'fa-calendar', active: true, valid: false, hasError:false },
+      {name: 'Fechas', icon: 'fa-calendar', active: false, valid: false, hasError:false },
       {name: 'Detalles Confirmación', icon: 'fa-check-square-o', active: false, valid: false, hasError:false }
     ]
 
@@ -70,30 +72,8 @@ export class EventoWizardComponent implements OnInit {
         'cupoMax': ['', Validators.required], 
         'costo':['', Validators.required],
         'monto': ['', Validators.compose([Validators.required, ValidationService.minValidador(1)])],
-        'cuota': ['', Validators.compose([Validators.required, ValidationService.minValidador(1)])]  /*,
-        'horaIncio': ['', Validators.required],
-        'horaFin': ['', Validators.required] */
-        /* ,
-        'cupoMax': ['', Validators.compose([Validators.required, ValidationService.rangosValidador('cupoMin')])]  */
-        /* ,
-        'firstname': ['', Validators.required],
-        'lastname': ['', Validators.required],
-        'gender': [''],
-        'email': ['', Validators.compose([Validators.required, ValidationService.emailValidator])],
-        'phone': ['', Validators.required],
-        'zipcode': ['', Validators.required],
-        'country': ['', Validators.required],
-        'state' : [''],
-        'address' : [''] */
+        'cuota': ['', Validators.compose([Validators.required, ValidationService.minValidador(1)])]  
     }, { validator: ValidationService.rangosValidador('cupoMin','cupoMax') });
-
-
-
-
-
-
-
-
 
 
     this.fechaForm = this.formBuilder.group({
@@ -104,20 +84,13 @@ export class EventoWizardComponent implements OnInit {
          'dia': ['Lunes', Validators.required],
          'horaInicio': ['', Validators.required],
          'horaFin': ['', Validators.required]
-        /*'cardnumber': ['', Validators.compose([Validators.required, ValidationService.numberValidator])],
-        'cvc': ['', Validators.compose([Validators.required, ValidationService.numberValidator])],
-        'expirymonth': ['', Validators.required],
-        'expiryyear': ['', Validators.required] */
+
     }, { validator: Validators.compose([
         ValidationService.fechasValidador('fechaDesde','fechaHasta'), 
         ValidationService.fechaMenorHoyValidador(this.datePipe.transform(this.fechaHoy,'yyyy-MM-dd'),'fechaDesde'),
         ValidationService.fechaMenorHoyValidador(this.datePipe.transform(this.fechaHoy,'yyyy-MM-dd'),'fechaHasta'),
          ValidationService.fechasValidador('fechaDesdeInscripcion','fechaHastaInscripcion')
 ])       }); 
- /*    { validator: Validators.compose([
-        ValidationService.fechasValidador('fechaDesde','fechaHasta'), 
-         ValidationService.fechasValidador('fechaDesdeInscripcion','fechaHastaInscripcion')
-])}; */
 
    }
 
@@ -281,7 +254,7 @@ public confirm(){
   this._eventoService.save(this.evento).subscribe(resp => {
     //Callback
       this.mensajeServ.success('Se ha guardado el evento!', 'Aviso!');
-      //this.volver();
+      this.router.navigate(['/pages/evento/lista']);
  });
 }
 

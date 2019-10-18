@@ -1,3 +1,38 @@
+<div class="modal fade" id="show-event-modal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header modal-info">
+                <h5 class="modal-title">Confirmar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+              <p *ngIf="confirmarInscripcion">¿Desea confirmar la Inscripción al evento {{evento?.nombre}} ?  </p>
+              
+
+         <!--      <div class="row">
+                <div class="col-xl-9 col-lg-9 col-12">
+                    <div class="form-group">
+                         <p>
+                           Socio: {{selectedSocio?.nombre}} {{selectedSocio?.apellido}}
+                           <br><br>
+                          DNI {{selectedSocio?.nroDocumento}} 
+                          </p> 
+                     
+                    </div>
+                </div>
+              </div> -->
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-info btn-sm" (click)="inscripcionConfirmado()">Confirmar Inscripción</button>
+              <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div> 
+
+
+
 <div widget class="card" *ngIf="mostrar">
     <div class="card-header">
         <span>{{ evento.nombre}} -
@@ -75,8 +110,9 @@
                                     <br>
                                     <br>
                                     <div class="d-inline-block" *ngIf="esSocio">
-                                        <button type="button" class="btn btn-outline-info transition" (click)="inscribirse()">Inscribirse</button>
-                                    </div>  
+                                        <button type="button" class="btn btn-outline-info transition"
+                                            (click)="inscribirse()">Inscribirse</button>
+                                    </div>
                                 </div>
 
 
@@ -93,10 +129,10 @@
                                     <div class="row">
                                         <div class="col col-6">
 
-                                                <h5>Evento:</h5>
-                                                
-                                                <br>
-                                                
+                                            <h5>Evento:</h5>
+
+                                            <br>
+
                                             <strong>Fecha Inicio: </strong>
                                             <span class="badge badge-default">{{evento.fechaDesde | date:'fullDate'}}
                                                 <i class="fa fa-calendar"></i></span>
@@ -105,54 +141,57 @@
                                             <strong>Fecha Fin: </strong>
                                             <span class="badge badge-default">{{evento.fechaHasta | date:'fullDate'}}
                                                 <i class="fa fa-calendar"></i> </span>
-                                                
+
 
 
                                             <br>
                                             <br>
                                         </div>
 
-                                             <div class="col col-6">
-                                                    <h5>Inscripciones:</h5>
-                                          <br>
-                                          
-                                          <strong>Desde:</strong>
-                                          <span class="badge badge-default">{{evento.fechaDesdeInscripcion | date:'fullDate'}}
-                                              <i class="fa fa-calendar"></i>
-                                          </span>
-                                          <br>
+                                        <div class="col col-6">
+                                            <h5>Inscripciones:</h5>
+                                            <br>
+
+                                            <strong>Desde:</strong>
+                                            <span
+                                                class="badge badge-default">{{evento.fechaDesdeInscripcion | date:'fullDate'}}
+                                                <i class="fa fa-calendar"></i>
+                                            </span>
+                                            <br>
                                             <br>
                                             <strong>Hasta:</strong>
-                                          <span class="badge badge-default">{{evento.fechaHastaInscripcion | date:'fullDate'}}
-                                              <i class="fa fa-calendar"></i>
-                                          </span>
-                                          <br>
-                                          <br>
-                                      </div>
+                                            <span
+                                                class="badge badge-default">{{evento.fechaHastaInscripcion | date:'fullDate'}}
+                                                <i class="fa fa-calendar"></i>
+                                            </span>
+                                            <br>
+                                            <br>
+                                        </div>
                                     </div>
-                                     
-                                    <div class="row">   
 
-                                        <div class="col col-9">   
-                                          <h5> Horarios de Dictado: </h5> 
+                                    <div class="row">
 
-                                        </div> 
-                                        <br>                                    
-                                          <div class="form-group col-md-6 ">
+                                        <div class="col col-9">
+                                            <h5> Horarios de Dictado: </h5>
+
+                                        </div>
+                                        <br>
+                                        <div class="form-group col-md-6 ">
                                             <div>
                                                 <ul class="list-group">
-                
-                                                    <li class="list-group-item" *ngFor="let horario of evento.listaHorarios;">
+
+                                                    <li class="list-group-item"
+                                                        *ngFor="let horario of evento.listaHorarios;">
                                                         <span class="col col-10">
                                                             Día {{horario.dia}} desde {{horario.horaDesde}} hasta
                                                             {{horario.horaHasta}}.
                                                         </span>
-                                                </li>
-                
+                                                    </li>
+
                                                 </ul>
                                             </div>
                                         </div>
-                                        
+
 
                                     </div>
 
@@ -437,8 +476,84 @@
 
                     <div class="tab-pane" id="inscriptos" *ngIf="!esSocio">
 
+                        <div class="card-block widget-body">
+                            <div class="row">
+                                
+                                <div class="alert alert-success"  role="alert">
+                                        <strong>Cantidad de Inscriptos: </strong> {{listaInscripcionEvento.length}} sobre un cupo máximo de {{evento.cupoMaximo}}
+                                    </div>
+                             
+                             
+                             
+                                <!--    <strong>Cupo Mínimo: </strong> {{evento.cupoMinimo}}
+                                <strong>Cupo Máximo: </strong> {{evento.cupoMaximo}} -->
+
+                                <br>
+                                <br>
+
+                                <div class="table-responsive datatable">
+                                    <!-- <table class="table table-striped table-hover table-sm" [mfData]="socios  | SearchPipe : searchText" #mf="mfDataTable" [mfRowsOnPage]="10"> -->
+                                    <table class="table table-striped table-hover table-sm"
+                                        [mfData]="listaInscripcionEvento" #mf="mfDataTable" [mfRowsOnPage]="10">
+                                        <thead>
+                                            <tr>
+                                                <!-- <th><mfDefaultSorter by="id">Id</mfDefaultSorter></th> -->
+                                                <th>
+                                                    <mfDefaultSorter by="nombre">Socio</mfDefaultSorter>
+                                                </th>
+                                                <th>
+                                                    <mfDefaultSorter by="apellido">Fecha inscripción</mfDefaultSorter>
+                                                </th>
+                                                <!-- <th>
+                                                        <mfDefaultSorter by="nroDocumento">Dar Baja</mfDefaultSorter>
+                                                    </th> -->
+
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let item of mf.data | SearchPipe : searchText">
+                                                <!-- <td>{{item.id}}</td> -->
+                                                <td><strong>{{item.socio.nombre}} {{item.socio.apellido}}</strong></td>
+                                                <td>{{item.fechaCreacion | date:'medium'}}</td>
+                                                <!--      <td>
+                                                       <div *ngIf="mostrarInscripcion">
+                                                        <span class="col col-3"> 
+                                                        <i style="cursor:pointer; align-content: center" (click)="eliminarInscripcion(item)"
+                                                                  class="fa fa-trash"></i>
+                                                                </span>
+                                                      
+                                                      </div> 
+                                                    </td> -->
+                                            </tr>
+                                            <tr *ngIf="(mf.data | SearchPipe : searchText).length === 0">
+                                                <td colspan="100">
+                                                    No encontrado
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="12">
+                                                    <mfBootstrapPaginator [rowsOnPageSet]="[10, 25, 50, 100]">
+                                                    </mfBootstrapPaginator>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
                     </div>
-                    
+
                 </div>
             </div>
         </div>

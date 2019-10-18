@@ -185,7 +185,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Configuracion\local-01.config">
-      <SubType>Designer</SubType>
+      <SubType>
+      </SubType>
     </None>
     <Content Include="Configuracion\local-02.config">
       <SubType>Designer</SubType>

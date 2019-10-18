@@ -42,7 +42,8 @@
                                             <td>{{item.nombre}}</td>
                                             <td>{{item.descripcion}}</td>                                            
                                             <td>
-                                              <span class="alert-success"  *ngIf="item.estado != 'Cancelado' && item.estado != 'Finalizado'">{{item.estado}}</span>
+                                              <span class="alert-info"  *ngIf="item.estado == 'Nuevo'">{{item.estado}}</span>
+                                              <span class="alert-success"  *ngIf="item.estado == 'Progreso'">{{item.estado}}</span>
                                               <span class="alert-danger"  *ngIf="item.estado == 'Cancelado'  || item.estado == 'Finalizado'">{{item.estado}}</span>
                                               </td>
                                             <td><a style="color: #014c8c;cursor:pointer;" [routerLink]="['/pages/evento/detalleEvento/', item.id]"  >Ver Detalle</a>

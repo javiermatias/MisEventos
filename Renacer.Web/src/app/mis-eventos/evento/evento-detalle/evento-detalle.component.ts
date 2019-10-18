@@ -16,7 +16,10 @@ export class EventoDetalleComponent implements OnInit {
   mostrar:boolean=false;
   esSocio:boolean=false;
   listaInscripcion:Array<Inscripcion>;
+  listaInscripcionEvento:Array<Inscripcion>;
   inscripcionSocio:Inscripcion;
+
+  confirmarInscripcion:Boolean=false;
   constructor(private router: Router, private route: ActivatedRoute, private _eventoService:EventoServices,
     private _usersService:UserServices, private inscripcionServ:InscripcionServices,
     private mensajeServ: ToastrService) { }
@@ -30,6 +33,7 @@ export class EventoDetalleComponent implements OnInit {
    
     if(this.id != 0){      
      this.getByID();
+     this.traerInscripcionesEvento(this.id);
      this.traerInscripciones(); //Traigo las inscripciones para validar si ya se inscribio al curso
    
      } 
@@ -47,6 +51,24 @@ export class EventoDetalleComponent implements OnInit {
     });
   
 }
+
+
+traerInscripcionesEvento(idEvento:number){
+    
+  this.inscripcionServ.query({'idEvento':idEvento}).subscribe(items => {
+    this.listaInscripcionEvento = items;    
+  
+    }
+   );
+  
+}
+
+eliminarInscripcion(inscripcion: Inscripcion){
+/*   this.eliminaInscripcion = inscripcion;
+  jQuery('#show-event-modal').modal('show'); */
+  
+}
+
 traerInscripciones(){
     
   this.inscripcionServ.query({'idSocio':this.usuario.idSocio}).subscribe(items => {
@@ -64,13 +86,19 @@ inscribirse(){
     
     if(inscripcion.idEvento == this.evento.id){      
       bandera=false;
+      
       return;
     }
     
  });
-
-
-  if(bandera){
+ if(bandera){
+  this.confirmarInscripcion=true;
+ jQuery('#show-event-modal').modal('show');
+ }else{
+  this.mensajeServ.error('Ya estas inscripto a este evento :' + this.evento.nombre, 'Aviso!');
+ }
+/* 
+ 
     let inscripcion = new Inscripcion(0);
   
     inscripcion.idEvento= this.evento.id;
@@ -80,11 +108,25 @@ inscribirse(){
       this.inscripcionServ.save(inscripcion).subscribe(resp => {
         this.mensajeServ.success('Se ha inscripto correctamente al curso!', 'Aviso!');
          });
-  }else{
-    this.mensajeServ.error('Ya estas inscripto a este evento :' + this.evento.nombre, 'Aviso!');
-  }
+   */
 
  
+}
+
+inscripcionConfirmado(){
+  this.confirmarInscripcion=false;
+  
+  jQuery('#show-event-modal').modal('hide');
+
+  let inscripcion = new Inscripcion(0);
+  
+  inscripcion.idEvento= this.evento.id;
+  inscripcion.idSocio= this.usuario.idSocio; 
+
+    this.inscripcionServ.save(inscripcion).subscribe(resp => {
+      this.mensajeServ.success('Se ha inscripto correctamente al curso!', 'Aviso!');
+  
+    });
 }
 
 }
