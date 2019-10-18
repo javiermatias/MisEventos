@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { AppConfig } from '../../../app.config';
-import {ReporteServices} from '../../../servicios/reporte.service';
+import { AppConfig } from '../../../../app.config';
+import {ReporteServices} from '../../../../servicios/reporte.service';
 
 
 @Component({
