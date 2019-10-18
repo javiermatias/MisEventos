@@ -1,3 +1,38 @@
+<div class="modal fade" id="show-event-modal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header modal-info">
+                <h5 class="modal-title">Confirmar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+              <p *ngIf="confirmarInscripcion">¿Desea confirmar la Inscripción al evento {{evento?.nombre}} ?  </p>
+              
+
+         <!--      <div class="row">
+                <div class="col-xl-9 col-lg-9 col-12">
+                    <div class="form-group">
+                         <p>
+                           Socio: {{selectedSocio?.nombre}} {{selectedSocio?.apellido}}
+                           <br><br>
+                          DNI {{selectedSocio?.nroDocumento}} 
+                          </p> 
+                     
+                    </div>
+                </div>
+              </div> -->
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-info btn-sm" (click)="inscripcionConfirmado()">Confirmar Inscripción</button>
+              <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div> 
+
+
+
 <div widget class="card" *ngIf="mostrar">
     <div class="card-header">
         <span>{{ evento.nombre}} -
