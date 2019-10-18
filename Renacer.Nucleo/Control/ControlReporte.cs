@@ -134,39 +134,58 @@ namespace Renacer.Nucleo.Control
         public List<Dictionary<string, object>> GetIngresosPorTipoEvento()
         {
             var DbHelper = new DBBase(strConnection);
-            var sql = $@"SELECT t.nombre, count(e.id) as cantidad FROM  tipoevento t, evento e where t.id = e.idTipoEvento group by t.id";
+            var sql = $@"
+    SELECT
+        SUM(p.monto) AS monto,
+        t.nombre
+	FROM pago p
+		inner join inscripcion i on i.id = p.idInscripcion
+	    inner join evento e on e.id = i.idEvento
+        inner join tipoevento t on t.id = e.idTipoEvento
+	WHERE
+		estaPagado = 1
+    GROUP BY 
+        e.idTipoEvento
+";
             return Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
         }
 
         public List<Dictionary<string, object>> GetIngresosPorTipo()
         {
             var DbHelper = new DBBase(strConnection);
-            var sql = $@"SELECT t.nombre, SUM(e.id) as monto FROM  tipoevento t, evento e where t.id = e.idTipoEvento group by t.id";
+            var sql = $@"SELECT 'matriculas' as nombre, SUM(pago) AS monto FROM matriculaxsocios
+                        union all 
+                        SELECT 'eventos' as nombre, SUM(monto) AS monto FROM pago where estaPagado = 1 ";
             return Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
         }
         
 
 
-        public List<Dictionary<string, object>> GetIngresosEnElTiempo(filterSocio filtro)
+        public List<Dictionary<string, object>> GetIngresosEnElTiempo()
         {
             var DbHelper = new DBBase(strConnection);
-            var sql = @"SELECT aux.fecha,SUM(aux.matriculas) as 'matriculas',SUM(aux.eventos) as 'eventos' from ( 
-                            SELECT 
-                            DATE_FORMAT(s.fechaCreacion, '%Y-%m') as 'fecha', Count(s.id) as 'eventos',0 as 'matriculas'
-                            FROM matriculasxsocio inner s {filtro_socio} 
-                            GROUP BY DATE_FORMAT(s.fechaCreacion, '%Y-%m') 
-                        UNION ALL SELECT
-                            DATE_FORMAT(s.fechaBaja, '%Y-%m') as 'fecha', 0 as 'altas', Count(s.id) as 'bajas'
-                            FROM socio s {filtro_socio} and not ISNULL(s.fechaBaja)
-                            GROUP BY DATE_FORMAT(s.fechaBaja, '%Y-%m')) as aux
-                        GROUP BY aux.fecha";
+            var sql = @"
+
+                SELECT aux.fecha,SUM(aux.matriculas) as 'matriculas',SUM(aux.eventos) as 'eventos' from (
+                SELECT
+	                SUM(pago) AS 'matriculas',
+	                0 as 'eventos',
+	                DATE_FORMAT(fechaPago, '%Y-%m') as 'fecha'
+                FROM
+	                matriculaxsocios group by fecha
+                UNION ALL
+                SELECT
+	                0 AS 'matriculas',
+	                SUM(monto) as 'eventos',
+	                DATE_FORMAT(fechaCobro, '%Y-%m') as 'fecha'
+                FROM pago WHERE estaPagado = 1 group by fecha	) as aux group by fecha order by fecha
+
+";
 
             var tabla = DbHelper.ExecuteDataTable(sql);
             return Helper.Helper.ConvertDT(tabla);
 
         }
-
-
 
 
         private List<Dictionary<string, object>> GetFullRating()

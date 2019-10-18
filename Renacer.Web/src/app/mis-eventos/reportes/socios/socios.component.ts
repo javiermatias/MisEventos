@@ -12,7 +12,7 @@ export class SociosComponent implements OnInit {
   public filter:FiltroReporte = new FiltroReporte();
   public items:Socio[];
   
-    constructor(private itemsServ:ReporteServices) { }
+    constructor(private itemsServ: ReporteServices) { }
   
     ngOnInit() {
       this.getItems();

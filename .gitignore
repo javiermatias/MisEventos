@@ -235,3 +235,4 @@ Renacer.Nucleo.Prueba/App.config
 Renacer.WebAPI.Prueba/*.config
 Renacer.WebAPI/Configuracion/local-01.config
 Renacer.WebAPI/dist/
+Renacer.WebAPI/images/perfiles/
