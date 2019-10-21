@@ -11,9 +11,11 @@ namespace Renacer.WebAPI.Controllers
 {
     public class CalendarioController : ApiController
     {
-        public IEnumerable<Calendario> Get([FromUri]DateTime fechaDesde, [FromUri]DateTime fechaHasta)
+        public IEnumerable<Calendario> Get([FromUri]DateTime fechaDesde,
+            [FromUri]DateTime fechaHasta,
+            [FromUri] int idEspacio)
         {
-            IEnumerable<Calendario> detalle = ControlDetalleEvento.devolverInstancia().devolverTodosCalendario(fechaDesde, fechaHasta);
+            IEnumerable<Calendario> detalle = ControlDetalleEvento.devolverInstancia().devolverTodosCalendario(fechaDesde, fechaHasta, idEspacio);
             return detalle;
 
         }

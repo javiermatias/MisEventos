@@ -21,8 +21,11 @@ export class EspaciosComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(this.espacios == null) {
+      this.espacios = new Array<EspacioComun>();
+    }
+
     this.getItems();
-   //this.mensajeServ.success('Estas viendo tus Espacios!', 'Mensaje!');
   }
 
   getItems(){

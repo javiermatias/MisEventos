@@ -70,7 +70,6 @@ export class ReporteServices extends BaseServices<Object> {
     return this.http.post<any[]>(`${this.url}ranking`, {})
   }
 
-
   getIngresosPorTipoEvento(): Observable<any[]> {
     return this.http.post<any[]>(`${this.url}ingresosportipoevento`, {})
   }
@@ -84,5 +83,15 @@ export class ReporteServices extends BaseServices<Object> {
   }
 
 
+  getAsistenciasPorTipoEvento(): Observable<any[]> {
+    return this.http.post<any[]>(`${this.url}asistenciasportipoevento`, {})
+  }
 
+  getInasistenciasPorTipoEvento(): Observable<any[]> {
+    return this.http.post<any[]>(`${this.url}inasistenciasportipoevento`, {})
+  }
+
+  graficarAsistenciasPorDiaDeLaSemana(): Observable<any[]> {
+    return this.http.post<any[]>(`${this.url}asistenciaspordiadelasemana`, {})
+  }
 }
