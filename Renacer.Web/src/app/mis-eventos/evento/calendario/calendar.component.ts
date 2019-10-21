@@ -104,6 +104,9 @@ cargarEventos() {
     'idEspacio': this.espacio.id
   }).subscribe(items => {
   
+    this.eventos = [];
+    this.calendarEvents = [];
+
     for (let i = 0; i < items.length; i++) {
       const color = this.getEventoColor(items[i].idEvento);
 
@@ -130,7 +133,7 @@ cargarEventos() {
     const result = new Date(date);
     result.setDate(result.getDate() + days);
 
-    let calendarApi = this.calendarComponent.getApi();
+    const calendarApi = this.calendarComponent.getApi();
     calendarApi.gotoDate(result);
     return result;
   }
