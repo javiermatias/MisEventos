@@ -159,7 +159,7 @@
                                       <tr *ngFor="let item of mf.data ">
                                           <!-- <td>{{item.id}}</td> -->
                                           <td><strong>{{item.nombre}}</strong></td>
-                                          <td>{{item.monto}}</td>       
+                                          <td>${{item.monto}}</td>       
                                           <!-- <td *ngIf= >{{item.estaPagado}}</td>    -->
                                           <td *ngIf="item.estaPagado; else other_content">
                                                     Pagado

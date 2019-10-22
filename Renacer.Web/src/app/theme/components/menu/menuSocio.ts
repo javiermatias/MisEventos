@@ -41,15 +41,15 @@ export const itemsSocio = [
   },
   {
     title: 'Mis Pagos',
-    routerLink: 'pagos',
-    icon: 'fa-money',
+    routerLink: 'mis-pagos',
+    icon: 'fa-money',    
     selected: false,
     expanded: false,
     order: 500,
   },
   {
     title: 'Donaciones',
-    routerLink: 'pagos',
+    routerLink: 'donaciones',
     icon: 'fa-money',
     selected: false,
     expanded: false,

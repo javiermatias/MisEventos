@@ -51,6 +51,7 @@ import { OpinionEventoComponent } from '../mis-eventos/socios/opinion-evento/opi
 import { AsistenciasSocioComponent } from '../mis-eventos/socios/asistencias-socio/asistencias-socio.component';
 import { SocioInscripcionComponent } from '../mis-eventos/socios/socio-inscripcion/socio-inscripcion.component';
 import { DetalleComponent } from '../mis-eventos/socios/socio-inscripcion/detalle/detalle.component';
+import { MisPagosComponent } from '../mis-eventos/socios/mis-pagos/mis-pagos.component';
 
 
 
@@ -110,7 +111,8 @@ import { DetalleComponent } from '../mis-eventos/socios/socio-inscripcion/detall
     OpinionEventoComponent,
     AsistenciasSocioComponent,
     SocioInscripcionComponent,
-    DetalleComponent
+    DetalleComponent,
+    MisPagosComponent
    // LoginComponent 
   ]
   , exports: [

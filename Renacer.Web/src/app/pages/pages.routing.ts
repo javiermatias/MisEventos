@@ -30,6 +30,7 @@ import { EventosxsocioComponent } from '../mis-eventos/socios/eventosxsocio/even
 import { OpinionEventoComponent } from '../mis-eventos/socios/opinion-evento/opinion-evento.component';
 import { AsistenciasSocioComponent } from '../mis-eventos/socios/asistencias-socio/asistencias-socio.component';
 import { SocioInscripcionComponent } from '../mis-eventos/socios/socio-inscripcion/socio-inscripcion.component';
+import { MisPagosComponent } from '../mis-eventos/socios/mis-pagos/mis-pagos.component';
 
 
 export const routes: Routes = [
@@ -62,7 +63,8 @@ export const routes: Routes = [
             { path: 'eventos-socio', component: EventosxsocioComponent, data: { breadcrumb: 'Mis Eventos' } },
             { path: 'opinion-evento/:id', component: OpinionEventoComponent, data: { breadcrumb: '' } },
             { path: 'asistencia-socio/:id', component: AsistenciasSocioComponent , data: { breadcrumb: '' } },
-            { path: 'inscripcion-socio', component: SocioInscripcionComponent , data: { breadcrumb: '' } }
+            { path: 'inscripcion-socio', component: SocioInscripcionComponent , data: { breadcrumb: '' } },
+            { path: 'mis-pagos', component: MisPagosComponent , data: { breadcrumb: '' } }
         ]
     }
 ];

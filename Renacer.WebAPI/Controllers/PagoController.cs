@@ -28,7 +28,9 @@ namespace Renacer.WebAPI.Controllers
         {
             try
             {
+                Pago pago = ControlPagoCuota.devolverInstacia().devolverUltimo();
                 _pago.fechaCobro = DateTime.Now;
+                _pago.nroRecibo = pago.id + 10000;
                 ControlPagoCuota.devolverInstacia().grabar(_pago);
                 return Ok(_pago);
             }

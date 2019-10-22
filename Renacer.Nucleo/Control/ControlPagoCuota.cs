@@ -98,6 +98,28 @@ namespace Renacer.Nucleo.Control
         }
 
         /// <summary>
+        /// Metodo utilizado para devolver todos los Pago
+        /// SELECT * FROM Pago
+        /// </summary>
+        /// <returns></returns>
+        public Pago devolverUltimo()
+        {
+            try
+            {
+                using (var db = new ModeloRenacer())
+                {
+                    //Product prod = db.Products.LastOrDefault<Product>();
+                    return db.pagoCuota.ToList().LastOrDefault<Pago>(); ;
+                }
+            }
+            catch (Exception ex)
+            {
+                ServicioSentry.devolverSentry().informarExcepcion(ex);
+            }
+            return null;
+        }
+
+        /// <summary>
         /// Metodo utilizado para eliminar un Pago.
         /// TODO: El metodo se tiene que cambiar para actualizar un atributo del Pago 
         /// para ver si esta eliminado o no, no se eliminan datos.
