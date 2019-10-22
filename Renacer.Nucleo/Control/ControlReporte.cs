@@ -112,7 +112,10 @@ namespace Renacer.Nucleo.Control
         {
             return GetGenericRating("r.ratingContenido");
         }
-        private List<Dictionary<string, object>> GetGenericRating(string ratingColName,int factor = 1)
+
+
+
+        private List<Dictionary<string, object>> GetGenericRating(string ratingColName, int factor = 1)
         {
             var DbHelper = new DBBase(strConnection);
             var sql = $@"SELECT e.nombre,
@@ -122,6 +125,53 @@ namespace Renacer.Nucleo.Control
                         group by idEvento order by stars desc";
 
             return Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
+        }
+
+        public List<Dictionary<string, object>> GetInasistenciasPorTipoEvento()
+        {
+            throw new NotImplementedException();
+        }
+        public List<Dictionary<string, object>> GetAsistenciasPorTipoEvento()
+        {
+            var DbHelper = new DBBase(strConnection);
+            var sql = @"
+SELECT
+	t.nombre,
+	count(a.id) AS asistencias,
+    count(i.id) as inscriptos
+FROM
+	tipoevento t 
+inner join evento e on t.id = e.IdTipoEvento
+inner join detalleevento de on e.id = de.IdEvento 
+inner join inscripcion i on i.idEvento = e.id
+left join asistencia a on a.idDetalleEvento = de.id
+GROUP BY
+	t.nombre
+";
+            return Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
+
+        }
+
+        public List<Dictionary<string, object>> GetAsistenciasPorDiaDeLaSemana()
+        {
+            var DbHelper = new DBBase(strConnection);
+            var sql = @"
+select count(id) as cantidad,
+CASE
+WHEN DAYOFWEEK(fechaAsistencia) = 1 THEN 'Lunes'
+WHEN DAYOFWEEK(fechaAsistencia) = 2 THEN 'Martes'
+WHEN DAYOFWEEK(fechaAsistencia) = 3 THEN 'Miércoles'
+WHEN DAYOFWEEK(fechaAsistencia) = 4 THEN 'Jueves'
+WHEN DAYOFWEEK(fechaAsistencia) = 5 THEN 'Viernes'
+WHEN DAYOFWEEK(fechaAsistencia) = 6 THEN 'Sabado'
+WHEN DAYOFWEEK(fechaAsistencia) = 7 THEN 'Domingo'
+END as dia
+from asistencia
+where DAYOFWEEK(fechaAsistencia) is not null
+group by DAYOFWEEK(fechaAsistencia)
+";
+            return Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
+
         }
 
         public List<Dictionary<string, object>> GetEventosPorTipo()
@@ -158,7 +208,7 @@ namespace Renacer.Nucleo.Control
                         SELECT 'eventos' as nombre, SUM(monto) AS monto FROM pago where estaPagado = 1 ";
             return Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
         }
-        
+
 
 
         public List<Dictionary<string, object>> GetIngresosEnElTiempo()
@@ -190,11 +240,11 @@ namespace Renacer.Nucleo.Control
 
         private List<Dictionary<string, object>> GetFullRating()
         {
-            return GetGenericRating("r.ratingEvento + r.ratingEncargado + r.ratingContenido",3);
+            return GetGenericRating("r.ratingEvento + r.ratingEncargado + r.ratingContenido", 3);
         }
 
 
-     
+
 
 
 
@@ -279,7 +329,7 @@ namespace Renacer.Nucleo.Control
         public object ExecuteScalar(string consulta)
         {
             var DbHelper = new DBBase(strConnection);
-           return DbHelper.ExecuteScalar(consulta);
+            return DbHelper.ExecuteScalar(consulta);
         }
 
 

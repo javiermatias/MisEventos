@@ -198,7 +198,7 @@ namespace Renacer.Nucleo.Control
         }
 
 
-        public List<Calendario> devolverTodosCalendario(DateTime fechaDesde, DateTime fechaHasta)
+        public List<Calendario> devolverTodosCalendario(DateTime fechaDesde, DateTime fechaHasta, int idEspacio)
         {
             try
             {
@@ -209,6 +209,7 @@ namespace Renacer.Nucleo.Control
                         Include("espacio").
                         Include("responsable")
                         .Where(ev => ev.fechaDesde >= fechaDesde && ev.fechaDesde <= fechaHasta && ev.fechaBaja == null)
+                        .Where(ev => ev.idEspacio == idEspacio || idEspacio == 0)
                         .ToList();
                     foreach (var item in listaDetalle)
                     {

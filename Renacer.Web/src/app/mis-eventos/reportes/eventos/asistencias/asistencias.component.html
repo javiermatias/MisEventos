@@ -12,8 +12,8 @@
             <div class="card-block widget-body">
               <div class="chart-outher"> 
                 <canvas baseChart
-                        [data]="AsistenciasPorTipoEventoData"
-                        [labels]="AsistenciasPorTipoEventoLabels"
+                        [data]="AsistenciasTipoEventoData"
+                        [labels]="AsistenciasTipoEventoLabels"
                         [options]="pieChartOptions"
                         [colors]="pieChartColors"
                         [chartType]="'pie'"
@@ -40,15 +40,15 @@
               <div class="card-block widget-body">
                 <div class="chart-outher"> 
                   <canvas baseChart
-                          [data]="AusentismoPorTipoEventoData"
-                          [labels]="IngresosTipoLabels"
+                          [data]="InasistenciasTipoEventoData"
+                          [labels]="InasistenciasTipoEventoLabels"
                           [options]="pieChartOptions"
                           [colors]="pieChartColors"
                           [chartType]="'pie'"
                           (chartHover)="chartHovered($event)"
                           (chartClick)="chartClicked($event)"></canvas>
-              </div> 
-  
+                 </div> 
+                 
               </div>
             </div>
           </div>

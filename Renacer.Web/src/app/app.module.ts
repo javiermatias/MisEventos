@@ -27,7 +27,7 @@ import { AccessGuard } from './servicios/accessGuard.service';
 import { MatriculaServices } from './servicios/matricula.service';
 import { MatriculaxsocioService } from './servicios/matriculaxsocio.service';
 import { DragulaModule } from 'ng2-dragula';
-import { RecordatorioServices, RecordatorioHoyServices,ActualizarEventoServices } from './servicios/recordatorio.service';
+import { RecordatorioServices, RecordatorioHoyServices, ActualizarEventoServices } from './servicios/recordatorio.service';
 import { CalendarioServices } from './servicios/calendario.service';
 import { AuthInterceptorProvider } from './servicios/request.interceptor';
 import { ToastrModule } from 'ngx-toastr';
@@ -36,7 +36,7 @@ import localeEs from '@angular/common/locales/es-AR';
 import { RatingServices } from './servicios/rating.service';
 import { AsistenciaSocioServices } from './servicios/asistenciaSocio.service';
 
-import { Angular2CsvModule } from 'angular2-csv';
+
 import { DeudaCuotaServices } from './servicios/deudaCuota.service';
 
 
@@ -59,8 +59,7 @@ registerLocaleData(localeEs, 'es-AR');
     DragulaModule,
     NguiAutoCompleteModule,
     CommonModule,
-    ToastrModule.forRoot(),
-    Angular2CsvModule
+    ToastrModule.forRoot()
   ],
   providers: [
     AppConfig,
@@ -93,8 +92,8 @@ registerLocaleData(localeEs, 'es-AR');
     CambioContraseniaService,
     RatingServices,
     AsistenciaSocioServices,
-    DeudaCuotaServices,
-    { provide: LOCALE_ID, useValue: 'es-AR' },
+    DeudaCuotaServices,    
+    { provide: LOCALE_ID, useValue: "es-AR" },
     DatePipe],
     bootstrap: [AppComponent]
 })

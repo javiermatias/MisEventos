@@ -125,13 +125,11 @@ export const itemsAdmin = [
         subMenu: [
             {
               title: 'Ranking',
-              routerLink: 'reportes/ranking',
-              icon: 'fa-rank'
+              routerLink: 'reportes/ranking'
             },
             {
-              title: 'Ingresos $',
-              routerLink: 'reportes/ingresos',
-              icon: 'fa-money'
+              title: 'Ingresos',
+              routerLink: 'reportes/ingresos'
             },
             {
               title: 'Asistencias',

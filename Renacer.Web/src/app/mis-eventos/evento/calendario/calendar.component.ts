@@ -1,250 +1,141 @@
-import { Component, ViewEncapsulation, Output, EventEmitter,OnInit } from '@angular/core';
-import { AppConfig } from "../../../app.config";
+import { Component, ViewEncapsulation, ViewChild, Output, EventEmitter,OnInit } from '@angular/core';
+import { AppConfig } from '../../../app.config';
 import 'style-loader!fullcalendar/dist/fullcalendar.min.css';
-import {DetalleEventoServices,DetalleEvento} from "../../../servicios/evento.service"
+import { DetalleEventoServices, DetalleEvento} from '../../../servicios/evento.service'
 import { EspacioServices, EspacioComun } from '../../../servicios/espacio.service';
 import { CalendarioServices } from '../../../servicios/calendario.service';
+import { FullCalendarComponent } from '@fullcalendar/angular';
+import { EventInput } from '@fullcalendar/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGrigPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction';
+
 
 @Component({
-  selector: 'az-calendar',
+  selector: 'app-calendar',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './calendar.component.html'
 })
-export class CalendarComponent {
-  public config:any;
-  public configFn:any;
-  calendarOptions: any;
-  $calendar: any;
-  dragOptions: Object = { zIndex: 999, revert: true, revertDuration: 0 };
+export class CalendarComponent  {
+  public config: any;
   event: any = {};
-  createEvent: any;
-  public listaColores:any = {};
-
-  public search:string ="";
-  // public fechaDesde:Date = new Date();
-  // public fechaHasta:Date = new Date();
-
-  public fechaDesde:String;
-  public fechaHasta:String;
+  public listaColores: any = {};
+  public search = '';
+  public fechaDesde: String;
+  public fechaHasta: String;
   public espacios = new Array<EspacioComun>();
-  public _espacio = new EspacioComun(0,"","",0,0);
-  @Output() nuevoItemEvent:EventEmitter<string> = new EventEmitter();
+  public espacio = new EspacioComun(0, 'Todos', '', 0, 0);
 
-  nuevoItem() {
-    this.nuevoItemEvent.emit('complete');
+  headerConfig = {
+    left: 'prev,next today',
+    center: 'title',
+    right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
   }
 
-  getRndColor(){
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  }
+  @Output() nuevoItemEvent: EventEmitter<string> = new EventEmitter();
+  @ViewChild('calendar', {static: true}) calendarComponent: FullCalendarComponent; // the #calendar in the template
 
-  getEventoColor(idEvento:number){
-    if(this.listaColores[idEvento]){
-        return this.listaColores[idEvento];
-    }else{
-      this.listaColores[idEvento] = this.getRndColor();
-      return  this.listaColores[idEvento];
-    }
-  }
+  calendarVisible = true;
+  calendarPlugins = [dayGridPlugin, timeGrigPlugin, interactionPlugin];
+  calendarWeekends = true;
+  calendarEvents: EventInput[] = [];
+  eventos: any[] = [];
 
-  CargarEventos(){
-    this.detalleEventServ.query({
-      "fechaDesde":this.fechaDesde,
-      "fechaHasta":this.fechaHasta
-    }).subscribe(items => {
-      console.log(items);
-      this.calendarOptions.events = [];
-
-      for(var i = 0; i < items.length;i++){
-
-        var color = this.getEventoColor(items[i].idEvento); 
-
-        var itemAux = {
-          title: items[i].nombre,
-          start: items[i].fechaDesde,
-          end: items[i].fechaHasta,
-          allDay: false,
-          backgroundColor: color,
-          textColor: this.config.colors.default,
-          id:items[i].id,
-          idEvento:items[i].idEvento,
-          dia:items[i].dia,
-          encargado: items[i].descripcion,
-          aula:items[i].espacio.nombre
-        }
-        this.calendarOptions.events.push(itemAux);
-      }
-
-      this.$calendar = jQuery('#calendar');
-      this.$calendar.fullCalendar(this.calendarOptions);
-    });
-  }
-  addDays(date, days) {
-    var result = new Date(date);
-    result.setDate(result.getDate() + days);
-    return result;
-  }
-
-  constructor(private _appConfig:AppConfig,private detalleEventServ:DetalleEventoServices, 
-    private _espacioService:EspacioServices,
-    private _calendarioService:CalendarioServices ) {
+  constructor(private _appConfig: AppConfig, private detalleEventServ: DetalleEventoServices,
+    private _espacioService: EspacioServices,
+    private _calendarioService: CalendarioServices ) {
     this.config = this._appConfig.config;
-    this.configFn = this._appConfig;
-
-    let date = new Date();
-    let d = date.getDate();
-    let m = date.getMonth();
-    let y = date.getFullYear();
-
-    this.calendarOptions = {
-      header: {
-        left: 'today prev,next',
-        center: 'title',
-        right: 'month,agendaWeek,agendaDay,listMonth'
-      },
-      defaultView:"agendaWeek",
-      minTime: "07:00:00",
-      maxTime: "23:00:00",
-      allDaySlot: false,
-      events: [ ],
-      eventColor: this.config.colors.info,
-      selectable: true,
-      selectHelper: true,
-      select: (start, end, allDay): void => {
-        this.createEvent = () => {
-          let title = this.event.title;
-          let startEvent = this.event.start;
-          let endEvent = this.event.end;
-          if (title && startEvent && endEvent) {
-            this.$calendar.fullCalendar('renderEvent',
-            {
-              title: title,
-              start: startEvent,
-              end: endEvent,
-              allDay: this.event.allDay,
-              backgroundColor: this.config.colors.success,
-              textColor: this.config.colors.default
-            },
-            true // make the event "stick"
-          );
-        }
-        this.$calendar.fullCalendar('unselect');
-       // jQuery('#create-event-modal').modal('hide');
-      };
-
-     // jQuery('#create-event-modal').modal('show');
-    },
-    eventClick: (event): void => {
-      this.event = event;
-      jQuery('#show-event-modal').modal('show');
-    },
-    editable: true,
-    droppable: true,
-    drop: (dateItem, event): void => { // this function is called when something is dropped
-      // retrieve the dropped element's stored Event Object
-      let originalEventObject = {
-        // use the element's text as the event title
-        title: jQuery.trim(jQuery(event.target).text())
-      };
-
-      // we need to copy it, so that multiple events don't have a reference to the same object
-      let copiedEventObject = jQuery.extend({}, originalEventObject);
-
-      // assign it the date that was reported
-      copiedEventObject.start = dateItem;
-      copiedEventObject.allDay = !dateItem.hasTime();
-
-      let $categoryClass = jQuery(event.target).data('event-class');
-      if ($categoryClass) { copiedEventObject.className = [$categoryClass]; }
-
-      // render the event on the calendar
-      // the last `true` argument determines if
-      // the event 'sticks'
-      // http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
-      this.$calendar.fullCalendar('renderEvent', copiedEventObject, true);
-
-      jQuery(event.target).remove();
-
-    },
-    dayRender: function (date, cell) {
-      let today = new Date().toDateString();
-      let compareDate = date.toDate().toDateString();
-      if (today == compareDate) {
-        cell.css("background-color", "#ccc");
-      }
-    },
-    lang: 'es',
-    locale: 'es'
-  };
-};
+  }
 
 addEvent(event): void {
-  this.calendarOptions.events.push(event);
-};
+  this.calendarEvents.push(event);
+}
 
-ngOnInit(): void {
+handleEventClick(arg) {
+  console.log(arg);
+  this.event =  this.eventos.find(x => x.id.toString() === arg.event.id);
+  jQuery('#show-event-modal').modal('show');
+}
+
+cambioEspacio(valor) {
+  this.cargarEventos();
+}
+
+ngOnInit() {
   this.fechaDesde = new Date('2017-08-01').toISOString();
   this.fechaHasta = new Date('2020-08-01').toISOString();
-  console.log(this.fechaDesde);
-  console.log(this.fechaHasta );
   this.cargarEventos();
-
-  // jQuery('.draggable').draggable(this.dragOptions);
-
+  this.getEspacios();
 }
 
-getEspacios(){
-  this._espacioService.query({}).subscribe(items => {
-    this.espacios = items;
+getEspacios() {
+    this._espacioService.query({}).subscribe(items => {
+      this.espacios = items;
+      this.espacios.push(new EspacioComun(0, 'Todos', '', 0, 0))
+    });
+}
+
+nuevoItem() {
+  this.nuevoItemEvent.emit('complete');
+}
+
+getRndColor() {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
   }
-);
+  return color;
 }
 
+getEventoColor(idEvento: number) {
+  if (this.listaColores[idEvento]) {
+      return this.listaColores[idEvento];
+  }else {
+    this.listaColores[idEvento] = this.getRndColor();
+    return  this.listaColores[idEvento];
+  }
+}
 
-/* cambioAula(){
-  this.cargarEventosxAula(this._espacio.id);
-  console.log(this._espacio.id);
-} */
-
-
-
-cargarEventos(){
+cargarEventos() {
   this._calendarioService.query({
-    "fechaDesde":this.fechaDesde,
-    "fechaHasta":this.fechaHasta
+    'fechaDesde': this.fechaDesde,
+    'fechaHasta': this.fechaHasta,
+    'idEspacio': this.espacio.id
   }).subscribe(items => {
-    console.log(items);
-    this.calendarOptions.events = [];
+  
+    this.eventos = [];
+    this.calendarEvents = [];
 
-    for(var i = 0; i < items.length;i++){
+    for (let i = 0; i < items.length; i++) {
+      const color = this.getEventoColor(items[i].idEvento);
 
-      var color = this.getEventoColor(items[i].idEvento); 
-      let titulo =  items[i].nombre + "-" +  items[i].aula;
-      var itemAux = {
-        title: titulo,
+      const itemAux = {
+        title: items[i].nombre,
         start: items[i].fechaDesde,
         end: items[i].fechaHasta,
-        id:items[i].id,
-        idEvento:items[i].idEvento,
-        encargado:items[i].encargado,
-        aula:items[i].aula,
-        descripcion:items[i].descripcion,
-        dia:items[i].dia,
         allDay: false,
         backgroundColor: color,
-        textColor: this.config.colors.default,        
+        textColor: this.config.colors.default,
+        id: items[i].id,
+        idEvento: items[i].idEvento,
+        dia: items[i].dia,
+        encargado: items[i].descripcion,
+        aula: items[i].aula
       }
-      this.calendarOptions.events.push(itemAux);
+      this.eventos = this.eventos.concat(itemAux);
+      this.calendarEvents = this.calendarEvents.concat(itemAux);
     }
-
-    this.$calendar = jQuery('#calendar');
-    this.$calendar.fullCalendar(this.calendarOptions);
   });
 }
+
+  addDays(date, days) {
+    const result = new Date(date);
+    result.setDate(result.getDate() + days);
+
+    const calendarApi = this.calendarComponent.getApi();
+    calendarApi.gotoDate(result);
+    return result;
+  }
 
 }

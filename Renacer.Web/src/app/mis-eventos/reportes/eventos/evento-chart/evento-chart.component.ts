@@ -15,7 +15,6 @@ export class EventoChartComponent implements OnInit {
     public pieChartLabels: Array<string>;
     public pieChartData: Array<number>;
     public pieChartOptions: any;
-    public loading = true;
 
 
     public pieChartColors: any[];
