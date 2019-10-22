@@ -73,8 +73,9 @@ pagoConfirmado(){
   jQuery('#show-event-modal').modal('hide');
   this.pagoServ.save(this.cuota).subscribe(resp => {
     //Callback
-    this.printPDF();
+   
       this.mensajeServ.success('Se registro correctamente el pago!', 'Aviso!');
+      this.printPDF();
       //this.volver();
  });
   //this.mensajeServ.success('Se han guardado los cambios!', 'Aviso!');

@@ -142,4 +142,27 @@ pages/eventos-socio-->Mis Eventos
 
 Eventos OrderBy fechaCreacion mas reciente
 
+21-10-2019
+Asistencias-- Boton volver.
+Fecha fin -- alineado a la otra fecha
+
+Lista ultimos movimientos del banco
+Filtrar por eventos que esta inscripto
+Filtrar por pagados, adeudados
+Nombre eventos fecha ultimo pago, proxima cuota
+
+
+
+Ranking--> exporte)(.xlsx)--> Datos del evento. 
+
+Ver el boton toogle (ver de sacarlo u implementar la funcionalidad)
+
+
+falta exportar en excel.
+
+FEchas de inscripciones que se vea bien
+
+monto centrado a la derecha
+descripcion
+ver el tema de hacerlo mas chico
 

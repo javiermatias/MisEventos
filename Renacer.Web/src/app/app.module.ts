@@ -41,6 +41,7 @@ import { DeudaCuotaServices } from './servicios/deudaCuota.service';
 
 
 
+
 registerLocaleData(localeEs, 'es-AR');
 @NgModule({
   declarations: [
