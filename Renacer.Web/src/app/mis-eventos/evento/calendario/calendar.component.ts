@@ -16,7 +16,8 @@ import interactionPlugin from '@fullcalendar/interaction';
   encapsulation: ViewEncapsulation.None,
   templateUrl: './calendar.component.html'
 })
-export class CalendarComponent  {
+export class CalendarComponent
+              implements OnInit  {
   public config: any;
   event: any = {};
   public listaColores: any = {};
@@ -103,7 +104,7 @@ cargarEventos() {
     'fechaHasta': this.fechaHasta,
     'idEspacio': this.espacio.id
   }).subscribe(items => {
-  
+
     this.eventos = [];
     this.calendarEvents = [];
 
