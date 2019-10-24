@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
+
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
@@ -70,7 +72,8 @@ import { MisPagosComponent } from '../mis-eventos/socios/mis-pagos/mis-pagos.com
     DragulaModule,    
      ReactiveFormsModule,
     PasswordStrengthBarModule,
-    NgxStarsModule
+    NgxStarsModule,
+    NgSelectModule 
   ],
   providers: [
     {

@@ -42,6 +42,7 @@ import { DeudaCuotaServices } from './servicios/deudaCuota.service';
 
 
 
+
 registerLocaleData(localeEs, 'es-AR');
 @NgModule({
   declarations: [
@@ -93,6 +94,7 @@ registerLocaleData(localeEs, 'es-AR');
     RatingServices,
     AsistenciaSocioServices,
     DeudaCuotaServices,    
+    
     { provide: LOCALE_ID, useValue: "es-AR" },
     DatePipe],
     bootstrap: [AppComponent]
