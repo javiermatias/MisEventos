@@ -23,6 +23,13 @@ namespace Renacer.WebAPI.Controllers
             return ControlMatriculaXSocio.devolverInstacia().devolver(id);
         }
 
+        public List<MatriculaXSocio> Get([FromUri]string idSocio)
+        {
+
+            //return null;
+            return ControlMatriculaXSocio.devolverInstacia().devolverXSocio(int.Parse(idSocio));
+        }
+
         // POST: api/cliente
         public IHttpActionResult Post([FromBody]MatriculaXSocio value)
         {

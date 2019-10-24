@@ -31,7 +31,27 @@ namespace Renacer.WebAPI.Controllers
                 Pago pago = ControlPagoCuota.devolverInstacia().devolverUltimo();
                 _pago.fechaCobro = DateTime.Now;
                 _pago.nroRecibo = pago.id + 10000;
+               // _pago.idInscripcion
                 ControlPagoCuota.devolverInstacia().grabar(_pago);
+                Inscripcion inscripto = ControlInscripcion.devolverInstacia().devolver(_pago.idInscripcion);
+
+                //Metodo para determinar si ha pagado todas las cuotas
+                Boolean banderaPagados = true;
+                foreach (var itempago in inscripto.listaPagos)
+                {
+                    if (!itempago.estaPagado)
+                    {
+                        banderaPagados = false;
+                        break;
+                    }
+                }
+
+                if (banderaPagados) {
+                    inscripto.estado = "PAGADO";
+                    ControlInscripcion.devolverInstacia().update(inscripto);
+                }
+
+
                 return Ok(_pago);
             }
             catch (UsuarioException ex)

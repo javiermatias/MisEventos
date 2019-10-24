@@ -223,6 +223,29 @@ namespace Renacer.Nucleo.Control
 
         }
 
+        public void update(Inscripcion inscripcion)
+        {
+            try
+            {
+
+                using (var db = new ModeloRenacer())
+                {
+
+
+                    db.inscripcion.AddOrUpdate(inscripcion);
+                    db.SaveChanges();
+                }
+            }
+            catch (UsuarioException ex)
+            {
+                ServicioSentry.devolverSentry().informarExcepcionUsuario(ex);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                ServicioSentry.devolverSentry().informarExcepcion(ex);
+            }
+        }
 
         private List<string> validar(Inscripcion inscripcion)
         {
