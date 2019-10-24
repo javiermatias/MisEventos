@@ -80,6 +80,22 @@ namespace Renacer.Nucleo.Control
             return null;
         }
 
+        public List<MatriculaXSocio> devolverXSocio(int _id)
+        {
+            try
+            {
+                using (var db = new ModeloRenacer())
+                {
+                    return db.matriculaXSocio.Where(x => x.idSocio.Equals(_id)).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                ServicioSentry.devolverSentry().informarExcepcion(ex);
+            }
+            return null;
+        }
+
         /// <summary>
         /// Metodo utilizado para devolver todos los MatriculaXSocio
         /// SELECT * FROM MatriculaXSocio

@@ -26,7 +26,10 @@ namespace Renacer.Nucleo.Entidades
 
         public DateTime fechaCreacion { get; set; }
          public DateTime? fechaBaja { get; set; }
-       // public DateTime? fechaModificacion { get; set; }
+
+        public String estado { get; set; } = "ADEUDADO"; // PAGADO ADEUDADO
+       
+        // public DateTime? fechaModificacion { get; set; }
 
     }
 }

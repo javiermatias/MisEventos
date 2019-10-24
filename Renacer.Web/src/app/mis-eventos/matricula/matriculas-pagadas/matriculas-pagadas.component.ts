@@ -3,8 +3,7 @@ import { MatriculaxsocioService } from '../../../servicios/matriculaxsocio.servi
 import { MatriculaXsocio } from '../../../modelos/matricula-xsocio';
 import { SocioServices, SocioMatriculaServices, Socio } from '../../../servicios/socio.service';
 import { Matricula } from '../../../modelos/matricula';
-import { MatriculaServices } from '../../../servicios/matricula.service';
-import { Array } from 'core-js';
+
 /* import 'jspdf';
 import 'jspdf-autotable';
 declare let jsPDF; */
