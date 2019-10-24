@@ -2,7 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "importHelpers": true,
-    "outDir": "../Renacer.WebAPI/dist/out-tsc",
+    "outDir": "D:/release_miseventos/dist",
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
