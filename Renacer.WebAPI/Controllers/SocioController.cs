@@ -72,9 +72,9 @@ namespace Renacer.WebAPI.Controllers
             }
         }
         // PUT: api/cliente/5
-        public void Put(int id, [FromBody]Socio value)
+        public void Put([FromBody]Socio value)
         {
-            var socio = ControlSocio.devolverInstancia().devolver(id);
+            //var socio = ControlSocio.devolverInstancia().devolver(id);
             //value.fechaModificacion = DateTime.Now;
             ControlSocio.devolverInstancia().grabar(value);
         }

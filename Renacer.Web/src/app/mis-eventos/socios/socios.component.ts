@@ -2,11 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 ////import { Socio, SocioServices, Contacto, Domicilio } from '../../resources/socio.service';
 import { FormGroup } from '@angular/forms';
 import { DatePipe } from '@angular/common';
-import { ToastrService, ToastrConfig } from 'ngx-toastr';
-import { DomicilioComponent } from './domicilio/domicilio.component';
-import { TipoDocumento } from '../../servicios/tipo-documento.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { PersonaServices, Persona, Contacto, Domicilio } from '../../servicios/persona.service';
+import { ToastrService} from 'ngx-toastr';
+import {  Router } from '@angular/router';
 import { Socio, SocioServices } from '../../servicios/socio.service';
 import { sexo, estadoCivil } from '../../modelos/enums';
 
@@ -17,10 +14,6 @@ import { sexo, estadoCivil } from '../../modelos/enums';
 export class SociosComponent implements OnInit {
 
   public _socio = new Socio(0, "", "", "");
-  public _persona = new Persona(0, "", "", "");
-  //@Input() socios = new Array<Socio>();
-  @Input() personas = new Array<Persona>();
-
   public socios =new Array<Socio>();
   public showDetail: boolean = false;
   public searchText: string = "";
@@ -32,10 +25,9 @@ export class SociosComponent implements OnInit {
   //detaFactura = DetalleFActura
   constructor(
     //private _socioService: SocioServices,
-    private _personaService: PersonaServices,
+    
     private _socioService: SocioServices
-    , private mensajeServ: ToastrService
-    , private route: ActivatedRoute
+    , private mensajeServ: ToastrService   
     , private router: Router
     , private datePipe: DatePipe) {
     this.getItems();
@@ -58,15 +50,15 @@ export class SociosComponent implements OnInit {
     }); 
 
   }
-  verItem(item: Persona) {
+  verItem(item: Socio) {
     this._socioService.get(item.id).subscribe(resp => {
       this._socio = resp;
       this.showDetail = true;
     });
   }
 
-  eliminarItem(item: Persona) {
-    this._personaService.remove({ 'id': item.id }).subscribe(resp => {
+  eliminarItem(item: Socio) {
+    this._socioService.remove({ 'id': item.id }).subscribe(resp => {
       this.mensajeServ.info('Se ha dado de baja el socio', 'Aviso!');
       this.router.navigate(['/pages/socios']);
     })
@@ -74,8 +66,6 @@ export class SociosComponent implements OnInit {
 
   nuevoItem() {
     this._socio = new Socio(0, "", "", "");
-/*     this._persona.domicilio = new Domicilio();
-    this._persona.contacto = new Contacto(); */
     this.showDetail = true;
   }
 
@@ -83,7 +73,7 @@ export class SociosComponent implements OnInit {
     console.log(fecha);
     let newDate = new Date(fecha);
     //console.log(newDate);
-    this._persona.fechaNacimiento = newDate;
+    this._socio.fechaNacimiento = newDate;
 
   }
   limpiarForm() {

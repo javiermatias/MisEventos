@@ -44,9 +44,8 @@ namespace Renacer.Nucleo.Control
                     socio.idTipoDoc = socio.tipoDoc.id;
                     Tag[] listaTags = new Tag[socio.listaTags.Count];
                     socio.listaTags.CopyTo(listaTags);
-                    socio.listaTags.RemoveAll(tag => true);
+                    socio.listaTags.RemoveAll(tag => true);                    
                     
-                    db.socio.AddOrUpdate(socio);
 
                     if (socio.domicilio.id == 0) db.Entry(socio.domicilio).State = System.Data.Entity.EntityState.Added;
                     if (socio.domicilio.id > 0)  db.Entry(socio.domicilio).State = System.Data.Entity.EntityState.Modified;
@@ -55,10 +54,11 @@ namespace Renacer.Nucleo.Control
                     if (socio.contacto.id > 0) db.Entry(socio.contacto).State = System.Data.Entity.EntityState.Modified;
 
                     db.Entry(socio.tipoDoc).State = System.Data.Entity.EntityState.Unchanged;
-                    db.SaveChanges();
+                    //db.SaveChanges();
 
                     Socio socioAux = db.socio.Include("listaTags").Single(a => a.id == socio.id);
                     ControlTag.devolverInstancia().actualizarListaDeTags(db, listaTags, socioAux.listaTags);
+                    db.socio.AddOrUpdate(socio);
                     db.SaveChanges();
                 }
             }

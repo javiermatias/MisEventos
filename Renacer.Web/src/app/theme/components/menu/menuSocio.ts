@@ -10,7 +10,7 @@ export const itemsSocio = [
   {
     title: 'Mis Datos',
     selected: false,
-    routerLink: 'perfil',
+    routerLink: 'mis-datos',
     icon: 'fa-user',
     expanded: false,
     order: 800,
