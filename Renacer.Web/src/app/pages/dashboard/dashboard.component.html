@@ -106,9 +106,30 @@
    </div>
 </div> 
 
-
-<!-- <div class="row">
-  <div class="col-12">
-    <az-datamap></az-datamap>
+<div *ngIf="user.rol == 'SOCIO'">
+    <div class="row"> 
+<div class="col-xl-4 col-lg-4 col-12 bottom-30" *ngFor="let item of eventos" >              
+    <div widget class="card">
+      <div class="card-header">
+          <span>{{item.nombre}}</span>
+          <div class="widget-controls">              
+              <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
+              <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
+              <a data-widgster="fullscreen" href="#" class="transition"><i class="fa fa-expand"></i></a>
+              <a data-widgster="restore" href="#" class="transition"><i class="fa fa-compress"></i></a>                          
+              <a data-widgster="close" href="#" class="transition"><i class="fa fa-times"></i></a>
+          </div>        
+      </div>
+      <div class="card-block widget-body">
+          <div class="media">
+              <img class="d-flex align-self-center mr-3" src="assets/img/profile/bruno.jpg" width="70" alt="Generic placeholder image">
+              <div class="media-body">
+                  <h4 class="mt-0">{{item.nombre}}</h4>
+                 <p>{{item.descripcion}}</p>
+              </div>
+          </div>
+      </div>
   </div>
-</div> -->
+</div>
+</div>
+</div>

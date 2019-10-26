@@ -20,11 +20,12 @@ export class SociosComponent implements OnInit {
 
   public _sexo = sexo; //traido de un enum
 
-  public _estadoCivil=estadoCivil;
+  public _estadoCivil=estadoCivil;//traido de un enum
 
-  //detaFactura = DetalleFActura
+  public fecha:Date;
+
   constructor(
-    //private _socioService: SocioServices,
+    
     
     private _socioService: SocioServices
     , private mensajeServ: ToastrService   
@@ -70,10 +71,8 @@ export class SociosComponent implements OnInit {
   }
 
   actualizarFecha(fecha: string) {
-    console.log(fecha);
-    let newDate = new Date(fecha);
-    //console.log(newDate);
-    this._socio.fechaNacimiento = newDate;
+    this.fecha = new Date(fecha);
+    console.log(this.fecha);
 
   }
   limpiarForm() {
@@ -81,6 +80,7 @@ export class SociosComponent implements OnInit {
     this.showDetail = false;
   }
   saveItem(item: Socio): any {
+    item.fechaNacimiento = this.fecha;    
       this._socioService.save(item).subscribe(resp => {
         item = resp;
         this.socios.push(item);

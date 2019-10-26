@@ -3,6 +3,7 @@ import { MatriculaxsocioService } from '../../../servicios/matriculaxsocio.servi
 import { MatriculaXsocio } from '../../../modelos/matricula-xsocio';
 import { SocioServices, SocioMatriculaServices, Socio } from '../../../servicios/socio.service';
 import { Matricula } from '../../../modelos/matricula';
+import { DatePipe } from '@angular/common';
 
 /* import 'jspdf';
 import 'jspdf-autotable';
@@ -26,14 +27,17 @@ export class MatriculasPagadasComponent implements OnInit {
   largo: string;
 
   filtro: string;
-
+   columns = [];
+   rows = [];
+  
 
 
   @ViewChild('contenidoTabla', {static: false}) tabla: ElementRef;
 
   constructor(private _matriculaxsocioService: MatriculaxsocioService,
     private _matriculaService: SocioMatriculaServices,
-    private _socioService: SocioServices ) { }
+    private _socioService: SocioServices,
+    private datePipe: DatePipe ) { }
 
   ngOnInit() {
     this.filtro = 'pagadas';
@@ -75,9 +79,17 @@ export class MatriculasPagadasComponent implements OnInit {
     switch (this.filtro) {
       case ('pagadas'):
         this.getMatriculasPagadas();
+    /*     this.matriculas.forEach(item => {
+          let items = [item.socio.nombre +''+item.socio.apellido,item.matricula.anio,item.matricula.valor,item.fechaPago];
+          this.rows.push(items);
+        }   
+        );
+        console.log(this.rows); */
+        
       break;
       case ('sinPagar'):
         this.matriculasSinPagar();
+        
       break;
 
 
@@ -85,41 +97,29 @@ export class MatriculasPagadasComponent implements OnInit {
 }
 
 Imprimir(){
-  /* let doc = new jsPDF();
-  var totalPagesExp = "1";
 
-  let columns = ["ID", "Name", "Country"];
-  let rows = [
-      [1, "Shaw", "Tanzania"],
-      [2, "Nelson", "Kazakhstan"],
-      [3, "Garcia", "Madagascar"],
-  ];
-
-  var img = new Image();
-  img.src = "../../assets/img/logo/az_logo_full.png"
-  //assets/img/logo/az_logo_full.png
-  var header = function (data) {
-    doc.addImage(img, 'PNG', 0, 0);
-    //doc.addImage(image base64_source, 'image format', logo_sizes.centered_x, _y, logo_sizes.w, logo_sizes.h);
-    //Image must be Base64 encoded
-};
-
-  //doc.addImage(img, 'PNG', 0, 0);
-  doc.autoTable(columns, rows,{margin: {top: 30}, beforePageContent: header})
-  doc.save('table.pdf');  */
-  let columns = [["ID", "Name", "Country"]];
-  let rows = [
-      [1, "Shaw", "Tanzania"],
-      [2, "Nelson", "Kazakhstan"],
-      [3, "Garcia", "Madagascar"],
-  ];
+  
+  this.rows = [];
   let title = '';
   switch (this.filtro) {
     case ('pagadas'):
      title = 'Socios que pagaron la matricula del año 2019'; //anio 2019 sin harcode
+     this.columns = [["Socio", "Matricula", "Monto","Fecha Pago"]];
+     this.matriculas.forEach(item => {
+       let items = [item.socio.nombre +' '+ item.socio.apellido,this.datePipe.transform(item.matricula.anio, 'yyyy'),'$' + item.matricula.valor,this.datePipe.transform(item.fechaPago, 'dd-MM-yyyy')];
+       this.rows.push(items);
+     }   
+     );
+     console.log(this.rows);
     break;
     case ('sinPagar'):
       title = 'Socios que adeudan la matricula del año 2019';//anio 2019 sin harcode
+      this.columns = [["Socio", "Matricula", "Monto"]];
+      this.matriculas.forEach(item => {
+        let items = [item.socio.nombre +' '+ item.socio.apellido,this.datePipe.transform(item.matricula.anio, 'yyyy'),'$' + item.matricula.valor];
+        this.rows.push(items);
+      }   
+      );
     break;
   }
 
@@ -132,8 +132,8 @@ Imprimir(){
  
 
   doc.autoTable({
-      head: columns,
-      body: rows,
+      head: this.columns,
+      body: this.rows,
     //startY: 50, 
       didDrawPage: function (data) {
           // Header
@@ -168,7 +168,7 @@ Imprimir(){
   }
 
 
-  doc.save('table.pdf'); 
+  doc.save('matriculas.pdf'); 
 
 
 
