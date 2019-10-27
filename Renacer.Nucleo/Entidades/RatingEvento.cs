@@ -22,8 +22,9 @@ namespace Renacer.Nucleo.Entidades
         [ForeignKey("idSocio")]
         public Socio socio { get; set; }
 
-       
+  
 
-      
+
+
     }
 }

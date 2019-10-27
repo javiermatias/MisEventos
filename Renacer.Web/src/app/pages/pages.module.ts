@@ -55,6 +55,7 @@ import { SocioInscripcionComponent } from '../mis-eventos/socios/socio-inscripci
 import { DetalleComponent } from '../mis-eventos/socios/socio-inscripcion/detalle/detalle.component';
 import { MisPagosComponent } from '../mis-eventos/socios/mis-pagos/mis-pagos.component';
 import { MisDatosComponent } from '../mis-eventos/socios/mis-datos/mis-datos.component';
+import { MisInteresesComponent } from '../mis-eventos/socios/mis-intereses/mis-intereses.component';
 
 
 @NgModule({
@@ -116,8 +117,9 @@ import { MisDatosComponent } from '../mis-eventos/socios/mis-datos/mis-datos.com
     SocioInscripcionComponent,
     DetalleComponent,
     MisPagosComponent,
-    MisDatosComponent
-   // LoginComponent 
+    MisDatosComponent,
+    MisInteresesComponent
+  
   ]
   , exports: [
     BreadcrumbComponent,

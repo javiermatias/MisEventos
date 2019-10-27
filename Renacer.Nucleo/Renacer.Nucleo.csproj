@@ -142,6 +142,10 @@
     <Compile Include="Migrations\201910240358280_agregadoEstadoInscripcion.Designer.cs">
       <DependentUpon>201910240358280_agregadoEstadoInscripcion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910272002472_cambioInscripcionEncuesta.cs" />
+    <Compile Include="Migrations\201910272002472_cambioInscripcionEncuesta.Designer.cs">
+      <DependentUpon>201910272002472_cambioInscripcionEncuesta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
     <Compile Include="myMigrationSQLGenerator.cs" />
@@ -171,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910240358280_agregadoEstadoInscripcion.resx">
       <DependentUpon>201910240358280_agregadoEstadoInscripcion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910272002472_cambioInscripcionEncuesta.resx">
+      <DependentUpon>201910272002472_cambioInscripcionEncuesta.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

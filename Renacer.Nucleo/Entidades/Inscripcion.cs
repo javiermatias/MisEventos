@@ -27,8 +27,11 @@ namespace Renacer.Nucleo.Entidades
         public DateTime fechaCreacion { get; set; }
          public DateTime? fechaBaja { get; set; }
 
-        public String estado { get; set; } = "ADEUDADO"; // PAGADO ADEUDADO
-       
+        //si pago el curso entero
+        public String estado { get; set; } = "ADEUDADO"; // PAGADO ADEUDADO 
+
+        //si completo la encuesta
+        public bool estadoEncuesta { get; set; } = false; // false no hecha, true hecha
         // public DateTime? fechaModificacion { get; set; }
 
     }

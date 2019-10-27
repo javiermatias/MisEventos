@@ -89,6 +89,7 @@ export class Inscripcion {
     public fechaCreacion?: Date,  
     public fechaBaja?: Date,
     public estado ?: string,
+    public estadoEncuesta?:Boolean
   ) {
     //this.evento = new Evento(this.idEvento);
     //this.listaPagos = new Array<Pago>();

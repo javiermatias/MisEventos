@@ -1,7 +1,5 @@
 <p class="card-text">
-  Most common case is showing data from backend
-  API and with ng-select this is extremely simple since you can bind directly to
-  observable when using angular <b> | async</b> pipe
+ Seleccione el evento:
 </p>
 
 <ng-select [items]="eventos" bindLabel="nombre" autofocus bindValue="id" notFoundText="No se encontraron eventos"
@@ -9,7 +7,9 @@
 
 </ng-select>
 
-<br />Selected: {{idEvento}}
+<br>
+<br>
+<!-- <br />Selected: {{idEvento}} -->
 <div class="row" *ngIf="showDeudores">
 
   <div class="col-xl-6 col-lg-6 col-12 bottom-30">
@@ -27,10 +27,10 @@
                          
                       </div>        
                   </div>
-              
+                  <div class="card-block widget-body">
                   <div id="accordion" role="tablist" aria-multiselectable="true">
                       <!--   href="#collapseTwo" -->
-                      <div class="card card-primary" *ngFor="let deuda of listaDeudas; let index = index">
+                      <div class="card" *ngFor="let deuda of listaDeudas; let index = index">
                         <div class="card-header" role="tab" id="headingTwo">
                           <h5 class="mb-0">
                             <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse{{deuda.idCuota}}"
@@ -56,7 +56,7 @@
                 
                     </div>
 
-
+                  </div>
 
 
 
@@ -71,12 +71,6 @@
   </div>
 
 
-
-
-
-
-  <!-- col-xl-4 col-lg-4 col-md-6 col-sm-12 bottom-30 -->
-  <!-- col-xl-6 col-lg-6 col-12 bottom-30 -->
   <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 bottom-30">
     <div widget class="card">
       <div class="card-header">

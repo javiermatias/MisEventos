@@ -55,7 +55,11 @@
                     <td><strong>{{item.anio | date:"yyyy"}}</strong></td>
                     <td>{{item.valor}}</td>
                     <td>{{item.fechaVencimiento | date:"dd/MM/yyyy"}}</td>
-                    <td>{{item.estado}}</td>
+                    <td>
+                        <span class="alert-success" *ngIf="item.estado == 'Activa'">{{item.estado}}</span>
+                        <span class="alert-danger" *ngIf="item.estado == 'Baja'">{{item.estado}}</span>
+                      
+                    </td>
                     <td *ngIf="item.estado == 'Activa'; else other_content">
                       <a style="color: #014c8c;cursor:pointer;" (click)="verItem(item)">Ver</a>
                     <td>

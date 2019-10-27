@@ -34,7 +34,7 @@ export class MisDatosComponent implements OnInit {
   traerSocio(item: Number) {
     this._socioService.get(item).subscribe(resp => {
       this._socio = resp;
-      console.log(this._socio );
+      //console.log(this._socio );
       
     });
   }
@@ -43,16 +43,16 @@ export class MisDatosComponent implements OnInit {
     
     //let newDate = new Date(this._socio.fechaNacimiento);
     this._socio.fechaNacimiento = this.fecha;
-    console.log(this._socio);
+   // console.log(this._socio);
     this._socioService.update(this._socio).subscribe(resp => {
             this.mensajeServ.success('se han guardado los cambios!', 'Aviso!');
     }); 
 }
 actualizarFecha(fecha: string) {
-  //console.log(fecha);
+  
   this.fecha = new Date(fecha);
   console.log(this.fecha);
-  //this._socio.fechaNacimiento = newDate;
+
 
 }
 }
