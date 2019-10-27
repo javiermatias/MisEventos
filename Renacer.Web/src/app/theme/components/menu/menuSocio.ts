@@ -33,7 +33,7 @@ export const itemsSocio = [
   },  
   {
     title: 'Mis Intereses',
-    routerLink: 'intereses',
+    routerLink: 'mis-intereses',
     icon: 'fa-users',
     selected: false,
     expanded: false,

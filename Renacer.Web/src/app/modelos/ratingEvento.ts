@@ -1,4 +1,4 @@
-import { Evento } from "../servicios/evento.service";
+import { Evento, Inscripcion } from "../servicios/evento.service";
 import { Socio } from "../servicios/socio.service";
 
 export class Rating {
@@ -8,9 +8,10 @@ export class Rating {
     ratingEncargado: number;
     idEvento: number;
     evento:Evento;   
-
     idSocio: number; 
     socio:Socio;
-    textoDescripcion: string;
+    textoDescripcion:string;
+
+  
 
 }

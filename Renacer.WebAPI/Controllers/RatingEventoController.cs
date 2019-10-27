@@ -24,7 +24,12 @@ namespace Renacer.WebAPI.Controllers
         {
             try
             {
+                Inscripcion inscripcion = ControlInscripcion.devolverInstacia().devolverXsocioXevento(value.idEvento,value.idSocio);
+                
                 ControlRating.devolverInstacia().grabar(value);
+                inscripcion.estadoEncuesta = true;
+                ControlInscripcion.devolverInstacia().update(inscripcion);
+
                 return Ok(value);
             }
             catch (Exception ex)

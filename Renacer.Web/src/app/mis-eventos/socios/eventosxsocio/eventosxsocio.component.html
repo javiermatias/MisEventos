@@ -67,9 +67,14 @@
 
                     </td>
                     <td>
-                      <span class="col col-3" *ngIf="item.evento.estado == 'Finalizado'">
+                        
+                      <span class="col col-3" *ngIf="item.evento.estado == 'Finalizado' && !item.estadoEncuesta">
                         <i style="cursor:pointer; align-content: center" [routerLink]="['/pages/opinion-evento/', item.evento.id]" 
-                          class="fa fa-star-o"></i>
+                          class="fa fa-star-o"></i>{{item.evento.estadoEncuesta}}
+                      </span> 
+                      <span class="col col-3" *ngIf="item.evento.estado == 'Finalizado' && item.estadoEncuesta">
+                        <i style="cursor:pointer; align-content: center" [routerLink]="['/pages/opinion-evento/', item.evento.id]" 
+                          class="fa fa-check"></i>
                       </span>
                     </td>
 
