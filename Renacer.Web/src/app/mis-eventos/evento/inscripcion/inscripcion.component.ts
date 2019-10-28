@@ -50,17 +50,18 @@ export class InscripcionComponent implements OnInit {
         this.eventos = items;
         }
        );
-      
+
   }
 
-  traerInscripciones(idEvento:number){
-    
-    this.inscripcionServ.query({'idEvento':idEvento}).subscribe(items => {
-      this.listaInscripcion = items;    
-      this.mostrarGrilla=true;
+  traerInscripciones(idEvento: number) {
+
+    this.inscripcionServ.query({'idEvento': idEvento}).subscribe(items => {
+      if (items != null) { this.listaInscripcion = items; }
+
+      this.mostrarGrilla = true;
       }
      );
-    
+
 }
 
 
