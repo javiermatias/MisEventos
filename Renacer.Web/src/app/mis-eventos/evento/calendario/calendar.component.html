@@ -31,8 +31,7 @@
                             [plugins]="calendarPlugins"
                             [weekends]="calendarWeekends"
                             [minTime]="'07:00:00'"
-                            [lang]="'es'"
-                            [locale]="'es'"
+                            [locale]="lang"
                             [events]="calendarEvents"
                             (eventClick)="handleEventClick($event)"
                         ></full-calendar>
