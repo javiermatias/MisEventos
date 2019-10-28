@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
-import { AppConfig } from "../../app.config";
+import { AppConfig } from '../../app.config';
 import { DashboardService } from './dashboard.service';
 import { ReporteServices } from '../../servicios/reporte.service';
 import { UserServices } from '../../servicios/users.service';
@@ -29,10 +29,10 @@ export class DashboardComponent {
     public configFn: any;
     public bgColor: any;
     public date = new Date();
-    public cantCursos = -1;
+    public cantCursosEnProgreso = -1;
     public cantEncargados = -1;
     public cantSocios = -1;
-    public cantEventos = -1;
+    public cantEventosFinalizados = -1;
     public cantAsistencias = -1;
     public cantEspacios = -1;
     public crecimientoSocios = [];
@@ -53,25 +53,25 @@ export class DashboardComponent {
     ngOnInit() {
         //this.rol = this._rolService.getCurrent();
         this.user = this._userServices.getCurrent();
-        if (this.user.rol == "ADMIN") this.loadAdminData(); // TODO: actualizar esto. Debe verse por permisos y no por rol
-        if (this.user.rol == "ENCARGADO") this.loadEncargadoData();
-        if (this.user.rol == "SOCIO") {
+        if (this.user.rol === 'ADMIN') { this.loadAdminData(); } // TODO: actualizar esto. Debe verse por permisos y no por rol
+        if (this.user.rol === 'ENCARGADO') { this.loadEncargadoData(); }
+        if (this.user.rol === 'SOCIO') {
             this.loadSocioData();
             this.getItems();
         }
-        if (this.user.rol == "SECRETARIO") this.loadSecretariaData();
+        if (this.user.rol === 'SECRETARIO') { this.loadSecretariaData(); }
 
     }
 
     getItems() {
         this._itemsService.query({ 'search': ' ' }).subscribe(items => {
             items.sort(function (a, b) {
-                let c = new Date(a.fechaDesde);
-                let d = new Date(b.fechaDesde);
+                const c = new Date(a.fechaDesde);
+                const d = new Date(b.fechaDesde);
                 return d > c ? -1 : d < c ? 1 : 0;
             });
-            this.eventos=items;
-          /*   this.eventosOriginal = items;            
+            this.eventos = items;
+          /*   this.eventosOriginal = items;
             this.eventos = items.filter((item: Evento) => {
                 return this.datePipe.transform(item.fechaDesde, 'yyyy-MM-dd') >= this.fechaDesde;
             }); */
@@ -80,24 +80,24 @@ export class DashboardComponent {
         );
     }
     public loadAdminData(): void {
-        var self = this;
-        this._reporteServ.getEntidadCount({ "Entidad": "cursos" }).subscribe(function (count) {
-            self.cantCursos = count.count;
+        const self = this;
+        this._reporteServ.getEntidadCount({ 'Entidad': 'cursos-en-progreso' }).subscribe(function (count) {
+            self.cantCursosEnProgreso = count.count;
         });
 
-        this._reporteServ.getEntidadCount({ "Entidad": "eventos" }).subscribe(function (count) {
-            self.cantEventos = count.count;
+        this._reporteServ.getEntidadCount({ 'Entidad': 'eventos-finalizados' }).subscribe(function (count) {
+            self.cantEventosFinalizados = count.count;
         });
-        this._reporteServ.getEntidadCount({ "Entidad": "socios" }).subscribe(function (count) {
+        this._reporteServ.getEntidadCount({ 'Entidad': 'socios' }).subscribe(function (count) {
             self.cantSocios = count.count;
         });
-        /*   this._reporteServ.getEntidadCount({"Entidad":"asistencias"},function(count){
+        /*   this._reporteServ.getEntidadCount({'Entidad':'asistencias'},function(count){
               self.cantAsistencias = count.count;
           }); */
-        this._reporteServ.getEntidadCount({ "Entidad": "encargados" }).subscribe(function (count) {
+        this._reporteServ.getEntidadCount({ 'Entidad': 'encargados' }).subscribe(function (count) {
             self.cantEncargados = count.count;
         });
-        this._reporteServ.getEntidadCount({ "Entidad": "espacios" }).subscribe(function (count) {
+        this._reporteServ.getEntidadCount({ 'Entidad': 'espacios' }).subscribe(function (count) {
             self.cantEspacios = count.count;
         });
 

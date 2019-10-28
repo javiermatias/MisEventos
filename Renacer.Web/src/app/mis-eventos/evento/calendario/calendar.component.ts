@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ViewChild, Output, EventEmitter,OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, ViewChild, Output, EventEmitter, OnInit } from '@angular/core';
 import { AppConfig } from '../../../app.config';
 import 'style-loader!fullcalendar/dist/fullcalendar.min.css';
 import { DetalleEventoServices, DetalleEvento} from '../../../servicios/evento.service'
@@ -9,7 +9,7 @@ import { EventInput } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGrigPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
-
+import esLocale from '@fullcalendar/core/locales/es';
 
 @Component({
   selector: 'app-calendar',
@@ -33,6 +33,27 @@ export class CalendarComponent
     right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
   }
 
+  lang  = {
+    code: 'es',
+    week: {
+        dow: 1,
+        doy: 4 // The week that contains Jan 4th is the first week of the year.
+    },
+    buttonText: {
+        prev: 'Ant',
+        next: 'Sig',
+        today: 'Hoy',
+        month: 'Mes',
+        week: 'Semana',
+        day: 'Día',
+        list: 'Agenda'
+    },
+    weekLabel: 'Sm',
+    allDayHtml: 'Todo<br/>el día',
+    eventLimitText: 'más',
+    noEventsMessage: 'No hay eventos para mostrar'
+};
+
   @Output() nuevoItemEvent: EventEmitter<string> = new EventEmitter();
   @ViewChild('calendar', {static: true}) calendarComponent: FullCalendarComponent; // the #calendar in the template
 
@@ -46,6 +67,7 @@ export class CalendarComponent
     private _espacioService: EspacioServices,
     private _calendarioService: CalendarioServices ) {
     this.config = this._appConfig.config;
+
   }
 
 addEvent(event): void {
@@ -128,6 +150,7 @@ cargarEventos() {
       this.calendarEvents = this.calendarEvents.concat(itemAux);
     }
   });
+
 }
 
   addDays(date, days) {
