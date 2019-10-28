@@ -54,8 +54,10 @@ namespace Renacer.Nucleo.Control
             long count = 0;
             switch (entidad)
             {
-                case "cursos":
-                    count = this.GetCursosCount(); break;
+                case "cursos-en-progreso":
+                    count = this.GetCursosEnProgresoCount(); break;
+                case "eventos-finalizados":
+                    count = this.GetEventosDetalleFinalizados(); break;
                 case "socios":
                     count = this.GetSociosCount(new filterSocio()); break;
                 case "asistencias":
@@ -260,10 +262,10 @@ group by DAYOFWEEK(fechaAsistencia)
             var DbHelper = new DBBase(strConnection);
             return (Int64)DbHelper.ExecuteScalar("SELECT COUNT(*) FROM encargado where ISNULL(fechaBaja)");
         }
-        private Int64 GetCursosCount()
+        private Int64 GetCursosEnProgresoCount()
         {
             var DbHelper = new DBBase(strConnection);
-            return (Int64)DbHelper.ExecuteScalar("SELECT COUNT(*) FROM evento where ISNULL(fechaBaja)");
+            return (Int64)DbHelper.ExecuteScalar("SELECT COUNT(*) FROM evento where ISNULL(fechaBaja) AND Estado = 'Progreso'");
         }
         private Int64 GetEspaciosCount()
         {
@@ -275,6 +277,13 @@ group by DAYOFWEEK(fechaAsistencia)
             var DbHelper = new DBBase(strConnection);
             return (Int64)DbHelper.ExecuteScalar("SELECT COUNT(*) FROM detalleevento where fechaDesde < NOW() AND ISNULL(fechaBaja)");
         }
+
+        private Int64 GetEventosDetalleFinalizados()
+        {
+            var DbHelper = new DBBase(strConnection);
+            return (Int64)DbHelper.ExecuteScalar("SELECT COUNT(*) FROM detalleevento where fechaHasta < NOW() AND ISNULL(fechaBaja)");
+        }
+
         private Int64 GetAsistenciasCount()
         {
             var DbHelper = new DBBase(strConnection);
