@@ -1,0 +1,5 @@
+Preguntas:
+
+-Reportes por un lado, y estadisticas por el otro?
+-Mostrar Cronograma.
+-Matriculas pagadas.
