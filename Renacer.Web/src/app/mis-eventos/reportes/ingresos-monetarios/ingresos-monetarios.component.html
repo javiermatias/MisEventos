@@ -1,6 +1,14 @@
  <div class="row" style="justify-content:center;">
   
-    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 bottom-30">
+  <div class="col-lg-6 col-md-12 col-sm-12 bottom-30">
+    <app-tabla 
+      [data]="IngresosTipoEventoResponse" 
+      name="ingresos_por_tipo_de_evento"
+      [config]="tablaConfig">
+    </app-tabla>
+  </div>  
+  
+  <div class="col-lg-6 col-md-12 col-sm-12 bottom-30">
       <div class="float-box bottom-30">
         <div class="card">
 
@@ -25,16 +33,26 @@
           </div>
         </div>
       </div>
+     </div>
     </div>
-    
 
-    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 bottom-30">
+
+    <div class="row" style="justify-content:center;">
+      <div class="col-lg-6 col-md-6 col-sm-12 bottom-30">
+        <app-tabla 
+          [data]="IngresosTipoData" 
+          name="ingresos_por_tipo"
+          [config]="tablaConfig">
+        </app-tabla>
+      </div>
+
+      <div class="col-lg-6 col-md-6 col-sm-12 bottom-30">
         <div class="float-box bottom-30">
           <div class="card">
             
-              <div class="card-header">
-                  <span>Ingresos por tipo</span>
-              </div>
+            <div class="card-header">
+                <span>Ingresos por tipo</span>
+            </div>
 
             <div class="media">
               <div class="card-block widget-body">
@@ -47,7 +65,7 @@
                           [chartType]="'doughnut'"
                           (chartHover)="chartHovered($event)"
                           (chartClick)="chartClicked($event)"></canvas>
-              </div> 
+                </div> 
   
               </div>
             </div>
@@ -55,9 +73,19 @@
         </div>
       </div>
 
+    </div>
 
-
-    <div class="col-lg-8 col-md-12 col-sm-12 bottom-30">
+  
+<div class="row" style="justify-content:center;">
+    <div class="col-lg-6 col-md-6 col-sm-12 bottom-30">
+      <app-tabla 
+        [data]="IngresosTipoEventoResponse" 
+        name="ingresos_en_el_tiempo"
+        [config]="tablaConfig">
+      </app-tabla>
+    </div>  
+  
+    <div class="col-lg-6 col-md-6 col-sm-12 bottom-30">
         <div class="float-box bottom-30">
           <div class="card">
 
@@ -70,7 +98,7 @@
               <div class="card-block widget-body">
                 <div class="chart-outher"> 
                  
-                    <canvas baseChart
+                  <canvas baseChart
                     [datasets]="lineChartData"
                     [labels]="lineChartLabels"
                     [options]="lineChartOptions"
@@ -85,6 +113,6 @@
             </div>
           </div>
         </div>
-      </div>
+    </div>
            
  </div> 

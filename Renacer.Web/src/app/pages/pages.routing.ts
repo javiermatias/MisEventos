@@ -18,9 +18,6 @@ import { RecordatoriosComponent } from '../mis-eventos/recordatorios/recordatori
 import { PagoCuotaComponent } from '../mis-eventos/pagos/pago-cuota/pago-cuota.component';
 import { CambioContraseniaComponent } from '../mis-eventos/usuarios/cambio-contrasenia/cambio-contrasenia.component';
 
-//import { LoginComponent } from './login/login.component';
-
-
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ChartingModule } from './charting/charting.module';
 import { EventoModule } from '../mis-eventos/evento/evento.module';
@@ -50,22 +47,22 @@ export const routes: Routes = [
         component: PagesComponent,
         children: [
             { path: '', redirectTo: 'login', pathMatch: 'full' },
-            { path: 'dashboard', loadChildren: ()=> DashboardModule, data: { breadcrumb: 'Dashboard' } },
-            { path: 'charts', loadChildren:  ()=> ChartingModule , data: { breadcrumb: 'Charts' } },
-            { path: 'maps', loadChildren:  ()=> MapsModule, data: { breadcrumb: 'Maps' } },
+            { path: 'dashboard', loadChildren: () => DashboardModule, data: { breadcrumb: 'Dashboard' } },
+            { path: 'charts', loadChildren:  () => ChartingModule , data: { breadcrumb: 'Charts' } },
+            { path: 'maps', loadChildren:  () => MapsModule, data: { breadcrumb: 'Maps' } },
             { path: 'search', component: SearchComponent, data: { breadcrumb: 'Search' } },
             { path: 'blank', component: BlankComponent, data: { breadcrumb: 'Blank page' } },            	
-            { path: 'ui', loadChildren:  ()=> UiModule, data: { breadcrumb: 'UI' } },
-            { path: 'tools', loadChildren:  ()=> ToolsModule, data: { breadcrumb: 'Tools' } },		
-            { path: 'mail', loadChildren:  ()=> MailModule, data: { breadcrumb: 'Mail' } },		
-            { path: 'calendar', loadChildren:  ()=> CalendarModule, data: { breadcrumb: 'Calendar' } },		
-            { path: 'form-elements', loadChildren:  ()=> FormElementsModule, data: { breadcrumb: 'Form Elements' } },		
-            { path: 'tables', loadChildren:  ()=> TablesModule, data: { breadcrumb: 'Tables' } },		
-            { path: 'editors', loadChildren:  ()=> EditorsModule, data: { breadcrumb: 'Editors' } },		
+            { path: 'ui', loadChildren:  () => UiModule, data: { breadcrumb: 'UI' } },
+            { path: 'tools', loadChildren:  () => ToolsModule, data: { breadcrumb: 'Tools' } },		
+            { path: 'mail', loadChildren:  () => MailModule, data: { breadcrumb: 'Mail' } },		
+            { path: 'calendar', loadChildren:  () => CalendarModule, data: { breadcrumb: 'Calendar' } },		
+            { path: 'form-elements', loadChildren:  () => FormElementsModule, data: { breadcrumb: 'Form Elements' } },		
+            { path: 'tables', loadChildren:  () => TablesModule, data: { breadcrumb: 'Tables' } },		
+            { path: 'editors', loadChildren:  () => EditorsModule, data: { breadcrumb: 'Editors' } },		
          
 //Comienza lo propio de mis-eventos
-            { path: 'evento', loadChildren:  ()=> EventoModule , data: { breadcrumb: 'Eventos' } },
-            { path: 'reportes', loadChildren:  ()=> ReporteModule , data: { breadcrumb: 'Reportes' } },            
+            { path: 'evento', loadChildren:  () => EventoModule , data: { breadcrumb: 'Eventos' } },
+            { path: 'reportes', loadChildren:  () => ReporteModule , data: { breadcrumb: 'Reportes' } },            
             { path: 'socios', component: SociosComponent, data: { breadcrumb: 'Socios' } },
             { path: 'secretarios', component: SecretariosComponent, data: { breadcrumb: 'Secretarios' } },
             { path: 'espacios', component: EspaciosComponent, data: { breadcrumb: 'Espacios' } },
@@ -73,7 +70,7 @@ export const routes: Routes = [
             { path: 'asistencia', component: AsistenciaComponent, data: { breadcrumb: 'Asistencias' } },
             { path: 'rol', component: RolComponent, data: { breadcrumb: 'Roles' } },
             { path: 'encargados', component: EncargadosComponent, data: { breadcrumb: 'Encargados' } },
-            { path: 'usuario', loadChildren: ()=> UsuariosModule , data: { breadcrumb: 'Usuario' } },
+            { path: 'usuario', loadChildren: () => UsuariosModule , data: { breadcrumb: 'Usuario' } },
             { path: 'matricula', component: MatriculaComponent, data: { breadcrumb: 'Matricula' } },
             { path: 'formulario-matricula/:id', component: NuevaMatriculaComponent, data: { breadcrumb: '' } },
             { path: 'cobro-matricula', component: CobroMatriculaComponent, data: { breadcrumb: '' } },

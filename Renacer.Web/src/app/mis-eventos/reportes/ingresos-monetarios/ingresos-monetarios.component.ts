@@ -29,7 +29,14 @@ export class IngresosMonetariosComponent implements OnInit {
 
     public pieChartColors: any[];
     public ingresosPorTipoEventoOpt: any;
-    public loading = true;
+    IngresosTipoEventoResponse: any[];
+
+    tablaConfig = {
+        columnas: [
+            {name: 'nombre', title: 'Nombre', type: 'text'}
+          , {name: 'cantidad', title: 'Cantidad', type: 'text'}
+        ]
+      }
 
 
     constructor(private _appConfig: AppConfig, private _reporteServ: ReporteServices) {
@@ -71,25 +78,25 @@ export class IngresosMonetariosComponent implements OnInit {
             // });
 
 
-        let result_getIngresosTipoEvento = [
+            this.IngresosTipoEventoResponse  = [
             {cantidad: 3, nombre: 'Curso'}
             , {cantidad: 6, nombre: 'Taller'}
             , {cantidad: 8, nombre: 'Conferencia'}
             ];
             this.IngresosTipoEventoData = [];
             this.IngresosTipoEventoLabels = [];
-            result_getIngresosTipoEvento.forEach(item => {
+            this.IngresosTipoEventoResponse.forEach(item => {
                 this.IngresosTipoEventoData.push(item.cantidad);
                 this.IngresosTipoEventoLabels.push(item.nombre);
                 });
 
         this._reporteServ.getIngresosPorTipoEvento().subscribe(result => {
-            result_getIngresosTipoEvento = result;
+            this.IngresosTipoEventoResponse = result;
             this.ingresosPorTipoEventoOpt = this.config.pieChartOptions
 
             this.IngresosTipoEventoData = [];
             this.IngresosTipoEventoLabels = [];
-            result_getIngresosTipoEvento.forEach(item => {
+            this.IngresosTipoEventoResponse.forEach(item => {
                 if (item.cantidad == null) { item.cantidad = 0; }
 
                 this.IngresosTipoEventoData.push(item.cantidad);

@@ -3,7 +3,7 @@ import { Angular2CsvComponent } from 'angular2-csv';
 import { CsvServices, RequestCsv } from '../../../servicios/csv.service';
 
 @Component({
-  selector: 'az-tabla',
+  selector: 'app-tabla',
   templateUrl: './tabla.component.html',
   styleUrls: ['./tabla.component.scss']
 })
