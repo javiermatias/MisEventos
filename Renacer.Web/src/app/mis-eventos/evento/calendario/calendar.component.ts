@@ -7,9 +7,11 @@ import { CalendarioServices } from '../../../servicios/calendario.service';
 import { FullCalendarComponent } from '@fullcalendar/angular';
 import { EventInput } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGrigPlugin from '@fullcalendar/timegrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import listPlugin from '@fullcalendar/list';
 import esLocale from '@fullcalendar/core/locales/es';
+import { UserServices, Usuario } from '../../../servicios/users.service';
 
 @Component({
   selector: 'app-calendar',
@@ -26,13 +28,17 @@ export class CalendarComponent
   public fechaHasta: String;
   public espacios = new Array<EspacioComun>();
   public espacio = new EspacioComun(0, 'Todos', '', 0, 0);
-
+  public esSocioEncargado:boolean=false;
+  public usuario:Usuario;
   headerConfig = {
-    left: 'prev,next today',
+    left:  'today prev,next',
     center: 'title',
     right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
   }
 
+  headerConfigSocio = {  
+    right: 'listWeek'
+  }
   lang  = {
     code: 'es',
     week: {
@@ -40,8 +46,7 @@ export class CalendarComponent
         doy: 4 // The week that contains Jan 4th is the first week of the year.
     },
     buttonText: {
-        prev: 'Ant',
-        next: 'Sig',
+      
         today: 'Hoy',
         month: 'Mes',
         week: 'Semana',
@@ -49,7 +54,7 @@ export class CalendarComponent
         list: 'Agenda'
     },
     weekLabel: 'Sm',
-    allDayHtml: 'Todo<br/>el día',
+    allDayHtml: 'A',
     eventLimitText: 'más',
     noEventsMessage: 'No hay eventos para mostrar'
 };
@@ -58,14 +63,14 @@ export class CalendarComponent
   @ViewChild('calendar', {static: true}) calendarComponent: FullCalendarComponent; // the #calendar in the template
 
   calendarVisible = true;
-  calendarPlugins = [dayGridPlugin, timeGrigPlugin, interactionPlugin];
+  calendarPlugins = [dayGridPlugin, timeGridPlugin , interactionPlugin,dayGridPlugin,listPlugin];
   calendarWeekends = true;
   calendarEvents: EventInput[] = [];
   eventos: any[] = [];
 
   constructor(private _appConfig: AppConfig, private detalleEventServ: DetalleEventoServices,
     private _espacioService: EspacioServices,
-    private _calendarioService: CalendarioServices ) {
+    private _calendarioService: CalendarioServices,private _usersService:UserServices,) {
     this.config = this._appConfig.config;
 
   }
@@ -85,6 +90,12 @@ cambioEspacio(valor) {
 }
 
 ngOnInit() {
+  this.usuario = this._usersService.getCurrent();
+    if(this.usuario.rol == 'SOCIO' || this.usuario.rol == 'ENCARGADO' ){
+    this.esSocioEncargado = true;
+    }
+
+
   this.fechaDesde = new Date('2017-08-01').toISOString();
   this.fechaHasta = new Date('2020-08-01').toISOString();
   this.cargarEventos();

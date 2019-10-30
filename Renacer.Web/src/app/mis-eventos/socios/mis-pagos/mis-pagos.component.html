@@ -13,7 +13,7 @@
             </div>
             <div class="card-block widget-body">
 
-                <div *ngIf="mostrarEventos">
+                
 
                 <div class="alert alert-success" role="alert" *ngIf="pagoMatricula">
                     <strong>Enhorabuena!</strong> Tienes la matricula al día. Puedes inscribirte a los cursos que
@@ -22,12 +22,12 @@
 
 
                 <div class="alert alert-danger" role="alert" *ngIf="!pagoMatricula">
-                    <strong>Lo lamento!</strong>Todavía no has pagado la matricula anual. Deberas hacerlo si quieres
+                    <strong>Lo lamento! </strong> Todavía no has pagado la matricula anual. Deberas hacerlo si quieres
                     inscribirte
                     a nuestros cursos.
                 </div>
 
-
+                <div *ngIf="mostrarEventos">
                 <p class="no-margin"> </p>
                 <div class="w-200 pull-right bottom-15">
                     <div class="input-group input-group-sm">
