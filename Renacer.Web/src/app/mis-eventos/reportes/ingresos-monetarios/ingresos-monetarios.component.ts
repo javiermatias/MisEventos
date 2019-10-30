@@ -90,6 +90,8 @@ export class IngresosMonetariosComponent implements OnInit {
             this.IngresosTipoEventoData = [];
             this.IngresosTipoEventoLabels = [];
             result_getIngresosTipoEvento.forEach(item => {
+                if (item.cantidad == null) { item.cantidad = 0; }
+
                 this.IngresosTipoEventoData.push(item.cantidad);
                 this.IngresosTipoEventoLabels.push(item.nombre);
                 });
@@ -105,6 +107,7 @@ export class IngresosMonetariosComponent implements OnInit {
             ];
 
         result_getIngresosTipo.forEach(item => {
+
             this.IngresosTipoData.push(item.cantidad);
             this.IngresosTipoLabels.push(item.nombre);
         });
@@ -114,7 +117,8 @@ export class IngresosMonetariosComponent implements OnInit {
             this.IngresosTipoData = [];
             this.IngresosTipoLabels = [];
             result.forEach(item => {
-                this.IngresosTipoData.push(item.cantidad);
+                if (item.monto == null) { item.monto = 0; }
+                this.IngresosTipoData.push(item.monto);
                 this.IngresosTipoLabels.push(item.nombre);
                 });
         });
