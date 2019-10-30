@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Angular2CsvComponent } from 'angular2-csv';
+import { CsvServices, RequestCsv } from '../../../servicios/csv.service';
 
 @Component({
   selector: 'az-tabla',
@@ -14,29 +15,14 @@ export class TablaComponent implements OnInit {
   @ViewChild(Angular2CsvComponent, {static: false}) csvComponent: Angular2CsvComponent;
   optionsCsv: any;
 
-  constructor() { }
+  constructor(private csvServ: CsvServices) { }
 
   ngOnInit() {
   }
 
-
-
-  downloadCsv() {
-
-    this.optionsCsv = {
-      fieldSeparator: ',',
-      quoteStrings: '"',
-      decimalseparator: '.',
-      showLabels: false,
-      headers: [],
-      showTitle: true,
-      title: 'asfasf',
-      useBom: false,
-      removeNewLines: true,
-      keys: this.config.columnas.map(x => ( x.name ))
-    };
-
-    setTimeout(() => { this.csvComponent.onDownload(); }, 0);
+  downloadCsvWithServices() {
+    const req = new RequestCsv(this.config.columnas.map(x => x.name), this.data, this.name);
+    this.csvServ.request.next(req);
   }
 
 }

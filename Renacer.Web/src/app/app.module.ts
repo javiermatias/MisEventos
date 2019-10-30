@@ -35,22 +35,19 @@ import { CambioContraseniaService } from './servicios/cambioContrasenia';
 import localeEs from '@angular/common/locales/es-AR';
 import { RatingServices } from './servicios/rating.service';
 import { AsistenciaSocioServices } from './servicios/asistenciaSocio.service';
-
-
 import { DeudaCuotaServices } from './servicios/deudaCuota.service';
 
-
-
-
-
-
+import { CsvServices } from './servicios/csv.service';
+import { CsvWrapperComponent } from './mis-eventos/csv-wrapper/csv-wrapper.component';
+import { Angular2CsvModule } from 'angular2-csv';
 
 
 registerLocaleData(localeEs, 'es-AR');
 @NgModule({
   declarations: [
     AppComponent,
-    ErrorComponent
+    ErrorComponent,
+    CsvWrapperComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +60,8 @@ registerLocaleData(localeEs, 'es-AR');
     DragulaModule,
     NguiAutoCompleteModule,
     CommonModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    Angular2CsvModule
   ],
   providers: [
     AppConfig,
@@ -96,9 +94,9 @@ registerLocaleData(localeEs, 'es-AR');
     CambioContraseniaService,
     RatingServices,
     AsistenciaSocioServices,
-    DeudaCuotaServices,    
-    
-    { provide: LOCALE_ID, useValue: "es-AR" },
+    DeudaCuotaServices,
+    CsvServices,
+    { provide: LOCALE_ID, useValue: 'es-AR' },
     DatePipe],
     bootstrap: [AppComponent]
 })
