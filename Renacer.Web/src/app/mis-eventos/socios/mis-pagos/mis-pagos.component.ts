@@ -41,13 +41,15 @@ export class MisPagosComponent implements OnInit {
 
   traerMatriculaSocio(){
     this._matriculaService.query({'idSocio': this.usuario.idSocio}).subscribe(item => {
-      if(item !=null){
+      if(item !=null && item.length != 0){
+        console.log(item);
         item.forEach(element => {
           this.matriculaXsocio=element ;
         });
         this.traerInscripciones();
         this.pagoMatricula=true;
       }else{
+        console.log("pase por el else");
         this.pagoMatricula=false;
       }
     }
