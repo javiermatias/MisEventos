@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { Angular2CsvComponent } from 'angular2-csv';
+import { CsvServices, RequestCsv } from '../../../servicios/csv.service';
 
 declare const require: any;
 const jsPDF = require('jspdf');
@@ -7,7 +8,7 @@ require('jspdf-autotable');
 
 
 @Component({
-  selector: 'az-tabla',
+  selector: 'app-tabla',
   templateUrl: './tabla.component.html',
   styleUrls: ['./tabla.component.scss']
 })
@@ -22,7 +23,7 @@ export class TablaComponent implements OnInit {
 
   optionsCsv: any;
 
-  constructor() { }
+  constructor(private csvServ: CsvServices) { }
 
   ngOnInit() {
   }
@@ -46,24 +47,9 @@ export class TablaComponent implements OnInit {
     doc.save('test.pdf');
  }
 
-
-
-  downloadCsv() {
-
-    this.optionsCsv = {
-      fieldSeparator: ',',
-      quoteStrings: '"',
-      decimalseparator: '.',
-      showLabels: false,
-      headers: this.config.columnas.map(x => (x.title)),
-      showTitle: false,
-      title: '',
-      useBom: false,
-      removeNewLines: true,
-      keys: this.config.columnas.map(x => ( x.name ))
-    };
-
-    setTimeout(() => { this.csvComponent.onDownload(); }, 0);
+  downloadCsvWithServices() {
+    const req = new RequestCsv(this.config.columnas.map(x => x.name), this.data, this.name);
+    this.csvServ.request.next(req);
   }
 
 }

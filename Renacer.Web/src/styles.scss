@@ -5,6 +5,9 @@
 
 @import "~@ng-select/ng-select/themes/default.theme.css";
 
+@import '~@fullcalendar/core/main.css';
+@import '~@fullcalendar/daygrid/main.css';
+
 @-webkit-keyframes spin-cubeGridScaleDelay {
   0%, 70%, 100% {
     -webkit-transform: scale3D(1, 1, 1);

@@ -1,7 +1,7 @@
 <div class="table-responsive datatable" style="padding-top: 10px;"  id="content">
     <table class="table table-striped table-hover table-sm" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="10">
         <thead>
-            <tr>
+            <tr *ngIf="config.columnas != null">
                 <th *ngFor="let col of config.columnas" >
                   <mfDefaultSorter by="{{col.name}}">{{col.title}}</mfDefaultSorter>
                 </th>
@@ -34,17 +34,7 @@
     </table>
 
 
-    <button type="button" (click)="downloadCsv()" class="btn btn-light" style="padding: 3px;color: #333;">
+    <button type="button" (click)="downloadCsvWithServices()" class="btn btn-light" style="padding: 3px;color: #333;">
             <span class="fa fa-download" ></span>
     </button>
-
-    <button type="button" (click)="downloadPDF()" class="btn btn-light" style="padding: 3px;color: #333;">
-        <span class="fa fa-file" ></span>
-</button>
-
-    
-    <div [hidden]="true">
-            <angular2csv [data]="data" filename="{{name}}" [options]="optionsCsv"></angular2csv>
-    </div>
-
 </div>

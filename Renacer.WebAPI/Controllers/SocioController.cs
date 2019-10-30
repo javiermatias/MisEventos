@@ -1,4 +1,5 @@
-﻿using Renacer.Nucleo.Control;
+﻿using Renacer.Nucleo;
+using Renacer.Nucleo.Control;
 using Renacer.Nucleo.Entidades;
 using System;
 using System.Collections.Generic;
@@ -44,8 +45,29 @@ namespace Renacer.WebAPI.Controllers
         {
             try
             {
-                if (value.id == 0) value.fechaCreacion = DateTime.Now;
-                ControlSocio.devolverInstancia().grabar(value);
+                if (value.id == 0) {
+                    value.fechaCreacion = DateTime.Now;
+                    Socio socio = ControlSocio.devolverInstancia().grabar(value);
+
+                    Usuario usuario = new Usuario();
+                    Random random = new Random();
+                    int rnd = random.Next(100, 1000);
+                    usuario.nombre = socio.nombre;
+                    usuario.usuario = socio.apellido + rnd.ToString();
+                    usuario.clave = socio.nombre + socio.nroDocumento;
+                    usuario.imagen = "assets/img/profile/users/augusto.png";
+                    usuario.rol = "SOCIO";
+                    usuario.email = socio.email;
+                    usuario.fechaCreacion = DateTime.Now;
+                    usuario.idSocio = socio.id;
+                    ControlUsuario.devolverInstancia().grabar(usuario);
+
+                }
+
+                else {
+                    ControlSocio.devolverInstancia().grabar(value);
+                }
+              
                 return Ok(value);
             }
             catch (UsuarioException ex)
