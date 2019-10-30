@@ -41,6 +41,7 @@ import { CalendarModule } from './calendar/calendar.module';
 import { FormElementsModule } from './form-elements/form-elements.module';
 import { TablesModule } from './tables/tables.module';
 import { EditorsModule } from './editors/editors.module';
+import { DonacionesComponent } from '../mis-eventos/socios/donaciones/donaciones.component';
 
 
 export const routes: Routes = [
@@ -86,7 +87,8 @@ export const routes: Routes = [
             { path: 'inscripcion-socio', component: SocioInscripcionComponent , data: { breadcrumb: '' } },
             { path: 'mis-pagos', component: MisPagosComponent , data: { breadcrumb: '' } },
             { path: 'mis-datos', component: MisDatosComponent , data: { breadcrumb: '' } },
-            { path: 'mis-intereses', component: MisInteresesComponent , data: { breadcrumb: '' } }
+            { path: 'mis-intereses', component: MisInteresesComponent , data: { breadcrumb: '' } },
+            { path: 'donaciones', component: DonacionesComponent , data: { breadcrumb: '' } }
         ]
     }
 ];

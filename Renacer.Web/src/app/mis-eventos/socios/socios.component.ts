@@ -85,7 +85,7 @@ export class SociosComponent implements OnInit {
         item = resp;
         this.socios.push(item);
         this.showDetail = false;
-        this.mensajeServ.success('se han guardado los cambios!', 'Aviso!');
+        this.mensajeServ.success('Se han guardado los cambios!', 'Aviso!');
       });
   }
 }
