@@ -16,6 +16,7 @@ namespace Renacer.Nucleo
         {
             this.Configuration.ProxyCreationEnabled = false;
             this.Configuration.LazyLoadingEnabled = false;
+           
         }
 
         public virtual DbSet<Cliente> cliente { get; set; }
@@ -52,23 +53,25 @@ namespace Renacer.Nucleo
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
 
         {
-    //        modelBuilder.Entity<Usuario>()
-    //  .HasMany(c => c.roles);
+            //        modelBuilder.Entity<Usuario>()
+            //  .HasMany(c => c.roles);
 
 
-    //        modelBuilder.Entity<Rol>()
-    //.HasMany(c => c.usuarios);
+            //        modelBuilder.Entity<Rol>()
+            //.HasMany(c => c.usuarios);
 
-    //        modelBuilder.Entity<Usuario>().
-    //      HasMany(c => c.roles).
-    //      WithMany(p => p.usuarios).
-    //      Map(
-    //          m =>
-    //          {
-    //              m.MapLeftKey("CourseId");
-    //              m.MapRightKey("PersonId");
-    //              m.ToTable("PersonCourses");
-    //          });
+            //        modelBuilder.Entity<Usuario>().
+            //      HasMany(c => c.roles).
+            //      WithMany(p => p.usuarios).
+            //      Map(
+            //          m =>
+            //          {
+            //              m.MapLeftKey("CourseId");
+            //              m.MapRightKey("PersonId");
+            //              m.ToTable("PersonCourses");
+            //          });
+
+            Database.SetInitializer<ModeloRenacer>(null);
 
             modelBuilder.Entity<Cliente>()
                 .Property(e => e.nombre)

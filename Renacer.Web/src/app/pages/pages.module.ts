@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
+
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
@@ -51,7 +53,10 @@ import { OpinionEventoComponent } from '../mis-eventos/socios/opinion-evento/opi
 import { AsistenciasSocioComponent } from '../mis-eventos/socios/asistencias-socio/asistencias-socio.component';
 import { SocioInscripcionComponent } from '../mis-eventos/socios/socio-inscripcion/socio-inscripcion.component';
 import { DetalleComponent } from '../mis-eventos/socios/socio-inscripcion/detalle/detalle.component';
-
+import { MisPagosComponent } from '../mis-eventos/socios/mis-pagos/mis-pagos.component';
+import { MisDatosComponent } from '../mis-eventos/socios/mis-datos/mis-datos.component';
+import { MisInteresesComponent } from '../mis-eventos/socios/mis-intereses/mis-intereses.component';
+import { DonacionesComponent } from '../mis-eventos/socios/donaciones/donaciones.component';
 
 
 @NgModule({
@@ -69,7 +74,8 @@ import { DetalleComponent } from '../mis-eventos/socios/socio-inscripcion/detall
     DragulaModule,    
      ReactiveFormsModule,
     PasswordStrengthBarModule,
-    NgxStarsModule
+    NgxStarsModule,
+    NgSelectModule 
   ],
   providers: [
     {
@@ -110,8 +116,12 @@ import { DetalleComponent } from '../mis-eventos/socios/socio-inscripcion/detall
     OpinionEventoComponent,
     AsistenciasSocioComponent,
     SocioInscripcionComponent,
-    DetalleComponent
-   // LoginComponent 
+    DetalleComponent,
+    MisPagosComponent,
+    MisDatosComponent,
+    MisInteresesComponent,    
+    DonacionesComponent
+  
   ]
   , exports: [
     BreadcrumbComponent,

@@ -21,7 +21,7 @@
               <div class="form-group col-md-4 col-sm-4">
                 <div class="form-group row text-right">
                     <div class="col-sm-2">
-                        <label>AÑO</label> 
+                        <label>Año:</label> 
                       </div>
                
                  
@@ -52,7 +52,7 @@
               </div> 
           </form>
 <br>
-<br>
+
 
       <!--       <div class="form-group">
               <label for="input-2">Año:</label>
@@ -64,7 +64,7 @@
                   <option value="Cancelado">2015</option>
               </select>
             </div> -->
-            <div class="w-200 pull-right bottom-15">
+            <div class="w-200 pull-left bottom-15">
               <div class="input-group input-group-sm">
                 <span class="input-group-addon"><i class="fa fa-search"></i></span>
                 <input class="form-control" id="table-search-input" [(ngModel)]="searchText" type="text"
@@ -125,7 +125,8 @@
 
 
 
-            <button type="submit" class="btn btn-main" (click)="Imprimir()">Imprimir</button>
+            <button type="submit" class="btn btn-main" (click)="Imprimir()"
+            style="float: right;">Imprimir</button>
           </div>
         </div>
       </div>

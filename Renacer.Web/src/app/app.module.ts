@@ -36,6 +36,16 @@ import localeEs from '@angular/common/locales/es-AR';
 import { RatingServices } from './servicios/rating.service';
 import { AsistenciaSocioServices } from './servicios/asistenciaSocio.service';
 
+
+import { DeudaCuotaServices } from './servicios/deudaCuota.service';
+
+
+
+
+
+
+
+
 registerLocaleData(localeEs, 'es-AR');
 @NgModule({
   declarations: [
@@ -85,7 +95,9 @@ registerLocaleData(localeEs, 'es-AR');
     CalendarioServices,
     CambioContraseniaService,
     RatingServices,
-    AsistenciaSocioServices,    
+    AsistenciaSocioServices,
+    DeudaCuotaServices,    
+    
     { provide: LOCALE_ID, useValue: "es-AR" },
     DatePipe],
     bootstrap: [AppComponent]

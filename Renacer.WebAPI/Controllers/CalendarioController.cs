@@ -15,9 +15,18 @@ namespace Renacer.WebAPI.Controllers
             [FromUri]DateTime fechaHasta,
             [FromUri] int idEspacio)
         {
-            IEnumerable<Calendario> detalle = ControlDetalleEvento.devolverInstancia().devolverTodosCalendario(fechaDesde, fechaHasta, idEspacio);
-            return detalle;
 
+            var usuarioActual = ControlUsuario.devolverInstancia().devolverPorUsuario(User.Identity.Name);
+
+            IEnumerable<Calendario> detalle = ControlDetalleEvento.devolverInstancia().devolverTodosCalendario(fechaDesde, fechaHasta, idEspacio);
+
+            if (usuarioActual.rol == "SOCIO") {
+                IEnumerable<Inscripcion> inscripciones = ControlInscripcion.devolverInstacia().
+                    devolverInscripcionXSocio(usuarioActual.idSocio.Value);
+
+                detalle = detalle.Where(x => inscripciones.Select(y => y.idEvento).Contains(x.idEvento)).ToList();
+            }
+            return detalle;
         }
     }
 }

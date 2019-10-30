@@ -18,6 +18,8 @@
                     <strong><h6>Fechas</h6>  </strong>
                     <div class="form-group">
                         <div class="custom-controls-stacked">
+
+                            
           
                             <label class="custom-control custom-radio">
                                 <input type="radio" name="stacked-radio" class="custom-control-input radio-primary"
@@ -91,8 +93,10 @@
     <li *ngFor="let item of eventos">
       <div class="content">
           <br>
+          <br>
         <h4>{{item.nombre}}</h4> 
         <p>{{item.descripcion}}</p>
+        <a style="color: #014c8c;cursor:pointer;" [routerLink]="['/pages/evento/detalleEvento/', item.id]" >Detalle del Curso</a>
       </div>
       <div class="time">
         <h4>{{item.fechaDesde | date:'fullDate'}}</h4>

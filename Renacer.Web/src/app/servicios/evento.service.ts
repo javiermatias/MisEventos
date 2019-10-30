@@ -1,11 +1,9 @@
 import {Injectable} from '@angular/core';
-import {RequestMethod} from '@angular/http';
 import {BaseServices} from './base.service';
 import {Variables} from './variables';
 import {EspacioComun} from './espacio.service';
 import {Socio} from './socio.service';
 import {EncargadoEvento} from './encargado.service';
-import {Asistencia} from './asistencia.service';
 import {Tag} from './tag.service';
 import { HttpClient } from "@angular/common/http";
 import { Cuota } from '../modelos/Cuota';
@@ -90,6 +88,8 @@ export class Inscripcion {
     public listaPagos?: Array<Pago>,
     public fechaCreacion?: Date,  
     public fechaBaja?: Date,
+    public estado ?: string,
+    public estadoEncuesta?:Boolean
   ) {
     //this.evento = new Evento(this.idEvento);
     //this.listaPagos = new Array<Pago>();

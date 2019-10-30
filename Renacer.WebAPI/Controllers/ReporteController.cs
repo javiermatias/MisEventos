@@ -93,7 +93,7 @@ namespace Renacer.WebAPI.Controllers
         }
 
         [ActionName("ingresosportipoevento")]
-        [Route("ingresosporevento")]
+        [Route("ingresosportipoevento")]
         [AcceptVerbs("POST")]
         public List<Dictionary<string, object>> GetIngresosPorTipoEvento()
         {

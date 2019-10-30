@@ -30,6 +30,18 @@ import { EventosxsocioComponent } from '../mis-eventos/socios/eventosxsocio/even
 import { OpinionEventoComponent } from '../mis-eventos/socios/opinion-evento/opinion-evento.component';
 import { AsistenciasSocioComponent } from '../mis-eventos/socios/asistencias-socio/asistencias-socio.component';
 import { SocioInscripcionComponent } from '../mis-eventos/socios/socio-inscripcion/socio-inscripcion.component';
+import { MisPagosComponent } from '../mis-eventos/socios/mis-pagos/mis-pagos.component';
+import { MisDatosComponent } from '../mis-eventos/socios/mis-datos/mis-datos.component';
+import { MisInteresesComponent } from '../mis-eventos/socios/mis-intereses/mis-intereses.component';
+import { MapsModule } from './maps/maps.module';
+import { UiModule } from './ui/ui.module';
+import { ToolsModule } from './tools/tools.module';
+import { MailModule } from './mail/mail.module';
+import { CalendarModule } from './calendar/calendar.module';
+import { FormElementsModule } from './form-elements/form-elements.module';
+import { TablesModule } from './tables/tables.module';
+import { EditorsModule } from './editors/editors.module';
+import { DonacionesComponent } from '../mis-eventos/socios/donaciones/donaciones.component';
 
 
 export const routes: Routes = [
@@ -40,9 +52,20 @@ export const routes: Routes = [
             { path: '', redirectTo: 'login', pathMatch: 'full' },
             { path: 'dashboard', loadChildren: ()=> DashboardModule, data: { breadcrumb: 'Dashboard' } },
             { path: 'charts', loadChildren:  ()=> ChartingModule , data: { breadcrumb: 'Charts' } },
-            { path: 'evento', loadChildren:  ()=> EventoModule , data: { breadcrumb: 'Eventos' } },
-            { path: 'reportes', loadChildren:  ()=> ReporteModule , data: { breadcrumb: 'Reportes' } },
+            { path: 'maps', loadChildren:  ()=> MapsModule, data: { breadcrumb: 'Maps' } },
             { path: 'search', component: SearchComponent, data: { breadcrumb: 'Search' } },
+            { path: 'blank', component: BlankComponent, data: { breadcrumb: 'Blank page' } },            	
+            { path: 'ui', loadChildren:  ()=> UiModule, data: { breadcrumb: 'UI' } },
+            { path: 'tools', loadChildren:  ()=> ToolsModule, data: { breadcrumb: 'Tools' } },		
+            { path: 'mail', loadChildren:  ()=> MailModule, data: { breadcrumb: 'Mail' } },		
+            { path: 'calendar', loadChildren:  ()=> CalendarModule, data: { breadcrumb: 'Calendar' } },		
+            { path: 'form-elements', loadChildren:  ()=> FormElementsModule, data: { breadcrumb: 'Form Elements' } },		
+            { path: 'tables', loadChildren:  ()=> TablesModule, data: { breadcrumb: 'Tables' } },		
+            { path: 'editors', loadChildren:  ()=> EditorsModule, data: { breadcrumb: 'Editors' } },		
+         
+//Comienza lo propio de mis-eventos
+            { path: 'evento', loadChildren:  ()=> EventoModule , data: { breadcrumb: 'Eventos' } },
+            { path: 'reportes', loadChildren:  ()=> ReporteModule , data: { breadcrumb: 'Reportes' } },            
             { path: 'socios', component: SociosComponent, data: { breadcrumb: 'Socios' } },
             { path: 'secretarios', component: SecretariosComponent, data: { breadcrumb: 'Secretarios' } },
             { path: 'espacios', component: EspaciosComponent, data: { breadcrumb: 'Espacios' } },
@@ -57,12 +80,15 @@ export const routes: Routes = [
             { path: 'pago-matricula', component: MatriculasPagadasComponent, data: { breadcrumb: '' } },
             { path: 'recordatorios', component: RecordatoriosComponent, data: { breadcrumb: '' } },
             { path: 'pago-cuota', component: PagoCuotaComponent, data: { breadcrumb: '' } },
-            { path: 'cambio-contrasena', component: CambioContraseniaComponent, data: { breadcrumb: '' } },
-            { path: 'blank', component: BlankComponent, data: { breadcrumb: 'Blank page' } },
+            { path: 'cambio-contrasena', component: CambioContraseniaComponent, data: { breadcrumb: '' } },            
             { path: 'eventos-socio', component: EventosxsocioComponent, data: { breadcrumb: 'Mis Eventos' } },
             { path: 'opinion-evento/:id', component: OpinionEventoComponent, data: { breadcrumb: '' } },
             { path: 'asistencia-socio/:id', component: AsistenciasSocioComponent , data: { breadcrumb: '' } },
-            { path: 'inscripcion-socio', component: SocioInscripcionComponent , data: { breadcrumb: '' } }
+            { path: 'inscripcion-socio', component: SocioInscripcionComponent , data: { breadcrumb: '' } },
+            { path: 'mis-pagos', component: MisPagosComponent , data: { breadcrumb: '' } },
+            { path: 'mis-datos', component: MisDatosComponent , data: { breadcrumb: '' } },
+            { path: 'mis-intereses', component: MisInteresesComponent , data: { breadcrumb: '' } },
+            { path: 'donaciones', component: DonacionesComponent , data: { breadcrumb: '' } }
         ]
     }
 ];

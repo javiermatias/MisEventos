@@ -124,6 +124,23 @@ namespace Renacer.Nucleo.Control
             return null;
         }
 
+        public Inscripcion devolverXsocioXevento(int _idEvento, int _idSocio)
+        {
+            try
+            {
+                using (var db = new ModeloRenacer())
+                {
+                    var item = db.inscripcion.
+                        Where(x => x.idEvento == _idEvento && x.idSocio == _idSocio).FirstOrDefault();
+                    return item;
+                }
+            }
+            catch (Exception ex)
+            {
+                ServicioSentry.devolverSentry().informarExcepcion(ex);
+            }
+            return null;
+        }
         /// <summary>
         /// Metodo utilizado para devolver todos los Inscripcion
         /// SELECT * FROM Inscripcion
@@ -223,6 +240,29 @@ namespace Renacer.Nucleo.Control
 
         }
 
+        public void update(Inscripcion inscripcion)
+        {
+            try
+            {
+
+                using (var db = new ModeloRenacer())
+                {
+
+
+                    db.inscripcion.AddOrUpdate(inscripcion);
+                    db.SaveChanges();
+                }
+            }
+            catch (UsuarioException ex)
+            {
+                ServicioSentry.devolverSentry().informarExcepcionUsuario(ex);
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                ServicioSentry.devolverSentry().informarExcepcion(ex);
+            }
+        }
 
         private List<string> validar(Inscripcion inscripcion)
         {

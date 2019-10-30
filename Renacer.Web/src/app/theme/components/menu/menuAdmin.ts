@@ -133,7 +133,13 @@ export const itemsAdmin = [
             },
             {
               title: 'Asistencias',
-              routerLink: 'reportes/asistencias'
+              routerLink: 'reportes/asistencias',
+              icon: 'fa-users'
+            },
+            {
+              title: 'Deudores',
+              routerLink: 'reportes/deudores',
+              icon: 'fa-money'
             }
           ]
       },

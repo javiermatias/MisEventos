@@ -142,4 +142,47 @@ pages/eventos-socio-->Mis Eventos
 
 Eventos OrderBy fechaCreacion mas reciente
 
+21-10-2019
+Asistencias-- Boton volver.
+Fecha fin -- alineado a la otra fecha
 
+Lista ultimos movimientos del banco
+Filtrar por eventos que esta inscripto
+Filtrar por pagados, adeudados
+Nombre eventos fecha ultimo pago, proxima cuota
+
+
+
+Ranking--> exporte)(.xlsx)--> Datos del evento. 
+
+Ver el boton toogle (ver de sacarlo u implementar la funcionalidad)
+
+
+falta exportar en excel.
+
+FEchas de inscripciones que se vea bien
+
+monto centrado a la derecha
+descripcion
+ver el tema de hacerlo mas chico
+
+
+
+27-10-2019
+_Los buscadores No buscan
+
+
+Rol Socio
+Calendario: debe mostrar los eventos a los que esta inscripto
+Asistencias: Cambiar label por Se tomó Asistencia.
+Mis Pagos: listado de cuotas al ultimo dice no encontrado, pero es el resultado de la busqueda. Agregar que pueda descargar el Rec 
+Mis Interes: MUY BAJA PRIORIDAD. que pueda agregar sus intereses
+
+Rol Encargado
+Mis cursos te lleva a Socios
+
+Rol Secretario
+Cronograma: agregar una opcion mas al radio button Sin Fechas, para que permita solo filtrar por Estado de Evento. Solo se debe fijar en Rango si se selecciono alguna de las opciones de fechas.
+Eventos: cobrar cuotas: al cobrar aparece el Monto $ fuera de la ventanita que se abre para confirmar el cobro.
+Matricula: _cobrar Matricula, al pagarlo se abre la ventana de pdf pero no permite maximizarlo.
+_ Matriculas pagadas 

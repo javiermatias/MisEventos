@@ -10,7 +10,7 @@ export const itemsSocio = [
   {
     title: 'Mis Datos',
     selected: false,
-    routerLink: 'perfil',
+    routerLink: 'mis-datos',
     icon: 'fa-user',
     expanded: false,
     order: 800,
@@ -33,7 +33,7 @@ export const itemsSocio = [
   },  
   {
     title: 'Mis Intereses',
-    routerLink: 'intereses',
+    routerLink: 'mis-intereses',
     icon: 'fa-users',
     selected: false,
     expanded: false,
@@ -41,15 +41,15 @@ export const itemsSocio = [
   },
   {
     title: 'Mis Pagos',
-    routerLink: 'pagos',
-    icon: 'fa-money',
+    routerLink: 'mis-pagos',
+    icon: 'fa-money',    
     selected: false,
     expanded: false,
     order: 500,
   },
   {
     title: 'Donaciones',
-    routerLink: 'pagos',
+    routerLink: 'donaciones',
     icon: 'fa-money',
     selected: false,
     expanded: false,

@@ -1,0 +1,3 @@
+1)Cambiar el dump .sql
+
+CREATE DATABASE  IF NOT EXISTS `renacer` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;

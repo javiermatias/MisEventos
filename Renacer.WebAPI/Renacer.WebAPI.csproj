@@ -156,7 +156,6 @@
     <Compile Include="Controllers\MatriculaController.cs" />
     <Compile Include="Controllers\MatriculaSocioController.cs" />
     <Compile Include="Controllers\PagoController.cs" />
-    <Compile Include="Controllers\PersonaController.cs" />
     <Compile Include="Controllers\RatingEventoController.cs" />
     <Compile Include="Controllers\RecordatorioController.cs" />
     <Compile Include="Controllers\ReporteController.cs" />
@@ -208,12 +207,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="web.config" />
+    <Content Include="web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="App.config" />
-    <None Include="web.Debug.config">
+    <None Include="Properties\PublishProfiles\Local.pubxml" />
+    <None Include="Properties\PublishProfiles\Tesis.pubxml" />
+	    <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
     <None Include="web.Release.config">
