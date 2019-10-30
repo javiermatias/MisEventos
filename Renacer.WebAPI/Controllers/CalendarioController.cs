@@ -20,7 +20,7 @@ namespace Renacer.WebAPI.Controllers
 
             IEnumerable<Calendario> detalle = ControlDetalleEvento.devolverInstancia().devolverTodosCalendario(fechaDesde, fechaHasta, idEspacio);
 
-            if (usuarioActual.rol == "Socio") {
+            if (usuarioActual.rol == "SOCIO") {
                 IEnumerable<Inscripcion> inscripciones = ControlInscripcion.devolverInstacia().
                     devolverInscripcionXSocio(usuarioActual.idSocio.Value);
 
