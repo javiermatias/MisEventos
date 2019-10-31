@@ -1,11 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 ////import { Socio, SocioServices, Contacto, Domicilio } from '../../resources/socio.service';
 import { FormGroup } from '@angular/forms';
-import { DatePipe } from '@angular/common';
 import { ToastrService} from 'ngx-toastr';
 import {  Router } from '@angular/router';
 import { Socio, SocioServices } from '../../servicios/socio.service';
 import { sexo, estadoCivil } from '../../modelos/enums';
+import { CsvServices, RequestCsv } from '../../servicios/csv.service';
 
 @Component({
   selector: 'az-socios',
@@ -13,24 +13,23 @@ import { sexo, estadoCivil } from '../../modelos/enums';
 })
 export class SociosComponent implements OnInit {
 
-  public _socio = new Socio(0, "", "", "");
-  public socios =new Array<Socio>();
-  public showDetail: boolean = false;
-  public searchText: string = "";
+  public _socio = new Socio(0, '', '', '');
+  public socios = new Array<Socio>();
+  public showDetail = false;
+  public searchText = '';
 
-  public _sexo = sexo; //traido de un enum
+  public _sexo = sexo; // traido de un enum
 
-  public _estadoCivil=estadoCivil;//traido de un enum
+  public _estadoCivil= estadoCivil; // traido de un enum
 
-  public fecha:Date;
+  public fecha: Date;
 
   constructor(
-    
-    
+
+
     private _socioService: SocioServices
-    , private mensajeServ: ToastrService   
-    , private router: Router
-    , private datePipe: DatePipe) {
+    , private mensajeServ: ToastrService
+    , private router: Router) {
     this.getItems();
   }
 
@@ -88,4 +87,5 @@ export class SociosComponent implements OnInit {
         this.mensajeServ.success('Se han guardado los cambios!', 'Aviso!');
       });
   }
+
 }

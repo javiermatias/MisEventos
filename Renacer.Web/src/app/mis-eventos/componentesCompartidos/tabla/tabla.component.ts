@@ -1,8 +1,14 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { Angular2CsvComponent } from 'angular2-csv';
+import { CsvServices, RequestCsv } from '../../../servicios/csv.service';
+
+declare const require: any;
+const jsPDF = require('jspdf');
+require('jspdf-autotable');
+
 
 @Component({
-  selector: 'az-tabla',
+  selector: 'app-tabla',
   templateUrl: './tabla.component.html',
   styleUrls: ['./tabla.component.scss']
 })
@@ -12,31 +18,38 @@ export class TablaComponent implements OnInit {
   @Input() config: any;
   @Input() name: string;
   @ViewChild(Angular2CsvComponent, {static: false}) csvComponent: Angular2CsvComponent;
+
+  @ViewChild('content', {static: false}) content: ElementRef;
+
   optionsCsv: any;
 
-  constructor() { }
+  constructor(private csvServ: CsvServices) { }
 
   ngOnInit() {
   }
 
-
-
-  downloadCsv() {
-
-    this.optionsCsv = {
-      fieldSeparator: ',',
-      quoteStrings: '"',
-      decimalseparator: '.',
-      showLabels: false,
-      headers: [],
-      showTitle: true,
-      title: 'asfasf',
-      useBom: false,
-      removeNewLines: true,
-      keys: this.config.columnas.map(x => ( x.name ))
+  public downloadPDF() {
+    const doc = new jsPDF();
+ 
+    const specialElementHandlers = {
+       '#editor': function (element, renderer) {
+        return true;
+        }
     };
+ 
+    const content = this.content.nativeElement;
+ 
+    doc.fromHTML(content.innerHTML, 15, 15, {
+       width: 190,
+      'elementHandlers': specialElementHandlers
+    });
+ 
+    doc.save('test.pdf');
+ }
 
-    setTimeout(() => { this.csvComponent.onDownload(); }, 0);
+  downloadCsvWithServices() {
+    const req = new RequestCsv(this.config.columnas.map(x => x.name), this.data, this.name);
+    this.csvServ.request.next(req);
   }
 
 }
