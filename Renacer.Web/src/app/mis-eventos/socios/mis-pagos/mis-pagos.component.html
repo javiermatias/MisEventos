@@ -145,12 +145,15 @@
                                                 <mfDefaultSorter by="nroDocumento">Estado</mfDefaultSorter>
                                             </th>
                                           
+                                            <th>
+                                                <mfDefaultSorter by="nroDocumento">Pagar</mfDefaultSorter>
+                                            </th>
                                          
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let item of mf.data ">
+                                        <tr *ngFor="let item of mf.data; let i = index ">
                                             <!-- <td>{{item.id}}</td> -->
                                             <td><strong>{{item.nombre}}</strong></td>
                                             <td>${{item.monto}}</td>       
@@ -160,7 +163,21 @@
                                               <!-- <button type="button" class="btn .btn-outline-success btn-rounded" (click)="cobrar(item)">Cobrar</button> -->
                                           </td> 
                                                <ng-template #other_content><td>Sin Pagar</td></ng-template>                          
-                                          
+                                        <td *ngIf="!item.estaPagado">
+                                            <form action="/#/pages/mis-pagos" method="get" ngNativeValidate id="{{ 'pago' + item.id }}">
+ 
+
+                                               
+                                                
+                                                 
+                                                </form> 
+                                        
+                                          </td> 
+
+                                          <td *ngIf="item.estaPagado">
+                                               --
+                                        
+                                          </td> 
                                             
                                         </tr>
                                         <tr *ngIf="(mf.data | SearchPipe : searchText).length === 0">
