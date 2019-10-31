@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CsvServices, RequestCsv } from '../../servicios/csv.service';
+import { CsvServices, RequestCsv } from '../../../servicios/csv.service';
 import { Angular2CsvComponent } from 'angular2-csv';
 import { Title } from '@angular/platform-browser';
 
