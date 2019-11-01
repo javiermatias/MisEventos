@@ -29,12 +29,32 @@ export class IngresosMonetariosComponent implements OnInit {
 
     public pieChartColors: any[];
     public ingresosPorTipoEventoOpt: any;
-    IngresosTipoEventoResponse: any[];
+    IngresosTipoEventoResponse = [
+          {cantidad: 3, nombre: 'Curso'}
+        , {cantidad: 6, nombre: 'Taller'}
+        , {cantidad: 8, nombre: 'Conferencia'}
+        ];
+    IngresosEnElTiempoResponse = [
+          {fecha: '2019-01', matriculas: 100, eventos: 120}
+        , {fecha: '2019-02', matriculas: 30, eventos: 100}
+        , {fecha: '2019-03', matriculas: 60, eventos: 90}
+        ];
+    IngresosPorTipoResponse = [
+            {cantidad: 13, nombre: 'Eventos'}
+          , {cantidad: 8, nombre: 'Matrículas'}
+          ];
 
     tablaConfig = {
         columnas: [
             {name: 'nombre', title: 'Nombre', type: 'text'}
-          , {name: 'cantidad', title: 'Cantidad', type: 'text'}
+          , {name: 'cantidad', title: 'Monto', type: 'money'}
+        ]
+      }
+    tablaIngresosEnElTiempo = {
+        columnas: [
+            {name: 'fecha', title: 'Mes', type: 'text'}
+          , {name: 'matriculas', title: 'Ingreso por matriculas', type: 'money'}
+          , {name: 'eventos', title: 'Ingreso por eventos', type: 'money'}
         ]
       }
 
@@ -60,35 +80,24 @@ export class IngresosMonetariosComponent implements OnInit {
             {data: [], label: 'Cuotas' }
         ];
 
-
-        let ingresos_en_meses = [
-            {fecha: '2019-01', ingresoMatricula: 100, ingresoCuota: 120}
-            , {fecha: '2019-02', ingresoMatricula: 30, ingresoCuota: 100}
-            , {fecha: '2019-03', ingresoMatricula: 60, ingresoCuota: 90}
-            ];
-        // this._reporteServ.getCrecimientoSocios({}).subscribe(result => {
-            // ingresos_en_meses = result;
-            for (let i = 0; i < ingresos_en_meses.length; i++) {
-                    this.lineChartLabels.push(ingresos_en_meses[i].fecha)
-                    const  ingresosTotales = ingresos_en_meses[i].ingresoMatricula + ingresos_en_meses[i].ingresoCuota;
+        this._reporteServ.getIngresosEnElTiempo().subscribe(result => {
+            this.IngresosEnElTiempoResponse = result;
+            for (let i = 0; i < result.length; i++) {
+                    this.lineChartLabels.push(result[i].fecha)
+                    const  ingresosTotales = result[i].matriculas + result[i].eventos;
                     this.lineChartData[0].data.push(ingresosTotales);
-                    this.lineChartData[1].data.push(ingresos_en_meses[i].ingresoMatricula);
-                    this.lineChartData[2].data.push(ingresos_en_meses[i].ingresoCuota);
+                    this.lineChartData[1].data.push(result[i].matriculas);
+                    this.lineChartData[2].data.push(result[i].eventos);
                 }
-            // });
+        });
 
 
-            this.IngresosTipoEventoResponse  = [
-            {cantidad: 3, nombre: 'Curso'}
-            , {cantidad: 6, nombre: 'Taller'}
-            , {cantidad: 8, nombre: 'Conferencia'}
-            ];
-            this.IngresosTipoEventoData = [];
-            this.IngresosTipoEventoLabels = [];
-            this.IngresosTipoEventoResponse.forEach(item => {
-                this.IngresosTipoEventoData.push(item.cantidad);
-                this.IngresosTipoEventoLabels.push(item.nombre);
-                });
+        this.IngresosTipoEventoData = [];
+        this.IngresosTipoEventoLabels = [];
+        this.IngresosTipoEventoResponse.forEach(item => {
+            this.IngresosTipoEventoData.push(item.cantidad);
+            this.IngresosTipoEventoLabels.push(item.nombre);
+            });
 
         this._reporteServ.getIngresosPorTipoEvento().subscribe(result => {
             this.IngresosTipoEventoResponse = result;
@@ -105,15 +114,10 @@ export class IngresosMonetariosComponent implements OnInit {
         });
 
 
-
         this.IngresosTipoData = [];
         this.IngresosTipoLabels = [];
-        const result_getIngresosTipo = [
-              {cantidad: 13, nombre: 'Eventos'}
-            , {cantidad: 8, nombre: 'Matrículas'}
-            ];
 
-        result_getIngresosTipo.forEach(item => {
+        this.IngresosPorTipoResponse.forEach(item => {
 
             this.IngresosTipoData.push(item.cantidad);
             this.IngresosTipoLabels.push(item.nombre);
@@ -123,6 +127,8 @@ export class IngresosMonetariosComponent implements OnInit {
             this.ingresosPorTipoEventoOpt = this.config.pieChartOptions
             this.IngresosTipoData = [];
             this.IngresosTipoLabels = [];
+            this.IngresosPorTipoResponse = result;
+
             result.forEach(item => {
                 if (item.monto == null) { item.monto = 0; }
                 this.IngresosTipoData.push(item.monto);

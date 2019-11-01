@@ -16,6 +16,7 @@
                   ></ngx-stars>
                   <span *ngIf="col.type == 'text'">{{item[col.name]}}</span>     
                   <span *ngIf="col.type == 'counter'">{{i + 1}}</span>     
+                  <span *ngIf="col.type == 'money'">{{item[col.name] | currency:'ARS'}}</span>     
                 </td>
             </tr>
             <tr *ngIf="mf.data.length === 0">
