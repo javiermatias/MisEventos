@@ -39,6 +39,7 @@ import { FormElementsModule } from './form-elements/form-elements.module';
 import { TablesModule } from './tables/tables.module';
 import { EditorsModule } from './editors/editors.module';
 import { DonacionesComponent } from '../mis-eventos/socios/donaciones/donaciones.component';
+import { ComprobantePagoComponent } from '../mis-eventos/socios/mis-pagos/comprobante-pago/comprobante-pago.component';
 
 
 export const routes: Routes = [
@@ -85,7 +86,8 @@ export const routes: Routes = [
             { path: 'mis-pagos', component: MisPagosComponent , data: { breadcrumb: '' } },
             { path: 'mis-datos', component: MisDatosComponent , data: { breadcrumb: '' } },
             { path: 'mis-intereses', component: MisInteresesComponent , data: { breadcrumb: '' } },
-            { path: 'donaciones', component: DonacionesComponent , data: { breadcrumb: '' } }
+            { path: 'donaciones', component: DonacionesComponent , data: { breadcrumb: '' } },
+            { path: 'pago-confirmado/:id', component: ComprobantePagoComponent , data: { breadcrumb: '' } },
         ]
     }
 ];

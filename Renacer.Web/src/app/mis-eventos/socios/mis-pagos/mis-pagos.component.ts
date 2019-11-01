@@ -4,7 +4,7 @@ import { UserServices, Usuario } from '../../../servicios/users.service';
 import { MatriculaXsocio } from '../../../modelos/matricula-xsocio';
 import { InscripcionServices, Inscripcion, Evento } from '../../../servicios/evento.service';
 import { Array } from 'core-js';
-
+import * as postscribe from 'postscribe';
 
 @Component({
   selector: 'az-mis-pagos',
@@ -80,6 +80,29 @@ verCuotas(item:Inscripcion){
   console.log(this.inscripcion);
   this.mostrarEventos= false;
   this.mostrarCuotas= true;
+
+  setTimeout(()=>{    //<<<---    using ()=> syntax
+    this.inscripcion.listaPagos.forEach(pago => {
+   
+      if(!pago.estaPagado){
+       let id = '#pago' + pago.id.toString();
+       console.log(id);
+       let script1 = `<script type="text/javascript" language="javascript"
+       src="https://www.mercadopago.com.ar/integrations/v1/web-tokenize-checkout.js"
+       data-public-key="TEST-e0044a4e-43f0-402e-9480-2b9b154b0fa1"
+       data-transaction-amount="` + pago.monto + `"></script>` 
+      
+       postscribe(id,script1); 
+      }
+    
+   });
+}, 500);
+
+
+
+
+
+  
 
  }
 

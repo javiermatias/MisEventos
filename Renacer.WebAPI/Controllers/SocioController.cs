@@ -1,6 +1,7 @@
 ﻿using Renacer.Nucleo;
 using Renacer.Nucleo.Control;
 using Renacer.Nucleo.Entidades;
+using Renacer.WebAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,7 +49,6 @@ namespace Renacer.WebAPI.Controllers
                 if (value.id == 0) {
                     value.fechaCreacion = DateTime.Now;
                     Socio socio = ControlSocio.devolverInstancia().grabar(value);
-
                     Usuario usuario = new Usuario();
                     Random random = new Random();
                     int rnd = random.Next(100, 1000);
@@ -61,6 +61,7 @@ namespace Renacer.WebAPI.Controllers
                     usuario.fechaCreacion = DateTime.Now;
                     usuario.idSocio = socio.id;
                     ControlUsuario.devolverInstancia().grabar(usuario);
+                    EnvioMail.enviarMail(usuario.email);
 
                 }
 

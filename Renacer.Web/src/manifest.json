@@ -1,0 +1,15 @@
+{
+  "short_name": "Eventos",
+  "name": "Mis Eventos",
+  "background_color": "#3367D6",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/assets/images/logo/az_logo.png",
+      "type": "image/png",
+      "sizes": "115x104"
+    }
+  ]
+}
