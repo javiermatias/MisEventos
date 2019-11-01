@@ -35,9 +35,9 @@ export class IngresosMonetariosComponent implements OnInit {
         , {cantidad: 8, nombre: 'Conferencia'}
         ];
     IngresosEnElTiempoResponse = [
-          {fecha: '2019-01', ingresoMatricula: 100, ingresoCuota: 120}
-        , {fecha: '2019-02', ingresoMatricula: 30, ingresoCuota: 100}
-        , {fecha: '2019-03', ingresoMatricula: 60, ingresoCuota: 90}
+          {fecha: '2019-01', matriculas: 100, eventos: 120}
+        , {fecha: '2019-02', matriculas: 30, eventos: 100}
+        , {fecha: '2019-03', matriculas: 60, eventos: 90}
         ];
     IngresosPorTipoResponse = [
             {cantidad: 13, nombre: 'Eventos'}
@@ -53,8 +53,8 @@ export class IngresosMonetariosComponent implements OnInit {
     tablaIngresosEnElTiempo = {
         columnas: [
             {name: 'fecha', title: 'Mes', type: 'text'}
-          , {name: 'ingresoMatricula', title: 'Ingreso por matriculas', type: 'money'}
-          , {name: 'ingresoCuota', title: 'Ingreso por eventos', type: 'money'}
+          , {name: 'matriculas', title: 'Ingreso por matriculas', type: 'money'}
+          , {name: 'eventos', title: 'Ingreso por eventos', type: 'money'}
         ]
       }
 
@@ -84,20 +84,20 @@ export class IngresosMonetariosComponent implements OnInit {
             this.IngresosEnElTiempoResponse = result;
             for (let i = 0; i < result.length; i++) {
                     this.lineChartLabels.push(result[i].fecha)
-                    const  ingresosTotales = result[i].ingresoMatricula + result[i].ingresoCuota;
-                    this.lineChartData[0].data.push(result);
-                    this.lineChartData[1].data.push(result[i].ingresoMatricula);
-                    this.lineChartData[2].data.push(result[i].ingresoCuota);
+                    const  ingresosTotales = result[i].matriculas + result[i].eventos;
+                    this.lineChartData[0].data.push(ingresosTotales);
+                    this.lineChartData[1].data.push(result[i].matriculas);
+                    this.lineChartData[2].data.push(result[i].eventos);
                 }
         });
 
 
-            this.IngresosTipoEventoData = [];
-            this.IngresosTipoEventoLabels = [];
-            this.IngresosTipoEventoResponse.forEach(item => {
-                this.IngresosTipoEventoData.push(item.cantidad);
-                this.IngresosTipoEventoLabels.push(item.nombre);
-                });
+        this.IngresosTipoEventoData = [];
+        this.IngresosTipoEventoLabels = [];
+        this.IngresosTipoEventoResponse.forEach(item => {
+            this.IngresosTipoEventoData.push(item.cantidad);
+            this.IngresosTipoEventoLabels.push(item.nombre);
+            });
 
         this._reporteServ.getIngresosPorTipoEvento().subscribe(result => {
             this.IngresosTipoEventoResponse = result;

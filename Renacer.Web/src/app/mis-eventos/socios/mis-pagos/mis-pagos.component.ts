@@ -13,102 +13,102 @@ import * as postscribe from 'postscribe';
 })
 export class MisPagosComponent implements OnInit {
 
-  usuario:Usuario;
-  pagoMatricula:boolean;
+  usuario: Usuario;
+  pagoMatricula: boolean;
   matriculaXsocio: MatriculaXsocio;
 
-  eventos:Evento[];
+  eventos: Evento[];
 
-  public idInscripcion:number;
+  public idInscripcion: number;
 
-  listaInscripcion:Array<Inscripcion>;
+  listaInscripcion: Array<Inscripcion>;
 
-  inscripcion:Inscripcion;
+  inscripcion: Inscripcion;
   //mostrarGrilla=false;
 
-  mostrarEventos= false;
+  mostrarEventos = false;
 
-  mostrarCuotas= false;
-  constructor(private _matriculaService:MatriculaxsocioService,private _usersService:UserServices,
-    private inscripcionServ:InscripcionServices) {
-    
-   }
+  mostrarCuotas = false;
+  constructor(private _matriculaService: MatriculaxsocioService, private _usersService: UserServices,
+    private inscripcionServ: InscripcionServices) {
+
+  }
 
   ngOnInit() {
     this.usuario = this._usersService.getCurrent();
-     this.traerMatriculaSocio();
+    this.traerMatriculaSocio();
   }
 
-  traerMatriculaSocio(){
-    this._matriculaService.query({'idSocio': this.usuario.idSocio}).subscribe(item => {
-      if(item !=null && item.length != 0){
+  traerMatriculaSocio() {
+    this._matriculaService.query({ 'idSocio': this.usuario.idSocio }).subscribe(item => {
+      if (item != null && item.length != 0) {
         console.log(item);
         item.forEach(element => {
-          this.matriculaXsocio=element ;
+          this.matriculaXsocio = element;
         });
         this.traerInscripciones();
-        this.pagoMatricula=true;
-      }else{
-        console.log("pase por el else");
-        this.pagoMatricula=false;
+        this.pagoMatricula = true;
+      } else {
+        console.log('pase por el else');
+        this.pagoMatricula = false;
       }
     }
-   );
+    );
   }
 
-  traerInscripciones(){
-    
-    this.inscripcionServ.query({'idSocio':this.usuario.idSocio}).subscribe(items => {
+  traerInscripciones() {
+
+    this.inscripcionServ.query({ 'idSocio': this.usuario.idSocio }).subscribe(items => {
       this.listaInscripcion = items.filter(x => x.evento.gratuito == false);
-  
+
       this.mostrarEventos = true;
       //console.log(this.listaInscripcion);  
-      
-      
-      }
-     );
-    
-}
+
+
+    }
+    );
+
+  }
 
 
 
 
-verCuotas(item:Inscripcion){
+  verCuotas(item: Inscripcion) {
 
-  this.inscripcion=  this.listaInscripcion.filter(x => x.id == item.id)[0];
-  this.inscripcion.listaPagos=this.inscripcion.listaPagos.sort((a, b) => a.nombre.localeCompare(b.nombre))
-  console.log(this.inscripcion);
-  this.mostrarEventos= false;
-  this.mostrarCuotas= true;
+    this.inscripcion = this.listaInscripcion.filter(x => x.id == item.id)[0];
+    this.inscripcion.listaPagos = this.inscripcion.listaPagos.sort((a, b) => a.nombre.localeCompare(b.nombre))
+    console.log(this.inscripcion);
+    this.mostrarEventos = false;
+    this.mostrarCuotas = true;
 
-  setTimeout(()=>{    //<<<---    using ()=> syntax
-    this.inscripcion.listaPagos.forEach(pago => {
-   
-      if(!pago.estaPagado){
-       let id = '#pago' + pago.id.toString();
-       console.log(id);
-       let script1 = `<script type="text/javascript" language="javascript"
+    setTimeout(() => {    //<<<---    using ()=> syntax
+      this.inscripcion.listaPagos.forEach(pago => {
+
+        if (!pago.estaPagado) {
+          let id = '#pago' + pago.id.toString();
+          console.log(id);
+          let script1 = `<script type="text/javascript" language="javascript"
        src="https://www.mercadopago.com.ar/integrations/v1/web-tokenize-checkout.js"
        data-public-key="TEST-e0044a4e-43f0-402e-9480-2b9b154b0fa1"
-       data-transaction-amount="` + pago.monto + `"></script>` 
-      
-       postscribe(id,script1); 
-      }
-    
-   });
-}, 500);
+       data-transaction-amount="` + pago.monto + `"></script>`
+
+          postscribe(id, script1);
+        }
+
+      });
+    }, 500);
 
 
 
 
 
-  
 
- }
 
- volver(){
-  this.mostrarEventos= true;
-  this.mostrarCuotas= false;
+  }
 
- }
+  volver() {
+    this.mostrarEventos = true;
+    this.mostrarCuotas = false;
+
+  }
 }
