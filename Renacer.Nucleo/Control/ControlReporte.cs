@@ -126,7 +126,15 @@ namespace Renacer.Nucleo.Control
                         FROM ratingevento r, evento e where r.idEvento = e.id 
                         group by idEvento order by stars desc";
 
-            return Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
+            var lista = Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
+
+            var i = 1;
+            foreach(Dictionary<string,object> item in lista) {
+                item.Add("orden", i);
+                i++;
+            }
+
+            return lista;
         }
 
         public List<Dictionary<string, object>> GetInasistenciasPorTipoEvento()

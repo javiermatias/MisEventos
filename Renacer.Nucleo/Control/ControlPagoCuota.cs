@@ -66,7 +66,7 @@ namespace Renacer.Nucleo.Control
             {
                 using (var db = new ModeloRenacer())
                 {
-                    return db.pagoCuota.Where(x => x.id.Equals(id)).FirstOrDefault();
+                    return db.pagoCuota.Include("Inscripcion").Where(x => x.id.Equals(id)).FirstOrDefault();
                 }
             }
             catch (Exception ex)

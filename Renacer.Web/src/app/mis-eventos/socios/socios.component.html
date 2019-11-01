@@ -149,7 +149,7 @@
                                                                     <div class="form-group">
                                                                         <label for="nroDocParam1">Nro de
                                                                             documento</label>
-                                                                        <input class="form-control" id="nroDocParam1"
+                                                                        <input class="form-control" id="nroDocParam1" required
                                                                             #nroDocParam1="ngModel" name="nroDocParam1"
                                                                             [(ngModel)]="_socio.nroDocumento">
                                                                     </div>
@@ -160,7 +160,7 @@
                                                                 <div class="col">
                                                                     <div class="form-group">
                                                                         <label for="input-2">Género</label>
-                                                                        <select class="form-control" id="sexo"
+                                                                        <select class="form-control" id="sexo" required
                                                                             name="sexo" [(ngModel)]="_socio.sexo">
                                                                            
                                                                             <option *ngFor="let sex of _sexo" [value]="sex.nombre">{{sex.nombre}}</option>                                                                          
@@ -172,7 +172,7 @@
                                                                     <div class="form-group">
                                                                         <label for="input-2">Estado civil</label>
                                                                         <select class="form-control" id="estadoCivil"
-                                                                            name="estadoCivil"
+                                                                            name="estadoCivil" required
                                                                             [(ngModel)]="_socio.estadoCivil">
                                                                             <option *ngFor="let civil of _estadoCivil" [value]="civil.nombre">{{civil.nombre}}</option> 
                                                                         </select>
@@ -183,23 +183,23 @@
                                                         <div class="col col-md-6">
                                                             <div class="form-group">
                                                                 <label for="input-2">Email</label>
-                                                                <input type="text" class="form-control" id="email"
+                                                                <input type="text" class="form-control" id="email" required
                                                                     name="email" [(ngModel)]="_socio.email">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="input-2">Teléfono</label>
-                                                                <input type="text" class="form-control" id="telefono"
+                                                                <input type="text" class="form-control" id="telefono" required
                                                                     name="telefono" [(ngModel)]="_socio.telefono">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="input-2">Celular</label>
-                                                                <input type="text" class="form-control" id="celular"
+                                                                <input type="text" class="form-control" id="celular" required
                                                                     name="celular" [(ngModel)]="_socio.celular">
                                                             </div>
 
                                                             <div class="form-group">
                                                                 <label for="input-2">Fecha Nacimiento</label>
-                                                                <input #fecha type="date" class="form-control"
+                                                                <input #fecha type="date" class="form-control" required
                                                                     id="fechaNacimiento" name="fechaNacimiento"
                                                                     [ngModel]="_socio.fechaNacimiento  | date:'yyyy-MM-dd'"
                                                                     (ngModelChange)="actualizarFecha(fecha.value)">

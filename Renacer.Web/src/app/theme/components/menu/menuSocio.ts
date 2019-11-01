@@ -1,6 +1,6 @@
 export const itemsSocio = [
    {
-    title: 'Calendario',
+    title: 'Mi Agenda',
     icon: 'fa-calendar',
     routerLink: 'evento/calendario/',
     selected: false,

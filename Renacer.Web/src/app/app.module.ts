@@ -38,8 +38,9 @@ import { AsistenciaSocioServices } from './servicios/asistenciaSocio.service';
 import { DeudaCuotaServices } from './servicios/deudaCuota.service';
 
 import { CsvServices } from './servicios/csv.service';
-import { CsvWrapperComponent } from './mis-eventos/csv-wrapper/csv-wrapper.component';
+
 import { Angular2CsvModule } from 'angular2-csv';
+import { CsvWrapperComponent } from './mis-eventos/componentesCompartidos/csv-wrapper/csv-wrapper.component';
 
 
 registerLocaleData(localeEs, 'es-AR');

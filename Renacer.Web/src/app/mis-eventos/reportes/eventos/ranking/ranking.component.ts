@@ -31,8 +31,9 @@ export class RankingComponent implements OnInit {
 
     this.eventosRankingConfig = {
       columnas: [
-         {name: 'nro', title: 'Nro.', type: 'counter'}
+          {name: 'orden', title: 'Nro.', type: 'text'}
         , {name: 'nombre', title: 'Nombre', type: 'text'}
+        , {name: 'cantidadVotos', title: 'opiniones', type: 'text'}
         , {name: 'stars', title: 'Valoración', type: 'stars'}
       ]
     }
