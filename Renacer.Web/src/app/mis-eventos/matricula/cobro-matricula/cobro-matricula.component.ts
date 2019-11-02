@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 
 import { Socio, SocioMatriculaServices, SocioServices } from '../../../servicios/socio.service';
 import { ToastrService } from 'ngx-toastr';

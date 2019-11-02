@@ -69,8 +69,8 @@ export class BaseServices<T> {
     return this.http.put<T>(this.url,entidad);
   }
 
-  remove(value:{id:any}):Observable<any>{
-    return this.http.delete(`${this.url}/${value.id}`);
+  remove(id:number):Observable<any>{
+    return this.http.delete(`${this.url}/${id}`);
   }
 
 }

@@ -40,6 +40,7 @@ import { TablesModule } from './tables/tables.module';
 import { EditorsModule } from './editors/editors.module';
 import { DonacionesComponent } from '../mis-eventos/socios/donaciones/donaciones.component';
 import { ComprobantePagoComponent } from '../mis-eventos/socios/mis-pagos/comprobante-pago/comprobante-pago.component';
+import { EventoModificarComponent } from '../mis-eventos/evento/lista/evento-modificar/evento-modificar.component';
 
 
 export const routes: Routes = [
@@ -88,6 +89,8 @@ export const routes: Routes = [
             { path: 'mis-intereses', component: MisInteresesComponent , data: { breadcrumb: '' } },
             { path: 'donaciones', component: DonacionesComponent , data: { breadcrumb: '' } },
             { path: 'pago-confirmado/:id', component: ComprobantePagoComponent , data: { breadcrumb: '' } },
+            { path: 'evento-modificar/:id', component: EventoModificarComponent, data: { breadcrumb: 'Modificar' }},
+
         ]
     }
 ];

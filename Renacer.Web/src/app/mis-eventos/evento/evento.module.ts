@@ -14,10 +14,9 @@ import { ListaComponent } from './lista/lista.component';
 import { EventoWizardComponent } from './evento-wizard/evento-wizard.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InscripcionComponent } from './inscripcion/inscripcion.component';
-// import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { EventoDetalleComponent } from './evento-detalle/evento-detalle.component';
 import { FbkComponent } from './fbk/fbk.component';
-import { FullCalendarModule } from '@fullcalendar/angular'; // for FullCalendar!
+import { FullCalendarModule } from '@fullcalendar/angular';// for FullCalendar!
 
 
 
@@ -25,16 +24,15 @@ import { FullCalendarModule } from '@fullcalendar/angular'; // for FullCalendar!
 //import { JwSocialButtonsModule } from 'jw-angular-social-buttons';
 
 export const routes = [
-  { path: '', redirectTo: 'lista', pathMatch: 'full'},
+  
   { path: 'calendario', component: CalendarComponent, data: { breadcrumb: '' } },
   { path: 'evento-wizard', component: EventoWizardComponent, data: { breadcrumb: '' } },
   { path: 'inscripcion', component: InscripcionComponent, data: { breadcrumb: '' } },
   { path: 'lista', component: ListaComponent, data: { breadcrumb: 'Lista' } },
   { path: ':id', component: EventoComponent, data: { breadcrumb: 'Evento' } },
-
   { path: ':idEvento/detalle/:idDetalle', component: DetalleEventoComponent, data: { breadcrumb: 'Detalle' }},
   { path: 'detalleEvento/:id', component: EventoDetalleComponent, data: { breadcrumb: 'Detalle Evento' }},
-
+    { path: '', redirectTo: 'lista', pathMatch: 'full'},
 ];
 
 @NgModule({

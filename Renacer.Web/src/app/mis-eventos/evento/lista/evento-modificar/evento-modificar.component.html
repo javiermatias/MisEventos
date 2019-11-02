@@ -1,0 +1,195 @@
+<div widget class="card" *ngIf="_item.id != 0">
+  <div class="card-header">
+      <span>Datos del evento</span>
+      <div class="widget-controls">
+          <a data-widgster="expand" href="#" class="transition">
+              <i class="fa fa-chevron-down"></i>
+          </a>
+          <a data-widgster="collapse" href="#" class="transition">
+              <i class="fa fa-chevron-up"></i>
+          </a>
+          <a data-widgster="fullscreen" href="#" class="transition">
+              <i class="fa fa-expand"></i>
+          </a>
+          <a data-widgster="restore" href="#" class="transition">
+              <i class="fa fa-compress"></i>
+          </a>
+      </div>
+  </div>
+  <div class="card-block widget-body">
+      <div class="row">
+          <div class="col-xl-9 col-lg-9 col-12">
+              <form (ngSubmit)="onSubmit(eventoForm)" #eventoForm="ngForm">
+                  <div class="form-group">
+                      <label for="nombre">Nombre</label>
+                      <input type="text" class="form-control" id="nombre" required #nombre="ngModel" name="nombre" [(ngModel)]="_item.nombre">
+                      <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
+                          Debe ingresar el nombre
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="descripcion">Descripcion</label>
+                      <textarea type="text" multiple class="form-control" id="descripcion" required #descripcion="ngModel" name="descripcion" [(ngModel)]="_item.descripcion"></textarea>
+                      <div [hidden]="descripcion.valid || descripcion.pristine" class="alert alert-danger">
+                          Debe ingresar la descripcion.
+                      </div>
+                  </div>
+
+                  <!-- <div class="form-group">
+                      <label for="tipoEvento">Tipo de evento</label>
+                      <select class="form-control" id="tipoEvento" required #tipoEvento="ngModel" name="tipoEvento" [(ngModel)]="_item.tipoEvento">
+                          <option *ngFor="let item of tiposDeEventos" [ngValue]="item">{{item.nombre}}</option>
+                      </select>
+                      <div [hidden]="tipoEvento.valid || tipoEvento.pristine" class="alert alert-danger">
+                          Debe ingresar el tipo de evento.
+                      </div>
+                  </div> -->
+                  <select-tipo-evento [item]="_item.tipoEvento"></select-tipo-evento>
+                  <select-espacio [item]="_item.espacio"></select-espacio>
+                  <select-encargado [item]="_item.responsable"></select-encargado>
+
+                  <div class="row">
+                      <div class="col">
+                          <div class="form-group">
+                              <label for="cupoMinimo">Cupo minimo de inscriptos</label>
+                              <input type="number" class="form-control" id="cupoMinimo" required #cupoMinimo="ngModel" name="cupoMinimo" [(ngModel)]="_item.cupoMinimo">
+                              <div [hidden]="cupoMinimo.valid || cupoMinimo.pristine" class="alert alert-danger">
+                                  Debe ingresar el cupo minimo del evento
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col">
+                          <div class="form-group">
+                              <label for="cupoMaximo">Cupo maximo de inscriptos</label>
+                              <input type="number" class="form-control" id="cupoMaximo" required #cupoMaximo="ngModel" name="cupoMaximo" [(ngModel)]="_item.cupoMaximo">
+                              <div [hidden]="cupoMaximo.valid || cupoMaximo.pristine" class="alert alert-danger">
+                                  Debe ingresar el cupo maximo del evento
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div widget class="card" style="margin-bottom: 25px;">
+                      <div class="card-header">
+                          <span>Fechas del evento</span>
+                          <div class="widget-controls">
+                              <a data-widgster="expand" href="#" class="transition">
+                                  <i class="fa fa-chevron-down"></i>
+                              </a>
+                              <a data-widgster="collapse" href="#" class="transition">
+                                  <i class="fa fa-chevron-up"></i>
+                              </a>
+                          </div>
+                      </div>
+                      <div class="card-block widget-body">
+                          <div class="row">
+                              <div class="col">
+                                  <div class="form-group">
+                                      <label for="fechaDesde">Fecha de inicio de los eventos</label>
+                                      <input type="date" class="form-control" id="fechaDesde" required #fechaDesde="ngModel" name="fechaDesde" [(ngModel)]="_item.fechaDesde">
+                                      <div [hidden]="fechaDesde.valid || fechaDesde.pristine" class="alert alert-danger">
+                                          Debe ingresar la fecha de inicio de los eventos
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <div class="col">
+                                  <div class="form-group">
+                                      <label for="fechaHasta">Fecha de fin de los eventos</label>
+                                      <input type="date" class="form-control" id="fechaHasta" required #fechaHasta="ngModel" name="fechaHasta" [(ngModel)]="_item.fechaHasta">
+                                      <div [hidden]="fechaHasta.valid || fechaHasta.pristine" class="alert alert-danger">
+                                          Debe ingresar la fecha de fin de los eventos
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="row">
+                              <div class="col">
+                                  <div class="form-group">
+                                      <label for="fechaDesdeInscripcion">Fecha de inicio inscripciones</label>
+                                      <input type="date" class="form-control" id="fechaDesdeInscripcion" required #fechaDesdeInscripcion="ngModel" name="fechaDesdeInscripcion"
+                                          [(ngModel)]="_item.fechaDesdeInscripcion">
+                                      <div [hidden]="fechaDesdeInscripcion.valid || fechaDesdeInscripcion.pristine" class="alert alert-danger">
+                                          Debe ingresar la fecha de inicio de los eventos
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <div class="col">
+                                  <div class="form-group">
+                                      <label for="fechaHastaInscripcion">Fecha de fin de inscripciones</label>
+                                      <input type="date" class="form-control" id="fechaHastaInscripcion" required #fechaHastaInscripcion="ngModel" name="fechaHastaInscripcion"
+                                          [(ngModel)]="_item.fechaHastaInscripcion">
+                                      <div [hidden]="fechaHastaInscripcion.valid || fechaHastaInscripcion.pristine" class="alert alert-danger">
+                                          Debe ingresar la fecha de fin de inscripciones
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+
+
+
+                     <!--      <div class="row">
+                              <div class="col">
+                                  <div class="form-group">
+                                      <label for="diaSemana">Dia</label>
+                                      <select class="form-control" id="diaSemana" #diaSemana="ngModel" name="diaSemana" [(ngModel)]="horario.dia">
+                                          <option *ngFor="let item of listaHorarios" [ngValue]="item">{{item.dia}}</option>
+                                      </select>
+                                  </div>
+                              </div>
+
+                              <div class="col">
+                                  <div class="form-group">
+                                      <label for="horaDesde">Hora inicio</label>
+                                      <input type="time" class="form-control" id="horaDesde" #horaDesde="ngModel" name="horaDesde" [(ngModel)]="horario.horaDesde">
+                                  </div>
+                              </div>
+
+                              <div class="col">
+                                  <div class="form-group">
+                                      <label for="horaHasta">Hora fin</label>
+                                      <input type="time" class="form-control" id="horaHasta" #horaHasta="ngModel" name="horaHasta" [(ngModel)]="horario.horaHasta">
+                                  </div>
+                              </div>
+
+                              <div class="col" style=" display: flex;align-items: center;justify-content: center;">
+                                  <button type="button" class="btn btn-main" (click)="agregarHorario();" [disabled]="!horario.horaHasta||!horario.horaDesde||!horario.dia">Agregar</button>
+                              </div>
+                          </div>
+
+                          <div>
+                              <ul class="list-group">
+
+                                  <li class="list-group-item" *ngFor="let horario of horarios; let i = index">
+                                      <span class="col col-10">
+                                          {{horario.dia}} desde {{horario.horaDesde}} hasta {{horario.horaHasta}}.
+                                      </span>
+                                      <span class="col col-2">
+                                          <i style="cursor:pointer;" (click)="horarios.splice(i,1);" class="fa fa-trash"></i>
+                                      </span>
+                                  </li>
+
+                              </ul>
+                          </div> -->
+                      </div>
+                  </div>
+
+                  <!-- <az-select-socio [listaSocios]="_item.listaSocios"></az-select-socio> -->
+
+                  <button type="submit" class="btn btn-main" [disabled]="!eventoForm.form.valid" (click)="guardar()">Guardar</button>
+                  <button (click)="limpiarForm();" type="button" style="margin-left: 30px;" class="btn btn-default">Cancelar</button>
+                  <button style="margin-left: 30px;" *ngIf="_item.id > 0" class="btn btn-danger"
+                    (click)="darBaja()">Dar de baja <i
+                        class="fa fa-trash"></i></button>
+              </form>
+          </div>
+
+        <!--   <div class="col-xl-3 col-lg-3 col-12">
+              <az-select-tags [listaTags]="_item.listaTags"></az-select-tags>
+          </div> -->
+      </div>
+  </div>
+</div>
+

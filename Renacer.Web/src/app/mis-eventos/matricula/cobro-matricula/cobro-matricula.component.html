@@ -53,7 +53,14 @@
                     <td>{{item.nombre}} {{item.apellido}} </td>
                     <td>{{item.nroDocumento}} </td>
                     <td *ngIf="item.estado == 'DebeMatricula'; else other_content">
-                       <button type="button" class="btn .btn-outline-success btn-rounded" (click)="abrirModalCobro(item)">Cobrar</button>
+                       <!-- <button type="button" class="btn .btn-outline-success btn-rounded" (click)="abrirModalCobro(item)"
+                       >Cobrar</button> -->
+                    
+                        <button type="button" class="btn btn-outline-info btn-rounded transition"
+                        (click)="abrirModalCobro(item)">Cobrar</button>
+          
+  <!--                      (mouseover)="hover=true" (mouseleave)="hover=false"
+                       [ngStyle]="{backgroundColor: hover==true  ? 'lightgrey' : 'grey' }" -->
                     <td>
                         <ng-template #other_content><td></td></ng-template>
                   </tr>

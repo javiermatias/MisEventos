@@ -13,8 +13,8 @@ import { EspacioComun,EspacioServices} from '../../servicios/espacio.service';
 })
 export class EventoComponent implements OnInit,OnDestroy  {
 
-  @Input() _item = new Evento();
-  @Input() evento:string;
+   _item = new Evento();
+  evento:string;
   public tiposDeEventos:TipoEvento[];
   public espacios:EspacioComun[];
   public responsables:EncargadoEvento[];
@@ -22,7 +22,7 @@ export class EventoComponent implements OnInit,OnDestroy  {
   public horario:any = {'dia':'','horaDesde':'','horaHasta':''};
 public searchText:string="";
 
-  id: string;
+  id: number;
   private sub: any;
 
   public diaSemanas:string[] = ["Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"];
@@ -40,11 +40,14 @@ public searchText:string="";
 
     ngOnInit()
     {
-      this.sub = this.route.params.subscribe(params => {
+      this.id = Number(this.route.snapshot.params['id']);
+      console.log(this.id );
+       this.verItem();
+   /*    this.sub = this.route.params.subscribe(params => {
         this.id = params['id'];
         if(this.id == "nuevo") this.nuevoItem();
         else this.verItem();
-      });
+      }); */
     }
 
     ngOnDestroy() {

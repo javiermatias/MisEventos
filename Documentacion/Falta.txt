@@ -1,10 +1,8 @@
--Procesar el pago (Ver el botón sombreado)
--Ver el tema de recordatorios.(Crear y borrar)
 -Eventos con el tipo screen
 -alerta poder marcar como lista. fecha cargar alerta dia de hoy en adelante. Eliminar con confirmación de dialogo.
 
 _23-06-2019
-1.Que guarde un Evento (Sin subeventos) , 
+
 Sacar boton guardar y texto debajo de Tipo de Evento. Texto Validacion Cuota en blanco. Valor cuota no se debe modificar.
 Fecha de Fin no debe ser menor a fecha de inicio.El texo esta en fecha fin de inscripcion.
 HOra de Inicio NO debe ser mas grande que Hora de FIn. Permite ingresar varios dias-horarios que se superponen en el tiempo.

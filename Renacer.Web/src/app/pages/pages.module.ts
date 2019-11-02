@@ -58,6 +58,7 @@ import { MisDatosComponent } from '../mis-eventos/socios/mis-datos/mis-datos.com
 import { MisInteresesComponent } from '../mis-eventos/socios/mis-intereses/mis-intereses.component';
 import { DonacionesComponent } from '../mis-eventos/socios/donaciones/donaciones.component';
 import { ComprobantePagoComponent } from '../mis-eventos/socios/mis-pagos/comprobante-pago/comprobante-pago.component';
+import { EventoModificarComponent } from '../mis-eventos/evento/lista/evento-modificar/evento-modificar.component';
 
 
 @NgModule({
@@ -122,7 +123,8 @@ import { ComprobantePagoComponent } from '../mis-eventos/socios/mis-pagos/compro
     MisDatosComponent,
     MisInteresesComponent,    
     DonacionesComponent,
-    ComprobantePagoComponent
+    ComprobantePagoComponent,    
+    EventoModificarComponent
   
   ]
   , exports: [

@@ -43,6 +43,7 @@ import { Angular2CsvModule } from 'angular2-csv';
 import { CsvWrapperComponent } from './mis-eventos/componentesCompartidos/csv-wrapper/csv-wrapper.component';
 
 
+
 registerLocaleData(localeEs, 'es-AR');
 @NgModule({
   declarations: [

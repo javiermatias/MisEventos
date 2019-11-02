@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+
 //import { Matricula } from '../../../models/matricula';
 
 @Pipe({ name: 'SearchPipe' })
@@ -42,6 +43,26 @@ export class buscarSocioMatricula implements PipeTransform {
         if (Socio.nombre && searchText) {
        
           return Socio.nombre.search(searchText) !== -1 ;
+       
+                
+        
+        }else{
+          return true
+        }
+      });
+    }
+  }
+}
+
+@Pipe({ name: 'buscarSocioMatriculaPagadas' })
+export class buscarSocioMatriculaPagadas implements PipeTransform {
+  transform(value, args?): Array<any> {
+    let searchText = new RegExp(args, 'ig');
+    if (value) {
+      return value.filter(item => {
+        if (item.socio.nombre && searchText) {
+       
+          return item.socio.nombre.search(searchText) !== -1 ;
        
                 
         

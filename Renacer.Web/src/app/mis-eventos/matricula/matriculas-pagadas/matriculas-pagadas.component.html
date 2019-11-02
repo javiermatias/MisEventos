@@ -96,7 +96,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let item of mf.data | buscarMatriculaPipe : searchText; ">
+                  <tr *ngFor="let item of mf.data | buscarSocioMatriculaPagadas : searchText; ">
                       <!-- <td><strong>{{item.id}}</strong></td> -->
                     <td>{{item.socio.nombre }} {{item.socio.apellido}}</td>
                     <td>{{item.matricula.anio | date:"yyyy"}}</td>

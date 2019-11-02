@@ -60,7 +60,7 @@ namespace Renacer.WebAPI.Controllers
         }
 
         // PUT: api/cliente/5
-        public void Put(int id, [FromBody]Evento value)
+        public void Put([FromBody]Evento value)
         {
             ControlEvento.devolverInstancia().actualizar(value);
         }
