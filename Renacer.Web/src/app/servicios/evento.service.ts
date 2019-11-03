@@ -17,6 +17,10 @@ export class Evento {
     public tipoEvento?:TipoEvento,
     public idEspacio?:number,
     public espacio?:EspacioComun,
+
+    public idEncargado?:number,
+    public responsable?:EncargadoEvento, 
+
     public cupoMinimo?: number,
     public cupoMaximo?: number,
     public gratuito?:boolean, // true es gratiuto
@@ -30,17 +34,18 @@ export class Evento {
     public listaHorarios?:Array<Horario>,
     //public listaTags?:Array<Tag>,        
     public estado?: string, 
+
+    public listaDetalleEvento?:Array<DetalleEvento>,    
+
+    public listaInscripciones?:Array<Inscripcion>,
+
     public fechaCreacion?: Date,
     //public fechaModificacion?: Date,
-    public fechaBaja?: Date,    
-    public responsable?:EncargadoEvento,    
-    public listaSocios?:Array<Socio>,
-    public listaInscripciones?:Array<Inscripcion>,
-    public listaDetalleEvento?:Array<DetalleEvento>,    
-    public idEncargado?:number
+    public fechaBaja?: Date    
+    
   ) {
     //this.listaTags = new Array<Tag>();
-    this.listaSocios = new Array<Socio>();
+   // this.listaSocios = new Array<Socio>();
     this.listaDetalleEvento = new Array<DetalleEvento>();
     //this.tipoEvento= new TipoEvento(0);
   }

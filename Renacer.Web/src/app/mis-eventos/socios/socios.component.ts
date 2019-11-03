@@ -58,7 +58,7 @@ export class SociosComponent implements OnInit {
   }
 
   eliminarItem(item: Socio) {
-    this._socioService.remove({ 'id': item.id }).subscribe(resp => {
+    this._socioService.remove(item.id).subscribe(resp => {
       this.mensajeServ.info('Se ha dado de baja el socio', 'Aviso!');
       this.router.navigate(['/pages/socios']);
     })

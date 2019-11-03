@@ -131,7 +131,7 @@ namespace Renacer.Nucleo.Control
                 using (var db = new ModeloRenacer())
                 {
                     var item = db.inscripcion.
-                        Where(x => x.idEvento == _idEvento && x.idSocio == _idSocio).FirstOrDefault();
+                        Where(x => x.idEvento == _idEvento && x.idSocio == _idSocio && x.fechaBaja == null).FirstOrDefault();
                     return item;
                 }
             }
@@ -206,7 +206,7 @@ namespace Renacer.Nucleo.Control
             {
                 using (var db = new ModeloRenacer())
                 {
-                    db.inscripcion.Remove(db.inscripcion.Where(x => x.id.Equals(id)).FirstOrDefault());
+                    db.inscripcion.Remove(db.inscripcion.Where(x => x.id.Equals(id) ).FirstOrDefault());
                     db.SaveChanges();
                 }
             }
@@ -227,7 +227,7 @@ namespace Renacer.Nucleo.Control
                                 .Include("listaPagos")
                                 .Include("evento")
                                 
-                                .Where(x => x.idSocio == idSocio )
+                                .Where(x => x.idSocio == idSocio && x.fechaBaja == null)
                                 .ToList();
                   
                 }

@@ -1,5 +1,5 @@
 -Eventos con el tipo screen
--alerta poder marcar como lista. fecha cargar alerta dia de hoy en adelante. Eliminar con confirmación de dialogo.
+
 
 _23-06-2019
 
@@ -184,3 +184,12 @@ Cronograma: agregar una opcion mas al radio button Sin Fechas, para que permita 
 Eventos: cobrar cuotas: al cobrar aparece el Monto $ fuera de la ventanita que se abre para confirmar el cobro.
 Matricula: _cobrar Matricula, al pagarlo se abre la ventana de pdf pero no permite maximizarlo.
 _ Matriculas pagadas 
+
+
+80 Socios, 10 encargados, 60 eventos,  (60 matriculas pagadas)
+
+
+CantidadInscriptos por Evento, sobre el total del cupo. Filtro por evento.
+
+
+Para eliminar una inscripcion hay que eliminar los pagos asociados.(Ver como hacer, o dar de baja la inscripcion)

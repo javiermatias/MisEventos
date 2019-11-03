@@ -70,8 +70,9 @@ namespace Renacer.WebAPI.Controllers
         {
             var Evento = ControlEvento.devolverInstancia().devolver(id);
             Evento.fechaBaja = DateTime.Now;
+            Evento.estado = "Cancelado";
 
-            ControlEvento.devolverInstancia().darDeBaja(Evento);
+            ControlEvento.devolverInstancia().eliminar(Evento);
         }
 
 

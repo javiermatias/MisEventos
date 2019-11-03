@@ -4,6 +4,7 @@ import { Socio } from '../../../servicios/socio.service';
 import { DatePipe } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 
 
@@ -24,18 +25,26 @@ export class InscripcionComponent implements OnInit {
   seleccionEvento:Evento; // evento Seleccionado
   evento:Evento; //evento que viene con las inscripciones
   listaInscripcion:Array<Inscripcion>;
+
+  idEvento:number;
   mostrarGrilla=false;
   mostrarInscripcion=false;
   eliminaInscripcion:Inscripcion;
 
   constructor( private _itemsService:EventoServices, private inscripcionServ:InscripcionServices, 
-    private datePipe: DatePipe, private mensajeServ: ToastrService) { 
+    private datePipe: DatePipe, private mensajeServ: ToastrService,
+    private route: ActivatedRoute) { 
     this.listaSocios=new Array<Socio>();
    this.listaInscripcion= new Array<Inscripcion>();
   
   }
 
   ngOnInit() {
+
+
+    this.idEvento = Number(this.route.snapshot.params['id']);
+
+    this.traerEvento(this.idEvento);
     
     this.fecha =new Date(this.fechaHoy.getFullYear() + "-" + (this.fechaHoy.getMonth() + 1) + "-" + this.fechaHoy.getDate());
     this.fecha.setDate( this.fecha.getDate());
@@ -44,10 +53,15 @@ export class InscripcionComponent implements OnInit {
 
   }
 
-  traerEventos(estado:string){
+  traerEvento(idEvento:number){
     
-      this._itemsService.query({'estado':estado}).subscribe(items => {
-        this.eventos = items;
+      this._itemsService.get(idEvento).subscribe(item => {
+        this.seleccionEvento= item;
+        this.traerInscripciones(idEvento);
+        /* this.mostrarInscripcion = true;  
+        this.mostrarGrilla = true; */
+        //console.log(item);
+       
         }
        );
 
@@ -56,8 +70,10 @@ export class InscripcionComponent implements OnInit {
   traerInscripciones(idEvento: number) {
 
     this.inscripcionServ.query({'idEvento': idEvento}).subscribe(items => {
-      if (items != null) { this.listaInscripcion = items; }
-
+      if (items != null) { 
+        this.listaInscripcion = items; }
+      this.mostrarInscripcion = true;      
+     // console.log(items);
       this.mostrarGrilla = true;
       }
      );
@@ -65,25 +81,9 @@ export class InscripcionComponent implements OnInit {
 }
 
 
-  cambioEstado(){
-    this.traerEventos(this.seleccionEstado);
-   
-  }
 
-  cambioEvento(){
-    this.traerInscripciones(this.seleccionEvento.id);
-    //console.log(this.seleccionEvento.fechaHastaInscripcion.getFullYear().toString());
-    //console.log(this.datePipe.transform(this.fecha,'yyyy'));
-   
-    if(this.seleccionEvento.fechaHastaInscripcion.toString() >= this.datePipe.transform(this.fecha,'yyyy-MM-dd')){
-      this.mostrarInscripcion = true;
-    } else{
-      this.mostrarInscripcion = false;
-    }
-     
-    this.listaSocios=new Array<Socio>();
 
-  }
+
 
 
   guardar(){
@@ -136,7 +136,7 @@ export class InscripcionComponent implements OnInit {
 
   guardarInscripcion(inscripc:Inscripcion){
     this.inscripcionServ.save(inscripc).subscribe(resp => {
-      this.traerInscripciones(this.seleccionEvento.id);
+    /*   this.traerInscripciones(this.seleccionEvento.id); */
        });
   }
 
@@ -147,7 +147,7 @@ export class InscripcionComponent implements OnInit {
   }
   eliminar(){
     jQuery('#show-event-modal').modal('hide');
-    this.inscripcionServ.remove({'id':this.eliminaInscripcion.id}).subscribe(resp =>{
+    this.inscripcionServ.remove(this.eliminaInscripcion.id).subscribe(resp =>{
       this.mensajeServ.info('Se dio de baja la inscripción', 'Aviso!');
       this.traerInscripciones(this.seleccionEvento.id);
     })

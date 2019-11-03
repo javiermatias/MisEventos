@@ -19,7 +19,7 @@
   <div class="card-block widget-body">
       <div class="row">
           <div class="col-xl-9 col-lg-9 col-12">
-              <form (ngSubmit)="onSubmit(eventoForm)" #eventoForm="ngForm">
+              <form  #eventoForm="ngForm">
                   <div class="form-group">
                       <label for="nombre">Nombre</label>
                       <input type="text" class="form-control" id="nombre" required #nombre="ngModel" name="nombre" [(ngModel)]="_item.nombre">
@@ -82,11 +82,11 @@
                           </div>
                       </div>
                       <div class="card-block widget-body">
-                          <div class="row">
+   <!--                        <div class="row">
                               <div class="col">
                                   <div class="form-group">
                                       <label for="fechaDesde">Fecha de inicio de los eventos</label>
-                                      <input type="date" class="form-control" id="fechaDesde" required #fechaDesde="ngModel" name="fechaDesde" [(ngModel)]="_item.fechaDesde">
+                                      <input type="date" class="form-control" id="fechaDesde" required #fechaDesde="ngModel" name="fechaDesde" [ngModel]="_item.fechaDesde | date:'yyyy-MM-dd'">
                                       <div [hidden]="fechaDesde.valid || fechaDesde.pristine" class="alert alert-danger">
                                           Debe ingresar la fecha de inicio de los eventos
                                       </div>
@@ -96,20 +96,20 @@
                               <div class="col">
                                   <div class="form-group">
                                       <label for="fechaHasta">Fecha de fin de los eventos</label>
-                                      <input type="date" class="form-control" id="fechaHasta" required #fechaHasta="ngModel" name="fechaHasta" [(ngModel)]="_item.fechaHasta">
+                                      <input type="date" class="form-control" id="fechaHasta" required #fechaHasta="ngModel" name="fechaHasta" [ngModel]="_item.fechaHasta | date:'yyyy-MM-dd'">
                                       <div [hidden]="fechaHasta.valid || fechaHasta.pristine" class="alert alert-danger">
                                           Debe ingresar la fecha de fin de los eventos
                                       </div>
                                   </div>
                               </div>
-                          </div>
+                          </div> -->
 
                           <div class="row">
                               <div class="col">
                                   <div class="form-group">
-                                      <label for="fechaDesdeInscripcion">Fecha de inicio inscripciones</label>
+                                      <label for="fechaDesdeInscripcion">Fecha inicio inscripciones</label>
                                       <input type="date" class="form-control" id="fechaDesdeInscripcion" required #fechaDesdeInscripcion="ngModel" name="fechaDesdeInscripcion"
-                                          [(ngModel)]="_item.fechaDesdeInscripcion">
+                                          [ngModel]="_item.fechaDesdeInscripcion | date:'yyyy-MM-dd'" (ngModelChange)="actualizarFechaDesde(fecha.value)">
                                       <div [hidden]="fechaDesdeInscripcion.valid || fechaDesdeInscripcion.pristine" class="alert alert-danger">
                                           Debe ingresar la fecha de inicio de los eventos
                                       </div>
@@ -118,9 +118,9 @@
 
                               <div class="col">
                                   <div class="form-group">
-                                      <label for="fechaHastaInscripcion">Fecha de fin de inscripciones</label>
+                                      <label for="fechaHastaInscripcion">Fecha fin de inscripciones</label>
                                       <input type="date" class="form-control" id="fechaHastaInscripcion" required #fechaHastaInscripcion="ngModel" name="fechaHastaInscripcion"
-                                          [(ngModel)]="_item.fechaHastaInscripcion">
+                                          [ngModel]="_item.fechaHastaInscripcion | date:'yyyy-MM-dd'" (ngModelChange)="actualizarFechaHasta(fecha.value)">
                                       <div [hidden]="fechaHastaInscripcion.valid || fechaHastaInscripcion.pristine" class="alert alert-danger">
                                           Debe ingresar la fecha de fin de inscripciones
                                       </div>

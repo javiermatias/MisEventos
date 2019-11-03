@@ -116,13 +116,13 @@ public searchText:string="";
 
     armarInscripciones(item:Evento):Array<Inscripcion>{
       let  listaInscripciones:Array<Inscripcion> = new Array();
-      for(let indice = 0;indice< item.listaSocios.length;indice++){
+  /*     for(let indice = 0;indice< item.listaSocios.length;indice++){
                 let inscripto = new Inscripcion(0)
                       inscripto.idEvento = item.id;
                       inscripto.idSocio = item.listaSocios[indice].id;
 
                       listaInscripciones.push(inscripto);
-      }
+      } */
 
       return listaInscripciones;
     }
@@ -208,10 +208,10 @@ public searchText:string="";
    }
 
    eliminarEvento(eventoAux:Evento){
-     this._itemsService.remove({'id':eventoAux.id}).subscribe(resp =>{
+/*      this._itemsService.remove({'id':eventoAux.id}).subscribe(resp =>{
       this.mensajeServ.info('Se ha dado de baja el evento', 'Aviso!');
       this.router.navigate(['/pages/evento/lista']);
-     })
+     }) */
    }
 
     addDays(date, days) {
