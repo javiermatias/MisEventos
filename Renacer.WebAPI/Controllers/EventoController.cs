@@ -60,7 +60,7 @@ namespace Renacer.WebAPI.Controllers
         }
 
         // PUT: api/cliente/5
-        public void Put(int id, [FromBody]Evento value)
+        public void Put([FromBody]Evento value)
         {
             ControlEvento.devolverInstancia().actualizar(value);
         }
@@ -70,8 +70,9 @@ namespace Renacer.WebAPI.Controllers
         {
             var Evento = ControlEvento.devolverInstancia().devolver(id);
             Evento.fechaBaja = DateTime.Now;
+            Evento.estado = "Cancelado";
 
-            ControlEvento.devolverInstancia().darDeBaja(Evento);
+            ControlEvento.devolverInstancia().eliminar(Evento);
         }
 
 

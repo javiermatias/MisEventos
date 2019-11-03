@@ -13,8 +13,8 @@ import { EspacioComun,EspacioServices} from '../../servicios/espacio.service';
 })
 export class EventoComponent implements OnInit,OnDestroy  {
 
-  @Input() _item = new Evento();
-  @Input() evento:string;
+   _item = new Evento();
+  evento:string;
   public tiposDeEventos:TipoEvento[];
   public espacios:EspacioComun[];
   public responsables:EncargadoEvento[];
@@ -22,7 +22,7 @@ export class EventoComponent implements OnInit,OnDestroy  {
   public horario:any = {'dia':'','horaDesde':'','horaHasta':''};
 public searchText:string="";
 
-  id: string;
+  id: number;
   private sub: any;
 
   public diaSemanas:string[] = ["Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"];
@@ -40,11 +40,14 @@ public searchText:string="";
 
     ngOnInit()
     {
-      this.sub = this.route.params.subscribe(params => {
+      this.id = Number(this.route.snapshot.params['id']);
+      console.log(this.id );
+       this.verItem();
+   /*    this.sub = this.route.params.subscribe(params => {
         this.id = params['id'];
         if(this.id == "nuevo") this.nuevoItem();
         else this.verItem();
-      });
+      }); */
     }
 
     ngOnDestroy() {
@@ -113,13 +116,13 @@ public searchText:string="";
 
     armarInscripciones(item:Evento):Array<Inscripcion>{
       let  listaInscripciones:Array<Inscripcion> = new Array();
-      for(let indice = 0;indice< item.listaSocios.length;indice++){
+  /*     for(let indice = 0;indice< item.listaSocios.length;indice++){
                 let inscripto = new Inscripcion(0)
                       inscripto.idEvento = item.id;
                       inscripto.idSocio = item.listaSocios[indice].id;
 
                       listaInscripciones.push(inscripto);
-      }
+      } */
 
       return listaInscripciones;
     }
@@ -205,10 +208,10 @@ public searchText:string="";
    }
 
    eliminarEvento(eventoAux:Evento){
-     this._itemsService.remove({'id':eventoAux.id}).subscribe(resp =>{
+/*      this._itemsService.remove({'id':eventoAux.id}).subscribe(resp =>{
       this.mensajeServ.info('Se ha dado de baja el evento', 'Aviso!');
       this.router.navigate(['/pages/evento/lista']);
-     })
+     }) */
    }
 
     addDays(date, days) {

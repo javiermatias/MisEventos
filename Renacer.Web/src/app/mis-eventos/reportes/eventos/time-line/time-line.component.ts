@@ -31,6 +31,8 @@ export class TimeLineComponent implements OnInit {
     this.getItems();
   }
   filtrar(){
+
+    //agregar un estado sin filtro fecha
   /*   //alert("click en filtrar"); 
  // console.log(this.fecha);
   console.log(this.fechaDesde);

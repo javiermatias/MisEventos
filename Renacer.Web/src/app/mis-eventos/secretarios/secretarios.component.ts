@@ -28,7 +28,7 @@ export class SecretariosComponent implements OnInit {
   public _estadoCivil=estadoCivil;
 
   constructor(
-    private _personaService: PersonaServices,
+
     private _secretarioService: SecretarioServices
     , private mensajeServ: ToastrService
     , private route: ActivatedRoute
@@ -65,8 +65,8 @@ export class SecretariosComponent implements OnInit {
   verItem(item: Persona) {
     //his._persona = item;
     //this.showDetail = true;
-    this._personaService.get(item.id).subscribe(resp => {
-      this._persona = resp;
+    this._secretarioService.get(item.id).subscribe(resp => {
+      this._secretario = resp;
       //this._persona.fechaNacimiento.format("mm/dd/yy", "AR");
       /*       var mifecha;
             var mifecha2;
@@ -82,7 +82,7 @@ export class SecretariosComponent implements OnInit {
   }
 
   eliminarItem(item: Persona) {
-    this._personaService.remove({ 'id': item.id }).subscribe(resp => {
+    this._secretarioService.remove(item.id ).subscribe(resp => {
       this.mensajeServ.info('Se ha dado de baja el secretario', 'Aviso!');
       this.router.navigate(['/pages/secretarios']);
     })

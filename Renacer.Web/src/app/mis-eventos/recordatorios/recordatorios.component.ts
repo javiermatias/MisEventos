@@ -37,12 +37,12 @@ export class RecordatoriosComponent implements OnInit {
   cerrar(reco: Recordatorio) {
     //console.log("Hizo Click en borrar");
     //aca tengo que hacer el cuadro de dialogo
-    let id: any;
-    id = reco.id;
-    // console.log(reco.id);
+   // let id: any;
+    //id = reco.id;
+    console.log(reco);
     if (confirm("¿Estás seguro de eliminar el recordatorio " + reco.descripcion)) {
-      // console.log("pase por el si");
-      this._recordatorioService.remove(id).subscribe(resp => {
+      console.log("pase por el si");
+      this._recordatorioService.remove(reco.id).subscribe(resp => {
         //Callback
         this.getItems();
         this.toastrService.success('¡Se eliminó el recordatorio!', 'Aviso!');

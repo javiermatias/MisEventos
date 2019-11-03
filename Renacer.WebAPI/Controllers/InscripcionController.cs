@@ -55,6 +55,11 @@ namespace Renacer.WebAPI.Controllers
         // DELETE: api/ApiCliente/5
         public void Delete(int id)
         {
+            Inscripcion inscripcion = ControlInscripcion.devolverInstacia().devolver(id);
+            foreach (var pago in inscripcion.listaPagos)
+            {
+                ControlPagoCuota.devolverInstacia().eliminar(pago.id);
+            }
             ControlInscripcion.devolverInstacia().eliminar(id);
         }
     }

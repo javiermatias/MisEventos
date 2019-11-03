@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AppPicturePipe } from './appPicture/appPicture.pipe';
 import { ProfilePicturePipe } from './profilePicture/profilePicture.pipe';
 import { MailSearchPipe } from './search/mail-search.pipe';
-import { SearchPipe,buscarMatriculaPipe,buscarSocioMatricula } from './search/search.pipe';
+import { SearchPipe,buscarMatriculaPipe,buscarSocioMatricula, buscarSocioMatriculaPagadas } from './search/search.pipe';
 
 @NgModule({
     imports: [ 
@@ -16,7 +16,8 @@ import { SearchPipe,buscarMatriculaPipe,buscarSocioMatricula } from './search/se
         MailSearchPipe,
         SearchPipe,
         buscarMatriculaPipe,
-        buscarSocioMatricula 
+        buscarSocioMatricula,
+        buscarSocioMatriculaPagadas 
     ],
     exports: [
         AppPicturePipe,
@@ -24,7 +25,8 @@ import { SearchPipe,buscarMatriculaPipe,buscarSocioMatricula } from './search/se
         MailSearchPipe,
         SearchPipe,
         buscarMatriculaPipe,
-        buscarSocioMatricula 
+        buscarSocioMatricula ,       
+        buscarSocioMatriculaPagadas 
     ]
 })
 export class PipesModule { }

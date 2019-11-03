@@ -363,15 +363,15 @@ namespace Renacer.Nucleo.Control
                     //if (evento.listaSocios != null && evento.listaSocios.Count > 0) ControlSocio.devolverInstancia().actualizarListaDeSocios(db, listaSocios, eventoAux.listaSocios);
                     // ControlDetalleEvento.devolverInstancia().actualizarListaDeDetalleEventos(db, listaDetalleEvento, eventoAux.listaDetalleEvento);
                     //db.Entry(evento.listaInscripciones).State = EntityState.Modified;
-                    db.Entry(evento).State = EntityState.Unchanged;
-                    foreach (var item in evento.listaInscripciones)
-                    {
-                        item.evento.id = item.idEvento;
-                    }
-                    evento.listaInscripciones.ForEach(p => db.Entry(p).State = EntityState.Added);
+                    //db.Entry(evento).State = EntityState.Unchanged;
+                    //foreach (var item in evento.listaInscripciones)
+                    //{
+                    //    item.evento.id = item.idEvento;
+                    //}
+                    //evento.listaInscripciones.ForEach(p => db.Entry(p).State = EntityState.Added);
                     //var entity = db.evento.Find(evento.id);
                     //db.Entry(entity).CurrentValues.SetValues(evento);
-                   // db.evento.AddOrUpdate(evento);
+                    db.evento.AddOrUpdate(evento);
                     db.SaveChanges();
                 }
             }
@@ -389,8 +389,9 @@ namespace Renacer.Nucleo.Control
 
         public void darDeBaja(Evento evento) {
             var consulta = @"UPDATE detalleevento SET fechaBaja = NOW() where idEvento = {idEvento};
-                             UPDATE evento SET fechaBaja = NOW() where id = {idEvento};";
+                             UPDATE evento SET fechaBaja = NOW(), estado={estado} where id = {idEvento};";
             consulta = consulta.Replace("{idEvento}", evento.id.ToString());
+            consulta = consulta.Replace("{estado}", evento.estado);
             ControlReporte.GetInstance().ExecuteScalar(consulta);
         }
       
@@ -532,13 +533,14 @@ namespace Renacer.Nucleo.Control
         /// TODO: El metodo se tiene que cambiar para actualizar un atributo del evento 
         /// para ver si esta eliminado o no, no se eliminan datos.
         /// </summary>
-        public void eliminar(int id)
+        public void eliminar(Evento evento)
         {
             try
             {
                 using (var db = new ModeloRenacer())
                 {
-                    db.evento.Remove(db.evento.Where(x => x.id.Equals(id)).FirstOrDefault());
+                    db.evento.AddOrUpdate(evento);
+                    db.SaveChanges();
                 }
             }
             catch (Exception ex)

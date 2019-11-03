@@ -33,7 +33,7 @@ export const itemsAdmin = [
       },
       {
         title: 'Inscripciones',
-        routerLink: 'evento/inscripcion'
+        routerLink: 'evento/lista-inscripciones'
       },
 
       {

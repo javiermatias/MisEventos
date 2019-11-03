@@ -33,7 +33,7 @@ export const itemsSecretario = [
             },
             {
                 title: 'Inscripciones',
-                routerLink: 'evento/inscripcion'
+                routerLink: 'evento/lista-inscripciones'
             },            
             {
                 title: 'Cobrar cuotas',

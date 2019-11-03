@@ -42,7 +42,7 @@
           </div>
           <div class="card-block widget-body">
             <p class="no-margin"> </p>
-           <div class="row">  
+<!--            <div class="row">  
         
           <div class="form-group col-md-5">
             <label class="form-control-label">Estado del Evento:</label>
@@ -63,7 +63,7 @@
             </select>
         </div>
 
-      </div>
+      </div> -->
 
       <div class="row" *ngIf="seleccionEvento">
         <div class="col col-lg-9">
@@ -109,6 +109,18 @@
         </div>
     </div>
 
+    <div class="col col-lg-9" *ngIf="seleccionEvento">
+      <div > 
+        <az-select-socio  [listaSocios]="listaSocios"></az-select-socio>
+    <!--     <button type="submit" class="btn btn-main" *ngIf="listaSocios"
+          [disabled]="!listaSocios?.length" (click)="guardar()">Guardar</button>
+          <button (click)="limpiarForm();" type="button" style="margin-left: 30px;"
+          class="btn btn-default">Cancelar</button> -->
+      </div>  
+          
+          
+          
+          </div>
 
 
     <div class="row" *ngIf="mostrarGrilla">
@@ -182,43 +194,23 @@
 
       </div>
   </div>
-    
-  <div class="col col-lg-9">
-<div *ngIf="mostrarInscripcion"> 
-  <az-select-socio  [listaSocios]="listaSocios"></az-select-socio>
-  <button type="submit" class="btn btn-main" *ngIf="listaSocios"
-    [disabled]="!listaSocios?.length" (click)="guardar()">Guardar</button>
-    <button (click)="limpiarForm();" type="button" style="margin-left: 30px;"
-    class="btn btn-default">Cancelar</button>
-</div>
-<!-- </div>
-  <div *ngIf="mostrarInscripcion" > 
-    <button type="submit" class="btn btn-main" *ngIf="listaSocios"
-    [disabled]="!listaSocios?.length" (click)="guardar()">Guardar</button>
-    <button (click)="limpiarForm();" type="button" style="margin-left: 30px;"
-    class="btn btn-default">Cancelar</button>
-   
-  </div>   -->
-  
 
 
-
-
-
-
-
-
+  <div class="col col-lg-9" *ngIf="seleccionEvento">
+    <div > 
+      <!-- <az-select-socio  [listaSocios]="listaSocios"></az-select-socio> -->
+      <button type="submit" class="btn btn-main" *ngIf="listaSocios"
+        [disabled]="!listaSocios?.length" (click)="guardar()">Guardar</button>
+        <button (click)="limpiarForm();" type="button" style="margin-left: 30px;"
+        class="btn btn-default">Cancelar</button>
+    </div>  
+        
+        
+        
+        </div>
   
     
-    
-  
-    
-    
-    
-    
-    
-    
-    </div>
+
         </div>
       </div>
     </div>
