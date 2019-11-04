@@ -15,25 +15,33 @@ export class AsistenciasComponent implements OnInit {
 
     public lineChartType = 'bar';
     public lineChartLabels: Array<string>;
-    public lineChartData: Array<any>;
+    public AsistenciasPorDiaDeLaSemanaData: Array<any>;
     public lineChartColors: any[];
     public lineChartOptions: any;
+
+    AsistenciasPorDiaDeLaSemanaResponse: any;
 
     public pieChartType = 'pie';
 
     public AsistenciasTipoEventoLabels: Array<string>;
     public AsistenciasTipoEventoData: Array<number>;
+    AsistenciasTipoEventoResponse: any;
 
     public InasistenciasTipoEventoLabels: Array<string>;
     public InasistenciasTipoEventoData: Array<number>;
-
-    public IngresosTipoEventoLabels: Array<string>;
-    public IngresosTipoEventoData: Array<number>;
+    InasistenciasTipoEventoResponse: any;
 
     public pieChartColors: any[];
     public pieChartOptions: any;
     public loading = true;
 
+
+    tablaConfig = {
+        columnas: [
+            {name: 'nombre', title: 'Nombre', type: 'text'}
+          , {name: 'cantidad', title: 'Cantidad', type: 'text'}
+        ]
+      }
 
     constructor(private _appConfig: AppConfig,
                 private _reporteServ: ReporteServices) {
@@ -61,12 +69,19 @@ export class AsistenciasComponent implements OnInit {
             this.AsistenciasTipoEventoLabels = [];
             this.InasistenciasTipoEventoData = [];
             this.InasistenciasTipoEventoLabels = [];
+
+            this.AsistenciasTipoEventoResponse = [];
+            this.InasistenciasTipoEventoResponse = [];
+
             result.forEach(item => {
                 this.AsistenciasTipoEventoData.push(item.asistencias);
                 this.AsistenciasTipoEventoLabels.push(item.nombre);
                 this.InasistenciasTipoEventoData.push(item.inscriptos - item.asistencias);
                 this.InasistenciasTipoEventoLabels.push(item.nombre);
 
+
+                this.AsistenciasTipoEventoResponse.push({'nombre': item.nombre, 'cantidad': item.asistencias});
+                this.InasistenciasTipoEventoResponse.push({'nombre': item.nombre, 'cantidad': item.inscriptos - item.asistencias});
                 });
             });
     }
@@ -74,19 +89,22 @@ export class AsistenciasComponent implements OnInit {
 
     graficarAsistenciasPorDiaDeLaSemana() {
         this.lineChartLabels = ['Cargando...'];
-        this.lineChartData = [
+        this.AsistenciasPorDiaDeLaSemanaData = [
             {data: [], label: 'cargando...' }
         ];
 
         this._reporteServ.graficarAsistenciasPorDiaDeLaSemana().subscribe(result => {
-            this.lineChartData = [
+            this.AsistenciasPorDiaDeLaSemanaData = [
                 {data: [], label: 'dias' }
             ];
+
+            this.AsistenciasPorDiaDeLaSemanaResponse = [];
 
             this.lineChartLabels = [];
             result.forEach(item => {
                 this.lineChartLabels.push(item.dia);
-                this.lineChartData[0].data.push(item.cantidad);
+                this.AsistenciasPorDiaDeLaSemanaData[0].data.push(item.cantidad);
+                this.AsistenciasPorDiaDeLaSemanaResponse.push({'nombre': item.dia, 'cantidad': item.cantidad});
             });
         });
     }
@@ -95,15 +113,14 @@ export class AsistenciasComponent implements OnInit {
       public randomizeType(): void {
           this.lineChartType = this.lineChartType === 'line' ? 'bar' : 'line';
       }
-  
+
       public chartClicked(e: any): void {
          // console.log(e);
       }
-  
+
       public chartHovered(e: any): void {
          // console.log(e);
       }
-  
+
   }
-  
-  
+
