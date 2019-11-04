@@ -74,7 +74,8 @@ export class TimeLineComponent implements OnInit {
 
 }
 
-if(this.fechaHasta != null && this.fechaDesde != null){
+if(this.fechaHasta != null  && this.fechaHasta != ""  && this.fechaDesde != null
+&& this.fechaDesde != ""){
   this.eventos = this.eventos.filter((item: Evento) => {
     return this.datePipe.transform(item.fechaDesde, 'yyyy-MM-dd') >= this.fechaDesde
     &&  this.datePipe.transform(item.fechaDesde, 'yyyy-MM-dd') <= this.fechaHasta;
@@ -88,7 +89,7 @@ if(this.estado != null && this.estado != "Todos"){
 
 });
 }
-
+console.log(this.eventos);
 
 
   }

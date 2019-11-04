@@ -68,10 +68,10 @@ export class ValidationService {
             let fechahasta= group.controls[_fechaHasta].value;
             let fecha = group.controls[_fechaHasta];         
             if (fechahasta){                   
-                console.log(_fechaDesde);
-                console.log(fechahasta);
+               // console.log(_fechaDesde);
+                //console.log(fechahasta);
                 if (_fechaDesde > fechahasta) {
-                console.log("esta mal");
+                //console.log("esta mal");
                 return fecha.setErrors({fechaMayor: true})
             }
         }

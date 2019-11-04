@@ -8,6 +8,8 @@ import { EncargadoEventoServices, EncargadoEvento } from '../../../servicios/enc
 import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
+import { CalendarioServices } from '../../../servicios/calendario.service';
+import { Calendario } from '../../../modelos/calendario';
 
 
 @Component({
@@ -37,10 +39,15 @@ export class EventoWizardComponent implements OnInit {
   mostrarSaldoCuota:boolean = false;
   valorCuota:number=0;
   horarios:Horario[];
+
+  horariosAula:Horario[];
   contador:number =0;
 
   fechaHoy = new Date();
-  //fecha:Date;
+
+  public fechaDesde: String;
+  public fechaHasta: String;
+  calendario:Calendario[];
 
   public diaSemanas:string[] = ["Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"];
 
@@ -49,13 +56,15 @@ export class EventoWizardComponent implements OnInit {
     private tipoEspacioSer:EspacioServices, private encargadoServ:EncargadoEventoServices,
     private mensajeServ: ToastrService,
     private datePipe: DatePipe,
-    private router:Router,) {
+    private router:Router,
+    private _calendarioService: CalendarioServices,
+    ) {
     this.horarios= new Array<Horario>();
-
+    this.horariosAula=new Array<Horario>();
     this.steps = [
-      {name: 'Evento', icon: 'fa-home', active: true, valid: false, hasError:false },
+      {name: 'Evento', icon: 'fa-home', active: false, valid: false, hasError:false },
       {name: 'Detalles', icon: 'fa-pencil-square-o', active: false, valid: false, hasError:false },
-      {name: 'Fechas', icon: 'fa-calendar', active: false, valid: false, hasError:false },
+      {name: 'Fechas', icon: 'fa-calendar', active: true, valid: false, hasError:false },
       {name: 'Detalles Confirmación', icon: 'fa-check-square-o', active: false, valid: false, hasError:false }
     ]
 
@@ -132,6 +141,7 @@ export class EventoWizardComponent implements OnInit {
                     }                      
                 }
                 if(step.name=='Fechas'){
+
                     if (fechaForm.valid) {
                         step.active = false;
                         step.valid = true;
@@ -277,7 +287,7 @@ ngOnInit() {
     this.listenerCuota();  
     this.listenerMonto();
     this.listenerEspacio();
-
+    this.listenerFecha();
     //this.eventoForm.controls['tipoEvento'].setValue(this.evento.tipoEvento);
 
 
@@ -418,19 +428,110 @@ listenerEspacio(){
 
 
 
+
+
 }
 
+listenerFecha(){
+    this.fechaForm.get("fechaDesdeInscripcion").valueChanges.subscribe((fechaHasta) => {
+     
+        console.log(fechaHasta);
+        this.cargarEventos();
+     /*    if(fechaHasta != ''){
+            this.cargarEventos();
+        } */
+       
+     //console.log(fechaHasta);
+   
+    });
+
+
+
+}
 
 agregarHorario(){
+
+    
+   
     const horario = new Horario(this.contador);
     horario.dia=this.fechaForm.value.dia;
     horario.horaDesde=this.fechaForm.value.horaInicio;
     horario.horaHasta=this.fechaForm.value.horaFin;
-    //horario.espacio = this.eventoForm.value.tipoEspacio.id;
-    this.horarios.push(horario);
+    if(parseInt(horario.horaHasta) > parseInt(horario.horaDesde)){
+        
+        this.horarios.push(horario);
+        console.log(horario);
+       // this.cargarEventos();
+        this.contador++;
+    }else{
+        this.mensajeServ.error('El horario de fin tiene que ser mas grande que el de inicio.', 'Aviso!');
+        return;
+    }
+    
+    this.horariosAula.forEach(horarioAula => {
+       
+        this.horarios.forEach(horarioAgregado=> {
+           if(horarioAula.dia == horarioAgregado.dia ){
+               if(horarioAula.horaHasta >= horarioAgregado.horaDesde 
+                && horarioAgregado.horaDesde >= horarioAula.horaDesde
+                ){
+                    console.log("superponen horarios" + horarioAula.dia)
+                    this.mensajeServ.error('Hay superposición de horarios para estos horarios en esta aula. Elija otro horario por favor.', 'Aviso!');
+                    this.horarios.pop();
+                    return;
+                }
 
-    //console.log('hola puchero');
-    this.contador++;
+                if(horarioAula.horaHasta >= horarioAgregado.horaHasta 
+                    && horarioAgregado.horaHasta >= horarioAula.horaDesde
+                    ){
+                        this.mensajeServ.error('Hay superposición de horarios en esta aula. Elija otro horario por favor.', 'Aviso!');
+                        this.horarios.pop();
+                        return;
+                    }
+
+                    if(  horarioAgregado.horaHasta >= horarioAula.horaHasta
+                        &&  horarioAula.horaDesde >= horarioAgregado.horaDesde 
+                        ){
+                            this.mensajeServ.error('Hay superposición de horarios en esta aula. Elija otro horario por favor.', 'Aviso!');
+                            this.horarios.pop();
+                            return;
+                        }
+                    
+           }
+
+       });
+        //console.log(element.dia);
+        //console.log(element.horaDesde);
+        //console.log(element.horaHasta);
+    });
+
+    
+    
 }
+
+
+cargarEventos() {
+    this._calendarioService.query({
+      'fechaDesde': this.fechaForm.value.fechaDesde,
+      'fechaHasta': this.fechaForm.value.fechaHasta,
+      'idEspacio': this.eventoForm.value.tipoEspacio.id
+    }).subscribe(items => {
+  
+      this.calendario = items;
+      console.log(this.calendario);
+
+      this.calendario.forEach(element => {
+         let _horario = new Horario(0);
+        _horario.dia=element.dia;
+        _horario.horaDesde=this.datePipe.transform(element.fechaDesde,'H:mm');
+        _horario.horaHasta=this.datePipe.transform(element.fechaHasta,'H:mm');
+        this.horariosAula.push(_horario);
+        //console.log(this.datePipe.transform(element.fechaDesde,'H:mm'))
+      });
+     // console.log(this.calendario);
+
+    });
+  
+  }
  
 }

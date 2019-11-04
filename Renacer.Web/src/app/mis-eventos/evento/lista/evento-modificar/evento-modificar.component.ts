@@ -94,4 +94,8 @@ export class EventoModificarComponent implements OnInit {
     //console.log(this.fecha);
 
   }
+
+  limpiarForm(){
+    this.router.navigate(['/pages/evento/lista']);
+  }
 }

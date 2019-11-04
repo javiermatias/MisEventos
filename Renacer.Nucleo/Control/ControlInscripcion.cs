@@ -200,13 +200,13 @@ namespace Renacer.Nucleo.Control
         /// TODO: El metodo se tiene que cambiar para actualizar un atributo del inscripcion 
         /// para ver si esta eliminado o no, no se eliminan datos.
         /// </summary>
-        public void eliminar(int id)
+        public void eliminar(Inscripcion inscripcion)
         {
             try
             {
                 using (var db = new ModeloRenacer())
                 {
-                    db.inscripcion.Remove(db.inscripcion.Where(x => x.id.Equals(id) ).FirstOrDefault());
+                    db.inscripcion.AddOrUpdate(inscripcion);// pone fechaBaja
                     db.SaveChanges();
                 }
             }
