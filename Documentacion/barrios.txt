@@ -1,13 +1,12 @@
- 
-                       
+          
                         
-                        <option>General Bustos</option>
-                        <option>Hipolito Yrigoyen</option>
-                        <option>Independencia</option>
-                        <option>La Fraternidad</option>
-                        <option>Los Paraisos</option>
-                        <option>Residencial America</option>
-                        <option>San Martin</option>
+                        General Bustos
+                        Hipolito Yrigoyen
+                        Independencia
+                        La Fraternidad
+                        Los Paraisos
+                        Residencial America
+                        San Martin
 
 
 
@@ -16,16 +15,35 @@
 
 
  
- <option> Alto Alberdi</option>
- <option> Argüello</option>
- <option>Alberdi</option>
- <option>Alta Cordoba</option>
- <option> Alto Verde</option>
- <option>Altamira</option>
- <option>Ayacucho</option>
- <option>  Juniors</option>
- <option>  Juniors</option>
- <option> Bella Vista</option>
+          Alto Alberdi     
+                        
+                        General Bustos
+                        Hipolito Yrigoyen
+                        Independencia
+                        La Fraternidad
+                        Los Paraisos
+                        Residencial America
+                        San Martin
+
+
+
+
+ 
+
+
+ 
+  Alto Alberdi
+  Argüello
+ Alberdi
+ Alta Cordoba
+  Alto Verde
+ Altamira
+ Ayacucho
+ Bella Vista
+
+   Juniors
+   Juniors
+
  Juniors
  Yofre Norte
  Centro
@@ -55,3 +73,4 @@ Los Naranjos
  Urca
  Villa Belgrano
 Villa El Libertador
+

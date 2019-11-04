@@ -136,7 +136,7 @@ export class InscripcionComponent implements OnInit {
 
   guardarInscripcion(inscripc:Inscripcion){
     this.inscripcionServ.save(inscripc).subscribe(resp => {
-    /*   this.traerInscripciones(this.seleccionEvento.id); */
+       this.traerInscripciones(this.seleccionEvento.id); 
        });
   }
 

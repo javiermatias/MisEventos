@@ -8,6 +8,7 @@ import {TipoDocumentoServices,TipoDocumento} from '../../../servicios/tipo-docum
 })
 export class TipoDocumentoComponent implements OnInit {
 
+ 
   @Input() tipoDoc:TipoDocumento;
   @Output() seleccionTipoDoc = new EventEmitter<TipoDocumento>();
   public tipoDocAux:TipoDocumento;

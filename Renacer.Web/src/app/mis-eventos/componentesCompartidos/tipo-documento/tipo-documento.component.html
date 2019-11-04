@@ -3,6 +3,7 @@
         <label>Tipo documento</label>
         <select class="form-control" id="tipoDoc_12" (change)="actualizarTipoDoc()"
         required #tipoDoc_12="ngModel" name="tipoDoc_12" [(ngModel)]="tipoDocAux">
+        
             <option *ngFor="let item of tiposDocumentos_1;trackBy:item?.id" [ngValue]="item">{{item.nombre}}</option>
         </select>
         <div [hidden]="tipoDoc_12.valid || tipoDoc_12.pristine" class="alert alert-danger">

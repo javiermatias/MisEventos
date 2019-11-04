@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Domicilio } from '../../../servicios/persona.service';
+import { barrios } from '../../../modelos/enums';
 
 @Component({
   selector: 'az-domicilio',
@@ -9,6 +10,7 @@ export class DomicilioComponent implements OnInit {
 
   @Input() _domicilio: Domicilio;
 
+  public _barrios= barrios;
   constructor() {
     this._domicilio = new Domicilio();
   }

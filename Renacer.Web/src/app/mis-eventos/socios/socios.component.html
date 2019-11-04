@@ -173,7 +173,8 @@
                                                                         <label for="input-2">Estado civil</label>
                                                                         <select class="form-control" id="estadoCivil"
                                                                             name="estadoCivil" required
-                                                                            [(ngModel)]="_socio.estadoCivil">
+                                                                            [(ngModel)]="_socio.estadoCivil" >
+                                                                          
                                                                             <option *ngFor="let civil of _estadoCivil" [value]="civil.nombre">{{civil.nombre}}</option> 
                                                                         </select>
                                                                     </div>
