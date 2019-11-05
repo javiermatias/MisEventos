@@ -16,7 +16,8 @@ import { DatePipe } from '@angular/common';
     styleUrls: ['./dashboard.component.scss'],
     providers: [DashboardService]
 })
-export class DashboardComponent {
+export class DashboardComponent
+    implements OnInit {
     //Ver eventos para el socio
     public fechaDesde: string;
     public fechaHasta: string;
@@ -51,7 +52,6 @@ export class DashboardComponent {
     }
 
     ngOnInit() {
-        //this.rol = this._rolService.getCurrent();
         this.user = this._userServices.getCurrent();
         if (this.user.rol === 'ADMIN') { this.loadAdminData(); } // TODO: actualizar esto. Debe verse por permisos y no por rol
         if (this.user.rol === 'ENCARGADO') { this.loadEncargadoData(); }
@@ -106,12 +106,8 @@ export class DashboardComponent {
         });
     }
 
-
     public loadEncargadoData(): void {
-
-
     }
-
 
     public loadSocioData(): void { }
 

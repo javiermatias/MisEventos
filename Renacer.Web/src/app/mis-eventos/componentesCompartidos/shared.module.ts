@@ -29,7 +29,6 @@ import { Angular2CsvModule } from 'angular2-csv';
       NguiAutoCompleteModule,
       NgxStarsModule,
       Angular2CsvModule
-
   ],
   declarations: [
     SelectSocioComponent,

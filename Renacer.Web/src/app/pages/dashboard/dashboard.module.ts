@@ -12,6 +12,7 @@ import { DatamapComponent } from './datamap/datamap.component';
 import { SocioChartComponent } from './socio-chart/socio-chart.component';
 import { ChartsModule } from 'ng2-charts';
 import 'chart.js/dist/Chart.js';
+import { SharedModule } from '../../mis-eventos/componentesCompartidos/shared.module';
 
 export const routes = [
   { path: '', component: DashboardComponent, pathMatch: 'full' }
@@ -24,7 +25,8 @@ export const routes = [
     ChartsModule,
     DirectivesModule,
     PipesModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    SharedModule
   ],
   declarations: [
     DashboardComponent,
