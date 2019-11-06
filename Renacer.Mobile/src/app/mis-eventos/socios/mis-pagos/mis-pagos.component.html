@@ -1,0 +1,227 @@
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-12 bottom-30">
+        <div widget class="card">
+            <div class="card-header">
+                <span>Mis Pagos</span>
+                <div class="widget-controls">
+                    <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
+                    <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
+                    <a data-widgster="fullscreen" href="#" class="transition"><i class="fa fa-expand"></i></a>
+                    <a data-widgster="restore" href="#" class="transition"><i class="fa fa-compress"></i></a>
+                    <a data-widgster="close" href="#" class="transition"><i class="fa fa-times"></i></a>
+                </div>
+            </div>
+            <div class="card-block widget-body">
+
+                
+
+                <div class="alert alert-success" role="alert" *ngIf="pagoMatricula">
+                    <strong>Enhorabuena!</strong> Tienes la matricula al día. Puedes inscribirte a los cursos que
+                    desees.
+                </div>
+
+
+                <div class="alert alert-danger" role="alert" *ngIf="!pagoMatricula">
+                    <strong>Lo lamento! </strong> Todavía no has pagado la matricula anual. Deberas hacerlo si quieres
+                    inscribirte
+                    a nuestros cursos.
+                </div>
+
+                <div *ngIf="mostrarEventos">
+                <p class="no-margin"> </p>
+                <div class="w-200 pull-right bottom-15">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                        <input class="form-control" id="table-search-input" [(ngModel)]="searchText" type="text"
+                            placeholder="Buscar evento...">
+                    </div>
+                </div>
+                <div class="table-responsive datatable">
+                    <!-- <table class="table table-striped table-hover table-sm" [mfData]="eventos  | SearchPipe : searchText" #mf="mfDataTable" [mfRowsOnPage]="10"> -->
+                    <table class="table table-striped table-hover table-sm"
+                        [mfData]="listaInscripcion | SearchPipe : searchText" #mf="mfDataTable" [mfRowsOnPage]="10">
+                        <thead>
+                            <tr>
+                                <!-- <th><mfDefaultSorter by="id">Id</mfDefaultSorter></th> -->
+                                <th>
+                                    <mfDefaultSorter by="nombre"><strong>Nombre</strong></mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="descripcion"><strong>Descripción</strong></mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="fechaCreacion"><strong>Estado</strong></mfDefaultSorter>
+                                </th>
+                                <th>
+                                    <mfDefaultSorter by="estado"><strong>Cuotas</strong></mfDefaultSorter>
+                                </th>
+                              
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of mf.data | SearchPipe : searchText">
+                                <td>{{item.evento.nombre}}</td>
+                                <td>{{item.evento.descripcion}}</td>
+                                <td>
+                                    <span class="alert-success" *ngIf="item.estado == 'PAGADO'">Pagado</span>
+                                    <span class="alert-danger" *ngIf="item.estado == 'ADEUDADO'">Adeudado</span>
+                                </td>
+                                <td>
+                                    <span class="col col-3">
+                                        <a 
+                                            style="color: #014c8c;cursor:pointer;"
+                                            (click)="verCuotas(item)">Ver</a>
+                                            
+                                    </span>
+
+                                </td>
+                         
+
+                            </tr>
+                            <tr *ngIf="(mf.data | SearchPipe : searchText).length === 0">
+                                <td colspan="100">
+                                    No encontrado
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="12">
+                                    <mfBootstrapPaginator [rowsOnPageSet]="[10, 25, 50, 100]"></mfBootstrapPaginator>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+
+
+
+
+
+                <!--               <p class="card-text">
+                Seleccion el evento:
+              </p>
+              <ng-select [items]="listaInscripcion" bindLabel="evento.nombre" placeholder="SELECCIONE" autofocus bindValue="id" notFoundText="No se encontraron eventos"
+  (change)="eventoSeleccionado()" [(ngModel)]="idInscripcion">
+
+  
+
+</ng-select>
+ -->
+
+                </div>
+
+<div *ngIf="mostrarCuotas">
+        <div class="row" >
+                <div class="col col-lg-9">
+                    <div widget class="card" style="margin-bottom:20px">
+                        <div class="card-header">
+                            <span>Lista Cuotas</span>
+                            <div class="widget-controls">
+                                <a data-widgster="expand" href="#" class="transition"><i
+                                        class="fa fa-chevron-down"></i></a>
+                                <a data-widgster="collapse" href="#" class="transition"><i
+                                        class="fa fa-chevron-up"></i></a>
+                            </div>
+                        </div>
+                        <div class="card-block widget-body">
+                            <div class="row">
+                              <div class="table-responsive datatable" >
+                                <!-- <table class="table table-striped table-hover table-sm" [mfData]="socios  | SearchPipe : searchText" #mf="mfDataTable" [mfRowsOnPage]="10"> -->
+                                <table class="table table-striped table-hover table-sm" [mfData]="inscripcion.listaPagos"
+                                    #mf="mfDataTable" [mfRowsOnPage]="10">
+                                    <thead>
+                                        <tr>
+                                            <!-- <th><mfDefaultSorter by="id">Id</mfDefaultSorter></th> -->
+                                            <th>
+                                                <mfDefaultSorter by="nombre">Nombre</mfDefaultSorter>
+                                            </th>
+                                            <th>
+                                                <mfDefaultSorter by="apellido">Monto</mfDefaultSorter>
+                                            </th>
+                                            <th>
+                                                <mfDefaultSorter by="nroDocumento">Estado</mfDefaultSorter>
+                                            </th>
+                                          
+                                            <th>
+                                                <mfDefaultSorter by="nroDocumento">Pagar</mfDefaultSorter>
+                                            </th>
+                                         
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of mf.data; let i = index ">
+                                            <!-- <td>{{item.id}}</td> -->
+                                            <td><strong>{{item.nombre}}</strong></td>
+                                            <td>${{item.monto}}</td>       
+                                            <!-- <td *ngIf= >{{item.estaPagado}}</td>    -->
+                                            <td *ngIf="item.estaPagado; else other_content">
+                                                      Pagado
+                                              <!-- <button type="button" class="btn .btn-outline-success btn-rounded" (click)="cobrar(item)">Cobrar</button> -->
+                                          </td> 
+                                               <ng-template #other_content><td>Sin Pagar</td></ng-template>                          
+                                        <td *ngIf="!item.estaPagado">
+                                            <form action="{{'/#/pages/pago-confirmado/' + item.id }}" method="get" ngNativeValidate id="{{ 'pago' + item.id }}">
+ 
+                                                
+                                               
+                                               
+                                                 
+                                                </form> 
+                                        
+                                          </td> 
+
+                                          <td *ngIf="item.estaPagado">
+                                               --
+                                        
+                                          </td> 
+                                            
+                                        </tr>
+                                        <tr *ngIf="(mf.data | SearchPipe : searchText).length === 0">
+                                            <td colspan="100">
+                                                No encontrado
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="12">
+                                                <mfBootstrapPaginator [rowsOnPageSet]="[10, 25, 50, 100]">
+                                                </mfBootstrapPaginator>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+          
+                </div>
+            </div>
+
+
+
+            <button (click)="volver()" type="button" style="margin-left: 30px;"
+            class="btn btn-default">Volver</button>
+
+
+        </div>
+
+
+            </div>
+
+
+
+
+
+
+
+        </div>
+    </div>
+</div>
+
+

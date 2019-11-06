@@ -1,0 +1,583 @@
+<div widget class="card" *ngIf="_item.id != 0 ">
+    <div class="card-header">
+        <span>Datos del evento</span>
+        <div class="widget-controls">
+            <a data-widgster="expand" href="#" class="transition">
+                <i class="fa fa-chevron-down"></i>
+            </a>
+            <a data-widgster="collapse" href="#" class="transition">
+                <i class="fa fa-chevron-up"></i>
+            </a>
+            <a data-widgster="fullscreen" href="#" class="transition">
+                <i class="fa fa-expand"></i>
+            </a>
+            <a data-widgster="restore" href="#" class="transition">
+                <i class="fa fa-compress"></i>
+            </a>
+        </div>
+    </div>
+    <div class="card-block widget-body">
+        <div class="row">
+            <div class="col-xl-9 col-lg-9 col-12">
+                <form (ngSubmit)="onSubmit(eventoForm)" #eventoForm="ngForm">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" required #nombre="ngModel" name="nombre" [(ngModel)]="_item.nombre">
+                        <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
+                            Debe ingresar el nombre
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcion">Descripcion</label>
+                        <textarea type="text" multiple class="form-control" id="descripcion" required #descripcion="ngModel" name="descripcion" [(ngModel)]="_item.descripcion"></textarea>
+                        <div [hidden]="descripcion.valid || descripcion.pristine" class="alert alert-danger">
+                            Debe ingresar la descripcion.
+                        </div>
+                    </div>
+
+                    <!-- <div class="form-group">
+                        <label for="tipoEvento">Tipo de evento</label>
+                        <select class="form-control" id="tipoEvento" required #tipoEvento="ngModel" name="tipoEvento" [(ngModel)]="_item.tipoEvento">
+                            <option *ngFor="let item of tiposDeEventos" [ngValue]="item">{{item.nombre}}</option>
+                        </select>
+                        <div [hidden]="tipoEvento.valid || tipoEvento.pristine" class="alert alert-danger">
+                            Debe ingresar el tipo de evento.
+                        </div>
+                    </div> -->
+                    <select-tipo-evento [item]="_item.tipoEvento"></select-tipo-evento>
+                    <select-espacio [item]="_item.espacio"></select-espacio>
+                    <select-encargado [item]="_item.responsable"></select-encargado>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="cupoMinimo">Cupo minimo de inscriptos</label>
+                                <input type="number" class="form-control" id="cupoMinimo" required #cupoMinimo="ngModel" name="cupoMinimo" [(ngModel)]="_item.cupoMinimo">
+                                <div [hidden]="cupoMinimo.valid || cupoMinimo.pristine" class="alert alert-danger">
+                                    Debe ingresar el cupo minimo del evento
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="cupoMaximo">Cupo maximo de inscriptos</label>
+                                <input type="number" class="form-control" id="cupoMaximo" required #cupoMaximo="ngModel" name="cupoMaximo" [(ngModel)]="_item.cupoMaximo">
+                                <div [hidden]="cupoMaximo.valid || cupoMaximo.pristine" class="alert alert-danger">
+                                    Debe ingresar el cupo maximo del evento
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div widget class="card" style="margin-bottom: 25px;">
+                        <div class="card-header">
+                            <span>Fechas del evento</span>
+                            <div class="widget-controls">
+                                <a data-widgster="expand" href="#" class="transition">
+                                    <i class="fa fa-chevron-down"></i>
+                                </a>
+                                <a data-widgster="collapse" href="#" class="transition">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="card-block widget-body">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="fechaDesde">Fecha de inicio de los eventos</label>
+                                        <input type="date" class="form-control" id="fechaDesde" required #fechaDesde="ngModel" name="fechaDesde" [(ngModel)]="_item.fechaDesde">
+                                        <div [hidden]="fechaDesde.valid || fechaDesde.pristine" class="alert alert-danger">
+                                            Debe ingresar la fecha de inicio de los eventos
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="fechaHasta">Fecha de fin de los eventos</label>
+                                        <input type="date" class="form-control" id="fechaHasta" required #fechaHasta="ngModel" name="fechaHasta" [(ngModel)]="_item.fechaHasta">
+                                        <div [hidden]="fechaHasta.valid || fechaHasta.pristine" class="alert alert-danger">
+                                            Debe ingresar la fecha de fin de los eventos
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="fechaDesdeInscripcion">Fecha de inicio inscripciones</label>
+                                        <input type="date" class="form-control" id="fechaDesdeInscripcion" required #fechaDesdeInscripcion="ngModel" name="fechaDesdeInscripcion"
+                                            [(ngModel)]="_item.fechaDesdeInscripcion">
+                                        <div [hidden]="fechaDesdeInscripcion.valid || fechaDesdeInscripcion.pristine" class="alert alert-danger">
+                                            Debe ingresar la fecha de inicio de los eventos
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="fechaHastaInscripcion">Fecha de fin de inscripciones</label>
+                                        <input type="date" class="form-control" id="fechaHastaInscripcion" required #fechaHastaInscripcion="ngModel" name="fechaHastaInscripcion"
+                                            [(ngModel)]="_item.fechaHastaInscripcion">
+                                        <div [hidden]="fechaHastaInscripcion.valid || fechaHastaInscripcion.pristine" class="alert alert-danger">
+                                            Debe ingresar la fecha de fin de inscripciones
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="diaSemana">Dia</label>
+                                        <select class="form-control" id="diaSemana" #diaSemana="ngModel" name="diaSemana" [(ngModel)]="horario.dia">
+                                            <option *ngFor="let item of diaSemanas" [ngValue]="item">{{item}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="horaDesde">Hora inicio</label>
+                                        <input type="time" class="form-control" id="horaDesde" #horaDesde="ngModel" name="horaDesde" [(ngModel)]="horario.horaDesde">
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="horaHasta">Hora fin</label>
+                                        <input type="time" class="form-control" id="horaHasta" #horaHasta="ngModel" name="horaHasta" [(ngModel)]="horario.horaHasta">
+                                    </div>
+                                </div>
+
+                                <div class="col" style=" display: flex;align-items: center;justify-content: center;">
+                                    <button type="button" class="btn btn-main" (click)="agregarHorario();" [disabled]="!horario.horaHasta||!horario.horaDesde||!horario.dia">Agregar</button>
+                                </div>
+                            </div>
+
+                            <div>
+                                <ul class="list-group">
+
+                                    <li class="list-group-item" *ngFor="let horario of horarios; let i = index">
+                                        <span class="col col-10">
+                                            {{horario.dia}} desde {{horario.horaDesde}} hasta {{horario.horaHasta}}.
+                                        </span>
+                                        <span class="col col-2">
+                                            <i style="cursor:pointer;" (click)="horarios.splice(i,1);" class="fa fa-trash"></i>
+                                        </span>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <az-select-socio [listaSocios]="_item.listaSocios"></az-select-socio>
+
+                    <button type="submit" class="btn btn-main" [disabled]="!eventoForm.form.valid">Guardar</button>
+                    <button (click)="limpiarForm();" type="button" style="margin-left: 30px;" class="btn btn-default">Cancelar</button>
+                </form>
+            </div>
+
+            <div class="col-xl-3 col-lg-3 col-12">
+                <az-select-tags [listaTags]="_item.listaTags"></az-select-tags>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div widget class="card" *ngIf="_item.id > 0 && !editing">
+    <div class="card-header">
+        <span>{{_item.nombre}} -
+            <span class="badge badge-main">{{_item.tipoEvento.nombre}}</span>
+        </span>
+    </div>
+    <div class="card-block widget-body">
+
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-12">
+
+                <div class="clearfix">
+                    <ul class="nav nav-tabs top pull-left w-100p">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#datos-evento">Datos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#fechas">Fechas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#inscriptos">Inscriptos</a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#publicaciones">publicaciones</a>
+                        </li> - ->
+                    </ul>
+                </div>
+                <div class="tab-content top">
+                    <div class="tab-pane active" id="datos-evento">
+
+                        <div class="container">
+                            <div class="row p-2">
+                                <div class="col col-6">
+                                    Responsable {{_item.responsable.nombre}} {{_item.responsable.apellido}}
+                                    <br>
+                                    <br> Espacio {{_item.espacio.nombre}}
+                                </div>
+
+                                <div class="col col-6">
+                                    <div class="alert alert-success" *ngIf="estaEnCurso(_item)" role="alert">
+                                        <strong> Evento en curso</strong>
+                                    </div>
+                                    <div class="alert alert-success" *ngIf="estaFinalizado(_item)" role="alert">
+                                        <strong> Evento finalizado</strong>
+                                    </div>
+                                    <div class="alert alert-info" *ngIf="obtenerDiasSiguientes(_item) > 0" role="alert">
+                                        <strong> Faltan {{obtenerDiasSiguientes(_item)}} días</strong>
+                                    </div>
+                                </div>
+
+                                <div class="col col-6">
+                                    Inicio
+                                    <br>
+                                    <span class="badge badge-default">{{_item.fechaDesde | date:'yyyy-MM-dd'}}
+                                        <i class="fa fa-calendar"></i>
+                                    </span>
+                                    hasta
+                                    <span class="badge badge-default">{{_item.fechaHasta | date:'yyyy-MM-dd'}}
+                                        <i class="fa fa-calendar"></i>
+                                    </span>
+                                </div>
+
+
+                                <div class="col col-6">
+                                    <div class="alert alert-info" role="alert" *ngIf="obtenerProximoEvento(_item) != null">
+                                        Próxima fecha
+                                        <strong> {{obtenerProximoEvento(_item).nombre}}</strong>
+                                        <br> Día:
+                                        <strong>{{obtenerProximoEvento(_item).fechaDesde | date:'dd-MM-yyyy'}}</strong>
+                                        <br> Hora:
+                                        <strong>{{obtenerProximoEvento(_item).fechaDesde | date:'HH:mm'}}</strong>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row p-2">
+                                <div class="col">
+                                    <button class="btn btn-danger" (click)="eliminarEvento(_item)">
+                                        Eliminar
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="fechas">
+                        <div widget class="card">
+
+                            <div class="card-block widget-body">
+                                <div class="container">
+                                    <div class="row p-2">
+                                        <div class="col col-6">
+                                            Duración
+                                            <br>
+                                            <span class="badge badge-default">{{_item.fechaDesde | date:'yyyy-MM-dd'}}
+                                                <i class="fa fa-calendar"></i>
+                                            </span>
+                                            hasta
+                                            <span class="badge badge-default">{{_item.fechaHasta | date:'yyyy-MM-dd'}}
+                                                <i class="fa fa-calendar"></i>
+                                            </span>
+                                            <br>
+                                            <br>
+                                        </div>
+
+                                        <div class="col col-6">
+                                            Inscripciones
+                                            <br>
+                                            <span class="badge badge-default">{{_item.fechaDesdeInscripcion | date:'yyyy-MM-dd'}}
+                                                <i class="fa fa-calendar"></i>
+                                            </span>
+                                            hasta
+                                            <span class="badge badge-default">{{_item.fechaHastaInscripcion | date:'yyyy-MM-dd'}}
+                                                <i class="fa fa-calendar"></i>
+                                            </span>
+                                            <br>
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="w-200 pull-left bottom-15">
+                                    <button class="btn btn-main" *ngIf="!addDetalle" (click)="addDetalle= !addDetalle">
+                                        Nueva Fecha
+                                    </button>
+                                </div>
+
+                                <div class="w-200 pull-right bottom-15">
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-search"></i>
+                                        </span>
+                                        <input class="form-control" id="table-search-input" [(ngModel)]="searchText" type="text" placeholder="Buscar evento...">
+                                    </div>
+                                </div>
+                                <div class="table-responsive datatable" *ngIf="_item.listaDetalleEvento">
+                                    <table class="table table-striped table-hover table-sm" [mfData]="_item.listaDetalleEvento" #mf="mfDataTable" [mfRowsOnPage]="10">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <mfDefaultSorter by="id">Id</mfDefaultSorter>
+                                                </th>
+                                                <th>
+                                                    <mfDefaultSorter by="nombre">Titulo</mfDefaultSorter>
+                                                </th>
+                                                <th>
+                                                    <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
+                                                </th>
+                                                <th>
+                                                    <mfDefaultSorter by="fechaDesde">Fecha</mfDefaultSorter>
+                                                </th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- " *ngStyle="'opacity: 0.7':item.fechaDesde <= fechaActual" - ->
+                                            <tr *ngFor="let item of mf.data | SearchPipe : searchText">
+                                                <td>{{item.id}}</td>
+                                                <td>
+                                                    <strong>{{item.nombre}}</strong>
+                                                </td>
+                                                <td>
+                                                    <strong>{{item.descripcion}}</strong>
+                                                </td>
+                                                <td>{{item.fechaDesde | date:'yyyy-MM-dd'}}</td>
+                                                <td>
+                                                    <a style="color: #014c8c;cursor:pointer;" [routerLink]="['/pages/evento/', item.idEvento,'detalle',item.id]">ver</a>
+                                                    <td>
+                                            </tr>
+                                            <tr *ngIf="(mf.data | SearchPipe : searchText).length === 0">
+                                                <td colspan="100">
+                                                    No encontrado
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="12">
+                                                    <mfBootstrapPaginator [rowsOnPageSet]="[10, 25, 50, 100]"></mfBootstrapPaginator>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane" id="inscriptos">
+
+                        <div class="w-15 pull-right card card-outline-default text-center">
+                            <div class="card-block" style="padding:5px">
+                                <h5 class="card-title">Inscriptos</h5>
+                                <blockquote class="card-blockquote">
+                                    <span> {{_item.listaInscripciones?_item.listaInscripciones.length:0}}/{{_item.cupoMaximo}}</span>
+                                </blockquote>
+                            </div>
+                        </div>
+
+                        <div class="w-200 bottom-15">
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-search"></i>
+                                </span>
+                                <input class="form-control" id="table-search-input" [(ngModel)]="searchText" type="text" placeholder="Buscar Socio...">
+                            </div>
+                        </div>
+
+                        <button class="btn btn-main" *ngIf="!addSocios" (click)="addSocios= !addSocios">
+                            Agregar Socio
+                        </button>
+
+                        <div *ngIf="(_item.listaInscripciones?_item.listaInscripciones.length:0)>=_item.cupoMaximo" class="alert alert-warning">
+                            Se alcanzó el cupo Máximo
+                        </div>
+
+                        <div *ngIf="addSocios">
+
+                            <az-select-socio [listaSocios]="_item.listaSocios"></az-select-socio>
+
+                            <button class="btn btn-main" (click)="saveSocios()">
+                                Guardar
+                            </button>
+
+                            <button class="btn btn-default" (click)="addSocios=!addSocios">
+                                Cancelar
+                            </button>
+
+                        </div>
+
+                        <div class="table-responsive datatable">
+                            <table class="table table-striped table-hover table-sm" [mfData]="_item.listaInscripciones" #mf="mfDataTable" [mfRowsOnPage]="10">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <mfDefaultSorter by="nombre">nombre</mfDefaultSorter>
+                                        </th>
+                                        <th>
+                                            <mfDefaultSorter by="apellido">apellido</mfDefaultSorter>
+                                        </th>
+                                        <th>
+                                            <mfDefaultSorter by="nroDocumento">DNI</mfDefaultSorter>
+                                        </th>
+                                        <th>
+                                            <mfDefaultSorter by="fechaCreacion">Fecha</mfDefaultSorter>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of mf.data | SearchPipe : searchText">
+                                        <td>{{item.Socio.nombre}}</td>
+                                        <td>{{item.Socio.apellido}}</td>
+                                        <td>{{item.Socio.nroDocumento}}</td>
+                                        <td>{{item.fechaCreacion | date:'yyyy-MM-dd'}}</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="12">
+                                            <mfBootstrapPaginator [rowsOnPageSet]="[10, 25, 50, 100]"></mfBootstrapPaginator>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+
+                    </div>
+
+
+                    
+                    <div class="tab-pane" id="publicaciones">
+                        <div class="bloque-config container" style="padding: 20px;border: 1px solid #ddd;margin-top: 1rem;">
+                            <div class="row">
+                                <div class="col col-1">
+                                    <h4 class="socicon socicon-facebook" style="color: rgb(62, 91, 152);"></h4>
+                                </div>
+                                <div class="col col-9">
+                                    <span class="custom-control-description"> Activar publicación automatica</span>
+                                </div>
+                                <div class="col col-2">
+                                    <span style="font-size:22px" class="col col-2 fa fa-check-square" *ngIf="publicacionActiva" (click)="publicacionActiva = !publicacionActiva"></span>
+                                    <span style="font-size:22px" class="col col-2 fa fa-square-o" *ngIf="!publicacionActiva" (click)="publicacionActiva = !publicacionActiva"></span>
+                                </div>
+                            </div>
+                            <div *ngIf="publicacionActiva" class="row">
+                                <div class="col">
+                                    <label for="mensaje_facebook">Mensaje</label>
+                                    <textarea type="text" class="form-control" id="mensaje_facebook" required #mensaje_facebook="ngModel" name="mensaje_facebook"
+                                        [(ngModel)]="_item.mensaje_facebook"></textarea>
+                                    <div [hidden]="mensaje_facebook.valid || mensaje_facebook.pristine" class="alert alert-danger">
+                                        Debe ingresar el mensaje para facebook
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div *ngIf="publicacionActiva" class="row">
+                                <div class="col alert alert-info" style="margin: 15px;">
+                                    Las publicaciones para Facebook se realizaran 2 horas antes del inicio del evento.
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="bloque-config container" style="padding: 20px;border: 1px solid #ddd;margin-top: 1rem;">
+                            <div class="row">
+                                <div class="col col-1">
+                                    <h4 class="socicon socicon-twitter" style="color: rgb(77, 167, 222)"></h4>
+                                </div>
+                                <div class="col col-9">
+                                    <span class="custom-control-description"> Activar publicación automatica</span>
+                                </div>
+                                <div class="col col-2">
+                                    <span style="font-size:22px" class="col col-2 fa fa-check-square" *ngIf="publicacionActivaTwitter" (click)="publicacionActivaTwitter = !publicacionActivaTwitter"></span>
+                                    <span style="font-size:22px" class="col col-2 fa fa-square-o" *ngIf="!publicacionActivaTwitter" (click)="publicacionActivaTwitter = !publicacionActivaTwitter"></span>
+                                </div>
+                            </div>
+                            <div *ngIf="publicacionActivaTwitter" class="row">
+                                <div class="col">
+                                    <label for="mensaje_twitter">Mensaje</label>
+                                    <textarea type="text" class="form-control" id="mensaje_twitter" required #mensaje_twitter="ngModel" name="mensaje_twitter"
+                                        [(ngModel)]="_item.mensaje_twitter"></textarea>
+                                    <div [hidden]="mensaje_twitter.valid || mensaje_twitter.pristine" class="alert alert-danger">
+                                        Debe ingresar el mensaje para Twitter
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div *ngIf="publicacionActivaTwitter" class="row">
+                                <div class="col alert alert-info" style="margin: 15px;">
+                                    Las publicaciones para Twitter se realizaran 2 horas antes del inicio del evento.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bloque-config container" style="padding: 20px;border: 1px solid #ddd;margin-top: 1rem;">
+                            <div class="row">
+                                <div class="col col-1">
+                                    <h4 class="socicon socicon-mail" style="color: rgb(217, 62, 45);"></h4>
+                                </div>
+                                <div class="col col-9">
+                                    <span class="custom-control-description">Enviar Email Recordatorio</span>
+                                </div>
+                                <div class="col col-2">
+                                    <span style="font-size:22px" class="col col-2 fa fa-check-square" *ngIf="emailAutomatico" (click)="emailAutomatico = !emailAutomatico"></span>
+                                    <span style="font-size:22px" class="col col-2 fa fa-square-o" *ngIf="!emailAutomatico" (click)="emailAutomatico = !emailAutomatico"></span>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="emailAutomatico">
+                                <div class="card-block compose">
+                                    <form method="get" action="#">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="sender">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Cc / Bcc">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Asunto">
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea class="form-control" placeholder="Mensaje" rows="10"></textarea>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+
+                            <div *ngIf="emailAutomatico" class="row">
+                                <div class="col alert alert-info" style="margin: 20px;margin-top: -15px;">
+                                    El email recordatorio se enviará 1 día antes de la fecha del evento.
+                                </div>
+                            </div>
+
+                            <div *ngIf="emailAutomatico" class="row">
+                                <div class="col alert alert-info" style="margin: 20px;margin-top: 0px;">
+                                    Puedes insertar datos del evento y del socio con el formato {{ '{evento.propiedad}' }} ej: {{ '{evento.titulo}' }}
+                                    <br> ej: {{ '{socio.nombre}' }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+           <!--  <div class="col-xl-3 col-lg-3 col-12">
+                <az-select-tags [enabled]="_item.id > 0" [listaTags]="_item.listaTags"></az-select-tags>
+            </div> - ->
+        </div>
+    </div>
+
+</div> -->

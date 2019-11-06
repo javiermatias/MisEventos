@@ -1,0 +1,116 @@
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-12 bottom-30">
+        <div class="row">
+            <div class="col">
+                <div widget class="card">
+                    <div class="card-header">
+                        <span class="text-uppercase">Usuarios</span>
+                    </div>
+                    <div class="card-block widget-body">
+                        <div class="row">
+                            <div class="col-xl-9 col-lg-9 col-12">
+                                <form (ngSubmit)="onSubmit(usuarioForm)" #usuarioForm="ngForm">
+                                    <div class="row">
+                                        <div class="col col-lg-12">
+                                            <div class="row">
+                                                <az-tipo-documento (seleccionTipoDoc)="seleccionTipoDoc($event)"></az-tipo-documento>
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label for="nroDocParam1">Nro de documento</label>
+                                                        <input class="form-control" id="nroDocParam1" #nroDocParam1="ngModel"
+                                                            name="nroDocParam1" [(ngModel)]="nroDocumento">
+                                                    </div>
+                                                </div>
+                                                <div class="col mt-4">
+                                                    <button (click)="buscarUsuario();" type="button" class="btn btn-default" [disabled]="!tipoDoc || !nroDocumento">Buscar</button>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label for="nombre">Nombre</label>
+                                                    <input type="text" class="form-control" id="nombre" readonly
+                                                        #nombre="ngModel" name="nombre" [(ngModel)]="_usuario.nombre">
+                                                </div>
+                                                <div class="col-6">
+                                                    <label for="apellido">Apellido</label>
+                                                    <input type="text" class="form-control" id="apellido" readonly
+                                                        required #apellido="ngModel" name="apellido" [(ngModel)]="_usuario.apellido">
+                                                </div>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col col-lg-12" *ngIf="mostrarContacto">
+                                                    <!-- <az-contacto [_contacto]="contacto" [readOnly]="contactoReadOnly"></az-contacto> -->
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col col-lg-12">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <table *ngIf="_usuario.id !== 0 && roles?.length" class="table table-hover table-sm">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Rol</th>
+                                                                <th>Asignado</th>
+                                                                <th>Acción</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let item of roles; let i = index">
+                                                                <td>{{item.rol.nombre}}</td>
+                                                                <td>
+                                                                    <span *ngIf="item.asignado">
+                                                                        <i class="fa fa-check"></i>
+                                                                    </span>
+                                                                    <span *ngIf="!item.asignado">
+                                                                        <i class="fa fa-remove"></i>
+                                                                    </span>
+                                                                </td>
+                                                                <td>
+                                                                    <button *ngIf="item.asignado" type="button" class="btn btn-sm btn-danger" title="Dar de baja"
+                                                                    (click)="cambiaAsignacion(false, i)">
+                                                                        <i class="fa fa-minus"></i>
+                                                                    </button>
+                                                                    <button *ngIf="!item.asignado" type="button" class="btn btn-sm btn-success" title="Dar de alta"
+                                                                    (click)="cambiaAsignacion(true, i)">
+                                                                        <i class="fa fa-plus"></i>
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col col-lg-12">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <button type="submit" class="btn btn-main" [disabled]="!usuarioForm.form.valid">Guardar</button>
+                                                    <button (click)="limpiarForm();" type="button" style="margin-left: 30px;"
+                                                        class="btn btn-default">Cancelar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                   
+
+
+                                    <!-- </div> -->
+
+
+
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
