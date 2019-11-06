@@ -41,6 +41,8 @@ import { CsvServices } from './servicios/csv.service';
 
 import { Angular2CsvModule } from 'angular2-csv';
 import { CsvWrapperComponent } from './mis-eventos/componentesCompartidos/csv-wrapper/csv-wrapper.component';
+import { ImprimirService } from './servicios/imprimir.service';
+
 
 
 
@@ -98,6 +100,7 @@ registerLocaleData(localeEs, 'es-AR');
     AsistenciaSocioServices,
     DeudaCuotaServices,
     CsvServices,
+    ImprimirService,  
     { provide: LOCALE_ID, useValue: 'es-AR' },
     DatePipe],
     bootstrap: [AppComponent]

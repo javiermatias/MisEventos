@@ -74,7 +74,29 @@ export class buscarSocioMatriculaPagadas implements PipeTransform {
   }
 }
 
+@Pipe({ name: 'buscarEventoMisPagos' })
+export class buscarEventoMisPagos implements PipeTransform {
+  transform(value, args?): Array<any> {
+    let searchText = new RegExp(args, 'ig');
+    if (value) {
+      return value.filter(item => {
+        if (item.evento.nombre && searchText) {
+       
+          return item.evento.nombre.search(searchText) !== -1 ;
+       
+                
+        
+        }else{
+          return true
+        }
+      });
+    }
+  }
+}
 
+
+
+//item.evento.nombre
 /* @Pipe({ name: 'buscarSocioMatricula' })
 export class buscarSocioMatricula implements PipeTransform {
   transform(value, args?): Array<any> {
