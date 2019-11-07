@@ -5,7 +5,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None,
   template: `<router-outlet></router-outlet>  
   <app-csv-wrapper> </app-csv-wrapper>
-
+  <ng-http-loader></ng-http-loader>
   `,
   styleUrls: ['./app.component.scss']
 })

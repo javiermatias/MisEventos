@@ -98,6 +98,12 @@ export class InscripcionComponent implements OnInit {
     let bandera = true;
     
     this.listaSocios.forEach((socio) => {
+
+      if(socio.estado="DebeMatricula"){
+        this.mensajeServ.error('El socio ' + socio.nombre + ' ' + socio.apellido + ' debe la matrícula' , 'Aviso!');
+        bandera=false;
+        
+      }
       
       this.listaInscripcion.forEach(inscripcion => {
         console.log()
@@ -106,6 +112,7 @@ export class InscripcionComponent implements OnInit {
           bandera=false;
           
         }
+       
       });
     });
 
