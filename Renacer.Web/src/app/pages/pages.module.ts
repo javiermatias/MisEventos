@@ -11,7 +11,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 };
 import { NgxStarsModule } from 'ngx-stars';
 
-import {  ToastContainerModule  } from 'ngx-toastr';
+import { ToastContainerModule } from 'ngx-toastr';
 import { DirectivesModule } from '../theme/directives/directives.module';
 import { PipesModule } from '../theme/pipes/pipes.module';
 import { SharedModule } from '../mis-eventos/componentesCompartidos/shared.module';
@@ -74,11 +74,11 @@ import { EventoModificarComponent } from '../mis-eventos/evento/lista/evento-mod
     DataTableModule,
     NguiAutoCompleteModule,
     SharedModule,
-    DragulaModule,    
-     ReactiveFormsModule,
+    DragulaModule,
+    ReactiveFormsModule,
     PasswordStrengthBarModule,
     NgxStarsModule,
-    NgSelectModule 
+    NgSelectModule
   ],
   providers: [
     {
@@ -103,7 +103,7 @@ import { EventoModificarComponent } from '../mis-eventos/evento/lista/evento-mod
     DomicilioComponent,
     ContactoComponent,
     EncargadosComponent,
-    RolComponent,   
+    RolComponent,
     MatriculaComponent,
     NuevaMatriculaComponent,
     CobroMatriculaComponent,
@@ -113,8 +113,8 @@ import { EventoModificarComponent } from '../mis-eventos/evento/lista/evento-mod
     PagoCuotaComponent,
     NuevaAsistenciaComponent,
     AsistenciaComponent,
-    CambioContraseniaComponent,    
-    CheckPasswordDirective, 
+    CambioContraseniaComponent,
+    CheckPasswordDirective,
     EventosxsocioComponent,
     OpinionEventoComponent,
     AsistenciasSocioComponent,
@@ -122,11 +122,10 @@ import { EventoModificarComponent } from '../mis-eventos/evento/lista/evento-mod
     DetalleComponent,
     MisPagosComponent,
     MisDatosComponent,
-    MisInteresesComponent,    
+    MisInteresesComponent,
     DonacionesComponent,
-    ComprobantePagoComponent,    
+    ComprobantePagoComponent,
     EventoModificarComponent
-  
   ]
   , exports: [
     BreadcrumbComponent,

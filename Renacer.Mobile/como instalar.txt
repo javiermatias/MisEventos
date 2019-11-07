@@ -1,0 +1,6 @@
+ver en documentacion el archivo index.html con el navegador
+
+a mi me salieron varios errores y fui ejecutando estos comandos para solucionarlos:
+
+npm install skycons
+npm install pace --save

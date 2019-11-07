@@ -137,9 +137,15 @@ namespace Renacer.Nucleo.Control
             return lista;
         }
 
-        public List<Dictionary<string, object>> GetInasistenciasPorTipoEvento()
+        public List<Dictionary<string, object>> GetInscriptosPorTipoEvento()
         {
-            throw new NotImplementedException();
+            var sql = $@"select t.nombre, COUNT(i.id) as 'cantidad' from inscripcion i
+                        inner join evento e on e.id = i.IdEvento
+                        inner join tipoevento t on t.id = e.IdTipoEvento
+                        where i.fechaBaja is null
+                        group by t.nombre";
+            var DbHelper = new DBBase(strConnection);
+            return Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
         }
         public List<Dictionary<string, object>> GetAsistenciasPorTipoEvento()
         {

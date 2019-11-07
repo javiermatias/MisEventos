@@ -1,0 +1,98 @@
+<span style="
+position: relative;
+top: -15px;
+border: 1px solid #DDD;
+left: -17px;
+padding: 2px 10px 3px 10px;
+">Filtro Socios</span>
+
+<div class="row">
+    <div class="col-8">
+
+        <div class="row">
+
+            <div class="col" style="flex-grow: 0;">
+                <div class="form-group">
+                    <label for="input-2">Edad desde</label>
+                    <input type="number" class="form-control" id="edadDesde" name="edadHasta" [(ngModel)]="filter.edadDesde" style="width: 80px;">
+                </div>
+            </div>
+            <div class="col" style="flex-grow: 0;">
+                <div class="form-group">
+                    <label for="input-2">Edad hasta</label>
+                    <input type="number" class="form-control" id="edadHasta" name="edadHasta" [(ngModel)]="filter.edadHasta" style="width: 80px;">
+                </div>
+            </div>
+
+            <div class="col" style="min-width: 210px;">
+                <div class="form-group">
+                    <label for="input-2">Fecha alta desde</label>
+                    <input type="date" class="form-control" id="fechaDesde" name="fechaDesde" [(ngModel)]="filter.fechaDesde" style="width: 180px;">
+                </div>
+            </div>
+
+            <div class="col" style="min-width: 210px;">
+                <div class="form-group">
+                    <label for="input-2">Fecha alta hasta</label>
+                    <input type="date" class="form-control" id="fechaHasta" name="fechaHasta" [(ngModel)]="filter.fechaHasta" style="width: 180px;">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-2">
+                <div class="form-group">
+                    <label for="input-2">Genero</label>
+                    <select class="form-control" id="sexo" name="sexo" [(ngModel)]="filter.sexo">
+                        <option value="M">Masculino</option>
+                        <option value="F">Femenino</option>
+                        <option value=""></option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- <div class="col-2">
+                <div class="form-group">
+                    <label for="input-2">Estado civil</label>
+                    <select class="form-control" id="estadoCivil" name="estadoCivil" [(ngModel)]="filter.estadoCivil">
+                <option>Casado</option>
+                <option>Divorciado</option>
+                <option>Soltero</option>
+                <option>Viudo</option>
+                <option value=""></option>
+            </select>
+                </div>
+            </div> -->
+
+
+            <div class="col-4">
+                <!-- <div class="form-group">
+                    <label for="input-2">Barrio</label>
+                    <select class="form-control" id="barrio" name="barrio" [(ngModel)]="filter.barrio">
+                        <option value=""></option>
+                        <option>Alta Cordoba</option>
+                <option>Ayacucho</option>
+                <option>Cofico</option>
+                <option>General Bustos</option>
+                <option>Hipolito Yrigoyen</option>
+                <option>Independencia</option>
+                <option>La Fraternidad</option>
+                <option>Los Paraisos</option>
+                <option>Residencial America</option>
+                <option>San Martin</option>
+               
+            </select>
+                </div> -->
+            </div>
+
+            <div class="col-4">
+
+            </div>
+
+        </div>
+    </div>
+    <div class="col-4">
+        <az-select-tags [listaTags]="filter.Tags"></az-select-tags>
+    </div>
+</div>

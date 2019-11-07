@@ -1,0 +1,48 @@
+<div class="register-container">
+    <div class="col-xl-4 col-md-6 col-10 offset-xl-4 offset-md-3 offset-1">
+        <div class="card">
+            <div class="card-block text-center">
+                <h2 class="card-title">Mis Eventos - Nueva Cuenta</h2>
+                <a routerLink="/login" class="btn btn-link transition bottom-15">Ya tienes una cuenta? Ingresa aquí!</a>
+
+                <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="text-left">
+                    <div class="form-group">
+                        <input [formControl]="name" class="form-control checking-field" placeholder="Nombre" type="text">
+                        <span class="help-block" *ngIf="form.get('name').touched">
+                            <span class="text-danger" *ngIf="form.get('name').hasError('required')">Debe ingresar tu Nombre</span>
+                            <span class="text-danger" *ngIf="form.get('name').hasError('minlength')">Minimo 3 letras</span>
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <input [formControl]="email" class="form-control checking-field" placeholder="Email" type="text">
+                        <span class="help-block" *ngIf="form.get('email').touched">
+                            <span class="text-danger" *ngIf="form.get('email').hasError('required')">Debe ingresar tu Email</span>
+                            <span class="text-danger" *ngIf="form.get('email').hasError('invalidEmail')">Email Invalido</span>
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <input [formControl]="password" class="form-control checking-field" placeholder="Contraseña" type="password" minlength="6">
+                         <span class="help-block" *ngIf="form.get('password').touched">
+                            <span class="text-danger" *ngIf="form.get('password').hasError('required')">Debes ingresar una contraseña</span>
+                            <span class="text-danger" *ngIf="form.get('password').hasError('minlength')">Minimo 6 caracteres</span>
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <input [formControl]="confirmPassword" class="form-control checking-field" placeholder="Confirmar Contraseña" type="password">
+                        <span class="help-block" *ngIf="form.get('confirmPassword').touched">
+                            <span class="text-danger" *ngIf="form.get('confirmPassword').hasError('required')">Confirm Password is required</span>
+                            <span class="text-danger" *ngIf="form.get('confirmPassword').hasError('mismatchedPasswords')">Passwords do not match</span>
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <p class="terms">By creating an account, you agree our <a class="btn btn-link transition terms" href="javascript:void(0);">Terms & Privacy Policy</a></p>
+                    </div>
+                    <div class="form-group">
+                        <button [disabled]="!form.valid" class="btn btn-main btn-block" type="submit">Sign up</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

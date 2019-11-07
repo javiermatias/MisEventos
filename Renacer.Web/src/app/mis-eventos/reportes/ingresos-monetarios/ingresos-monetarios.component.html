@@ -1,11 +1,6 @@
 <div class="row" style="justify-content:center;">
 
   <div class="col-lg-6 col-md-12 col-sm-12 bottom-30">
-    <app-tabla [data]="IngresosTipoEventoResponse" name="ingresos_por_tipo_de_evento" [config]="tablaConfig">
-    </app-tabla>
-  </div>
-
-  <div class="col-lg-6 col-md-12 col-sm-12 bottom-30">
     <div class="float-box bottom-30">
       <div class="card">
 
@@ -26,14 +21,14 @@
       </div>
     </div>
   </div>
+  <div class="col-lg-6 col-md-12 col-sm-12 bottom-30">
+    <app-tabla [data]="IngresosTipoEventoResponse" name="ingresos_por_tipo_de_evento" [config]="tablaConfig">
+    </app-tabla>
+  </div>
 </div>
 
 
 <div class="row" style="justify-content:center;">
-  <div class="col-lg-6 col-md-6 col-sm-12 bottom-30">
-    <app-tabla [data]="IngresosTipoEventoResponse" name="ingresos_por_tipo" [config]="tablaConfig">
-    </app-tabla>
-  </div>
 
   <div class="col-lg-6 col-md-6 col-sm-12 bottom-30">
     <div class="float-box bottom-30">
@@ -56,16 +51,16 @@
       </div>
     </div>
   </div>
+  <div class="col-lg-6 col-md-6 col-sm-12 bottom-30">
+    <app-tabla [data]="IngresosPorTipoResponse" name="ingresos_por_tipo" [config]="tablaConfig">
+    </app-tabla>
+  </div>
 
 </div>
 
 
 <div class="row" style="justify-content:center;">
-  <div class="col-lg-6 col-md-6 col-sm-12 bottom-30">
-    <app-tabla [data]="IngresosEnElTiempoResponse" name="ingresos_en_el_tiempo" [config]="tablaIngresosEnElTiempo">
-    </app-tabla>
-  </div>
-
+ 
   <div class="col-lg-6 col-md-6 col-sm-12 bottom-30">
     <div class="float-box bottom-30">
       <div class="card">
@@ -89,6 +84,11 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="col-lg-6 col-md-6 col-sm-12 bottom-30">
+    <app-tabla [data]="IngresosEnElTiempoResponse" name="ingresos_en_el_tiempo" [config]="tablaIngresosEnElTiempo">
+    </app-tabla>
   </div>
 
 </div>

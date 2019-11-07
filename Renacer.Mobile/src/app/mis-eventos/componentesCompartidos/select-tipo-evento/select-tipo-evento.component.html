@@ -1,0 +1,12 @@
+<div class="form-group">
+  <label>Tipo evento
+  </label>
+  <select class="form-control" id="select_item" (change)="actualizarItem()"
+  required #select_item="ngModel" name="select_item" [(ngModel)]="itemSelected">
+  <option *ngFor="let item of items;trackBy:item?.id" [ngValue]="item">{{item.nombre}}
+  </option>
+</select>
+<div [hidden]="select_item.valid || select_item.pristine" class="alert alert-danger">
+  Debe ingresar el tipo de evento
+</div>
+</div>

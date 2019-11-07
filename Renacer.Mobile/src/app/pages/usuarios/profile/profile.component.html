@@ -1,0 +1,72 @@
+<div class="row">
+  <div class="col-lg-9">
+    <div widget class="card">
+      <div class="card-header">
+        <span>Editar perfil</span>
+        <div class="widget-controls">
+          <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
+          <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
+          <a data-widgster="fullscreen" href="#" class="transition"><i class="fa fa-expand"></i></a>
+          <a data-widgster="restore" href="#" class="transition"><i class="fa fa-compress"></i></a>
+        </div>
+      </div>
+      <div class="card-block widget-body">
+        <form (ngSubmit)="onSubmit(perfilForm)" #perfilForm="ngForm">
+          <div class="row">
+            <div class="col col-6 col-xs-12">
+              <div class="form-group">
+                <label for="usuario">Usuario</label>
+                <input type="text" class="form-control" id="usuario" required
+                #usuario="ngModel" disabled name="usuario" [(ngModel)]="_item.usuario">
+              </div>
+
+              <div class="form-group">
+                  <label for="nombre">Nombre</label>
+                  <input type="text" class="form-control" id="nombre" required
+                  #nombre="ngModel"  name="nombre" [(ngModel)]="_item.nombre">
+                </div>
+
+                <div class="form-group">
+                    <label for="rol">Rol</label>
+                    <input type="text" class="form-control" id="rol" required
+                    #rol="ngModel" disabled name="rol" [(ngModel)]="_item.rol">
+                  </div>
+            </div>
+
+            <div class="col col-6 col-xs-12">
+                <div class="card card-main justify-content-between">
+                    <div class="card-header">
+
+                    </div>
+                    <img class="w-100" 
+                    [src]="_item.imagen"
+                    *ngIf="_item.imagen"
+                    alt="imagen" style="margin: 0 auto;max-width:200px">
+
+                    <div>
+                        <input type="file" 
+                        (change)="onFileSelected($event)">
+
+                        <button type="button" 
+                        (click)="onUploadFile()"
+                        *ngIf="imagen != null"
+                        class="btn btn-main">Cambiar Imagen</button>
+                    </div>
+                    
+
+                    <div class="card-footer text-right">
+                        
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="row">
+              <div class="col col-lg-12">
+                <button type="submit" class="btn btn-main" [disabled]="!perfilForm.form.valid">Guardar</button>
+              </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

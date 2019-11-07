@@ -1,0 +1,2 @@
+//This file is intentionally just a comment
+org.gradle.jvmargs=-XX\:MaxHeapSize\=256m -Xmx256m

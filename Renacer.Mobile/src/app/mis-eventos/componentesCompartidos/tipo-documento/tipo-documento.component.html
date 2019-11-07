@@ -1,0 +1,14 @@
+<div class="col">
+    <div class="form-group">
+        <label>Tipo documento</label>
+        <select class="form-control" id="tipoDoc_12" (change)="actualizarTipoDoc()"
+        required #tipoDoc_12="ngModel" name="tipoDoc_12" [(ngModel)]="tipoDocAux">
+        
+        <option *ngFor="let item of items;trackBy:item?.id" [ngValue]="item">{{item.nombre}}
+        </option>
+        </select>
+        <div [hidden]="tipoDoc_12.valid || tipoDoc_12.pristine" class="alert alert-danger">
+            Debe ingresar el tipo de documento
+        </div>
+    </div>
+</div>
