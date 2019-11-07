@@ -144,7 +144,8 @@ export class Pago {
     public fechaBaja?: Date,
     public estaPagado?:boolean,
     public idCuota?:number,    
-    public cuota?: Cuota 
+    public cuota?: Cuota,
+    public metodoPago?: string  // Efectivo, Tarjeta
   ) {
     this.inscripcion = new Inscripcion(0);
    

@@ -61,6 +61,7 @@ import { ComprobantePagoComponent } from '../mis-eventos/socios/mis-pagos/compro
 import { EventoModificarComponent } from '../mis-eventos/evento/lista/evento-modificar/evento-modificar.component';
 
 
+
 @NgModule({
   imports: [
     CommonModule,

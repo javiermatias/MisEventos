@@ -186,11 +186,15 @@ Matricula: _cobrar Matricula, al pagarlo se abre la ventana de pdf pero no permi
 _ Matriculas pagadas 
 
 
-80 Socios, 3 secretarias 10 encargados, 60 eventos,  (60 matriculas pagadas)
+80 Socios, 3 secretarias 10 encargados, 60 eventos,  (60 matriculas pagadas) armar excel con columnas.(Llenar las encuestas.)
 
 
 CantidadInscriptos por Evento, sobre el total del cupo. Filtro por evento.
 
 
 En pagos mostrar lista Eventos
+
+
+
+Para la presentación armar una agenda, primero indicar el circuito que vamos hacer, y ver como va afectando a las estadísticas
 

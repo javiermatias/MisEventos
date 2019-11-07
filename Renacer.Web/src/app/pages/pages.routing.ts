@@ -90,7 +90,7 @@ export const routes: Routes = [
             { path: 'donaciones', component: DonacionesComponent , data: { breadcrumb: '' } },
             { path: 'pago-confirmado/:id', component: ComprobantePagoComponent , data: { breadcrumb: '' } },
             { path: 'evento-modificar/:id', component: EventoModificarComponent, data: { breadcrumb: 'Modificar' }},
-
+         
         ]
     }
 ];
