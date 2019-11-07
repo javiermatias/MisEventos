@@ -59,7 +59,7 @@ export class ImprimirService {
           </td>
           
           <td>
-                  Efectivo #
+               ${_pago.metodoPago} #
           </td>
       </tr>
       
@@ -113,13 +113,6 @@ export class ImprimirService {
     `
     );
     popupWinindow.document.close();
-
-
-
-
-
-
-
 
   }
 
