@@ -28,6 +28,8 @@ namespace Renacer.Nucleo.Entidades
         [ForeignKey("idCuota")]
         public Cuota cuota { get; set; }
 
+        public string metodoPago { get; set; } = "Efectivo"; // Efectivo, Tarjeta
+
         // public bool baja { get; set; } = false; // si es true este pago se dio de baja.
 
         //Podria agregarse eventualmente que secretaria hizo el cobro. Por el momento lo dejamos asi.

@@ -6,6 +6,7 @@ import { PagesModule } from './pages/pages.module';
 import { SesionModule } from './pages/sesion/sesion.module';
 import { RegisterModule } from './pages/register/register.module';
 
+
  const routes: Routes = [
   { path: '', redirectTo: 'sesion', pathMatch: 'full' },
   { path: 'pages', loadChildren: () => PagesModule },
