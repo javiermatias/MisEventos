@@ -84,6 +84,7 @@
                             <label class="form-control-label">Espacio: </label>
                             <select formControlName="tipoEspacio" class="form-control" [ngClass]="{'has-danger' : step.hasError && eventoForm.get('tipoEspacio').hasError('required'), 'has-success' : 
                                 !eventoForm.get('tipoEspacio').hasError('required') }">
+                                
                                 <option *ngFor="let tipoespacio of tiposEspacios" [ngValue]="tipoespacio">
                                     {{tipoespacio.nombre}}</option>
 
@@ -99,40 +100,12 @@
 
                                 
                         </div>
-
+  
                        
 
 
 
-                        <!--         <div class="form-group col-md-7" >
-                            <label class="form-control-label">Etiquetas: </label> 
-                          
-                            <az-select-tags [listaTags]="evento.listaTags" ></az-select-tags>
-                            
-                        </div> -->
-                        <!--    <div > 
-                                <li *ngFor="let item of evento.listaTags">
-                                        {{item.nombre}}
-    
-                                </li>
-                        </div> -->
-
-
-
-                        <!-- <p *ngIf="eventoForm.tipoEvento">{{eventoForm.tipoEvento}}</p> -->
-
-                        <!-- 
-                      <div class="form-group col-md-7" [ngClass]="{'has-danger' : (step.hasError && eventoForm.get('email').hasError('required')) || (step.hasError && eventoForm.get('email').hasError('invalidEmail')), 
-                                                          'has-success' : !eventoForm.get('email').hasError('required') && !eventoForm.get('email').hasError('invalidEmail')}">
-                          <label class="form-control-label">Email</label>
-                          <div class="input-group">
-                              <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-                              <input formControlName="email" class="form-control" [ngClass]="{'form-control-danger' : (step.hasError && eventoForm.get('email').hasError('required')) || (step.hasError && eventoForm.get('email').hasError('invalidEmail')), 
-                                                                                              'form-control-success' :  !eventoForm.get('email').hasError('required') && !eventoForm.get('email').hasError('invalidEmail')}" type="text">                      
-                          </div>
-                          <span class="help-block text-danger" *ngIf="step.hasError && eventoForm.get('email').hasError('required')">Email is required</span>                              
-                          <span class="help-block text-danger" *ngIf="step.hasError && eventoForm.get('email').hasError('invalidEmail')">Invalid email address</span>
-                      </div> -->
+                     
                     </form>
 
                     <form *ngIf="step.name=='Detalles'" [formGroup]="detalleForm" class="row">
@@ -632,23 +605,23 @@
 
                     <div *ngIf="step.name =='Detalles Confirmación'" class="row">
 
-                        <div class="col-6"><strong class="text-truncate">Nombre evento:</strong>
+                        <div class="col-12"><strong class="text-truncate">Nombre evento:</strong>
                             <i>{{eventoForm.value.nombre}}</i>
                         </div>
-                        <div class="col-6"><strong class="text-truncate">Descripción:</strong>
+                        <div class="col-12"><strong class="text-truncate">Descripción:</strong>
                             <i>{{eventoForm.value.descripcion}}</i>
                         </div>
-                        <div class="col-6"><strong class="text-truncate">Tipo de evento:</strong>
+                        <div class="col-12"><strong class="text-truncate">Tipo de evento:</strong>
                             <i>{{eventoForm.value.tipoEvento.nombre}}</i>
                         </div>
-                      <div class="col-6"><strong class="text-truncate">Espacio:</strong>
+                      <div class="col-12"><strong class="text-truncate">Espacio:</strong>
                             <i>{{eventoForm.value.tipoEspacio.nombre}}</i></div> 
-                        <div class="col-6"><strong class="text-truncate">Encargado:</strong>
+                        <div class="col-12"><strong class="text-truncate">Encargado:</strong>
                             <i>{{detalleForm.value.encargado.nombre}}</i></div>
-                            <div class="col-6"><strong class="text-truncate">Cupo Mínimo:</strong>
+                            <div class="col-12"><strong class="text-truncate">Cupo Mínimo:</strong>
                                 <i>{{detalleForm.value.cupoMin}}</i></div>
     
-                            <div class="col-6"><strong class="text-truncate">Cupo Máximo:</strong>
+                            <div class="col-12"><strong class="text-truncate">Cupo Máximo:</strong>
                                 <i>{{detalleForm.value.cupoMax}}</i></div>
 
                  <!--                <div  *ngIf="costoTemplate.value == '0'">
@@ -666,14 +639,14 @@
                                     class="text-truncate">Cuota:</strong>
                                 <i>{{detalleForm.value.cuota}}</i></div> -->
 
-                                <div class="col-6"><strong class="text-truncate">Fecha inicio evento:</strong>
+                                <div class="col-12"><strong class="text-truncate">Fecha inicio evento:</strong>
                                     <i>{{fechaForm.value.fechaDesde}}</i></div>
-                                <div class="col-6"><strong class="text-truncate">Fecha fin evento:</strong>
+                                <div class="col-12"><strong class="text-truncate">Fecha fin evento:</strong>
                                     <i>{{fechaForm.value.fechaHasta}}</i></div>
-                                <div class="col-6"><strong class="text-truncate">Fecha inicio inscripciones:</strong>
+                                <div class="col-12"><strong class="text-truncate">Fecha inicio inscripciones:</strong>
                                     <i>{{fechaForm.value.fechaDesdeInscripcion}}</i></div>
         
-                                <div class="col-6"><strong class="text-truncate">Fecha fin inscripciones:</strong>
+                                <div class="col-12"><strong class="text-truncate">Fecha fin inscripciones:</strong>
                                     <i>{{fechaForm.value.fechaHastaInscripcion}}</i></div>
                         
                             <fb-like url="https://smartsoft-sms.blogspot.com"></fb-like>

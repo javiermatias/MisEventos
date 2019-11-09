@@ -23,6 +23,17 @@ import { Calendario } from '../../../modelos/calendario';
 
 export class EventoWizardComponent implements OnInit {
 
+    myBusinessList=[{
+        id:1,
+        name:'item 1'
+      },{
+        id:2,
+        name:'item 2'
+      },{
+        id:2,
+        name:'item 3'
+      }]
+
   public steps:any[];
   public eventoForm:FormGroup;
   public detalleForm:FormGroup;

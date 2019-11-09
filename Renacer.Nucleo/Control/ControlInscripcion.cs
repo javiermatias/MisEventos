@@ -40,6 +40,8 @@ namespace Renacer.Nucleo.Control
                     throw new UsuarioException(errores);
                 }
                 Evento evento = ControlEvento.devolverInstancia().devolver(inscripcion.idEvento);
+                evento.estadoDeudores = "ADEUDADO";
+                ControlEvento.devolverInstancia().actualizar(evento);
                 List<Pago> listaPagos = new List<Pago>();
                 if (inscripcion.id == 0) inscripcion.fechaCreacion = DateTime.Now;
 
@@ -58,22 +60,7 @@ namespace Renacer.Nucleo.Control
                     inscripcion.listaPagos = listaPagos;
                 }
 
-                //if (!inscripcion.evento.gratuito)
-                //{
-                //    for (int i = 1; i <= inscripcion.evento.cantidadCuota; i++)
-                //    {
-                //        Pago pago = new Pago();
-                //        pago.nombre = "Cuota " + i;
-                //        pago.monto = (float)(inscripcion.evento.monto / inscripcion.evento.cantidadCuota);
-
-                //        listaPagos.Add(pago);
-
-                //    }
-                //    inscripcion.listaPagos = listaPagos;
-
-                //}
-
-
+            
 
                 using (var db = new ModeloRenacer())
                 {
@@ -89,7 +76,7 @@ namespace Renacer.Nucleo.Control
                     
                     db.inscripcion.AddOrUpdate(inscripcion);
                     db.SaveChanges();
-                    //db.SaveChanges();
+                   
                 }
             }
             catch (UsuarioException ex)
