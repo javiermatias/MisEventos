@@ -121,7 +121,7 @@ namespace Renacer.WebAPI.Controllers
         [AcceptVerbs("POST")]
         public List<Dictionary<string, object>> GetInasistenciasPorTipoEvento([FromBody] ControlReporte.filterSocio filter)
         {
-            return ControlReporte.GetInstance().GetInasistenciasPorTipoEvento();
+            return ControlReporte.GetInstance().GetAsistenciasPorDiaDeLaSemana();
         }
 
         [ActionName("asistenciaspordiadelasemana")]

@@ -17,8 +17,21 @@ namespace Renacer.WebAPI.Controllers
 
             if (search == null) search = "";
 
+            if (search == "sitieneinscriptos") {
+                return ControlEvento.devolverInstancia().devolverTodosConInscriptos().Where(ev => ev.listaInscripciones.Count > 0).ToList();
+                //foreach (var evento in listaEventos)
+                //{
+                //    if (evento.listaInscripciones.Count>0)
+                //    {
+
+                //    }
+                //}
+            }
+
             return ControlEvento.devolverInstancia().devolverTodos(search);
         }
+
+   
 
         public IEnumerable<Evento> GetEncargadosXevento([FromUri]int idEncargado)
         {

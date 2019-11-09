@@ -150,6 +150,10 @@
     <Compile Include="Migrations\201911070031045_metodo-pago.Designer.cs">
       <DependentUpon>201911070031045_metodo-pago.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911090000083_estadoEventoPago.cs" />
+    <Compile Include="Migrations\201911090000083_estadoEventoPago.Designer.cs">
+      <DependentUpon>201911090000083_estadoEventoPago.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
     <Compile Include="myMigrationSQLGenerator.cs" />
@@ -185,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911070031045_metodo-pago.resx">
       <DependentUpon>201911070031045_metodo-pago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911090000083_estadoEventoPago.resx">
+      <DependentUpon>201911090000083_estadoEventoPago.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

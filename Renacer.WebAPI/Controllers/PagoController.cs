@@ -49,7 +49,29 @@ namespace Renacer.WebAPI.Controllers
                 if (banderaPagados) {
                     inscripto.estado = "PAGADO";
                     ControlInscripcion.devolverInstacia().update(inscripto);
+
+                    //si ya ha pagado el user voy a ver si todos los users pagaron y pongo el estado del evento PAGADO
+                    List<Inscripcion> listaInscriptos = ControlInscripcion.devolverInstacia().devolverInscripcionEvento(inscripto.idEvento);
+                    Boolean banderaEventosPagados = true;
+                    foreach (Inscripcion _inscripto in listaInscriptos)
+                    {
+                        if (_inscripto.estado == "ADEUDADO") {
+                            banderaEventosPagados = false;
+                            break;
+                        }
+                    
+                    }
+
+                    if (banderaEventosPagados)
+                    {
+                        Evento evento = ControlEvento.devolverInstancia().devolver(inscripto.idEvento);
+                        evento.estadoDeudores = "PAGO";
+                        ControlEvento.devolverInstancia().actualizar(evento);
+
+                    }
                 }
+
+               
 
 
                 return Ok(_pago);

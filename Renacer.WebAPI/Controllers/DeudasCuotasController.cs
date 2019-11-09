@@ -39,23 +39,27 @@ namespace Renacer.WebAPI.Controllers
             {
                 Inscripcion _inscripcion = ControlInscripcion.devolverInstacia().devolver(inscripcion.id);
 
-                foreach (var pago in _inscripcion.listaPagos)
-                {
-                    if (!pago.estaPagado)
+                if (_inscripcion!=null) {
+
+                    foreach (var pago in _inscripcion.listaPagos)
                     {
-                        foreach (var deuda in listaDeudores)
+                        if (!pago.estaPagado)
                         {
-                            if (pago.idCuota == deuda.idCuota)
+                            foreach (var deuda in listaDeudores)
                             {
-                                deuda.listaSocios.Add(_inscripcion.socio);
-                                break;
+                                if (pago.idCuota == deuda.idCuota)
+                                {
+                                    deuda.listaSocios.Add(_inscripcion.socio);
+                                    break;
+                                }
+
                             }
-
                         }
-                    }
-                    
 
+
+                    }
                 }
+              
 
             }
 

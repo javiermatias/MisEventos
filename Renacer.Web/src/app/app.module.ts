@@ -42,6 +42,8 @@ import { CsvServices } from './servicios/csv.service';
 import { Angular2CsvModule } from 'angular2-csv';
 import { CsvWrapperComponent } from './mis-eventos/componentesCompartidos/csv-wrapper/csv-wrapper.component';
 import { ImprimirService } from './servicios/imprimir.service';
+import { NgHttpLoaderModule } from 'ng-http-loader';
+import { ExcelService } from './servicios/excel.service';
 
 
 
@@ -65,7 +67,8 @@ registerLocaleData(localeEs, 'es-AR');
     NguiAutoCompleteModule,
     CommonModule,
     ToastrModule.forRoot(),
-    Angular2CsvModule
+    Angular2CsvModule,
+    NgHttpLoaderModule.forRoot()
   ],
   providers: [
     AppConfig,
@@ -101,6 +104,7 @@ registerLocaleData(localeEs, 'es-AR');
     DeudaCuotaServices,
     CsvServices,
     ImprimirService,  
+      ExcelService,
     { provide: LOCALE_ID, useValue: 'es-AR' },
     DatePipe],
     bootstrap: [AppComponent]

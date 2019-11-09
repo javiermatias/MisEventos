@@ -55,13 +55,20 @@ namespace Renacer.WebAPI.Controllers
                     usuario.nombre = socio.nombre;
                     usuario.usuario = socio.apellido + rnd.ToString();
                     usuario.clave = socio.nombre + socio.nroDocumento;
-                    usuario.imagen = "assets/img/profile/users/augusto.png";
+                    if (socio.sexo== "Masculino")
+                    {
+                        usuario.imagen = "images\\perfiles\\adam.jpg";
+                    }
+                    else{
+                        usuario.imagen = "images\\perfiles\\julia.jpg";
+                    }
+                    
                     usuario.rol = "SOCIO";
                     usuario.email = socio.email;
                     usuario.fechaCreacion = DateTime.Now;
                     usuario.idSocio = socio.id;
                     ControlUsuario.devolverInstancia().grabar(usuario);
-                    EnvioMail.enviarMail(usuario.email);
+                    EnvioMail.enviarMail(usuario.email, usuario.usuario,usuario.clave);
 
                 }
 

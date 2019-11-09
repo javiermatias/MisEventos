@@ -42,6 +42,8 @@ namespace Renacer.Nucleo.Control
 
                 using (var db = new ModeloRenacer())
                 {
+                    socio.nombre = socio.nombre.ToUpper();
+                    socio.apellido = socio.nombre.ToUpper();
                     socio.idTipoDoc = socio.tipoDoc.id;
                     Tag[] listaTags = new Tag[socio.listaTags.Count];
                     socio.listaTags.CopyTo(listaTags);

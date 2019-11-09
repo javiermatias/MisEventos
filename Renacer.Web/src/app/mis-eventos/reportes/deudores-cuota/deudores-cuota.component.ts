@@ -79,19 +79,28 @@ export class DeudoresCuotaComponent implements OnInit {
   getEventos(){
 
     
-   this._itemsService.query({'search':' '}).subscribe(items => {
+   this._itemsService.query({'search':'sitieneinscriptos'}).subscribe(items => {
      
     this.eventos = items;
+    console.log(this.eventos);
+/*    console.log(this.eventos);
+    this.eventos = this.eventos.filter((item: Evento) => {
+     // console.log(item.listaInscripciones.length);
+      return item.listaInscripciones != null;
+  
+  }); */
             
     });
     
   }
 
-  eventoSeleccionado(){
-    //console.log(this.idEvento);
-    //this.evento =  this.eventos.find(x => x.id == this.idEvento);
-    //console.log(this.evento);
-    this.traerDeudores(this.idEvento);
+  verGrafico(item:Evento){
+
+    this.eventoSeleccionado(item.id);
+  }
+
+  eventoSeleccionado(idEvento:number){
+    this.traerDeudores(idEvento);
   }
 
   
@@ -120,5 +129,12 @@ public chartClicked(e:any):void {
   public chartHovered(e:any):void {
   //console.log(e);
   }
+
+
+  volver(){
+    this.showDeudores=false;
+  }
+
+  imprimir(){}
 
 }
