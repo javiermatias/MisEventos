@@ -20,7 +20,7 @@ export class ImprimirService {
       this.pago= _pago;
       this.imprimirPago(_pago);
     } */
-  public imprimirPago(_pago: Pago) {
+  public imprimirPago(_pago: Pago, _evento:string) {
     //let image ="../assets/az_logo.png"
     let fechaCobro = this.datePipe.transform(_pago.fechaCobro, 'yyyy-MM-dd');
     let content =
@@ -84,7 +84,7 @@ export class ImprimirService {
       
       <tr class="item">
           <td>
-          Pago ${_pago.nombre} del evento
+          Pago ${_pago.nombre} del evento ${_evento}
           </td>
           
           <td>

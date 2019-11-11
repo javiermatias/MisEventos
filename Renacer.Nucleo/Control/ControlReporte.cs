@@ -57,11 +57,19 @@ namespace Renacer.Nucleo.Control
                 case "cursos-en-progreso":
                     count = this.GetCursosEnProgresoCount(); break;
                 case "eventos-finalizados":
-                    count = this.GetEventosDetalleFinalizados(); break;
+                    count = this.GetEventosFinalizados(); break;
+                case "eventos-nuevos":
+                    count = this.GetEventosNuevos(); break;
                 case "socios":
-                    count = this.GetSociosCount(new filterSocio()); break;
+                    count = this.GetSociosActivosCount(); break;
+                case "sociosSistema":
+                    count = this.GetSociosSistemaCount(); break;
                 case "asistencias":
+
                     count = this.GetAsistenciasCount(); break;
+                    
+                    
+                    
                 case "encargados":
                     count = this.GetEncargadosCount(); break;
                 case "eventos":
@@ -260,7 +268,17 @@ group by DAYOFWEEK(fechaAsistencia)
         }
 
 
+        private Int64 GetSociosSistemaCount()
+        {
+            var DbHelper = new DBBase(strConnection);
+            return (Int64)DbHelper.ExecuteScalar("SELECT COUNT(*) FROM socio where ISNULL(fechaBaja)");
+        }
 
+        private Int64 GetSociosActivosCount()
+        {
+            var DbHelper = new DBBase(strConnection);
+            return (Int64)DbHelper.ExecuteScalar("SELECT COUNT(*) FROM socio where ISNULL(fechaBaja) AND Estado = 'Activo'");
+        }
 
 
 
@@ -271,6 +289,8 @@ group by DAYOFWEEK(fechaAsistencia)
             sql = sql.Replace("{filtro_socio}", filtro.getFilterSqlSocio());
             return (Int64)DbHelper.ExecuteScalar(sql);
         }
+
+
         private Int64 GetEncargadosCount()
         {
             var DbHelper = new DBBase(strConnection);
@@ -281,6 +301,21 @@ group by DAYOFWEEK(fechaAsistencia)
             var DbHelper = new DBBase(strConnection);
             return (Int64)DbHelper.ExecuteScalar("SELECT COUNT(*) FROM evento where ISNULL(fechaBaja) AND Estado = 'Progreso'");
         }
+
+        private Int64 GetEventosFinalizados()
+        {
+            var DbHelper = new DBBase(strConnection);
+            return (Int64)DbHelper.ExecuteScalar("SELECT COUNT(*) FROM evento where ISNULL(fechaBaja) AND Estado = 'Finalizado'");
+        }
+
+        private Int64 GetEventosNuevos()
+        {
+            var DbHelper = new DBBase(strConnection);
+            return (Int64)DbHelper.ExecuteScalar("SELECT COUNT(*) FROM evento where ISNULL(fechaBaja) AND Estado = 'Nuevo'");
+        }
+
+
+
         private Int64 GetEspaciosCount()
         {
             var DbHelper = new DBBase(strConnection);
@@ -298,10 +333,13 @@ group by DAYOFWEEK(fechaAsistencia)
             return (Int64)DbHelper.ExecuteScalar("SELECT COUNT(*) FROM detalleevento where fechaHasta < NOW() AND ISNULL(fechaBaja)");
         }
 
+     
+
+
         private Int64 GetAsistenciasCount()
         {
             var DbHelper = new DBBase(strConnection);
-            return (Int64)DbHelper.ExecuteScalar("SELECT COUNT(*) FROM socioasistencias");
+            return (Int64)DbHelper.ExecuteScalar("SELECT COUNT(*) FROM asistencia");
         }
 
         public List<Dictionary<string, object>> GetSocios(filterSocio filtro)
