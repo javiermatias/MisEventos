@@ -111,7 +111,7 @@ pagoConfirmado(){
 imprimirPdf(pago:Pago){
 
 
-  this.imprimirService.imprimirPago(pago);
+  this.imprimirService.imprimirPago(pago,this.seleccionInscripcion.evento.nombre);
 
 }
 

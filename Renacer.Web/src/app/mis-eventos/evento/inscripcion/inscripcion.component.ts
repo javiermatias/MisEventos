@@ -4,7 +4,7 @@ import { Socio } from '../../../servicios/socio.service';
 import { DatePipe } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 
@@ -33,7 +33,7 @@ export class InscripcionComponent implements OnInit {
 
   constructor( private _itemsService:EventoServices, private inscripcionServ:InscripcionServices, 
     private datePipe: DatePipe, private mensajeServ: ToastrService,
-    private route: ActivatedRoute) { 
+    private route: ActivatedRoute,private router: Router) { 
     this.listaSocios=new Array<Socio>();
    this.listaInscripcion= new Array<Inscripcion>();
   
@@ -99,7 +99,7 @@ export class InscripcionComponent implements OnInit {
     
     this.listaSocios.forEach((socio) => {
 
-      if(socio.estado="DebeMatricula"){
+      if(socio.estado == "DebeMatricula"){
         this.mensajeServ.error('El socio ' + socio.nombre + ' ' + socio.apellido + ' debe la matrícula' , 'Aviso!');
         bandera=false;
         
@@ -161,4 +161,9 @@ export class InscripcionComponent implements OnInit {
 
   }
 
+
+
+  cancelar(){
+    this.router.navigate(['/pages/evento/lista-inscripciones']);
+  }
 }
