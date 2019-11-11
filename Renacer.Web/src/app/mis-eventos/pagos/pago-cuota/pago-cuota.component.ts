@@ -8,6 +8,8 @@ import { MatriculaxsocioService } from '../../../servicios/matriculaxsocio.servi
 import { ImprimirService } from '../../../servicios/imprimir.service';
 
 import { HtmlParser } from '@angular/compiler';
+import { ExcelService } from '../../../servicios/excel.service';
+
 
 @Component({
   selector: 'az-pago-cuota',
@@ -28,7 +30,7 @@ export class PagoCuotaComponent implements OnInit {
   @ViewChild('imprimirPDF', {static: false}) myPrintHtml: ElementRef;
  
   constructor( private _dbServices: SocioServices, private inscripcionServ: InscripcionServices, private pagoServ: PagoServices
-    , private mensajeServ: ToastrService,private imprimirService: ImprimirService ,
+    , private mensajeServ: ToastrService,private imprimirService: ImprimirService , private excelService:ExcelService,
     private sanitizer: DomSanitizer) {
       this.safeHtml = this.sanitizer.bypassSecurityTrustHtml(
         '<button>Click me</button>')
@@ -109,11 +111,15 @@ pagoConfirmado(){
 imprimirPdf(pago:Pago){
 
 
-  this.imprimirService.imprimirPago(pago);
+  this.imprimirService.imprimirPago(pago,this.seleccionInscripcion.evento.nombre);
 
 }
 
 
+
+pruebaExcel(){
+  //this.excelService.generateExcel();
+}
 
 volver(){
   this.mostrarCuotas=false;

@@ -1,20 +1,28 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Pago } from './evento.service';
+import { Matricula } from '../modelos/matricula';
+import { DatePipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ImprimirService {
-  constructor() { }
-  public pago: Pago;
-  public evento: String;
+    public pago: Pago;
+    public evento: String;
+  
+    fechaActual = '';
+  constructor(private datePipe: DatePipe) { 
+    this.fechaActual = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+  }
+
   /*   public imprimirPDF(_pago:Pago){
       this.pago= _pago;
       this.imprimirPago(_pago);
     } */
-  public imprimirPago(_pago: Pago) {
+  public imprimirPago(_pago: Pago, _evento:string) {
     //let image ="../assets/az_logo.png"
+    let fechaCobro = this.datePipe.transform(_pago.fechaCobro, 'yyyy-MM-dd');
     let content =
       ` <div class="invoice-box">
   <table cellpadding="0" cellspacing="0">
@@ -23,12 +31,12 @@ export class ImprimirService {
               <table>
                   <tr>
                       <td class="title">
-                          <img src="../../../assets/img/logo/az_logo.png" style="width:100%; max-width:300px;">
+                          <img src="../../../assets/img/logo/az_logo.png"> 
                       </td>
                       
                       <td>
                           Nro recibo #: ${_pago.nroRecibo}<br>
-                          Created: ${_pago.fechaCobro}<br>                         
+                          Creación: ${fechaCobro}<br>                         
                       </td>
                   </tr>
               </table>
@@ -40,7 +48,7 @@ export class ImprimirService {
               <table>
                   <tr>
                       <td>
-                      Fundación Renacer.<br>
+                      Foro de los sabios.<br>
                       Calle Juan Felipe Vilela 220<br>
                       5021 Córdoba, Argentina
                       </td>
@@ -76,7 +84,7 @@ export class ImprimirService {
       
       <tr class="item">
           <td>
-          Pago ${_pago.nombre} del evento
+          Pago ${_pago.nombre} del evento ${_evento}
           </td>
           
           <td>
@@ -102,7 +110,7 @@ export class ImprimirService {
     <html>
     <head>
         <meta charset="utf-8">
-        <title></title>
+        <title>Mis Eventos</title>
             ${this.style}
         
         </head>
@@ -116,6 +124,110 @@ export class ImprimirService {
 
   }
 
+
+  public imprimirMatricula(_matricula: Matricula) {
+    //let image ="../assets/az_logo.png"
+    
+    let content =
+      ` <div class="invoice-box">
+  <table cellpadding="0" cellspacing="0">
+      <tr class="top">
+          <td colspan="2">
+              <table>
+                  <tr>
+                      <td class="title">
+                          <img src="../../../assets/img/logo/az_logo.png" >
+                      </td>
+                      
+                      <td>
+                          Nro recibo #: 10025<br>
+                          Creación: ${this.fechaActual}<br>                         
+                      </td>
+                  </tr>
+              </table>
+          </td>
+      </tr>
+      
+      <tr class="information">
+          <td colspan="2">
+              <table>
+                  <tr>
+                      <td>
+                      Foro de los sabios.<br>
+                      Calle Juan Felipe Vilela 220<br>
+                      5021 Córdoba, Argentina
+                      </td>
+                      
+                      <td>
+                      fundacionrenacereventos@gmail.com
+                      </td>
+                  </tr>
+              </table>
+          </td>
+      </tr>
+      
+      <tr class="heading">
+          <td>
+                Método de Pago
+          </td>
+          
+          <td>
+               Efectivo #
+          </td>
+      </tr>
+      
+       
+      <tr class="heading">
+          <td>
+          Concepto
+          </td>
+          
+          <td>
+          Precio
+          </td>
+      </tr>
+      
+      <tr class="item">
+          <td>
+            Matrícula Anual 2019 
+          </td>
+          
+          <td>
+          ${_matricula.valor}
+          </td>
+      </tr>
+      
+    
+      
+      <tr class="total">
+          <td></td>
+          
+          <td>
+          Total: ${_matricula.valor}
+          </td>
+      </tr>
+  </table>
+</div>`
+
+    let popupWinindow = window.open('', '_blank', 'width=600,height=300,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
+    popupWinindow.document.open();
+    popupWinindow.document.write(`
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <title>Mis Eventos</title>
+            ${this.style}
+        
+        </head>
+        <body onload="window.print(); window.close()">
+            ${content}
+        </body>
+    </html>
+    `
+    );
+    popupWinindow.document.close();
+
+  }
 
 
 

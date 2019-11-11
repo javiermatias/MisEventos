@@ -19,28 +19,13 @@
                                          <p>
                                            Socio: {{selectedSocio?.nombre}} {{selectedSocio?.apellido}}
                                            <br><br>
-                                          DNI {{selectedSocio?.nroDocumento}} 
+                                           Dni:{{selectedSocio?.nroDocumento}} 
+                                          <br><br>
+                                           Descripción:{{cuota?.nombre}}
+                                           <br><br>
+                                           Monto: ${{cuota?.monto}}
                                           </p> 
-                                      <div> 
-                                          <table style="width:600px">
-                                            <thead>
-                                              <tr>
-                                                <th colspan="2">Comprobante de pago</th>
-                                              </tr>
-                                              <tr>
-                                                  <th>Descripción</th>
-                                                  <th>Monto</th>
-                                              </tr>
-                                             
-                                            </thead>
-                                            <tbody>
-                                              <tr>
-                                                <td>{{seleccionInscripcion?.nombre}} {{cuota?.nombre}}</td>
-                                                <td><strong>${{cuota?.valor}}</strong></td>
-                                              </tr>
-                                            </tbody>
-                                          </table>
-                                      </div>
+
                                     </div>
                                 </div>
                               </div>
@@ -312,7 +297,7 @@
 
 
 
-<button (click)="imprimirPdf()">Imprimir</button>
+<button (click)="pruebaExcel()">Imprimir</button>
 
 
 

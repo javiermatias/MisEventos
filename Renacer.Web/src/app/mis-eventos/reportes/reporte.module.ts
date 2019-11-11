@@ -22,6 +22,7 @@ import { ChartsModule } from 'ng4-charts';
 import 'chart.js/dist/Chart.js';
 import { IngresosMonetariosComponent } from './ingresos-monetarios/ingresos-monetarios.component';
 import { AsistenciasComponent } from './eventos/asistencias/asistencias.component';
+import { ListaDeudoresComponent } from './deudores-cuota/lista-deudores/lista-deudores.component';
 
 
 
@@ -62,7 +63,8 @@ export const routes = [
     DeudoresCuotaComponent,
     EventoChartComponent,
     IngresosMonetariosComponent,
-    AsistenciasComponent
+    AsistenciasComponent,
+    ListaDeudoresComponent
   ]
 })
 export class ReporteModule { }

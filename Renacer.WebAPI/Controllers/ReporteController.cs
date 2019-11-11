@@ -116,13 +116,14 @@ namespace Renacer.WebAPI.Controllers
             return ControlReporte.GetInstance().GetAsistenciasPorTipoEvento();
         }
 
-        //[ActionName("inasistenciasportipoevento")]
-        //[Route("inasistenciasportipoevento")]
-        //[AcceptVerbs("POST")]
-        //public List<Dictionary<string, object>> GetInasistenciasPorTipoEvento([FromBody] ControlReporte.filterSocio filter)
-        //{
-        //    return ControlReporte.GetInstance().GetInasistenciasPorTipoEvento();
-        //}
+
+        [ActionName("inasistenciasportipoevento")]
+        [Route("inasistenciasportipoevento")]
+        [AcceptVerbs("POST")]
+        public List<Dictionary<string, object>> GetInasistenciasPorTipoEvento([FromBody] ControlReporte.filterSocio filter)
+        {
+            return ControlReporte.GetInstance().GetAsistenciasPorDiaDeLaSemana();
+        }
 
         [ActionName("asistenciaspordiadelasemana")]
         [Route("asistenciaspordiadelasemana")]

@@ -7,7 +7,7 @@ import { EventoServices ,Evento} from '../../../servicios/evento.service';
   styleUrls: ['./lista.component.scss']
 })
 export class ListaComponent implements OnInit {
-  public eventos :any[];
+  public eventos:Evento[];
 
   constructor(private _itemsService:EventoServices) { }
 

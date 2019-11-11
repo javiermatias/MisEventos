@@ -10,7 +10,13 @@
     "target": "es5",
     "module": "es2015",
     "baseUrl": "",
-    "types": []
+    "types": [],
+    "paths": {
+      "exceljs": [
+        "../node_modules/exceljs/dist/exceljs.min.js"
+      ]
+    }
+ 
   },
   "exclude": [
     "test.ts",
