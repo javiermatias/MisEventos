@@ -1,100 +1,12 @@
-<div class="row">
-    <div class="col">
-        <div widget class="card">
-            <div class="card-header">
-                <span>CALENDARIO</span>
-                <div class="widget-controls">
-                    <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
-                    <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
-                    <a data-widgster="fullscreen" href="#" class="transition"><i class="fa fa-expand"></i></a>
-                    <a data-widgster="restore" href="#" class="transition"><i class="fa fa-compress"></i></a>
-                    <a data-widgster="close" href="#" class="transition"><i class="fa fa-times"></i></a>
-                </div>
-            </div>
-            <div class="card-block widget-body row">
-                    <div class="col-xl-4 col-lg-4 col-4" *ngIf="!esSocioEncargado" >
-                    <div class="form-group">
-                            <label for="idTipoEspacio">Filtrar por Espacio: </label>
-                      
-                            <select class="form-control" id="idTipoEspacio" 
-                                name="idTipoEspacio" [(ngModel)]="espacio" (change)="cambioEspacio($event.target.value)">                                
-                                <option *ngFor="let espacio of espacios" [ngValue]="espacio"
-                                [selected]="espacio.nombre == 'Todos'">{{espacio.nombre}}</option>                                    
-                            </select>
-     
-                        </div>
-                    </div>
-                <div class="col-xl-12 col-lg-12 col-12" *ngIf="!esSocioEncargado">
-                    <div class="card-block">
-                      
-
-                        <full-calendar
-                            #calendar
-                            defaultView="timeGridWeek"
-                            [header]="headerConfig"
-                            [plugins]="calendarPlugins"
-                            [weekends]="calendarWeekends"
-                            [minTime]="'07:00:00'"
-                            [locale]="lang"
-                            [events]="calendarEvents"
-                            [allDaySlot]="false"                         
-                            (eventClick)="handleEventClick($event)"
-                        ></full-calendar>
-                        
-                        <div class="modal fade" id="show-event-modal">
-                                <div class="modal-dialog modal-sm">
-                                    <div class="modal-content">
-                                        <div class="modal-header modal-info">
-                                            <h5 *ngIf="event.title" class="modal-title">{{ event.title }}</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p><i class="fa fa-calendar"></i> &nbsp;{{event.dia}} {{ event.start | date: 'dd-MM-yyyy' }}</p>
-                                            <p>Descripción: {{event.descripcion}}</p>
-                                            <p>Encargado: {{event.encargado}}</p>
-                                            <p>Espacio: {{event.aula}}</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                          <button type="button" class="btn btn-info btn-sm" [routerLink]="['/pages/evento/', event.idEvento,'detalle',event.id]" >VER DETALLE</button>
-                                          <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">CERRAR</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                    </div>
-                </div>
-
-                <div class="col-xl-12 col-lg-12 col-12" *ngIf="esSocioEncargado">
-                        <div class="card-block">
-                          
-    
-                            <full-calendar
-                                #calendar
-                                defaultView="listWeek"
-                                [header]="headerConfigSocio"
-                                [plugins]="calendarPlugins"
-                                [weekends]="calendarWeekends"
-                                [minTime]="'07:00:00'"
-                                [locale]="lang"
-                                [events]="calendarEvents"
-                                [allDaySlot]="false"                         
-                                (eventClick)="handleEventClick($event)"
-                            ></full-calendar>
-                         
-    
-                        </div>
-                    </div>
-
-
-
-
-
-
-
-
-                
-            </div>
-        </div>
-    </div>
-</div>
+<full-calendar
+#calendar
+defaultView="listWeek"
+[header]="headerConfigSocio"
+[plugins]="calendarPlugins"
+[weekends]="calendarWeekends"
+[minTime]="'07:00:00'"
+[locale]="lang"
+[events]="calendarEvents"
+[allDaySlot]="false"                         
+(eventClick)="handleEventClick($event)"
+></full-calendar>

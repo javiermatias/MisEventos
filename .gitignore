@@ -236,3 +236,5 @@ Renacer.WebAPI.Prueba/*.config
 Renacer.WebAPI/Configuracion/local-01.config
 Renacer.WebAPI/dist/
 Renacer.WebAPI/images/perfiles/
+Renacer.Mobile/www/
+Renacer.Mobile/platforms/android/app/src/main/assets/www/
