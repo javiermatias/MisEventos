@@ -29,11 +29,11 @@ import { ListaDeudoresComponent } from './deudores-cuota/lista-deudores/lista-de
 
 export const routes = [
   { path: '', redirectTo: 'tags', pathMatch: 'full'},
-  { path: 'tags', component: TagsCloudComponent, data: { breadcrumb: 'Nube de Etiquetas' } },
+  { path: 'tags', component: TagsCloudComponent, data: { breadcrumb: 'Nube de Etiquetas' } },//
   { path: 'eventos', component: EventosComponent, data: { breadcrumb: 'Eventos' } },
-  { path: 'socios', component: SociosComponent, data: { breadcrumb: 'Socios' } },
+  { path: 'socios', component: SociosComponent, data: { breadcrumb: 'Socios' } },//
   { path: 'time-line', component: TimeLineComponent, data: { breadcrumb: 'Cronograma' } },
-  { path: 'ranking', component: RankingComponent, data: { breadcrumb: 'Ranking' } },
+  { path: 'ranking', component: RankingComponent, data: { breadcrumb: 'Ranking' } },//
   { path: 'ingresos', component: IngresosMonetariosComponent, data: { breadcrumb: 'Ingresos' } },
   { path: 'asistencias', component: AsistenciasComponent, data: { breadcrumb: 'Asistencias' } },
   { path: 'deudores', component: DeudoresCuotaComponent, data: { breadcrumb: 'Deudores' } }

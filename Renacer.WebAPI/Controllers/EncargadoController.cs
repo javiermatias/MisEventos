@@ -38,7 +38,7 @@ namespace Renacer.WebAPI
         }
 
         // PUT: api/cliente/5
-        public void Put(int id, [FromBody]Encargado value)
+        public void Put([FromBody]Encargado value)
         {
             // var encargado = ControlEncargado.devolverInstancia().devolver(id);
             value.fechaModificacion = DateTime.Now;

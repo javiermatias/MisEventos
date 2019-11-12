@@ -10,13 +10,16 @@ import { HttpClient } from '@angular/common/http';
 
 export class FiltroReporte {
   constructor(
+ 
     public barrio?: string,
     public sexo?: string,
     public Tags?: Array<Tag>,
     public edadDesde?: String,
     public edadHasta?: String,
     public fechaDesde?: String,
-    public fechaHasta?: String
+    public fechaHasta?: String,
+    public estadoCivil?: String
+  
   ) {
     this.barrio = '';
     this.sexo = '';
@@ -25,6 +28,7 @@ export class FiltroReporte {
     this.edadHasta = '';
     this.fechaDesde = '';
     this.fechaHasta = '';
+    this.estadoCivil = '';
   }
 }
 
