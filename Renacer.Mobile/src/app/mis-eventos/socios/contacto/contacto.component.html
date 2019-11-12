@@ -9,28 +9,28 @@
     </div>
     <div class="card-block widget-body">
         <div class="row">
-            <div class="col col-md-6">
+            <div>
                 <div class="form-group">
                     <label for="calle">Nombre</label>
                     <input type="text" class="form-control" id="calle" required
                            #calle="ngModel" name="calle" [(ngModel)]="_contacto.nombre" [readOnly]="readOnly">
                 </div>
             </div>
-            <div class="col col-md-6">
+            <div>
                 <div class="form-group">
                     <label for="calle">Apellido</label>
                     <input type="text" class="form-control" id="apellido" required
                            #apellido="ngModel" name="apellido" [(ngModel)]="_contacto.apellido"  [readOnly]="readOnly">
                 </div>
             </div>
-            <div class="col col-md-6">
+            <div>
                 <div class="form-group">
                     <label for="telefono">Teléfono</label>
                     <input type="text" class="form-control" id="telefono" required
                            #calle="ngModel" name="telefono" [(ngModel)]="_contacto.telefono" [readOnly]="readOnly">
                 </div>
             </div>
-            <div class="col col-md-6">
+            <div >
                 <div class="form-group">
                     <label for="telefono">Relación con el socio</label>
                     <select type="text" class="form-control" id="relacion" required [disabled]="readOnly"

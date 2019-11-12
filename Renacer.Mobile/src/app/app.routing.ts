@@ -8,16 +8,14 @@ import { RegisterModule } from './pages/register/register.module';
 
  const routes: Routes = [
   { path: '', redirectTo: 'sesion', pathMatch: 'full' },
-  { path: 'pages', loadChildren: () => PagesModule },
-  // { path: 'pages', loadChildren: () => import('./pages/pages.module').then(mod => mod.PagesModule) },
-  { path: 'sesion', loadChildren:  ()=> SesionModule },
-  { path: 'register', loadChildren: ()=> RegisterModule },
+  { path: 'pages', loadChildren: './pages/pages.module#PagesModule' },
+  { path: 'sesion', loadChildren: './pages/sesion/sesion.module#SesionModule' },
+  { path: 'register', loadChildren: './pages/register/register.module#RegisterModule' },
   { path: '**', component: ErrorComponent }
 ];
 
  const routing: ModuleWithProviders = RouterModule.forRoot(routes, {
-  preloadingStrategy: PreloadAllModules,
-  useHash: true
+  preloadingStrategy: PreloadAllModules
 });
 
 export {routing}
