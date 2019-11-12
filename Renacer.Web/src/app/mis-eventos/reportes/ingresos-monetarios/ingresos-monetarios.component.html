@@ -87,6 +87,13 @@
   </div>
 
   <div class="col-lg-6 col-md-6 col-sm-12 bottom-30">
+
+<app-filtro-rango-fechas 
+  [firstDate]="fechaRangoInicial"
+  [lastDate]="fechaRangoFin"
+  (onRangeDateSelection)="cambioDeFechasIngresosEnElTiempo($event)">
+</app-filtro-rango-fechas>
+
     <app-tabla [data]="IngresosEnElTiempoResponse" name="ingresos_en_el_tiempo" [config]="tablaIngresosEnElTiempo">
     </app-tabla>
   </div>

@@ -78,8 +78,8 @@ export class ReporteServices extends BaseServices<Object> {
     return this.http.post<any[]>(`${this.url}ingresosportipo`, {})
   }
 
-  getIngresosEnElTiempo(): Observable<any[]> {
-    return this.http.post<any[]>(`${this.url}ingresoseneltiempo`, {})
+  getIngresosEnElTiempo(rangoDeFechas: any): Observable<any[]> {
+    return this.http.post<any[]>(`${this.url}ingresoseneltiempo`, rangoDeFechas)
   }
 
 

@@ -233,32 +233,39 @@ group by DAYOFWEEK(fechaAsistencia)
             return Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
         }
 
+        
 
-
-        public List<Dictionary<string, object>> GetIngresosEnElTiempo()
+        public List<Dictionary<string, object>> GetIngresosEnElTiempo(FilterDateRange rango)
         {
             var DbHelper = new DBBase(strConnection);
-            var sql = @"
-
+            var sql = $@"
                 SELECT aux.fecha,SUM(aux.matriculas) as 'matriculas',SUM(aux.eventos) as 'eventos' from (
                 SELECT
 	                SUM(pago) AS 'matriculas',
 	                0 as 'eventos',
 	                DATE_FORMAT(fechaPago, '%Y-%m') as 'fecha'
                 FROM
-	                matriculaxsocios group by fecha
+	                matriculaxsocios  where {filterRangeDate(rango,"fechaPago")}  group by fecha 
                 UNION ALL
                 SELECT
 	                0 AS 'matriculas',
 	                SUM(monto) as 'eventos',
 	                DATE_FORMAT(fechaCobro, '%Y-%m') as 'fecha'
-                FROM pago WHERE estaPagado = 1 group by fecha	) as aux group by fecha order by fecha
-
+                FROM pago WHERE estaPagado = 1 AND {filterRangeDate(rango, "fechaCobro")} 
+                    group by fecha	) as aux group by fecha order by fecha
 ";
 
             var tabla = DbHelper.ExecuteDataTable(sql);
             return Helper.Helper.ConvertDT(tabla);
 
+        }
+
+        public string filterRangeDate(FilterDateRange rango, string nombreCampo = "fecha") {
+            var filter = "1=1";
+
+            if (rango.fechaInicio > DateTime.MinValue) filter += $" AND {nombreCampo} >= '{rango.fechaInicio.ToString("yyyy-MM-dd")}'";
+            if (rango.fechaFin > DateTime.MinValue) filter += $" AND {nombreCampo} <= '{rango.fechaFin.ToString("yyyy-MM-dd")}'";
+            return $"({filter})";
         }
 
 
@@ -524,6 +531,11 @@ GROUP BY
         }
     }
 
+    public class FilterDateRange
+    {
+        public DateTime fechaInicio;
+        public DateTime fechaFin;
+    }
 }
 
 

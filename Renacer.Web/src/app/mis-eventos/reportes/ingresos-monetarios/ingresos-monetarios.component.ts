@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AppConfig } from '../../../app.config';
 import {ReporteServices} from '../../../servicios/reporte.service';
+import {formatDate} from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
 
 
 @Component({
@@ -26,6 +29,7 @@ export class IngresosMonetariosComponent implements OnInit {
 
     public IngresosTipoEventoLabels: Array<string>;
     public IngresosTipoEventoData: Array<number>;
+
 
     public pieChartColors: any[];
     public ingresosPorTipoEventoOpt: any;
@@ -58,6 +62,8 @@ export class IngresosMonetariosComponent implements OnInit {
         ]
       }
 
+    fechaRangoInicial = new Date();
+    fechaRangofin = new Date();
 
     constructor(private _appConfig: AppConfig, private _reporteServ: ReporteServices) {
         this.config = this._appConfig.config;
@@ -80,16 +86,7 @@ export class IngresosMonetariosComponent implements OnInit {
             {data: [], label: 'Cuotas' }
         ];
 
-        this._reporteServ.getIngresosEnElTiempo().subscribe(result => {
-            this.IngresosEnElTiempoResponse = result;
-            for (let i = 0; i < result.length; i++) {
-                    this.lineChartLabels.push(result[i].fecha)
-                    const  ingresosTotales = result[i].matriculas + result[i].eventos;
-                    this.lineChartData[0].data.push(ingresosTotales);
-                    this.lineChartData[1].data.push(result[i].matriculas);
-                    this.lineChartData[2].data.push(result[i].eventos);
-                }
-        });
+       this.cargarIngresosEnElTiempo(this.fechaRangoInicial , this.fechaRangofin);
 
 
         this.IngresosTipoEventoData = [];
@@ -137,6 +134,23 @@ export class IngresosMonetariosComponent implements OnInit {
         });
 
     }
+    cargarIngresosEnElTiempo(fechaInicio: Date, fechaFin: Date) {
+        registerLocaleData(localeEs, 'es');
+        this._reporteServ.getIngresosEnElTiempo(
+            { 'fechaInicio': formatDate(fechaInicio, 'yyyy-MM-dd', 'es'),
+              'fechaFin': formatDate(fechaFin, 'yyyy-MM-dd', 'es')
+            }
+        ).subscribe(result => {
+            this.IngresosEnElTiempoResponse = result;
+            for (let i = 0; i < result.length; i++) {
+                    this.lineChartLabels.push(result[i].fecha)
+                    const  ingresosTotales = result[i].matriculas + result[i].eventos;
+                    this.lineChartData[0].data.push(ingresosTotales);
+                    this.lineChartData[1].data.push(result[i].matriculas);
+                    this.lineChartData[2].data.push(result[i].eventos);
+                }
+        });
+    }
 
     public randomizeType(): void {
         this.lineChartType = this.lineChartType === 'line' ? 'bar' : 'line';
@@ -148,6 +162,10 @@ export class IngresosMonetariosComponent implements OnInit {
 
     public chartHovered(e: any): void {
        // console.log(e);
+    }
+
+    cambioDeFechasIngresosEnElTiempo(rango) {
+        this.cargarIngresosEnElTiempo(rango.inicio, rango.fin);
     }
 
 }
