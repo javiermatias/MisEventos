@@ -20,7 +20,7 @@ export class ExcelService {
     //const Excel = require('exceljs');
 
     System.import('exceljs').then(Excel => {
-      console.log(Excel );
+ 
         //Excel Title, Header, Data
     const titulo = _titulo;
     const header = _header;
@@ -95,7 +95,7 @@ export class ExcelService {
    
     worksheet.addRow([]);
     //Footer Row
-    let footerRow = worksheet.addRow(['Un reporte autómatico generado por Mis Eventos']);
+    let footerRow = worksheet.addRow(['Reporte autómatico generado por Mis Eventos']);
     footerRow.getCell(1).fill = {
       type: 'pattern',
       pattern: 'solid',

@@ -58,7 +58,7 @@ export class EncargadosComponent implements OnInit {
 
 
   saveItem(item: EncargadoEvento): any {
-    if (item.id === 0) {
+    if (item.id == 0) {
       this._itemsService.save(item).subscribe(resp => {
         item = resp;
         this.items.push(item);
@@ -67,13 +67,10 @@ export class EncargadosComponent implements OnInit {
       });
     } else {
       this._itemsService.update(item).subscribe(resp => {
-        const items = this.items;
-        for (let i = 0; i < items.length; i++) {
-          if (items[i].id === resp.id) {
-            items[i] = resp;
+        
             this.mensajeServ.success('Se han guardado los cambios!', 'Aviso!');
-          }
-        }
+          
+        
         this.showDetail = false;
       });
     }

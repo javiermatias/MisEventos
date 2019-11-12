@@ -44,21 +44,22 @@ namespace Renacer.Nucleo.Control
 
                 using (var db = new ModeloRenacer())
                 {
-                    Tag[] listaTags = new Tag[encargado.listaTags.Count] ;
-                    encargado.listaTags.CopyTo(listaTags);
-                    encargado.listaTags.RemoveAll(tag => true);
+                    //Tag[] listaTags = new Tag[encargado.listaTags.Count] ;
+                    //encargado.listaTags.CopyTo(listaTags);
+                    //encargado.listaTags.RemoveAll(tag => true);
 
-                    db.encargado.AddOrUpdate(encargado);
+                    
 
                     if (encargado.domicilio.id == 0) db.Entry(encargado.domicilio).State = System.Data.Entity.EntityState.Added;
                     if (encargado.domicilio.id > 0) db.Entry(encargado.domicilio).State = System.Data.Entity.EntityState.Modified;
                     db.Entry(encargado.tipoDoc).State = System.Data.Entity.EntityState.Modified;
 
+                    db.encargado.AddOrUpdate(encargado);
                     db.SaveChanges();
 
-                    Encargado encargadoAux = db.encargado.Include("listaTags").Single(a => a.id == encargado.id);
-                    ControlTag.devolverInstancia().actualizarListaDeTags(db, listaTags, encargadoAux.listaTags);
-                    db.SaveChanges();
+                    //Encargado encargadoAux = db.encargado.Include("listaTags").Single(a => a.id == encargado.id);
+                    //ControlTag.devolverInstancia().actualizarListaDeTags(db, listaTags, encargadoAux.listaTags);
+                    //db.SaveChanges();
                 }
             }
             catch (UsuarioException ex)
