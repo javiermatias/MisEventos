@@ -30,6 +30,7 @@ export class SociosComponent implements OnInit {
       this.itemsServ.socios(this.filter).subscribe(items => {
         this.items = items;
         this.items.sort((a, b) => a.nombre.localeCompare(b.nombre));
+        this.items.map(a => a.nombre.toUpperCase());
       })
     }
 
@@ -49,15 +50,22 @@ export class SociosComponent implements OnInit {
     this.items.forEach(socio => {
       var data = [socio.nombre,socio.apellido,socio.nroDocumento,socio.telefono,socio.celular,socio.email,socio.sexo,socio.estadoCivil,socio.fechaNacimiento,socio.fechaCreacion,socio.estado];
 this.dataExportar.push(data );
-    });/* 
-    public barrio?: string,
-    public sexo?: string,
-    public Tags?: Array<Tag>,
-    public edadDesde?: String,
-    public edadHasta?: String,
-    public fechaDesde?: String,
-    public fechaHasta?: String */
-    let filtros= ['Filtros', 'Sexo: '+ this.filter.sexo,'Edad Desde: '+ this.filter.edadDesde,'Edad Hasta: ' + this.filter.edadHasta ]
+    });
+    
+    let filtros= ['Filtros'];/* , 'Sexo: '+ this.filter.sexo,'Edad Desde: '+ this.filter.edadDesde,'Edad Hasta: ' + this.filter.edadHasta ] */
+   if(this.filter.sexo != '' &&  this.filter.sexo != null) filtros.push('Sexo: '+ this.filter.sexo);
+   if(this.filter.edadDesde != '' && this.filter.edadDesde != null) filtros.push('Edad Desde: '+ this.filter.edadDesde);
+   if(this.filter.edadHasta != '' && this.filter.edadHasta != null) filtros.push('Edad Hasta: '+ this.filter.edadHasta);
+   if(this.filter.fechaDesde != '' && this.filter.fechaDesde != null) filtros.push('fechaDesde: '+ this.filter.fechaDesde);
+   if(this.filter.fechaHasta != '' && this.filter.fechaHasta != null) filtros.push('fechaHasta: '+ this.filter.fechaHasta);
+   if(this.filter.estadoCivil != '' && this.filter.estadoCivil != null) filtros.push('Estado Civil: '+ this.filter.estadoCivil);
+  if(this.filter.Tags.length > 0){
+    let tags = 'Tags: '
+    this.filter.Tags.forEach(tag => {
+      tags += tag + ',';
+});
+     filtros.push(tags);
+  }
     this.excelService.reporteExcel(tituloWorkBook,titlulo,nombreArchivo,cabeceras,this.dataExportar,filtros);
     
     }
