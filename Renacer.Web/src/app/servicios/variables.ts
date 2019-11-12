@@ -7,7 +7,7 @@ export class Variables {
     } else {
       this.urlBase = 'http://qwaugusto-001-site5.htempurl.com/api/'; }
 
-      this.urlBase = 'http://qwaugusto-001-site5.htempurl.com/api/';
+      // this.urlBase = 'http://qwaugusto-001-site5.htempurl.com/api/';
 
     if (window['__entorno'] != null) { this.urlBase = window['__entorno']}
       window['__entorno'] = this.urlBase;
