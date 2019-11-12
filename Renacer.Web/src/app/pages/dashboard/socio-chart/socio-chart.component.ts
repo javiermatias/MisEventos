@@ -1,59 +1,59 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { AppConfig } from '../../../app.config';
-import {ReporteServices} from '../../../servicios/reporte.service';
-import {CsvServices, RequestCsv} from '../../../servicios/csv.service';
+import { ReporteServices } from '../../../servicios/reporte.service';
+import { CsvServices, RequestCsv } from '../../../servicios/csv.service';
 
 @Component({
-  selector: 'az-socio-chart',
-  encapsulation: ViewEncapsulation.None,
-  templateUrl: './socio-chart.component.html'
+    selector: 'az-socio-chart',
+    encapsulation: ViewEncapsulation.None,
+    templateUrl: './socio-chart.component.html'
 })
 export class SocioChartComponent
-            implements OnInit {
+    implements OnInit {
 
-    public config:any;
-    public configFn:any;
+    public config: any;
+    public configFn: any;
 
-    public lineChartType:string = 'line';
-    public lineChartLabels:Array<string>;
-    public lineChartColors:any[];
-    public lineChartOptions:any;
+    public lineChartType: string = 'line';
+    public lineChartLabels: Array<string>;
+    public lineChartColors: any[];
+    public lineChartOptions: any;
 
-    public pieChartType:string = 'pie';
-    public edadInferior:number = 21;
-    public edadMedia:number = 35;
-    public edadSuperior:number = 65;
-    public pieChartData:Array<number>;
-    public pieChartColors:any[];
-    public pieChartOptions:any;
+    public pieChartType: string = 'pie';
+    public edadInferior: number = 21;
+    public edadMedia: number = 35;
+    public edadSuperior: number = 65;
+    public pieChartData: Array<number>;
+    public pieChartColors: any[];
+    public pieChartOptions: any;
 
     crecimientoSocios: any[];
     sociosPorEdad: any[];
 
     lineChartData = [
-        {data: [], label: 'Socios Activos' },
-        {data: [], label: 'Altas' },
-        {data: [], label: 'Bajas' },
+        { data: [], label: 'Socios Activos' },
+        { data: [], label: 'Altas' },
+        { data: [], label: 'Bajas' },
     ];
     pieChartLabels = ['Sin Datos',
-    'Hasta ' + this.edadInferior + ' años',
-    'Entre ' + this.edadInferior + ' y ' + this.edadMedia,
-    'Entre ' + this.edadMedia + ' y ' + this.edadSuperior,
-    'Mas de ' + this.edadSuperior];
+        'Hasta ' + this.edadInferior + ' años',
+        'Entre ' + this.edadInferior + ' y ' + this.edadMedia,
+        'Entre ' + this.edadMedia + ' y ' + this.edadSuperior,
+        'Mas de ' + this.edadSuperior];
 
     tablaEdadConfig = {
         columnas: [
-            {name: 'nombre', title: 'Rango', type: 'text'}
-          , {name: 'cantidad', title: 'Cantidad', type: 'text'}
+            { name: 'nombre', title: 'Rango', type: 'text' }
+            , { name: 'cantidad', title: 'Cantidad', type: 'text' }
         ]
-      }
-      tablaCrecimientoSociosConfig = {
+    }
+    tablaCrecimientoSociosConfig = {
         columnas: [
-            {name: 'fecha', title: 'Mes', type: 'text'}
-          , {name: 'altas', title: 'Altas', type: 'text'}
-          , {name: 'bajas', title: 'Bajas', type: 'text'}
+            { name: 'fecha', title: 'Mes', type: 'text' }
+            , { name: 'altas', title: 'Altas', type: 'text' }
+            , { name: 'bajas', title: 'Bajas', type: 'text' }
         ]
-      }
+    }
 
     constructor(private _appConfig: AppConfig,
         private csvServ: CsvServices,
@@ -76,38 +76,38 @@ export class SocioChartComponent
 
             let cantSocios = 0;
             for (let i = 0; i < result.length; i++) {
-                   this.lineChartLabels.push(result[i].fecha)
+                this.lineChartLabels.push(result[i].fecha)
 
-                   cantSocios = cantSocios + result[i].altas - result[i].bajas;
-                   this.lineChartData[0].data.push(cantSocios);
-                   this.lineChartData[1].data.push(result[i].altas);
-                   this.lineChartData[2].data.push(result[i].bajas);
-               }
+                cantSocios = cantSocios + result[i].altas - result[i].bajas;
+                this.lineChartData[0].data.push(cantSocios);
+                this.lineChartData[1].data.push(result[i].altas);
+                this.lineChartData[2].data.push(result[i].bajas);
+            }
         })
 
         this._reporteServ.getSociosPorEdad({}).subscribe(result => {
 
             this.sociosPorEdad = result;
             result.forEach(item => {
-                 if (item.edad<self.edadInferior) 
-                 self.pieChartData[1] = self.pieChartData[1] + item.count;
-                
-                 if (item.edad>=self.edadInferior && item.edad<=self.edadMedia) 
-                 self.pieChartData[2] = self.pieChartData[2] + item.count;
-                
-                 if (item.edad>=self.edadMedia && item.edad<=self.edadSuperior) 
-                 self.pieChartData[2] = self.pieChartData[3] + item.count;
+                if (item.edad == null) {
+                    self.pieChartData[0] = self.pieChartData[0] + item.count; }
 
-                 if (item.edad>self.edadSuperior) 
-                 self.pieChartData[3] = self.pieChartData[4] + item.count; 
-                 
-                 if (item.edad == null)
-                 self.pieChartData[0] = self.pieChartData[0] + item.count; 
+                if (item.edad < self.edadInferior) {
+                    self.pieChartData[1] = self.pieChartData[1] + item.count; }
+
+                if (item.edad >= self.edadInferior && item.edad <= self.edadMedia) {
+                    self.pieChartData[2] = self.pieChartData[2] + item.count; }
+
+                if (item.edad >= self.edadMedia && item.edad <= self.edadSuperior) {
+                    self.pieChartData[3] = self.pieChartData[3] + item.count; }
+
+                if (item.edad > self.edadSuperior) {
+                    self.pieChartData[4] = self.pieChartData[4] + item.count; }
             });
 
             this.sociosPorEdad = [];
             this.pieChartLabels.forEach((x, indice) => {
-                this.sociosPorEdad.push({'nombre': x, 'cantidad': this.pieChartData[indice] })
+                this.sociosPorEdad.push({ 'nombre': x, 'cantidad': this.pieChartData[indice] })
             })
 
             this.pieChartColors = this.config.pieChartColors;
@@ -121,11 +121,11 @@ export class SocioChartComponent
     }
 
     public chartClicked(e: any): void {
-       // console.log(e);
+        // console.log(e);
     }
 
-    public chartHovered(e:any):void {
-       // console.log(e);
+    public chartHovered(e: any): void {
+        // console.log(e);
     }
 
 }
