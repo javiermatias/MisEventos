@@ -52,7 +52,7 @@ export class SociosComponent implements OnInit {
 this.dataExportar.push(data );
     });
     
-    let filtros= ['Filtros'];/* , 'Sexo: '+ this.filter.sexo,'Edad Desde: '+ this.filter.edadDesde,'Edad Hasta: ' + this.filter.edadHasta ] */
+    let filtros= [];/* , 'Sexo: '+ this.filter.sexo,'Edad Desde: '+ this.filter.edadDesde,'Edad Hasta: ' + this.filter.edadHasta ] */
    if(this.filter.sexo != '' &&  this.filter.sexo != null) filtros.push('Sexo: '+ this.filter.sexo);
    if(this.filter.edadDesde != '' && this.filter.edadDesde != null) filtros.push('Edad Desde: '+ this.filter.edadDesde);
    if(this.filter.edadHasta != '' && this.filter.edadHasta != null) filtros.push('Edad Hasta: '+ this.filter.edadHasta);
