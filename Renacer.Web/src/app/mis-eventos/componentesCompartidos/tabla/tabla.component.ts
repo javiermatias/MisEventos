@@ -63,7 +63,7 @@ export class TablaComponent implements OnInit {
       datos.push(this.config.columnas.map(x => item[x.name]))
     });
 
-    this.excelService.reporteExcel(tituloWorkBook, titlulo, nombreArchivo, cabeceras, this.data, ['']).then(result => {
+    this.excelService.reporteExcel(tituloWorkBook, titlulo, nombreArchivo, cabeceras, datos, ['']).then(result => {
       this.downloading = false;
     });
 

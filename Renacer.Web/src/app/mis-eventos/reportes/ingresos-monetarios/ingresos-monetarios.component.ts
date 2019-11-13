@@ -62,8 +62,9 @@ export class IngresosMonetariosComponent implements OnInit {
         ]
       }
 
-    fechaRangoInicial = new Date();
-    fechaRangofin = null;
+    fechaRangoInicial = new Date(new Date().getFullYear() - 1, 0, 1);
+    fechaRangoFin = new Date();
+
     constructor(private _appConfig: AppConfig,
         private _reporteServ: ReporteServices,
         private changeDet: ChangeDetectorRef ) {
@@ -76,7 +77,6 @@ export class IngresosMonetariosComponent implements OnInit {
         this.pieChartColors = this.config.pieChartColors;
         this.ingresosPorTipoEventoOpt = this.config.pieChartOptions;
 
-        this.fechaRangofin.setFullYear(this.fechaRangoInicial.getFullYear() - 1)
     }
 
     ngOnInit() {
@@ -89,7 +89,7 @@ export class IngresosMonetariosComponent implements OnInit {
             {data: [], label: 'Cuotas' }
         ];
 
-       this.cargarIngresosEnElTiempo(this.fechaRangoInicial , this.fechaRangofin);
+       this.cargarIngresosEnElTiempo(this.fechaRangoInicial , this.fechaRangoFin);
 
 
         this.IngresosTipoEventoData = [];
@@ -100,7 +100,9 @@ export class IngresosMonetariosComponent implements OnInit {
             });
 
         this._reporteServ.getIngresosPorTipoEvento().subscribe(result => {
-            this.IngresosTipoEventoResponse = result;
+            this.IngresosTipoEventoResponse = result.map(x => {
+                return {'nombre': x.nombre, 'cantidad': x.monto};
+            });
             this.ingresosPorTipoEventoOpt = this.config.pieChartOptions
 
             this.IngresosTipoEventoData = [];
@@ -129,11 +131,13 @@ export class IngresosMonetariosComponent implements OnInit {
             this.ingresosPorTipoEventoOpt = this.config.pieChartOptions
             this.IngresosTipoData = [];
             this.IngresosTipoLabels = [];
-            this.IngresosPorTipoResponse = result;
+            this.IngresosPorTipoResponse = result.map(x => {
+                return {'nombre': x.nombre, 'cantidad': x.monto};
+            });
 
-            result.forEach(item => {
-                if (item.monto == null) { item.monto = 0; }
-                this.IngresosTipoData.push(item.monto);
+            this.IngresosPorTipoResponse.forEach(item => {
+                if (item.cantidad == null) { item.cantidad = 0; }
+                this.IngresosTipoData.push(item.cantidad);
                 this.IngresosTipoLabels.push(item.nombre);
                 });
 

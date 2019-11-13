@@ -50,8 +50,8 @@ export class FiltroRangoDeFechasComponent implements OnInit {
 
   ngOnInit() {
 
-    const begin: Date = this.firstDate ? this.firstDate :  new Date();
-    const end: Date = this.lastDate ? this.lastDate :  new Date();
+    const end: Date = this.firstDate ? this.firstDate :  new Date();
+    const begin: Date = this.lastDate ? this.lastDate :  new Date(new Date().getFullYear() - 1, 0, 1);
 
     this.model = {
           isRange: true,
