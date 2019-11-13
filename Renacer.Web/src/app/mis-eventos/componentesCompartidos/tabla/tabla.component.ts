@@ -63,9 +63,10 @@ export class TablaComponent implements OnInit {
       datos.push(this.config.columnas.map(x => item[x.name]))
     });
 
-    this.excelService.reporteExcel(tituloWorkBook, titlulo, nombreArchivo, cabeceras, datos, ['']).then(result => {
+    this.excelService.reporteExcel(tituloWorkBook, titlulo, nombreArchivo, cabeceras, datos, null);
+ /*    .then(result => {
       this.downloading = false;
-    });
+    }); */
 
     // const req = new RequestCsv(this.config.columnas.map(x => x.name), this.data, this.name);
     // this.csvServ.request.next(req);

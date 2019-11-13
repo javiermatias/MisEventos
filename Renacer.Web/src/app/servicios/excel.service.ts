@@ -146,6 +146,7 @@ for (let index = 0; index < header.length; index++) {
         //Excel Title, Header, Data
     const titulo = _titulo;
     const header=[];
+    let rowTabla='A6';
     _header.forEach(head => {
       header.push({name: head})
     });
@@ -174,28 +175,30 @@ for (let index = 0; index < header.length; index++) {
     var cellFecha = worksheet.getCell('E1'); 
     cellFecha.value= 'Fecha : ' + this.datePipe.transform(new Date(), 'medium')
     //Merge Cells
-    worksheet.mergeCells(`A5:F5`);
 
-    //worksheet.addRow(_filtros);
-    var cellFiltros = worksheet.getCell('A5'); 
-    cellFiltros.font= { name: 'Comic Sans MS', family: 4, size: 12}
-    cellFiltros.fill = {
-      type: 'pattern',
-      pattern: 'solid',
-      fgColor: { argb: 'FFCCFFE5' }
-    };
-    cellFiltros.value = 'Filtros: ' + _filtros.toString();
+    if( _filtros != null){
+      worksheet.mergeCells(`A5:F5`);
 
-    
-   
-    
-    //Blank Row 
-    worksheet.addRow([]);
-    worksheet.addRow([]);
+      //worksheet.addRow(_filtros);
+      var cellFiltros = worksheet.getCell('A5'); 
+      cellFiltros.font= { name: 'Comic Sans MS', family: 4, size: 12}
+      cellFiltros.fill = {
+        type: 'pattern',
+        pattern: 'solid',
+        fgColor: { argb: 'FFCCFFE5' }
+      };
+      cellFiltros.value = 'Filtros: ' + _filtros.toString();
+      rowTabla='A8'
+
+      
+    }
+ 
+
+
 
     worksheet.addTable({
       name: '_tituloWorkBook',
-      ref: 'A8',
+      ref: rowTabla,
       headerRow: true,  
       style: {
         //theme: 'TableStyleLight3',
