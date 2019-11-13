@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
 import { AppConfig } from '../../../app.config';
 import {ReporteServices} from '../../../servicios/reporte.service';
 import {formatDate} from '@angular/common';
@@ -63,9 +63,10 @@ export class IngresosMonetariosComponent implements OnInit {
       }
 
     fechaRangoInicial = new Date();
-    fechaRangofin = new Date();
-
-    constructor(private _appConfig: AppConfig, private _reporteServ: ReporteServices) {
+    fechaRangofin = null;
+    constructor(private _appConfig: AppConfig,
+        private _reporteServ: ReporteServices,
+        private changeDet: ChangeDetectorRef ) {
         this.config = this._appConfig.config;
         this.configFn = this._appConfig;
 
@@ -75,10 +76,12 @@ export class IngresosMonetariosComponent implements OnInit {
         this.pieChartColors = this.config.pieChartColors;
         this.ingresosPorTipoEventoOpt = this.config.pieChartOptions;
 
+        this.fechaRangofin.setFullYear(this.fechaRangoInicial.getFullYear() - 1)
     }
 
     ngOnInit() {
-
+        registerLocaleData(localeEs, 'es');
+        
         this.lineChartLabels = [];
         this.lineChartData = [
             {data: [], label: 'Total' },
@@ -108,6 +111,8 @@ export class IngresosMonetariosComponent implements OnInit {
                 this.IngresosTipoEventoData.push(item.cantidad);
                 this.IngresosTipoEventoLabels.push(item.nombre);
                 });
+
+                this.changeDet.detectChanges();
         });
 
 
@@ -131,11 +136,12 @@ export class IngresosMonetariosComponent implements OnInit {
                 this.IngresosTipoData.push(item.monto);
                 this.IngresosTipoLabels.push(item.nombre);
                 });
+
+                this.changeDet.detectChanges();
         });
 
     }
     cargarIngresosEnElTiempo(fechaInicio: Date, fechaFin: Date) {
-        registerLocaleData(localeEs, 'es');
         this._reporteServ.getIngresosEnElTiempo(
             { 'fechaInicio': formatDate(fechaInicio, 'yyyy-MM-dd', 'es'),
               'fechaFin': formatDate(fechaFin, 'yyyy-MM-dd', 'es')
@@ -149,6 +155,8 @@ export class IngresosMonetariosComponent implements OnInit {
                     this.lineChartData[1].data.push(result[i].matriculas);
                     this.lineChartData[2].data.push(result[i].eventos);
                 }
+
+                this.changeDet.detectChanges();
         });
     }
 

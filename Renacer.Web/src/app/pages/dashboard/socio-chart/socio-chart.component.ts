@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, NgZone } from '@angular/core';
 import { AppConfig } from '../../../app.config';
 import { ReporteServices } from '../../../servicios/reporte.service';
 import { CsvServices, RequestCsv } from '../../../servicios/csv.service';
@@ -57,62 +57,16 @@ export class SocioChartComponent
 
     constructor(private _appConfig: AppConfig,
         private csvServ: CsvServices,
-        private _reporteServ: ReporteServices) {
+        private _reporteServ: ReporteServices,
+        private ngZone: NgZone) {
         this.config = this._appConfig.config;
         this.configFn = this._appConfig;
     }
 
     ngOnInit() {
+       this.getCrecimientoSocios();
+       this.getSociosPorEdad();
 
-        const self = this;
-        this.lineChartLabels = [];
-        this.pieChartData = [0, 0, 0, 0, 0];
-
-        this._reporteServ.getCrecimientoSocios({}).subscribe(result => {
-
-            this.crecimientoSocios = result;
-            this.lineChartColors = this.config.lineChartColors;
-            this.lineChartOptions = this.config.lineChartOptions;
-
-            let cantSocios = 0;
-            for (let i = 0; i < result.length; i++) {
-                this.lineChartLabels.push(result[i].fecha)
-
-                cantSocios = cantSocios + result[i].altas - result[i].bajas;
-                this.lineChartData[0].data.push(cantSocios);
-                this.lineChartData[1].data.push(result[i].altas);
-                this.lineChartData[2].data.push(result[i].bajas);
-            }
-        })
-
-        this._reporteServ.getSociosPorEdad({}).subscribe(result => {
-
-            this.sociosPorEdad = result;
-            result.forEach(item => {
-                if (item.edad == null) {
-                    self.pieChartData[0] = self.pieChartData[0] + item.count; }
-
-                if (item.edad < self.edadInferior) {
-                    self.pieChartData[1] = self.pieChartData[1] + item.count; }
-
-                if (item.edad >= self.edadInferior && item.edad <= self.edadMedia) {
-                    self.pieChartData[2] = self.pieChartData[2] + item.count; }
-
-                if (item.edad >= self.edadMedia && item.edad <= self.edadSuperior) {
-                    self.pieChartData[3] = self.pieChartData[3] + item.count; }
-
-                if (item.edad > self.edadSuperior) {
-                    self.pieChartData[4] = self.pieChartData[4] + item.count; }
-            });
-
-            this.sociosPorEdad = [];
-            this.pieChartLabels.forEach((x, indice) => {
-                this.sociosPorEdad.push({ 'nombre': x, 'cantidad': this.pieChartData[indice] })
-            })
-
-            this.pieChartColors = this.config.pieChartColors;
-            this.pieChartOptions = this.config.pieChartOptions;
-        })
     }
 
     public randomizeType(): void {
@@ -126,6 +80,69 @@ export class SocioChartComponent
 
     public chartHovered(e: any): void {
         // console.log(e);
+    }
+
+    public getCrecimientoSocios() {
+        this._reporteServ.getCrecimientoSocios({}).subscribe(result => {
+            this.ngZone.run(() => {
+                this.crecimientoSocios = result;
+                this.lineChartColors = this.config.lineChartColors;
+                this.lineChartOptions = this.config.lineChartOptions;
+
+                let cantSocios = 0;
+                for (let i = 0; i < result.length; i++) {
+                    this.lineChartLabels.push(result[i].fecha)
+
+                    cantSocios = cantSocios + result[i].altas - result[i].bajas;
+                    this.lineChartData[0].data.push(cantSocios);
+                    this.lineChartData[1].data.push(result[i].altas);
+                    this.lineChartData[2].data.push(result[i].bajas);
+                }
+            });
+
+            setTimeout(() => { this.randomizeType(); }, 0);
+        })
+    }
+
+    public getSociosPorEdad() {
+        this.lineChartLabels = [];
+        this.pieChartData = [0, 0, 0, 0, 0];
+        this.sociosPorEdad = [];
+        this._reporteServ.getSociosPorEdad({}).subscribe(result => {
+
+            this.ngZone.run(() => {
+                this.sociosPorEdad = result;
+                result.forEach(item => {
+                    if (item.edad == null) {
+                        this.pieChartData[0] = this.pieChartData[0] + item.count;
+                    }
+
+                    if (item.edad < this.edadInferior) {
+                        this.pieChartData[1] = this.pieChartData[1] + item.count;
+                    }
+
+                    if (item.edad >= this.edadInferior && item.edad <= this.edadMedia) {
+                        this.pieChartData[2] = this.pieChartData[2] + item.count;
+                    }
+
+                    if (item.edad >= this.edadMedia && item.edad <= this.edadSuperior) {
+                        this.pieChartData[3] = this.pieChartData[3] + item.count;
+                    }
+
+                    if (item.edad > this.edadSuperior) {
+                        this.pieChartData[4] = this.pieChartData[4] + item.count;
+                    }
+                });
+
+                this.sociosPorEdad = [];
+                this.pieChartLabels.forEach((x, indice) => {
+                    this.sociosPorEdad.push({ 'nombre': x, 'cantidad': this.pieChartData[indice] })
+                })
+
+                this.pieChartColors = this.config.pieChartColors;
+                this.pieChartOptions = this.config.pieChartOptions;
+            });
+        })
     }
 
 }
