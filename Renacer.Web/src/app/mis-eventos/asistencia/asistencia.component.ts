@@ -32,6 +32,8 @@ export class AsistenciaComponent implements OnInit {
   public detalleEvento:DetalleEvento[];
   public detalleSelecionado:DetalleEvento;
   public showRecordatorio:Boolean=false;
+  
+  public mostrarEvento:Boolean=true;
 
   constructor(private _eventoServ:EventoServices
     ,private asistenciaServ:AsistenciaServices    
@@ -51,7 +53,7 @@ export class AsistenciaComponent implements OnInit {
       {'idEncargado':this.usuario.idEncargado}).subscribe
       (items => {
         this.eventos = items;
-      //console.log(items);
+         console.log(items);
     });
 
   }
@@ -68,9 +70,15 @@ export class AsistenciaComponent implements OnInit {
 
 
   }
-  cambioEvento(){
-    this.getAsistenciaDetalleEvento(this.eventoSeleccionado.id);
+  cambioEvento(evento:Evento){
+    this.mostrarEvento=false;
+    this.getAsistenciaDetalleEvento(evento.id);
   
+  }
+
+  volver(){
+    this.mostrarGrilla=false;
+    this.mostrarEvento=true;
   }
 
   ngOnChanges(){
@@ -88,7 +96,7 @@ export class AsistenciaComponent implements OnInit {
     if (cancelar) {
       this.detalleSelecionado.asistencia=true;
       this._detalleEvento.update(this.detalleSelecionado).subscribe(resp => {
-        this.cambioEvento();
+        //this.cambioEvento();
       });
        //Aca deberia guardar la asistencia del detalle evento.
     }

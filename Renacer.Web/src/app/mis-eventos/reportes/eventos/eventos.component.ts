@@ -137,7 +137,7 @@ console.log(this.eventos);
       evento.cantidadCuota,evento.fechaDesdeInscripcion,evento.fechaHastaInscripcion];
 this.dataExportar.push(data );
   });
-  let filtros= ['Filtros'];
+  let filtros= [];
   if(this.encargado != null) filtros.push('Encargado: '+ this.encargado.nombre + ' ' + this.encargado.apellido );
   if(this.fechaDesde != null) filtros.push('Fecha Desde: '+ this.fechaDesde);
   if(this.fechaHasta != null) filtros.push('Fecha Hasta: '+ this.fechaHasta );

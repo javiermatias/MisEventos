@@ -38,7 +38,7 @@
                               </thead>
                               <tbody>
                                   <tr *ngFor="let item of mf.data | SearchPipe : searchText">
-                                      <td>{{item.nombre}}</td>
+                                      <td>{{item.nombre | uppercase}}</td>
                                       <td>{{item.fechaDesde | date:"dd/MM/yyyy"}}</td>
                                       <td>{{item.fechaHasta | date:"dd/MM/yyyy"}}</td>                                             
                                       <td>
@@ -112,7 +112,7 @@
                           <div class="card-block">
                             <ul>
                               <li *ngFor="let socio of deuda.listaSocios" style="font-size:20px">
-                                {{socio.nombre}} {{socio.apellido}}
+                                {{socio.nombre | uppercase}} {{socio.apellido | uppercase}}
                               </li>
                             </ul>
                 
