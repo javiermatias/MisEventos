@@ -44,7 +44,7 @@ import { CsvWrapperComponent } from './mis-eventos/componentesCompartidos/csv-wr
 import { ImprimirService } from './servicios/imprimir.service';
 import { NgHttpLoaderModule } from 'ng-http-loader';
 import { ExcelService } from './servicios/excel.service';
-
+import { AngularMyDatePickerModule } from 'angular-mydatepicker';
 
 
 
@@ -68,7 +68,8 @@ registerLocaleData(localeEs, 'es-AR');
     CommonModule,
     ToastrModule.forRoot(),
     Angular2CsvModule,
-    NgHttpLoaderModule.forRoot()
+    NgHttpLoaderModule.forRoot(),
+    AngularMyDatePickerModule
   ],
   providers: [
     AppConfig,
@@ -103,7 +104,7 @@ registerLocaleData(localeEs, 'es-AR');
     AsistenciaSocioServices,
     DeudaCuotaServices,
     CsvServices,
-    ImprimirService,  
+    ImprimirService,
       ExcelService,
     { provide: LOCALE_ID, useValue: 'es-AR' },
     DatePipe],

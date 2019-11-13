@@ -102,7 +102,7 @@ export class DashboardComponent
         });
 
 
-         this._reporteServ.getEntidadCount({'Entidad':'asistencias'}).subscribe(function(count){
+         this._reporteServ.getEntidadCount({'Entidad': 'asistencias'}).subscribe(function(count){
               self.cantAsistencias = count.count;
           });
 
