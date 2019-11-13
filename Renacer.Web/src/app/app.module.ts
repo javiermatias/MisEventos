@@ -45,6 +45,8 @@ import { ImprimirService } from './servicios/imprimir.service';
 import { NgHttpLoaderModule } from 'ng-http-loader';
 import { ExcelService } from './servicios/excel.service';
 import { AngularMyDatePickerModule } from 'angular-mydatepicker';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 
@@ -69,7 +71,8 @@ registerLocaleData(localeEs, 'es-AR');
     ToastrModule.forRoot(),
     Angular2CsvModule,
     NgHttpLoaderModule.forRoot(),
-    AngularMyDatePickerModule
+    AngularMyDatePickerModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     AppConfig,
