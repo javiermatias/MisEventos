@@ -116,6 +116,7 @@ namespace Renacer.WebAPI.Controllers
             return ControlReporte.GetInstance().GetAsistenciasPorTipoEvento();
         }
 
+
         [ActionName("inasistenciasportipoevento")]
         [Route("inasistenciasportipoevento")]
         [AcceptVerbs("POST")]

@@ -1,4 +1,4 @@
-import 'pace';
+// import 'pace';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
