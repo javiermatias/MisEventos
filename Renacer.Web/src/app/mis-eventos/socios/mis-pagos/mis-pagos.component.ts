@@ -105,7 +105,9 @@ export class MisPagosComponent implements OnInit {
 
 
   }
-
+  onSubmit(){
+    console.log("se submiteo");
+  }
   volver() {
     this.mostrarEventos = true;
     this.mostrarCuotas = false;
