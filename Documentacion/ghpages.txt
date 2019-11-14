@@ -1,0 +1,5 @@
+1) ng build --output-path docs --base-href MisEventos
+2)Copy RenacerWeb/dist to dist
+3 docs/index.html and name it docs/404.html.
+4)git push master
+5)https://javiermatias.github.io/MisEventos/
