@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 
 export class NavbarComponent {
     public isMenuCollapsed:boolean = false;
-    public usuario = {}
+    public usuario: any = {}
     public rol = {}
     constructor(private router:Router,private _state:AppState, private _sidebarService:SidebarService,private _usersService:UserServices,
         private _rolService: RolServices) {

@@ -16,6 +16,7 @@ export class MisPagosComponent implements OnInit {
   usuario: Usuario;
   pagoMatricula: boolean;
   matriculaXsocio: MatriculaXsocio;
+  searchText = '';
 
   eventos: Evento[];
 
@@ -105,7 +106,9 @@ export class MisPagosComponent implements OnInit {
 
 
   }
-
+  onSubmit(){
+    console.log("se submiteo");
+  }
   volver() {
     this.mostrarEventos = true;
     this.mostrarCuotas = false;

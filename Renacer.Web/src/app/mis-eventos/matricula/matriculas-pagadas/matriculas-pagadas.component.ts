@@ -23,7 +23,7 @@ export class MatriculasPagadasComponent implements OnInit {
   _matriculaXsocio: MatriculaXsocio;
   socios: Socio[];
   matricula: Matricula;
-
+  searchText = '';
   largo: string;
 
   filtro: string;

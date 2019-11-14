@@ -1,22 +1,39 @@
 <div class="row" *ngIf="user.rol == 'ADMIN'">
 
+    <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6 bottom-30">
+        <div class="card small-info-box" style="background-color:#ff7514">
+          <div class="media">
+            <span class="media-left">
+                <i class="fa fa-clock-o"></i>
+            </span>
+            <div class="media-body text-right">
+              <h6 class="media-heading no-margin">PROXIMOS EVENTOS</h6>
+              <span *ngIf="cantCursosEnProgreso == -1"  class="fa fa-spin fa-spinner"></span>
+              <span *ngIf="cantCursosEnProgreso != -1" >{{cantCursosNuevos}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
   <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6 bottom-30">
-    <div class="card small-info-box">
+    <div class="card small-info-box" style="background-color:#ff7514">
       <div class="media">
         <span class="media-left">
             <i class="fa fa-tasks"></i>
         </span>
         <div class="media-body text-right">
-          <h6 class="media-heading no-margin">CURSOS EN PROGRESO</h6>
+          <h6 class="media-heading no-margin">EVENTOS EN PROGRESO</h6>
           <span *ngIf="cantCursosEnProgreso == -1"  class="fa fa-spin fa-spinner"></span>
-          <span *ngIf="cantCursosEnProgreso != -1">{{cantCursosEnProgreso}}</span>
+          <span *ngIf="cantCursosEnProgreso != -1" >{{cantCursosEnProgreso}}</span>
         </div>
       </div>
     </div>
   </div>
 
   <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6 bottom-30">
-    <div class="card small-info-box">
+    <div class="card small-info-box" style="background-color:#ff7514">
       <div class="media">
         <span class="media-left">
             <i class="fa fa-calendar-check-o"></i>
@@ -24,11 +41,30 @@
         <div class="media-body text-right">
           <h6 class="media-heading no-margin">EVENTOS FINALIZADOS</h6>
           <span *ngIf="cantEventosFinalizados == -1"  class="fa fa-spin fa-spinner"></span>
-          <span *ngIf="cantEventosFinalizados != -1">{{cantEventosFinalizados}}</span>
+          <span *ngIf="cantEventosFinalizados != -1" >{{cantEventosFinalizados}}</span>
         </div>
       </div>
     </div>
   </div>
+
+
+
+
+
+  <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6 bottom-30">
+      <div class="card small-info-box">
+        <div class="media">
+          <span class="media-left">
+              <i class="fa fa-users"></i>
+          </span>
+          <div class="media-body text-right">
+            <h6 class="media-heading no-margin">SOCIOS</h6>
+            <span class="counter-card" *ngIf="cantSocios == -1"  class="fa fa-spin fa-spinner"></span>
+            <span class="counter-card" *ngIf="cantSocios != -1" >{{cantSociosSistema}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
   <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6 bottom-30">
     <div class="card small-info-box">
@@ -39,7 +75,7 @@
         <div class="media-body text-right">
           <h6 class="media-heading no-margin">SOCIOS ACTIVOS</h6>
           <span *ngIf="cantSocios == -1"  class="fa fa-spin fa-spinner"></span>
-          <span *ngIf="cantSocios != -1">{{cantSocios}}</span>
+          <span *ngIf="cantSocios != -1" >{{cantSocios}}</span>
         </div>
       </div>
     </div>
@@ -54,36 +90,36 @@
         <div class="media-body text-right">
           <h6 class="media-heading no-margin">ASISTENCIAS TOTALES</h6>
           <span *ngIf="cantAsistencias == -1"  class="fa fa-spin fa-spinner"></span>
-          <!-- <span *ngIf="cantAsistencias != -1">{{cantAsistencias}}</span> -->
+          <span *ngIf="cantAsistencias != -1" >{{cantAsistencias}}</span>
         </div>
       </div>
     </div>
   </div>
 
   <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6 bottom-30">
-    <div class="card small-info-box">
+    <div class="card small-info-box" style="background:#89ac75">
       <div class="media">
         <span class="media-left">
             <i class="fa fa-users"></i>
         </span>
         <div class="media-body text-right">
-          <h6 class="media-heading no-margin">PROFESORES</h6>
+          <h6 class="media-heading no-margin">ENCARGADOS</h6>
           <span *ngIf="cantEncargados == -1"  class="fa fa-spin fa-spinner"></span>
-          <span *ngIf="cantEncargados != -1">{{cantEncargados}}</span>
+          <span *ngIf="cantEncargados != -1" >{{cantEncargados}}</span>
         </div>
       </div>
     </div>
   </div>
 
   <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6 bottom-30">
-    <div class="card small-info-box">
+    <div class="card small-info-box" style="background: #c7c233">
       <div class="media">
         <span class="media-left">
             <i class="fa fa-map-marker"></i>
         </span>
         <div class="media-body text-right">
           <h6 class="media-heading no-margin">ESPACIOS COMUNES</h6>
-          <span *ngIf="cantEspacios != -1">{{cantEspacios}}</span>
+          <span *ngIf="cantEspacios != -1" >{{cantEspacios}}</span>
           <span *ngIf="cantEspacios == -1"  class="fa fa-spin fa-spinner"></span>
         </div>
       </div>

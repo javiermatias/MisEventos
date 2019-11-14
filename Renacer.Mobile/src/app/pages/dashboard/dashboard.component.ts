@@ -30,9 +30,11 @@ export class DashboardComponent
     public configFn: any;
     public bgColor: any;
     public date = new Date();
+    public cantCursosNuevos = -1;
     public cantCursosEnProgreso = -1;
     public cantEncargados = -1;
     public cantSocios = -1;
+    public cantSociosSistema= -1;
     public cantEventosFinalizados = -1;
     public cantAsistencias = -1;
     public cantEspacios = -1;
@@ -85,15 +87,25 @@ export class DashboardComponent
             self.cantCursosEnProgreso = count.count;
         });
 
+        this._reporteServ.getEntidadCount({ 'Entidad': 'eventos-nuevos' }).subscribe(function (count) {
+            self.cantCursosNuevos = count.count;
+        });
+
         this._reporteServ.getEntidadCount({ 'Entidad': 'eventos-finalizados' }).subscribe(function (count) {
             self.cantEventosFinalizados = count.count;
         });
         this._reporteServ.getEntidadCount({ 'Entidad': 'socios' }).subscribe(function (count) {
             self.cantSocios = count.count;
         });
-        /*   this._reporteServ.getEntidadCount({'Entidad':'asistencias'},function(count){
+        this._reporteServ.getEntidadCount({ 'Entidad': 'sociosSistema' }).subscribe(function (count) {
+            self.cantSociosSistema = count.count;
+        });
+
+
+         this._reporteServ.getEntidadCount({'Entidad': 'asistencias'}).subscribe(function(count){
               self.cantAsistencias = count.count;
-          }); */
+          });
+
         this._reporteServ.getEntidadCount({ 'Entidad': 'encargados' }).subscribe(function (count) {
             self.cantEncargados = count.count;
         });

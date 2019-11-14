@@ -20,6 +20,7 @@ export class NuevaAsistenciaComponent implements OnInit, AfterViewInit {
   socios:Array<number> =[];
   asistencia:Asistencia;
   fechaHoy = new Date();
+  searchText = '';
 
   sinAsistencia:boolean=false;
   

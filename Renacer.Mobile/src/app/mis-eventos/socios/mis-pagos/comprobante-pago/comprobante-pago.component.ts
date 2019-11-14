@@ -33,6 +33,7 @@ export class ComprobantePagoComponent implements OnInit {
     this._pagoService.get(idPago).subscribe(resp => {
        this.pago= resp;       
       this.pago.estaPagado=true;
+      this.pago.metodoPago="Tarjeta";
       console.log(this.pago);
       this.showDetail = true;
       this._pagoService.save(this.pago).subscribe(resp => {

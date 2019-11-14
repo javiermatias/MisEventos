@@ -26,7 +26,8 @@
                           name="Encargado" [(ngModel)]="encargado">
                           <option *ngFor="let encargado of encargados" [ngValue]="encargado">{{encargado.apellido}}
                             {{encargado.nombre}}
-                          </option>                                    
+                          </option>       
+                           <option [ngValue]="null"></option>                             
                       </select>
                         </div>
                         <div class="form-group">
@@ -34,7 +35,8 @@
                           <select class="form-control" id="Espacio" 
                           name="Espacio" [(ngModel)]="espacio">
                           <option *ngFor="let espacio of espacios" [ngValue]="espacio">{{espacio.nombre}} </option>                                    
-                      </select>
+                          <option [ngValue]="null"></option>  
+                        </select>
                         </div>
                         <div class="form-group">
                         <label class="custom-control custom-checkbox">
@@ -57,7 +59,7 @@
                       <label for="input-2">Fecha Hasta:</label>
                       <input type="date" class="form-control" id="fechaHasta" name="fechaHasta" 
                       [(ngModel)]="fechaHasta">
-                      <label for="input-2">Monto:</label>
+                      <label for="input-2">Monto:(Hasta)</label>
                       <input type="text" class="form-control" id="fechaHasta" name="fechaHasta" 
                       [(ngModel)]="monto">
                  
@@ -73,6 +75,7 @@
                           <option value="Progreso">Progreso</option>
                           <option value="Finalizado">Finalizado</option>
                           <option value="Cancelado">Cancelado</option>
+                          <option [ngValue]="null"></option> 
                       </select>
                     </div>
 
@@ -81,7 +84,8 @@
                       <select class="form-control" id="tipoEvento" 
                       name="tipoEvento" [(ngModel)]="tipoEvento">
                       <option *ngFor="let tipoEvento of tiposEventos" [ngValue]="tipoEvento">{{tipoEvento.nombre}} </option>                                    
-                  </select>
+                      <option [ngValue]="null"></option> 
+                    </select>
                     </div>
 
                     <button type="submit" class="btn btn-main" (click)="filtrar()">Filtrar</button>
@@ -96,8 +100,8 @@
 
 
 
-<div class="row">
-  <div class="col-xl-12 col-lg-12 col-12 bottom-30" [hidden]="showDetail">
+<div class="row" *ngIf="showDetail">
+  <div class="col-xl-12 col-lg-12 col-12 bottom-30" >
       <div class="row">
           <div class="col">
               <div widget class="card">
@@ -163,6 +167,10 @@
                                   </tr>
                               </tfoot>
                           </table>
+
+                          <button type="button" (click)="downloadExcel()" class="btn btn-light" style="padding: 3px;color: #333;">
+                            <span class="fa fa-download" ></span>Descargar
+                    </button>
                       </div>
                   </div>
               </div>

@@ -74,8 +74,8 @@ export class DetalleEvento {
     public fechaBaja?: Date,
     public estado?: string,
     public dia?:string,
-    public asistencia?:boolean
-   
+    public asistencia?:boolean,
+    public listaDetalleEvento?: any[]
   ) {
     //this.asistencia = new Asistencia(0,"Pendiente");
     this.espacio = new EspacioComun();
@@ -94,7 +94,8 @@ export class Inscripcion {
     public fechaCreacion?: Date,  
     public fechaBaja?: Date,
     public estado ?: string,
-    public estadoEncuesta?:Boolean
+    public estadoEncuesta?: Boolean,
+    public nombre?: string
   ) {
     //this.evento = new Evento(this.idEvento);
     //this.listaPagos = new Array<Pago>();
@@ -138,17 +139,18 @@ export class Pago {
     public monto?: number,
     public nroRecibo?: number,
     public idInscripcion?: number,
-    public inscripcion?: Inscripcion,   
+    public inscripcion?: Inscripcion,
     public estado?: string,
     public fechaCobro?: Date,
     public fechaBaja?: Date,
-    public estaPagado?:boolean,
-    public idCuota?:number,    
+    public estaPagado?: boolean,
+    public idCuota?: number,
     public cuota?: Cuota,
+    public valor?: number,
     public metodoPago?: string  // Efectivo, Tarjeta
   ) {
     this.inscripcion = new Inscripcion(0);
-   
+
   }
 }
 

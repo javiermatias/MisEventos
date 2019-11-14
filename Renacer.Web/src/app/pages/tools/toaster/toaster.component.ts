@@ -36,7 +36,7 @@ const types = ['success', 'error', 'info', 'warning'];
   styleUrls: ['./toaster.component.scss']
 })
 export class ToasterComponent implements OnInit {
-  options: ToastrConfig;
+  options: any;
   title = '';
   type = types[0];
   message = '';

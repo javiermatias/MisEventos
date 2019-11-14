@@ -68,13 +68,10 @@ export class EncargadosComponent implements OnInit {
       });
     } else {
       this._itemsService.update(item).subscribe(resp => {
-        const items = this.items;
-        for (let i = 0; i < items.length; i++) {
-          if (items[i].id === resp.id) {
-            items[i] = resp;
+        
             this.mensajeServ.success('Se han guardado los cambios!', 'Aviso!');
-          }
-        }
+          
+        
         this.showDetail = false;
       });
     }

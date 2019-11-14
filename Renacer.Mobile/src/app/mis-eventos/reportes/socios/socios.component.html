@@ -36,22 +36,21 @@
                                             <!-- <th><mfDefaultSorter by="id">Id</mfDefaultSorter></th> -->
                                             <th><mfDefaultSorter by="nombre">Nombre</mfDefaultSorter></th>
                                             <th><mfDefaultSorter by="apellido">Apellido</mfDefaultSorter></th>
-                                            <th><mfDefaultSorter by="nroDocumento">DNI</mfDefaultSorter></th>
+                                            <th><mfDefaultSorter by="fechaCreacion">Género</mfDefaultSorter></th>
+                                            <th><mfDefaultSorter by="nroDocumento">Dni</mfDefaultSorter></th>
                                             <th><mfDefaultSorter by="fechaCreacion">Fecha Alta</mfDefaultSorter></th>
-                                            <th></th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let item of mf.data | SearchPipe : searchText">
                                             <!-- <td>{{item.id}}</td> -->
-                                            <td><strong>{{item.nombre}}</strong></td>
-                                            <td><strong>{{item.apellido}}</strong></td>
-                                            <td>{{item.nroDocumento}}</td>
+                                            <td><strong>{{item.nombre | uppercase}}</strong></td>
+                                            <td><strong>{{item.apellido | uppercase}}</strong></td>
+                                            <td>{{item.sexo}}</td>
+                                            <td>{{item.nroDocumento}}</td>                                            
                                             <td>{{item.fechaCreacion | date:'dd-MM-yyyy'}}</td>
-                                            <td>
-                                                <a style="color: #014c8c;cursor:pointer;"
-                                                   (click)="verItem(item)">ver</a>
-                                            <td>
+                                         
                                         </tr>
                                         <tr *ngIf="(mf.data | SearchPipe : searchText).length === 0">
                                             <td colspan="100">

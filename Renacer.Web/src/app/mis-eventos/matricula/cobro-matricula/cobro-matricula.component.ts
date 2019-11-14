@@ -17,6 +17,8 @@ export class CobroMatriculaComponent implements OnInit {
   socioSeleccionado: Socio;
   matricula: Matricula;
   showModalCobro = false;
+  searchText = '';
+  
   @ViewChild('imprimirPDF', {static: false}) myPrintHtml: ElementRef;
 
   constructor(private _socioService: SocioServices, private _matriculaService: SocioMatriculaServices,

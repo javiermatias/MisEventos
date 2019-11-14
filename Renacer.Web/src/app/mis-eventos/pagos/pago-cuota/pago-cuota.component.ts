@@ -27,6 +27,7 @@ export class PagoCuotaComponent implements OnInit {
   mostrarEventos = false;
   cuota: Pago;
   confirmarPago = false;
+  searchText = '';
   @ViewChild('imprimirPDF', {static: false}) myPrintHtml: ElementRef;
  
   constructor( private _dbServices: SocioServices, private inscripcionServ: InscripcionServices, private pagoServ: PagoServices

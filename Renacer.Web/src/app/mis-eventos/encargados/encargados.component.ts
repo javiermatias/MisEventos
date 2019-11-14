@@ -17,6 +17,7 @@ export class EncargadosComponent implements OnInit {
   public _item = new EncargadoEvento(0, '', '');
   @Input() items = new Array<EncargadoEvento>();
   public showDetail = false;
+  searchText = '';
 
   constructor(private _itemsService: EncargadoEventoServices,
               private mensajeServ: ToastrService,
@@ -58,7 +59,7 @@ export class EncargadosComponent implements OnInit {
 
 
   saveItem(item: EncargadoEvento): any {
-    if (item.id == 0) {
+    if (item.id === 0) {
       this._itemsService.save(item).subscribe(resp => {
         item = resp;
         this.items.push(item);

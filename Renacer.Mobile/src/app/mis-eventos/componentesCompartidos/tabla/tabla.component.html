@@ -35,7 +35,7 @@
     </table>
 
 
-    <button type="button" (click)="downloadCsvWithServices()" class="btn btn-light" style="padding: 3px;color: #333;">
+    <button [disabled]="downloading" type="button" (click)="downloadCsvWithServices()" class="btn btn-light" style="padding: 3px;color: #333;">
             <span class="fa fa-download" ></span>
     </button>
 </div>

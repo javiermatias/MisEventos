@@ -11,17 +11,19 @@
     <span class="help-block text-danger" *ngIf="form.get('password').touched && form.get('password').hasError('required')">La contraseña es requerida</span>
     <span class="help-block text-danger" *ngIf="form.get('password').touched && form.get('password').hasError('minlength')">La contraseña debe tener por lo menos 6 caracteres</span>
   </div>
-  <div class="form-group">
-    <label class="custom-control custom-checkbox">
-      <input class="custom-control-input checkbox-main" type="checkbox">
-      <span class="custom-control-indicator"></span>
+  <!-- <div class="form-group"> -->
+    <!-- <label class="custom-control custom-checkbox"> -->
+      <!-- <input class="custom-control-input checkbox-main" type="checkbox"> -->
+
+
+      <!-- <span class="custom-control-indicator"></span>
       <span class="custom-control-description align-middle">Recordarme</span>
-    </label>
-    <a class="btn btn-link forgot transition pull-right" href="javascript:void(0);">Olvidaste tu contraseña?</a>
-  </div>
+    </label> -->
+    <!-- <a class="btn btn-link forgot transition pull-right" href="javascript:void(0);">Olvidaste tu contraseña?</a> -->
+
+  <!-- </div> -->
   <div class="form-group">
-    <button [disabled]="!form.valid || loading" class="btn btn-main btn-block" type="submit">Entrar
-      <i [hidden]="!loading"  class="fa fa-spin fa-spinner"></i>
+    <button [disabled]="!form.valid" class="btn btn-main btn-block" type="submit">Entrar
     </button>
   </div>
 </form>

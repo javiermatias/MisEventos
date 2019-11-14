@@ -40,14 +40,14 @@ export class Evento {
     public listaInscripciones?:Array<Inscripcion>,
 
     public fechaCreacion?: Date,
-    //public fechaModificacion?: Date,
-    public fechaBaja?: Date    
+    
+    public fechaBaja?: Date,
+    public estadoDeudores? : string  //PAGO ADEUDADO
     
   ) {
-    //this.listaTags = new Array<Tag>();
-   // this.listaSocios = new Array<Socio>();
+    
     this.listaDetalleEvento = new Array<DetalleEvento>();
-    //this.tipoEvento= new TipoEvento(0);
+    
   }
 }
 export class TipoEvento {
@@ -146,7 +146,8 @@ export class Pago {
     public estaPagado?: boolean,
     public idCuota?: number,
     public cuota?: Cuota,
-    public valor?: number
+    public valor?: number,
+    public metodoPago?: string  // Efectivo, Tarjeta
   ) {
     this.inscripcion = new Inscripcion(0);
 
