@@ -140,6 +140,85 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="dist\0.js" />
+    <Content Include="dist\assets\forms\forms.css" />
+    <Content Include="dist\assets\icons\icon-128x128.png" />
+    <Content Include="dist\assets\icons\icon-144x144.png" />
+    <Content Include="dist\assets\icons\icon-152x152.png" />
+    <Content Include="dist\assets\icons\icon-192x192.png" />
+    <Content Include="dist\assets\icons\icon-384x384.png" />
+    <Content Include="dist\assets\icons\icon-512x512.png" />
+    <Content Include="dist\assets\icons\icon-72x72.png" />
+    <Content Include="dist\assets\icons\icon-96x96.png" />
+    <Content Include="dist\assets\img\24-6-2017 5-59-23 p. m..png" />
+    <Content Include="dist\assets\img\app\anciano.jpg" />
+    <Content Include="dist\assets\img\app\no-image.png" />
+    <Content Include="dist\assets\img\app\pago-confirmado.jpg" />
+    <Content Include="dist\assets\img\app\sample.jpg" />
+    <Content Include="dist\assets\img\app\sky-full.jpg" />
+    <Content Include="dist\assets\img\app\sky.jpg" />
+    <Content Include="dist\assets\img\app\snow.jpg" />
+    <Content Include="dist\assets\img\app\success.jpg" />
+    <Content Include="dist\assets\img\comments.svg" />
+    <Content Include="dist\assets\img\feed\feed-image.svg" />
+    <Content Include="dist\assets\img\feed\feed-location.svg" />
+    <Content Include="dist\assets\img\feed\feed-video.svg" />
+    <Content Include="dist\assets\img\feed\my-little-kitten.png" />
+    <Content Include="dist\assets\img\feed\new-york-location.jpg" />
+    <Content Include="dist\assets\img\feed\protein.png" />
+    <Content Include="dist\assets\img\feed\vader-and-me-preview.jpg" />
+    <Content Include="dist\assets\img\logo\az_logo.png" />
+    <Content Include="dist\assets\img\logo\az_logo2.png" />
+    <Content Include="dist\assets\img\logo\az_logo_full.png" />
+    <Content Include="dist\assets\img\logo\az_logo_full2.png" />
+    <Content Include="dist\assets\img\logo\az_logo_full_blank.png" />
+    <Content Include="dist\assets\img\logo\az_logo_grande.png" />
+    <Content Include="dist\assets\img\logo\cube-1.jpg" />
+    <Content Include="dist\assets\img\logo\cube-2.jpg" />
+    <Content Include="dist\assets\img\logo\cube-3.jpg" />
+    <Content Include="dist\assets\img\logo\cube-4.jpg" />
+    <Content Include="dist\assets\img\logo\cube-5.jpg" />
+    <Content Include="dist\assets\img\logo\cube-6.jpg" />
+    <Content Include="dist\assets\img\logo\cube-7.jpg" />
+    <Content Include="dist\assets\img\logo\cube-8.jpg" />
+    <Content Include="dist\assets\img\logo\cube-9.jpg" />
+    <Content Include="dist\assets\img\logo\logos-cube\cube-1.jpg" />
+    <Content Include="dist\assets\img\logo\logos-cube\cube-2.jpg" />
+    <Content Include="dist\assets\img\logo\logos-cube\cube-3.jpg" />
+    <Content Include="dist\assets\img\logo\logos-cube\cube-4.jpg" />
+    <Content Include="dist\assets\img\logo\logos-cube\cube-5.jpg" />
+    <Content Include="dist\assets\img\logo\logos-cube\cube-6.jpg" />
+    <Content Include="dist\assets\img\logo\logos-cube\cube-7.jpg" />
+    <Content Include="dist\assets\img\logo\logos-cube\cube-8.jpg" />
+    <Content Include="dist\assets\img\logo\logos-cube\cube-9.jpg" />
+    <Content Include="dist\assets\img\profile\adam.jpg" />
+    <Content Include="dist\assets\img\profile\ashley.jpg" />
+    <Content Include="dist\assets\img\profile\bruno.jpg" />
+    <Content Include="dist\assets\img\profile\julia.jpg" />
+    <Content Include="dist\assets\img\profile\michael.jpg" />
+    <Content Include="dist\assets\img\profile\tereza.jpg" />
+    <Content Include="dist\assets\img\profile\users\augusto.png" />
+    <Content Include="dist\assets\img\profile\users\marcela.png" />
+    <Content Include="dist\assets\img\recordatorio.png" />
+    <Content Include="dist\assets\img\shopping-cart.svg" />
+    <Content Include="dist\assets\img\users\user.jpg" />
+    <Content Include="dist\assets\img\vendor\leaflet\marker-icon-2x.png" />
+    <Content Include="dist\assets\img\vendor\leaflet\marker-icon.png" />
+    <Content Include="dist\assets\img\vendor\leaflet\marker-shadow.png" />
+    <Content Include="dist\favicon.ico" />
+    <Content Include="dist\fontawesome-webfont.svg" />
+    <Content Include="dist\index.html" />
+    <Content Include="dist\layers-2x.png" />
+    <Content Include="dist\layers.png" />
+    <Content Include="dist\main.js" />
+    <Content Include="dist\metroIcons.jpg" />
+    <Content Include="dist\metroIcons_light.jpg" />
+    <Content Include="dist\polyfills.js" />
+    <Content Include="dist\runtime.js" />
+    <Content Include="dist\scripts.js" />
+    <Content Include="dist\socicon.svg" />
+    <Content Include="dist\styles.js" />
+    <Content Include="dist\vendor.js" />
     <Content Include="Global.asax" />
   </ItemGroup>
   <ItemGroup>
@@ -199,7 +278,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="dist\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Renacer.Nucleo\Renacer.Nucleo.csproj">
@@ -216,8 +294,25 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="App.config" />
+    <Content Include="dist\0.js.map" />
+    <Content Include="dist\assets\img\app\listado_encargados.csv" />
+    <Content Include="dist\fontawesome-webfont.eot" />
+    <Content Include="dist\fontawesome-webfont.ttf" />
+    <Content Include="dist\fontawesome-webfont.woff" />
+    <Content Include="dist\fontawesome-webfont.woff2" />
+    <Content Include="dist\main.js.map" />
+    <Content Include="dist\manifest.json" />
+    <Content Include="dist\polyfills.js.map" />
+    <Content Include="dist\runtime.js.map" />
+    <Content Include="dist\scripts.js.map" />
+    <Content Include="dist\socicon.eot" />
+    <Content Include="dist\socicon.ttf" />
+    <Content Include="dist\socicon.woff" />
+    <Content Include="dist\styles.js.map" />
+    <Content Include="dist\vendor.js.map" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Properties\PublishProfiles\Tesis.pubxml" />
+    <None Include="Properties\PublishProfiles\TesisAugus.pubxml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

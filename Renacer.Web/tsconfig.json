@@ -2,7 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "importHelpers": true,
-    "outDir": "D:/release_miseventos/dist",
+    "outDir": "../Renacer.WebAPI/dist",
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
