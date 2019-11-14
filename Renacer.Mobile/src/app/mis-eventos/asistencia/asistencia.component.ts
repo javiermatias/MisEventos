@@ -19,8 +19,13 @@ import { Usuario, UserServices } from '../../servicios/users.service';
 export class AsistenciaComponent implements OnInit {
 
   public eventos:Evento[];
-  public eventoSeleccionado:Evento;
+  //seleccionEvento
+   public eventoSeleccionado:Evento;
+  //public eventoSelected:string;
+  //public cursoSelected:string;
   public usuario:Usuario;
+  //public _item = new Asistencia(0,"");
+  //@Input() detalle:DetalleEvento ;
   public listaInscripciones:any[] ;
   public fechaActual:string;
   public mostrarGrilla:boolean=false;
@@ -28,6 +33,7 @@ export class AsistenciaComponent implements OnInit {
   public detalleSelecionado:DetalleEvento;
   public showRecordatorio:Boolean=false;
   searchText = '';
+  public mostrarEvento:Boolean=true;
 
   constructor(private _eventoServ:EventoServices
     ,private asistenciaServ:AsistenciaServices    
@@ -47,7 +53,7 @@ export class AsistenciaComponent implements OnInit {
       {'idEncargado':this.usuario.idEncargado}).subscribe
       (items => {
         this.eventos = items;
-      //console.log(items);
+         console.log(items);
     });
 
   }
@@ -64,9 +70,15 @@ export class AsistenciaComponent implements OnInit {
 
 
   }
-  cambioEvento(){
-    this.getAsistenciaDetalleEvento(this.eventoSeleccionado.id);
+  cambioEvento(evento:Evento){
+    this.mostrarEvento=false;
+    this.getAsistenciaDetalleEvento(evento.id);
   
+  }
+
+  volver(){
+    this.mostrarGrilla=false;
+    this.mostrarEvento=true;
   }
 
   ngOnChanges(){
@@ -84,7 +96,7 @@ export class AsistenciaComponent implements OnInit {
     if (cancelar) {
       this.detalleSelecionado.asistencia=true;
       this._detalleEvento.update(this.detalleSelecionado).subscribe(resp => {
-        this.cambioEvento();
+        //this.cambioEvento();
       });
        //Aca deberia guardar la asistencia del detalle evento.
     }

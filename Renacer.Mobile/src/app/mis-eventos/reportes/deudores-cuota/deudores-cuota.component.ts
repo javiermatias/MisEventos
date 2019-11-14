@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { DeudaCuotaServices } from '../../../servicios/deudaCuota.service';
 import { DeudaCuota } from '../../../modelos/deuda-cuota';
 import { AppConfig } from '../../../app.config';
+import { ExcelService } from '../../../servicios/excel.service';
 
 @Component({
   selector: 'az-deudores-cuota',
@@ -30,7 +31,8 @@ export class DeudoresCuotaComponent implements OnInit {
     public deudodoresChartColors:any[];
     public deudodoresChartOptions:any;
 
-  constructor(private _itemsService:EventoServices, private deudaServ:DeudaCuotaServices,private _appConfig:AppConfig ) {
+  constructor(private _itemsService:EventoServices, private deudaServ:DeudaCuotaServices,
+    private _appConfig:AppConfig,private excelService:ExcelService ) {
     this.config = this._appConfig.config;
     this.configFn = this._appConfig; 
    }
@@ -79,19 +81,28 @@ export class DeudoresCuotaComponent implements OnInit {
   getEventos(){
 
     
-   this._itemsService.query({'search':' '}).subscribe(items => {
+   this._itemsService.query({'search':'sitieneinscriptos'}).subscribe(items => {
      
     this.eventos = items;
+    console.log(this.eventos);
+/*    console.log(this.eventos);
+    this.eventos = this.eventos.filter((item: Evento) => {
+     // console.log(item.listaInscripciones.length);
+      return item.listaInscripciones != null;
+  
+  }); */
             
     });
     
   }
 
-  eventoSeleccionado(){
-    //console.log(this.idEvento);
-    //this.evento =  this.eventos.find(x => x.id == this.idEvento);
-    //console.log(this.evento);
-    this.traerDeudores(this.idEvento);
+  verGrafico(item:Evento){
+    this.evento=item;
+    this.eventoSeleccionado(item.id);
+  }
+
+  eventoSeleccionado(idEvento:number){
+    this.traerDeudores(idEvento);
   }
 
   
@@ -119,6 +130,42 @@ public chartClicked(e:any):void {
 
   public chartHovered(e:any):void {
   //console.log(e);
+  }
+
+
+  volver(){
+    this.showDeudores=false;
+  }
+
+  imprimir(){
+   console.log("imprimir");
+    const tituloWorkBook = 'Deudores';
+    const titlulo = 'Reporte deudores cuotas del evento ' + this.evento.nombre;
+    const nombreArchivo= 'deudores.xlsx'
+    const cabeceras = ["Nombre","Apellido","Dni","Telefono","Mail"]
+    this.excelService.reporteExcelDeudores(tituloWorkBook,titlulo,nombreArchivo,cabeceras, this.listaDeudas);
+/*   this.items.forEach(socio => {
+    var data = [socio.nombre,socio.apellido,socio.nroDocumento,socio.telefono,socio.celular,socio.email,socio.sexo,socio.estadoCivil,socio.fechaNacimiento,socio.fechaCreacion,socio.estado];
+this.dataExportar.push(data );
+  });
+  
+  let filtros= ['Filtros'];
+ if(this.filter.sexo != '' &&  this.filter.sexo != null) filtros.push('Sexo: '+ this.filter.sexo);
+ if(this.filter.edadDesde != '' && this.filter.edadDesde != null) filtros.push('Edad Desde: '+ this.filter.edadDesde);
+ if(this.filter.edadHasta != '' && this.filter.edadHasta != null) filtros.push('Edad Hasta: '+ this.filter.edadHasta);
+ if(this.filter.fechaDesde != '' && this.filter.fechaDesde != null) filtros.push('fechaDesde: '+ this.filter.fechaDesde);
+ if(this.filter.fechaHasta != '' && this.filter.fechaHasta != null) filtros.push('fechaHasta: '+ this.filter.fechaHasta);
+ if(this.filter.estadoCivil != '' && this.filter.estadoCivil != null) filtros.push('Estado Civil: '+ this.filter.estadoCivil);
+if(this.filter.Tags.length > 0){
+  let tags = 'Tags: '
+  this.filter.Tags.forEach(tag => {
+    tags += tag + ',';
+});
+   filtros.push(tags);
+}
+  this.excelService.reporteExcel(tituloWorkBook,titlulo,nombreArchivo,cabeceras,this.dataExportar,filtros);
+
+ */
   }
 
 }

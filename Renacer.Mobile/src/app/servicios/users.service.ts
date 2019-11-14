@@ -52,9 +52,7 @@ export class UserServices extends BaseServices<Usuario> {
   setCurrent = function(usuario: Usuario){
     this.usuario = usuario;
     localStorage.usuario = JSON.stringify(usuario) ;
-    if (usuario) { // cuando cierro sesion mando un usuario nulo
-      sessionStorage['token'] = usuario['token'];
-    }
+    sessionStorage['token'] = usuario ? usuario['token'] : '';
   }
 
   subirImagen(Name: string, Bytes: number[]): Observable<any> {

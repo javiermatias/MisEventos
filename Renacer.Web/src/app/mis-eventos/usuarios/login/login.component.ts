@@ -3,7 +3,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import { UserServices } from '../../../servicios/users.service';
-//import * as shajs from 'sha.js';
+import * as shajs from 'sha.js';
 
 @Component({
   selector: 'az-login',
@@ -38,8 +38,8 @@ export class LoginComponent {
       this.loading = true;
       this._usersService.setCurrent(undefined);
 
-      //const pass = shajs('sha256').update(this.password.value).digest('hex')
-      this._usersService.login(this.username.value, this.password.value).subscribe(
+      const pass = shajs('sha256').update(this.password.value).digest('hex')
+      this._usersService.login(this.username.value, pass).subscribe(
         result => {
           if (result['result'] === 'ok') {
             this._usersService.setCurrent(result['user']);

@@ -20,8 +20,10 @@ export class EncargadoEvento {
     public fechaCreacion?: Date,
     public fechaBaja?: Date,
     public nroDocumento?: string,
-    public tipoDoc?:TipoDocumento,
-    public domicilio?:Domicilio
+    public tipoDoc?: TipoDocumento,
+    public domicilio?: Domicilio,
+    public celular?: string,
+    public descripcion?: string,
   ) {
     this.tipoDoc = new TipoDocumento();
     this.listaTags = new Array<Tag>();

@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 })
 export class TagsCloudComponent implements OnInit {
 
+  searchText = '';
   public  options: CloudOptions = {
     width : 600,
     height : 300,

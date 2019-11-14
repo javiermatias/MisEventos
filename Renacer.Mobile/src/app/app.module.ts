@@ -1,4 +1,4 @@
-import 'pace';
+// import 'pace';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -41,6 +41,12 @@ import { CsvServices } from './servicios/csv.service';
 
 import { Angular2CsvModule } from 'angular2-csv';
 import { CsvWrapperComponent } from './mis-eventos/componentesCompartidos/csv-wrapper/csv-wrapper.component';
+import { ImprimirService } from './servicios/imprimir.service';
+import { NgHttpLoaderModule } from 'ng-http-loader';
+import { ExcelService } from './servicios/excel.service';
+import { AngularMyDatePickerModule } from 'angular-mydatepicker';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 
@@ -63,7 +69,10 @@ registerLocaleData(localeEs, 'es-AR');
     NguiAutoCompleteModule,
     CommonModule,
     ToastrModule.forRoot(),
-    Angular2CsvModule
+    Angular2CsvModule,
+    NgHttpLoaderModule.forRoot(),
+    AngularMyDatePickerModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     AppConfig,
@@ -98,6 +107,8 @@ registerLocaleData(localeEs, 'es-AR');
     AsistenciaSocioServices,
     DeudaCuotaServices,
     CsvServices,
+    ImprimirService,
+      ExcelService,
     { provide: LOCALE_ID, useValue: 'es-AR' },
     DatePipe],
     bootstrap: [AppComponent]

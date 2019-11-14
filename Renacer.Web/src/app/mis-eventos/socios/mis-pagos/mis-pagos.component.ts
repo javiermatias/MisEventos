@@ -16,6 +16,7 @@ export class MisPagosComponent implements OnInit {
   usuario: Usuario;
   pagoMatricula: boolean;
   matriculaXsocio: MatriculaXsocio;
+  searchText = '';
 
   eventos: Evento[];
 

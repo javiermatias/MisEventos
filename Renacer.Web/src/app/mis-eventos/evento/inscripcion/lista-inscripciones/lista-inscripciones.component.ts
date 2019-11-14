@@ -11,6 +11,9 @@ export class ListaInscripcionesComponent implements OnInit {
 
   public fechaHoy:string;
   public eventos:Evento[];
+  searchText = '';
+  showDetail = false;
+
   constructor(private _itemsService:EventoServices,private datePipe: DatePipe) {
 
 

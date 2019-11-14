@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class MatriculaComponent implements OnInit {
 
   @Input() matriculas: Matricula[];
+  searchText = '';
   constructor(private _matriculaService: MatriculaServices, private router: Router) { }
 
   ngOnInit() {

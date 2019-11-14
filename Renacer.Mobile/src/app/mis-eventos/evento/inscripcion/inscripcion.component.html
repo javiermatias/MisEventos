@@ -201,7 +201,7 @@
       <!-- <az-select-socio  [listaSocios]="listaSocios"></az-select-socio> -->
       <button type="submit" class="btn btn-main" *ngIf="listaSocios"
         [disabled]="!listaSocios?.length" (click)="guardar()">Guardar</button>
-        <button (click)="limpiarForm();" type="button" style="margin-left: 30px;"
+        <button (click)="cancelar();" type="button" style="margin-left: 30px;"
         class="btn btn-default">Cancelar</button>
     </div>  
         

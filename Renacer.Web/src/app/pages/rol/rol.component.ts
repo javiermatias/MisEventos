@@ -13,6 +13,7 @@ export class RolComponent implements OnInit {
   public roles: Rol[] = [];
   @Input() rol: Rol;
   public showDetail:boolean = false;
+  searchText = '';
 
   constructor(private _rolService:RolServices, private mensajeServ: ToastrService) {
   }

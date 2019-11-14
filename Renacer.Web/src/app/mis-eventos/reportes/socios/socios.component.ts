@@ -14,6 +14,7 @@ export class SociosComponent implements OnInit {
 
   public filter: FiltroReporte = new FiltroReporte();
   public items: Socio[];
+  searchText = '';
 
   private dataExportar:any[];
 

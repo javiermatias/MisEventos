@@ -84,7 +84,6 @@
                             <label class="form-control-label">Espacio: </label>
                             <select formControlName="tipoEspacio" class="form-control" [ngClass]="{'has-danger' : step.hasError && eventoForm.get('tipoEspacio').hasError('required'), 'has-success' : 
                                 !eventoForm.get('tipoEspacio').hasError('required') }">
-                                
                                 <option *ngFor="let tipoespacio of tiposEspacios" [ngValue]="tipoespacio">
                                     {{tipoespacio.nombre}}</option>
 

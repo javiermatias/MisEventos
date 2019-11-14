@@ -272,6 +272,8 @@ export class DynamicTablesService {
 
     }
 
+    searchText = '';
+
 
 
     public  getAll() {

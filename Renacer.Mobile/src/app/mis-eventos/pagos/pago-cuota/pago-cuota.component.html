@@ -10,8 +10,8 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                             </div>
                             <div class="modal-body">
-                              <p *ngIf="confirmarPago">¿Desea confirmar el pago de la {{cuota?.nombre}} del socio {{selectedSocio?.nombre}} {{selectedSocio?.apellido}}?  </p>
-                              
+                              <p *ngIf="confirmarPago">¿Desea confirmar el pago de la {{cuota?.nombre}}?  </p>
+                              <!-- del socio {{selectedSocio?.nombre}} {{selectedSocio?.apellido}} -->
 
                               <div class="row">
                                 <div class="col-xl-9 col-lg-9 col-12">
@@ -19,27 +19,13 @@
                                          <p>
                                            Socio: {{selectedSocio?.nombre}} {{selectedSocio?.apellido}}
                                            <br><br>
-                                          DNI {{selectedSocio?.nroDocumento}} 
+                                           Dni:{{selectedSocio?.nroDocumento}} 
+                                          <br><br>
+                                           Descripción:{{cuota?.nombre}}
+                                           <br><br>
+                                           Monto: ${{cuota?.monto}}
                                           </p> 
-                                      <div> 
-                                          <table style="width:600px">
-                                            <thead>
-                                              <tr>
-                                                <th colspan="2">Comprobante de pago</th>
-                                              </tr>
-                                              <tr>
-                                                  <th>Descripción</th>
-                                                  <th>Monto</th>
-                                              </tr>
-                                            </thead>
-                                            <tbody>
-                                              <tr>
-                                                <td>{{seleccionInscripcion?.nombre}} {{cuota?.nombre}}</td>
-                                                <td><strong>${{cuota?.valor}}</strong></td>
-                                              </tr>
-                                            </tbody>
-                                          </table>
-                                      </div>
+
                                     </div>
                                 </div>
                               </div>
@@ -78,8 +64,11 @@
            
               <div class="form-group col-md-5" *ngIf="selectedSocio" >
               
-
-
+             
+                          <strong> Nombre:</strong> {{selectedSocio.nombre}}<br><br>
+                            <strong> Apellido: </strong>{{selectedSocio.apellido}}<br><br>
+                                <strong> Dni:</strong> {{selectedSocio.nroDocumento}} <br><br>
+<!-- 
                 <div widget class="card" style="margin-bottom:20px">
                     <div class="card-header">
                         <span>Evento</span>
@@ -91,21 +80,110 @@
                         </div>
                     </div>
                     <div class="card-block widget-body">
-                        <!-- <label class="form-control-label"           
-                        >Seleccionar Evento</label> -->
+                      
                         <select  class="form-control" [(ngModel)]="seleccionInscripcion" (change)="cambioEvento()"
                         #eventoTemplate>
                           <option *ngFor="let inscripcion of listaInscripcion ; let i = index"                
                           [ngValue]='inscripcion'>{{inscripcion.evento.nombre }}</option>
                         </select>
                     </div>
-                </div>
+                </div> -->
 
 
             </div>
           
           
           </div>
+
+          <div class="row" *ngIf="mostrarEventos">
+            <div class="col-xl-9 col-lg-9 col-9 bottom-30">
+                <div widget class="card">
+                    <div class="card-header">
+                        <span>Eventos del socio</span>
+                        <div class="widget-controls">
+                            <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
+                            <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
+                            <a data-widgster="fullscreen" href="#" class="transition"><i class="fa fa-expand"></i></a>
+                            <a data-widgster="restore" href="#" class="transition"><i class="fa fa-compress"></i></a>
+                            <a data-widgster="close" href="#" class="transition"><i class="fa fa-times"></i></a>
+                        </div>
+                    </div>
+                    <div class="card-block widget-body">
+                            <p class="no-margin"> </p>
+                            <div class="w-200 pull-right bottom-15">
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                                    <input class="form-control" id="table-search-input" [(ngModel)]="searchText" type="text"
+                                           placeholder="Buscar evento...">
+                                </div>
+                            </div>
+                            <div class="table-responsive datatable">
+                                <!-- <table class="table table-striped table-hover table-sm" [mfData]="eventos  | SearchPipe : searchText" #mf="mfDataTable" [mfRowsOnPage]="10"> -->
+                                <table class="table table-striped table-hover table-sm"
+                                       [mfData]="listaInscripcion | buscarEventoMisPagos : searchText" #mf="mfDataTable" [mfRowsOnPage]="10">
+                                    <thead>
+                                        <tr>
+                                            <!-- <th><mfDefaultSorter by="id">Id</mfDefaultSorter></th> -->
+                                            <th>
+                                                <mfDefaultSorter by="nombre"><strong>Nombre</strong></mfDefaultSorter>
+                                            </th>
+                                            <th>
+                                                <mfDefaultSorter by="descripcion"><strong>Descripción</strong></mfDefaultSorter>
+                                            </th>
+                                            <th>
+                                                <mfDefaultSorter by="fechaCreacion"><strong>Estado</strong></mfDefaultSorter>
+                                            </th>
+                                            <th>
+                                                <mfDefaultSorter by="estado"><strong>Cuotas</strong></mfDefaultSorter>
+                                            </th>
+        
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of mf.data | buscarEventoMisPagos : searchText">
+                                            <td>{{item.evento.nombre}}</td>
+                                            <td>{{item.evento.descripcion}}</td>
+                                            <td>
+                                                <span class="alert-success" *ngIf="item.estado == 'PAGADO'">Pagado</span>
+                                                <span class="alert-danger" *ngIf="item.estado == 'ADEUDADO'">Adeudado</span>
+                                            </td>
+                                            <td>
+                                                <span class="col col-3">
+                                                    <a style="color: #014c8c;cursor:pointer;"
+                                                       (click)="verCuotas(item)">Ver</a>
+        
+                                                </span>
+        
+                                            </td>
+        
+        
+                                        </tr>
+                                        <tr *ngIf="(mf.data | SearchPipe : searchText).length === 0">
+                                            <td colspan="100">
+                                                No encontrado
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="12">
+                                                <mfBootstrapPaginator [rowsOnPageSet]="[10, 25, 50, 100]"></mfBootstrapPaginator>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+        
+                    </div>
+        
+                </div>
+            </div>
+        </div>
+        
+
+
+
           <div *ngIf="!selectedSocio">
             <br>
             <br>
@@ -116,11 +194,11 @@
       
 
 
-           <div class="row" *ngIf="mostrarGrilla">
+           <div class="row" *ngIf="mostrarCuotas">
               <div class="col col-lg-9">
                   <div widget class="card" style="margin-bottom:20px">
                       <div class="card-header">
-                          <span>Lista Cuotas</span>
+                          <span>Lista Cuotas -{{seleccionInscripcion.evento.nombre}}</span>
                           <div class="widget-controls">
                               <a data-widgster="expand" href="#" class="transition"><i
                                       class="fa fa-chevron-down"></i></a>
@@ -197,6 +275,11 @@
                       </div>
                   </div>
         
+
+                  <button (click)="volver()" type="button" 
+                  class="btn btn-default">Volver</button>
+
+
               </div>
           </div>
            
@@ -211,5 +294,11 @@
 
 
 </div>
+
+
+
+<button (click)="pruebaExcel()">Imprimir</button>
+
+
 
 

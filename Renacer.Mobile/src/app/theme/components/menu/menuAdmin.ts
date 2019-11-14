@@ -117,12 +117,15 @@ export const itemsAdmin = [
     order: 300,
     subMenu: [
       {
-        title: 'Eventos',
-        routerLink: 'reportes/eventos',
+        title: 'Eventos',      
         selected: false,
         expanded: false,
         order: 150,
         subMenu: [
+          {
+            title: 'Eventos',
+            routerLink: 'reportes/eventos'
+          },
             {
               title: 'Ranking',
               routerLink: 'reportes/ranking'

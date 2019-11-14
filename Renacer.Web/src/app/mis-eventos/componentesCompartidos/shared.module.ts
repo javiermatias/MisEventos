@@ -20,6 +20,7 @@ import { NgxStarsModule } from 'ngx-stars';
 import { SelectOneSocioComponent } from './select-one-socio/select-one-socio/select-one-socio.component';
 import { Angular2CsvModule } from 'angular2-csv';
 import { AngularMyDatePickerModule } from 'angular-mydatepicker';
+import { ImprimirPagoComponent } from './imprimir-pago/imprimir-pago.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { AngularMyDatePickerModule } from 'angular-mydatepicker';
     FilterSocioComponent,
     FiltroRangoDeFechasComponent,
     TablaComponent,
-    SelectOneSocioComponent
+    SelectOneSocioComponent,
+    ImprimirPagoComponent
   ],
   exports: [
     SelectSocioComponent,
@@ -58,7 +60,8 @@ import { AngularMyDatePickerModule } from 'angular-mydatepicker';
    FilterSocioComponent,
    FiltroRangoDeFechasComponent,
    TablaComponent,
-   SelectOneSocioComponent
+   SelectOneSocioComponent,
+   ImprimirPagoComponent
    ]
 })
 export class SharedModule { }

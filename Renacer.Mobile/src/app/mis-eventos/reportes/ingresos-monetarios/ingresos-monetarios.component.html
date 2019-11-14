@@ -12,7 +12,7 @@
           <div class="card-block widget-body">
             <div class="chart-outher">
               <canvas baseChart [data]="IngresosTipoEventoData" [labels]="IngresosTipoEventoLabels"
-                [options]="ingresosPorTipoEventoOpt" [colors]="pieChartColors" [chartType]="'pie'"
+                [options]="pieChartOptions" [colors]="pieChartColors" [chartType]="'pie'"
                 (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
             </div>
 
@@ -41,7 +41,7 @@
         <div class="media">
           <div class="card-block widget-body">
             <div class="chart-outher">
-              <canvas baseChart [data]="IngresosTipoData" [labels]="IngresosTipoLabels" [options]="ingresosPorTipoEventoOpt"
+              <canvas baseChart [data]="IngresosTipoData" [labels]="IngresosTipoLabels" [options]="pieChartOptions"
                 [colors]="pieChartColors" [chartType]="'doughnut'" (chartHover)="chartHovered($event)"
                 (chartClick)="chartClicked($event)"></canvas>
             </div>
@@ -72,7 +72,7 @@
 
         <div class="media">
           <div class="card-block widget-body">
-            <div class="chart-outher">
+            <div class="chart-outher" style="width:80%">
 
               <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
                 [colors]="lineChartColors" [chartType]="lineChartType" (chartHover)="chartHovered($event)"
@@ -87,6 +87,13 @@
   </div>
 
   <div class="col-lg-6 col-md-6 col-sm-12 bottom-30">
+
+<app-filtro-rango-fechas 
+  [firstDate]="fechaRangoInicial"
+  [lastDate]="fechaRangoFin"
+  (onRangeDateSelection)="cambioDeFechasIngresosEnElTiempo($event)">
+</app-filtro-rango-fechas>
+
     <app-tabla [data]="IngresosEnElTiempoResponse" name="ingresos_en_el_tiempo" [config]="tablaIngresosEnElTiempo">
     </app-tabla>
   </div>

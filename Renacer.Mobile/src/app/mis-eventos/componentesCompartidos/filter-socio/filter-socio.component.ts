@@ -8,7 +8,7 @@ import {FiltroReporte} from '../../../servicios/reporte.service';
 })
 export class FilterSocioComponent implements OnInit {
 
-  @Input() filter: FiltroReporte;
+  @Input() filter:FiltroReporte;
   constructor() { }
 
   ngOnInit() {

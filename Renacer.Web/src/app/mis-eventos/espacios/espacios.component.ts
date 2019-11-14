@@ -15,6 +15,9 @@ export class EspaciosComponent implements OnInit {
   @Input() espacios = new Array<EspacioComun>();
   public showDetail:boolean = false;
   public tiposEspacio: TipoEspacio[] = [];
+
+  searchText = '';
+
   constructor(private _espacioService:EspacioServices,private mensajeServ: ToastrService,
     private _tipoEspacioService:TipoEspacioServices) {
 

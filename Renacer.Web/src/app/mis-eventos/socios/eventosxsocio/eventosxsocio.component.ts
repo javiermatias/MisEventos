@@ -10,6 +10,8 @@ import { Usuario, UserServices } from '../../../servicios/users.service';
 export class EventosxsocioComponent implements OnInit {
   listaInscripcion:Array<Inscripcion>;
   public usuario:Usuario;
+  searchText = '';
+  
   constructor(private inscripcionServ:InscripcionServices,private _usersService:UserServices,
     ) { }
  
