@@ -15,6 +15,7 @@ export class MisInteresesComponent implements OnInit {
   public _socio = new Socio(0, "", "", "");
   public showDetail: boolean = false;
   public usuario:Usuario;
+  searchText = '';
   public  options: CloudOptions = {
     width : 600,
     height : 300,

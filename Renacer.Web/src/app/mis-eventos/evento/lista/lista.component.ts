@@ -7,9 +7,11 @@ import { EventoServices ,Evento} from '../../../servicios/evento.service';
   styleUrls: ['./lista.component.scss']
 })
 export class ListaComponent implements OnInit {
-  public eventos:Evento[];
+  public eventos :any[];
+  searchText = '';
+  showDetail = false;
 
-  constructor(private _itemsService:EventoServices) { }
+  constructor(private _itemsService: EventoServices) { }
 
   ngOnInit() {
    this.getItems();

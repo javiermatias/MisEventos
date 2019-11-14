@@ -3,14 +3,13 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import { UserServices } from '../../../servicios/users.service';
-//import { RolServices, Rol } from '../../servicios/rol.service';
-//import * as shajs from 'sha.js';
+import * as shajs from 'sha.js';
+
 @Component({
   selector: 'az-login',
   encapsulation: ViewEncapsulation.None,
   providers: [],
   templateUrl: './login.component.html'
-  //styleUrls: ['../sesion/sesion.component.scss']
 })
 export class LoginComponent {
   public router: Router;
@@ -18,16 +17,14 @@ export class LoginComponent {
   public username: AbstractControl;
   public password: AbstractControl;
   public error: string;
-  public loading: boolean = false;
-
-
+  public loading = false;
 
   constructor(router: Router, fb: FormBuilder, private _usersService: UserServices) {
     // constructor(router:Router, fb:FormBuilder,private _usersService:UserServices) {
     this.router = router;
     this.form = fb.group({
-      'username': ["", Validators.compose([Validators.required, Validators.required])],
-      'password': ["", Validators.compose([Validators.required, Validators.minLength(6)])]
+      'username': ['', Validators.compose([Validators.required, Validators.required])],
+      'password': ['', Validators.compose([Validators.required, Validators.minLength(6)])]
     });
 
     this.username = this.form.controls['username'];
@@ -39,28 +36,27 @@ export class LoginComponent {
      // TODO: volver a codificar una vez resuelto la codificacion al crear usuario
       // "clave": shajs('sha256').update(this.password.value).digest('hex')
       this.loading = true;
-      this._usersService.login(this.username.value,this.password.value).subscribe(result => {
-        this.loading = false;
+      this._usersService.setCurrent(undefined);
 
-        if (result["result"] == "ok") {
-
-          this._usersService.setCurrent(result["user"]);
-          this.router.navigate(['pages/dashboard']);
-/* 
-          this.rolesUsuario = result["user"].roles;
-          if (this.rolesUsuario && this.rolesUsuario.length === 1) { // si es mayor a 1 ya lo maneja el html
-            this._rolesService.setCurrent(this.rolesUsuario[0]);
+      const pass = shajs('sha256').update(this.password.value).digest('hex')
+      this._usersService.login(this.username.value, pass).subscribe(
+        result => {
+          if (result['result'] === 'ok') {
+            this._usersService.setCurrent(result['user']);
             this.router.navigate(['pages/dashboard']);
-           } else {
-            //this.router.navigate(['sesion/seleccionarRol']);
-            this.router.navigate(['pages/dashboard']);
-          }  */ 
-        } else {
-          this.error = "Error en el usuario o contraseña";
-        }
-      });
+          } else {
+            this.error = 'Error en el usuario o contraseña';
+          }
+        },
+        error => {
+          console.log(error);
+          this.error = 'Error en el usuario o contraseña';
+        },
+        () => {
+          this.loading = false; });
     }
   }
+
 }
 
 

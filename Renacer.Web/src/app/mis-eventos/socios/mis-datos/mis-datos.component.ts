@@ -55,4 +55,12 @@ actualizarFecha(fecha: string) {
 
 
 }
+
+  limpiarForm() {
+
+  }
+
+  onSubmit(form: any) {
+
+  }
 }

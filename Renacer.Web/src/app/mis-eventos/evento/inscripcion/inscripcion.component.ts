@@ -30,6 +30,7 @@ export class InscripcionComponent implements OnInit {
   mostrarGrilla=false;
   mostrarInscripcion=false;
   eliminaInscripcion:Inscripcion;
+  searchText = '';
 
   constructor( private _itemsService:EventoServices, private inscripcionServ:InscripcionServices, 
     private datePipe: DatePipe, private mensajeServ: ToastrService,

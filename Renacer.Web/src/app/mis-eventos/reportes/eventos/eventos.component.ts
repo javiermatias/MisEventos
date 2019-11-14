@@ -26,6 +26,7 @@ export class EventosComponent implements OnInit {
   public estado:string;
   public eventos :Evento[];
   public eventosOriginal :Evento[];
+  public searchText = '';
   private dataExportar:any[];
 
   public showDetail=false;

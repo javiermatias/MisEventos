@@ -1,6 +1,9 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
 import { AppConfig } from '../../../app.config';
 import {ReporteServices} from '../../../servicios/reporte.service';
+import {formatDate} from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
 
 
 @Component({
@@ -26,6 +29,7 @@ export class IngresosMonetariosComponent implements OnInit {
 
     public IngresosTipoEventoLabels: Array<string>;
     public IngresosTipoEventoData: Array<number>;
+
 
     public pieChartColors: any[];
     public ingresosPorTipoEventoOpt: any;
@@ -58,8 +62,12 @@ export class IngresosMonetariosComponent implements OnInit {
         ]
       }
 
+    fechaRangoInicial = new Date(new Date().getFullYear() - 1, 0, 1);
+    fechaRangoFin = new Date();
 
-    constructor(private _appConfig: AppConfig, private _reporteServ: ReporteServices) {
+    constructor(private _appConfig: AppConfig,
+        private _reporteServ: ReporteServices,
+        private changeDet: ChangeDetectorRef ) {
         this.config = this._appConfig.config;
         this.configFn = this._appConfig;
 
@@ -72,7 +80,8 @@ export class IngresosMonetariosComponent implements OnInit {
     }
 
     ngOnInit() {
-
+        registerLocaleData(localeEs, 'es');
+        
         this.lineChartLabels = [];
         this.lineChartData = [
             {data: [], label: 'Total' },
@@ -80,16 +89,7 @@ export class IngresosMonetariosComponent implements OnInit {
             {data: [], label: 'Cuotas' }
         ];
 
-        this._reporteServ.getIngresosEnElTiempo().subscribe(result => {
-            this.IngresosEnElTiempoResponse = result;
-            for (let i = 0; i < result.length; i++) {
-                    this.lineChartLabels.push(result[i].fecha)
-                    const  ingresosTotales = result[i].matriculas + result[i].eventos;
-                    this.lineChartData[0].data.push(ingresosTotales);
-                    this.lineChartData[1].data.push(result[i].matriculas);
-                    this.lineChartData[2].data.push(result[i].eventos);
-                }
-        });
+       this.cargarIngresosEnElTiempo(this.fechaRangoInicial , this.fechaRangoFin);
 
 
         this.IngresosTipoEventoData = [];
@@ -100,7 +100,9 @@ export class IngresosMonetariosComponent implements OnInit {
             });
 
         this._reporteServ.getIngresosPorTipoEvento().subscribe(result => {
-            this.IngresosTipoEventoResponse = result;
+            this.IngresosTipoEventoResponse = result.map(x => {
+                return {'nombre': x.nombre, 'cantidad': x.monto};
+            });
             this.ingresosPorTipoEventoOpt = this.config.pieChartOptions
 
             this.IngresosTipoEventoData = [];
@@ -111,6 +113,8 @@ export class IngresosMonetariosComponent implements OnInit {
                 this.IngresosTipoEventoData.push(item.cantidad);
                 this.IngresosTipoEventoLabels.push(item.nombre);
                 });
+
+                this.changeDet.detectChanges();
         });
 
 
@@ -127,15 +131,37 @@ export class IngresosMonetariosComponent implements OnInit {
             this.ingresosPorTipoEventoOpt = this.config.pieChartOptions
             this.IngresosTipoData = [];
             this.IngresosTipoLabels = [];
-            this.IngresosPorTipoResponse = result;
+            this.IngresosPorTipoResponse = result.map(x => {
+                return {'nombre': x.nombre, 'cantidad': x.monto};
+            });
 
-            result.forEach(item => {
-                if (item.monto == null) { item.monto = 0; }
-                this.IngresosTipoData.push(item.monto);
+            this.IngresosPorTipoResponse.forEach(item => {
+                if (item.cantidad == null) { item.cantidad = 0; }
+                this.IngresosTipoData.push(item.cantidad);
                 this.IngresosTipoLabels.push(item.nombre);
                 });
+
+                this.changeDet.detectChanges();
         });
 
+    }
+    cargarIngresosEnElTiempo(fechaInicio: Date, fechaFin: Date) {
+        this._reporteServ.getIngresosEnElTiempo(
+            { 'fechaInicio': formatDate(fechaInicio, 'yyyy-MM-dd', 'es'),
+              'fechaFin': formatDate(fechaFin, 'yyyy-MM-dd', 'es')
+            }
+        ).subscribe(result => {
+            this.IngresosEnElTiempoResponse = result;
+            for (let i = 0; i < result.length; i++) {
+                    this.lineChartLabels.push(result[i].fecha)
+                    const  ingresosTotales = result[i].matriculas + result[i].eventos;
+                    this.lineChartData[0].data.push(ingresosTotales);
+                    this.lineChartData[1].data.push(result[i].matriculas);
+                    this.lineChartData[2].data.push(result[i].eventos);
+                }
+
+                this.changeDet.detectChanges();
+        });
     }
 
     public randomizeType(): void {
@@ -148,6 +174,10 @@ export class IngresosMonetariosComponent implements OnInit {
 
     public chartHovered(e: any): void {
        // console.log(e);
+    }
+
+    cambioDeFechasIngresosEnElTiempo(rango) {
+        this.cargarIngresosEnElTiempo(rango.inicio, rango.fin);
     }
 
 }

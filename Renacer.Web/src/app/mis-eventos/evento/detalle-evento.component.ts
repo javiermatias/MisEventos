@@ -17,7 +17,8 @@ export class DetalleEventoComponent implements OnInit,OnDestroy  {
   @Input() _item = new DetalleEvento(0);
   public espacios:EspacioComun[];
   public responsables:EncargadoEvento[];
-
+  searchText = '';
+  
   id: string;
   private sub: any;
   public diaSemanas:string[] = ["Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"];

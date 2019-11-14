@@ -32,7 +32,7 @@ export class AsistenciaComponent implements OnInit {
   public detalleEvento:DetalleEvento[];
   public detalleSelecionado:DetalleEvento;
   public showRecordatorio:Boolean=false;
-  
+  searchText = '';
   public mostrarEvento:Boolean=true;
 
   constructor(private _eventoServ:EventoServices

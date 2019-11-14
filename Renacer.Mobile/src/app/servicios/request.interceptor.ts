@@ -6,9 +6,9 @@ import { HTTP_INTERCEPTORS } from "@angular/common/http";
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let headers =req.headers;
+    let headers = req.headers;
 
-    if(sessionStorage['token']){
+    if (sessionStorage['token'] != null && sessionStorage['token'] !== '') {
       headers = req.headers.set(
         'Authorization', `Basic ${sessionStorage['token']}`
       )

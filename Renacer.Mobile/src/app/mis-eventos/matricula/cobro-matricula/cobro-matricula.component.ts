@@ -3,6 +3,8 @@ import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular
 import { Socio, SocioMatriculaServices, SocioServices } from '../../../servicios/socio.service';
 import { ToastrService } from 'ngx-toastr';
 import { Matricula } from '../../../modelos/matricula';
+import { ImprimirService } from '../../../servicios/imprimir.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'az-cobro-matricula',
@@ -20,7 +22,7 @@ export class CobroMatriculaComponent implements OnInit {
   @ViewChild('imprimirPDF', {static: false}) myPrintHtml: ElementRef;
 
   constructor(private _socioService: SocioServices, private _matriculaService: SocioMatriculaServices,
-    private  mensajeServ: ToastrService ) { }
+    private  mensajeServ: ToastrService, private _imprimir:ImprimirService ) { }
 
   ngOnInit() {
     this.getItems();
@@ -56,13 +58,14 @@ export class CobroMatriculaComponent implements OnInit {
   }
   
   printPDF(){
-    let popupWinindow = window.open('', '_blank', 'width=600,height=300,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no'); 
+    this._imprimir.imprimirMatricula(this.matricula);
+/*     let popupWinindow = window.open('', '_blank', 'width=600,height=300,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no'); 
     popupWinindow.document.open(); 
     popupWinindow.document.write(
       '<html><head><link rel="stylesheet" type="text/css" href="style.css" /> <style>td,th{border: 1px solid;margin:0;padding:0;}</style></head><body onload="window.print()">'  +
      this.myPrintHtml.nativeElement.innerHTML+
     '</html>'); 
-    popupWinindow.document.close(); 
+    popupWinindow.document.close();  */
   }
 
 

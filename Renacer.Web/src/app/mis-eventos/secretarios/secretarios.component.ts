@@ -21,10 +21,9 @@ export class SecretariosComponent implements OnInit {
 
   public secretarios =new Array<Secretario>();
   public showDetail: boolean = false;
-  public searchText: string = "";
+  public searchText = '';
 
   public _sexo = sexo; //traido de un enum
-
   public _estadoCivil=estadoCivil;
 
   constructor(

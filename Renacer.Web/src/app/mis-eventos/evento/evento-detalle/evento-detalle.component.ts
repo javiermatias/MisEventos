@@ -18,7 +18,8 @@ export class EventoDetalleComponent implements OnInit {
   listaInscripcion:Array<Inscripcion>;
   listaInscripcionEvento:Array<Inscripcion>;
   inscripcionSocio:Inscripcion;
-
+  searchText = '';
+  
   confirmarInscripcion:Boolean=false;
   constructor(private router: Router, private route: ActivatedRoute, private _eventoService:EventoServices,
     private _usersService:UserServices, private inscripcionServ:InscripcionServices,

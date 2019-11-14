@@ -17,6 +17,7 @@ export class AsistenciasSocioComponent implements OnInit {
   cantidadTomoAsistencia:number=0;
 
   cantidadAsistio:number=0;
+  searchText = '';
 
   porcentajeAsistencia:number=0;
   listaAsistencias:AsistenciaSocio[] = [];

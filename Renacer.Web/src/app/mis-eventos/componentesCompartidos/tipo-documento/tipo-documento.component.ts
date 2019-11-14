@@ -1,38 +1,39 @@
-import { Component, OnInit,Input,OnChanges,Output,EventEmitter } from '@angular/core';
-import {TipoDocumentoServices,TipoDocumento} from '../../../servicios/tipo-documento.service';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
+import { TipoDocumentoServices, TipoDocumento } from '../../../servicios/tipo-documento.service';
 
 @Component({
   selector: 'az-tipo-documento',
   templateUrl: './tipo-documento.component.html',
   styleUrls: ['./tipo-documento.component.scss']
 })
-export class TipoDocumentoComponent implements OnInit {
+export class TipoDocumentoComponent
+        implements OnInit, OnChanges {
 
- 
-  @Input() tipoDoc:TipoDocumento;
+  @Input() tipoDoc: TipoDocumento;
   @Output() seleccionTipoDoc = new EventEmitter<TipoDocumento>();
-  public tipoDocAux:TipoDocumento;
-  public tiposDocumentos_1 = new Array<TipoDocumento>();
-  constructor(private _dbServices:TipoDocumentoServices) {
+  public tipoDocAux: TipoDocumento;
+  public items = new Array<TipoDocumento>();
+  item: any;
+  constructor(private _dbServices: TipoDocumentoServices) {
   }
 
   ngOnInit() {
     this.getTiposDoc();
   }
 
-  ngOnChanges(){
+  ngOnChanges() {
     this.tipoDocAux = this.tipoDoc;
-    for(var i = 0; i < this.tiposDocumentos_1.length;i++){
-      var itemAux = this.tiposDocumentos_1[i];
-      if(this.tipoDoc.id == itemAux.id){
-        this.tiposDocumentos_1[i] = this.tipoDoc;
+    for (let i = 0; i < this.items.length; i++) {
+      const itemAux = this.items[i];
+      if (this.tipoDoc.id === itemAux.id) {
+        this.items[i] = this.tipoDoc;
       }
     }
   }
 
-  actualizarTipoDoc(){
+  actualizarTipoDoc() {
     if (this.tipoDoc) {
-      var tipoDocAux2 = new TipoDocumento();
+      const tipoDocAux2 = new TipoDocumento();
       tipoDocAux2.id = this.tipoDoc.id;
       tipoDocAux2.nombre = this.tipoDoc.nombre;
       this.tipoDoc.id = this.tipoDocAux.id;
@@ -42,14 +43,14 @@ export class TipoDocumentoComponent implements OnInit {
 
   }
 
-  getTiposDoc(){
+  getTiposDoc() {
     this._dbServices.query({}).subscribe(items => {
-      this.tiposDocumentos_1 = [];
-      for(var i = 0; i < items.length;i++){
-        var itemAux = new TipoDocumento();
+      this.items = [];
+      for (let i = 0; i < items.length; i++) {
+        const itemAux = new TipoDocumento();
         itemAux.id = items[i].id;
         itemAux.nombre = items[i].nombre;
-        this.tiposDocumentos_1.push(itemAux);
+        this.items.push(itemAux);
       }
     });
   }

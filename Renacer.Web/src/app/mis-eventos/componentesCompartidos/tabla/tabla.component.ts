@@ -24,6 +24,7 @@ export class TablaComponent implements OnInit {
   @ViewChild('content', { static: false }) content: ElementRef;
 
   optionsCsv: any;
+  searchText = '';
 
   constructor(private csvServ: CsvServices, private excelService: ExcelService) { }
 
