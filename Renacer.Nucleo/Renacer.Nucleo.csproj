@@ -112,6 +112,7 @@
     <Compile Include="Entidades\Calendario.cs" />
     <Compile Include="Entidades\CambioContrasenia.cs" />
     <Compile Include="Entidades\DeudaCuota.cs" />
+    <Compile Include="Entidades\ProximoEvento.cs" />
     <Compile Include="Entidades\RatingEvento.cs" />
     <Compile Include="Entidades\Secretario.cs" />
     <Compile Include="Entidades\Cliente.cs" />
@@ -154,6 +155,14 @@
     <Compile Include="Migrations\201911090000083_estadoEventoPago.Designer.cs">
       <DependentUpon>201911090000083_estadoEventoPago.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911150626525_agregoEstadoEncargado.cs" />
+    <Compile Include="Migrations\201911150626525_agregoEstadoEncargado.Designer.cs">
+      <DependentUpon>201911150626525_agregoEstadoEncargado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911150634510_cambiosEncargado.cs" />
+    <Compile Include="Migrations\201911150634510_cambiosEncargado.Designer.cs">
+      <DependentUpon>201911150634510_cambiosEncargado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModeloRenacer.cs" />
     <Compile Include="myMigrationSQLGenerator.cs" />
@@ -192,6 +201,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911090000083_estadoEventoPago.resx">
       <DependentUpon>201911090000083_estadoEventoPago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911150626525_agregoEstadoEncargado.resx">
+      <DependentUpon>201911150626525_agregoEstadoEncargado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911150634510_cambiosEncargado.resx">
+      <DependentUpon>201911150634510_cambiosEncargado.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

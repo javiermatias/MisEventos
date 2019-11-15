@@ -13,6 +13,7 @@ import { SocioChartComponent } from './socio-chart/socio-chart.component';
 import { ChartsModule } from 'ng2-charts';
 import 'chart.js/dist/Chart.js';
 import { SharedModule } from '../../mis-eventos/componentesCompartidos/shared.module';
+import { ProximosEventosComponent } from './proximos-eventos/proximos-eventos.component';
 
 export const routes = [
   { path: '', component: DashboardComponent, pathMatch: 'full' }
@@ -34,7 +35,8 @@ export const routes = [
     ChatComponent,
     FeedComponent,
     DatamapComponent,
-    SocioChartComponent
+    SocioChartComponent,
+    ProximosEventosComponent
   ]
 })
 

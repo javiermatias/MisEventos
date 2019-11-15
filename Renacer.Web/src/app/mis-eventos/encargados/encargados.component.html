@@ -33,6 +33,10 @@
                                         <th><mfDefaultSorter by="nombre"><strong>Nombre</strong></mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="apellido"><strong>Apellido</strong></mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="telefono"><strong>Dni</strong></mfDefaultSorter></th>
+                                        <th>
+                                                <mfDefaultSorter by="fechaCreacion"><strong>Estado</strong></mfDefaultSorter>
+                                            </th>
+                                        
                                         <th><mfDefaultSorter by="accion"><strong>Acción</strong></mfDefaultSorter></th>
                                        <!--  <th><mfDefaultSorter by="fechaCreacion">Fecha Alta</mfDefaultSorter></th>
                                         <th><mfDefaultSorter by="fechaCreacion">Fecha Modificacion</mfDefaultSorter></th> -->
@@ -44,8 +48,10 @@
                                         <td>{{item.nombre}}</td>
                                         <td>{{item.apellido}}</td>
                                         <td>{{item.nroDocumento}}</td>
-                                    <!--     <td>{{item.fechaCreacion | date:'medium'}}</td>
-                                        <td>{{item.fechaModificacion | date:'medium'}}</td> -->
+                                        <td>
+                                                <span class="alert-success" *ngIf="item.estado == 'Activo'">Activo</span>
+                                                <span class="alert-danger" *ngIf="item.estado == 'Baja'">Baja</span>
+                                        </td>
                                         <td><a style="color: #014c8c;cursor:pointer;" (click)="verItem(item)">Ver detalle</a>
                                         <td>
                                     </tr>
@@ -159,16 +165,16 @@
                                 </div>
                             </div>
 
-                            <div class="row" style="display:none">
+                        <!--     <div class="row" style="display:none">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="nombre">descripcion</label>
+                                        <label for="nombre">Descripción</label>
                                         <input type="text" class="form-control" id="descripcion"
                                                #descripcion="ngModel" name="descripcion" [(ngModel)]="_item.descripcion">
                                         <span class="help-block">Aquí puedes agregar cualquier dato relevante del Encargado de evento.</span>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="row">
                                 <div class="col col-lg-12" *ngIf="_item.domicilio">
@@ -179,6 +185,9 @@
 
                             <button type="submit" class="btn btn-main" [disabled]="!encargadoForm.form.valid">Guardar</button>
                             <button (click)="limpiarForm();" type="button" style="margin-left: 30px;" class="btn btn-default">Cancelar</button>
+                            <button style="margin-left: 30px;" *ngIf="_item.id > 0" class="btn btn-danger"
+                                    (click)="eliminarItem(_item)">Dar de baja <i
+                                        class="fa fa-trash"></i></button>
                         </form>
                     </div>
                 <!--     <div class="col-xl-3 col-lg-3 col-12">

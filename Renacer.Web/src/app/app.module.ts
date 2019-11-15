@@ -47,6 +47,7 @@ import { ExcelService } from './servicios/excel.service';
 import { AngularMyDatePickerModule } from 'angular-mydatepicker';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { ProximoEventoService } from './servicios/proximo-evento.service';
 
 
 
@@ -109,6 +110,7 @@ registerLocaleData(localeEs, 'es-AR');
     CsvServices,
     ImprimirService,
       ExcelService,
+      ProximoEventoService ,
     { provide: LOCALE_ID, useValue: 'es-AR' },
     DatePipe],
     bootstrap: [AppComponent]
