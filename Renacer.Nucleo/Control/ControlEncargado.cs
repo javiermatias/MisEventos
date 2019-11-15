@@ -39,7 +39,7 @@ namespace Renacer.Nucleo.Control
                 }
 
                 if (encargado.id == 0) encargado.fechaCreacion = DateTime.Now;
-                if (encargado.id > 0) encargado.fechaModificacion = DateTime.Now;
+                //if (encargado.id > 0) encargado.fechaModificacion = DateTime.Now;
                 encargado.idTipoDoc = encargado.tipoDoc.id;
 
                 using (var db = new ModeloRenacer())
@@ -91,7 +91,7 @@ namespace Renacer.Nucleo.Control
                         Include("domicilio").
                         Where(x => x.id.Equals(id)).FirstOrDefault();
 
-                    itemEncargado.listaTags = db.tag.Where(x => x.listaEncargados.Any(xy => xy.id.Equals(id))).ToList();
+                    //itemEncargado.listaTags = db.tag.Where(x => x.listaEncargados.Any(xy => xy.id.Equals(id))).ToList();
                     return itemEncargado;
                 }
             }

@@ -19,13 +19,7 @@ namespace Renacer.WebAPI.Controllers
 
             if (search == "sitieneinscriptos") {
                 return ControlEvento.devolverInstancia().devolverTodosConInscriptos().Where(ev => ev.listaInscripciones.Count > 0).ToList();
-                //foreach (var evento in listaEventos)
-                //{
-                //    if (evento.listaInscripciones.Count>0)
-                //    {
-
-                //    }
-                //}
+          
             }
 
             return ControlEvento.devolverInstancia().devolverTodos(search);

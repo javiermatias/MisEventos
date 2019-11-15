@@ -629,6 +629,24 @@ namespace Renacer.Nucleo.Control
             return null;
         }
 
+        public List<Evento> devolverProximosEventos()
+        {
+            try
+            {
+                using (var db = new ModeloRenacer())
+                {
+                    return db.evento.Include("listaInscripciones")
+                        .Where(ev => ev.fechaBaja == null && !ev.gratuito).OrderBy(item => item.fechaDesde)
+                        .ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                ServicioSentry.devolverSentry().informarExcepcion(ex);
+            }
+            return null;
+        }
+
 
 
     }

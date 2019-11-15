@@ -41,7 +41,7 @@ namespace Renacer.WebAPI
         public void Put([FromBody]Encargado value)
         {
             // var encargado = ControlEncargado.devolverInstancia().devolver(id);
-            value.fechaModificacion = DateTime.Now;
+            //value.fechaModificacion = DateTime.Now;
             ControlEncargado.devolverInstancia().grabar(value);
         }
 

@@ -235,6 +235,7 @@
     <Compile Include="Controllers\MatriculaController.cs" />
     <Compile Include="Controllers\MatriculaSocioController.cs" />
     <Compile Include="Controllers\PagoController.cs" />
+    <Compile Include="Controllers\ProximoEventoController.cs" />
     <Compile Include="Controllers\RatingEventoController.cs" />
     <Compile Include="Controllers\RecordatorioController.cs" />
     <Compile Include="Controllers\ReporteController.cs" />
