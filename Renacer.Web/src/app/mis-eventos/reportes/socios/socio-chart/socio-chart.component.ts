@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation, OnInit, NgZone } from '@angular/core';
-import { AppConfig } from '../../../app.config';
-import { ReporteServices } from '../../../servicios/reporte.service';
-import { CsvServices, RequestCsv } from '../../../servicios/csv.service';
+import { AppConfig } from '../../../../app.config';
+import { ReporteServices } from '../../../../servicios/reporte.service';
+import { CsvServices, RequestCsv } from '../../../../servicios/csv.service';
 
 @Component({
     selector: 'az-socio-chart',
@@ -100,7 +100,7 @@ export class SocioChartComponent
                 }
             });
 
-            setTimeout(() => { this.randomizeType(); }, 0);
+            setTimeout(() => { this.randomizeType(); }, 100);
         })
     }
 

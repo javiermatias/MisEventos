@@ -24,15 +24,17 @@ export class IngresosMonetariosComponent implements OnInit {
 
     public pieChartType = 'pie';
 
-    public IngresosTipoLabels: Array<string>;
+  
     public IngresosTipoData: Array<number>;
-
+    public IngresosTipoLabels: Array<string>;
+    public ingresosPorTipoEventoOpt: any;
+    public pieChartColors: any[];
     public IngresosTipoEventoLabels: Array<string>;
     public IngresosTipoEventoData: Array<number>;
 
+    
+   
 
-    public pieChartColors: any[];
-    public ingresosPorTipoEventoOpt: any;
     IngresosTipoEventoResponse = [
           {cantidad: 3, nombre: 'Curso'}
         , {cantidad: 6, nombre: 'Taller'}
@@ -126,8 +128,10 @@ export class IngresosMonetariosComponent implements OnInit {
             this.IngresosTipoData.push(item.cantidad);
             this.IngresosTipoLabels.push(item.nombre);
         });
-
-        this._reporteServ.getIngresosPorTipo().subscribe(result => {
+        //this.fechaRangoInicial , this.fechaRangoFin
+        this._reporteServ.getIngresosPorTipo({ 'fechaInicio': formatDate(this.fechaRangoInicial, 'yyyy-MM-dd', 'es'),
+        'fechaFin': formatDate(this.fechaRangoFin, 'yyyy-MM-dd', 'es')
+      }).subscribe(result => {
             this.ingresosPorTipoEventoOpt = this.config.pieChartOptions
             this.IngresosTipoData = [];
             this.IngresosTipoLabels = [];
@@ -151,6 +155,7 @@ export class IngresosMonetariosComponent implements OnInit {
               'fechaFin': formatDate(fechaFin, 'yyyy-MM-dd', 'es')
             }
         ).subscribe(result => {
+            console.log(result);
             this.IngresosEnElTiempoResponse = result;
             for (let i = 0; i < result.length; i++) {
                     this.lineChartLabels.push(result[i].fecha)

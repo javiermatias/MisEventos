@@ -224,12 +224,13 @@ group by DAYOFWEEK(fechaAsistencia)
             return Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
         }
 
-        public List<Dictionary<string, object>> GetIngresosPorTipo()
+        public List<Dictionary<string, object>> GetIngresosPorTipo(FilterDateRange rango)
         {
             var DbHelper = new DBBase(strConnection);
-            var sql = $@"SELECT 'matriculas' as nombre, SUM(pago) AS monto FROM matriculaxsocios
+            var sql = $@"SELECT 'Matriculas' as nombre, SUM(pago) AS monto, COUNT(pago) AS cantidad FROM matriculaxsocios 
+                   where {filterRangeDate(rango, "fechaPago")} 
                         union all 
-                        SELECT 'eventos' as nombre, SUM(monto) AS monto FROM pago where estaPagado = 1 ";
+                        SELECT 'Eventos' as nombre, SUM(monto) AS monto, COUNT(monto) FROM pago where estaPagado = 1 AND {filterRangeDate(rango, "fechaCobro")}";
             return Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
         }
 
@@ -259,6 +260,34 @@ group by DAYOFWEEK(fechaAsistencia)
             return Helper.Helper.ConvertDT(tabla);
 
         }
+
+
+        public List<Dictionary<string, object>> CantidadIngresosEnElTiempo(FilterDateRange rango)
+        {
+            var DbHelper = new DBBase(strConnection);
+            var sql = $@"
+                SELECT SUM(aux.matriculas) as 'Matriculas',SUM(aux.eventos) as 'Eventos' from (
+                SELECT
+	                COUNT(pago) AS 'matriculas',
+	                0 as 'eventos',
+	                DATE_FORMAT(fechaPago, '%Y-%m') as 'fecha'
+                FROM
+	                matriculaxsocios  where {filterRangeDate(rango, "fechaPago")}   
+                UNION ALL
+                SELECT
+	                0 AS 'matriculas',
+	                COUNT(monto) as 'eventos',
+	                DATE_FORMAT(fechaCobro, '%Y-%m') as 'fecha'
+                FROM pago WHERE estaPagado = 1 AND {filterRangeDate(rango, "fechaCobro")} 
+                    group by fecha	) as aux 
+";
+
+            var tabla = DbHelper.ExecuteDataTable(sql);
+            return Helper.Helper.ConvertDT(tabla);
+
+        }
+
+
 
         public string filterRangeDate(FilterDateRange rango, string nombreCampo = "fecha") {
             var filter = "1=1";

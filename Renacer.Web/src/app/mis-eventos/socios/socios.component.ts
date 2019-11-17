@@ -81,8 +81,10 @@ export class SociosComponent implements OnInit {
   saveItem(item: Socio): any {
     item.fechaNacimiento = this.fecha;    
       this._socioService.save(item).subscribe(resp => {
-        item = resp;
-        this.socios.push(item);
+        if(item.id==0){
+          this.socios.push(item);
+        }
+        item = resp;       
         this.showDetail = false;
         this.mensajeServ.success('Se han guardado los cambios!', 'Aviso!');
       });
