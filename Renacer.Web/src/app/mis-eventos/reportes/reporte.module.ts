@@ -17,12 +17,13 @@ import { RankingComponent } from './eventos/ranking/ranking.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { DeudoresCuotaComponent } from './deudores-cuota/deudores-cuota.component';
 import { EventoChartComponent } from './eventos/evento-chart/evento-chart.component';
-
 import { ChartsModule } from 'ng4-charts';
 import 'chart.js/dist/Chart.js';
 import { IngresosMonetariosComponent } from './ingresos-monetarios/ingresos-monetarios.component';
 import { AsistenciasComponent } from './eventos/asistencias/asistencias.component';
 import { ListaDeudoresComponent } from './deudores-cuota/lista-deudores/lista-deudores.component';
+import { SocioChartComponent } from './socios/socio-chart/socio-chart.component';
+import { IngresosComponent } from './ingresos/ingresos.component';
 
 
 
@@ -36,7 +37,9 @@ export const routes = [
   { path: 'ranking', component: RankingComponent, data: { breadcrumb: 'Ranking' } },//
   { path: 'ingresos', component: IngresosMonetariosComponent, data: { breadcrumb: 'Ingresos' } },
   { path: 'asistencias', component: AsistenciasComponent, data: { breadcrumb: 'Asistencias' } },
-  { path: 'deudores', component: DeudoresCuotaComponent, data: { breadcrumb: 'Deudores' } }
+  { path: 'deudores', component: DeudoresCuotaComponent, data: { breadcrumb: 'Deudores' } },
+  { path: 'crecimiento-socios', component: SocioChartComponent, data: { breadcrumb: 'Socios' } },
+  { path: 'ingresos12', component: IngresosComponent , data: { breadcrumb: 'Socios' } },
 ];
 
 @NgModule({
@@ -64,7 +67,9 @@ export const routes = [
     EventoChartComponent,
     IngresosMonetariosComponent,
     AsistenciasComponent,
-    ListaDeudoresComponent
+    ListaDeudoresComponent,
+    SocioChartComponent,
+    IngresosComponent
   ]
 })
 export class ReporteModule { }

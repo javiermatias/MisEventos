@@ -2,6 +2,7 @@
 using Renacer.Nucleo.Servicio;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
@@ -48,7 +49,15 @@ namespace Renacer.Nucleo.Control
                         secretario.tipoDoc = null;
                     }
 
-                    db.secretario.Add(secretario);
+                    if (secretario.id == 0)
+                    {
+                        db.Entry(secretario).State = EntityState.Added;
+                    }
+                    else {
+                        db.Entry(secretario).State = EntityState.Modified;
+                    }
+
+                    db.secretario.AddOrUpdate(secretario);
                     db.SaveChanges();
                 }
             }

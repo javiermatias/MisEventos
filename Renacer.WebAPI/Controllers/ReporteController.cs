@@ -87,9 +87,9 @@ namespace Renacer.WebAPI.Controllers
         [ActionName("ingresosportipo")]
         [Route("ingresosportipo")]
         [AcceptVerbs("POST")]
-        public List<Dictionary<string, object>> GetIngresosPorTipo()
+        public List<Dictionary<string, object>> GetIngresosPorTipo([FromBody] FilterDateRange filter)
         {
-            return ControlReporte.GetInstance().GetIngresosPorTipo();
+            return ControlReporte.GetInstance().GetIngresosPorTipo(filter);
         }
 
         [ActionName("ingresosportipoevento")]
@@ -106,6 +106,11 @@ namespace Renacer.WebAPI.Controllers
         public List<Dictionary<string, object>> GetIngresosEnElTiempo([FromBody] FilterDateRange filter)
         {
             return ControlReporte.GetInstance().GetIngresosEnElTiempo(filter);
+        }
+
+        public List<Dictionary<string, object>> CantidadIngresosEnElTiempo([FromBody] FilterDateRange filter)
+        {
+            return ControlReporte.GetInstance().CantidadIngresosEnElTiempo(filter);
         }
 
         [ActionName("asistenciasportipoevento")]
