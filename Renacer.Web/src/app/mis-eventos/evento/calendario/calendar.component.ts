@@ -154,7 +154,8 @@ cargarEventos() {
         id: items[i].id,
         idEvento: items[i].idEvento,
         dia: items[i].dia,
-        encargado: items[i].descripcion,
+        descripcion:items[i].descripcion,
+        encargado: items[i].encargado,
         aula: items[i].aula
       }
       this.eventos = this.eventos.concat(itemAux);

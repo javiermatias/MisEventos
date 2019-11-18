@@ -147,7 +147,7 @@
                  
                              
                   <div style="padding-top: 50px;">
-                        <app-tabla [data]="IngresosPorTipoResponse" name="ingresos_por_tipo" [config]="tablaConfig">
+                        <app-tabla [data]="IngresosPorTipoResponse" name="ingresos_por_tipo" [config]="tablaColumnasTipoEvento">
                             </app-tabla>
                   </div>   
                   
@@ -162,3 +162,22 @@
       
        
       </div>
+
+        <div class="row" *ngIf="mostrarGraficoTipoEvento">
+                <div class="col-xl-12 col-lg-12 col-12 bottom-30">
+                <az-grafico-torta *ngIf="IngresosTipoLabels.length > 0 && IngresosTipoData.length > 0"
+                tituloGrafico="Ingresos por tipos de eventos" 
+                ChartType="doughnut"
+                [ChartLabels]="IngresosTipoLabels"
+                [ChartData]="IngresosTipoData"
+                [tabla]="tabla"
+                ></az-grafico-torta>
+            </div>
+        </div>
+          
+       
+   
+ 
+    
+
+          

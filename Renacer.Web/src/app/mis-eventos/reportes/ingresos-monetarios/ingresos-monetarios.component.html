@@ -11,9 +11,13 @@
         <div class="media">
           <div class="card-block widget-body">
             <div class="chart-outher">
-              <canvas baseChart [data]="IngresosTipoEventoData" [labels]="IngresosTipoEventoLabels"
-                [options]="ingresosPorTipoEventoOpt" [colors]="pieChartColors" [chartType]="'pie'"
-                (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+              <canvas baseChart [data]="IngresosTipoEventoData"
+               [labels]="IngresosTipoEventoLabels"
+                [options]="ingresosPorTipoEventoOpt" 
+                [colors]="pieChartColors" 
+                [chartType]="'pie'"
+                (chartHover)="chartHovered($event)" 
+                (chartClick)="chartClicked($event)"></canvas>
             </div>
 
           </div>

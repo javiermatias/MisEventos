@@ -24,6 +24,7 @@ import { AsistenciasComponent } from './eventos/asistencias/asistencias.componen
 import { ListaDeudoresComponent } from './deudores-cuota/lista-deudores/lista-deudores.component';
 import { SocioChartComponent } from './socios/socio-chart/socio-chart.component';
 import { IngresosComponent } from './ingresos/ingresos.component';
+import { GraficoTortaComponent } from './graficos-compartidos/grafico-torta/grafico-torta.component';
 
 
 
@@ -69,7 +70,8 @@ export const routes = [
     AsistenciasComponent,
     ListaDeudoresComponent,
     SocioChartComponent,
-    IngresosComponent
+    IngresosComponent,
+    GraficoTortaComponent
   ]
 })
 export class ReporteModule { }

@@ -6,6 +6,7 @@ import {formatDate} from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
 import { Array } from 'core-js';
+import { TablaGrafico } from '../../../modelos/tabla-grafico';
 
 @Component({
   selector: 'az-ingresos',
@@ -61,7 +62,7 @@ IngresosPorTipoResponse = [
 , {cantidad: 8, nombre: 'Matrículas', monto:500}
 ];
 
-tablaConfig = {
+tablaColumnasTipoEvento = {
 columnas: [
   {name: 'nombre', title: 'Nombre', type: 'text'}
 , {name: 'cantidad', title: 'Cantidad', type: 'text'},
@@ -69,6 +70,7 @@ columnas: [
 ]
 }
 
+tabla: TablaGrafico;
 
 //rangos de fechas
    inputInicial = new Date(new Date().getFullYear(), 0, 1);
@@ -84,6 +86,8 @@ columnas: [
 
 //
   constructor(private _appConfig:AppConfig,private _reporteServ: ReporteServices) {
+    this.tabla = new TablaGrafico("ingresos_por_tipo_de_evento",this.tablaColumnasTipoEvento);
+  
     this.config = this._appConfig.config;
     this.configFn = this._appConfig; 
     this.pieChartColors = this.config.pieChartColors;
@@ -158,6 +162,7 @@ columnas: [
         this.IngresosPorTipoResponse = result.map(x => {
             return {'nombre': x.nombre, 'cantidad': x.cantidad, 'monto': x.monto};
         });
+        this.tabla.data =this.IngresosPorTipoResponse;
 
         this.IngresosPorTipoResponse.forEach(item => {
             if (item.monto == null) { item.monto= 0; }
@@ -220,18 +225,7 @@ columnas: [
     });
 }
 
-/* refresh_chart() {
-  setTimeout(() => {
-      //console.log(this.datasets_lines_copy);
-      //console.log(this.datasets_lines);
-      if (this.chart && this.chart.chart && this.chart.chart.config) {
-           this.chart.chartType= 'bar';
-          this.chart.chart.config.data.labels = this.lineChartLabels;
-          this.chart.chart.config.data.datasets = this.lineChartData;
-          this.chart.chart.update();
-      }
-  },1000);
-} */
+
 
 
 public chartClicked(e:any):void {
@@ -258,6 +252,7 @@ public chartClicked(e:any):void {
 
 
       filtrar(){
-        this.cargarIngresosEnElTiempo(this.fechaRangoInicial, this.fechaRangoFin)
+        this.cargarIngresosEnElTiempo(this.fechaRangoInicial, this.fechaRangoFin);
+        this.cantidadIngresosEnElTiempo(this.fechaRangoInicial, this.fechaRangoFin);
       }
 }

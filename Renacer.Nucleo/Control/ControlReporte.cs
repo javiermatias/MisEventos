@@ -179,21 +179,43 @@ GROUP BY
         public List<Dictionary<string, object>> GetAsistenciasPorDiaDeLaSemana()
         {
             var DbHelper = new DBBase(strConnection);
-            var sql = @"
-select count(id) as cantidad,
-CASE
-WHEN DAYOFWEEK(fechaAsistencia) = 1 THEN 'Lunes'
-WHEN DAYOFWEEK(fechaAsistencia) = 2 THEN 'Martes'
-WHEN DAYOFWEEK(fechaAsistencia) = 3 THEN 'Miércoles'
-WHEN DAYOFWEEK(fechaAsistencia) = 4 THEN 'Jueves'
-WHEN DAYOFWEEK(fechaAsistencia) = 5 THEN 'Viernes'
-WHEN DAYOFWEEK(fechaAsistencia) = 6 THEN 'Sabado'
-WHEN DAYOFWEEK(fechaAsistencia) = 7 THEN 'Domingo'
-END as dia
-from asistencia
-where DAYOFWEEK(fechaAsistencia) is not null
-group by DAYOFWEEK(fechaAsistencia)
-";
+            //            var sql = @"
+            //select count(id) as cantidad,
+            //CASE
+            //WHEN DAYOFWEEK(fechaAsistencia) = 1 THEN 'Lunes'
+            //WHEN DAYOFWEEK(fechaAsistencia) = 2 THEN 'Martes'
+            //WHEN DAYOFWEEK(fechaAsistencia) = 3 THEN 'Miércoles'
+            //WHEN DAYOFWEEK(fechaAsistencia) = 4 THEN 'Jueves'
+            //WHEN DAYOFWEEK(fechaAsistencia) = 5 THEN 'Viernes'
+            //WHEN DAYOFWEEK(fechaAsistencia) = 6 THEN 'Sabado'
+            //WHEN DAYOFWEEK(fechaAsistencia) = 7 THEN 'Domingo'
+            //END as dia
+            //from asistencia
+            //where DAYOFWEEK(fechaAsistencia) is not null
+            //group by DAYOFWEEK(fechaAsistencia)
+            //";
+
+            var sql = @"SELECT COUNT(asis.id)AS cantidad, CASE  WHEN DAYOFWEEK(det.fechaDesde) = 1 THEN 'Domingo'  WHEN DAYOFWEEK(det.fechaDesde) = 2 
+THEN 'LUNES'  WHEN DAYOFWEEK(det.fechaDesde) = 3 THEN 'Martes'
+
+WHEN DAYOFWEEK(det.fechaDesde) = 4 THEN 'Miercoles'
+
+WHEN DAYOFWEEK(det.fechaDesde) = 5 THEN 'Jueves'
+
+WHEN DAYOFWEEK(det.fechaDesde) = 6 THEN 'Viernes'
+
+WHEN DAYOFWEEK(det.fechaDesde) = 7 THEN 'Sabado'
+
+END AS dia   FROM asistencia AS asis, detalleevento AS det
+
+WHERE asis.idDetalleEvento = det.id AND det.asistencia = 1 AND DAYOFWEEK(det.fechaDesde) IS NOT NULL  GROUP BY DAYOFWEEK(det.fechaDesde)
+            ";
+
+       
+
+
+
+
             return Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
 
         }
