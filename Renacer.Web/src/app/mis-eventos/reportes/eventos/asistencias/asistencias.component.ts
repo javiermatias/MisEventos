@@ -1,6 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AppConfig } from '../../../../app.config';
 import {ReporteServices} from '../../../../servicios/reporte.service';
+import { EspacioComun, EspacioServices } from '../../../../servicios/espacio.service';
+import {formatDate} from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
 
 
 @Component({
@@ -35,6 +39,14 @@ export class AsistenciasComponent implements OnInit {
     public pieChartOptions: any;
     public loading = true;
 
+    inputInicial = new Date(new Date().getFullYear(), 0, 1);
+    inputFinal = new Date();
+    fechaRangoInicial = new Date(new Date().getFullYear(), 0, 1);
+    fechaRangoFin = new Date();
+    public espacios:EspacioComun[];
+    public espacio:EspacioComun;
+
+    public diasSemanas=["Lunes","Martes","Miercoles","Jueves","Viernes"];
 
     tablaConfig = {
         columnas: [
@@ -44,7 +56,7 @@ export class AsistenciasComponent implements OnInit {
       }
 
     constructor(private _appConfig: AppConfig,
-                private _reporteServ: ReporteServices) {
+                private _reporteServ: ReporteServices,private espacioServ:EspacioServices) {
         this.config = this._appConfig.config;
         this.configFn = this._appConfig;
         this.lineChartColors = this.config.lineChartColors;
@@ -54,7 +66,11 @@ export class AsistenciasComponent implements OnInit {
     }
 
     ngOnInit() {
-    this.graficarAsistenciasPorDiaDeLaSemana();
+        registerLocaleData(localeEs, 'es');
+    this.espacioServ.query({}).subscribe(items => {
+        this.espacios = items;
+      });
+    this.graficarAsistenciasPorDiaDeLaSemana(this.fechaRangoInicial, this.fechaRangoFin);
     this.graficarAsistencias();
     }
 
@@ -65,6 +81,7 @@ export class AsistenciasComponent implements OnInit {
         this.InasistenciasTipoEventoLabels = ['Cargando...'];
 
         this._reporteServ.getAsistenciasPorTipoEvento().subscribe(result => {
+           
             this.AsistenciasTipoEventoData = [];
             this.AsistenciasTipoEventoLabels = [];
             this.InasistenciasTipoEventoData = [];
@@ -72,8 +89,13 @@ export class AsistenciasComponent implements OnInit {
 
             this.AsistenciasTipoEventoResponse = [];
             this.InasistenciasTipoEventoResponse = [];
+         
+                
+           
+                
+            
 
-            result.forEach(item => {
+             result.forEach(item => {
                 this.AsistenciasTipoEventoData.push(item.asistencias);
                 this.AsistenciasTipoEventoLabels.push(item.nombre);
                 this.InasistenciasTipoEventoData.push(item.inscriptos - item.asistencias);
@@ -87,21 +109,37 @@ export class AsistenciasComponent implements OnInit {
     }
 
 
-    graficarAsistenciasPorDiaDeLaSemana() {
+    graficarAsistenciasPorDiaDeLaSemana(fechaInicio: Date, fechaFin: Date) {
+        let arregloTemporal =  [];
         this.lineChartLabels = ['Cargando...'];
         this.AsistenciasPorDiaDeLaSemanaData = [
             {data: [], label: 'cargando...' }
         ];
 
-        this._reporteServ.graficarAsistenciasPorDiaDeLaSemana().subscribe(result => {
+        this._reporteServ.graficarAsistenciasPorDiaDeLaSemana({ 'fechaInicio': formatDate(fechaInicio, 'yyyy-MM-dd', 'es'),
+        'fechaFin': formatDate(fechaFin, 'yyyy-MM-dd', 'es')
+      }).subscribe(result => {
             this.AsistenciasPorDiaDeLaSemanaData = [
                 {data: [], label: 'dias' }
             ];
 
             this.AsistenciasPorDiaDeLaSemanaResponse = [];
-
             this.lineChartLabels = [];
-            result.forEach(item => {
+            for (let j = 0; j < this.diasSemanas.length; j++) {
+                for (let index = 0; index < result.length; index++) {
+                if(result[index].dia ==  this.diasSemanas[j] ){
+                       arregloTemporal.push(result[index]);
+                       break;
+                }
+             
+                }
+            }
+            console.log(arregloTemporal);
+
+
+
+            arregloTemporal.forEach(item => {
+            
                 this.lineChartLabels.push(item.dia);
                 this.AsistenciasPorDiaDeLaSemanaData[0].data.push(item.cantidad);
                 this.AsistenciasPorDiaDeLaSemanaResponse.push({'nombre': item.dia, 'cantidad': item.cantidad});
@@ -122,5 +160,20 @@ export class AsistenciasComponent implements OnInit {
          // console.log(e);
       }
 
+
+      actualizarFechaInicio(fecha: string){
+        console.log(fecha);
+        this.fechaRangoInicial = new Date(fecha);
+        }
+        actualizarFechaFin(fecha: string){
+          console.log(fecha);
+          this.fechaRangoFin = new Date(fecha);
+        }
+
+        filtrar(){
+            this.graficarAsistenciasPorDiaDeLaSemana(this.fechaRangoInicial, this.fechaRangoFin);
+            //this.cantidadIngresosEnElTiempo(this.fechaRangoInicial, this.fechaRangoFin);
+            //this.ingresosPorTipoEvento(this.fechaRangoInicial, this.fechaRangoFin);
+          }
   }
 

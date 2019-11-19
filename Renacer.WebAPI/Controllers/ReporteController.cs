@@ -95,9 +95,9 @@ namespace Renacer.WebAPI.Controllers
         [ActionName("ingresosportipoevento")]
         [Route("ingresosportipoevento")]
         [AcceptVerbs("POST")]
-        public List<Dictionary<string, object>> GetIngresosPorTipoEvento()
+        public List<Dictionary<string, object>> GetIngresosPorTipoEvento([FromBody] FilterDateRange filter)
         {
-            return ControlReporte.GetInstance().GetIngresosPorTipoEvento();
+            return ControlReporte.GetInstance().GetIngresosPorTipoEvento(filter);
         }
 
         [ActionName("ingresoseneltiempo")]
@@ -125,17 +125,17 @@ namespace Renacer.WebAPI.Controllers
         [ActionName("inasistenciasportipoevento")]
         [Route("inasistenciasportipoevento")]
         [AcceptVerbs("POST")]
-        public List<Dictionary<string, object>> GetInasistenciasPorTipoEvento([FromBody] ControlReporte.filterSocio filter)
+        public List<Dictionary<string, object>> GetInasistenciasPorTipoEvento([FromBody] FilterDateRange filter)
         {
-            return ControlReporte.GetInstance().GetAsistenciasPorDiaDeLaSemana();
+            return ControlReporte.GetInstance().GetAsistenciasPorDiaDeLaSemana(filter);
         }
 
         [ActionName("asistenciaspordiadelasemana")]
         [Route("asistenciaspordiadelasemana")]
         [AcceptVerbs("POST")]
-        public List<Dictionary<string, object>> GetAsistenciasPorDiaDeLaSemana([FromBody] ControlReporte.filterSocio filter)
+        public List<Dictionary<string, object>> GetAsistenciasPorDiaDeLaSemana([FromBody] FilterDateRange filter)
         {
-            return ControlReporte.GetInstance().GetAsistenciasPorDiaDeLaSemana();
+            return ControlReporte.GetInstance().GetAsistenciasPorDiaDeLaSemana(filter);
         }
 
 

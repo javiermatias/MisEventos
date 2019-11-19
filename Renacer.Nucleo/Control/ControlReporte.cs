@@ -176,7 +176,7 @@ GROUP BY
 
         }
 
-        public List<Dictionary<string, object>> GetAsistenciasPorDiaDeLaSemana()
+        public List<Dictionary<string, object>> GetAsistenciasPorDiaDeLaSemana(FilterDateRange rango)
         {
             var DbHelper = new DBBase(strConnection);
             //            var sql = @"
@@ -195,8 +195,8 @@ GROUP BY
             //group by DAYOFWEEK(fechaAsistencia)
             //";
 
-            var sql = @"SELECT COUNT(asis.id)AS cantidad, CASE  WHEN DAYOFWEEK(det.fechaDesde) = 1 THEN 'Domingo'  WHEN DAYOFWEEK(det.fechaDesde) = 2 
-THEN 'LUNES'  WHEN DAYOFWEEK(det.fechaDesde) = 3 THEN 'Martes'
+            var sql = $@"SELECT COUNT(asis.id)AS cantidad, CASE  WHEN DAYOFWEEK(det.fechaDesde) = 1 THEN 'Domingo'  WHEN DAYOFWEEK(det.fechaDesde) = 2 
+THEN 'Lunes'  WHEN DAYOFWEEK(det.fechaDesde) = 3 THEN 'Martes'
 
 WHEN DAYOFWEEK(det.fechaDesde) = 4 THEN 'Miercoles'
 
@@ -208,8 +208,7 @@ WHEN DAYOFWEEK(det.fechaDesde) = 7 THEN 'Sabado'
 
 END AS dia   FROM asistencia AS asis, detalleevento AS det
 
-WHERE asis.idDetalleEvento = det.id AND det.asistencia = 1 AND DAYOFWEEK(det.fechaDesde) IS NOT NULL  GROUP BY DAYOFWEEK(det.fechaDesde)
-            ";
+WHERE asis.idDetalleEvento = det.id AND det.asistencia = 1 AND {filterRangeDate(rango, "fechaDesde")} AND DAYOFWEEK(det.fechaDesde) IS NOT NULL  GROUP BY DAYOFWEEK(det.fechaDesde)";
 
        
 
@@ -227,7 +226,7 @@ WHERE asis.idDetalleEvento = det.id AND det.asistencia = 1 AND DAYOFWEEK(det.fec
             return Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
         }
 
-        public List<Dictionary<string, object>> GetIngresosPorTipoEvento()
+        public List<Dictionary<string, object>> GetIngresosPorTipoEvento(FilterDateRange rango)
         {
             var DbHelper = new DBBase(strConnection);
             var sql = $@"
@@ -239,7 +238,7 @@ WHERE asis.idDetalleEvento = det.id AND det.asistencia = 1 AND DAYOFWEEK(det.fec
 	    inner join evento e on e.id = i.idEvento
         inner join tipoevento t on t.id = e.idTipoEvento
 	WHERE
-		estaPagado = 1
+		estaPagado = 1 AND {filterRangeDate(rango, "fechaCobro")}
     GROUP BY 
         e.idTipoEvento
 ";
