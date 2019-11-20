@@ -91,58 +91,103 @@ namespace Renacer.Nucleo.Control
             return DictResult;
         }
 
-        public Dictionary<string, object> GetRanking()
+        public Dictionary<string, object> GetRanking(FilterRanking filtro)
         {
             var DictResult = new Dictionary<string, object>();
 
-            DictResult.Add("encargados", this.GetEncargadosRanking());
-            DictResult.Add("eventos", this.GetEventosRanking());
-            DictResult.Add("contenidos", this.GetContenidosRanking());
-            DictResult.Add("general", this.GetFullRating());
+            DictResult.Add("encargados", this.GetEncargadosRanking(filtro)); //listo
+            DictResult.Add("eventos", this.GetEventosRanking(filtro));//
+            DictResult.Add("contenidos", this.GetContenidosRanking(filtro));//
+            DictResult.Add("general", this.GetFullRating(filtro));
 
             return DictResult;
         }
 
-        private List<Dictionary<string, object>> GetEncargadosRanking()
+        private List<Dictionary<string, object>> GetEncargadosRanking(FilterRanking filtro)
         {
-            var DbHelper = new DBBase(strConnection);
-            var sql = $@"SELECT Concat(en.nombre,' ',en.apellido) as 'nombre',
+
+            if (filtro.tipoEvento==0)
+            {
+                var DbHelper = new DBBase(strConnection);
+                var sql = $@"SELECT Concat(en.nombre,' ',en.apellido) as 'nombre',
                          SUM(r.ratingEncargado)/COUNT(r.id) as 'stars', 
                          COUNT(r.id) as 'cantidadVotos'  
-                        FROM ratingevento r, evento e, encargado en where r.idEvento = e.id AND e.idEncargado = en.id
-                        group by idEvento order by stars desc";
+                        FROM ratingevento r, evento e, encargado en where r.idEvento = e.id AND e.idEncargado = en.id AND e.gratuito={filtro.gratuito}
+                        group by  CONCAT(en.nombre,' ',en.apellido) order by stars desc";
 
-            return Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
-        }
-        private List<Dictionary<string, object>> GetEventosRanking()
-        {
-            return GetGenericRating("r.ratingEvento");
-        }
-        private List<Dictionary<string, object>> GetContenidosRanking()
-        {
-            return GetGenericRating("r.ratingContenido");
-        }
+                return Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
+            }
+            else {
 
-
-
-        private List<Dictionary<string, object>> GetGenericRating(string ratingColName, int factor = 1)
-        {
-            var DbHelper = new DBBase(strConnection);
-            var sql = $@"SELECT e.nombre,
-                         SUM({ratingColName})/(COUNT(r.id)*{factor}) as 'stars', 
+                var DbHelper = new DBBase(strConnection);
+                var sql = $@"SELECT Concat(en.nombre,' ',en.apellido) as 'nombre',
+                         SUM(r.ratingEncargado)/COUNT(r.id) as 'stars', 
                          COUNT(r.id) as 'cantidadVotos'  
-                        FROM ratingevento r, evento e where r.idEvento = e.id 
+                        FROM ratingevento r, evento e, encargado en where r.idEvento = e.id AND e.idEncargado = en.id AND e.gratuito={filtro.gratuito} AND e.idTipoEvento={filtro.tipoEvento}
                         group by idEvento order by stars desc";
 
-            var lista = Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
+                return Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
 
-            var i = 1;
-            foreach(Dictionary<string,object> item in lista) {
-                item.Add("orden", i);
-                i++;
             }
 
-            return lista;
+
+        
+        }
+        private List<Dictionary<string, object>> GetEventosRanking(FilterRanking filtro)
+        {
+            return GetGenericRating("r.ratingEvento", filtro);
+        }
+        private List<Dictionary<string, object>> GetContenidosRanking(FilterRanking filtro)
+        {
+            return GetGenericRating("r.ratingContenido", filtro);
+        }
+
+
+
+        private List<Dictionary<string, object>> GetGenericRating(string ratingColName, FilterRanking filtro, int factor = 1)
+        {
+            if (filtro.tipoEvento==0)
+            {
+                var DbHelper = new DBBase(strConnection);
+                var sql = $@"SELECT e.nombre,
+                         SUM({ratingColName})/(COUNT(r.id)*{factor}) as 'stars', 
+                         COUNT(r.id) as 'cantidadVotos'  
+                        FROM ratingevento r, evento e where r.idEvento = e.id AND e.gratuito={filtro.gratuito}
+                        group by idEvento order by stars desc";
+
+                var lista = Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
+
+                var i = 1;
+                foreach (Dictionary<string, object> item in lista)
+                {
+                    item.Add("orden", i);
+                    i++;
+                }
+
+                return lista;
+            }
+            else {
+                var DbHelper = new DBBase(strConnection);
+                var sql = $@"SELECT e.nombre,
+                         SUM({ratingColName})/(COUNT(r.id)*{factor}) as 'stars', 
+                         COUNT(r.id) as 'cantidadVotos'  
+                        FROM ratingevento r, evento e where r.idEvento = e.id AND e.gratuito={filtro.gratuito} AND e.idTipoEvento={filtro.tipoEvento}
+                        group by idEvento order by stars desc";
+
+                var lista = Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
+
+                var i = 1;
+                foreach (Dictionary<string, object> item in lista)
+                {
+                    item.Add("orden", i);
+                    i++;
+                }
+
+                return lista;
+
+
+            }
+       
         }
 
         public List<Dictionary<string, object>> GetInscriptosPorTipoEvento()
@@ -319,9 +364,9 @@ WHERE asis.idDetalleEvento = det.id AND det.asistencia = 1 AND {filterRangeDate(
         }
 
 
-        private List<Dictionary<string, object>> GetFullRating()
+        private List<Dictionary<string, object>> GetFullRating(FilterRanking filtro)
         {
-            return GetGenericRating("r.ratingEvento + r.ratingEncargado + r.ratingContenido", 3);
+            return GetGenericRating("r.ratingEvento + r.ratingEncargado + r.ratingContenido", filtro, 3);
         }
 
 
@@ -585,6 +630,14 @@ GROUP BY
     {
         public DateTime fechaInicio;
         public DateTime fechaFin;
+    }
+
+
+    public class FilterRanking
+    {
+
+        public int gratuito;
+        public int tipoEvento;
     }
 }
 

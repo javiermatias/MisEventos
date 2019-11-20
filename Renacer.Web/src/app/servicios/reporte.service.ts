@@ -70,8 +70,8 @@ export class ReporteServices extends BaseServices<Object> {
     return this.http.post<any[]>(`${this.url}socios-por-edad`, filtro)
   }
 
-  getRankingEventos(): Observable<any[]> {
-    return this.http.post<any[]>(`${this.url}ranking`, {})
+  getRankingEventos(filtro: any): Observable<any[]> {
+    return this.http.post<any[]>(`${this.url}ranking`, filtro)
   }
 
   getIngresosPorTipoEvento(rangoDeFechas: any): Observable<any[]> {

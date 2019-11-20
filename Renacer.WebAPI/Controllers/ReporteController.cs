@@ -71,9 +71,9 @@ namespace Renacer.WebAPI.Controllers
         [ActionName("ranking")]
         [Route("ranking")]
         [AcceptVerbs("POST")]
-        public Dictionary<string, object> GetRanking()
+        public Dictionary<string, object> GetRanking(FilterRanking filtro)
         {
-            return ControlReporte.GetInstance().GetRanking();
+            return ControlReporte.GetInstance().GetRanking(filtro);
         }
 
         [ActionName("eventosportipo")]
