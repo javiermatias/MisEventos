@@ -38,7 +38,7 @@
                                     (ngModelChange)="actualizarFechaFin(fechaFin.value)">
                             </div>
                     </div>
-                    <div class="col-md-4 col-12 bottom-15">   
+                    <div class="col-md-4 col-12 bottom-15" style="padding-top:20px">   
                             <div class="form-group">
                                     <label for="input-2"></label>
                                     <button type="submit" class="btn btn-main" (click)="filtrar()">Filtrar</button>
@@ -71,7 +71,7 @@
           <div class="card-block widget-body">
 
             <div class="row">
-                <div class="col-xl-6 col-lg-6 col-6 bottom-30" *ngIf="!cambiarGrafico">
+                <div class="col-xl-12 col-lg-12 col-12 bottom-30" *ngIf="!cambiarGrafico">
               <canvas #panelA=base-chart baseChart 
                   [datasets]="lineChartData"
                   [labels]="lineChartLabels"
@@ -83,7 +83,7 @@
                   (chartClick)="chartClicked($event)">
               </canvas>
             </div>
-            <div class="col-xl-6 col-lg-6 col-6 bottom-30"*ngIf="cambiarGrafico">
+            <div class="col-xl-12 col-lg-12 col-12  bottom-30"*ngIf="cambiarGrafico">
         <canvas #panelB=base-chart baseChart 
               [datasets]="lineChartData"
               [labels]="lineChartLabels"
@@ -95,9 +95,11 @@
               (chartClick)="chartClicked($event)">
           </canvas>
         </div>
-        <div class="col-xl-6 col-lg-6 col-6 bottom-100" >
+        <div class="col-md-12 text-center" style="margin-top: 10px;height: 50%">
+            <button (click)="randomizeType()" style="display: inline-block">Barras</button>
+          </div>
+        <div class="col-xl-6 offset-xl-3 col-lg-6 offset-lg-3 col-md-6 offset-md-3  bottom-100" >
            
-
             
             <div style="padding-top: 50px;">
                     <app-tabla [data]="IngresosEnElTiempoResponse" name="ingresos_en_el_tiempo" [config]="tablaIngresosEnElTiempo">
@@ -108,9 +110,7 @@
 
     </div>
 
-    <div class="col-md-12 text-center" style="margin-top: 10px;height: 50%">
-        <button (click)="randomizeType()" style="display: inline-block">Barras</button>
-      </div>
+    
           </div>
       </div>
   </div>
@@ -119,7 +119,7 @@
 </div>
 
 
-<div class="row" *ngIf="mostrarGraficoTipoEvento">    
+<div class="row" *ngIf="mostrarGraficoCantidad">    
         <div class="col-xl-12 col-lg-12 col-12 bottom-30">
             <div widget class="card">
                 <div class="card-header">
@@ -147,7 +147,7 @@
                  
                              
                   <div style="padding-top: 50px;">
-                        <app-tabla [data]="IngresosPorTipoResponse" name="ingresos_por_tipo" [config]="tablaConfig">
+                        <app-tabla [data]="IngresosPorTipoResponse" name="ingresos_por_tipo" [config]="tablaColumnasTipoEvento">
                             </app-tabla>
                   </div>   
                   
@@ -162,3 +162,35 @@
       
        
       </div>
+
+    <!--     <div class="row" *ngIf="mostrarGraficoTipoEvento">
+                <div class="col-xl-12 col-lg-12 col-12 bottom-30">
+                <az-grafico-torta *ngIf="IngresosTipoLabels.length > 0 && IngresosTipoData.length > 0"
+                tituloGrafico="Ingresos por tipos de eventos" 
+                ChartType="doughnut"
+                [ChartLabels]="IngresosTipoLabels"
+                [ChartData]="IngresosTipoData"
+                [tabla]="tabla"
+                ></az-grafico-torta>
+            </div>
+        </div> -->
+
+
+        <div class="row" *ngIf="mostrarGraficoTipoEvento">
+            <div class="col-xl-12 col-lg-12 col-12 bottom-30">
+            <az-grafico-torta *ngIf="IngresosTipoEventoData.length > 0 && IngresosTipoEventoLabels.length > 0"
+            tituloGrafico="Ingresos por tipos de eventos" 
+            ChartType="pie"
+            [ChartLabels]="IngresosTipoEventoLabels"
+            [ChartData]="IngresosTipoEventoData"
+            [tabla]="tablaTipoEvento"
+            ></az-grafico-torta>
+        </div>
+    </div>
+          
+       
+   
+ 
+    
+
+          

@@ -70,12 +70,12 @@ export class ReporteServices extends BaseServices<Object> {
     return this.http.post<any[]>(`${this.url}socios-por-edad`, filtro)
   }
 
-  getRankingEventos(): Observable<any[]> {
-    return this.http.post<any[]>(`${this.url}ranking`, {})
+  getRankingEventos(filtro: any): Observable<any[]> {
+    return this.http.post<any[]>(`${this.url}ranking`, filtro)
   }
 
-  getIngresosPorTipoEvento(): Observable<any[]> {
-    return this.http.post<any[]>(`${this.url}ingresosportipoevento`, {})
+  getIngresosPorTipoEvento(rangoDeFechas: any): Observable<any[]> {
+    return this.http.post<any[]>(`${this.url}ingresosportipoevento`,  rangoDeFechas)
   }
 
   getIngresosPorTipo(rangoDeFechas: any): Observable<any[]> {
@@ -99,7 +99,7 @@ export class ReporteServices extends BaseServices<Object> {
     return this.http.post<any[]>(`${this.url}inasistenciasportipoevento`, {})
   }
 
-  graficarAsistenciasPorDiaDeLaSemana(): Observable<any[]> {
-    return this.http.post<any[]>(`${this.url}asistenciaspordiadelasemana`, {})
+  graficarAsistenciasPorDiaDeLaSemana(rangoDeFechas: any): Observable<any[]> {
+    return this.http.post<any[]>(`${this.url}asistenciaspordiadelasemana`, rangoDeFechas)
   }
 }

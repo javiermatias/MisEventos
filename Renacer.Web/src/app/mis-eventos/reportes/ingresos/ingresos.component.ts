@@ -6,6 +6,7 @@ import {formatDate} from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
 import { Array } from 'core-js';
+import { TablaGrafico } from '../../../modelos/tabla-grafico';
 
 @Component({
   selector: 'az-ingresos',
@@ -61,7 +62,7 @@ IngresosPorTipoResponse = [
 , {cantidad: 8, nombre: 'Matrículas', monto:500}
 ];
 
-tablaConfig = {
+tablaColumnasTipoEvento = {
 columnas: [
   {name: 'nombre', title: 'Nombre', type: 'text'}
 , {name: 'cantidad', title: 'Cantidad', type: 'text'},
@@ -69,7 +70,23 @@ columnas: [
 ]
 }
 
+//Tablas por tipoEvento
 
+IngresosTipoEventoResponse = [
+  {monto: 3, nombre: 'Curso'}
+, {monto: 6, nombre: 'Taller'}
+, {monto: 8, nombre: 'Conferencia'}
+];
+columnaTipoEvento = {
+  columnas: [
+    {name: 'nombre', title: 'Nombre', type: 'text'}
+  , {name: 'monto', title: 'Monto', type: 'money'}
+  ]
+  }
+
+tabla: TablaGrafico;
+
+tablaTipoEvento: TablaGrafico;
 //rangos de fechas
    inputInicial = new Date(new Date().getFullYear(), 0, 1);
    inputFinal = new Date();
@@ -80,10 +97,14 @@ columnas: [
 
   mostrarGraficoTipoEvento=false;
 
+  mostrarGraficoCantidad=false;
   cambiarGrafico=false;
 
 //
   constructor(private _appConfig:AppConfig,private _reporteServ: ReporteServices) {
+    this.tabla = new TablaGrafico("ingresos_por_tipo_de_evento",this.tablaColumnasTipoEvento);
+    this.tablaTipoEvento= new TablaGrafico("ingresos_por_tipo_de_evento",this.columnaTipoEvento);
+  
     this.config = this._appConfig.config;
     this.configFn = this._appConfig; 
     this.pieChartColors = this.config.pieChartColors;
@@ -94,7 +115,10 @@ columnas: [
             {data: [], label: 'Matriculas' },
             {data: [], label: 'Cuotas' }
         ];
-    this.lineChartColors = [
+
+        this.lineChartColors = this.config.lineChartColors;
+        this.lineChartOptions = this.config.lineChartOptions;
+/*     this.lineChartColors = [
         { 
             borderWidth: 2,
             backgroundColor: this.configFn.rgba(this.config.colors.success, 0.5),
@@ -122,16 +146,14 @@ columnas: [
             pointHoverBackgroundColor: this.config.colors.default,
             hoverBackgroundColor:  this.config.colors.primary
         }
-    ];
+    ]; */
    }
 
   ngOnInit() {
     registerLocaleData(localeEs, 'es');
-   // this.cargarGrafico();
-   // console.log(this.fechaRangoInicial);
-   // console.log(this.fechaRangoFin);
-   this.cantidadIngresosEnElTiempo(this.fechaRangoInicial, this.fechaRangoFin);
-    this.cargarIngresosEnElTiempo(this.fechaRangoInicial, this.fechaRangoFin)
+      this.cantidadIngresosEnElTiempo(this.fechaRangoInicial, this.fechaRangoFin);
+    this.cargarIngresosEnElTiempo(this.fechaRangoInicial, this.fechaRangoFin);
+    this.ingresosPorTipoEvento(this.fechaRangoInicial, this.fechaRangoFin);
   }
   public randomizeType():void {
       
@@ -158,16 +180,48 @@ columnas: [
         this.IngresosPorTipoResponse = result.map(x => {
             return {'nombre': x.nombre, 'cantidad': x.cantidad, 'monto': x.monto};
         });
+        this.tabla.data =this.IngresosPorTipoResponse;
 
         this.IngresosPorTipoResponse.forEach(item => {
             if (item.monto == null) { item.monto= 0; }
             this.IngresosTipoData.push(item.monto);
             this.IngresosTipoLabels.push(item.nombre);
             });
-            this.mostrarGraficoTipoEvento=true;
+            this.mostrarGraficoCantidad=true;
            
     });
 }
+
+ingresosPorTipoEvento(fechaInicio: Date, fechaFin: Date){
+
+  this._reporteServ.getIngresosPorTipoEvento({ 'fechaInicio': formatDate(fechaInicio, 'yyyy-MM-dd', 'es'),
+  'fechaFin': formatDate(fechaFin, 'yyyy-MM-dd', 'es')
+}).subscribe(result => {
+    this.IngresosTipoEventoResponse = result.map(x => {
+        return {'nombre': x.nombre, 'monto': x.monto};
+    });
+
+    this.tablaTipoEvento.data = this.IngresosTipoEventoResponse;
+    
+    this.IngresosTipoEventoData = [];
+    this.IngresosTipoEventoLabels = [];
+    this.IngresosTipoEventoResponse.forEach(item => {
+        if (item.monto == null) { item.monto = 0; }
+  
+        this.IngresosTipoEventoData.push(item.monto);
+        this.IngresosTipoEventoLabels.push(item.nombre);
+        });
+
+        this.mostrarGraficoTipoEvento=true;
+  
+     
+  });
+
+
+
+}
+
+
 
 
 
@@ -220,18 +274,7 @@ columnas: [
     });
 }
 
-/* refresh_chart() {
-  setTimeout(() => {
-      //console.log(this.datasets_lines_copy);
-      //console.log(this.datasets_lines);
-      if (this.chart && this.chart.chart && this.chart.chart.config) {
-           this.chart.chartType= 'bar';
-          this.chart.chart.config.data.labels = this.lineChartLabels;
-          this.chart.chart.config.data.datasets = this.lineChartData;
-          this.chart.chart.update();
-      }
-  },1000);
-} */
+
 
 
 public chartClicked(e:any):void {
@@ -245,12 +288,7 @@ public chartClicked(e:any):void {
     actualizarFechaInicio(fecha: string){
       console.log(fecha);
       this.fechaRangoInicial = new Date(fecha);
-      }/* 
-      actualizarFecha(fecha: string) {
-        this.fechaRangoInicial = new Date(fecha);
-        //console.log(this.fecha);
-    
-      } */
+      }
       actualizarFechaFin(fecha: string){
         console.log(fecha);
         this.fechaRangoFin = new Date(fecha);
@@ -258,6 +296,8 @@ public chartClicked(e:any):void {
 
 
       filtrar(){
-        this.cargarIngresosEnElTiempo(this.fechaRangoInicial, this.fechaRangoFin)
+        this.cargarIngresosEnElTiempo(this.fechaRangoInicial, this.fechaRangoFin);
+        this.cantidadIngresosEnElTiempo(this.fechaRangoInicial, this.fechaRangoFin);
+        this.ingresosPorTipoEvento(this.fechaRangoInicial, this.fechaRangoFin);
       }
 }

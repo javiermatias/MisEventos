@@ -101,7 +101,9 @@ export class IngresosMonetariosComponent implements OnInit {
             this.IngresosTipoEventoLabels.push(item.nombre);
             });
 
-        this._reporteServ.getIngresosPorTipoEvento().subscribe(result => {
+        this._reporteServ.getIngresosPorTipoEvento({ 'fechaInicio': formatDate(this.fechaRangoInicial, 'yyyy-MM-dd', 'es'),
+        'fechaFin': formatDate(this.fechaRangoFin, 'yyyy-MM-dd', 'es')
+      }).subscribe(result => {
             this.IngresosTipoEventoResponse = result.map(x => {
                 return {'nombre': x.nombre, 'cantidad': x.monto};
             });

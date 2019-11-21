@@ -7,6 +7,7 @@ import { EventoServices ,Evento,TipoEventoServices,TipoEvento,DetalleEvento,Deta
 import { EncargadoEvento,EncargadoEventoServices} from '../../servicios/encargado.service';
 import { EspacioComun,EspacioServices} from '../../servicios/espacio.service';
 import { AppConfig } from "../../app.config";
+import { AsistenciaServices } from '../../servicios/asistencia.service';
 
 @Component({
   selector: 'az-detalle-evento',
@@ -29,7 +30,8 @@ export class DetalleEventoComponent implements OnInit,OnDestroy  {
     private responsableServ:EncargadoEventoServices,
     private espacioServ:EspacioServices,
     private route: ActivatedRoute,
-    private mensajeServ: ToastrService)
+    private mensajeServ: ToastrService,    
+    private _asistencias:AsistenciaServices)
     {  }
 
     ngOnInit()
@@ -39,6 +41,7 @@ export class DetalleEventoComponent implements OnInit,OnDestroy  {
       this.sub = this.route.params.subscribe(params => {
         this.id = params['idDetalle'];
         this.verItem();
+        this.getAsistencias(this.id);
         jQuery('.modal-backdrop').remove();
         jQuery('.modal-open').removeClass('modal-open');
       });
@@ -56,7 +59,13 @@ export class DetalleEventoComponent implements OnInit,OnDestroy  {
 
     verItem()
     {
-      this._itemsService.get(this.id).subscribe(resp => this._item = resp);
+      this._itemsService.get(this.id).subscribe(resp =>{
+        console.log(resp);
+        this._item = resp
+      }
+        
+        );
+     
     }
 
     saveItem(item:DetalleEvento):any
@@ -73,4 +82,16 @@ export class DetalleEventoComponent implements OnInit,OnDestroy  {
       return result;
     }
 
+
+    getAsistencias(_idEvento:any){
+      this._asistencias.query(
+        {'idEvento':_idEvento}).subscribe
+        (items => {          
+          console.log(items);
+    
+  
+      });
+  
+  
+    }
   }

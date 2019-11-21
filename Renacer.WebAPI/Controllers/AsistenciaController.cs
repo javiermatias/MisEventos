@@ -22,6 +22,15 @@ namespace Renacer.WebAPI.Controllers
         {
             return ControlAsistencia.devolverInstacia().devolver(id);
         }
+        //idEvento
+
+        public IEnumerable<Asistencia> GetAsistenciasXDetalleEvento([FromUri]int idEvento)
+        {
+
+            return ControlAsistencia.devolverInstacia().devolverAsistenciaDetalleEvento(idEvento);
+
+        }
+
 
         // POST: api/cliente
         public IHttpActionResult Post([FromBody]Asistencia value)

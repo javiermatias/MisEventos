@@ -1,97 +1,258 @@
-<div class="row">
-  
-    <div class="col-lg-12 col-md-12 col-sm-12 bottom-30">
-      <div class="float-box bottom-30">
-        <div class="card">
-  
-          <div class="card-header">
-            <span>Asistencias en los dias de la semana</span>
-          </div>
-  
-  
-          <div class="media">
-            <div class="card-block widget-body">
-              <div class="chart-outher">
-  
-                <canvas baseChart [datasets]="AsistenciasPorDiaDeLaSemanaData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors"
-                  [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
-  
-              </div>
-  
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  
+<div class="row bottom-30">
     
-    <div class="col-lg-12 col-md-12 col-sm-12 bottom-30">
-      <app-tabla [data]="AsistenciasPorDiaDeLaSemanaResponse" name="asistencias_segun_dia_de_la_semana" [config]="tablaConfig">
-      </app-tabla>
-    </div>
-  
-  </div>
+  <div class="col">
+      <div widget class="card">
+          <div class="card-header">
+              <span>Filtros</span>
+              <div class="widget-controls">              
+                  <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
+                  <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
+                  <a data-widgster="fullscreen" href="#" class="transition"><i class="fa fa-expand"></i></a>
+                  <a data-widgster="restore" href="#" class="transition"><i class="fa fa-compress"></i></a>                          
+                  <a data-widgster="close" href="#" class="transition"><i class="fa fa-times"></i></a>
+              </div>        
+          </div>
+          <div class="card-block widget-body row mbm-20">
 
+              <div class="col-md-3 col-12 bottom-15">   
+          
+                  <div class="form-group">
+                     
+        
+                          <label for="input-2">Rango Inicio:</label>
+                          <input #fechaInicio type="date" class="form-control" required
+                              id="fechaNacimiento" name="fechaNacimiento"
+                              [ngModel]="inputInicial  | date:'yyyy-MM-dd'"
+                              (ngModelChange)="actualizarFechaInicio(fechaInicio.value)">
+                       
+                      
+                  </div>
+              </div> 
+              <div class="col-md-3 col-12 bottom-15">   
+                  <!-- <strong> <h6>Rangos</h6>  </strong> -->
+                  <div class="form-group">
+                          <label for="input-2">Rango Fin:</label>
+                          <input #fechaFin type="date" class="form-control" required
+                              id="fechaNacimiento" name="fechaNacimiento"
+                              [ngModel]="inputFinal  | date:'yyyy-MM-dd'"
+                              (ngModelChange)="actualizarFechaFin(fechaFin.value)">
+                      </div>
+              </div>
 
-<div class="row" style="justify-content:center;">
-
-  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 bottom-30">
-    <div class="float-box bottom-30">
-      <div class="card">
-
-        <div class="card-header">
-          <span>Asistentes según tipo de eventos</span>
-        </div>
-
-        <div class="media">
-          <div class="card-block widget-body">
-            <div class="chart-outher">
-              <canvas baseChart [data]="AsistenciasTipoEventoData" [labels]="AsistenciasTipoEventoLabels" [options]="pieChartOptions" [colors]="pieChartColors"
-                [chartType]="'pie'" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+              <div class="col-md-3 col-12 bottom-15">   
+                <div class="form-group">
+                  <label for="input-2">Espacio</label>
+                  <select class="form-control" id="Espacio" required
+                  name="Espacio" [(ngModel)]="espacio">
+                  <option *ngFor="let espacio of espacios" [ngValue]="espacio">{{espacio.nombre}} </option>                                    
+                  <option [ngValue]="null"></option>  
+                </select>
+                </div>
             </div>
 
+
+
+
+
+              <div class="col-md-3 col-12 bottom-15" style="padding-top:20px">   
+                      <div class="form-group">
+                              <label for="input-2"></label>
+                              <button type="submit" class="btn btn-main" (click)="filtrar()">Filtrar</button>
+                          </div>
+                      
+                   
+                  
+              </div>  
+
           </div>
-        </div>
       </div>
-    </div>
-  </div>
-
-
-  <div class="col-lg-6 col-md-6 col-sm-12 bottom-30">
-    <app-tabla [data]="AsistenciasTipoEventoResponse" name="asistencias_segun_tipo_evento" [config]="tablaConfig">
-    </app-tabla>
-  </div>
+  </div>    
 
 </div>
 
-<div class="row">
 
-  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 bottom-30">
-    <div class="float-box bottom-30">
-      <div class="card">
 
-        <div class="card-header">
-          <span>Ausentismos según tipo de eventos</span>
-        </div>
 
-        <div class="media">
-          <div class="card-block widget-body">
-            <div class="chart-outher">
-              <canvas baseChart [data]="InasistenciasTipoEventoData" [labels]="InasistenciasTipoEventoLabels" [options]="pieChartOptions"
-                [colors]="pieChartColors" [chartType]="'pie'" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
-            </div>
-
+<div class="row" >    
+  <div class="col-xl-12 col-lg-12 col-12 bottom-30">
+      <div widget class="card">
+          <div class="card-header">
+              <span>Asistencia en los días de la semana</span>
+              <div class="widget-controls">              
+                  <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
+                  <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>              
+                  <a data-widgster="close" href="#" class="transition"><i class="fa fa-times"></i></a>
+              </div>        
           </div>
+          <div class="card-block widget-body">
+
+            <div class="row">
+                <div class="col-xl-9 col-lg-9 col-9 bottom-30">
+              <canvas #panelA=base-chart baseChart 
+                  [datasets]="AsistenciasPorDiaDeLaSemanaData"
+                  [labels]="lineChartLabels"
+                  [legend]="lineChartLegend"
+                  [options]="lineChartOptions"
+                  [colors]="lineChartColors"
+                  [chartType]="lineChartType"
+                  (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)">
+              </canvas>
+            </div>
+     
+        <div class="col-xl-3 col-lg-3 col-3 bottom-100" >
+           
+            
+            <div style="padding-top: 50px;">
+                    <app-tabla [data]="AsistenciasPorDiaDeLaSemanaResponse" name="asistencias_segun_dia_de_la_semana" [config]="tablaConfig">
+                        </app-tabla>
+            </div>   
+            
         </div>
+
+    </div>
+
+    
+          </div>
+      </div>
+  </div>
+
+ 
+</div>
+
+
+
+
+<!-- <div class="col-xl-12 col-lg-12 col-12 bottom-30">
+  <div widget class="card">
+    <div class="card-header">
+      <span>Asistentes según tipo de eventos</span>
+      <div class="widget-controls">
+        <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
+        <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
+        <a data-widgster="close" href="#" class="transition"><i class="fa fa-times"></i></a>
       </div>
     </div>
-  </div>
+    <div class="card-block widget-body">
 
-  <div class="col-lg-6 col-md-6 col-sm-12 bottom-30">
-    <app-tabla [data]="InasistenciasTipoEventoResponse" name="inasistencias_segun_tipos_eventos" [config]="tablaConfig">
-    </app-tabla>
-  </div>
+      <div class="row">
+        <div class="col-xl-5 col-lg-5 col-5 bottom-30">
+          <canvas baseChart 
+          [data]="AsistenciasTipoEventoData" 
+          [labels]="AsistenciasTipoEventoLabels" 
+          [options]="pieChartOptions" 
+          [colors]="pieChartColors"
+            [chartType]="'pie'"
+             (chartHover)="chartHovered($event)" 
+             (chartClick)="chartClicked($event)">
+          </canvas>
+        </div>
 
+        <div class="col-xl-6 col-lg-6 col-6 bottom-100">
+
+
+          <div style="padding-top: 50px;">
+            <app-tabla [data]="AsistenciasTipoEventoResponse" name="asistencias_segun_tipo_evento" [config]="tablaConfig">
+            </app-tabla>
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
 </div>
+
+
+
+
+<div class="col-xl-12 col-lg-12 col-12 bottom-30">
+  <div widget class="card">
+    <div class="card-header">
+      <span>Ausentismos según tipo de eventos</span>
+      <div class="widget-controls">
+        <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
+        <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
+        <a data-widgster="close" href="#" class="transition"><i class="fa fa-times"></i></a>
+      </div>
+    </div>
+    <div class="card-block widget-body">
+
+      <div class="row">
+        <div class="col-xl-5 col-lg-5 col-5 bottom-30">
+          <canvas baseChart 
+          [data]="InasistenciasTipoEventoData" 
+          [labels]="InasistenciasTipoEventoLabels"
+          [options]="pieChartOptions"
+            [colors]="pieChartColors" 
+            [chartType]="'pie'"
+             (chartHover)="chartHovered($event)" 
+             (chartClick)="chartClicked($event)">
+          </canvas>
+        </div>
+
+        <div class="col-xl-6 col-lg-6 col-6 bottom-100">
+
+
+          <div style="padding-top: 50px;">
+            <app-tabla [data]="InasistenciasTipoEventoResponse" name="inasistencias_segun_tipos_eventos" [config]="tablaConfig">
+            </app-tabla>
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+</div> -->
+
+
+
+<div class="col-xl-12 col-lg-12 col-12 bottom-30">
+  <div widget class="card">
+    <div class="card-header">
+      <span>Asistencias e Inasistencias por Tipo de Evento</span>
+      <div class="widget-controls">
+        <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
+        <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
+        <a data-widgster="close" href="#" class="transition"><i class="fa fa-times"></i></a>
+      </div>
+    </div>
+    <div class="card-block widget-body">
+
+      <div class="row">
+        <div class="col-xl-9 col-lg-9 col-9 bottom-30">
+          <google-chart #chart
+          [title]="title"
+          [type]="type"
+          [data]="data12"
+          [columnNames]="columnNames"
+          [options]="options"
+          [width]="width"
+          [height]="height">
+       </google-chart>
+        </div>
+
+        <div class="col-xl-6 col-lg-6 col-6 bottom-20">
+
+
+          <div style="padding-top: 10px;">
+            <app-tabla [data]="AsistenciasPorcentajeTipoEventoResponse" name="asistencias_segun_tipos_eventos" [config]="tablaConfig12">
+            </app-tabla>
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
 
 

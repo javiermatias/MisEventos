@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ReporteServices } from '../../../../servicios/reporte.service';
+import { TipoEventoServices, TipoEvento } from '../../../../servicios/evento.service';
 // import {ReporteServices} from 'app/servicios/reporte.service';
 
 @Component({
@@ -9,6 +10,8 @@ import { ReporteServices } from '../../../../servicios/reporte.service';
 })
 export class RankingComponent implements OnInit {
 
+   tiposEventos:TipoEvento[];
+   tipoEvento:TipoEvento;
   eventosRanking: any[];
   generalRanking: any[];
   encargadosRanking: any[];
@@ -16,11 +19,15 @@ export class RankingComponent implements OnInit {
   eventosRankingConfig: any;
   encargadosTopConfig: any;
   encargadosTop: any[];
-
-  constructor(private serv: ReporteServices) {
+  public gratuito:Boolean = false;
+  constructor(private serv: ReporteServices, private tipoEventoServ:TipoEventoServices) {
    }
 
   ngOnInit() {
+    this.tipoEventoServ.query({}).subscribe(_items => {
+      this.tiposEventos = _items;
+    });
+
     this.encargadosTopConfig = {
       columnas: [
          {name: 'nro', title: 'Nro.', type: 'counter'}
@@ -33,19 +40,14 @@ export class RankingComponent implements OnInit {
       columnas: [
           {name: 'orden', title: 'Nro.', type: 'text'}
         , {name: 'nombre', title: 'Nombre', type: 'text'}
-        , {name: 'cantidadVotos', title: 'opiniones', type: 'text'}
+        , {name: 'cantidadVotos', title: 'Opiniones', type: 'text'}
         , {name: 'stars', title: 'Valoración', type: 'stars'}
       ]
     }
 
-    this.serv.getRankingEventos().subscribe( (x: any) => {
-      this.encargadosRanking = x.encargados;
-      this.eventosRanking = x.eventos;
-      this.contenidosRanking = x.contenidos;
-      this.generalRanking = x.general;
-    });
+    this.getRankingEventos(0, 0);
 
-    this.test();
+    //this.test();
 
   }
 
@@ -100,4 +102,47 @@ export class RankingComponent implements OnInit {
     ]
   }
 
+ getRankingEventos(gratuito:number, tipoEvento:number){
+  this.serv.getRankingEventos({"gratuito":gratuito,"tipoEvento":tipoEvento}).subscribe( (x: any) => {
+   
+    this.eventosRanking=[];
+    this.generalRanking=[];
+    this.encargadosRanking=[];
+    this.contenidosRanking=[];
+   
+    this.encargadosRanking = x.encargados;
+    this.eventosRanking = x.eventos;
+    this.contenidosRanking = x.contenidos;
+    this.generalRanking = x.general;
+  });
+ }
+
+
+
+  filtrar(){
+let gratuito = 0;
+let tipoEvento=0;
+
+
+if(this.gratuito) {
+  gratuito=1;
+} 
+
+//console.log(this.tipoEvento.id);
+
+if(this.tipoEvento  === undefined || this.tipoEvento ==null  ){
+
+  tipoEvento=0;
+}else{
+  tipoEvento = this.tipoEvento.id;
+  
+}
+
+this.getRankingEventos(gratuito,tipoEvento);
+
+console.log( tipoEvento);
+console.log(gratuito);
+
+
+  }
 }
