@@ -93,6 +93,24 @@ namespace Renacer.Nucleo.Control
         }
 
 
+        public List<Asistencia> devolverAsistenciaDetalleEvento(int id)
+        {
+            try
+            {
+                using (var db = new ModeloRenacer())
+                {
+                    var item = db.asistencia.Include("socio").Where(x => x.idDetalleEvento.Equals(id)).ToList();
+                    //item.listaSocios = db.socio.Where(x => x.listaEspacios.Any(xy => xy.id.Equals(id))).ToList();
+                    return item;
+                }
+            }
+            catch (Exception ex)
+            {
+                ServicioSentry.devolverSentry().informarExcepcion(ex);
+            }
+            return null;
+        }
+
 
         public Asistencia devolverXdetalleEventoYSocio(int _idDetalleEvento, int _idSocio)
         {

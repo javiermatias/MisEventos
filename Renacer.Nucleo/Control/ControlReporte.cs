@@ -204,18 +204,31 @@ namespace Renacer.Nucleo.Control
         {
             var DbHelper = new DBBase(strConnection);
             var sql = @"
-SELECT
+ SELECT aux.nombre,SUM(aux.asistencias) AS 'asistencias',SUM(aux.inscriptos) AS 'inscriptos' FROM
+	(SELECT
 	t.nombre,
-	count(a.id) AS asistencias,
-    count(i.id) as inscriptos
+	0 AS 'asistencias',
+	 COUNT(i.id) AS inscriptos
+	FROM
+	tipoevento t
+	INNER JOIN evento e ON t.id = e.IdTipoEvento
+	INNER JOIN detalleevento de ON e.id = de.IdEvento 
+        INNER JOIN inscripcion i ON i.idEvento = e.id
+        WHERE de.asistencia=1
+        GROUP BY
+	t.nombre	
+	UNION ALL
+	SELECT
+	t.nombre,
+	COUNT(a.id) AS asistencias,
+       0 AS 'inscriptos'
 FROM
 	tipoevento t 
-inner join evento e on t.id = e.IdTipoEvento
-inner join detalleevento de on e.id = de.IdEvento 
-inner join inscripcion i on i.idEvento = e.id
-left join asistencia a on a.idDetalleEvento = de.id
-GROUP BY
-	t.nombre
+INNER JOIN evento e ON t.id = e.IdTipoEvento
+INNER JOIN detalleevento de ON e.id = de.IdEvento
+LEFT JOIN asistencia a ON a.idDetalleEvento = de.id
+WHERE de.asistencia=1
+GROUP BY t.nombre) AS aux GROUP BY nombre
 ";
             return Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
 
