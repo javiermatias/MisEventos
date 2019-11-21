@@ -11,6 +11,66 @@ import { CsvServices, RequestCsv } from '../../../../servicios/csv.service';
 export class SocioChartComponent
     implements OnInit {
 
+
+          //Socios Mas activos
+  title = 'Actividad Socios';
+  type = 'BubbleChart';
+
+  /* A: label for each bubble -
+   B: numeric data on horizontal x-axis -
+    C: numeric data on vertical y-axis -
+     D: text data to represent bubble color (each category will appear as a new color, or leave blank to display all as one color)
+     - E: numeric data to represent bubble size */
+ 
+     data = [
+     ["Jose",5,33,'Soltero',70],
+     ["Mohan",3,59,'Soltero',50],
+     ["Ramesh",9,69,'Viudo',40],
+     ["Julie",7,43,'Casado',40],
+     ["Sohan", 2,59,'Casado',20],
+     ["Sohan", 1,59,'Soltero',10]
+  ];
+  columnNames = ['Nombre', 'Eventos','Edad','Estado Civil','Asistencias'];
+  options = { 
+ /*    chartArea: {
+        height: '100%',
+        width: '100%',
+        top: 24,
+        left: 24,
+        bottom: 36,
+        right: 4
+      }, */
+     // height: '100%',
+ /*      legend: {
+        position: 'bottom'
+      }, */
+      sizeAxis: {
+        maxSize: 70,
+        minSize: 20
+      },
+      hAxis: {title: 'Eventos',
+        				/* 
+                *remove viewWindow and see a bubble is cutted off
+                */
+        				viewWindow: { 
+            			min: 0,
+            			max: 10
+           			 }
+    },
+    vAxis: {title: 'Edad',
+    /* 
+*remove viewWindow and see a bubble is cutted off
+*/
+    viewWindow: { 
+    min: 30,
+    max: 90
+    }
+}
+};
+  width = 950;
+  height = 800;
+
+  //
     public config: any;
     public configFn: any;
 

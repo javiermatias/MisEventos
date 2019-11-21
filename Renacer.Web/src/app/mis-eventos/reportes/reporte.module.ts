@@ -26,7 +26,7 @@ import { SocioChartComponent } from './socios/socio-chart/socio-chart.component'
 import { IngresosComponent } from './ingresos/ingresos.component';
 import { GraficoTortaComponent } from './graficos-compartidos/grafico-torta/grafico-torta.component';
 
-
+import { GoogleChartsModule } from 'angular-google-charts';
 
 
 export const routes = [
@@ -36,11 +36,11 @@ export const routes = [
   { path: 'socios', component: SociosComponent, data: { breadcrumb: 'Socios' } },//
   { path: 'time-line', component: TimeLineComponent, data: { breadcrumb: 'Cronograma' } },
   { path: 'ranking', component: RankingComponent, data: { breadcrumb: 'Ranking' } },//
-  { path: 'ingresos', component: IngresosMonetariosComponent, data: { breadcrumb: 'Ingresos' } },
+  { path: 'ingresos', component: IngresosComponent, data: { breadcrumb: 'Ingresos' } },
   { path: 'asistencias', component: AsistenciasComponent, data: { breadcrumb: 'Asistencias' } },
   { path: 'deudores', component: DeudoresCuotaComponent, data: { breadcrumb: 'Deudores' } },
   { path: 'crecimiento-socios', component: SocioChartComponent, data: { breadcrumb: 'Socios' } },
-  { path: 'ingresos12', component: IngresosComponent , data: { breadcrumb: 'Socios' } },
+  { path: 'ingresos12', component: IngresosMonetariosComponent, data: { breadcrumb: 'Socios' } },
 ];
 
 @NgModule({
@@ -55,6 +55,7 @@ export const routes = [
       NguiAutoCompleteModule,
       TagCloudModule,
       ChartsModule,
+      GoogleChartsModule,
       RouterModule.forChild(routes)
   ],
   declarations: [

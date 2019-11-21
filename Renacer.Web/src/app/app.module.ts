@@ -36,9 +36,7 @@ import localeEs from '@angular/common/locales/es-AR';
 import { RatingServices } from './servicios/rating.service';
 import { AsistenciaSocioServices } from './servicios/asistenciaSocio.service';
 import { DeudaCuotaServices } from './servicios/deudaCuota.service';
-
 import { CsvServices } from './servicios/csv.service';
-
 import { Angular2CsvModule } from 'angular2-csv';
 import { CsvWrapperComponent } from './mis-eventos/componentesCompartidos/csv-wrapper/csv-wrapper.component';
 import { ImprimirService } from './servicios/imprimir.service';

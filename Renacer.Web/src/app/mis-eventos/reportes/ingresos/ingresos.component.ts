@@ -115,7 +115,10 @@ tablaTipoEvento: TablaGrafico;
             {data: [], label: 'Matriculas' },
             {data: [], label: 'Cuotas' }
         ];
-    this.lineChartColors = [
+
+        this.lineChartColors = this.config.lineChartColors;
+        this.lineChartOptions = this.config.lineChartOptions;
+/*     this.lineChartColors = [
         { 
             borderWidth: 2,
             backgroundColor: this.configFn.rgba(this.config.colors.success, 0.5),
@@ -143,7 +146,7 @@ tablaTipoEvento: TablaGrafico;
             pointHoverBackgroundColor: this.config.colors.default,
             hoverBackgroundColor:  this.config.colors.primary
         }
-    ];
+    ]; */
    }
 
   ngOnInit() {

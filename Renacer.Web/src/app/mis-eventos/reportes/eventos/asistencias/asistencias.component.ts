@@ -14,6 +14,30 @@ import { registerLocaleData } from '@angular/common';
 })
 export class AsistenciasComponent implements OnInit {
 
+
+  //Google Chart 
+  title = 'Asistencias en %';
+  type = 'BarChart';
+  data = [
+     ["Baile", 8, 7],
+     ["Taller", 35, 12],
+     ["Curso", 19, 3],
+    
+  ];
+  data12=[];
+  columnNames = ['TipoEvento', 'Asistencias', 'Inasistencias'];
+  options = {   
+     hAxis: {
+        title: 'Tipos de eventos'
+     },
+     vAxis:{
+        minValue:0
+     },
+     isStacked:true	  
+  };
+  width = 700;
+   height = 500; 
+  //
     public config: any;
     public configFn: any;
 
@@ -35,6 +59,7 @@ export class AsistenciasComponent implements OnInit {
     public InasistenciasTipoEventoData: Array<number>;
     InasistenciasTipoEventoResponse: any;
 
+    AsistenciasPorcentajeTipoEventoResponse: any;
     public pieChartColors: any[];
     public pieChartOptions: any;
     public loading = true;
@@ -50,8 +75,19 @@ export class AsistenciasComponent implements OnInit {
 
     tablaConfig = {
         columnas: [
-            {name: 'nombre', title: 'Nombre', type: 'text'}
-          , {name: 'cantidad', title: 'Cantidad', type: 'text'}
+            {name: 'nombre', title: 'Nombre', type: 'text'},
+            {name: 'cantidad', title: 'Cantidad', type: 'text'}
+      
+        ]
+      }
+
+      tablaConfig12 = {
+        columnas: [
+            {name: 'nombre', title: 'Nombre', type: 'text'},
+           {name: 'asistencias', title: 'Asistencias', type: 'text'},
+           {name: 'inasistencias', title: 'Inasistencias', type: 'text'},
+           {name: 'asistenciasp', title: 'Asistencias(%)', type: 'text'},
+           {name: 'inasistenciasp', title: 'Inasistencias(%)', type: 'text'},
         ]
       }
 
@@ -89,19 +125,36 @@ export class AsistenciasComponent implements OnInit {
 
             this.AsistenciasTipoEventoResponse = [];
             this.InasistenciasTipoEventoResponse = [];
-         
+            this.AsistenciasPorcentajeTipoEventoResponse=[];
+            this.data12=[];
                 
            
                 
             
 
              result.forEach(item => {
+                let total=item.inscriptos;
+                let porcentajeAsistencia= Math.round((item.asistencias*100)/total);
+                let porcentajeInasistencia = Math.round(((item.inscriptos-item.asistencias)*100)/total);
+                let data= [item.nombre,porcentajeAsistencia,porcentajeInasistencia];
+                this.data12.push(data);
+              
+
+
+        /*         {name: 'nombre', title: 'Nombre', type: 'text'},
+                {name: 'asistencias', title: 'asistencias', type: 'text'},
+                {name: 'inasistencias', title: 'inasistencias', type: 'text'},
+                {name: 'asistenciasp', title: 'inasistencias(%)', type: 'text'},
+                {name: 'inasistenciasp', title: 'inasistencias(%)', type: 'text'}, */
+
+
                 this.AsistenciasTipoEventoData.push(item.asistencias);
                 this.AsistenciasTipoEventoLabels.push(item.nombre);
                 this.InasistenciasTipoEventoData.push(item.inscriptos - item.asistencias);
                 this.InasistenciasTipoEventoLabels.push(item.nombre);
 
-
+                this.AsistenciasPorcentajeTipoEventoResponse.push({'nombre': item.nombre, 'asistencias': item.asistencias,
+                'inasistencias': item.inscriptos - item.asistencias,'asistenciasp': porcentajeAsistencia + '%', 'inasistenciasp': porcentajeInasistencia + '%'  });
                 this.AsistenciasTipoEventoResponse.push({'nombre': item.nombre, 'cantidad': item.asistencias});
                 this.InasistenciasTipoEventoResponse.push({'nombre': item.nombre, 'cantidad': item.inscriptos - item.asistencias});
                 });
@@ -122,22 +175,24 @@ export class AsistenciasComponent implements OnInit {
             this.AsistenciasPorDiaDeLaSemanaData = [
                 {data: [], label: 'dias' }
             ];
-
+            let cantidadTotal=0;
             this.AsistenciasPorDiaDeLaSemanaResponse = [];
             this.lineChartLabels = [];
             for (let j = 0; j < this.diasSemanas.length; j++) {
-                for (let index = 0; index < result.length; index++) {
+                
+              for (let index = 0; index < result.length; index++) {
                 if(result[index].dia ==  this.diasSemanas[j] ){
                        arregloTemporal.push(result[index]);
+                       cantidadTotal += result[index].cantidad;
                        break;
                 }
              
                 }
             }
-            console.log(arregloTemporal);
+            //console.log(arregloTemporal);
 
 
-
+            //Math.round((item.cantidad*100)/cantidadTotal); Math.round((item.cantidad*100)/cantidadTotal)
             arregloTemporal.forEach(item => {
             
                 this.lineChartLabels.push(item.dia);

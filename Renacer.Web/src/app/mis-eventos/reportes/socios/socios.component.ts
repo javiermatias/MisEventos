@@ -12,6 +12,8 @@ import { ExcelService } from '../../../servicios/excel.service';
 })
 export class SociosComponent implements OnInit {
 
+
+
   public filter: FiltroReporte = new FiltroReporte();
   public items: Socio[];
   searchText = '';
