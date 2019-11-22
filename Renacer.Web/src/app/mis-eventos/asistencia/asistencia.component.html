@@ -35,7 +35,7 @@
               </div>
               <div class="table-responsive datatable">
 
-                <table class="table table-striped table-hover table-sm" [mfData]="eventos | SearchPipe : searchText"  #mf="mfDataTable"
+                <table class="table table-striped table-hover table-sm" [mfData]="eventosSocios | SearchPipe : searchText"  #mf="mfDataTable"
                   [mfRowsOnPage]="10">
                   <thead>
                     <tr>
@@ -52,28 +52,40 @@
                       <th>
                         <mfDefaultSorter by="estado"><strong>Asistencias</strong></mfDefaultSorter>
                       </th>
-                    
+                      <th>
+                        <mfDefaultSorter by="estado"><strong>Tomado</strong></mfDefaultSorter>
+                      </th>
+                     
                       <th></th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="let item of mf.data | SearchPipe : searchText">
-                      <td>{{item.nombre}}</td>
-                      <td>{{item.descripcion}}</td>
+                      <td>{{item.evento.nombre}}</td>
+                      <td>{{item.evento.descripcion}}</td>
                       <td>
                         <span class="alert-success"
-                          *ngIf="item.estado != 'Cancelado' && item.estado != 'Finalizado'">{{item.estado}}</span>
+                          *ngIf="item.evento.estado != 'Cancelado' && item.evento.estado != 'Finalizado'">{{item.evento.estado}}</span>
                         <span class="alert-danger"
-                          *ngIf="item.estado == 'Cancelado'  || item.estado == 'Finalizado'">{{item.estado}}</span>
+                          *ngIf="item.evento.estado == 'Cancelado'  || item.evento.estado == 'Finalizado'">{{item.evento.estado}}</span>
                       </td>
                       <td>
                         <span class="col col-3">
-                          <a *ngIf="item.estado != 'Cancelado' && item.estado != 'Nuevo'"
+                          <a *ngIf="item.evento.estado != 'Cancelado' && item.evento.estado != 'Nuevo'"
                             style="color: #014c8c;cursor:pointer;"
-                            (click)="cambioEvento(item)">Ver</a>
-                          <label *ngIf="item.estado == 'Cancelado' || item.estado == 'Nuevo'">--</label>
+                            (click)="cambioEvento(item.evento)">Ver</a>
+                          <label *ngIf="item.evento.estado == 'Cancelado' || item.evento.estado == 'Nuevo'">--</label>
                         </span>
-  
+                        
+                      </td>
+
+                      <td>
+                        <span class="col col-3">
+                          <span  *ngIf="item.porcentajeAsistencia >= 80" class="badge badge-pill badge-success">{{item.porcentajeAsistencia}}%</span>
+                          <span  *ngIf="item.porcentajeAsistencia > 0 &&  80 > item.porcentajeAsistencia" class="badge badge-pill badge-warning">{{item.porcentajeAsistencia}}%</span>
+                          <span   *ngIf="item.porcentajeAsistencia == 0" class="badge badge-pill badge-danger">{{item.porcentajeAsistencia}}%</span>
+                        </span>
+                      
                       </td>
                 
   
@@ -143,6 +155,10 @@
                                       <th>
                                           <mfDefaultSorter by="nroDocumento">Asistencia</mfDefaultSorter>
                                       </th>
+
+                                      <th>
+                                        <mfDefaultSorter by="nroDocumento">Acción</mfDefaultSorter>
+                                    </th>
                                    
                                       <th></th>
                                   </tr>
@@ -152,14 +168,17 @@
                                       
                                       <td><strong>{{item.dia}}</strong></td>
                                       <td>{{item.fechaDesde | date:'medium'}}</td>  
-                                      <td *ngIf="!item.asistencia; else other_content">
-                                        <a style="color: #014c8c;cursor:pointer;" (click)="tomarAsistencia(item)">Tomar</a>
                                       <td>
-                                        <ng-template #other_content>
-                                          <td>  <i style="cursor:pointer; align-content: right" (click)="tomarAsistencia(item)"
-                                            class="fa fa-check"></i></td>
-                                          </ng-template>                             
-                           
+                                        <a *ngIf="!item.asistencia" style="color: #014c8c;cursor:pointer;" (click)="tomarAsistencia(item)">Tomar</a>
+                                        <i *ngIf="item.asistencia" style="cursor:pointer; align-content: right" class="fa fa-check"></i>
+                                     
+                                      </td> 
+                                                                 
+                                          <td >
+                                            <a  *ngIf="item.asistencia" style="color: #014c8c;cursor:pointer;" (click)="verAsistencia(item)">Ver</a>
+                                          
+                                          <label *ngIf="!item.asistencia">--</label>
+                                        </td> 
                                   </tr>
                              <tr *ngIf="(mf.data | SearchPipe : searchText).length === 0">
                                       <td colspan="100">

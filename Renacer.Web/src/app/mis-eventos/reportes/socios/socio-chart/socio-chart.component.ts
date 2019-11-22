@@ -22,53 +22,48 @@ export class SocioChartComponent
      D: text data to represent bubble color (each category will appear as a new color, or leave blank to display all as one color)
      - E: numeric data to represent bubble size */
  
-     data = [
+ data=[];
+/*      data = [
      ["Jose",5,33,'Soltero',70],
      ["Mohan",3,59,'Soltero',50],
      ["Ramesh",9,69,'Viudo',40],
      ["Julie",7,43,'Casado',40],
      ["Sohan", 2,59,'Casado',20],
      ["Sohan", 1,59,'Soltero',10]
-  ];
+  ]; */
   columnNames = ['Nombre', 'Eventos','Edad','Estado Civil','Asistencias'];
-  options = { 
- /*    chartArea: {
-        height: '100%',
-        width: '100%',
-        top: 24,
-        left: 24,
-        bottom: 36,
-        right: 4
-      }, */
-     // height: '100%',
- /*      legend: {
-        position: 'bottom'
-      }, */
+  options={};
+  width = 950;
+  height = 800;
+ mostrarBubble=false;
+/*   options = { 
+
       sizeAxis: {
-        maxSize: 70,
+        maxSize: 90,
         minSize: 20
       },
       hAxis: {title: 'Eventos',
-        				/* 
-                *remove viewWindow and see a bubble is cutted off
-                */
+        				
+                //remove viewWindow and see a bubble is cutted off
+                
         				viewWindow: { 
             			min: 0,
             			max: 10
            			 }
     },
     vAxis: {title: 'Edad',
-    /* 
-*remove viewWindow and see a bubble is cutted off
-*/
+
+//remove viewWindow and see a bubble is cutted off
+
     viewWindow: { 
     min: 30,
     max: 90
     }
 }
-};
-  width = 950;
-  height = 800;
+}; */
+  
+
+
 
   //
     public config: any;
@@ -126,7 +121,7 @@ export class SocioChartComponent
     ngOnInit() {
        this.getCrecimientoSocios();
        this.getSociosPorEdad();
-
+       this.getSociosMasActivos();
     }
 
     public randomizeType(): void {
@@ -204,5 +199,65 @@ export class SocioChartComponent
             });
         })
     }
+
+    public getSociosMasActivos(){
+
+        this._reporteServ.getSociosMasActivos().subscribe(result => {
+        console.log(result);
+
+        //var max_of_array = Math.max.apply(Math, result.Edad);
+          var max_of_array = Math.max.apply(Math, result.map(function(o) { 
+                    return o.Edad;  
+                }));
+
+                var min_of_array = Math.min.apply(Math, result.map(function(o) { 
+                    return o.Edad;  
+                }));
+              max_of_array += 10;
+            min_of_array-=10;
+           max_of_array= Math.round(max_of_array / 10) * 10;
+            min_of_array= Math.round(min_of_array / 10) * 10;
+        this.options = { 
+      sizeAxis: {
+        maxSize: 70,
+        minSize: 30
+      },
+      hAxis: 
+      {title: 'Eventos',        		
+        				viewWindow: { 
+            			min: 0,
+            			max: 10
+           			 }
+    },
+    vAxis: {title: 'Edad',
+    viewWindow: { 
+    min: min_of_array,
+    max: max_of_array
+    }
+}
+};
+  
+          
+       result.forEach(element => {
+           let fila =[element.Nombre,element.Eventos,element.Edad,element.Civil,element.asistencias];
+           this.data.push(fila);
+       });
+        //this.data=result;
+        this.mostrarBubble=true;
+        
+        
+        
+
+            
+        });
+
+
+
+
+
+
+
+    }
+
 
 }
