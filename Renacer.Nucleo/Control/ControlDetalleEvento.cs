@@ -173,6 +173,26 @@ namespace Renacer.Nucleo.Control
             return null;
         }
 
+        //Devuelvo todos los detalles de un evento.
+        public List<DetalleEvento> devolverTodos(int idEvento)
+        {
+            try
+            {
+                using (var db = new ModeloRenacer())
+                {
+                    return db.detalleEvento                       
+                        .Where(ev => ev.idEvento == idEvento && ev.fechaBaja == null)
+                        .ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                ServicioSentry.devolverSentry().informarExcepcion(ex);
+            }
+            return null;
+        }
+
+
 
         /// <summary>
         /// Metodo utilizado para devolver todos los DetalleEvento por Aula

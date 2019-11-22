@@ -8,6 +8,7 @@ import {EncargadoEvento} from './encargado.service';
 import {Tag} from './tag.service';
 import { DetalleEvento } from './evento.service';
 import { HttpClient } from '@angular/common/http';
+import { AsistenciaEvento } from '../modelos/asistencia-evento';
 
 export class Asistencia {
   constructor(
@@ -47,6 +48,16 @@ let variable = new Variables();
 @Injectable()
 export class AsistenciaServices extends BaseServices<Asistencia> {
   public url:string = variable.urlBase + "asistencia";
+  
+  constructor(public http:HttpClient){
+    super(http);
+     }
+}
+
+
+@Injectable()
+export class AsistenciaEventoServices extends BaseServices<AsistenciaEvento> {
+  public url:string = variable.urlBase + "asistenciaevento";
   
   constructor(public http:HttpClient){
     super(http);

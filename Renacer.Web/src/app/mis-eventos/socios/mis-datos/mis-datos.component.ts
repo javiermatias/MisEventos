@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Socio, SocioServices } from '../../../servicios/socio.service';
 import { UserServices, Usuario } from '../../../servicios/users.service';
-import { routes } from '../../../pages/charting/charting.module';
 import { ToastrService } from 'ngx-toastr';
 import { sexo, estadoCivil } from '../../../modelos/enums';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'az-mis-datos',
@@ -19,7 +19,7 @@ export class MisDatosComponent implements OnInit {
   public fecha:Date;
 
   constructor(private _usersService:UserServices, private _socioService: SocioServices
-    , private mensajeServ: ToastrService  ) { }
+    , private mensajeServ: ToastrService ,private router: Router ) { }
 
   ngOnInit() {
     this.usuario = this._usersService.getCurrent();
@@ -57,7 +57,8 @@ actualizarFecha(fecha: string) {
 }
 
   limpiarForm() {
-
+    this.router.navigate(['/pages/dashboard/']);
+    //this.router.navigate('/pages/dashboard');
   }
 
   onSubmit(form: any) {

@@ -100,6 +100,17 @@ namespace Renacer.WebAPI.Controllers
             return ControlReporte.GetInstance().GetIngresosPorTipoEvento(filter);
         }
 
+        [ActionName("sociosmasactivos")]
+        [Route("sociosmasactivos")]
+        [AcceptVerbs("POST")]
+        public List<Dictionary<string, object>> GetSociosMasActivos()
+        {
+            return ControlReporte.GetInstance().GetSociosMasActivos();
+        }
+
+
+
+        //GetSociosMasActivos()
         [ActionName("ingresoseneltiempo")]
         [Route("ingresoseneltiempo")]
         [AcceptVerbs("POST")]

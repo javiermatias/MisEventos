@@ -65,7 +65,7 @@
 
         </div>
 
-        <div class="col-xl-6 col-lg-6 col-6 bottom-30">
+        <div class="col-xl-6 col-lg-6 col-6 bottom-30" style="padding-top: 50px;">
           <app-tabla [data]="sociosPorEdad" name="socios_por_edad" [config]="tablaEdadConfig">
           </app-tabla>
 
@@ -81,7 +81,7 @@
 
 
 
-<div class="col-xl-12 col-lg-12 col-12 bottom-30">
+<div class="col-xl-12 col-lg-12 col-12 bottom-30" *ngIf="mostrarBubble">
   <div widget class="card">
     <div class="card-header">
       <span>Socios mas activos</span>

@@ -108,7 +108,9 @@
     <Compile Include="Control\ControlEspacioComun.cs" />
     <Compile Include="Control\ControlCliente.cs" />
     <Compile Include="Entidades\Asistencia.cs" />
+    <Compile Include="Entidades\AsistenciaDetalleEvento.cs" />
     <Compile Include="Entidades\AsistenciaSocio.cs" />
+    <Compile Include="Entidades\AsistenciaEvento.cs" />
     <Compile Include="Entidades\Calendario.cs" />
     <Compile Include="Entidades\CambioContrasenia.cs" />
     <Compile Include="Entidades\DeudaCuota.cs" />

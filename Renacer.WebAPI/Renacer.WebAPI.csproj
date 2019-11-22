@@ -226,6 +226,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ActualizarEventoController.cs" />
     <Compile Include="Controllers\AsistenciaController.cs" />
+    <Compile Include="Controllers\AsistenciaDetalleController.cs" />
+    <Compile Include="Controllers\AsistenciaEventoController.cs" />
     <Compile Include="Controllers\AsistenciaSocioController.cs" />
     <Compile Include="Controllers\CalendarioController.cs" />
     <Compile Include="Controllers\CambioContraseniaController.cs" />

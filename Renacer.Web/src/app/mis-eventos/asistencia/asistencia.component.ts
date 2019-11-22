@@ -6,10 +6,11 @@ import { ToastrService, ToastrConfig } from 'ngx-toastr';
 import { EventoServices ,Evento,TipoEventoServices,TipoEvento,DetalleEvento,InscripcionServices,Inscripcion, DetalleEventoServices} from '../../servicios/evento.service';
 import { EncargadoEvento,EncargadoEventoServices} from '../../servicios/encargado.service';
 import { EspacioComun,EspacioServices} from '../../servicios/espacio.service';
-import { AsistenciaServices,Asistencia} from '../../servicios/asistencia.service';
+import { AsistenciaServices,Asistencia, AsistenciaEventoServices} from '../../servicios/asistencia.service';
 import { Socio} from '../../servicios/socio.service';
 import { RolServices, Rol } from '../../servicios/rol.service';
 import { Usuario, UserServices } from '../../servicios/users.service';
+import { AsistenciaEvento } from '../../modelos/asistencia-evento';
 
 
 @Component({
@@ -19,6 +20,8 @@ import { Usuario, UserServices } from '../../servicios/users.service';
 export class AsistenciaComponent implements OnInit {
 
   public eventos:Evento[];
+
+  public eventosSocios:AsistenciaEvento[];
   //seleccionEvento
    public eventoSeleccionado:Evento;
   //public eventoSelected:string;
@@ -36,7 +39,7 @@ export class AsistenciaComponent implements OnInit {
   public mostrarEvento:Boolean=true;
 
   constructor(private _eventoServ:EventoServices
-    ,private asistenciaServ:AsistenciaServices    
+    ,private asistenciaServ:AsistenciaEventoServices  
     ,private mensajeServ: ToastrService,
     private _userService: UserServices,
     private _detalleEvento:DetalleEventoServices) { }
@@ -46,6 +49,7 @@ export class AsistenciaComponent implements OnInit {
    this.usuario = this._userService.getCurrent();
    //console.log(this.usuario.idEncargado);
    this.getEventosXencargado();
+   this.getAsistenciasCursos();
   }
   getEventosXencargado(){
     
@@ -56,6 +60,15 @@ export class AsistenciaComponent implements OnInit {
          console.log(items);
     });
 
+  }
+
+  getAsistenciasCursos(){
+
+    this.asistenciaServ.query({'idEncargado':this.usuario.idEncargado}).subscribe(result => {
+      this.eventosSocios = result;
+      
+      console.log(result)
+     });
   }
 
   getAsistenciaDetalleEvento(_idEvento:number){
@@ -70,6 +83,9 @@ export class AsistenciaComponent implements OnInit {
 
 
   }
+
+
+ 
   cambioEvento(evento:Evento){
     this.mostrarEvento=false;
     this.getAsistenciaDetalleEvento(evento.id);
@@ -111,6 +127,13 @@ export class AsistenciaComponent implements OnInit {
       
     }); */
   }
+
+  verAsistencia(item:DetalleEvento){
+
+    console.log(item);
+  }
+
+
 /* 
   estaPresente(idSocio){
   if(this._item.listaSocios == null) this._item.listaSocios = new Array<Socio>();

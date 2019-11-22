@@ -12,6 +12,7 @@ namespace Renacer.WebAPI.Controllers
     public class AsistenciaSocioController : ApiController
     {
 
+        //Devuelve lista de asistencias del socio por X evento
         public IEnumerable<AsistenciaSocio> Get([FromUri]int idEvento, [FromUri]int idSocio)
         {
 
@@ -38,5 +39,7 @@ namespace Renacer.WebAPI.Controllers
 
             return listaAsistencia;
         }
+
+
     }
 }

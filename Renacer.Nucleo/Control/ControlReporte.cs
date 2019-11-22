@@ -277,10 +277,15 @@ WHERE asis.idDetalleEvento = det.id AND det.asistencia = 1 AND {filterRangeDate(
 
         }
 
-        public List<Dictionary<string, object>> GetEventosPorTipo()
+
+
+
+        public List<Dictionary<string, object>> GetSociosMasActivos()
         {
             var DbHelper = new DBBase(strConnection);
-            var sql = $@"SELECT t.nombre, count(e.id) as cantidad FROM  tipoevento t, evento e where t.id = e.idTipoEvento group by t.id";
+            var sql = $@"SELECT CONCAT(soc.nombre, ',' , soc.apellido) AS Nombre, COUNT(DISTINCT det.idEvento) AS Eventos, YEAR(CURDATE()) - YEAR(soc.fechaNacimiento) AS Edad, soc.estadoCivil AS Civil, COUNT(soc.id) AS asistencias
+FROM asistencia AS asis, socio AS soc, detalleevento det
+WHERE asis.idSocio = soc.id AND asis.idDetalleEvento = det.id GROUP BY CONCAT(soc.nombre, ',', soc.apellido)";
             return Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
         }
 
@@ -302,6 +307,33 @@ WHERE asis.idDetalleEvento = det.id AND det.asistencia = 1 AND {filterRangeDate(
 ";
             return Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
         }
+
+
+        public List<Dictionary<string, object>> GetEventosPorTipo()
+        {
+            var DbHelper = new DBBase(strConnection);
+            var sql = $@"SELECT t.nombre, count(e.id) as cantidad FROM  tipoevento t, evento e where t.id = e.idTipoEvento group by t.id";
+            return Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
+        }
+
+//        public List<Dictionary<string, object>> GetIngresosPorTipoEvento(FilterDateRange rango)
+//        {
+//            var DbHelper = new DBBase(strConnection);
+//            var sql = $@"
+//    SELECT
+//        SUM(p.monto) AS monto,
+//        t.nombre
+//	FROM pago p
+//		inner join inscripcion i on i.id = p.idInscripcion
+//	    inner join evento e on e.id = i.idEvento
+//        inner join tipoevento t on t.id = e.idTipoEvento
+//	WHERE
+//		estaPagado = 1 AND {filterRangeDate(rango, "fechaCobro")}
+//    GROUP BY 
+//        e.idTipoEvento
+//";
+//            return Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
+//        }
 
         public List<Dictionary<string, object>> GetIngresosPorTipo(FilterDateRange rango)
         {
