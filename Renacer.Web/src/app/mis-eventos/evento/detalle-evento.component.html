@@ -59,7 +59,7 @@
                         </form>
 
                     </div>
-                    <div class="tab-pane" id="fechas">
+                 <!--    <div class="tab-pane" id="fechas">
                         <div widget class="card">
 
                             <div class="col-12">
@@ -121,9 +121,16 @@
                             </div>
                         </div>
 
-                    </div>
-                    <div class="tab-pane" id="asistencias">
+                    </div> -->
+                    <div class="tab-pane" id="asistencias" *ngIf="asistencia">
                        <!--  <az-asistencia [detalle]="_item"></az-asistencia> -->
+                       
+                       <az-detalle-asistencia *ngIf="_item.asistencia"  [detalleEvento]="_item"></az-detalle-asistencia>
+                       <div *ngIf="!_item.asistencia" class="alert alert-success" role="alert">
+                        <strong> Todavía no se registró la asistencia!</strong>
+                    </div>
+
+                       
                     </div>
                 </div>
             </div>

@@ -16,33 +16,41 @@ namespace Renacer.WebAPI.Controllers
         {
             //voy a tener todos los socios inscriptos
             List<Inscripcion> listaInscripciones = ControlInscripcion.devolverInstacia().devolverInscripcionEvento(idEvento);
+            List<Asistencia> listaAsistencias = ControlAsistencia.devolverInstacia().devolverAsistenciaDetalleEvento(id);
+            List<AsistenciaDetalleEvento> listaAux = new List<AsistenciaDetalleEvento>();
+
+            foreach (var inscripcion in listaInscripciones)
+            {
+                AsistenciaDetalleEvento asistenciaDetalle = new AsistenciaDetalleEvento();
+                asistenciaDetalle.socio = inscripcion.socio;
+                var bandera = false;
+                foreach (var asistencia in listaAsistencias)
+                {
+                    
+                    if (inscripcion.socio.id == asistencia.idSocio) {
 
 
-            // IEnumerable<DetalleEvento> detalleEvento = ControlDetalleEvento.devolverInstancia().devolverTodos(evento.id);
-
-            //List<AsistenciaSocio> listaAsistencia = new List<AsistenciaSocio>();
-            //IEnumerable<DetalleEvento> detalleEvento = ControlDetalleEvento.devolverInstancia().devolverTodosXEncargado(idEvento);
-
-            //foreach (var detalle in detalleEvento)
-            //{
-            //    AsistenciaSocio asistencia = new AsistenciaSocio();
-            //    asistencia.fechaEvento = detalle.fechaDesde;
-            //    if (detalle.asistencia)
-            //    {
-            //        asistencia.tomoAsistencia = true;
-            //        Asistencia _asistencia = ControlAsistencia.devolverInstacia().devolverXdetalleEventoYSocio(detalle.id, idSocio);
-            //        if (_asistencia != null) asistencia.asistio = true; // si asistio
+                        bandera = true;
 
 
+                    }
 
-            //    }
+                }
+
+                if (bandera)
+                {
+                    asistenciaDetalle.asistio = true;
+                }
+                else {
+                    asistenciaDetalle.asistio = false;
+                }
+                listaAux.Add(asistenciaDetalle);
 
 
-            //    listaAsistencia.Add(asistencia);
-            //}
+            }
 
-            //return listaAsistencia;
-            return null;
+          
+            return listaAux;
         }
     }
 }

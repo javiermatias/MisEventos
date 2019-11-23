@@ -18,7 +18,7 @@ import { EncargadoEventoServices } from './servicios/encargado.service';
 import { ReporteServices } from './servicios/reporte.service';
 import { EventoServices, TipoEventoServices, DetalleEventoServices, InscripcionServices, PagoServices } from './servicios/evento.service';
 import { TipoDocumentoServices } from './servicios/tipo-documento.service';
-import { AsistenciaServices, AsistenciaEventoServices } from './servicios/asistencia.service';
+import { AsistenciaServices, AsistenciaEventoServices, AsistenciaDetalleEventoServices } from './servicios/asistencia.service';
 import { TagServices } from './servicios/tag.service';
 import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import { RolServices } from './servicios/rol.service';
@@ -110,6 +110,7 @@ registerLocaleData(localeEs, 'es-AR');
     ExcelService,
     ProximoEventoService ,
     AsistenciaEventoServices,
+    AsistenciaDetalleEventoServices,
     { provide: LOCALE_ID, useValue: 'es-AR' },
     DatePipe],
     bootstrap: [AppComponent]

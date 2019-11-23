@@ -31,13 +31,16 @@ export class AsistenciaComponent implements OnInit {
   //@Input() detalle:DetalleEvento ;
   public listaInscripciones:any[] ;
   public fechaActual:string;
-  public mostrarGrilla:boolean=false;
+  
   public detalleEvento:DetalleEvento[];
   public detalleSelecionado:DetalleEvento;
-  public showRecordatorio:Boolean=false;
+  public listaAsistencias:Boolean=true; //pantalla principal
+  public nuevaAsistencia:Boolean=false; //muestra la nueva asistencia
+  public mostrarGrilla:boolean=false; //muestra detalle tomar/ver
   searchText = '';
   public mostrarEvento:Boolean=true;
-
+  verListaAsistencia:Boolean=false;
+  
   constructor(private _eventoServ:EventoServices
     ,private asistenciaServ:AsistenciaEventoServices  
     ,private mensajeServ: ToastrService,
@@ -57,7 +60,7 @@ export class AsistenciaComponent implements OnInit {
       {'idEncargado':this.usuario.idEncargado}).subscribe
       (items => {
         this.eventos = items;
-         console.log(items);
+        // console.log(items);
     });
 
   }
@@ -103,12 +106,14 @@ export class AsistenciaComponent implements OnInit {
 
   tomarAsistencia(item:DetalleEvento){
     this.detalleSelecionado=item;
-    this.showRecordatorio=true;
-   console.log(item);
+    this.listaAsistencias=false;
+    this.nuevaAsistencia=true;
+  // console.log(item);
   }
 
   guardo(cancelar: boolean) {
-    this.showRecordatorio = false;
+    this.listaAsistencias=true;
+    this.nuevaAsistencia=false;
     if (cancelar) {
       this.detalleSelecionado.asistencia=true;
       this._detalleEvento.update(this.detalleSelecionado).subscribe(resp => {
@@ -118,42 +123,20 @@ export class AsistenciaComponent implements OnInit {
     }
 
   }
-  guardarAsistencia(){
-/*     this.asistenciaServ.save(this._item,resp => {
-      this.asistenciaServ.get({"id":this.detalle.asistencia.id},resp => {
-        this._item = resp;
-        this.mensajeServ.success('Se han guardado las asistencias!', 'Aviso!');
-                 }) 
-      
-    }); */
-  }
 
+  volverAsistencia(cancelar: boolean){
+    this.listaAsistencias=true;
+    this.verListaAsistencia=false;
+
+  }
+ 
   verAsistencia(item:DetalleEvento){
-
-    console.log(item);
+    this.detalleSelecionado=item;
+    this.listaAsistencias=false;
+    this.verListaAsistencia=true;
+   // console.log(item);
   }
 
 
-/* 
-  estaPresente(idSocio){
-  if(this._item.listaSocios == null) this._item.listaSocios = new Array<Socio>();
-   return this._item.listaSocios.filter(item => item.id == idSocio).length == 1
-  }
-
-  togglePresente(socio){
-  if(this._item.listaSocios == null) this._item.listaSocios = new Array<Socio>();
-
-      if(!this.estaPresente(socio.id)){
-        delete socio.$id;
-        this._item.listaSocios.push(socio);
-      }
-   else{
-  var itemAux = this._item.listaSocios.filter(item => item.id == socio.id)[0];
-  var index = this._item.listaSocios.indexOf(itemAux, 0);
-  this._item.listaSocios.splice(index, 1);
-   } */
-  
-    
- // }
 
 }

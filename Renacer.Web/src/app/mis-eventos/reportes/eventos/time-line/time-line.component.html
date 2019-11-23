@@ -94,7 +94,7 @@
 
 
 
-<div class="timeline">
+<!-- <div class="timeline">
   <ul>
     <li *ngFor="let item of eventos">
       <div class="content">
@@ -111,4 +111,21 @@
     
     <div style="clear:both;"></div>
   </ul>
-</div>
+</div> -->
+
+
+
+<div class="col-xl-12 col-lg-12 col-12 bottom-30" *ngIf="mostrargrafico">
+    <google-chart #chart
+    [title]="title"
+    [type]="type"
+    [data]="myData2"
+    [width]="width"
+    [height]="height"
+    >
+ </google-chart>
+  </div>
+
+<!--   [options]="options"
+  [width]="width"
+    [height]="height" -->

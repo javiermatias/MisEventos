@@ -1,4 +1,4 @@
-<div class="row" *ngIf="mostrarGrilla">
+<div class="row" >
   <div class="col col-lg-9">
       <div widget class="card" style="margin-bottom:20px">
           <div class="card-header">
@@ -25,11 +25,11 @@
                               <th>
                                   <mfDefaultSorter by="nroDocumento">Asistencia</mfDefaultSorter>
                               </th>
-                              <th>
+                         <!--      <th>
                                 <mfDefaultSorter by="nroDocumento">Acción</mfDefaultSorter>
                             </th>
                            
-                              <th></th>
+                              <th></th> -->
                           </tr>
                       </thead>
                       <tbody>
@@ -41,10 +41,10 @@
                                 <i *ngIf="item.asistio" style="cursor:pointer; align-content: center" class="fa fa-check"></i>
                                 <i *ngIf="!item.asistio" style="cursor:pointer; align-content: center" class="fa fa-remove"></i>
                               </td> 
-                                                         
-                                  <td >
+                           
+                              <!--     <td >
                                     <a>Modificar</a>                                
-                                </td> 
+                                </td>  -->
                           </tr>
                      <tr *ngIf="(mf.data | SearchPipe : searchText).length === 0">
                               <td colspan="100">
@@ -58,8 +58,8 @@
                   </table>
               </div>
               </div>
-              <button (click)="volver()" type="button" 
-                    class="btn btn-default">Cancelar</button>
+          <!--     <button (click)="volver()" type="button" 
+                    class="btn btn-default">Cancelar</button> -->
           </div>
       </div>
 
