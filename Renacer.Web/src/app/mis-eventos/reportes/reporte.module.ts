@@ -55,7 +55,7 @@ export const routes = [
       NguiAutoCompleteModule,
       TagCloudModule,
       ChartsModule,
-      GoogleChartsModule,
+      GoogleChartsModule.forRoot('es'),
       RouterModule.forChild(routes)
   ],
   declarations: [

@@ -24,6 +24,7 @@ export class DetalleEventoComponent implements OnInit,OnDestroy  {
   private sub: any;
   public diaSemanas:string[] = ["Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"];
 
+  public asistencia:boolean=false;
   constructor(
     private _itemsService:DetalleEventoServices,
     private tipoEventoServ:TipoEventoServices,
@@ -41,7 +42,7 @@ export class DetalleEventoComponent implements OnInit,OnDestroy  {
       this.sub = this.route.params.subscribe(params => {
         this.id = params['idDetalle'];
         this.verItem();
-        this.getAsistencias(this.id);
+       // this.getAsistencias(this.id);
         jQuery('.modal-backdrop').remove();
         jQuery('.modal-open').removeClass('modal-open');
       });
@@ -62,6 +63,7 @@ export class DetalleEventoComponent implements OnInit,OnDestroy  {
       this._itemsService.get(this.id).subscribe(resp =>{
         console.log(resp);
         this._item = resp
+        this.asistencia=true;
       }
         
         );

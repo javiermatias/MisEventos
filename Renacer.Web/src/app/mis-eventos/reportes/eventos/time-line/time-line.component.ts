@@ -8,7 +8,20 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./time-line.component.scss']
 })
 export class TimeLineComponent implements OnInit {
+  title = 'Actividad Socios';
+  type = 'Timeline';
+  myData2=[];
+  //columnNames = ['President', 'Start','End'];
+  myData = [
+    
+    [ 'SECRETARIADO Y RECEPCIÓN', new Date(1789, 3, 30), new Date(1797, 2, 4) ],
+    [ 'Adams',      new Date(1797, 2, 4),  new Date(1801, 2, 4) ],
+    [ 'Jefferson',  new Date(1801, 2, 4),  new Date(1809, 2, 4) ]
+  ]
 
+  mostrargrafico=false;
+  width = 950;
+  height = 800;
   public eventos :Evento[];
 
   public eventosOriginal :Evento[];
@@ -28,7 +41,9 @@ export class TimeLineComponent implements OnInit {
   }
 
   ngOnInit() {
+    //google.charts.load('current', {'packages':['corechart'], 'language': 'es'});
     this.getItems();
+    console.log(this.myData);
   }
   filtrar(){
 
@@ -105,9 +120,17 @@ console.log(this.eventos);
     this.eventos = items.filter((item: Evento) => {
       return this.datePipe.transform(item.fechaDesde, 'yyyy-MM-dd') >= this.fechaDesde;
   });
+
+  this.eventosOriginal.forEach(element => {
+    let fila=[element.nombre,new Date(element.fechaDesde.toString()), new Date(element.fechaHasta.toString())];
+   this.myData2.push(fila);
+  });
+  console.log(this.myData2);
+  this.mostrargrafico=true;
       //this.eventos = items;
-      //console.log(this.eventos);
-      }
-     );
-    }
+    /*   console.log(this.eventos);
+
+     this.mostrargrafico=true;  */
+    });
+  }
 }
