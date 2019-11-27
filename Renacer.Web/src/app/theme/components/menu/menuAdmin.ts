@@ -159,7 +159,12 @@ export const itemsAdmin = [
         {
           title: 'Crecimiento',
           routerLink: 'reportes/crecimiento-socios'
+        },
+        {
+          title: 'Asistencia socios',
+          routerLink: 'reportes/asistencias-socio'
         }
+      
       ]
       },
       // {

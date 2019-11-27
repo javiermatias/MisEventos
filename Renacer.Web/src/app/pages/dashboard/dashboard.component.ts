@@ -6,8 +6,10 @@ import { UserServices } from '../../servicios/users.service';
 import { RolServices } from '../../servicios/rol.service';
 import { Rol } from '../../servicios/rol.service';
 import { roles } from '../../modelos/enums';
-import { Evento, EventoServices } from '../../servicios/evento.service';
+import { Evento, EventoServices, InscripcionServices } from '../../servicios/evento.service';
 import { DatePipe } from '@angular/common';
+import { AsistenciaEventoServices } from '../../servicios/asistencia.service';
+import { AsistenciaEvento } from '../../modelos/asistencia-evento';
 
 @Component({
     selector: 'az-dashboard',
@@ -21,10 +23,6 @@ export class DashboardComponent
     //Ver eventos para el socio
     public fechaDesde: string;
     public fechaHasta: string;
-    public eventos: Evento[];
-    public eventosOriginal: Evento[];
-
-    //Ver eventos para el socio
 
     public config: any;
     public configFn: any;
@@ -39,12 +37,32 @@ export class DashboardComponent
     public cantAsistencias = -1;
     public cantEspacios = -1;
     public crecimientoSocios = [];
+
+    public cantSecretarios=-1;
     public user: any;
+
+    //Dashboard socio
+    public cantEventosInscriptos = -1;
+    public cantEventosAdeudados = -1;
+    public cantEncuestasCompletadas = -1;
+
+    public cantIntereses = -1;
+
+    //Dashboard encargado
+ 
+    public cantEventosAsignados=-1;
+
+    public cantEventosProgreso=-1;
+
+    public cantEventosAsistencia=-1;
+
+   // public eventosEncargado:AsistenciaEvento[];
 
     constructor(private _appConfig: AppConfig
         , private _reporteServ: ReporteServices
-        , private _userServices: UserServices,
-        private _itemsService: EventoServices,
+        , private _userServices: UserServices,  
+        private inscripcionServ:InscripcionServices,
+        private asistenciaServ:AsistenciaEventoServices,
         private datePipe: DatePipe) {
         this.fechaDesde = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
         this.fechaHasta = this.datePipe.transform(new Date(new Date().getFullYear(), 11, 30), 'yyyy-MM-dd');
@@ -59,28 +77,13 @@ export class DashboardComponent
         if (this.user.rol === 'ENCARGADO') { this.loadEncargadoData(); }
         if (this.user.rol === 'SOCIO') {
             this.loadSocioData();
-            this.getItems();
+            //this.getItems();
         }
         if (this.user.rol === 'SECRETARIO') { this.loadSecretariaData(); }
 
     }
 
-    getItems() {
-        this._itemsService.query({ 'search': ' ' }).subscribe(items => {
-            items.sort(function (a, b) {
-                const c = new Date(a.fechaDesde);
-                const d = new Date(b.fechaDesde);
-                return d > c ? -1 : d < c ? 1 : 0;
-            });
-            this.eventos = items;
-          /*   this.eventosOriginal = items;
-            this.eventos = items.filter((item: Evento) => {
-                return this.datePipe.transform(item.fechaDesde, 'yyyy-MM-dd') >= this.fechaDesde;
-            }); */
-
-        }
-        );
-    }
+  
     public loadAdminData(): void {
         const self = this;
         this._reporteServ.getEntidadCount({ 'Entidad': 'cursos-en-progreso' }).subscribe(function (count) {
@@ -113,16 +116,80 @@ export class DashboardComponent
             self.cantEspacios = count.count;
         });
 
+        this._reporteServ.getEntidadCount({ 'Entidad': 'secretarios' }).subscribe(function (count) {
+            self.cantSecretarios = count.count;
+        });
+
         this._reporteServ.getCrecimientoSocios({}).subscribe(function (result) {
             self.crecimientoSocios = result;
         });
     }
 
-    public loadEncargadoData(): void {
+
+
+    public loadSocioData(): void { 
+        const self = this;
+        this._reporteServ.getEntidadCount({ 'Entidad': 'eventos-nuevos' }).subscribe(function (count) {
+            self.cantCursosNuevos = count.count;
+        });
+
+        this._reporteServ.getsociointereses(this.user.idSocio).subscribe(function (count) {
+            //console.log(count);
+            self.cantIntereses = count;
+        });
+        this.inscripcionServ.query({'idSocio':this.user.idSocio}).subscribe(items => {
+            
+            let cantAdeudado =0;
+           
+            let cantEncuestas=0;
+            items.forEach(inscripcion => {
+                
+                if(inscripcion.estado == 'ADEUDADO'){
+                    cantAdeudado++;
+                }
+
+                if(inscripcion.estadoEncuesta){
+                    cantEncuestas++;
+                }
+            });
+       
+            this.cantEventosInscriptos = items.length;
+            this.cantEventosAdeudados = cantAdeudado;
+            this.cantEncuestasCompletadas = cantEncuestas;
+
+           
+            }
+         );
     }
 
-    public loadSocioData(): void { }
-
     public loadSecretariaData(): void { }
+
+
+    public loadEncargadoData(): void {
+       
+
+        this.asistenciaServ.query({'idEncargado':this.user.idEncargado}).subscribe(result => {
+          
+            let _cantEventosProgreso = 0;
+
+            let _cantEventosAsistencia = 0;
+
+            this.cantEventosAsignados = result.length;
+
+            result.forEach(element => {
+                
+                _cantEventosAsistencia += element.porcentajeAsistencia;
+                if(element.evento.estado == 'Progreso'){
+                    _cantEventosProgreso++;
+                }
+
+            });
+            
+            this.cantEventosAsistencia= Math.round(_cantEventosAsistencia /= this.cantEventosAsignados);
+            this.cantEventosProgreso = _cantEventosProgreso;
+          console.log(result)
+         });
+      
+}
 
 }

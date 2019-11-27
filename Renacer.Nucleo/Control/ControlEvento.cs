@@ -647,6 +647,24 @@ namespace Renacer.Nucleo.Control
             return null;
         }
 
+        public List<Evento> devolverTodosConEncargado()
+        {
+            try
+            {
+                using (var db = new ModeloRenacer())
+                {
+                    return db.evento.Include("responsable")
+                        .Where(ev =>ev.fechaBaja == null).OrderByDescending(item => item.fechaCreacion)
+                        .ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                ServicioSentry.devolverSentry().informarExcepcion(ex);
+            }
+            return null;
+        }
+
 
 
     }

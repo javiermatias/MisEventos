@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EventoServices, Evento } from '../../../../servicios/evento.service';
 import { DatePipe } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'az-time-line',
@@ -28,15 +29,15 @@ export class TimeLineComponent implements OnInit {
   public fecha:string;
 
   public fechaDesde:string;
-
   public fechaHasta:string;
 
+  public pasoInscripciones=false;
   public estado:string;
   //startDate = 
   //Nuevo,Cancelado,Progreso,Finalizado
-  constructor(private _itemsService:EventoServices,private datePipe: DatePipe) { 
-    this.fechaDesde = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
-    this.fechaHasta = this.datePipe.transform(new Date(new Date().getFullYear(),11,30 ), 'yyyy-MM-dd');
+  constructor(private _itemsService:EventoServices,private datePipe: DatePipe, private toastrService: ToastrService,) { 
+    this.fechaDesde = this.datePipe.transform(new Date(new Date().getFullYear(), 0, 1), 'yyyy-MM-dd');
+    this.fechaHasta = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
    this.fecha="fechaInicio";
   }
 
@@ -46,13 +47,14 @@ export class TimeLineComponent implements OnInit {
     console.log(this.myData);
   }
   filtrar(){
-
+    //this.mostrargrafico=false;
     //agregar un estado sin filtro fecha
   /*   //alert("click en filtrar"); 
  // console.log(this.fecha);
   console.log(this.fechaDesde);
   console.log(this.fechaHasta);
   console.log(this.estado); */
+  this.pasoInscripciones=false;
   this.eventos= this.eventosOriginal;
   switch (this.fecha) {
     case ("fechaInicio"):
@@ -72,6 +74,7 @@ export class TimeLineComponent implements OnInit {
 
 
     case ("fechaInicioInscripcion"):
+        this.pasoInscripciones=true;
       this.eventos.sort(function(a, b) {
         let c = new Date(a.fechaDesdeInscripcion);
         let d = new Date(b.fechaDesdeInscripcion);
@@ -80,6 +83,7 @@ export class TimeLineComponent implements OnInit {
     break; 
 
     case ("fechaFinInscripcion"):
+        this.pasoInscripciones=true;
       this.eventos.sort(function(a, b) {
         let c = new Date(a.fechaHastaInscripcion);
         let d = new Date(b.fechaHastaInscripcion);
@@ -89,6 +93,35 @@ export class TimeLineComponent implements OnInit {
 
 }
 
+if(this.estado != null && this.estado != "Todos"){
+  this.eventos = this.eventos.filter((item: Evento) => {
+    return item.estado == this.estado;
+
+});
+}
+
+if(this.pasoInscripciones){
+
+  if(this.fechaHasta != null  && this.fechaHasta != ""  && this.fechaDesde != null
+  && this.fechaDesde != ""){
+    this.eventos = this.eventos.filter((item: Evento) => {
+      return this.datePipe.transform(item.fechaDesdeInscripcion, 'yyyy-MM-dd') >= this.fechaDesde
+      &&  this.datePipe.transform(item.fechaHastaInscripcion, 'yyyy-MM-dd') <= this.fechaHasta;
+  });
+  }
+
+  if(this.eventos.length==0){
+    this.toastrService.error('No se encontraron datos con este filtro');
+  }else{
+  this.myData2=[];
+  this.eventos.forEach(element => {
+    let fila=[element.nombre,new Date(element.fechaDesdeInscripcion.toString()), new Date(element.fechaHastaInscripcion.toString())];
+   this.myData2.push(fila);
+  });
+ }
+}else{
+
+
 if(this.fechaHasta != null  && this.fechaHasta != ""  && this.fechaDesde != null
 && this.fechaDesde != ""){
   this.eventos = this.eventos.filter((item: Evento) => {
@@ -97,17 +130,24 @@ if(this.fechaHasta != null  && this.fechaHasta != ""  && this.fechaDesde != null
 });
 }
 
-//console.log(this.estado);
-if(this.estado != null && this.estado != "Todos"){
-  this.eventos = this.eventos.filter((item: Evento) => {
-    return item.estado == this.estado;
+if(this.eventos.length==0){
+  this.toastrService.error('No se encontraron datos con este filtro');
+}else{
+  this.myData2=[];
+  this.eventos.forEach(element => {
+    let fila=[element.nombre,new Date(element.fechaDesde.toString()), new Date(element.fechaHasta.toString())];
+   this.myData2.push(fila);
+  });
 
-});
 }
-console.log(this.eventos);
 
 
-  }
+
+}
+
+
+
+}
   getItems(){
     this._itemsService.query({'search':' '}).subscribe(items => {
       items.sort(function(a, b) {
@@ -121,11 +161,11 @@ console.log(this.eventos);
       return this.datePipe.transform(item.fechaDesde, 'yyyy-MM-dd') >= this.fechaDesde;
   });
 
-  this.eventosOriginal.forEach(element => {
+  this.eventos.forEach(element => {
     let fila=[element.nombre,new Date(element.fechaDesde.toString()), new Date(element.fechaHasta.toString())];
    this.myData2.push(fila);
   });
-  console.log(this.myData2);
+  //console.log(this.myData2);
   this.mostrargrafico=true;
       //this.eventos = items;
     /*   console.log(this.eventos);

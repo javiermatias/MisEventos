@@ -65,13 +65,11 @@ namespace Renacer.Nucleo.Control
                 case "sociosSistema":
                     count = this.GetSociosSistemaCount(); break;
                 case "asistencias":
-
-                    count = this.GetAsistenciasCount(); break;
-                    
-                    
-                    
+                    count = this.GetAsistenciasCount(); break;                    
                 case "encargados":
                     count = this.GetEncargadosCount(); break;
+                case "secretarios":
+                    count = this.GetSecretariosCount(); break;
                 case "eventos":
                     count = this.GetEventosDetalleCount(); break;
                 case "espacios":
@@ -277,9 +275,6 @@ WHERE asis.idDetalleEvento = det.id AND det.asistencia = 1 AND {filterRangeDate(
 
         }
 
-
-
-
         public List<Dictionary<string, object>> GetSociosMasActivos()
         {
             var DbHelper = new DBBase(strConnection);
@@ -371,7 +366,7 @@ WHERE asis.idSocio = soc.id AND asis.idDetalleEvento = det.id GROUP BY CONCAT(so
             return Helper.Helper.ConvertDT(tabla);
 
         }
-
+        
 
         public List<Dictionary<string, object>> CantidadIngresosEnElTiempo(FilterDateRange rango)
         {
@@ -443,6 +438,13 @@ WHERE asis.idSocio = soc.id AND asis.idDetalleEvento = det.id GROUP BY CONCAT(so
             var DbHelper = new DBBase(strConnection);
             return (Int64)DbHelper.ExecuteScalar("SELECT COUNT(*) FROM encargado where ISNULL(fechaBaja)");
         }
+
+        private Int64 GetSecretariosCount()
+        {
+            var DbHelper = new DBBase(strConnection);
+            return (Int64)DbHelper.ExecuteScalar("SELECT COUNT(*) FROM secretario WHERE ISNULL(fechaBaja)");
+        }
+
         private Int64 GetCursosEnProgresoCount()
         {
             var DbHelper = new DBBase(strConnection);
@@ -462,7 +464,6 @@ WHERE asis.idSocio = soc.id AND asis.idDetalleEvento = det.id GROUP BY CONCAT(so
         }
 
 
-
         private Int64 GetEspaciosCount()
         {
             var DbHelper = new DBBase(strConnection);
@@ -479,8 +480,6 @@ WHERE asis.idSocio = soc.id AND asis.idDetalleEvento = det.id GROUP BY CONCAT(so
             var DbHelper = new DBBase(strConnection);
             return (Int64)DbHelper.ExecuteScalar("SELECT COUNT(*) FROM detalleevento where fechaHasta < NOW() AND ISNULL(fechaBaja)");
         }
-
-     
 
 
         private Int64 GetAsistenciasCount()
@@ -564,6 +563,17 @@ GROUP BY
 
             var tabla = DbHelper.ExecuteDataTable(sql);
             return Helper.Helper.ConvertDT(tabla);
+        }
+
+
+
+        //Dashboard Socio
+
+        public Int64 GetSocioInteresesCount(int idSocio)
+        {
+            var DbHelper = new DBBase(strConnection);
+            var sql = "SELECT COUNT(*) FROM sociotags WHERE socio_id=" + idSocio;
+            return (Int64)DbHelper.ExecuteScalar(sql);
         }
 
         public class filterSocio

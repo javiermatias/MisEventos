@@ -27,6 +27,8 @@ import { IngresosComponent } from './ingresos/ingresos.component';
 import { GraficoTortaComponent } from './graficos-compartidos/grafico-torta/grafico-torta.component';
 
 import { GoogleChartsModule } from 'angular-google-charts';
+import { AsistenciaSocioComponent } from './eventos/asistencias/asistencia-socio/asistencia-socio.component';
+import { AsistenciaReporteComponent } from './asistencia-reporte/asistencia-reporte.component';
 
 
 export const routes = [
@@ -41,6 +43,7 @@ export const routes = [
   { path: 'deudores', component: DeudoresCuotaComponent, data: { breadcrumb: 'Deudores' } },
   { path: 'crecimiento-socios', component: SocioChartComponent, data: { breadcrumb: 'Socios' } },
   { path: 'ingresos12', component: IngresosMonetariosComponent, data: { breadcrumb: 'Socios' } },
+  { path: 'asistencias-socio', component: AsistenciaReporteComponent, data: { breadcrumb: 'Reporte' } }
 ];
 
 @NgModule({
@@ -72,7 +75,9 @@ export const routes = [
     ListaDeudoresComponent,
     SocioChartComponent,
     IngresosComponent,
-    GraficoTortaComponent
+    GraficoTortaComponent,
+    AsistenciaSocioComponent,
+    AsistenciaReporteComponent
   ]
 })
 export class ReporteModule { }

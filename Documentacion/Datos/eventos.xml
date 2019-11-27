@@ -1,0 +1,329 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">
+
+<Styles>
+ <Style ss:ID="Default" ss:Name="Normal">
+  <Alignment ss:Vertical="Bottom"/>
+  <Borders/>
+  <Font/>
+  <Interior/>
+  <NumberFormat/>
+  <Protection/>
+ </Style>
+ <Style ss:ID="s27">
+  <Font x:Family="Swiss" ss:Color="#0000FF" ss:Bold="1"/>
+ </Style>
+ <Style ss:ID="s21">
+  <NumberFormat ss:Format="yyyy\-mm\-dd"/>
+ </Style>
+ <Style ss:ID="s22">
+  <NumberFormat ss:Format="yyyy\-mm\-dd\ hh:mm:ss"/>
+ </Style>
+ <Style ss:ID="s23">
+  <NumberFormat ss:Format="hh:mm:ss"/>
+ </Style>
+</Styles>
+
+ <Worksheet ss:Name="Sheet1">
+  <ss:Table>
+   <ss:Row>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">id</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">nombre</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">descripcion</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">idTipoEvento</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">idEspacio</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">idEncargado</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">cupoMinimo</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">cupoMaximo</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">gratuito</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">monto</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">cantidadCuota</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">fechaDesde</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">fechaHasta</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">fechaDesdeInscripcion</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">fechaHastaInscripcion</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">estado</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">fechaCreacion</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">fechaBaja</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">estadoDeudores</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Taller de costura</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Taller donde se aprenderán distintas técnicas de c</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">2</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">5</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">20</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">0</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">1200</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">3</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-10-11T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-11-07T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-10-06T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-10-10T00:00:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Finalizado</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-10-06T15:45:22.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String"></Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">PAGO</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">2</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Taller pintura sobre oleo</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Se enseña a pintar con diferentes tecnicas sobre t</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">2</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">5</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">20</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">0</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">1300</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">4</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-10-15T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-10-30T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-10-13T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-10-18T00:00:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Finalizado</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-10-13T23:53:46.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String"></Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">PAGO</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">3</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Curso Office Word</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Se dictara un curso para aprender a usar el Word</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">3</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">5</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">20</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">0</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">1800</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">3</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-10-22T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-11-28T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-10-16T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-10-23T00:00:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Progreso</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-10-16T23:48:49.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String"></Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">PAGO</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">4</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Campaña Vacunación </Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Campaña para vacunar a menores de edad</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">4</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">3</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">5</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">20</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">0</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">0</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-10-21T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-10-21T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-10-18T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-10-20T00:00:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Finalizado</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-10-18T01:56:56.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String"></Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">ADEUDADO</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">5</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Baile de salsa</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Aprender a bailar salsa.</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">6</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">2</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">5</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">15</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">0</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">1500</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">3</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-10-30T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-12-18T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-10-28T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-11-05T00:00:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Progreso</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-10-27T16:26:33.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String"></Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">ADEUDADO</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">6</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Yoga </Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Aprenderemos a relajarnos haciendo yoga.</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">2</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">2</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">4</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">14</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">0</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">2000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">2</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-11-06T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-12-23T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-10-27T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-11-05T00:00:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Progreso</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-10-27T16:35:47.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String"></Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">ADEUDADO</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">7</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Seminario Fertilidad</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Se hablara sobre la fertilidad y se derribaran mit</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">3</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">3</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">3</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">5</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">25</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">0</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">0</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-10-28T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-10-28T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-10-27T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-10-28T00:00:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Finalizado</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-10-27T18:01:03.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String"></Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">ADEUDADO</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">8</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Taller de prueba</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Es un taller de prueba</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">2</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">2</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">5</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">15</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">0</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">1500</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">3</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-10-31T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-11-20T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-10-28T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-10-31T00:00:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Cancelado</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-10-28T19:32:47.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-11-02T23:31:37.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">ADEUDADO</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">9</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Curso de meditación</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Aprenderemos distintas técnicas para meditar</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">2</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">5</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">10</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">0</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">2000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">4</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-11-08T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-12-13T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-11-03T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-11-12T00:00:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Progreso</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-11-03T15:08:52.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String"></Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">ADEUDADO</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">10</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Curso excel avanzado</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Se aprenderán funciones avanzadas de excel</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">2</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">5</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">15</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">0</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">3000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">3</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-11-21T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-12-20T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-11-08T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-11-20T00:00:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Progreso</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-11-08T20:14:47.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String"></Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">ADEUDADO</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">11</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">CORTE Y CONFECCION</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Es un taller para aprender a realizar corte y conf</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">2</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">5</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">3</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">5</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">25</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">0</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">2000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">2</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-11-13T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-12-16T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-11-11T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-11-19T00:00:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Progreso</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-11-11T03:10:38.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String"></Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">ADEUDADO</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">12</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">GUITARRA Y CANTO</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Se aprenderá a tocar la guitarra y acompañar con e</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">2</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">6</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">2</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">5</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">20</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">0</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">3000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">3</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-11-28T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-12-26T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-11-14T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-11-27T00:00:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Nuevo</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-11-14T16:00:44.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String"></Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">ADEUDADO</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">13</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">SECRETARIADO Y RECEPCIÓN</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Se formara al alumno para que cuentes con las habi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">6</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">2</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">5</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">20</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">0</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">5000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">2</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-11-25T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-12-24T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-11-15T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-11-22T00:00:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Progreso</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-11-15T03:17:16.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String"></Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">ADEUDADO</Data></ss:Cell>
+   </ss:Row>
+  </ss:Table>
+ </Worksheet>
+</Workbook>

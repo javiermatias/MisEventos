@@ -19,7 +19,7 @@ namespace Renacer.WebAPI.Controllers
             int cantidadAsistenciasTomadas = 0;
             int cantidadAsistencias = 0;
             AsistenciaEvento asistenciaEvento;
-            List<Evento> listaEventos = ControlEvento.devolverInstancia().devolverTodos("");
+            List<Evento> listaEventos = ControlEvento.devolverInstancia().devolverTodosConEncargado();
             foreach (var evento in listaEventos)
             {
                 if (evento.fechaBaja != null || evento.estado=="Nuevo")

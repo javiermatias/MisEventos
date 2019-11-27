@@ -49,7 +49,7 @@ export const routes: Routes = [
         component: PagesComponent,
         children: [
             { path: '', redirectTo: 'login', pathMatch: 'full' },
-            { path: 'dashboard', loadChildren: () => DashboardModule, data: { breadcrumb: 'Dashboard' } },
+            { path: 'dashboard', loadChildren: () => DashboardModule, data: { breadcrumb: 'Tablero' } },
             { path: 'charts', loadChildren:  () => ChartingModule , data: { breadcrumb: 'Charts' } },
             { path: 'maps', loadChildren:  () => MapsModule, data: { breadcrumb: 'Maps' } },
             { path: 'search', component: SearchComponent, data: { breadcrumb: 'Search' } },

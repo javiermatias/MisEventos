@@ -1,0 +1,311 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Version>14.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>10005</WindowHeight>
+  <WindowWidth>10005</WindowWidth>
+  <WindowTopX>120</WindowTopX>
+  <WindowTopY>135</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Arial"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s62">
+   <Font ss:FontName="Arial" x:Family="Swiss" ss:Color="#0000FF" ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="s63">
+   <NumberFormat ss:Format="yyyy\-mm\-dd\ hh:mm:ss"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="Sheet1">
+  <Table ss:ExpandedColumnCount="16" ss:ExpandedRowCount="14" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="60">
+   <Column ss:Width="60.75"/>
+   <Column ss:Index="9" ss:Width="60.75"/>
+   <Column ss:Index="11" ss:Width="60.75" ss:Span="1"/>
+   <Column ss:Index="13" ss:Width="94.5" ss:Span="1"/>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">id</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">nombre</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">apellido</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">telefono</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">celular</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">email</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">sexo</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">estadoCivil</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">idTipoDoc</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">nroDocumento</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">idDomicilio</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">idContacto</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">fechaNacimiento</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">fechaCreacion</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">fechaBaja</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">estado</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">JOse</Data></Cell>
+    <Cell><Data ss:Type="String">Quinteros</Data></Cell>
+    <Cell><Data ss:Type="String">3543604130</Data></Cell>
+    <Cell><Data ss:Type="String">3543604130</Data></Cell>
+    <Cell><Data ss:Type="String">juanjose@gmail.com</Data></Cell>
+    <Cell><Data ss:Type="String">Masculino</Data></Cell>
+    <Cell><Data ss:Type="String">Soltero</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">32972080</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="DateTime">1986-03-04T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="DateTime">2019-11-10T14:52:06.000</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+    <Cell><Data ss:Type="String">Activo</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell><Data ss:Type="String">AUGUSTO</Data></Cell>
+    <Cell><Data ss:Type="String">Galan</Data></Cell>
+    <Cell><Data ss:Type="String">3543604130</Data></Cell>
+    <Cell><Data ss:Type="String">3543604130</Data></Cell>
+    <Cell><Data ss:Type="String">juanjose@gmail.com</Data></Cell>
+    <Cell><Data ss:Type="String">Masculino</Data></Cell>
+    <Cell><Data ss:Type="String">Soltero</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">32972081</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="DateTime">1960-11-06T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="DateTime">2019-08-30T02:24:52.000</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+    <Cell><Data ss:Type="String">Activo</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="String">Laura</Data></Cell>
+    <Cell><Data ss:Type="String">Miguez</Data></Cell>
+    <Cell><Data ss:Type="String">3543604130</Data></Cell>
+    <Cell><Data ss:Type="String">3543604130</Data></Cell>
+    <Cell><Data ss:Type="String">laura1Miguez@gmail.com</Data></Cell>
+    <Cell><Data ss:Type="String">Femenino</Data></Cell>
+    <Cell><Data ss:Type="String">Casado</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">30992080</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="DateTime">1950-11-06T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="DateTime">2019-08-30T02:24:52.000</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+    <Cell><Data ss:Type="String">Activo</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell><Data ss:Type="String">Maria</Data></Cell>
+    <Cell><Data ss:Type="String">Del Valle</Data></Cell>
+    <Cell><Data ss:Type="String">3543604132</Data></Cell>
+    <Cell><Data ss:Type="String">3543604130</Data></Cell>
+    <Cell><Data ss:Type="String">mariadelvalle@gmail.com</Data></Cell>
+    <Cell><Data ss:Type="String">Femenino</Data></Cell>
+    <Cell><Data ss:Type="String">Soltero</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">40000001</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="DateTime">1976-03-04T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="DateTime">2019-10-30T02:24:52.000</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+    <Cell><Data ss:Type="String">DebeMatricula</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="Number">10</Data></Cell>
+    <Cell><Data ss:Type="String">Jorge</Data></Cell>
+    <Cell><Data ss:Type="String">galan</Data></Cell>
+    <Cell><Data ss:Type="String">3543604130</Data></Cell>
+    <Cell><Data ss:Type="String">3543604130</Data></Cell>
+    <Cell><Data ss:Type="String">juanjose@gmail.com</Data></Cell>
+    <Cell><Data ss:Type="String">Masculino</Data></Cell>
+    <Cell><Data ss:Type="String">Casado</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">40000002</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="DateTime">1960-03-04T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="DateTime">2019-09-30T02:24:52.000</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+    <Cell><Data ss:Type="String">Activo</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="Number">11</Data></Cell>
+    <Cell><Data ss:Type="String">Soledad</Data></Cell>
+    <Cell><Data ss:Type="String">Miguez</Data></Cell>
+    <Cell><Data ss:Type="String">3543604130</Data></Cell>
+    <Cell><Data ss:Type="String">3543604130</Data></Cell>
+    <Cell><Data ss:Type="String">laura1Miguez@gmail.com</Data></Cell>
+    <Cell><Data ss:Type="String">Femenino</Data></Cell>
+    <Cell><Data ss:Type="String">Casado</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">40000003</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="DateTime">1958-03-04T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="DateTime">2019-09-30T02:24:52.000</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+    <Cell><Data ss:Type="String">Activo</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="Number">12</Data></Cell>
+    <Cell><Data ss:Type="String">Angelica</Data></Cell>
+    <Cell><Data ss:Type="String">Valles</Data></Cell>
+    <Cell><Data ss:Type="String">3543604132</Data></Cell>
+    <Cell><Data ss:Type="String">3543604130</Data></Cell>
+    <Cell><Data ss:Type="String">mariadelvalle@gmail.com</Data></Cell>
+    <Cell><Data ss:Type="String">Femenino</Data></Cell>
+    <Cell><Data ss:Type="String">Casado</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">40000004</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="DateTime">1940-03-04T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="DateTime">2019-09-30T02:24:52.000</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+    <Cell><Data ss:Type="String">Activo</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="Number">13</Data></Cell>
+    <Cell><Data ss:Type="String">Graciela María</Data></Cell>
+    <Cell><Data ss:Type="String">Casartelli</Data></Cell>
+    <Cell><Data ss:Type="String">03543403668</Data></Cell>
+    <Cell><Data ss:Type="String">03543604130</Data></Cell>
+    <Cell><Data ss:Type="String">gracielacasartelli946@hotmail.com</Data></Cell>
+    <Cell><Data ss:Type="String">Femenino</Data></Cell>
+    <Cell><Data ss:Type="String">Soltero</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">30999888</Data></Cell>
+    <Cell><Data ss:Type="Number">3</Data></Cell>
+    <Cell><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="DateTime">1950-07-03T01:12:28.000</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="DateTime">2019-10-18T23:08:13.000</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+    <Cell><Data ss:Type="String">Activo</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="Number">14</Data></Cell>
+    <Cell><Data ss:Type="String">JAVIER</Data></Cell>
+    <Cell><Data ss:Type="String">JIMENEZ</Data></Cell>
+    <Cell><Data ss:Type="String">03543604130</Data></Cell>
+    <Cell><Data ss:Type="String">3543604130</Data></Cell>
+    <Cell><Data ss:Type="String">javierjimenez78@gmail.com</Data></Cell>
+    <Cell><Data ss:Type="String">Masculino</Data></Cell>
+    <Cell><Data ss:Type="String">Soltero</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">30992080</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="DateTime">1946-03-04T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="DateTime">2019-10-30T02:24:52.000</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+    <Cell><Data ss:Type="String">Activo</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="Number">15</Data></Cell>
+    <Cell><Data ss:Type="String">amelio</Data></Cell>
+    <Cell><Data ss:Type="String">gutierrez</Data></Cell>
+    <Cell><Data ss:Type="String">03543604130</Data></Cell>
+    <Cell><Data ss:Type="String">3543604130</Data></Cell>
+    <Cell><Data ss:Type="String">javierjimenez78@gmail.com</Data></Cell>
+    <Cell><Data ss:Type="String">Masculino</Data></Cell>
+    <Cell><Data ss:Type="String">Soltero</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">32972080</Data></Cell>
+    <Cell><Data ss:Type="Number">6</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="DateTime">1987-05-14T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="DateTime">2019-11-01T03:05:43.000</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+    <Cell><Data ss:Type="String">Activo</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="Number">16</Data></Cell>
+    <Cell><Data ss:Type="String">Julia</Data></Cell>
+    <Cell><Data ss:Type="String">Agostini</Data></Cell>
+    <Cell><Data ss:Type="String">03543604130</Data></Cell>
+    <Cell><Data ss:Type="String">03543604130</Data></Cell>
+    <Cell><Data ss:Type="String">javierjimenez78@gmail.com</Data></Cell>
+    <Cell><Data ss:Type="String">Femenino</Data></Cell>
+    <Cell><Data ss:Type="String">Soltero</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">5489482</Data></Cell>
+    <Cell><Data ss:Type="Number">7</Data></Cell>
+    <Cell><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="DateTime">1946-04-06T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="DateTime">2019-11-06T23:10:16.000</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+    <Cell><Data ss:Type="String">Activo</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="Number">18</Data></Cell>
+    <Cell><Data ss:Type="String">alberto</Data></Cell>
+    <Cell><Data ss:Type="String">JIMENEZ</Data></Cell>
+    <Cell><Data ss:Type="String">03543604130</Data></Cell>
+    <Cell><Data ss:Type="String">3543604130</Data></Cell>
+    <Cell><Data ss:Type="String">javierjimenez78@gmail.com</Data></Cell>
+    <Cell><Data ss:Type="String">Masculino</Data></Cell>
+    <Cell><Data ss:Type="String">Soltero</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">30999888</Data></Cell>
+    <Cell><Data ss:Type="Number">9</Data></Cell>
+    <Cell><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="DateTime">1930-11-06T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="DateTime">2019-11-06T23:24:46.000</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+    <Cell><Data ss:Type="String">Activo</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="Number">19</Data></Cell>
+    <Cell><Data ss:Type="String">JUANA</Data></Cell>
+    <Cell><Data ss:Type="String">Dominguez</Data></Cell>
+    <Cell><Data ss:Type="String">03543604130</Data></Cell>
+    <Cell><Data ss:Type="String">3543604130</Data></Cell>
+    <Cell><Data ss:Type="String">javierjimenez78@gmail.com</Data></Cell>
+    <Cell><Data ss:Type="String">Femenino</Data></Cell>
+    <Cell><Data ss:Type="String">Soltero</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+    <Cell><Data ss:Type="String">5498232</Data></Cell>
+    <Cell><Data ss:Type="Number">10</Data></Cell>
+    <Cell><Data ss:Type="Number">9</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="DateTime">1940-05-05T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="DateTime">2019-11-07T01:32:33.000</Data></Cell>
+    <Cell><Data ss:Type="String"></Data></Cell>
+    <Cell><Data ss:Type="String">DebeMatricula</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>17</ActiveRow>
+     <ActiveCol>15</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

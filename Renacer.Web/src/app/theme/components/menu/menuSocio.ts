@@ -1,5 +1,13 @@
 export const itemsSocio = [
-   {
+  {
+    title: 'Principal',
+    routerLink: 'dashboard',
+    icon: 'fa-home',
+    selected: false,
+    expanded: false,
+    order: 0
+  },   
+  {
     title: 'Mi Agenda',
     icon: 'fa-calendar',
     routerLink: 'evento/calendario/',

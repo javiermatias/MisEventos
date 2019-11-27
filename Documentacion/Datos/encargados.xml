@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">
+
+<Styles>
+ <Style ss:ID="Default" ss:Name="Normal">
+  <Alignment ss:Vertical="Bottom"/>
+  <Borders/>
+  <Font/>
+  <Interior/>
+  <NumberFormat/>
+  <Protection/>
+ </Style>
+ <Style ss:ID="s27">
+  <Font x:Family="Swiss" ss:Color="#0000FF" ss:Bold="1"/>
+ </Style>
+ <Style ss:ID="s21">
+  <NumberFormat ss:Format="yyyy\-mm\-dd"/>
+ </Style>
+ <Style ss:ID="s22">
+  <NumberFormat ss:Format="yyyy\-mm\-dd\ hh:mm:ss"/>
+ </Style>
+ <Style ss:ID="s23">
+  <NumberFormat ss:Format="hh:mm:ss"/>
+ </Style>
+</Styles>
+
+ <Worksheet ss:Name="Sheet1">
+  <ss:Table>
+   <ss:Row>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">id</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">nombre</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">apellido</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">telefono</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">celular</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">email</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">idTipoDoc</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">nroDocumento</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">idDomicilio</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">fechaCreacion</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">fechaBaja</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">estado</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">Tag_id</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Juan</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Gutierrez</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">351503140</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">351503140</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">juangutierrez@gmail.com</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">2</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">23423234</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">1</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="String">0001-01-01 00:00:00</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String"></Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Activo</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String"></Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">2</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Javier</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Pietro</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">343242242</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">343242242</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">javierpietro@gmail.com</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">2</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">43232323</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">1</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="String">0001-01-01 00:00:00</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String"></Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Activo</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String"></Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">3</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Emanuel Alejo</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Lopez</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">351574576</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">351574576</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">emanuel@gmail</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">28907654</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="Number">2</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2019-08-17T20:25:33.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String"></Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">Activo</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String"></Data></ss:Cell>
+   </ss:Row>
+  </ss:Table>
+ </Worksheet>
+</Workbook>

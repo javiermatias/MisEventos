@@ -17,7 +17,7 @@ namespace Renacer.WebAPI.Models
                 MailMessage mail = new MailMessage();
                 SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
 
-                mail.From = new MailAddress("fundacionrenacereventos@gmail.com");
+                mail.From = new MailAddress("forodelosabios@gmail.com");
                 mail.To.Add(address);
                 mail.Subject = "Bienvenidos a la Fundación Foro de los Sabios";
                 mail.IsBodyHtml = true;
@@ -26,7 +26,7 @@ namespace Renacer.WebAPI.Models
                 mail.Body = _htmlBody;
 
                 SmtpServer.Port = 587;
-                SmtpServer.Credentials = new System.Net.NetworkCredential("fundacionrenacereventos", "fundacion123");
+                SmtpServer.Credentials = new System.Net.NetworkCredential("forodelosabios", "foro12345678");
                 SmtpServer.EnableSsl = true;
 
                 SmtpServer.Send(mail);
@@ -102,7 +102,7 @@ namespace Renacer.WebAPI.Models
 
 
                                                               <p>También te puedes comunicar al mail: <strong>
-fundacionrenacereventos@gmail.com</strong> por cualquier duda o consulta.</p>";
+forodelosabios@gmail.com</strong> por cualquier duda o consulta.</p>";
         }
     }
 }
