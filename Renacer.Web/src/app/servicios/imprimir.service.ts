@@ -54,7 +54,7 @@ export class ImprimirService {
                       </td>
                       
                       <td>
-                      fundacionrenacereventos@gmail.com
+                      forodelosabios@gmail.com
                       </td>
                   </tr>
               </table>

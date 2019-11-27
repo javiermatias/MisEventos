@@ -117,6 +117,11 @@ export class InscripcionComponent implements OnInit {
       });
     });
 
+    if(this.listaInscripcion.length + this.listaSocios.length > this.seleccionEvento.cupoMaximo){
+      this.mensajeServ.error('Se supera el cupo máximo del evento.' , 'Aviso!');
+      bandera=false;
+    }
+
       if(bandera){
 
 
@@ -135,7 +140,7 @@ export class InscripcionComponent implements OnInit {
     //setTimeout(() => console.log('espero'), 2000);
     this.mostrarInscripcion=false;
     this.mensajeServ.success('Se han guardado los cambios!', 'Aviso!');
-    
+    this.router.navigate(['/pages/evento/lista-inscripciones']);
   }
 
 }
@@ -144,7 +149,7 @@ export class InscripcionComponent implements OnInit {
 
   guardarInscripcion(inscripc:Inscripcion){
     this.inscripcionServ.save(inscripc).subscribe(resp => {
-       this.traerInscripciones(this.seleccionEvento.id); 
+      // this.traerInscripciones(this.seleccionEvento.id); 
        });
   }
 

@@ -31,7 +31,7 @@ namespace Renacer.WebAPI.Controllers
 
 
                         bandera = true;
-
+                        break;
 
                     }
 
@@ -51,6 +51,66 @@ namespace Renacer.WebAPI.Controllers
 
           
             return listaAux;
+        }
+
+        public Dictionary<string, int> GetAsistenciaXSocio([FromUri]int idEvento)
+        {
+            List<Inscripcion> listaInscripciones = ControlInscripcion.devolverInstacia().devolverInscripcionEvento(idEvento);
+            IEnumerable<DetalleEvento> detalleEvento = ControlDetalleEvento.devolverInstancia().devolverTodos(idEvento);
+            Dictionary<string, int> dict = new Dictionary<string, int>();
+
+            foreach (var item in listaInscripciones)
+            {
+                dict.Add(item.socio.nombre + " " + item.socio.apellido,0);
+            }
+           
+            int contador = 0;
+            foreach (var item in detalleEvento)
+            {
+                if (item.asistencia)
+                {
+                    contador++;
+                    IEnumerable<AsistenciaDetalleEvento> lista = Get(idEvento, item.id);
+
+                    foreach (var asistenciaDetalle in lista)
+                    {
+                     
+                        if (asistenciaDetalle.asistio)
+                        {
+                            int valor = 0;
+                            if (dict.TryGetValue(asistenciaDetalle.socio.nombre + " " + asistenciaDetalle.socio.apellido, out valor))
+                            {
+                                valor++;                             
+                                                              
+                                dict[asistenciaDetalle.socio.nombre + " " + asistenciaDetalle.socio.apellido] = valor;
+                            }
+                        }
+                      
+                    }
+
+
+                }
+                
+
+
+
+            }
+            //for (int i = 0; i < dict.Count; i++)
+
+            //{
+
+            //    dict.[i] ;
+
+            //}
+
+            foreach (string item in dict.Keys.ToList())
+            {
+                var roundedA = (Math.Round((double)((double)dict[item] / (double)contador), 1)) * 100;
+                dict[item] = (int)(roundedA);
+            }
+           
+
+            return dict;
         }
     }
 }

@@ -170,40 +170,30 @@ ver el tema de hacerlo mas chico
 _Los buscadores No buscan
 
 
-Rol Socio
-Calendario: debe mostrar los eventos a los que esta inscripto
 Asistencias: Cambiar label por Se tomó Asistencia.
 Mis Pagos: listado de cuotas al ultimo dice no encontrado, pero es el resultado de la busqueda. Agregar que pueda descargar el Rec 
-Mis Interes: MUY BAJA PRIORIDAD. que pueda agregar sus intereses
 
-Rol Encargado
-Mis cursos te lleva a Socios
 
-Rol Secretario
-Cronograma: agregar una opcion mas al radio button Sin Fechas, para que permita solo filtrar por Estado de Evento. Solo se debe fijar en Rango si se selecciono alguna de las opciones de fechas.
-Eventos: cobrar cuotas: al cobrar aparece el Monto $ fuera de la ventanita que se abre para confirmar el cobro.
-Matricula: _cobrar Matricula, al pagarlo se abre la ventana de pdf pero no permite maximizarlo.
+
+
 _ Matriculas pagadas 
 
 
-80 Socios, 5 espacios, 3 secretarias 10 encargados, 60 eventos,  (60 matriculas pagadas) armar excel con columnas.(Llenar las encuestas.)
 
-Necesitamos 10 encargados con 3 eventos cada uno.
 
 
 CantidadInscriptos por Evento, sobre el total del cupo. Filtro por evento.
 
 
-En pagos mostrar lista Eventos
+
 
 
 
 Para la presentación armar una agenda, primero indicar el circuito que vamos hacer, y ver como va afectando a las estadísticas.
+80 Socios, 5 espacios, 3 secretarias 10 encargados, 60 eventos,  (60 matriculas pagadas) armar excel con columnas.(Llenar las encuestas.)
+Necesitamos 10 encargados con 3 eventos cada uno.
 
 
-11-11-2019
-
-Ver Loader de la barra para sacarlo.
 
 -Ver el tema reportes de ingresos y ver el tema filtro fechas.
 -Ver grafico crecimiento de socios, y el agrupamiento por edad en la tabla. 

@@ -16,14 +16,17 @@ import { Router } from '@angular/router';
 export class NavbarComponent {
     public isMenuCollapsed:boolean = false;
     public usuario: any = {}
-    public rol = {}
-    constructor(private router:Router,private _state:AppState, private _sidebarService:SidebarService,private _usersService:UserServices,
-        private _rolService: RolServices) {
+   
+    constructor(private router:Router,
+        private _state:AppState, 
+        private _sidebarService:SidebarService,
+        private _usersService:UserServices,
+       ) {
         this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
             this.isMenuCollapsed = isCollapsed;
         });
          this.usuario = this._usersService.getCurrent();
-         if(this.usuario ==null  ){
+         if(this.usuario == null  ){
             this.router.navigate(['']);
          }else{
          if(this.usuario['nombre'] == ''){

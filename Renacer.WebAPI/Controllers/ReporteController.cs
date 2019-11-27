@@ -149,6 +149,25 @@ namespace Renacer.WebAPI.Controllers
             return ControlReporte.GetInstance().GetAsistenciasPorDiaDeLaSemana(filter);
         }
 
+        [ActionName("asistenciasporevento")]
+        [Route("asistenciasporevento")]
+        [AcceptVerbs("POST")]
+        public Dictionary<string, int> asistenciasSocioXevento([FromBody]int idEvento)
+        {
+            AsistenciaDetalleController controller = new AsistenciaDetalleController();
+            return controller.GetAsistenciaXSocio(idEvento);
+        }
 
+        //ROl socioGetSocioInteresesCount(int idSocio)
+
+        [ActionName("getsociointereses")]
+        [Route("getsociointereses")]
+        [AcceptVerbs("POST")]
+        public Int64 socioGetSocioInteresesCount([FromBody]int idSocio)
+        {
+           // return 0;
+            return ControlReporte.GetInstance().GetSocioInteresesCount(idSocio);
+            // return ControlReporte.GetInstance().GetSocioInteresesCount(idSocio);
+        }
     }
 }

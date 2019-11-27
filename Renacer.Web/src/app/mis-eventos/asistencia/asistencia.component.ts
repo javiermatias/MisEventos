@@ -21,7 +21,7 @@ export class AsistenciaComponent implements OnInit {
 
   public eventos:Evento[];
 
-  public eventosSocios:AsistenciaEvento[];
+  public eventosEncargado:AsistenciaEvento[];
   //seleccionEvento
    public eventoSeleccionado:Evento;
   //public eventoSelected:string;
@@ -38,7 +38,7 @@ export class AsistenciaComponent implements OnInit {
   public nuevaAsistencia:Boolean=false; //muestra la nueva asistencia
   public mostrarGrilla:boolean=false; //muestra detalle tomar/ver
   searchText = '';
-  public mostrarEvento:Boolean=true;
+  public mostrarEvento:Boolean=false;
   verListaAsistencia:Boolean=false;
   
   constructor(private _eventoServ:EventoServices
@@ -51,7 +51,7 @@ export class AsistenciaComponent implements OnInit {
    //this.fechaActual = new Date().toISOString();
    this.usuario = this._userService.getCurrent();
    //console.log(this.usuario.idEncargado);
-   this.getEventosXencargado();
+   //this.getEventosXencargado();
    this.getAsistenciasCursos();
   }
   getEventosXencargado(){
@@ -68,9 +68,9 @@ export class AsistenciaComponent implements OnInit {
   getAsistenciasCursos(){
 
     this.asistenciaServ.query({'idEncargado':this.usuario.idEncargado}).subscribe(result => {
-      this.eventosSocios = result;
-      
-      console.log(result)
+      this.eventosEncargado = result;
+      console.log(result);      
+      this.mostrarEvento=true;
      });
   }
 
@@ -97,7 +97,8 @@ export class AsistenciaComponent implements OnInit {
 
   volver(){
     this.mostrarGrilla=false;
-    this.mostrarEvento=true;
+    this.getAsistenciasCursos();
+    //this.mostrarEvento=true;
   }
 
   ngOnChanges(){

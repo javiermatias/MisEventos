@@ -78,15 +78,7 @@ export const itemsSecretario = [
         expanded: false,
         order: 200,
         routerLink: 'socios/'
-    },
-    {
-        title: 'Secretarios',
-        icon: 'fa fa-user',
-        selected: false,
-        expanded: false,
-        order: 200,
-        routerLink: 'secretarios/'
-    },
+    },    
     {
         title: 'Encargados',
         routerLink: 'encargados/',

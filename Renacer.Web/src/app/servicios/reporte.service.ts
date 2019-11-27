@@ -105,4 +105,17 @@ export class ReporteServices extends BaseServices<Object> {
   graficarAsistenciasPorDiaDeLaSemana(rangoDeFechas: any): Observable<any[]> {
     return this.http.post<any[]>(`${this.url}asistenciaspordiadelasemana`, rangoDeFechas)
   }
+
+
+  getAsistenciasXsocioXevento(idEvento: number): Observable<any[]> {
+    return this.http.post<any[]>(`${this.url}asistenciasporevento`, idEvento)
+  }
+
+  getsociointereses(idSocio: number): Observable<number> {
+    return this.http.post<number>(`${this.url}getsociointereses`,idSocio)
+  }
+ 
+
+
+
 }

@@ -49,6 +49,7 @@ import { ProximoEventoService } from './servicios/proximo-evento.service';
 
 
 
+
 registerLocaleData(localeEs, 'es-AR');
 @NgModule({
   declarations: [

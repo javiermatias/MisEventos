@@ -47,10 +47,6 @@
     </div>
   </div>
 
-
-
-
-
   <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6 bottom-30">
       <div class="card small-info-box">
         <div class="media">
@@ -126,21 +122,22 @@
     </div>
   </div>
 
-<!--   <div class="col col-12">
-      <div widget class="card">
-           <div class="card-header">
-             <span>Crecimiento Socios</span>
-             <div class="widget-controls">
-                 <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
-                 <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
-                </div>
-           </div>
-           <div class="card-block widget-body">
-               <az-socio-chart></az-socio-chart>
-              
-           </div>
-         </div>
-   </div> -->
+  <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6 bottom-30">
+    <div class="card small-info-box" >
+      <div class="media">
+        <span class="media-left">
+            <i class="fa fa-map-marker"></i>
+        </span>
+        <div class="media-body text-right">
+          <h6 class="media-heading no-margin">SECRETARIOS</h6>
+          <span *ngIf="cantSecretarios != -1" >{{cantSecretarios}}</span>
+          <span *ngIf="cantSecretarios == -1"  class="fa fa-spin fa-spinner"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
 
    <div class="col col-12">
     <div widget class="card">
@@ -165,7 +162,87 @@
 
 <div *ngIf="user.rol == 'SOCIO'">
     <div class="row"> 
-<div class="col-xl-4 col-lg-4 col-12 bottom-30" *ngFor="let item of eventos" >              
+
+
+        <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6 bottom-30">
+            <div class="card small-info-box">
+              <div class="media">
+                <span class="media-left">
+                    <i class="fa fa-clock-o"></i>
+                </span>
+                <div class="media-body text-right">
+                  <h6 class="media-heading no-margin">PROXIMOS EVENTOS</h6>
+                  <span *ngIf="cantCursosNuevos == -1"  class="fa fa-spin fa-spinner"></span>
+                  <span *ngIf="cantCursosNuevos != -1">{{cantCursosNuevos}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6 bottom-30">
+              <div class="card small-info-box">
+                <div class="media">
+                  <span class="media-left">
+                      <i class="fa fa-tasks"></i>
+                  </span>
+                  <div class="media-body text-right">
+                    <h6 class="media-heading no-margin">EVENTOS INSCRIPTOS</h6>
+                    <span *ngIf="cantEventosInscriptos == -1"  class="fa fa-spin fa-spinner"></span>
+                    <span *ngIf="cantEventosInscriptos != -1" >{{cantEventosInscriptos}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6 bottom-30">
+                <div class="card small-info-box">
+                  <div class="media">
+                    <span class="media-left">
+                        <i class="fa fa-money"></i>
+                    </span>
+                    <div class="media-body text-right">
+                      <h6 class="media-heading no-margin">EVENTOS ADEUDADOS</h6>
+                      <span *ngIf="cantEventosAdeudados == -1"  class="fa fa-spin fa-spinner"></span>
+                      <span *ngIf="cantEventosAdeudados != -1" >{{cantEventosAdeudados}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6 bottom-30">
+                  <div class="card small-info-box">
+                    <div class="media">
+                      <span class="media-left">
+                          <i class="fa fa-pencil"></i>
+                      </span>
+                      <div class="media-body text-right">
+                        <h6 class="media-heading no-margin">ENCUESTAS COMPLETADAS</h6>
+                        <span *ngIf="cantEncuestasCompletadas == -1"  class="fa fa-spin fa-spinner"></span>
+                        <span *ngIf="cantEncuestasCompletadas != -1" >{{cantEncuestasCompletadas}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                
+              <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6 bottom-30">
+                  <div class="card small-info-box">
+                    <div class="media">
+                      <span class="media-left">
+                          <i class="fa fa-map-marker"></i>
+                      </span>
+                      <div class="media-body text-right">
+                        <h6 class="media-heading no-margin">MIS INTERESES</h6>
+                        <span *ngIf="cantIntereses == -1"  class="fa fa-spin fa-spinner"></span>
+                        <span *ngIf="cantIntereses != -1" >{{cantIntereses}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+<!-- <div class="col-xl-4 col-lg-4 col-12 bottom-30" *ngFor="let item of eventos" >              
     <div widget class="card">
       <div class="card-header">
           <span>{{item.nombre}}</span>
@@ -187,6 +264,58 @@
           </div>
       </div>
   </div>
+</div> -->
 </div>
 </div>
+
+
+
+
+<div *ngIf="user.rol == 'ENCARGADO'">
+  <div class="row"> 
+      <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6 bottom-30">
+          <div class="card small-info-box">
+            <div class="media">
+              <span class="media-left">
+                  <i class="fa fa-clock-o"></i>
+              </span>
+              <div class="media-body text-right">
+                <h6 class="media-heading no-margin">EVENTOS ASIGNADOS</h6>
+                <span *ngIf="cantEventosAsignados == -1"  class="fa fa-spin fa-spinner"></span>
+                <span *ngIf="cantEventosAsignados != -1">{{cantEventosAsignados}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6 bottom-30">
+            <div class="card small-info-box">
+              <div class="media">
+                <span class="media-left">
+                    <i class="fa fa-tasks"></i>
+                </span>
+                <div class="media-body text-right">
+                  <h6 class="media-heading no-margin">EVENTOS EN PROGRESO</h6>
+                  <span *ngIf="cantEventosProgreso == -1"  class="fa fa-spin fa-spinner"></span>
+                  <span *ngIf="cantEventosProgreso != -1" >{{cantEventosProgreso}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6 bottom-30">
+              <div class="card small-info-box">
+                <div class="media">
+                  <span class="media-left">
+                      <i class="fa fa-map-marker"></i>
+                  </span>
+                  <div class="media-body text-right">
+                    <h6 class="media-heading no-margin">ASISTENCIAS TOMADAS</h6>
+                    <span *ngIf="cantEventosAsistencia == -1"  class="fa fa-spin fa-spinner"></span>
+                    <span *ngIf="cantEventosAsistencia != -1" >{{cantEventosAsistencia}}%</span>
+                  </div>
+                </div>
+              </div>
+            </div>    
+      </div>
 </div>

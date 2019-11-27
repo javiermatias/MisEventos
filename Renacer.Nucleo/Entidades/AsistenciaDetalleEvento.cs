@@ -12,5 +12,6 @@ namespace Renacer.Nucleo.Entidades
         public Socio socio { get; set; }
         public bool asistio { get; set; } // si asistio o no al evento
 
+        public int porcentajeAsistencia { get; set; } //0 al 100
     }
 }
