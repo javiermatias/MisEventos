@@ -2,17 +2,24 @@ import { Component, ViewEncapsulation, OnInit, NgZone } from '@angular/core';
 import { AppConfig } from '../../../../app.config';
 import { ReporteServices } from '../../../../servicios/reporte.service';
 import { CsvServices, RequestCsv } from '../../../../servicios/csv.service';
+import {formatDate} from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
 
 @Component({
     selector: 'az-socio-chart',
     encapsulation: ViewEncapsulation.None,
     templateUrl: './socio-chart.component.html'
 })
-export class SocioChartComponent
-    implements OnInit {
+export class SocioChartComponent implements OnInit {
+
+    inputInicial = new Date(new Date().getFullYear(), 0, 1);
+    inputFinal = new Date();
+    fechaRangoInicial = new Date(new Date().getFullYear(), 0, 1);
+    fechaRangoFin = new Date();
 
 
-          //Socios Mas activos
+        //Socios Mas activos
   title = 'Actividad Socios';
   type = 'BubbleChart';
 
@@ -36,32 +43,6 @@ export class SocioChartComponent
   width = 950;
   height = 800;
  mostrarBubble=false;
-/*   options = { 
-
-      sizeAxis: {
-        maxSize: 90,
-        minSize: 20
-      },
-      hAxis: {title: 'Eventos',
-        				
-                //remove viewWindow and see a bubble is cutted off
-                
-        				viewWindow: { 
-            			min: 0,
-            			max: 10
-           			 }
-    },
-    vAxis: {title: 'Edad',
-
-//remove viewWindow and see a bubble is cutted off
-
-    viewWindow: { 
-    min: 30,
-    max: 90
-    }
-}
-}; */
-  
 
 
 
@@ -114,6 +95,7 @@ export class SocioChartComponent
         private csvServ: CsvServices,
         private _reporteServ: ReporteServices,
         private ngZone: NgZone) {
+        registerLocaleData(localeEs, 'es');
         this.config = this._appConfig.config;
         this.configFn = this._appConfig;
     }
@@ -138,7 +120,9 @@ export class SocioChartComponent
     }
 
     public getCrecimientoSocios() {
-        this._reporteServ.getCrecimientoSocios({}).subscribe(result => {
+        this._reporteServ.getCrecimientoSocios({ 'fechaInicio': formatDate(this.fechaRangoInicial, 'yyyy-MM-dd', 'es'),
+        'fechaFin': formatDate(this.fechaRangoFin, 'yyyy-MM-dd', 'es')
+      }).subscribe(result => {
             this.ngZone.run(() => {
                 this.crecimientoSocios = result;
                 this.lineChartColors = this.config.lineChartColors;
@@ -257,6 +241,14 @@ export class SocioChartComponent
 
 
 
+    }
+
+
+    actualizarFechaInicio(fecha: string){
+       this.fechaRangoInicial = new Date(fecha);
+    }
+    actualizarFechaFin(fecha: string){
+         this.fechaRangoFin = new Date(fecha);
     }
 
 

@@ -33,7 +33,7 @@ namespace Renacer.WebAPI.Controllers
         [ActionName("crecimiento-socios")]
         [Route("crecimiento-socios")]
         [AcceptVerbs("POST")]
-        public List<Dictionary<string, object>> GetCrecimientoSocios([FromBody] ControlReporte.filterSocio filter)
+        public List<Dictionary<string, object>> GetCrecimientoSocios([FromBody] FilterDateRange filter)
         {
             return ControlReporte.GetInstance().GetCrecimientoSocios(filter);
         }

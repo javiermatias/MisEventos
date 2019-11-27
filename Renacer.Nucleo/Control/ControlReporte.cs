@@ -496,21 +496,21 @@ WHERE asis.idSocio = soc.id AND asis.idDetalleEvento = det.id GROUP BY CONCAT(so
             var tabla = DbHelper.ExecuteDataTable(sql);
             return Helper.Helper.ConvertDT(tabla);
         }
-        public List<Dictionary<string, object>> GetCrecimientoSocios(filterSocio filtro)
+        public List<Dictionary<string, object>> GetCrecimientoSocios(FilterDateRange rango)
         {
             var DbHelper = new DBBase(strConnection);
-            var sql = @"SELECT aux.fecha,MAX(aux.bajas) as 'bajas',MAX(aux.altas) as 'altas' from ( 
+            var sql = $@"SELECT aux.fecha,MAX(aux.bajas) as 'bajas',MAX(aux.altas) as 'altas' from ( 
                             SELECT 
                             DATE_FORMAT(s.fechaCreacion, '%Y-%m') as 'fecha', Count(s.id) as 'altas',0 as 'bajas'
-                            FROM socio s {filtro_socio} 
+                            FROM socio s where {filterRangeDate(rango, "fechaCreacion")}  
                             GROUP BY DATE_FORMAT(s.fechaCreacion, '%Y-%m') 
                         UNION ALL SELECT
                             DATE_FORMAT(s.fechaBaja, '%Y-%m') as 'fecha', 0 as 'altas', Count(s.id) as 'bajas'
-                            FROM socio s {filtro_socio} and not ISNULL(s.fechaBaja)
+                            FROM socio s where {filterRangeDate(rango, "fechaBaja")} and not ISNULL(s.fechaBaja)
                             GROUP BY DATE_FORMAT(s.fechaBaja, '%Y-%m')) as aux
                         GROUP BY aux.fecha";
 
-            sql = sql.Replace("{filtro_socio}", filtro.getFilterSqlSocio());
+            //sql = sql.Replace("{filtro_socio}", filtro.getFilterSqlSocio());
             var tabla = DbHelper.ExecuteDataTable(sql);
             return Helper.Helper.ConvertDT(tabla);
 

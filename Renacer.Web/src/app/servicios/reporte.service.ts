@@ -62,8 +62,8 @@ export class ReporteServices extends BaseServices<Object> {
     return this.http.get(`${this.url}count?Entidad=${filtro['Entidad']}`, filtro)
   }
 
-  getCrecimientoSocios(filtro: FiltroReporte): Observable<any[]> {
-    return this.http.post<any[]>(`${this.url}crecimiento-socios`, filtro)
+  getCrecimientoSocios(rangoDeFechas: any): Observable<any[]> {
+    return this.http.post<any[]>(`${this.url}crecimiento-socios`, rangoDeFechas)
   }
    getSociosMasActivos(): Observable<any[]> {
     return this.http.post<any[]>(`${this.url}sociosmasactivos`, {})
