@@ -18,6 +18,8 @@ export class SocioChartComponent implements OnInit {
     fechaRangoInicial = new Date(new Date().getFullYear(), 0, 1);
     fechaRangoFin = new Date();
 
+    mostrarCrecimiento:boolean=false;
+    mostrarTorta:boolean=false;
 
         //Socios Mas activos
   title = 'Actividad Socios';
@@ -101,9 +103,9 @@ export class SocioChartComponent implements OnInit {
     }
 
     ngOnInit() {
-       this.getCrecimientoSocios();
-       this.getSociosPorEdad();
-       this.getSociosMasActivos();
+       this.getCrecimientoSocios(this.fechaRangoInicial, this.fechaRangoFin);
+       this.getSociosPorEdad(this.fechaRangoInicial, this.fechaRangoFin);
+       this.getSociosMasActivos(this.fechaRangoInicial, this.fechaRangoFin);
     }
 
     public randomizeType(): void {
@@ -119,15 +121,18 @@ export class SocioChartComponent implements OnInit {
         // console.log(e);
     }
 
-    public getCrecimientoSocios() {
-        this._reporteServ.getCrecimientoSocios({ 'fechaInicio': formatDate(this.fechaRangoInicial, 'yyyy-MM-dd', 'es'),
-        'fechaFin': formatDate(this.fechaRangoFin, 'yyyy-MM-dd', 'es')
+    public getCrecimientoSocios(fechaInicio: Date, fechaFin: Date) {
+        this._reporteServ.getCrecimientoSocios({ 'fechaInicio': formatDate(fechaInicio, 'yyyy-MM-dd', 'es'),
+        'fechaFin': formatDate(fechaFin, 'yyyy-MM-dd', 'es')
       }).subscribe(result => {
             this.ngZone.run(() => {
                 this.crecimientoSocios = result;
                 this.lineChartColors = this.config.lineChartColors;
                 this.lineChartOptions = this.config.lineChartOptions;
-
+                this.lineChartData[0].data =[];
+                this.lineChartData[1].data=[];
+                this.lineChartData[2].data=[];
+                this.lineChartLabels=[];
                 let cantSocios = 0;
                 for (let i = 0; i < result.length; i++) {
                     this.lineChartLabels.push(result[i].fecha)
@@ -139,15 +144,18 @@ export class SocioChartComponent implements OnInit {
                 }
             });
 
-            setTimeout(() => { this.randomizeType(); }, 100);
+            this.mostrarCrecimiento=true;
+           // setTimeout(() => { this.randomizeType(); }, 100);
         })
     }
 
-    public getSociosPorEdad() {
+    public getSociosPorEdad(fechaInicio: Date, fechaFin: Date) {
         this.lineChartLabels = [];
         this.pieChartData = [0, 0, 0, 0, 0];
         this.sociosPorEdad = [];
-        this._reporteServ.getSociosPorEdad({}).subscribe(result => {
+        this._reporteServ.getSociosPorEdad({ 'fechaInicio': formatDate(fechaInicio, 'yyyy-MM-dd', 'es'),
+        'fechaFin': formatDate(fechaFin, 'yyyy-MM-dd', 'es')
+      }).subscribe(result => {
 
             this.ngZone.run(() => {
                 this.sociosPorEdad = result;
@@ -181,12 +189,16 @@ export class SocioChartComponent implements OnInit {
                 this.pieChartColors = this.config.pieChartColors;
                 this.pieChartOptions = this.config.pieChartOptions;
             });
+
+            this.mostrarTorta = true;
         })
     }
 
-    public getSociosMasActivos(){
+    public getSociosMasActivos(fechaInicio: Date, fechaFin: Date){
 
-        this._reporteServ.getSociosMasActivos().subscribe(result => {
+        this._reporteServ.getSociosMasActivos({ 'fechaInicio': formatDate(fechaInicio, 'yyyy-MM-dd', 'es'),
+        'fechaFin': formatDate(fechaFin, 'yyyy-MM-dd', 'es')
+      }).subscribe(result => {
         console.log(result);
 
         //var max_of_array = Math.max.apply(Math, result.Edad);
@@ -228,10 +240,6 @@ export class SocioChartComponent implements OnInit {
        });
         //this.data=result;
         this.mostrarBubble=true;
-        
-        
-        
-
             
         });
 
@@ -251,5 +259,13 @@ export class SocioChartComponent implements OnInit {
          this.fechaRangoFin = new Date(fecha);
     }
 
+
+    filtrar(){
+        this.mostrarCrecimiento=false;
+        this.mostrarTorta = false;
+        this.getCrecimientoSocios(this.fechaRangoInicial, this.fechaRangoFin);
+        this.getSociosPorEdad(this.fechaRangoInicial, this.fechaRangoFin);
+        this.getSociosMasActivos(this.fechaRangoInicial, this.fechaRangoFin);
+    }
 
 }

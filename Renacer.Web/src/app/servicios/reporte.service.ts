@@ -65,12 +65,12 @@ export class ReporteServices extends BaseServices<Object> {
   getCrecimientoSocios(rangoDeFechas: any): Observable<any[]> {
     return this.http.post<any[]>(`${this.url}crecimiento-socios`, rangoDeFechas)
   }
-   getSociosMasActivos(): Observable<any[]> {
-    return this.http.post<any[]>(`${this.url}sociosmasactivos`, {})
+   getSociosMasActivos(rangoDeFechas: any): Observable<any[]> {
+    return this.http.post<any[]>(`${this.url}sociosmasactivos`, rangoDeFechas)
   }
 
-  getSociosPorEdad(filtro: FiltroReporte): Observable<any[]> {
-    return this.http.post<any[]>(`${this.url}socios-por-edad`, filtro)
+  getSociosPorEdad(rangoDeFechas: any): Observable<any[]> {
+    return this.http.post<any[]>(`${this.url}socios-por-edad`, rangoDeFechas)
   }
 
   getRankingEventos(filtro: any): Observable<any[]> {

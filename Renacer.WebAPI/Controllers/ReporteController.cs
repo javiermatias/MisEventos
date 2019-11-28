@@ -41,7 +41,7 @@ namespace Renacer.WebAPI.Controllers
         [ActionName("socios-por-edad")]
         [Route("socios-por-edad")]
         [AcceptVerbs("POST")]
-        public List<Dictionary<string, object>> GetSociosPorEdad([FromBody] ControlReporte.filterSocio filter)
+        public List<Dictionary<string, object>> GetSociosPorEdad([FromBody] FilterDateRange filter)
         {
             return ControlReporte.GetInstance().GetSociosPorEdad(filter);
         }
@@ -103,9 +103,9 @@ namespace Renacer.WebAPI.Controllers
         [ActionName("sociosmasactivos")]
         [Route("sociosmasactivos")]
         [AcceptVerbs("POST")]
-        public List<Dictionary<string, object>> GetSociosMasActivos()
+        public List<Dictionary<string, object>> GetSociosMasActivos([FromBody] FilterDateRange filter)
         {
-            return ControlReporte.GetInstance().GetSociosMasActivos();
+            return ControlReporte.GetInstance().GetSociosMasActivos(filter);
         }
 
 

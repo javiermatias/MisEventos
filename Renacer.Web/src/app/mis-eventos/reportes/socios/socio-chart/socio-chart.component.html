@@ -68,7 +68,7 @@
     </div>
     <div class="card-block widget-body">
 
-      <div class="row">
+      <div class="row"  *ngIf="mostrarCrecimiento">
         <div class="col-xl-12 col-lg-12 col-12 bottom-30">
           <canvas baseChart 
           [datasets]="lineChartData"
@@ -108,8 +108,8 @@
     </div>
     <div class="card-block widget-body">
 
-      <div class="row">
-   
+      <div class="row" *ngIf="mostrarTorta">
+        
         <div class="col-xl-5 col-lg-5 col-5 bottom-30">
           <canvas baseChart 
           [data]="pieChartData" 

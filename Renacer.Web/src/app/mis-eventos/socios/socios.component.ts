@@ -35,6 +35,7 @@ export class SociosComponent implements OnInit {
 
   onSubmit(myForm: FormGroup) {
     let newSocio = Object.assign({}, this._socio);
+    console.log(newSocio);
     this.saveItem(newSocio)
   }
   ngOnInit() {
@@ -44,9 +45,9 @@ export class SociosComponent implements OnInit {
   getItems() {
      this._socioService.query(
       { 'search':this.searchText}).subscribe
-      (items => {
-        console.log(items);
+      (items => {       
       this.socios = items;
+      this.showDetail = false;
     }); 
 
   }
@@ -81,11 +82,12 @@ export class SociosComponent implements OnInit {
   saveItem(item: Socio): any {
     item.fechaNacimiento = this.fecha;    
       this._socioService.save(item).subscribe(resp => {
-        if(item.id==0){
+     /*    if(item.id==0){
           this.socios.push(item);
         }
-        item = resp;       
-        this.showDetail = false;
+        item = resp;        */
+        this.getItems();
+     
         this.mensajeServ.success('Se han guardado los cambios!', 'Aviso!');
       });
   }
