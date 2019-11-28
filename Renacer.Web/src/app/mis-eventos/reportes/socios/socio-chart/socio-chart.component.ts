@@ -2,17 +2,26 @@ import { Component, ViewEncapsulation, OnInit, NgZone } from '@angular/core';
 import { AppConfig } from '../../../../app.config';
 import { ReporteServices } from '../../../../servicios/reporte.service';
 import { CsvServices, RequestCsv } from '../../../../servicios/csv.service';
+import {formatDate} from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
 
 @Component({
     selector: 'az-socio-chart',
     encapsulation: ViewEncapsulation.None,
     templateUrl: './socio-chart.component.html'
 })
-export class SocioChartComponent
-    implements OnInit {
+export class SocioChartComponent implements OnInit {
 
+    inputInicial = new Date(new Date().getFullYear(), 0, 1);
+    inputFinal = new Date();
+    fechaRangoInicial = new Date(new Date().getFullYear(), 0, 1);
+    fechaRangoFin = new Date();
 
-          //Socios Mas activos
+    mostrarCrecimiento:boolean=false;
+    mostrarTorta:boolean=false;
+
+        //Socios Mas activos
   title = 'Actividad Socios';
   type = 'BubbleChart';
 
@@ -36,32 +45,6 @@ export class SocioChartComponent
   width = 950;
   height = 800;
  mostrarBubble=false;
-/*   options = { 
-
-      sizeAxis: {
-        maxSize: 90,
-        minSize: 20
-      },
-      hAxis: {title: 'Eventos',
-        				
-                //remove viewWindow and see a bubble is cutted off
-                
-        				viewWindow: { 
-            			min: 0,
-            			max: 10
-           			 }
-    },
-    vAxis: {title: 'Edad',
-
-//remove viewWindow and see a bubble is cutted off
-
-    viewWindow: { 
-    min: 30,
-    max: 90
-    }
-}
-}; */
-  
 
 
 
@@ -114,14 +97,15 @@ export class SocioChartComponent
         private csvServ: CsvServices,
         private _reporteServ: ReporteServices,
         private ngZone: NgZone) {
+        registerLocaleData(localeEs, 'es');
         this.config = this._appConfig.config;
         this.configFn = this._appConfig;
     }
 
     ngOnInit() {
-       this.getCrecimientoSocios();
-       this.getSociosPorEdad();
-       this.getSociosMasActivos();
+       this.getCrecimientoSocios(this.fechaRangoInicial, this.fechaRangoFin);
+       this.getSociosPorEdad(this.fechaRangoInicial, this.fechaRangoFin);
+       this.getSociosMasActivos(this.fechaRangoInicial, this.fechaRangoFin);
     }
 
     public randomizeType(): void {
@@ -137,13 +121,18 @@ export class SocioChartComponent
         // console.log(e);
     }
 
-    public getCrecimientoSocios() {
-        this._reporteServ.getCrecimientoSocios({}).subscribe(result => {
+    public getCrecimientoSocios(fechaInicio: Date, fechaFin: Date) {
+        this._reporteServ.getCrecimientoSocios({ 'fechaInicio': formatDate(fechaInicio, 'yyyy-MM-dd', 'es'),
+        'fechaFin': formatDate(fechaFin, 'yyyy-MM-dd', 'es')
+      }).subscribe(result => {
             this.ngZone.run(() => {
                 this.crecimientoSocios = result;
                 this.lineChartColors = this.config.lineChartColors;
                 this.lineChartOptions = this.config.lineChartOptions;
-
+                this.lineChartData[0].data =[];
+                this.lineChartData[1].data=[];
+                this.lineChartData[2].data=[];
+                this.lineChartLabels=[];
                 let cantSocios = 0;
                 for (let i = 0; i < result.length; i++) {
                     this.lineChartLabels.push(result[i].fecha)
@@ -155,15 +144,18 @@ export class SocioChartComponent
                 }
             });
 
-            setTimeout(() => { this.randomizeType(); }, 100);
+            this.mostrarCrecimiento=true;
+           // setTimeout(() => { this.randomizeType(); }, 100);
         })
     }
 
-    public getSociosPorEdad() {
+    public getSociosPorEdad(fechaInicio: Date, fechaFin: Date) {
         this.lineChartLabels = [];
         this.pieChartData = [0, 0, 0, 0, 0];
         this.sociosPorEdad = [];
-        this._reporteServ.getSociosPorEdad({}).subscribe(result => {
+        this._reporteServ.getSociosPorEdad({ 'fechaInicio': formatDate(fechaInicio, 'yyyy-MM-dd', 'es'),
+        'fechaFin': formatDate(fechaFin, 'yyyy-MM-dd', 'es')
+      }).subscribe(result => {
 
             this.ngZone.run(() => {
                 this.sociosPorEdad = result;
@@ -197,12 +189,16 @@ export class SocioChartComponent
                 this.pieChartColors = this.config.pieChartColors;
                 this.pieChartOptions = this.config.pieChartOptions;
             });
+
+            this.mostrarTorta = true;
         })
     }
 
-    public getSociosMasActivos(){
+    public getSociosMasActivos(fechaInicio: Date, fechaFin: Date){
 
-        this._reporteServ.getSociosMasActivos().subscribe(result => {
+        this._reporteServ.getSociosMasActivos({ 'fechaInicio': formatDate(fechaInicio, 'yyyy-MM-dd', 'es'),
+        'fechaFin': formatDate(fechaFin, 'yyyy-MM-dd', 'es')
+      }).subscribe(result => {
         console.log(result);
 
         //var max_of_array = Math.max.apply(Math, result.Edad);
@@ -244,10 +240,6 @@ export class SocioChartComponent
        });
         //this.data=result;
         this.mostrarBubble=true;
-        
-        
-        
-
             
         });
 
@@ -259,5 +251,21 @@ export class SocioChartComponent
 
     }
 
+
+    actualizarFechaInicio(fecha: string){
+       this.fechaRangoInicial = new Date(fecha);
+    }
+    actualizarFechaFin(fecha: string){
+         this.fechaRangoFin = new Date(fecha);
+    }
+
+
+    filtrar(){
+        this.mostrarCrecimiento=false;
+        this.mostrarTorta = false;
+        this.getCrecimientoSocios(this.fechaRangoInicial, this.fechaRangoFin);
+        this.getSociosPorEdad(this.fechaRangoInicial, this.fechaRangoFin);
+        this.getSociosMasActivos(this.fechaRangoInicial, this.fechaRangoFin);
+    }
 
 }

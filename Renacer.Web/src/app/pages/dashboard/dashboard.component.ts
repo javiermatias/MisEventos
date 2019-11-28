@@ -120,9 +120,9 @@ export class DashboardComponent
             self.cantSecretarios = count.count;
         });
 
-        this._reporteServ.getCrecimientoSocios({}).subscribe(function (result) {
-            self.crecimientoSocios = result;
-        });
+        //this._reporteServ.getCrecimientoSocios({}).subscribe(function (result) {
+          //  self.crecimientoSocios = result;
+        //});
     }
 
 

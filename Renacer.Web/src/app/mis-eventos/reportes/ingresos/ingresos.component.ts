@@ -222,21 +222,6 @@ ingresosPorTipoEvento(fechaInicio: Date, fechaFin: Date){
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   cargarIngresosEnElTiempo(fechaInicio: Date, fechaFin: Date) {
     this._reporteServ.getIngresosEnElTiempo(
         { 'fechaInicio': formatDate(fechaInicio, 'yyyy-MM-dd', 'es'),

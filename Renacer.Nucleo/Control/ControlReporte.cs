@@ -275,12 +275,12 @@ WHERE asis.idDetalleEvento = det.id AND det.asistencia = 1 AND {filterRangeDate(
 
         }
 
-        public List<Dictionary<string, object>> GetSociosMasActivos()
+        public List<Dictionary<string, object>> GetSociosMasActivos(FilterDateRange rango)
         {
             var DbHelper = new DBBase(strConnection);
             var sql = $@"SELECT CONCAT(soc.nombre, ',' , soc.apellido) AS Nombre, COUNT(DISTINCT det.idEvento) AS Eventos, YEAR(CURDATE()) - YEAR(soc.fechaNacimiento) AS Edad, soc.estadoCivil AS Civil, COUNT(soc.id) AS asistencias
 FROM asistencia AS asis, socio AS soc, detalleevento det
-WHERE asis.idSocio = soc.id AND asis.idDetalleEvento = det.id GROUP BY CONCAT(soc.nombre, ',', soc.apellido)";
+WHERE asis.idSocio = soc.id AND asis.idDetalleEvento = det.id AND {filterRangeDate(rango, "asis.fechaAsistencia")} GROUP BY CONCAT(soc.nombre, ',', soc.apellido)";
             return Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
         }
 
@@ -496,32 +496,32 @@ WHERE asis.idSocio = soc.id AND asis.idDetalleEvento = det.id GROUP BY CONCAT(so
             var tabla = DbHelper.ExecuteDataTable(sql);
             return Helper.Helper.ConvertDT(tabla);
         }
-        public List<Dictionary<string, object>> GetCrecimientoSocios(filterSocio filtro)
+        public List<Dictionary<string, object>> GetCrecimientoSocios(FilterDateRange rango)
         {
             var DbHelper = new DBBase(strConnection);
-            var sql = @"SELECT aux.fecha,MAX(aux.bajas) as 'bajas',MAX(aux.altas) as 'altas' from ( 
+            var sql = $@"SELECT aux.fecha,MAX(aux.bajas) as 'bajas',MAX(aux.altas) as 'altas' from ( 
                             SELECT 
                             DATE_FORMAT(s.fechaCreacion, '%Y-%m') as 'fecha', Count(s.id) as 'altas',0 as 'bajas'
-                            FROM socio s {filtro_socio} 
+                            FROM socio s where {filterRangeDate(rango, "s.fechaCreacion")}  
                             GROUP BY DATE_FORMAT(s.fechaCreacion, '%Y-%m') 
                         UNION ALL SELECT
                             DATE_FORMAT(s.fechaBaja, '%Y-%m') as 'fecha', 0 as 'altas', Count(s.id) as 'bajas'
-                            FROM socio s {filtro_socio} and not ISNULL(s.fechaBaja)
+                            FROM socio s where {filterRangeDate(rango, "s.fechaBaja")} and not ISNULL(s.fechaBaja)
                             GROUP BY DATE_FORMAT(s.fechaBaja, '%Y-%m')) as aux
-                        GROUP BY aux.fecha";
+                        GROUP BY aux.fecha order by aux.fecha";
 
-            sql = sql.Replace("{filtro_socio}", filtro.getFilterSqlSocio());
+            //sql = sql.Replace("{filtro_socio}", filtro.getFilterSqlSocio());
             var tabla = DbHelper.ExecuteDataTable(sql);
             return Helper.Helper.ConvertDT(tabla);
 
         }
-        public List<Dictionary<string, object>> GetSociosPorEdad(filterSocio filtro)
+        public List<Dictionary<string, object>> GetSociosPorEdad(FilterDateRange rango)
         {
             var DbHelper = new DBBase(strConnection);
-            var sql = @"select TIMESTAMPDIFF(YEAR, s.fechaNacimiento, CURDATE()) as 'edad' ,Count(s.id) as 'count' 
-                          FROM socio s {filtro_socio} and ISNULL(s.fechaBaja)  GROUP BY TIMESTAMPDIFF(YEAR, s.fechaNacimiento, CURDATE())";
+            var sql = $@"select TIMESTAMPDIFF(YEAR, s.fechaNacimiento, CURDATE()) as 'edad' ,Count(s.id) as 'count' 
+                          FROM socio s where {filterRangeDate(rango, "s.fechaCreacion")} and ISNULL(s.fechaBaja) and s.estado='Activo' GROUP BY TIMESTAMPDIFF(YEAR, s.fechaNacimiento, CURDATE())";
 
-            sql = sql.Replace("{filtro_socio}", filtro.getFilterSqlSocio());
+            //sql = sql.Replace("{filtro_socio}", filtro.getFilterSqlSocio());
             var tabla = DbHelper.ExecuteDataTable(sql);
             return Helper.Helper.ConvertDT(tabla);
         }
