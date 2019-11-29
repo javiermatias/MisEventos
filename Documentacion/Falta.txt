@@ -201,5 +201,8 @@ Necesitamos 10 encargados con 3 eventos cada uno.
 Falta exportar en excel el reporte deudores por socio.
 
 
-
-
+29/11/2019
+Boton Volver Asistencias.
+Detalle de evento del socio dejarlo mas prolijo para que se pueda ver bien mobile.
+Ver el tema del pago por mercadolibre.
+Donaciones falta dos links a mercadoPago y Paypal

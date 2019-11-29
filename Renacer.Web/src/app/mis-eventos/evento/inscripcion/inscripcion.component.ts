@@ -133,14 +133,15 @@ export class InscripcionComponent implements OnInit {
         inscripcion.idEvento= this.seleccionEvento.id;
         inscripcion.idSocio= socio.id;
         inscripcion.evento=this.seleccionEvento;
-        //this.listaInscripcion.push(inscripcion);
+        this.listaInscripcion.push(inscripcion);
         this.guardarInscripcion(inscripcion);
         
     });
     //setTimeout(() => console.log('espero'), 2000);
-    this.mostrarInscripcion=false;
-    this.mensajeServ.success('Se han guardado los cambios!', 'Aviso!');
-    this.router.navigate(['/pages/evento/lista-inscripciones']);
+   // this.mostrarInscripcion=false;
+     this.listaSocios.length = 0;
+    this.mensajeServ.success('La inscripción se realizo correctamente!', 'Aviso!');
+    //this.router.navigate(['/pages/evento/lista-inscripciones']);
   }
 
 }

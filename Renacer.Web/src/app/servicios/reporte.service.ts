@@ -98,6 +98,10 @@ export class ReporteServices extends BaseServices<Object> {
     return this.http.post<any[]>(`${this.url}asistenciasportipoevento`, {})
   }
 
+  getAsistenciasPorEspacio(): Observable<any[]> {
+    return this.http.post<any[]>(`${this.url}asistenciasporespacio`, {})
+  }
+
   getInasistenciasPorTipoEvento(): Observable<any[]> {
     return this.http.post<any[]>(`${this.url}inasistenciasportipoevento`, {})
   }

@@ -255,7 +255,17 @@
 </div>
 
 
+<div class="row" *ngIf="mostrarGraficoTipoEspacio">
+  <div class="col-xl-12 col-lg-12 col-12 bottom-30">
+  <az-grafico-torta *ngIf="TipoEspacioData.length > 0 && TipoEspacioDataLabels.length > 0"
+  tituloGrafico="Asistencias por Espacio" 
+  ChartType="pie"
+  [ChartLabels]="TipoEspacioDataLabels"
+  [ChartData]="TipoEspacioData"
+  [tabla]="tablaTipoEspacio"
+  ></az-grafico-torta>
+  </div>
+</div>
 
 
-
-<az-asistencia-socio> </az-asistencia-socio>
+<!-- <az-asistencia-socio> </az-asistencia-socio> -->

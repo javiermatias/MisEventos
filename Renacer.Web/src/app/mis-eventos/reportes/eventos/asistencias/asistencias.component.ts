@@ -5,6 +5,7 @@ import { EspacioComun, EspacioServices } from '../../../../servicios/espacio.ser
 import {formatDate} from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
+import { TablaGrafico } from '../../../../modelos/tabla-grafico';
 
 
 @Component({
@@ -91,6 +92,20 @@ export class AsistenciasComponent implements OnInit {
         ]
       }
 
+
+      //Grafico por Espacio
+      mostrarGraficoTipoEspacio=false;
+      TipoEspacioData: Array<string>;
+      TipoEspacioDataLabels: Array<number>;
+      asistenciaPorEspacioResponse = [];
+      tablaTipoEspacio: TablaGrafico;
+      
+      columnaTipoEspacio= {
+        columnas: [
+          {name: 'nombre', title: 'Nombre', type: 'text'}
+        , {name: 'asistencias', title: 'Asistencias', type: 'text'}
+        ]
+        }
     constructor(private _appConfig: AppConfig,
                 private _reporteServ: ReporteServices,private espacioServ:EspacioServices) {
         this.config = this._appConfig.config;
@@ -99,6 +114,8 @@ export class AsistenciasComponent implements OnInit {
         this.lineChartOptions = this.config.lineChartOptions;
         this.pieChartOptions = this.config.pieChartOptions;
         this.pieChartColors = this.config.pieChartColors;
+        //this.tabla = new TablaGrafico("ingresos_por_tipo_de_evento",this.tablaColumnasTipoEvento);
+        this.tablaTipoEspacio = new TablaGrafico("asistencias_por_tipo_espacio",this.columnaTipoEspacio);
     }
 
     ngOnInit() {
@@ -108,8 +125,33 @@ export class AsistenciasComponent implements OnInit {
       });
     this.graficarAsistenciasPorDiaDeLaSemana(this.fechaRangoInicial, this.fechaRangoFin);
     this.graficarAsistencias();
+    this.asistenciasPorEspacio();
     }
 
+    asistenciasPorEspacio(){
+      this._reporteServ.getAsistenciasPorEspacio().subscribe(result => {
+        this.asistenciaPorEspacioResponse = [];
+       
+        this.asistenciaPorEspacioResponse  = result.map(x => {
+          return {'nombre': x.nombre, 'asistencias': x.asistencias};
+      });
+
+       console.log(this.asistenciaPorEspacioResponse);
+    
+    this.tablaTipoEspacio.data = this.asistenciaPorEspacioResponse;
+    this.TipoEspacioData = [];
+    this.TipoEspacioDataLabels = [];
+
+    this.asistenciaPorEspacioResponse.forEach(item => {      
+
+      this.TipoEspacioData.push(item.asistencias);
+      this.TipoEspacioDataLabels.push(item.nombre);
+      });
+      console.log(this.TipoEspacioData);
+      console.log(this.TipoEspacioDataLabels);
+      this.mostrarGraficoTipoEspacio=true;
+    });
+  }
     graficarAsistencias() {
         this.AsistenciasTipoEventoData = [1];
         this.AsistenciasTipoEventoLabels = ['Cargando...'];
