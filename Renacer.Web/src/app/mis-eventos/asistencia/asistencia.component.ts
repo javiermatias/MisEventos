@@ -11,6 +11,7 @@ import { Socio} from '../../servicios/socio.service';
 import { RolServices, Rol } from '../../servicios/rol.service';
 import { Usuario, UserServices } from '../../servicios/users.service';
 import { AsistenciaEvento } from '../../modelos/asistencia-evento';
+import { ReporteServices } from '../../servicios/reporte.service';
 
 
 @Component({
@@ -45,6 +46,7 @@ export class AsistenciaComponent implements OnInit {
     ,private asistenciaServ:AsistenciaEventoServices  
     ,private mensajeServ: ToastrService,
     private _userService: UserServices,
+    private _reporteServ: ReporteServices,
     private _detalleEvento:DetalleEventoServices) { }
 
   ngOnInit() {
@@ -53,7 +55,14 @@ export class AsistenciaComponent implements OnInit {
    //console.log(this.usuario.idEncargado);
    //this.getEventosXencargado();
    this.getAsistenciasCursos();
+   this.getAsistenciaSociosEvento(1);
   }
+
+   getAsistenciaSociosEvento(_idEvento:number){
+    this._reporteServ.getAsistenciasXsocioXevento(1).subscribe(result => {
+    console.log(result);
+  });
+  } 
   getEventosXencargado(){
     
     this._eventoServ.query(

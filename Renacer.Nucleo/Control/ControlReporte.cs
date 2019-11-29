@@ -232,6 +232,20 @@ GROUP BY t.nombre) AS aux GROUP BY nombre
 
         }
 
+
+        public List<Dictionary<string, object>> GetAsistenciasPorEspacio()
+        {
+            var DbHelper = new DBBase(strConnection);
+            var sql = @"SELECT e.nombre , COUNT(asis.id) AS 'asistencias' FROM espaciocomun e , detalleevento det, asistencia asis
+                           WHERE asis.idDetalleEvento = det.id AND det.idEspacio = e.id AND det.asistencia = 1 GROUP BY e.nombre";
+            return Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
+
+        }
+
+
+ //       SELECT e.nombre , COUNT(asis.id) AS 'asistencias' FROM espaciocomun e , detalleevento det, asistencia asis
+ //WHERE asis.idDetalleEvento = det.id AND det.idEspacio = e.id AND det.asistencia = 1 GROUP BY e.nombre
+
         public List<Dictionary<string, object>> GetAsistenciasPorDiaDeLaSemana(FilterDateRange rango)
         {
             var DbHelper = new DBBase(strConnection);
