@@ -206,3 +206,18 @@ Boton Volver Asistencias.
 Detalle de evento del socio dejarlo mas prolijo para que se pueda ver bien mobile.
 Ver el tema del pago por mercadolibre.
 Donaciones falta dos links a mercadoPago y Paypal
+
+
+
+
+30-11-2019
+
+Cargar Socios.
+Cargar Encargados.
+Cargar Intereses... y luego cargar ids de intereses de los socios.
+Cargar Eventos desde una fecha...Agosto.
+Cambiar Fecha Pagos Matriculas.
+Crear Una buena Cantidad de eventos.
+Crear 6 Encargados.
+tomar asistencias y pagar eventos.
+
