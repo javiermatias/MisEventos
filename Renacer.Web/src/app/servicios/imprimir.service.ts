@@ -159,7 +159,7 @@ export class ImprimirService {
                       </td>
                       
                       <td>
-                      fundacionrenacereventos@gmail.com
+                      forodelosabios@gmail.com
                       </td>
                   </tr>
               </table>
@@ -172,7 +172,7 @@ export class ImprimirService {
           </td>
           
           <td>
-               Efectivo #
+               Efectivo 
           </td>
       </tr>
       
@@ -193,7 +193,7 @@ export class ImprimirService {
           </td>
           
           <td>
-          ${_matricula.valor}
+          $ ${_matricula.valor}
           </td>
       </tr>
       
@@ -203,7 +203,7 @@ export class ImprimirService {
           <td></td>
           
           <td>
-          Total: ${_matricula.valor}
+          Total: $ ${_matricula.valor}
           </td>
       </tr>
   </table>
