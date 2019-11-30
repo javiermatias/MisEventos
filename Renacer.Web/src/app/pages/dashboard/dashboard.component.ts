@@ -79,7 +79,7 @@ export class DashboardComponent
             this.loadSocioData();
             //this.getItems();
         }
-        if (this.user.rol === 'SECRETARIO') { this.loadSecretariaData(); }
+        if (this.user.rol === 'SECRETARIO') { this.loadAdminData();}
 
     }
 
