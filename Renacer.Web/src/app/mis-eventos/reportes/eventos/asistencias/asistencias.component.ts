@@ -124,7 +124,7 @@ export class AsistenciasComponent implements OnInit {
         this.espacios = items;
       });
     this.graficarAsistenciasPorDiaDeLaSemana(this.fechaRangoInicial, this.fechaRangoFin);
-    this.graficarAsistencias();
+    this.graficarAsistencias(this.fechaRangoInicial, this.fechaRangoFin);
     this.asistenciasPorEspacio();
     }
 
@@ -152,13 +152,15 @@ export class AsistenciasComponent implements OnInit {
       this.mostrarGraficoTipoEspacio=true;
     });
   }
-    graficarAsistencias() {
+    graficarAsistencias(fechaInicio: Date, fechaFin: Date) {
         this.AsistenciasTipoEventoData = [1];
         this.AsistenciasTipoEventoLabels = ['Cargando...'];
         this.InasistenciasTipoEventoData = [1];
         this.InasistenciasTipoEventoLabels = ['Cargando...'];
 
-        this._reporteServ.getAsistenciasPorTipoEvento().subscribe(result => {
+        this._reporteServ.getAsistenciasPorTipoEvento({ 'fechaInicio': formatDate(fechaInicio, 'yyyy-MM-dd', 'es'),
+        'fechaFin': formatDate(fechaFin, 'yyyy-MM-dd', 'es')
+      }).subscribe(result => {
            
             this.AsistenciasTipoEventoData = [];
             this.AsistenciasTipoEventoLabels = [];

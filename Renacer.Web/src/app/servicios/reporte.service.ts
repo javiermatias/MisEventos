@@ -94,8 +94,8 @@ export class ReporteServices extends BaseServices<Object> {
   }
 
  
-  getAsistenciasPorTipoEvento(): Observable<any[]> {
-    return this.http.post<any[]>(`${this.url}asistenciasportipoevento`, {})
+  getAsistenciasPorTipoEvento(rangoDeFechas: any): Observable<any[]> {
+    return this.http.post<any[]>(`${this.url}asistenciasportipoevento`,rangoDeFechas)
   }
 
   getAsistenciasPorEspacio(): Observable<any[]> {

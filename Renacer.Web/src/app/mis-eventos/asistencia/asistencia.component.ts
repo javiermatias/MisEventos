@@ -12,6 +12,7 @@ import { RolServices, Rol } from '../../servicios/rol.service';
 import { Usuario, UserServices } from '../../servicios/users.service';
 import { AsistenciaEvento } from '../../modelos/asistencia-evento';
 import { ReporteServices } from '../../servicios/reporte.service';
+import { ExcelService } from '../../servicios/excel.service';
 
 
 @Component({
@@ -42,12 +43,18 @@ export class AsistenciaComponent implements OnInit {
   public mostrarEvento:Boolean=false;
   verListaAsistencia:Boolean=false;
   
+
+  //Asistencias Socios
+  data:any[]=[];
+  private dataExportar:any[];
+  public mostrarAsistenciaSocios:Boolean=false;
   constructor(private _eventoServ:EventoServices
     ,private asistenciaServ:AsistenciaEventoServices  
     ,private mensajeServ: ToastrService,
     private _userService: UserServices,
     private _reporteServ: ReporteServices,
-    private _detalleEvento:DetalleEventoServices) { }
+    private _detalleEvento:DetalleEventoServices,    
+    private excelService:ExcelService) { }
 
   ngOnInit() {
    //this.fechaActual = new Date().toISOString();
@@ -146,6 +153,53 @@ export class AsistenciaComponent implements OnInit {
     this.verListaAsistencia=true;
    // console.log(item);
   }
+
+
+  asistenciaSocio(item:Evento){
+//console.log(item);
+this.eventoSeleccionado=item;
+let AsistenciasSociosResponse:any[]=[];
+this._reporteServ.getAsistenciasXsocioXevento(item.id).subscribe(result => {
+  Object.keys(result).forEach(function(key){
+   // let fila= [key,result[key]]   
+    AsistenciasSociosResponse.push({'socio': key, 'porcentaje': result[key]+'%'});
+   })
+  this.data= AsistenciasSociosResponse;
+  this.mostrarAsistenciaSocios=true;
+  this.listaAsistencias=false;
+  console.log(this.data);
+ });
+
+
+
+  }
+
+  volverListado(){
+    this.mostrarAsistenciaSocios=false;
+    this.listaAsistencias=true;
+  }
+
+  downloadExcel(){
+
+    const tituloWorkBook = 'Asistencia';
+    const titlulo = 'Asistencia socios al evento ' + this.eventoSeleccionado.nombre;
+    const nombreArchivo= 'asistencia.xlsx'
+    const cabeceras = ["Socio", "Porcentaje"];
+    this.dataExportar=[];
+  this.data.forEach(item => {
+    var data = [item.socio,item.porcentaje];
+    this.dataExportar.push(data);
+  });
+  let filtros= [];
+
+  this.excelService.reporteExcel(tituloWorkBook,titlulo,nombreArchivo,cabeceras,this.dataExportar,filtros);
+
+
+
+
+
+  }
+
 
 
 

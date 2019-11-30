@@ -198,10 +198,10 @@ namespace Renacer.Nucleo.Control
             var DbHelper = new DBBase(strConnection);
             return Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
         }
-        public List<Dictionary<string, object>> GetAsistenciasPorTipoEvento()
+        public List<Dictionary<string, object>> GetAsistenciasPorTipoEvento(FilterDateRange rango)
         {
             var DbHelper = new DBBase(strConnection);
-            var sql = @"
+            var sql = $@"
  SELECT aux.nombre,SUM(aux.asistencias) AS 'asistencias',SUM(aux.inscriptos) AS 'inscriptos' FROM
 	(SELECT
 	t.nombre,
@@ -212,7 +212,7 @@ namespace Renacer.Nucleo.Control
 	INNER JOIN evento e ON t.id = e.IdTipoEvento
 	INNER JOIN detalleevento de ON e.id = de.IdEvento 
         INNER JOIN inscripcion i ON i.idEvento = e.id
-        WHERE de.asistencia=1
+        WHERE de.asistencia=1 AND {filterRangeDate(rango, "de.fechaDesde")}
         GROUP BY
 	t.nombre	
 	UNION ALL
@@ -225,7 +225,7 @@ FROM
 INNER JOIN evento e ON t.id = e.IdTipoEvento
 INNER JOIN detalleevento de ON e.id = de.IdEvento
 LEFT JOIN asistencia a ON a.idDetalleEvento = de.id
-WHERE de.asistencia=1
+WHERE de.asistencia=1 AND {filterRangeDate(rango, "de.fechaDesde")}
 GROUP BY t.nombre) AS aux GROUP BY nombre
 ";
             return Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
@@ -278,7 +278,7 @@ WHEN DAYOFWEEK(det.fechaDesde) = 7 THEN 'Sabado'
 
 END AS dia   FROM asistencia AS asis, detalleevento AS det
 
-WHERE asis.idDetalleEvento = det.id AND det.asistencia = 1 AND {filterRangeDate(rango, "fechaDesde")} AND DAYOFWEEK(det.fechaDesde) IS NOT NULL  GROUP BY DAYOFWEEK(det.fechaDesde)";
+WHERE asis.idDetalleEvento = det.id AND det.asistencia = 1 AND {filterRangeDate(rango, "det.fechaDesde")} AND DAYOFWEEK(det.fechaDesde) IS NOT NULL  GROUP BY DAYOFWEEK(det.fechaDesde)";
 
        
 
