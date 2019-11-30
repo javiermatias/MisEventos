@@ -39,30 +39,34 @@
                       </div>
               </div>
 
-              <div class="col-md-3 col-12 bottom-15">   
-                <div class="form-group">
+              <div class="col-md-3 col-12 bottom-15" style="padding-top:20px">   
+                  <div class="form-group">
+                      <label for="input-2"></label>
+                      <button type="submit" class="btn btn-main" (click)="filtrar()">Filtrar</button>
+                  </div>
+            <!--     <div class="form-group">
                   <label for="input-2">Espacio</label>
                   <select class="form-control" id="Espacio" required
                   name="Espacio" [(ngModel)]="espacio">
                   <option *ngFor="let espacio of espacios" [ngValue]="espacio">{{espacio.nombre}} </option>                                    
                   <option [ngValue]="null"></option>  
                 </select>
-                </div>
+                </div> -->
             </div>
 
 
 
 
 
-              <div class="col-md-3 col-12 bottom-15" style="padding-top:20px">   
+         <!--      <div class="col-md-3 col-12 bottom-15" style="padding-top:20px">   
                       <div class="form-group">
                               <label for="input-2"></label>
                               <button type="submit" class="btn btn-main" (click)="filtrar()">Filtrar</button>
-                          </div>
+                          </div> 
                       
                    
                   
-              </div>  
+              </div>  -->
 
           </div>
       </div>

@@ -127,9 +127,9 @@ namespace Renacer.WebAPI.Controllers
         [ActionName("asistenciasportipoevento")]
         [Route("asistenciasportipoevento")]
         [AcceptVerbs("POST")]
-        public List<Dictionary<string, object>> GetAsistenciasPorTipoEvento([FromBody] ControlReporte.filterSocio filter)
+        public List<Dictionary<string, object>> GetAsistenciasPorTipoEvento([FromBody] FilterDateRange filter)
         {
-            return ControlReporte.GetInstance().GetAsistenciasPorTipoEvento();
+            return ControlReporte.GetInstance().GetAsistenciasPorTipoEvento(filter);
         }
 
         [ActionName("asistenciasporespacio")]

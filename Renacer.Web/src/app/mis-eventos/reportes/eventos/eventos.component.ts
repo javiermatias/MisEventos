@@ -132,7 +132,7 @@ export class EventosComponent implements OnInit {
     const nombreArchivo= 'eventos.xlsx'
     const cabeceras = ["Nombre", "Descripción", "Estado", "Fecha Inicio", "Fecha Fin","Cupo Mínimo", "Cupo Máximo", "Monto", "Cuotas", 
   "Inicio Inscripción","Fin Inscripción"]
-console.log(this.eventos);
+  this.dataExportar=[];
   this.eventos.forEach(evento => {
     var data = [evento.nombre,evento.descripcion,evento.estado,evento.fechaDesde,evento.fechaHasta,evento.cupoMinimo,evento.cupoMaximo,evento.monto,
       evento.cantidadCuota,evento.fechaDesdeInscripcion,evento.fechaHastaInscripcion];
