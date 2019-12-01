@@ -62,17 +62,13 @@ export class EventoModificarComponent implements OnInit {
     evento.fechaDesdeInscripcion = this.fechaDesdeInscripcion;   
     evento.fechaHastaInscripcion= this.fechaHastaInscripcion;  
     
-      this._eventoService.save(evento).subscribe(resp => {
-       // item = resp;
-       // this.socios.push(item);
-       // this.showDetail = false;
-       this.router.navigate(['/pages/evento/lista']);
+      this._eventoService.update(evento).subscribe(resp => {
+        evento = resp;
+        this.router.navigate(['/pages/evento/lista']);
         this.mensajeServ.success('Se han guardado los cambios!', 'Aviso!');
       });
-
-
-
   }
+
   darBaja(){
     this._eventoService.remove(this.idEvento).subscribe(resp => {
       //Callback

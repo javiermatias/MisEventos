@@ -6,6 +6,10 @@ import {  Router } from '@angular/router';
 import { Socio, SocioServices } from '../../servicios/socio.service';
 import { sexo, estadoCivil } from '../../modelos/enums';
 import { CsvServices, RequestCsv } from '../../servicios/csv.service';
+import {formatDate} from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
+
 
 @Component({
   selector: 'az-socios',
@@ -40,7 +44,8 @@ export class SociosComponent implements OnInit {
   }
   ngOnInit() {
     this.getItems();
-    //this.mensajeServ.success('Estas viendo tus Socios!', 'Mensaje!');
+    registerLocaleData(localeEs, 'es');
+
   }
   getItems() {
      this._socioService.query(
@@ -90,6 +95,10 @@ export class SociosComponent implements OnInit {
      
         this.mensajeServ.success('Se han guardado los cambios!', 'Aviso!');
       });
+  }
+
+  getDateNow(){
+    return   formatDate(new Date(), 'yyyy-MM-dd', 'es');
   }
 
 }
