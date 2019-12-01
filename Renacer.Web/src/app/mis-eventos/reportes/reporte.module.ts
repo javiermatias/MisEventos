@@ -33,7 +33,7 @@ import { AsistenciaReporteComponent } from './asistencia-reporte/asistencia-repo
 
 export const routes = [
   { path: '', redirectTo: 'tags', pathMatch: 'full'},
-  { path: 'tags', component: TagsCloudComponent, data: { breadcrumb: 'Nube de Etiquetas' } },//
+  { path: 'tags', component: TagsCloudComponent, data: { breadcrumb: 'Nube de Intereses' } },//
   { path: 'eventos', component: EventosComponent, data: { breadcrumb: 'Eventos' } },
   { path: 'socios', component: SociosComponent, data: { breadcrumb: 'Socios' } },//
   { path: 'time-line', component: TimeLineComponent, data: { breadcrumb: 'Cronograma' } },

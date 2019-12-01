@@ -636,7 +636,7 @@ namespace Renacer.Nucleo.Control
                 using (var db = new ModeloRenacer())
                 {
                     return db.evento.Include("listaInscripciones")
-                        .Where(ev => ev.fechaBaja == null ).OrderBy(item => item.fechaDesde)
+                        .Where(ev => ev.fechaBaja == null).OrderBy(item => item.fechaDesde)
                         .ToList();
                 }
             }

@@ -187,7 +187,7 @@ export class DashboardComponent
             
             this.cantEventosAsistencia= Math.round(_cantEventosAsistencia /= this.cantEventosAsignados);
             this.cantEventosProgreso = _cantEventosProgreso;
-          console.log(result)
+         // console.log(result)
          });
       
 }

@@ -8,6 +8,7 @@ import { EventoServices ,Evento} from '../../../servicios/evento.service';
 })
 export class ListaComponent implements OnInit {
   public eventos :any[];
+  public eventosOriginal :any[];
   searchText = '';
   showDetail = false;
 
@@ -20,8 +21,22 @@ export class ListaComponent implements OnInit {
   getItems(){
   this._itemsService.query({'search':' '}).subscribe(items => {
     this.eventos = items;
-    }
+    this.eventosOriginal=items;
+  }
    );
+  }
+
+
+  buscar(){
+    this.eventos=this.eventosOriginal;
+    if(this.searchText != ''){
+      this.searchText = this.searchText.toLowerCase();
+      this.eventos = this.eventos.filter((item: Evento) => {
+        return item.nombre.toLowerCase().indexOf(this.searchText) >= 0;
+       });
+
+    }
+  
   }
 
 }
