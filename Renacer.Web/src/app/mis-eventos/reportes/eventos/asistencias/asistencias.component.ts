@@ -115,7 +115,7 @@ export class AsistenciasComponent implements OnInit {
         this.pieChartOptions = this.config.pieChartOptions;
         this.pieChartColors = this.config.pieChartColors;
         //this.tabla = new TablaGrafico("ingresos_por_tipo_de_evento",this.tablaColumnasTipoEvento);
-        this.tablaTipoEspacio = new TablaGrafico("asistencias_por_tipo_espacio",this.columnaTipoEspacio);
+        this.tablaTipoEspacio = new TablaGrafico("Asistencias por Espacio",this.columnaTipoEspacio);
     }
 
     ngOnInit() {
