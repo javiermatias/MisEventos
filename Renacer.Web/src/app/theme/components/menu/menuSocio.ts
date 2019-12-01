@@ -54,7 +54,7 @@ export const itemsSocio = [
     selected: false,
     expanded: false,
     order: 500,
-  },
+  }/* ,
   {
     title: 'Donaciones',
     routerLink: 'donaciones',
@@ -62,5 +62,5 @@ export const itemsSocio = [
     selected: false,
     expanded: false,
     order: 500,
-  }
+  } */
 ];

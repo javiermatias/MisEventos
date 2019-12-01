@@ -21,7 +21,8 @@
                             <div class="w-200 pull-right bottom-15">
                                 <div class="input-group input-group-sm">
                                     <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                                    <input class="form-control" id="table-search-input" [(ngModel)]="searchText" type="text" placeholder="Buscar evento...">
+                                    <input class="form-control" id="table-search-input" [(ngModel)]="searchText" 
+                                    title="Enter para buscar" (keyup.enter)="buscar()" type="text" placeholder="Buscar evento...">
                                 </div>
                             </div>
                             <div class="table-responsive datatable">
@@ -38,7 +39,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let item of mf.data | SearchPipe : searchText">
+                                        <tr *ngFor="let item of mf.data">
                                             <td>{{item.nombre}}</td>
                                             <td>{{item.descripcion}}</td>                                            
                                             <td>
@@ -50,7 +51,7 @@
                                                 <a style="color: #014c8c;cursor:pointer;" [routerLink]="['/pages/evento-modificar/', item.id]" *ngIf="item.estado == 'Nuevo'"> | Modificar</a>    
                                             <td>
                                         </tr>
-                                        <tr *ngIf="(mf.data | SearchPipe : searchText).length === 0">
+                                        <tr *ngIf="(mf.data).length === 0">
                                             <td colspan="100">
                                                 No encontrado
                                             </td>

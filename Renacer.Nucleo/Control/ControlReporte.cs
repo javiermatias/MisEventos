@@ -294,7 +294,7 @@ WHERE asis.idDetalleEvento = det.id AND det.asistencia = 1 AND {filterRangeDate(
             var DbHelper = new DBBase(strConnection);
             var sql = $@"SELECT CONCAT(soc.nombre, ',' , soc.apellido) AS Nombre, COUNT(DISTINCT det.idEvento) AS Eventos, YEAR(CURDATE()) - YEAR(soc.fechaNacimiento) AS Edad, soc.estadoCivil AS Civil, COUNT(soc.id) AS asistencias
 FROM asistencia AS asis, socio AS soc, detalleevento det
-WHERE asis.idSocio = soc.id AND asis.idDetalleEvento = det.id AND {filterRangeDate(rango, "asis.fechaAsistencia")} GROUP BY CONCAT(soc.nombre, ',', soc.apellido)";
+WHERE asis.idSocio = soc.id AND asis.idDetalleEvento = det.id AND {filterRangeDate(rango, "asis.fechaAsistencia")} GROUP BY CONCAT(soc.nombre, ',', soc.apellido) LIMIT 20" ;
             return Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
         }
 

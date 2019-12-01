@@ -1,0 +1,2 @@
+Directorio C:\Program Files\MySQL\MySQL Server 8.0\bin
+mysqldump -uroot -p123456 --default-character-set=latin1 -hlocalhost renacer > c:\sqlfile1.sql
