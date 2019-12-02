@@ -29,7 +29,6 @@ export class EncargadoEvento {
     public estado?: string
   ) {
     this.tipoDoc = new TipoDocumento();
-    this.listaTags = new Array<Tag>();
   }
 
 }
