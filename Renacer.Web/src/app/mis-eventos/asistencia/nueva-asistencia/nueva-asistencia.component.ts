@@ -90,6 +90,7 @@ volver(){
 
 verificarFechaAsistencia(){
   if(this.detalleEvento.fechaDesde.toString() >= this.datePipe.transform(this.fechaHoy,'yyyy-MM-dd')){
+    console.log(this.detalleEvento.fechaDesde.toString() + this.datePipe.transform(this.fechaHoy,'yyyy-MM-dd') ) ;
     this.mensajeServ.info('No se puede tomar asistencia en días anteriores a la fecha de dictado del curso!', 'Aviso!');
     this.sinAsistencia=false;
   } else{
