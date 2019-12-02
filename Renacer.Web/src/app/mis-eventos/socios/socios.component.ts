@@ -19,6 +19,8 @@ export class SociosComponent implements OnInit {
 
   public _socio = new Socio(0, '', '', '');
   public socios = new Array<Socio>();
+
+  public sociosOriginal = new Array<Socio>();
   public showDetail = false;
   public searchText = '';
 
@@ -52,6 +54,7 @@ export class SociosComponent implements OnInit {
       { 'search':this.searchText}).subscribe
       (items => {       
       this.socios = items;
+      this.sociosOriginal = items;
       this.showDetail = false;
     }); 
 
@@ -99,6 +102,20 @@ export class SociosComponent implements OnInit {
 
   getDateNow(){
     return   formatDate(new Date(), 'yyyy-MM-dd', 'es');
+  }
+
+
+  buscar(){
+    this.socios=this.sociosOriginal;
+    if(this.searchText != ''){
+      this.searchText = this.searchText.toLowerCase();
+      this.socios = this.socios.filter((item: Socio) => {
+        return item.nombre.toLowerCase().indexOf(this.searchText) >= 0 || 
+        item.apellido.toLowerCase().indexOf(this.searchText) >= 0 ;
+       });
+
+    }
+  
   }
 
 }
