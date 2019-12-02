@@ -13,20 +13,22 @@ export class EncargadoEvento {
     public id: number,
     public nombre?: string,
     public apellido?: string,
+    public telefono?:string,   
+    public celular?: string,
     public email?:string,
-    public telefono?:string,
-    public listaTags?:Array<Tag>,
-    public fechaNacimiento?: Date,
+    public idTipoDoc?: number,
+    public tipoDoc?: TipoDocumento,
+
+    public nroDocumento?: string,
+    
+    public idDomicilio?: number,
+    public domicilio?: Domicilio,
     public fechaCreacion?: Date,
     public fechaBaja?: Date,
-    public nroDocumento?: string,
-    public tipoDoc?: TipoDocumento,
-    public domicilio?: Domicilio,
-    public celular?: string,
-    public descripcion?: string,
+   
+    public estado?: string
   ) {
     this.tipoDoc = new TipoDocumento();
-    this.listaTags = new Array<Tag>();
   }
 
 }

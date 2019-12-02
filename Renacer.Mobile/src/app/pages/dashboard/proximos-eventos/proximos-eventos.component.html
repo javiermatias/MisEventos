@@ -1,0 +1,97 @@
+<div class="row mbm-20">
+  <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 bottom-30" *ngFor="let evento of proximosEventos">              
+      <div class="{{evento.cantidadInscriptos >= evento.cupoMinimo ? 'card card-success' : 'card card-danger'}}">
+          <div class="card-header">
+            {{evento.nombre}}
+          </div>
+          <div class="card-block">
+                <ul>
+                        <li>
+                              Cupo Mínimo: {{evento.cupoMinimo }}
+                        </li>
+                        <li>
+                              Cantidad Inscriptos: {{evento.cantidadInscriptos}}
+                        </li>
+                        <li>
+                              Fecha Desde: {{evento.fechaDesde | date:'dd-MM-yyyy'}}
+                        </li>
+                        <li>
+                                Fecha Fin Inscripciones: {{evento.fechaHastaInscripcion  | date:'dd-MM-yyyy'}}
+                          </li>
+                    </ul>
+                 
+          </div>
+          <div class="card-footer">
+           <!--    <label *ngIf="evento.cantidadInscriptos >= evento.cupoMinimo"></label>
+              <label for=""></label> -->
+              <p *ngIf="evento.cantidadInscriptos >= evento.cupoMinimo" >El curso se puede dar normalmente!</p>
+               <p *ngIf="evento.cupoMinimo > evento.cantidadInscriptos">Faltan Inscriptos!</p>
+            </div>
+      </div>
+  </div>
+ <!--  <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 bottom-30">       
+      <div class="card card-primary">
+          <div class="card-header">
+              Primary card
+          </div>
+          <div class="card-block">
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+          <div class="card-footer">
+              card footer
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 bottom-30">       
+      <div class="card card-success">
+          <div class="card-header">
+              Success card
+          </div>
+          <div class="card-block">
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+          <div class="card-footer">
+              card footer
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 bottom-30">              
+      <div class="card card-info">
+          <div class="card-header">
+              Info card
+          </div>
+          <div class="card-block">
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+          <div class="card-footer">
+              card footer
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 bottom-30">              
+      <div class="card card-warning">
+          <div class="card-header">
+              Warning card
+          </div>
+          <div class="card-block">
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+          <div class="card-footer">
+              card footer
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 bottom-30">              
+      <div class="card card-danger">
+          <div class="card-header">
+              Danger card
+          </div>
+          <div class="card-block">
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+          <div class="card-footer">
+              card footer
+          </div>
+      </div>
+  </div>  -->
+</div>

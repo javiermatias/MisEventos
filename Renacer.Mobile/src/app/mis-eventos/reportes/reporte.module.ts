@@ -17,26 +17,33 @@ import { RankingComponent } from './eventos/ranking/ranking.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { DeudoresCuotaComponent } from './deudores-cuota/deudores-cuota.component';
 import { EventoChartComponent } from './eventos/evento-chart/evento-chart.component';
-
 import { ChartsModule } from 'ng4-charts';
 import 'chart.js/dist/Chart.js';
 import { IngresosMonetariosComponent } from './ingresos-monetarios/ingresos-monetarios.component';
 import { AsistenciasComponent } from './eventos/asistencias/asistencias.component';
 import { ListaDeudoresComponent } from './deudores-cuota/lista-deudores/lista-deudores.component';
+import { SocioChartComponent } from './socios/socio-chart/socio-chart.component';
+import { IngresosComponent } from './ingresos/ingresos.component';
+import { GraficoTortaComponent } from './graficos-compartidos/grafico-torta/grafico-torta.component';
 
-
+import { GoogleChartsModule } from 'angular-google-charts';
+import { AsistenciaSocioComponent } from './eventos/asistencias/asistencia-socio/asistencia-socio.component';
+import { AsistenciaReporteComponent } from './asistencia-reporte/asistencia-reporte.component';
 
 
 export const routes = [
   { path: '', redirectTo: 'tags', pathMatch: 'full'},
-  { path: 'tags', component: TagsCloudComponent, data: { breadcrumb: 'Nube de Etiquetas' } },//
+  { path: 'tags', component: TagsCloudComponent, data: { breadcrumb: 'Nube de Intereses' } },//
   { path: 'eventos', component: EventosComponent, data: { breadcrumb: 'Eventos' } },
   { path: 'socios', component: SociosComponent, data: { breadcrumb: 'Socios' } },//
   { path: 'time-line', component: TimeLineComponent, data: { breadcrumb: 'Cronograma' } },
   { path: 'ranking', component: RankingComponent, data: { breadcrumb: 'Ranking' } },//
-  { path: 'ingresos', component: IngresosMonetariosComponent, data: { breadcrumb: 'Ingresos' } },
+  { path: 'ingresos', component: IngresosComponent, data: { breadcrumb: 'Ingresos' } },
   { path: 'asistencias', component: AsistenciasComponent, data: { breadcrumb: 'Asistencias' } },
-  { path: 'deudores', component: DeudoresCuotaComponent, data: { breadcrumb: 'Deudores' } }
+  { path: 'deudores', component: DeudoresCuotaComponent, data: { breadcrumb: 'Deudores' } },
+  { path: 'crecimiento-socios', component: SocioChartComponent, data: { breadcrumb: 'Socios' } },
+  { path: 'ingresos12', component: IngresosMonetariosComponent, data: { breadcrumb: 'Socios' } },
+  { path: 'asistencias-socio', component: AsistenciaReporteComponent, data: { breadcrumb: 'Reporte' } }
 ];
 
 @NgModule({
@@ -51,6 +58,7 @@ export const routes = [
       NguiAutoCompleteModule,
       TagCloudModule,
       ChartsModule,
+      GoogleChartsModule.forRoot('es'),
       RouterModule.forChild(routes)
   ],
   declarations: [
@@ -64,7 +72,12 @@ export const routes = [
     EventoChartComponent,
     IngresosMonetariosComponent,
     AsistenciasComponent,
-    ListaDeudoresComponent
+    ListaDeudoresComponent,
+    SocioChartComponent,
+    IngresosComponent,
+    GraficoTortaComponent,
+    AsistenciaSocioComponent,
+    AsistenciaReporteComponent
   ]
 })
 export class ReporteModule { }

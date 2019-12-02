@@ -146,14 +146,31 @@ export const itemsAdmin = [
             }
           ]
       },
-      {
-        title: 'Socios',
-        routerLink: 'reportes/socios'
+    {
+      title: 'Socios',      
+      selected: false,
+      expanded: false,
+      order: 150,
+      subMenu: [
+        {
+          title: 'Socios',
+          routerLink: 'reportes/socios'
+        },
+        {
+          title: 'Crecimiento',
+          routerLink: 'reportes/crecimiento-socios'
+        },
+        {
+          title: 'Asistencia socios',
+          routerLink: 'reportes/asistencias-socio'
+        }
+      
+      ]
       },
       // {
       //   title: 'Encargados',
       //   routerLink: 'reportes/encargados'
-      // },
+      // }, crecimiento-socios
       {
         title: 'Nube de Intereses',
         routerLink: 'reportes/tags'

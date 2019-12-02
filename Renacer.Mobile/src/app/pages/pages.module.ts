@@ -59,6 +59,7 @@ import { MisInteresesComponent } from '../mis-eventos/socios/mis-intereses/mis-i
 import { DonacionesComponent } from '../mis-eventos/socios/donaciones/donaciones.component';
 import { ComprobantePagoComponent } from '../mis-eventos/socios/mis-pagos/comprobante-pago/comprobante-pago.component';
 import { EventoModificarComponent } from '../mis-eventos/evento/lista/evento-modificar/evento-modificar.component';
+import { VerAsistenciaComponent } from '../mis-eventos/asistencia/ver-asistencia/ver-asistencia.component';
 
 
 
@@ -125,7 +126,8 @@ import { EventoModificarComponent } from '../mis-eventos/evento/lista/evento-mod
     MisInteresesComponent,
     DonacionesComponent,
     ComprobantePagoComponent,
-    EventoModificarComponent
+    EventoModificarComponent,
+    VerAsistenciaComponent
   ]
   , exports: [
     BreadcrumbComponent,

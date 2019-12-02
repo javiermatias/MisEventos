@@ -1,6 +1,6 @@
-<a [routerLink]="['/pages/evento', _item.idEvento]">
+<a [routerLink]="['/pages/evento/calendario']">
     <i class="fa fa-arrow-left"></i>
-    Volver al evento
+    Volver al calendario
 </a>
 <br>
 <br>
@@ -35,19 +35,19 @@
                             <div class="form-group">
                                 <label for="nombre">Nombre</label>
                                 <input type="text" class="form-control" id="nombre" required
-                                       #nombre="ngModel" name="nombre" [(ngModel)]="_item.nombre">
+                                       #nombre="ngModel" name="nombre" [(ngModel)]="_item.nombre" disabled>
                                 <div [hidden]="nombre.valid || nombre.pristine"
                                      class="alert alert-danger">
                                     Debe ingresar el nombre
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="descripcion">Descripcion</label>
-                                <textarea type="text" multiple class="form-control" id="descripcion" required
+                                <label for="descripcion">Descripción</label>
+                                <textarea type="text" multiple class="form-control" id="descripcion" required disabled
                                           #descripcion="ngModel" name="descripcion" [(ngModel)]="_item.descripcion"></textarea>
                                 <div [hidden]="descripcion.valid || descripcion.pristine"
                                      class="alert alert-danger">
-                                    Debe ingresar la descripcion.
+                                    Debe ingresar la descripción.
                                 </div>
                             </div>
 
@@ -55,11 +55,11 @@
                             <select-espacio [item]="_item.espacio"></select-espacio>
                             <select-encargado [item]="_item.responsable"></select-encargado>
 
-                            <button type="submit" class="btn btn-main" [disabled]="!eventoForm.form.valid">Guardar</button>
+                            <!-- <button type="submit" class="btn btn-main" [disabled]="!eventoForm.form.valid">Guardar</button> -->
                         </form>
 
                     </div>
-                    <div class="tab-pane" id="fechas">
+                 <!--    <div class="tab-pane" id="fechas">
                         <div widget class="card">
 
                             <div class="col-12">
@@ -121,12 +121,23 @@
                             </div>
                         </div>
 
-                    </div>
-                    <div class="tab-pane" id="asistencias">
+                    </div> -->
+                    <div class="tab-pane" id="asistencias" *ngIf="asistencia">
                        <!--  <az-asistencia [detalle]="_item"></az-asistencia> -->
+                       
+                       <az-detalle-asistencia *ngIf="_item.asistencia"  [detalleEvento]="_item"></az-detalle-asistencia>
+                       <div *ngIf="!_item.asistencia" class="alert alert-success" role="alert">
+                        <strong> Todavía no se registró la asistencia!</strong>
+                    </div>
+
+                       
                     </div>
                 </div>
             </div>
         </div>
+    
+        <button [routerLink]="['/pages/evento/calendario']" type="button" style="margin-top: 30px;" class="btn btn-default">Volver</button>
+    
+    
     </div>
 </div>
