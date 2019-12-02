@@ -52,87 +52,88 @@ export class EventosComponent implements OnInit {
     });
 
     this.encargadoServ.query({}).subscribe(items => {
-      this.encargados = items;    
+      this.encargados = items;
     });
-    
-    this._itemsService.query({'search':' '}).subscribe(items => {
-      //this.eventos=items;
-      this.eventosOriginal=items;
-      this.eventos =this.eventosOriginal;
+
+
+    this._itemsService.query({'search': ' '}).subscribe(items => {
+      this.eventosOriginal = items;
+      this.eventos = this.eventosOriginal;
     });
 
   }
 
-  filtrar(){
-    //Filtra por evento gratuito o no
-    
-    
-    if(this.encargado == null && this.espacio == null && this.fechaDesde == null
-      && this.fechaHasta == null && this.monto == null && this.estado==null &&
-      this.tipoEvento == null){
+  filtrar() {
+    this._itemsService.query({'search': ' '}).subscribe(items => {
+      this.eventosOriginal = items;
+      this.eventos = this.eventosOriginal;
+
+    if (this.encargado == null && this.espacio == null && this.fechaDesde == null
+      && this.fechaHasta == null && this.monto == null && this.estado == null &&
+      this.tipoEvento == null) {
         this.toastrService.error('Debe elegir un filtro');
         return;
     }
-    this.showDetail=true;
-    this.eventos= this.eventosOriginal;   
+    this.showDetail = true;
+    this.eventos = this.eventosOriginal;
     this.eventos = this.eventos.filter((item: Evento) => {
-      return item.gratuito == this.gratuito;
+      return item.gratuito === this.gratuito;
     });
 
-    if(this.encargado != null ){
+    if (this.encargado != null ) {
       this.eventos = this.eventos.filter((item: Evento) => {
-        return item.idEncargado == this.encargado.id;
+        return item.idEncargado === this.encargado.id;
     });
     }
-    if(this.espacio != null){
+    if (this.espacio != null) {
       this.eventos = this.eventos.filter((item: Evento) => {
-        return item.idEspacio == this.espacio.id;
+        return item.idEspacio === this.espacio.id;
     });
-    } 
-    if(this.fechaDesde != null){
-    
+    }
+    if (this.fechaDesde != null) {
+
       this.eventos = this.eventos.filter((item: Evento) => {
       return this.datePipe.transform(item.fechaDesde, 'yyyy-MM-dd') >= this.fechaDesde;
      });
     }
 
-    if(this.fechaHasta != null){
-    
+    if (this.fechaHasta != null) {
+
       this.eventos = this.eventos.filter((item: Evento) => {
       return this.datePipe.transform(item.fechaHasta, 'yyyy-MM-dd') <= this.fechaHasta;
      });
     }
 
-    if(this.monto != null){
-    
+    if (this.monto != null) {
+
       this.eventos = this.eventos.filter((item: Evento) => {
       return item.monto <= this.monto;
      });
     }
-    if(this.estado != null && this.estado != "Todos"){
+    if (this.estado != null && this.estado !== 'Todos') {
       this.eventos = this.eventos.filter((item: Evento) => {
-        return item.estado == this.estado;
-    
+        return item.estado === this.estado;
+
     });
     }
 
-    if(this.tipoEvento != null){
+    if (this.tipoEvento != null) {
       this.eventos = this.eventos.filter((item: Evento) => {
-        return item.idTipoEvento == this.tipoEvento.id;
+        return item.idTipoEvento === this.tipoEvento.id;
     });
-    } 
-   
+    }
+
+  });
   
-   
   }
 
-  downloadExcel(){
+  downloadExcel() {
     const tituloWorkBook = 'Eventos';
     const titlulo = 'Reporte Eventos';
     const nombreArchivo= 'eventos.xlsx'
     const cabeceras = ["Nombre", "Descripción", "Estado", "Fecha Inicio", "Fecha Fin","Cupo Mínimo", "Cupo Máximo", "Monto", "Cuotas", 
   "Inicio Inscripción","Fin Inscripción"]
-console.log(this.eventos);
+  this.dataExportar=[];
   this.eventos.forEach(evento => {
     var data = [evento.nombre,evento.descripcion,evento.estado,evento.fechaDesde,evento.fechaHasta,evento.cupoMinimo,evento.cupoMaximo,evento.monto,
       evento.cantidadCuota,evento.fechaDesdeInscripcion,evento.fechaHastaInscripcion];

@@ -18,14 +18,7 @@
                     <strong><h6>Fechas</h6>  </strong>
                     <div class="form-group">
                         <div class="custom-controls-stacked">
-
-        <!--                     <label class="custom-control custom-radio">
-                                <input type="radio" name="stacked-radio" class="custom-control-input radio-primary"
-                                [(ngModel)]="fecha"  value="sinfecha">
-                                <span class="custom-control-indicator"></span>
-                                <span class="custom-control-description">Sin Fecha</span>
-                            </label> -->
-                            
+                          
           
                             <label class="custom-control custom-radio">
                                 <input type="radio" name="stacked-radio" class="custom-control-input radio-primary"
@@ -94,7 +87,7 @@
 
 
 
-<div class="timeline">
+<!-- <div class="timeline">
   <ul>
     <li *ngFor="let item of eventos">
       <div class="content">
@@ -111,4 +104,21 @@
     
     <div style="clear:both;"></div>
   </ul>
-</div>
+</div> -->
+
+
+
+<div class="col-xl-12 col-lg-12 col-12 bottom-30" *ngIf="mostrargrafico">
+    <google-chart #chart
+    [title]="title"
+    [type]="type"
+    [data]="myData2"
+    [width]="width"
+    [height]="height"
+    >
+ </google-chart>
+  </div>
+
+<!--   [options]="options"
+  [width]="width"
+    [height]="height" -->

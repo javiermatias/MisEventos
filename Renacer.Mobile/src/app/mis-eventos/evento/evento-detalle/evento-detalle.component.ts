@@ -47,7 +47,7 @@ export class EventoDetalleComponent implements OnInit {
     
      this._eventoService.get(this.id).subscribe(resp => {
       this.evento = resp;
-      console.log(this.evento);
+      //console.log(this.evento);
       this.mostrar=true;
     });
   

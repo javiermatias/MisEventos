@@ -8,8 +8,10 @@ import { Evento, EventoServices } from '../../../../servicios/evento.service';
 })
 export class ListaDeudoresComponent implements OnInit {
 
-  public eventos :Evento[];
-  constructor(private _itemsService:EventoServices) { }
+  public eventos: Evento[];
+  showDetail = false;
+  searchText = '';
+  constructor(private _itemsService: EventoServices) { }
 
   ngOnInit() {
     this.getItems();

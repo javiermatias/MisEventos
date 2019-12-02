@@ -98,10 +98,9 @@ pagoConfirmado(){
   jQuery('#show-event-modal').modal('hide');
   this.pagoServ.save(this.cuota).subscribe(resp => {
     //Callback
-      console.log(resp);
+      
       this.mensajeServ.success('Se registro correctamente el pago!', 'Aviso!');
-      //this.printPDF();
-      console.log(resp);
+ 
       this.imprimirPdf(resp);
       //this.volver();
  });
@@ -123,8 +122,9 @@ pruebaExcel(){
 }
 
 volver(){
+  this.selectedSocio
   this.mostrarCuotas=false;
-  this.mostrarEventos=true;
+  this.traerInscripciones(this.selectedSocio.id);
 }
 ngOnInit() {
    

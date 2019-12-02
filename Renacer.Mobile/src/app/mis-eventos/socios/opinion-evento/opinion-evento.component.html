@@ -16,7 +16,7 @@
                       <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
                       <a data-widgster="fullscreen" href="#" class="transition"><i class="fa fa-expand"></i></a>
                       <a data-widgster="restore" href="#" class="transition"><i class="fa fa-compress"></i></a>                          
-                      <a data-widgster="close" href="#" class="transition"><i class="fa fa-times"></i></a>
+                     
                   </div>        
               </div>
               <div class="card-block widget-body">
@@ -25,19 +25,19 @@
   <br>
                   <form class="form-horizontal">
                       <div class="form-group row text-right">
-                          <label for="email-h-f" class="col-sm-6 form-control-label m-t-5">¿Que valoración haces del evento?</label>
+                          <label for="email-h-f" class="col-sm-6 form-control-label m-t-5">¿Qué valoración haces del evento?</label>
                           <div class="col-sm-6">
                               <ngx-stars (ratingOutput)="puntajeEvento($event)"></ngx-stars>
                           </div>
                       </div>
                       <div class="form-group row text-right">
-                          <label for="password-h-f" class="col-sm-6 form-control-label m-t-5">¿Que te pareció el contenido del evento?</label>
+                          <label for="password-h-f" class="col-sm-6 form-control-label m-t-5">¿Qué te pareció el contenido del evento?</label>
                           <div class="col-sm-6">
                               <ngx-stars (ratingOutput)="puntajeContenido($event)"></ngx-stars>
                           </div>
                       </div>
                       <div class="form-group row text-right">
-                          <label for="re-password-h-f" class="col-sm-6 form-control-label m-t-5">¿Como valoras al encargado de llevar acabo el evento?</label>
+                          <label for="re-password-h-f" class="col-sm-6 form-control-label m-t-5">¿Cómo valoras al encargado de llevar acabo el evento?</label>
                           <div class="col-sm-6">
                               <ngx-stars (ratingOutput)="puntajeEncargado($event)"></ngx-stars>
                           </div>
@@ -54,6 +54,15 @@
                               <button class="btn btn-main pull-right" type="submit" (click)="enviar()">Enviar</button>
                           </div>
                       </div>
+
+                      <div class="form-group row">
+                        <div class="col-sm-9">
+                            <a style="color: #014c8c;cursor:pointer;"
+                      [routerLink]="['../../eventos-socio']">Volver</a>
+                        </div>
+                    </div>
+
+                     
                   </form>
   
               </div>

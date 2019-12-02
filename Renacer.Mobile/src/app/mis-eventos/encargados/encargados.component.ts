@@ -6,6 +6,7 @@ import {DatePipe} from '@angular/common' ;
 import { ToastrService, ToastrConfig } from 'ngx-toastr';
 import { TipoDocumento } from '../../servicios/tipo-documento.service';
 import { CsvServices, RequestCsv } from '../../servicios/csv.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'az-encargados',
@@ -21,7 +22,7 @@ export class EncargadosComponent implements OnInit {
 
   constructor(private _itemsService: EncargadoEventoServices,
               private mensajeServ: ToastrService,
-              private csvServ: CsvServices) {
+              private csvServ: CsvServices, private router: Router) {
   }
 
   ngOnInit() {
@@ -57,6 +58,12 @@ export class EncargadosComponent implements OnInit {
     this.showDetail = false;
   }
 
+  eliminarItem(item: EncargadoEvento) {
+    this._itemsService.remove(item.id).subscribe(resp => {
+      this.mensajeServ.info('Se ha dado de baja al encargado', 'Aviso!');
+      this.router.navigate(['/pages/encargados']);
+    })
+  }
 
   saveItem(item: EncargadoEvento): any {
     if (item.id === 0) {
