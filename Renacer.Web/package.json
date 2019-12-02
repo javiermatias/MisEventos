@@ -24,7 +24,6 @@
     "@angular/platform-browser": "^8.2.14",
     "@angular/platform-browser-dynamic": "^8.2.14",
     "@angular/platform-server": "^8.2.14",
-    "@angular/pwa": "^0.12.4",
     "@angular/router": "^8.2.14",
     "@angular/service-worker": "^8.2.13",
     "@fullcalendar/angular": "^4.3.1",

@@ -23,7 +23,7 @@
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon"><i class="fa fa-search"></i></span>
                                 <input class="form-control" id="table-search-input" [(ngModel)]="searchText" type="text"
-                                    placeholder="Buscar Socio...">
+                                title="Enter para buscar" (keyup.enter)="buscar()"  placeholder="Buscar Socio...">
                             </div>
                         </div>
                         <div class="table-responsive datatable">
@@ -52,7 +52,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let item of mf.data | SearchPipe : searchText">
+                                    <tr *ngFor="let item of mf.data">
                                         <!-- <td>{{item.id}}</td> -->
                                         <td>{{item.nombre | uppercase }}</td>
                                         <td>{{item.apellido | uppercase }}</td>
@@ -65,7 +65,7 @@
                                             <a style="color: #014c8c;cursor:pointer;" (click)="verItem(item)">Ver detalle</a>
                                         <td>
                                     </tr>
-                                    <tr *ngIf="(mf.data | SearchPipe : searchText).length === 0">
+                                    <tr *ngIf="(mf.data).length === 0">
                                         <td colspan="100">
                                             No encontrado
                                         </td>
