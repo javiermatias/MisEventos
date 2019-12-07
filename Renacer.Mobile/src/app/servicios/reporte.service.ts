@@ -62,40 +62,64 @@ export class ReporteServices extends BaseServices<Object> {
     return this.http.get(`${this.url}count?Entidad=${filtro['Entidad']}`, filtro)
   }
 
-  getCrecimientoSocios(filtro: FiltroReporte): Observable<any[]> {
-    return this.http.post<any[]>(`${this.url}crecimiento-socios`, filtro)
+  getCrecimientoSocios(rangoDeFechas: any): Observable<any[]> {
+    return this.http.post<any[]>(`${this.url}crecimiento-socios`, rangoDeFechas)
+  }
+   getSociosMasActivos(rangoDeFechas: any): Observable<any[]> {
+    return this.http.post<any[]>(`${this.url}sociosmasactivos`, rangoDeFechas)
   }
 
-  getSociosPorEdad(filtro: FiltroReporte): Observable<any[]> {
-    return this.http.post<any[]>(`${this.url}socios-por-edad`, filtro)
+  getSociosPorEdad(rangoDeFechas: any): Observable<any[]> {
+    return this.http.post<any[]>(`${this.url}socios-por-edad`, rangoDeFechas)
   }
 
-  getRankingEventos(): Observable<any[]> {
-    return this.http.post<any[]>(`${this.url}ranking`, {})
+  getRankingEventos(filtro: any): Observable<any[]> {
+    return this.http.post<any[]>(`${this.url}ranking`, filtro)
   }
 
-  getIngresosPorTipoEvento(): Observable<any[]> {
-    return this.http.post<any[]>(`${this.url}ingresosportipoevento`, {})
+  getIngresosPorTipoEvento(rangoDeFechas: any): Observable<any[]> {
+    return this.http.post<any[]>(`${this.url}ingresosportipoevento`,  rangoDeFechas)
   }
 
-  getIngresosPorTipo(): Observable<any[]> {
-    return this.http.post<any[]>(`${this.url}ingresosportipo`, {})
+  getIngresosPorTipo(rangoDeFechas: any): Observable<any[]> {
+    return this.http.post<any[]>(`${this.url}ingresosportipo`,  rangoDeFechas)
   }
 
   getIngresosEnElTiempo(rangoDeFechas: any): Observable<any[]> {
     return this.http.post<any[]>(`${this.url}ingresoseneltiempo`, rangoDeFechas)
   }
 
+  getCantidadIngresosEnElTiempo(rangoDeFechas: any): Observable<any[]> {
+    return this.http.post<any[]>(`${this.url}CantidadIngresosEnElTiempo`, rangoDeFechas)
+  }
 
-  getAsistenciasPorTipoEvento(): Observable<any[]> {
-    return this.http.post<any[]>(`${this.url}asistenciasportipoevento`, {})
+ 
+  getAsistenciasPorTipoEvento(rangoDeFechas: any): Observable<any[]> {
+    return this.http.post<any[]>(`${this.url}asistenciasportipoevento`,rangoDeFechas)
+  }
+
+  getAsistenciasPorEspacio(): Observable<any[]> {
+    return this.http.post<any[]>(`${this.url}asistenciasporespacio`, {})
   }
 
   getInasistenciasPorTipoEvento(): Observable<any[]> {
     return this.http.post<any[]>(`${this.url}inasistenciasportipoevento`, {})
   }
 
-  graficarAsistenciasPorDiaDeLaSemana(): Observable<any[]> {
-    return this.http.post<any[]>(`${this.url}asistenciaspordiadelasemana`, {})
+  graficarAsistenciasPorDiaDeLaSemana(rangoDeFechas: any): Observable<any[]> {
+    return this.http.post<any[]>(`${this.url}asistenciaspordiadelasemana`, rangoDeFechas)
   }
+
+
+  getAsistenciasXsocioXevento(idEvento: number): Observable<any[]> {
+    return this.http.post<any[]>(`${this.url}asistenciasporevento`, idEvento)
+  }
+
+  getsociointereses(idSocio: number): Observable<number> {
+    return this.http.post<number>(`${this.url}getsociointereses`,idSocio)
+  }
+ 
+
+
+
 }

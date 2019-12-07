@@ -214,7 +214,6 @@
                                   #mf="mfDataTable" [mfRowsOnPage]="10">
                                   <thead>
                                       <tr>
-                                          <!-- <th><mfDefaultSorter by="id">Id</mfDefaultSorter></th> -->
                                           <th>
                                               <mfDefaultSorter by="nombre">Nombre</mfDefaultSorter>
                                           </th>
@@ -224,37 +223,17 @@
                                           <th>
                                               <mfDefaultSorter by="nroDocumento">Estado</mfDefaultSorter>
                                           </th>
-                                          <th>
-                                              <mfDefaultSorter by="nroDocumento">Cobrar</mfDefaultSorter>
-                                          </th>
                                        
-                                          <th></th>
                                       </tr>
                                   </thead>
                                   <tbody>
                                       <tr *ngFor="let item of mf.data ">
-                                          <!-- <td>{{item.id}}</td> -->
                                           <td><strong>{{item.nombre}}</strong></td>
                                           <td>${{item.monto}}</td>       
-                                          <!-- <td *ngIf= >{{item.estaPagado}}</td>    -->
-                                          <td *ngIf="item.estaPagado; else other_content">
-                                                    Pagado
-                                            <!-- <button type="button" class="btn .btn-outline-success btn-rounded" (click)="cobrar(item)">Cobrar</button> -->
-                                        </td> 
-                                             <ng-template #other_content><td>Sin Pagar</td></ng-template>                          
-                                        
-                                             <td *ngIf="!item.estaPagado; else other">
-                                                    <span class="col col-3"> 
-                                                            <i style="cursor:pointer; align-content: center" (click)="cobrarCuota(item)"
-                                                                      class="fa fa-money"></i>
-                                                                    </span>
-                                            <!-- <button type="button" class="btn .btn-outline-success btn-rounded" (click)="cobrar(item)">Cobrar</button> -->
-                                        </td> 
-                                             <ng-template #other><td></td></ng-template>
-                                                                                      
-                                            
-                                          
+                                          <td><span *ngIf="item.estaPagado">Pagado</span></td> 
+                                          <td><span *ngIf="!item.estaPagado">Sin pagar</span></td> 
                                       </tr>
+
                                       <tr *ngIf="(mf.data | SearchPipe : searchText).length === 0">
                                           <td colspan="100">
                                               No encontrado
@@ -297,7 +276,7 @@
 
 
 
-<button (click)="pruebaExcel()">Imprimir</button>
+<!-- <button (click)="pruebaExcel()">Imprimir</button> -->
 
 
 

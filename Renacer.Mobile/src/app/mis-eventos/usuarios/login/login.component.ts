@@ -38,8 +38,8 @@ export class LoginComponent {
       this.loading = true;
       this._usersService.setCurrent(undefined);
 
-      const pass = shajs('sha256').update(this.password.value).digest('hex')
-      this._usersService.login(this.username.value, pass).subscribe(
+      /* const pass = shajs('sha256').update(this.password.value).digest('hex') */
+      this._usersService.login(this.username.value, this.password.value).subscribe(
         result => {
           if (result['result'] === 'ok') {
             this._usersService.setCurrent(result['user']);

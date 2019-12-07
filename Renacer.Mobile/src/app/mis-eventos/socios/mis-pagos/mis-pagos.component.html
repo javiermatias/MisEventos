@@ -154,30 +154,13 @@
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let item of mf.data; let i = index ">
-                                            <!-- <td>{{item.id}}</td> -->
                                             <td><strong>{{item.nombre}}</strong></td>
                                             <td>${{item.monto}}</td>       
-                                            <!-- <td *ngIf= >{{item.estaPagado}}</td>    -->
                                             <td *ngIf="item.estaPagado; else other_content">
                                                       Pagado
-                                              <!-- <button type="button" class="btn .btn-outline-success btn-rounded" (click)="cobrar(item)">Cobrar</button> -->
                                           </td> 
-                                               <ng-template #other_content><td>Sin Pagar</td></ng-template>                          
-                                        <td *ngIf="!item.estaPagado">
-                                            <form action="{{'/#/pages/pago-confirmado/' + item.id }}" method="get" ngNativeValidate id="{{ 'pago' + item.id }}">
- 
-                                                
-                                               
-                                               
-                                                 
-                                                </form> 
-                                        
-                                          </td> 
-
-                                          <td *ngIf="item.estaPagado">
-                                               --
-                                        
-                                          </td> 
+                                           <ng-template #other_content><td>Sin Pagar</td></ng-template>                          
+                                       
                                             
                                         </tr>
                                         <tr *ngIf="(mf.data | SearchPipe : searchText).length === 0">

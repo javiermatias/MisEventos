@@ -79,7 +79,7 @@
                 </div>
                 <div class="card-block widget-body">
                     <div class="row">
-                        <div class="col col-md-6">
+                    <!--     <div class="col col-md-6">
                           <div class="row" > 
                             <div class="col-6"><strong class="text-truncate">Fecha inicio inscripción:</strong>
                               <i>{{seleccionEvento.fechaDesdeInscripcion | date :'dd-MM-yyyy' }}</i>
@@ -90,16 +90,28 @@
                     
                           </div>
                            
-                        </div>
+                        </div> -->
                         <div class="col col-md-6">
                           <div class="row" > 
-                            <div class="col-6"><strong class="text-truncate">Cupo Mínimo:</strong>
-                              <i>{{seleccionEvento.cupoMinimo}}</i>
+                              <div class="col-4">
+                                <strong class="text-truncate">Cupo Actual:
+                                    <span  *ngIf="listaInscripcion.length >= seleccionEvento.cupoMinimo"  class="badge badge-pill badge-success">{{listaInscripcion.length}}</span>
+                                    <span  *ngIf="seleccionEvento.cupoMinimo > listaInscripcion.length"  class="badge badge-pill badge-danger">{{listaInscripcion.length}}</span>
+                                </strong>
+                                
+                            </div>
+                            <div class="col-4"><strong class="text-truncate">Cupo Mínimo:
+                                <span  class="badge badge-pill badge-info">{{seleccionEvento.cupoMinimo}}</span>
+                            </strong>
+                              
+                              
                           </div>
-                          <div class="col-6"><strong class="text-truncate">Cupo Máximo:</strong>
-                            <i>{{seleccionEvento.cupoMaximo}}</i>
+                          <div class="col-4"><strong class="text-truncate">Cupo Máximo:
+                              <span  class="badge badge-pill badge-info">{{seleccionEvento.cupoMaximo}}</span>
+                          </strong>                           
+                          
                         </div>
-                    
+                        
                           </div> 
                         </div>
                     </div>
@@ -200,9 +212,9 @@
     <div > 
       <!-- <az-select-socio  [listaSocios]="listaSocios"></az-select-socio> -->
       <button type="submit" class="btn btn-main" *ngIf="listaSocios"
-        [disabled]="!listaSocios?.length" (click)="guardar()">Guardar</button>
+        [disabled]="!listaSocios?.length" (click)="guardar()">Inscribir</button>
         <button (click)="cancelar();" type="button" style="margin-left: 30px;"
-        class="btn btn-default">Cancelar</button>
+        class="btn btn-default">Volver</button>
     </div>  
         
         

@@ -18,7 +18,7 @@ import { EncargadoEventoServices } from './servicios/encargado.service';
 import { ReporteServices } from './servicios/reporte.service';
 import { EventoServices, TipoEventoServices, DetalleEventoServices, InscripcionServices, PagoServices } from './servicios/evento.service';
 import { TipoDocumentoServices } from './servicios/tipo-documento.service';
-import { AsistenciaServices } from './servicios/asistencia.service';
+import { AsistenciaServices, AsistenciaEventoServices, AsistenciaDetalleEventoServices } from './servicios/asistencia.service';
 import { TagServices } from './servicios/tag.service';
 import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import { RolServices } from './servicios/rol.service';
@@ -36,9 +36,7 @@ import localeEs from '@angular/common/locales/es-AR';
 import { RatingServices } from './servicios/rating.service';
 import { AsistenciaSocioServices } from './servicios/asistenciaSocio.service';
 import { DeudaCuotaServices } from './servicios/deudaCuota.service';
-
 import { CsvServices } from './servicios/csv.service';
-
 import { Angular2CsvModule } from 'angular2-csv';
 import { CsvWrapperComponent } from './mis-eventos/componentesCompartidos/csv-wrapper/csv-wrapper.component';
 import { ImprimirService } from './servicios/imprimir.service';
@@ -47,6 +45,8 @@ import { ExcelService } from './servicios/excel.service';
 import { AngularMyDatePickerModule } from 'angular-mydatepicker';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { ProximoEventoService } from './servicios/proximo-evento.service';
+
 
 
 
@@ -108,7 +108,10 @@ registerLocaleData(localeEs, 'es-AR');
     DeudaCuotaServices,
     CsvServices,
     ImprimirService,
-      ExcelService,
+    ExcelService,
+    ProximoEventoService ,
+    AsistenciaEventoServices,
+    AsistenciaDetalleEventoServices,
     { provide: LOCALE_ID, useValue: 'es-AR' },
     DatePipe],
     bootstrap: [AppComponent]

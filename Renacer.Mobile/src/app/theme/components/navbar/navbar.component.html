@@ -15,7 +15,7 @@
     </form> -->
 
     <ul class="nav right-section">
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="usuario.rol == 'ADMIN' || usuario.rol == 'SECRETARIO'">
            <az-messages></az-messages>
         </li>
         <li class="nav-item">

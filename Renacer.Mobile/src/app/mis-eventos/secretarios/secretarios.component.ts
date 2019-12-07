@@ -16,7 +16,9 @@ import { sexo, estadoCivil } from '../../modelos/enums';
 export class SecretariosComponent implements OnInit {
 
   public _secretario = new Secretario(0, "", "", "");
-  public _persona = new Persona(0, "", "", "");
+
+  public fecha: Date;
+ // public _persona = new Persona(0, "", "", "");
   @Input() personas = new Array<Persona>();
 
   public secretarios =new Array<Secretario>();
@@ -95,10 +97,9 @@ export class SecretariosComponent implements OnInit {
   }
 
   actualizarFecha(fecha: string) {
-    console.log(fecha);
-    let newDate = new Date(fecha);
+    this.fecha = new Date(fecha);
     //console.log(newDate);
-    this._persona.fechaNacimiento = newDate;
+  
 
   }
   limpiarForm() {
@@ -108,17 +109,28 @@ export class SecretariosComponent implements OnInit {
   }
   saveItem(item: Secretario): any {
     //Guarde en Secretario y persona. En persona va generar el usuario y el ROL
-    if (item.id == 0) {
+    item.fechaNacimiento = this.fecha;    
+    console.log(item);
+      this._secretarioService.save(item).subscribe(resp => {
+        item = resp;
+        this.secretarios.push(item);
+        this.showDetail = false;
+        this.mensajeServ.success('Se han guardado los cambios!', 'Aviso!');
+      });
+
+
+
+ /*    if (item.id == 0) {
       this._secretarioService.save(item).subscribe(resp => {
         item = resp;
         this.secretarios.push(item);
         this.showDetail = false;
         this.mensajeServ.success('se han guardado los cambios!', 'Aviso!');
       });
-    } else {
-      //Solamente la tabla Socio
-  /*     this._personaService.update(item, (resp: Persona) => {
-        let items = this.personas;
+    } */ /* else {
+       //Solamente la tabla Socio
+       this._secretarioService.update(item, (resp: Secretario) => {
+        let items = this.secretarios;
         for (var i = 0; i < items.length; i++) {
           if (items[i].id == resp.id) {
             items[i] = resp;
@@ -126,7 +138,7 @@ export class SecretariosComponent implements OnInit {
           }
         }
         this.showDetail = false;
-      }); */
-    }
+      }); */ 
+    
   }
 }

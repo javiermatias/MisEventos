@@ -4,6 +4,7 @@ import {FormGroup} from '@angular/forms';
 import {DatePipe} from '@angular/common' ;
 import { ToastrService, ToastrConfig } from 'ngx-toastr';
 import { TipoEspacioServices, TipoEspacio } from './tipoEspacio/tipoEspacio.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'az-espacios',
@@ -19,7 +20,7 @@ export class EspaciosComponent implements OnInit {
   searchText = '';
 
   constructor(private _espacioService:EspacioServices,private mensajeServ: ToastrService,
-    private _tipoEspacioService:TipoEspacioServices) {
+    private _tipoEspacioService:TipoEspacioServices, private router: Router) {
 
   }
 
@@ -63,6 +64,14 @@ nuevoItem(){
 limpiarForm(){
   this._espacio =  new EspacioComun(0,"","",0,0);
   this.showDetail = false;
+
+}
+
+eliminarItem(item: EspacioComun) {
+  this._espacioService.remove(item.id).subscribe(resp => {
+    this.mensajeServ.info('Se ha dado de baja al espacio', 'Aviso!');
+    this.router.navigate(['/pages/espacios']);
+  })
 }
 
 saveItem(item:EspacioComun):any{

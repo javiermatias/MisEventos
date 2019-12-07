@@ -14,6 +14,7 @@ import { DatePipe } from '@angular/common';
 export class CobroMatriculaComponent implements OnInit {
 
   socios: Socio[];
+  sociosOriginal: Socio[];
   socioSeleccionado: Socio;
   matricula: Matricula;
   showModalCobro = false;
@@ -32,6 +33,7 @@ export class CobroMatriculaComponent implements OnInit {
   getItems() {  
     this._socioService.query({'estado': "DebeMatricula" }).subscribe(items => {
       this.socios= items;
+      this.sociosOriginal=items;
     });
   }
 
@@ -59,13 +61,20 @@ export class CobroMatriculaComponent implements OnInit {
   
   printPDF(){
     this._imprimir.imprimirMatricula(this.matricula);
-/*     let popupWinindow = window.open('', '_blank', 'width=600,height=300,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no'); 
-    popupWinindow.document.open(); 
-    popupWinindow.document.write(
-      '<html><head><link rel="stylesheet" type="text/css" href="style.css" /> <style>td,th{border: 1px solid;margin:0;padding:0;}</style></head><body onload="window.print()">'  +
-     this.myPrintHtml.nativeElement.innerHTML+
-    '</html>'); 
-    popupWinindow.document.close();  */
+
+  }
+
+  buscar(){
+    this.socios=this.sociosOriginal;
+    if(this.searchText != ''){
+      this.searchText = this.searchText.toLowerCase();
+      this.socios = this.socios.filter((item: Socio) => {
+        return item.nombre.toLowerCase().indexOf(this.searchText) >= 0 || 
+        item.apellido.toLowerCase().indexOf(this.searchText) >= 0 ;
+       });
+
+    }
+  
   }
 
 

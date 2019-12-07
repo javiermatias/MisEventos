@@ -18,6 +18,8 @@ import { EventoDetalleComponent } from './evento-detalle/evento-detalle.componen
 import { FbkComponent } from './fbk/fbk.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { ListaInscripcionesComponent } from './inscripcion/lista-inscripciones/lista-inscripciones.component';// for FullCalendar!
+import { DetalleAsistenciaComponent } from './detalle-asistencia/detalle-asistencia.component';
+
 
 
 
@@ -46,6 +48,7 @@ export const routes = [
       DataTableModule,
       NguiAutoCompleteModule,
       ReactiveFormsModule,
+      
       // MultiselectDropdownModule,
       //JwSocialButtonsModule,
       FullCalendarModule,
@@ -60,7 +63,9 @@ export const routes = [
     InscripcionComponent,
     EventoDetalleComponent,
     FbkComponent,
-    ListaInscripcionesComponent
+    ListaInscripcionesComponent,
+    DetalleAsistenciaComponent
+    
   ]
 })
 export class EventoModule { }

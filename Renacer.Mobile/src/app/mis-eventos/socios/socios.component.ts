@@ -6,6 +6,10 @@ import {  Router } from '@angular/router';
 import { Socio, SocioServices } from '../../servicios/socio.service';
 import { sexo, estadoCivil } from '../../modelos/enums';
 import { CsvServices, RequestCsv } from '../../servicios/csv.service';
+import {formatDate} from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
+
 
 @Component({
   selector: 'az-socios',
@@ -35,18 +39,20 @@ export class SociosComponent implements OnInit {
 
   onSubmit(myForm: FormGroup) {
     let newSocio = Object.assign({}, this._socio);
+    console.log(newSocio);
     this.saveItem(newSocio)
   }
   ngOnInit() {
     this.getItems();
-    //this.mensajeServ.success('Estas viendo tus Socios!', 'Mensaje!');
+    registerLocaleData(localeEs, 'es');
+
   }
   getItems() {
      this._socioService.query(
       { 'search':this.searchText}).subscribe
-      (items => {
-        console.log(items);
+      (items => {       
       this.socios = items;
+      this.showDetail = false;
     }); 
 
   }
@@ -81,11 +87,18 @@ export class SociosComponent implements OnInit {
   saveItem(item: Socio): any {
     item.fechaNacimiento = this.fecha;    
       this._socioService.save(item).subscribe(resp => {
-        item = resp;
-        this.socios.push(item);
-        this.showDetail = false;
+     /*    if(item.id==0){
+          this.socios.push(item);
+        }
+        item = resp;        */
+        this.getItems();
+     
         this.mensajeServ.success('Se han guardado los cambios!', 'Aviso!');
       });
+  }
+
+  getDateNow(){
+    return   formatDate(new Date(), 'yyyy-MM-dd', 'es');
   }
 
 }

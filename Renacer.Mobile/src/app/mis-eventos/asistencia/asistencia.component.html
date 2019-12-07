@@ -1,10 +1,10 @@
-<div *ngIf="showRecordatorio">  
+<div *ngIf="nuevaAsistencia">  
 
   <az-nueva-asistencia [detalleEvento]="detalleSelecionado" (guardoAsistencia)="guardo($event)" ></az-nueva-asistencia>
 
 </div>
 
-<div class="row" *ngIf="!showRecordatorio">
+<div class="row" *ngIf="listaAsistencias">
     <div class="col-xl-12 col-lg-12 col-12 bottom-30"> 
   
       <div class="row">
@@ -35,7 +35,7 @@
               </div>
               <div class="table-responsive datatable">
 
-                <table class="table table-striped table-hover table-sm" [mfData]="eventos | SearchPipe : searchText"  #mf="mfDataTable"
+                <table class="table table-striped table-hover table-sm" [mfData]="eventosEncargado | SearchPipe : searchText"  #mf="mfDataTable"
                   [mfRowsOnPage]="10">
                   <thead>
                     <tr>
@@ -52,28 +52,53 @@
                       <th>
                         <mfDefaultSorter by="estado"><strong>Asistencias</strong></mfDefaultSorter>
                       </th>
-                    
+                      <th>
+                        <mfDefaultSorter by="estado"><strong>Tomado</strong></mfDefaultSorter>
+                      </th>
+                      <th>
+                        <mfDefaultSorter by="estado"><strong>Asistencias Socios</strong></mfDefaultSorter>
+                      </th>
+                     
                       <th></th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="let item of mf.data | SearchPipe : searchText">
-                      <td>{{item.nombre}}</td>
-                      <td>{{item.descripcion}}</td>
+                      <td>{{item.evento.nombre}}</td>
+                      <td>{{item.evento.descripcion}}</td>
                       <td>
                         <span class="alert-success"
-                          *ngIf="item.estado != 'Cancelado' && item.estado != 'Finalizado'">{{item.estado}}</span>
+                          *ngIf="item.evento.estado != 'Cancelado' && item.evento.estado != 'Finalizado'">{{item.evento.estado}}</span>
                         <span class="alert-danger"
-                          *ngIf="item.estado == 'Cancelado'  || item.estado == 'Finalizado'">{{item.estado}}</span>
+                          *ngIf="item.evento.estado == 'Cancelado'  || item.evento.estado == 'Finalizado'">{{item.evento.estado}}</span>
                       </td>
                       <td>
                         <span class="col col-3">
-                          <a *ngIf="item.estado != 'Cancelado' && item.estado != 'Nuevo'"
+                          <a *ngIf="item.evento.estado != 'Cancelado' && item.evento.estado != 'Nuevo'"
                             style="color: #014c8c;cursor:pointer;"
-                            (click)="cambioEvento(item)">Ver</a>
-                          <label *ngIf="item.estado == 'Cancelado' || item.estado == 'Nuevo'">--</label>
+                            (click)="cambioEvento(item.evento)">Tomar</a>
+                          <label *ngIf="item.evento.estado == 'Cancelado' || item.evento.estado == 'Nuevo'">--</label>
                         </span>
-  
+                        
+                      </td>
+
+                      <td>
+                        <span class="col col-3">
+                          <span  *ngIf="item.porcentajeAsistencia >= 80" class="badge badge-pill badge-success">{{item.porcentajeAsistencia}}%</span>
+                          <span  *ngIf="item.porcentajeAsistencia > 0 &&  80 > item.porcentajeAsistencia" class="badge badge-pill badge-warning">{{item.porcentajeAsistencia}}%</span>
+                          <span   *ngIf="item.porcentajeAsistencia == 0" class="badge badge-pill badge-danger">{{item.porcentajeAsistencia}}%</span>
+                        </span>
+                      
+                      </td>
+
+                      <td>
+                        <span class="col col-3">
+                          <a *ngIf="item.porcentajeAsistencia > 0"
+                            style="color: #014c8c;cursor:pointer; align-content: center;"
+                            (click)="asistenciaSocio(item.evento)">Ver</a>
+                          <label *ngIf="item.porcentajeAsistencia == 0">--</label>
+                        </span>
+                        
                       </td>
                 
   
@@ -143,6 +168,10 @@
                                       <th>
                                           <mfDefaultSorter by="nroDocumento">Asistencia</mfDefaultSorter>
                                       </th>
+
+                                      <th>
+                                        <mfDefaultSorter by="nroDocumento">Acción</mfDefaultSorter>
+                                    </th>
                                    
                                       <th></th>
                                   </tr>
@@ -152,14 +181,17 @@
                                       
                                       <td><strong>{{item.dia}}</strong></td>
                                       <td>{{item.fechaDesde | date:'medium'}}</td>  
-                                      <td *ngIf="!item.asistencia; else other_content">
-                                        <a style="color: #014c8c;cursor:pointer;" (click)="tomarAsistencia(item)">Tomar</a>
                                       <td>
-                                        <ng-template #other_content>
-                                          <td>  <i style="cursor:pointer; align-content: right" (click)="tomarAsistencia(item)"
-                                            class="fa fa-check"></i></td>
-                                          </ng-template>                             
-                           
+                                        <a *ngIf="!item.asistencia" style="color: #014c8c;cursor:pointer; align-content: center;" (click)="tomarAsistencia(item)">Tomar</a>
+                                        <i *ngIf="item.asistencia" style="cursor:pointer; align-content: center;" class="fa fa-check"></i>
+                                     
+                                      </td> 
+                                                                 
+                                          <td >
+                                            <a  *ngIf="item.asistencia" style="color: #014c8c;cursor:pointer; align-content: center;" (click)="verAsistencia(item)">Ver</a>
+                                          
+                                          <label *ngIf="!item.asistencia">--</label>
+                                        </td> 
                                   </tr>
                              <tr *ngIf="(mf.data | SearchPipe : searchText).length === 0">
                                       <td colspan="100">
@@ -185,17 +217,6 @@
     
           </div>
       </div>
-      
-  <!--   <div class="col col-lg-9">
-  <div *ngIf="mostrarInscripcion"> 
-    <az-select-socio  [listaSocios]="listaSocios"></az-select-socio>
-    <button type="submit" class="btn btn-main" *ngIf="listaSocios"
-      [disabled]="!listaSocios?.length" (click)="guardar()">Guardar</button>
-      <button (click)="limpiarForm();" type="button" style="margin-left: 30px;"
-      class="btn btn-default">Cancelar</button>
-  </div>
-     
-      </div> -->
           </div>
         </div>
       </div>
@@ -203,4 +224,106 @@
   
   </div>
 </div>
+
+
+
+
+
+
+<div *ngIf="verListaAsistencia">  
+
+  <az-ver-asistencia [detalleEvento]="detalleSelecionado" (volverAsistencia)="volverAsistencia($event)" ></az-ver-asistencia>
+
+</div>
   
+
+
+
+
+<div class="row" *ngIf="mostrarAsistenciaSocios">
+  <div class="col-xl-12 col-lg-12 col-12 bottom-30"> 
+
+    <div class="row">
+      <div class="col">
+        <div widget class="card">
+          <div class="card-header">
+            <span class="text-uppercase">Asistencias {{eventoSeleccionado.nombre}}</span>
+
+            <div class="widget-controls">
+              <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
+              <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
+              <a data-widgster="fullscreen" href="#" class="transition"><i class="fa fa-expand"></i></a>
+              <a data-widgster="restore" href="#" class="transition"><i class="fa fa-compress"></i></a>
+         
+            </div>
+          </div>
+          <div class="card-block widget-body">
+        
+           <div class="row" *ngIf="mostrarEvento">  
+            <p class="no-margin"> </p>
+
+         <!--    <div class="w-200 pull-right bottom-15">
+              <div class="input-group input-group-sm">
+                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input class="form-control" id="table-search-input" [(ngModel)]="searchText" type="text"
+                  placeholder="Buscar evento...">
+              </div>
+            </div> -->
+            <div class="table-responsive datatable">
+
+              <table class="table table-striped table-hover table-sm" [mfData]="data | SearchPipe : searchText"  #mf="mfDataTable"
+                [mfRowsOnPage]="10">
+                <thead>
+                  <tr>
+              
+                    <th>
+                      <mfDefaultSorter by="nombre"><strong>Socio</strong></mfDefaultSorter>
+                    </th>
+                    <th>
+                      <mfDefaultSorter by="descripcion"><strong>Porcentaje</strong></mfDefaultSorter>
+                    </th>
+                                   
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of mf.data | SearchPipe : searchText">
+                    <td>{{item.socio}}</td>
+                    <td>{{item.porcentaje}}</td>                            
+
+                  </tr>
+                  <tr *ngIf="(mf.data | SearchPipe : searchText).length === 0">
+                    <td colspan="100">
+                      No encontrado
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="12">
+                      <mfBootstrapPaginator [rowsOnPageSet]="[10, 25, 50, 100]"></mfBootstrapPaginator>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+
+      
+      </div>
+
+      <button (click)="volverListado();" type="button" 
+      class="btn btn-default" >Volver</button>
+      <button type="button" (click)="downloadExcel()" class="btn btn-info" style="float: right;">
+        <span class="fa fa-download"  ></span>Descargar
+    </button>
+ 
+
+    
+        
+    </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
