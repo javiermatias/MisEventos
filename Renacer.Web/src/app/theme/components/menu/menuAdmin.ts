@@ -109,6 +109,14 @@ export const itemsAdmin = [
     routerLink: 'espacios/'
   },
   {
+    title: 'Usuarios',
+    icon: 'fa-users',
+    selected: false,
+    expanded: false,
+    order: 400,
+    routerLink: 'usuarios/'
+  },
+  {
     title: 'Reportes',
     routerLink: 'reportes',
     icon: 'fa-file',
