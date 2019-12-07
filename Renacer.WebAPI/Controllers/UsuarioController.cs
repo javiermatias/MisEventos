@@ -25,7 +25,7 @@ namespace Renacer.WebAPI.Controllers
         // GET: api/Usuarios
         public Usuario Get([FromUri]int tipoDni, [FromUri] string dni)
         {
-            return ControlUsuario.devolverInstancia().devolverTodos(tipoDni, dni);
+            return null;
         }
 
         // GET: api/Usuarios/5
@@ -37,7 +37,7 @@ namespace Renacer.WebAPI.Controllers
             return usuario;
         }
 
-        // POST: api/cliente
+        // POST: api/clienteint 
         public IHttpActionResult Post([FromBody]Usuario value)
         {
             try

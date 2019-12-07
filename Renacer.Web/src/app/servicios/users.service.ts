@@ -59,3 +59,11 @@ export class UserServices extends BaseServices<Usuario> {
     return this.http.post(`${this.url}/subirImagen/`, {'Name': Name, 'Bytes': Bytes})
   }
 }
+
+@Injectable()
+export class UsuarioClaveServices extends BaseServices<Usuario> {
+    public url:string = `${new Variables().urlBase}UsuarioClave`;
+    constructor(public http:HttpClient){
+        super(http);
+    }
+}

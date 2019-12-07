@@ -9,7 +9,7 @@ import { routing } from './app.routing';
 import { AppConfig } from './app.config';
 import { AppComponent } from './app.component';
 import { ErrorComponent } from './pages/error/error.component';
-import { UserServices } from './servicios/users.service';
+import { UserServices, UsuarioClaveServices } from './servicios/users.service';
 import { PersonaServices } from './servicios/persona.service';
 import { SocioServices, SocioMatriculaServices } from './servicios/socio.service';
 import { SecretarioServices } from './servicios/secretario.service';
@@ -46,6 +46,7 @@ import { AngularMyDatePickerModule } from 'angular-mydatepicker';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ProximoEventoService } from './servicios/proximo-evento.service';
+
 
 
 
@@ -112,6 +113,7 @@ registerLocaleData(localeEs, 'es-AR');
     ProximoEventoService ,
     AsistenciaEventoServices,
     AsistenciaDetalleEventoServices,
+    UsuarioClaveServices,
     { provide: LOCALE_ID, useValue: 'es-AR' },
     DatePipe],
     bootstrap: [AppComponent]

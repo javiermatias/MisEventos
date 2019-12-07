@@ -149,14 +149,14 @@ namespace Renacer.Nucleo.Control
         /// SELECT * FROM Usuario
         /// </summary>
         /// <returns></returns>
-        public Usuario devolverTodos(int tipoDni, string dni)
+        public List<Usuario> devolverTodos()
         {
             try
             {
                 using (var db = new ModeloRenacer())
                 {
                     //var usuario = db.usuario.Include("persona").Include("roles").Where(user => user.persona.idTipoDoc == tipoDni && user.persona.nroDocumento ==dni).FirstOrDefault();
-                    return null;
+                    return db.usuario.ToList();
                     //.Where(x => x.id.Equals(id)).FirstOrDefault();
                 }
             }

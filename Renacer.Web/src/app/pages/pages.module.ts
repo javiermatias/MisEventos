@@ -10,7 +10,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
 import { NgxStarsModule } from 'ngx-stars';
-
 import { ToastContainerModule } from 'ngx-toastr';
 import { DirectivesModule } from '../theme/directives/directives.module';
 import { PipesModule } from '../theme/pipes/pipes.module';
@@ -60,6 +59,7 @@ import { DonacionesComponent } from '../mis-eventos/socios/donaciones/donaciones
 import { ComprobantePagoComponent } from '../mis-eventos/socios/mis-pagos/comprobante-pago/comprobante-pago.component';
 import { EventoModificarComponent } from '../mis-eventos/evento/lista/evento-modificar/evento-modificar.component';
 import { VerAsistenciaComponent } from '../mis-eventos/asistencia/ver-asistencia/ver-asistencia.component';
+import { ResetPassComponent } from '../mis-eventos/usuarios/reset-pass/reset-pass.component';
 
 
 
@@ -127,7 +127,8 @@ import { VerAsistenciaComponent } from '../mis-eventos/asistencia/ver-asistencia
     DonacionesComponent,
     ComprobantePagoComponent,
     EventoModificarComponent,
-    VerAsistenciaComponent
+    VerAsistenciaComponent,
+    ResetPassComponent
   ]
   , exports: [
     BreadcrumbComponent,
