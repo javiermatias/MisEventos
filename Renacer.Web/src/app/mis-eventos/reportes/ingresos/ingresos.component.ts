@@ -33,7 +33,7 @@ export class IngresosComponent implements OnInit {
    tablaIngresosEnElTiempo = {
     columnas: [
         {name: 'fecha', title: 'Mes', type: 'text'}
-      , {name: 'matriculas', title: 'Ingreso por matriculas', type: 'money'}
+      , {name: 'matriculas', title: 'Ingreso por matrículas', type: 'money'}
       , {name: 'eventos', title: 'Ingreso por eventos', type: 'money'},
         {name: 'total', title: 'Total', type: 'money'}
     ]
