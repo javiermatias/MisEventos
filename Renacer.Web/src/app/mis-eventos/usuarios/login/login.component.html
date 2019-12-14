@@ -1,3 +1,8 @@
+<i class="fa fa-arrow-left" style="float: left;font-size: 20px;"
+*ngIf="recuperar_contrasenia == true"
+(click)="volverAtras();" 
+ ></i>
+
 <h2 class="card-title">Mis Eventos</h2>
 <!-- <a routerLink="/register" class="btn btn-link transition bottom-15">No tienes una cuenta? Crea una ahora!</a> -->
 <!-- *ngIf="rolesUsuario?.length <= 1" -->
@@ -33,7 +38,7 @@
   </div>
 </form>
 
-<div *ngIf="recuperar_contrasenia && emailEnviado == false" >
+<div *ngIf="recuperar_contrasenia && emailEnviado == false" > 
   <div class="form-group">
     <input class="form-control checking-field" [(ngModel)]="email"  placeholder="Email" type="email">
   </div>

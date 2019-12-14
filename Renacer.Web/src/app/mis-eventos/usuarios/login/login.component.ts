@@ -47,6 +47,7 @@ public emailEnviado = false;
           });
       }
   }
+  public volverAtras(){  this.recuperar_contrasenia = false; }
 
   public onSubmit(values: Object): void {
     if (this.form.valid) {
