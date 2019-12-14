@@ -148,8 +148,9 @@ namespace Renacer.Nucleo.Control
                 var DbHelper = new DBBase(strConnection);
                 var sql = $@"SELECT e.nombre,
                          SUM({ratingColName})/(COUNT(r.id)*{factor}) as 'stars', 
-                         COUNT(r.id) as 'cantidadVotos'  
-                        FROM ratingevento r, evento e where r.idEvento = e.id AND e.gratuito={filtro.gratuito}
+                         COUNT(r.id) as 'cantidadVotos',
+                         t.nombre as 'tipoevento'
+                        FROM ratingevento r, evento e inner join tipoevento t on t.id = e.idTipoEvento where r.idEvento = e.id AND e.gratuito={filtro.gratuito}
                         group by idEvento order by stars desc";
 
                 var lista = Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
@@ -167,9 +168,10 @@ namespace Renacer.Nucleo.Control
                 var DbHelper = new DBBase(strConnection);
                 var sql = $@"SELECT e.nombre,
                          SUM({ratingColName})/(COUNT(r.id)*{factor}) as 'stars', 
-                         COUNT(r.id) as 'cantidadVotos'  
-                        FROM ratingevento r, evento e where r.idEvento = e.id AND e.gratuito={filtro.gratuito} AND e.idTipoEvento={filtro.tipoEvento}
-                        group by idEvento order by stars desc";
+                         COUNT(r.id) as 'cantidadVotos',
+                         t.nombre as 'tipoevento'  
+                         FROM ratingevento r, evento e inner join tipoevento t on t.id = e.idTipoEvento where r.idEvento = e.id AND e.gratuito={filtro.gratuito} AND e.idTipoEvento={filtro.tipoEvento}
+                         group by idEvento order by stars desc";
 
                 var lista = Helper.Helper.ConvertDT(DbHelper.ExecuteDataTable(sql));
 
