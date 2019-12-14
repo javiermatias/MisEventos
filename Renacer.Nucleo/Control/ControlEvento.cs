@@ -158,7 +158,7 @@ namespace Renacer.Nucleo.Control
                 List<DetalleEvento> detalleEventos = diasEntreDosFechas(evento.fechaDesde, evento.fechaHasta, evento.listaHorarios, evento);
 
                 evento.listaDetalleEvento = detalleEventos;
-
+                
                 if (!evento.gratuito)
                 {
                     for (int i = 1; i <= evento.cantidadCuota; i++)
@@ -166,6 +166,7 @@ namespace Renacer.Nucleo.Control
                         Cuota cuota = new Cuota();
                         cuota.nombre = "Cuota " + i;
                         cuota.monto = (decimal)(evento.monto / evento.cantidadCuota);
+                        cuota.fechaVencimiento = evento.fechaHastaInscripcion.AddMonths(i);
                         cuotas.Add(cuota);
 
                     }

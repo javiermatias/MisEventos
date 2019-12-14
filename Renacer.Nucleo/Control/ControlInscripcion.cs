@@ -141,7 +141,7 @@ namespace Renacer.Nucleo.Control
                 {
                     if (idSocio != null && idSocio > 0)
                         return db.inscripcion
-                                .Include("listaPagos")
+                                .Include("listaPagos").Include("listaPagos.cuota")
                                 .Include("evento")
                                 .Where(x => x.idSocio == idSocio && x.fechaBaja == null)
                                 .ToList();

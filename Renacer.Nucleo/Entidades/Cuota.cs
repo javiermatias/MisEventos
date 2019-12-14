@@ -11,7 +11,8 @@ namespace Renacer.Nucleo.Entidades
         public int id { get; set; } 
         public string  nombre { get; set; }
         public decimal monto { get; set; }
+        public DateTime fechaVencimiento { get; set; }
 
-        
+
     }
 }
