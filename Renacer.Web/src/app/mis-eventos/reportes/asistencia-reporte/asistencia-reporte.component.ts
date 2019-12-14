@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EncargadoEventoServices, EncargadoEvento } from '../../../servicios/encargado.service';
 import { AsistenciaEventoServices } from '../../../servicios/asistencia.service';
 import { AsistenciaEvento } from '../../../modelos/asistencia-evento';
-import { Evento } from '../../../servicios/evento.service';
+import { Evento, DetalleEventoServices, DetalleEvento } from '../../../servicios/evento.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -16,6 +16,8 @@ export class AsistenciaReporteComponent implements OnInit {
   public encargado:EncargadoEvento;
   public eventosAsistencia:AsistenciaEvento[];
 
+  public detalleEvento:DetalleEvento[];
+
   public eventosAsistenciaOriginal:AsistenciaEvento[];
 
   public eventoSeleccionado:Evento;
@@ -23,10 +25,12 @@ export class AsistenciaReporteComponent implements OnInit {
 
   public verAsistenciaSocios:boolean=false;
 
+  public asistenciasEncargado:boolean=false;
   public estado:string="Todos";
   constructor(private encargadoServ:EncargadoEventoServices,
     private asistenciaServ:AsistenciaEventoServices,
-    private toastrService: ToastrService) { }
+    private toastrService: ToastrService,
+    private _detalleEvento:DetalleEventoServices) { }
 
   ngOnInit() {
        this.getEncargados();
@@ -87,4 +91,27 @@ export class AsistenciaReporteComponent implements OnInit {
 
   }
 
+
+  verDetalle(item:Evento){
+    this.listaAsistencias=false;
+    this.getAsistenciaDetalleEvento(item);
+  }
+
+  getAsistenciaDetalleEvento(item:Evento){
+    this._detalleEvento.query(
+      {'idEvento':item.id,
+      'idEncargado':item.idEncargado}).subscribe
+      (items => {          
+          this.detalleEvento= items;
+          this.asistenciasEncargado=true;
+        //console.log(items);
+    });
+
+
+  }
+
+  volver(){
+    this.asistenciasEncargado=false;
+    this.listaAsistencias=true;
+  }
 }
