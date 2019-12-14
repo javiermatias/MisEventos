@@ -1,7 +1,7 @@
 // TODO: Editar esto porque es el login original
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl, AbstractControl, FormBuilder, Validators} from '@angular/forms';
+import { FormGroup, FormControl, AbstractControl, FormBuilder, Validators, EmailValidator} from '@angular/forms';
 import { UserServices } from '../../../servicios/users.service';
 // import * as shajs from 'sha.js';
 
@@ -18,6 +18,9 @@ export class LoginComponent {
   public password: AbstractControl;
   public error: string;
   public loading = false;
+public recuperar_contrasenia = false;
+public email: string;
+public emailEnviado = false;
 
   constructor(router: Router, fb: FormBuilder, private _usersService: UserServices) {
     // constructor(router:Router, fb:FormBuilder,private _usersService:UserServices) {
@@ -29,6 +32,20 @@ export class LoginComponent {
 
     this.username = this.form.controls['username'];
     this.password = this.form.controls['password'];
+  }
+
+  public enviarEmail() {
+      const emailRegexp = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/;
+      if (this.email && !emailRegexp.test(this.email)) {
+        this.error = 'Email invalido.';
+      } else {
+            this._usersService.enviarEmailRecuperacion(this.email).subscribe(result => {
+               this.emailEnviado = true;
+            },
+          error => {
+            this.error = 'Error al enviar el email.';
+          });
+      }
   }
 
   public onSubmit(values: Object): void {

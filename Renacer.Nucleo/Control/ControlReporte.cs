@@ -103,7 +103,6 @@ namespace Renacer.Nucleo.Control
 
         private List<Dictionary<string, object>> GetEncargadosRanking(FilterRanking filtro)
         {
-
             if (filtro.tipoEvento==0)
             {
                 var DbHelper = new DBBase(strConnection);

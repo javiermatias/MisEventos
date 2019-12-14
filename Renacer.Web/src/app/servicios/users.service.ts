@@ -31,8 +31,12 @@ export class UserServices extends BaseServices<Usuario> {
      }
 
   
-  login(usuario: string,clave:string){
-    return this.http.post(`${new Variables().urlBase}login/`,{usuario: usuario,clave:clave})
+  login(usuario: string, clave: string) {
+    return this.http.post(`${new Variables().urlBase}login/`, {usuario: usuario, clave: clave})
+  }
+
+  enviarEmailRecuperacion(email: string) {
+    return this.http.post(`${new Variables().urlBase}emailrecuperacion/`, {email: email})
   }
 
   actual(): Observable<Usuario> {

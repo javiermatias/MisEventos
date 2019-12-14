@@ -1,7 +1,7 @@
 <h2 class="card-title">Mis Eventos</h2>
 <!-- <a routerLink="/register" class="btn btn-link transition bottom-15">No tienes una cuenta? Crea una ahora!</a> -->
 <!-- *ngIf="rolesUsuario?.length <= 1" -->
-<form  [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class=" text-left">
+<form  [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class=" text-left" *ngIf="!recuperar_contrasenia" >
   <div class="form-group">
     <input [formControl]="username" class="form-control checking-field" placeholder="Usuario" type="text">
     <span class="help-block text-danger" *ngIf="form.get('username').touched && form.get('username').hasError('required')">Ingresa un nombre de Usuario</span>
@@ -15,16 +15,36 @@
     <label class="custom-control custom-checkbox">
       <input class="custom-control-input checkbox-main" type="checkbox">
 
-
       <span class="custom-control-indicator"></span>
       <span class="custom-control-description align-middle">Recordarme</span>
     </label> 
-    <!-- <a class="btn btn-link forgot transition pull-right" href="javascript:void(0);">Olvidaste tu contraseña?</a> -->
+    <a class="btn btn-link forgot transition pull-right" (click)="recuperar_contrasenia = true">Olvidaste tu contraseña?</a>
 
-  </div> 
+  </div>
+  
+  <div class="form-group" >
+    <input [formControl]="username" class="form-control checking-field" placeholder="Usuario" type="text">
+    <span class="help-block text-danger" *ngIf="form.get('username').touched && form.get('username').hasError('required')">Ingresa un nombre de Usuario</span>
+  </div>
+  
   <div class="form-group">
     <button [disabled]="!form.valid" class="btn btn-main btn-block" type="submit">Entrar
     </button>
   </div>
 </form>
+
+<div *ngIf="recuperar_contrasenia && emailEnviado == false" >
+  <div class="form-group">
+    <input class="form-control checking-field" [(ngModel)]="email"  placeholder="Email" type="email">
+  </div>
+
+  <div class="form-group">
+    <button class="btn btn-main btn-block" (click)="enviarEmail()">Enviar email</button>
+  </div>
+</div>
+
+<div class="alert alert-info" *ngIf="emailEnviado == true" style="font-size: 20px;">
+ <strong>Email enviado a {{email}}.</strong>  Verifique la casilla de correo.
+</div>
+
 <div class="auth-sep" *ngIf="error"><span><span style="color:red;">{{error}}</span></span></div>
