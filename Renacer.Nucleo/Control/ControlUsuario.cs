@@ -82,6 +82,25 @@ namespace Renacer.Nucleo.Control
             }
             return null;
         }
+
+        public Usuario devolver(string email)
+        {
+            try
+            {
+                using (var db = new ModeloRenacer())
+                {
+                    Usuario _usuario = db.usuario.ToList().
+                    Where(x => x.email.Equals(email)).FirstOrDefault();
+                    return _usuario;
+                }
+            }
+            catch (Exception ex)
+            {
+                ServicioSentry.devolverSentry().informarExcepcion(ex);
+            }
+            return null;
+        }
+
         /// SELECT * FROM Usuario WHERE id = 1;
         public Usuario devolver(int id)
         {

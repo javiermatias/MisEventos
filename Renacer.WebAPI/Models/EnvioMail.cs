@@ -11,18 +11,22 @@ namespace Renacer.WebAPI.Models
         public static Boolean enviarMail(string address, string user, string clave) {
 
             string _htmlBody = devolverMensaje(user, clave);
+            return _enviarEmail(address,_htmlBody, "Bienvenidos a la Fundación Foro de los Sabios"); 
+        }
+
+        public static bool _enviarEmail(string address, string _htmlBody,string subject)
+        {
             try
             {
-                
                 MailMessage mail = new MailMessage();
                 SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
 
                 mail.From = new MailAddress("forodelosabios@gmail.com");
                 mail.To.Add(address);
-                mail.Subject = "Bienvenidos a la Fundación Foro de los Sabios";
+                mail.Subject = subject ;
                 mail.IsBodyHtml = true;
                 //Mensaje En Html          
-                   //
+                //
                 mail.Body = _htmlBody;
 
                 SmtpServer.Port = 587;
@@ -36,10 +40,7 @@ namespace Renacer.WebAPI.Models
             {
                 return false;
             }
-
         }
-
-
 
         public static string devolverMensaje(string user, string clave)
         {
@@ -102,6 +103,28 @@ namespace Renacer.WebAPI.Models
 
 
                                                               <p>También te puedes comunicar al mail: <strong>
+forodelosabios@gmail.com</strong> por cualquier duda o consulta.</p>";
+        }
+
+
+
+
+
+        public static string devolverMensajeRecuperoContrasenia(string user, string clave)
+        {
+            return @"<h3>Fundación Foro de los Sabios</h3>
+
+   <p> Gracias por ser parte de esta hermosa fundación, contamos un sistema integral para que puedas 
+      organizarte con este sistema online que poseemos.
+   </p>
+<h3>Datos de ingreso: </h3>
+    <p>
+        Deberas ingresar a www.forodelossabios.com, y colocar alli tus credenciales. <br>
+        Usuario:" + user + @" <br>
+        Contraseña:" + clave + @" <br>
+   </p>
+                                             
+  <p>Te puedes comunicar al mail: <strong>
 forodelosabios@gmail.com</strong> por cualquier duda o consulta.</p>";
         }
     }
