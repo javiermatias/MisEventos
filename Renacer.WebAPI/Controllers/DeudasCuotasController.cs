@@ -30,8 +30,9 @@ namespace Renacer.WebAPI.Controllers
             foreach (var _cuota in evento.listaCuotas)
             {
                 DeudaCuota cuota = new DeudaCuota();
-                cuota.nombreCuota = _cuota.nombre;
+                cuota.nombreCuota = _cuota.nombre + " - vto. " + _cuota.fechaVencimiento.ToString("dd-MM-yyyy");
                 cuota.idCuota = _cuota.id;
+               
                 cuota.listaSocios = new List<Socio>();
                 listaDeudores.Add(cuota);
             }
