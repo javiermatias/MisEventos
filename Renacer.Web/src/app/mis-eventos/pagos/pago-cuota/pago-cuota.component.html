@@ -222,6 +222,9 @@
                                               <mfDefaultSorter by="apellido">Monto</mfDefaultSorter>
                                           </th>
                                           <th>
+                                            <mfDefaultSorter by="fechaVencimiento">Vencimiento</mfDefaultSorter>
+                                        </th>
+                                          <th>
                                               <mfDefaultSorter by="nroDocumento">Estado</mfDefaultSorter>
                                           </th>
                                           <th>
@@ -232,11 +235,11 @@
                                       </tr>
                                   </thead>
                                   <tbody>
-                                      <tr *ngFor="let item of mf.data ">
+                                      <tr *ngFor="let item of mf.data" [ngClass]="{'cuota_vencida': estaVencida(item)}">
                                           <!-- <td>{{item.id}}</td> -->
                                           <td><strong>{{item.nombre}}</strong></td>
-                                          <td>${{item.monto}}</td>       
-                                          <!-- <td *ngIf= >{{item.estaPagado}}</td>    -->
+                                          <td>${{item.monto}}</td>
+                                          <td>{{item.cuota.fechaVencimiento | date:'dd-MM-yyyy'}}</td>       
                                           <td *ngIf="item.estaPagado; else other_content">
                                                     Pagado
                                             <!-- <button type="button" class="btn .btn-outline-success btn-rounded" (click)="cobrar(item)">Cobrar</button> -->

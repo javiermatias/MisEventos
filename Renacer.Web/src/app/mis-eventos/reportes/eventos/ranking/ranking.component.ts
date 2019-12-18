@@ -40,6 +40,7 @@ export class RankingComponent implements OnInit {
       columnas: [
           {name: 'orden', title: 'Nro.', type: 'text'}
         , {name: 'nombre', title: 'Nombre', type: 'text'}
+        , {name: 'tipoevento', title: 'Tipo de evento', type: 'text'}
         , {name: 'cantidadVotos', title: 'Opiniones', type: 'text'}
         , {name: 'stars', title: 'Valoración', type: 'stars'}
       ]

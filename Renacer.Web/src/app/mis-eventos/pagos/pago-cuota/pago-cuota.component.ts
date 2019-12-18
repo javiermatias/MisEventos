@@ -44,7 +44,12 @@ export class PagoCuotaComponent implements OnInit {
       return (a.id - b.id) 
   });
 
-    this.mostrarCuotas=true;
+    this.mostrarCuotas= true;
+  }
+
+  estaVencida(item: any) {
+   const tt = new Date(item.cuota.fechaVencimiento);
+    return  tt < new Date() && !item.estaPagado;
   }
 
   socioSeleccionado(socio:Socio){
