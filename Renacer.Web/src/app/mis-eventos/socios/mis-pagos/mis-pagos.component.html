@@ -52,6 +52,7 @@
                                 <th>
                                     <mfDefaultSorter by="fechaCreacion"><strong>Estado</strong></mfDefaultSorter>
                                 </th>
+
                                 <th>
                                     <mfDefaultSorter by="estado"><strong>Cuotas</strong></mfDefaultSorter>
                                 </th>
@@ -139,10 +140,13 @@
                                                 <mfDefaultSorter by="nombre">Nombre</mfDefaultSorter>
                                             </th>
                                             <th>
-                                                <mfDefaultSorter by="apellido">Monto</mfDefaultSorter>
+                                                <mfDefaultSorter by="monto">Monto</mfDefaultSorter>
                                             </th>
                                             <th>
-                                                <mfDefaultSorter by="nroDocumento">Estado</mfDefaultSorter>
+                                                <mfDefaultSorter by="fechaVencimiento">Vencimiento</mfDefaultSorter>
+                                            </th>
+                                            <th>
+                                                <mfDefaultSorter by="estado">Estado</mfDefaultSorter>
                                             </th>
                                           
                                             <th>
@@ -153,10 +157,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let item of mf.data;">
+                                        <tr *ngFor="let item of mf.data;" [ngClass]="{'cuota_vencida': estaVencida(item)}">
                                             <!-- <td>{{item.id}}</td> -->
                                             <td><strong>{{item.nombre}}</strong></td>
-                                            <td>${{item.monto}}</td>       
+                                            <td>${{item.monto}}</td>   
+                                            <td>{{item.cuota.fechaVencimiento | date:'dd-MM-yyyy'}}</td>     
                                             <!-- <td *ngIf= >{{item.estaPagado}}</td>    -->
                                             <td *ngIf="item.estaPagado; else other_content">
                                                       Pagado

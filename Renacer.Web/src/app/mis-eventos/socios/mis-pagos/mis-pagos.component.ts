@@ -57,6 +57,12 @@ export class MisPagosComponent implements OnInit {
     );
   }
 
+estaVencida(item: any) {
+   const tt = new Date(item.cuota.fechaVencimiento);
+    return  tt < new Date() && !item.estaPagado;
+  }
+
+
   traerInscripciones() {
 
     this.inscripcionServ.query({ 'idSocio': this.usuario.idSocio }).subscribe(items => {
