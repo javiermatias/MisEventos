@@ -54,7 +54,7 @@
               <i class="fa fa-users"></i>
           </span>
           <div class="media-body text-right">
-            <h6 class="media-heading no-margin">SOCIOS</h6>
+            <h6 class="media-heading no-margin" [routerLink]="['/pages/socios/']" >SOCIOS</h6>
             <span class="counter-card" *ngIf="cantSocios == -1"  class="fa fa-spin fa-spinner"></span>
             <span class="counter-card" *ngIf="cantSocios != -1" >{{cantSociosSistema}}</span>
           </div>
@@ -129,7 +129,7 @@
             <i class="fa fa-map-marker"></i>
         </span>
         <div class="media-body text-right">
-          <h6 class="media-heading no-margin">SECRETARIOS</h6>
+          <h6 class="media-heading no-margin" [routerLink]="['/pages/secretarios/']">SECRETARIOS</h6>
           <span *ngIf="cantSecretarios != -1" >{{cantSecretarios}}</span>
           <span *ngIf="cantSecretarios == -1"  class="fa fa-spin fa-spinner"></span>
         </div>
@@ -216,7 +216,8 @@
             <i class="fa fa-users"></i>
         </span>
         <div class="media-body text-right">
-          <h6 class="media-heading no-margin">SOCIOS</h6>
+          <h6 [routerLink]="['/pages/socios/']" class="media-heading no-margin"> 
+            SOCIOS </h6>
           <span class="counter-card" *ngIf="cantSocios == -1"  class="fa fa-spin fa-spinner"></span>
           <span class="counter-card" *ngIf="cantSocios != -1" >{{cantSociosSistema}}</span>
         </div>
@@ -261,7 +262,7 @@
           <i class="fa fa-users"></i>
       </span>
       <div class="media-body text-right">
-        <h6 class="media-heading no-margin">ENCARGADOS</h6>
+        <h6 class="media-heading no-margin" [routerLink]="['/pages/encargados/']">ENCARGADOS</h6>
         <span *ngIf="cantEncargados == -1"  class="fa fa-spin fa-spinner"></span>
         <span *ngIf="cantEncargados != -1" >{{cantEncargados}}</span>
       </div>
@@ -276,7 +277,7 @@
           <i class="fa fa-map-marker"></i>
       </span>
       <div class="media-body text-right">
-        <h6 class="media-heading no-margin">ESPACIOS COMUNES</h6>
+        <h6 class="media-heading no-margin" [routerLink]="['/pages/espacios/']">ESPACIOS COMUNES</h6>
         <span *ngIf="cantEspacios != -1" >{{cantEspacios}}</span>
         <span *ngIf="cantEspacios == -1"  class="fa fa-spin fa-spinner"></span>
       </div>
