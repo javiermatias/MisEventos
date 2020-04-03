@@ -1,4 +1,10 @@
+Preview : http://deliciastenis-001-site1.btempurl.com/
+User: admin
+Password:123456
+
 # Proyecto - Renacer
+
+Languages
 
 ##Inicializacion del Proyecto
 
