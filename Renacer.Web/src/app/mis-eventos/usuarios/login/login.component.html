@@ -3,16 +3,26 @@
 (click)="volverAtras();" 
  ></i>
 
-<h2 class="card-title">Mis Eventos</h2>
+<!-- <div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1>Mis Eventos - Information System Thesis</h1>      
+  <p>Only for display purposes.</p>
+<p>User: Admin</p>      
+<p>Pass: 123456</p>  
+</div> -->
+
+  <h2 class="card-title" style=" display: inline;">Mis Eventos</h2><p style=" display: inline;"> - Only for display purposes.</p>
+  
+
 <!-- <a routerLink="/register" class="btn btn-link transition bottom-15">No tienes una cuenta? Crea una ahora!</a> -->
 <!-- *ngIf="rolesUsuario?.length <= 1" -->
 <form  [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class=" text-left" *ngIf="!recuperar_contrasenia" >
   <div class="form-group">
-    <input [formControl]="username" class="form-control checking-field" placeholder="Usuario" type="text">
+    <input [formControl]="username" class="form-control checking-field" placeholder="admin" type="text">
     <span class="help-block text-danger" *ngIf="form.get('username').touched && form.get('username').hasError('required')">Ingresa un nombre de Usuario</span>
   </div>
   <div class="form-group">
-    <input [formControl]="password" class="form-control checking-field" placeholder="Contraseña" type="password">
+    <input [formControl]="password" class="form-control checking-field" placeholder="123456" type="password">
     <span class="help-block text-danger" *ngIf="form.get('password').touched && form.get('password').hasError('required')">La contraseña es requerida</span>
     <span class="help-block text-danger" *ngIf="form.get('password').touched && form.get('password').hasError('minlength')">La contraseña debe tener por lo menos 6 caracteres</span>
   </div>

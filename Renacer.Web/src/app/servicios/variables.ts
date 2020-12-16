@@ -5,7 +5,7 @@ export class Variables {
     if (window.location.href.toString().includes('localhost')) {
       this.urlBase = 'http://localhost:6913/api/';
     } else {
-      this.urlBase = 'http://qwaugusto-001-site5.htempurl.com/api/'; }
+      this.urlBase = 'http://deliciastenis-001-site1.btempurl.com/api/'; }
 
       // this.urlBase = 'http://qwaugusto-001-site5.htempurl.com/api/';
 
